@@ -34,7 +34,7 @@ class HomePromoPatch : Patch(
                 ),
                 PatternScanMethod.Fuzzy(2), // FIXME: Test this threshold and find the best value.
                 compatiblePackages,
-                """Found in YouTube version v17.03.38""".trimIndent(),
+                "Found in YouTube version v17.03.38",
                 "0.0.1"
             ),
             "V",
@@ -85,7 +85,7 @@ class HomePromoPatch : Patch(
                 ),
                 PatternScanMethod.Fuzzy(2), // FIXME: Test this threshold and find the best value.
                 compatiblePackages,
-                """Found in YouTube version v17.03.38""".trimIndent(),
+                "Found in YouTube version v17.03.38",
                 "0.0.1"
             ),
             "V",
@@ -130,9 +130,9 @@ class HomePromoPatch : Patch(
 ) {
     override fun execute(patcherData: PatcherData): PatchResult {
         for (signature in signatures) {
-            val result = signatures.last().result!!
+            val result = signature.result!!
 
-            val methodMetadata = MethodMetadata(signature.metadata.methodMetadata.definingClass, "d")
+            val methodMetadata = MethodMetadata(signature.metadata.methodMetadata!!.definingClass, "d")
             val requiredMethod = result.findParentMethod(
                 MethodSignature(
                     MethodSignatureMetadata(
@@ -140,7 +140,7 @@ class HomePromoPatch : Patch(
                         methodMetadata,
                         PatternScanMethod.Fuzzy(2), // FIXME: Test this threshold and find the best value.
                         compatiblePackages,
-                        """Found in YouTube version v17.03.38""".trimIndent(),
+                        "Found in YouTube version v17.03.38",
                         "0.0.1"
                     ),
                     "V",
@@ -171,5 +171,4 @@ class HomePromoPatch : Patch(
 
         return PatchResultSuccess()
     }
-
 }
