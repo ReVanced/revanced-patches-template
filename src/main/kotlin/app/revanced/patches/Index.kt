@@ -9,6 +9,7 @@ import app.revanced.patches.layout.CreateButtonRemoverPatch
 import app.revanced.patches.layout.ShortsButtonRemoverPatch
 import app.revanced.patches.layout.HideReelsPatch
 import app.revanced.patches.layout.MinimizedPlaybackPatch
+import app.revanced.patches.layout.ForceSettingsPatch
 import app.revanced.patches.layout.OldQualityLayoutPatch
 import app.revanced.patches.misc.IntegrationsPatch
 
@@ -27,6 +28,7 @@ object Index {
         ::VideoAdsPatch,
         ::HomePromoPatch,
         ::MinimizedPlaybackPatch,
+        ::ForceSettingsPatch,
         ::CreateButtonRemoverPatch,
         ::ShortsButtonRemoverPatch,
         ::HideReelsPatch,
