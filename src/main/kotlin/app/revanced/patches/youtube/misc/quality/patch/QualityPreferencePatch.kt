@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
 @Patch
 @Dependencies(
-    dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class]
+    dependencies = [IntegrationsPatch::class]
 )
 @Name("quality-preference")
 @Description("Adds the ability to select preferred video quality.")
