@@ -15,7 +15,7 @@ import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.misc.quality.annotations.QualityPreferenceCompatibility
 import app.revanced.patches.youtube.misc.quality.signatures.QualityPreferenceSetSignature
 import app.revanced.patches.youtube.misc.quality.signatures.QualityPreferenceSignature
-import app.revanced.patches.youtube.misc.integrations.patch.bytecode.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
 @Patch
 @Dependencies(
