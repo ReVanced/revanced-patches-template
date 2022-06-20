@@ -48,7 +48,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
         // It only hides it if the last tab name is "TAB_SHORTS"
         implementation2.addInstruction(
             result2.scanResult.endIndex + 2,
-            "invoke-static { v$viewRegister }, Lfi/razerman/youtube/XAdRemover;->hideShortsButton(Landroid/view/View;)V".toInstruction()
+            "invoke-static { v$viewRegister }, Lapp/revanced/integrations/adremover/XAdRemover;->hideShortsButton(Landroid/view/View;)V".toInstruction()
         )
 
         return PatchResultSuccess()
