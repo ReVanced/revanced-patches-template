@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 
 @Name("quality-preference-signature")
 @MatchingMethod(
-    "Lkdy", "a"
+    "Lkec", "a"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 @QualityPreferenceCompatibility
@@ -20,9 +20,9 @@ import org.jf.dexlib2.Opcode
 object QualityPreferenceSignature : MethodSignature(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
-    listOf("L","I","I","Z","I"),
+    listOf("[L", "I", "I", "Z", "I"),
     listOf(
-        Opcode.IGET_OBJECT, // opcodes are broken
+        Opcode.IGET_OBJECT, 
         Opcode.IF_EQ,
         Opcode.IGET,
         Opcode.IF_NE,
@@ -51,6 +51,5 @@ object QualityPreferenceSignature : MethodSignature(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.INVOKE_VIRTUAL,
         Opcode.IPUT_BOOLEAN,
-        Opcode.RETURN_VOID,
     )
 )
