@@ -4,6 +4,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.implementation.ResourceData
+import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.implementation.ResourcePatch
 import app.revanced.patcher.patch.implementation.misc.PatchResult
 import app.revanced.patcher.patch.implementation.misc.PatchResultSuccess
@@ -39,10 +40,6 @@ class MicroGResourcePatch : ResourcePatch() {
                 "android:label=\"@string/application_name", "android:label=\"$REVANCED_APP_NAME"
             ).replace(
                 "android:authorities=\"com.google.android.youtube", "android:authorities=\"$REVANCED_PACKAGE_NAME"
-            ).replace(
-                "com.google.android.youtube.fileprovider", "$REVANCED_PACKAGE_NAME.fileprovider"
-            ).replace(
-                "com.google.android.youtube.SuggestionProvider", "$REVANCED_PACKAGE_NAME.SuggestionProvider"
             ).replace(
                 "com.google.android.youtube.permission.C2D_MESSAGE", "$REVANCED_PACKAGE_NAME.permission.C2D_MESSAGE"
             ).replace( // TODO: might not be needed
