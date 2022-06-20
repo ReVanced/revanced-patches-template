@@ -31,24 +31,23 @@ class QualityPreferencePatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        val result = signatures.last().result!!
-        val qualityChangedImpl = result.method.implementation!!
+        val sigResult = QualityPreferenceSignature.result!!
 
-		val qualityClass = result.definingClassProxy.resolve();
+		val qualityClass = sigResult.definingClassProxy.resolve();
 
-		val onClick = qualityClass.methods.first { it.name == "onItemClick" }
-		val onClickImpl = onClick.implementation!!
+		val onClickMethod = qualityClass.methods.first { it.name == "onItemClick" }
 
 		val qualityInterfaceFieldName = "an";
-
 		val qualityInterfaceField = qualityClass.fields.first { it.name == qualityInterfaceFieldName }
-		
+
+		val onClickImpl = onClickMethod.implementation!!
         onClickImpl.addInstruction(
             0, """
             invoke-static {}, Lfi/razerman/youtube/videosettings/VideoQuality;->userChangedQuality()V
 	      """.trimIndent().toInstruction()
         )
 
+        val qualityChangedImpl = sigResult.method.implementation!!
         qualityChangedImpl.addInstructions(
             0, """
 		   iget-object v0, p0, ${qualityClass.type}->$qualityInterfaceFieldName:${qualityInterfaceField.type}
