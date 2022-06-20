@@ -39,8 +39,18 @@ object QualityPreferenceSignature : MethodSignature(
         Opcode.INVOKE_DIRECT,
         Opcode.IPUT_OBJECT,
         Opcode.IF_NE,
+        Opcode.IGET,
+        Opcode.IF_EQ,
+        Opcode.IPUT_OBJECT,
+        Opcode.IPUT,
+        Opcode.IPUT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IF_EQZ,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.INVOKE_VIRTUAL,
+        Opcode.IPUT_BOOLEAN,
+        Opcode.RETURN_VOID,
     )
 )
