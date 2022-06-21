@@ -59,7 +59,7 @@ class OldQualityLayoutPatch : BytecodePatch(
         implementation.addInstruction(5, jmpInstruction)
         implementation.addInstructions(
             0, """
-                invoke-static { }, Lapp/revanced/integrations/settings/XGlobals;->useOldStyleQualitySettings()Z
+                invoke-static { }, Lapp/revanced/integrations/settings/Settings;->useOldStyleQualitySettings()Z
                 move-result v0
             """.trimIndent().toInstructions()
         )

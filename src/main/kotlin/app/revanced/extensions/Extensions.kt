@@ -10,7 +10,7 @@ internal fun MutableMethodImplementation.injectHideCall(
 ) {
     this.addInstruction(
         index,
-        "invoke-static { v$register }, Lapp/revanced/integrations/adremover/XAdRemover;->HideView(Landroid/view/View;)V".toInstruction()
+        "invoke-static { v$register }, Lapp/revanced/integrations/adremover/HideHomeAdsPatch;->HideHomeAds(Landroid/view/View;)V".toInstruction()
     )
 }
 
