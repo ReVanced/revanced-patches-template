@@ -40,7 +40,7 @@ class VideoAdsPatch : BytecodePatch(
             ) {}) ?: return PatchResultError("Required parent method could not be found.")
 
         // Override the parameter by calling shouldShowAds and setting the parameter to the result
-        result.method!!.addInstructions(
+        result.method.addInstructions(
             0, """
                 invoke-static { }, Lfi/vanced/libraries/youtube/whitelisting/Whitelist;->shouldShowAds()Z
                 move-result v1

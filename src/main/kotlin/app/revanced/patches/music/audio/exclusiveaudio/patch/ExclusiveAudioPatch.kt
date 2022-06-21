@@ -62,7 +62,7 @@ class ExclusiveAudioPatch : BytecodePatch(
             implementation.instructions.count() - 1, "const/4 v0, 0x1".toInstruction()
         )
         implementation.addInstruction(
-            "return v0".toInstruction()
+             "return v0".toInstruction()
         )
 
         return PatchResultSuccess()
