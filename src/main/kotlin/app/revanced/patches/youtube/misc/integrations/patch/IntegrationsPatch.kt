@@ -28,7 +28,7 @@ class IntegrationsPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        if (data.findClass("Lapp/revanced/integrations/Globals") == null)
+        if (data.findClass("Lapp/revanced/integrations/utils/Globals") == null)
             return PatchResultError("Integrations have not been merged yet. This patch can not succeed without the integrations.")
 
         val result = InitSignature.result!!
