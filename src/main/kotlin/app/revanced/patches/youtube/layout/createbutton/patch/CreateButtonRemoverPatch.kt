@@ -40,7 +40,7 @@ class CreateButtonRemoverPatch : BytecodePatch(
         // Hide the button view via proxy by passing it to the hideCreateButton method
         implementation.addInstruction(
             result.scanResult.endIndex + 1,
-            "invoke-static { v$register }, Lapp/revanced/integrations/adremover/HideCreateButtonPatch;->hideCreateButton(Landroid/view/View;)V".toInstruction()
+            "invoke-static { v$register }, Lapp/revanced/integrations/patches/HideCreateButtonPatch;->hideCreateButton(Landroid/view/View;)V".toInstruction()
         )
 
         return PatchResultSuccess()
