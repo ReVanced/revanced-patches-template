@@ -87,7 +87,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         )
         implementation.addInstructions(
             result.scanResult.endIndex + 1, """
-                invoke-static { }, Lapp/revanced/integrations/preferences/BooleanPreferences;->isTapSeekingEnabled()Z
+                invoke-static { }, Lapp/revanced/integrations/patches/SeekbarTappingPatch;->isTapSeekingEnabled()Z
                 move-result v0
             """.trimIndent().toInstructions()
         )

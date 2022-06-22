@@ -43,7 +43,7 @@ class VideoAdsPatch : BytecodePatch(
         // Override the parameter by calling shouldShowAds and setting the parameter to the result
         result.method.implementation!!.addInstructions(
             0, """
-                invoke-static { }, Lapp/revanced/integrations/adremover/whitelist/Whitelist;->shouldShowAds()Z
+                invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
                 move-result v1
             """.trimIndent().toInstructions()
         )
