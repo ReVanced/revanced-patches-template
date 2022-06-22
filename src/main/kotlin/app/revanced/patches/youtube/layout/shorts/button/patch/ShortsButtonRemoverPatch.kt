@@ -41,7 +41,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
         // Save the tab enum in XGlobals to avoid smali/register workarounds
         implementation1.addInstruction(
             result1.scanResult.endIndex + 1,
-            "sput-object v$enumRegister, Lapp/revanced/integrations/settings/Settings;->lastPivotTab:Ljava/lang/Enum;".toInstruction()
+            "sput-object v$enumRegister, Lapp/revanced/integrations/adremover/HideShortsButtonPatch;->lastPivotTab:Ljava/lang/Enum;".toInstruction()
         )
 
         // Hide the button view via proxy by passing it to the hideShortsButton method
