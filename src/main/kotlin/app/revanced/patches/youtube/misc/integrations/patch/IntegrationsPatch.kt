@@ -39,7 +39,7 @@ class IntegrationsPatch : BytecodePatch(
         implementation.addInstructions(
             result.scanResult.endIndex + 1, """
                   invoke-static {v$count}, Lapp/revanced/integrations/sponsorblock/StringRef;->setContext(Landroid/content/Context;)V
-                  sput-object v$count, Lapp/revanced/integrations/Globals;->context:Landroid/content/Context;
+                  sput-object v$count, Lapp/revanced/integrations/utils/Globals;->context:Landroid/content/Context;
             """.trimIndent().toInstructions()
         )
 
@@ -55,7 +55,7 @@ class IntegrationsPatch : BytecodePatch(
                 null,
                 ImmutableMethodImplementation(
                     1, """
-                        invoke-static { }, Lapp/revanced/integrations/Globals;->getAppContext()Landroid/content/Context;
+                        invoke-static { }, Lapp/revanced/integrations/utils/Globals;->getAppContext()Landroid/content/Context;
                         move-result-object v0
                         return-object v0
                     """.trimIndent().toInstructions(), null, null
