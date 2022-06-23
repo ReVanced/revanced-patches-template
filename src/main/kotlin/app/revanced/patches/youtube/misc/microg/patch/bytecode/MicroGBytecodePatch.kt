@@ -34,7 +34,6 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @Dependencies(
     dependencies = [
         MicroGResourcePatch::class,
-        HideCastButtonPatch::class,
         FixLocaleConfigErrorPatch::class
     ]
 )
