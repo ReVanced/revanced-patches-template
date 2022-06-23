@@ -1,4 +1,3 @@
-## [1.10.2](https://github.com/Itroublve/revanced-patches/compare/v1.10.1...v1.10.2) (2022-06-23)
 
 
 ### Bug Fixes
