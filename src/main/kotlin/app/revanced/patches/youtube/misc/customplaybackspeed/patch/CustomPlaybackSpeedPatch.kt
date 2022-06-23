@@ -19,6 +19,14 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patcher.patch.annotations.Dependencies
 import org.jf.dexlib2.builder.BuilderInstruction
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import org.jf.dexlib2.iface.instruction.formats.Instruction11x
+import org.jf.dexlib2.iface.instruction.formats.Instruction11n
+import org.jf.dexlib2.iface.instruction.formats.Instruction21c
+import org.jf.dexlib2.iface.instruction.formats.Instruction21ih
+import org.jf.dexlib2.iface.reference.MethodReference
+import org.jf.dexlib2.iface.reference.FieldReference
 
 @Patch
 @Name("custom-playback-speed")
@@ -32,23 +40,43 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
     override fun execute(data: BytecodeData): PatchResult {
         val arrayGenMethod = ArrayGeneratorSignature.result?.method!!
-      
-        if(arrayGenMethod.implementation!!.instructions[11].opcode != Opcode.MOVE_RESULT)
-            return PatchResultError("Could't find correct instructions")
+        val arrayGenMethodImpl = arrayGenMethod.implementation!!
 
-        arrayGenMethod.implementation!!.replaceInstruction(11, 
-            "const/4 v0, 0x0".toInstruction()
+        val sizeCallIndex = arrayGenMethodImpl.instructions
+            .indexOfFirst { ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "size" }
+
+        if(sizeCallIndex == -1) return PatchResultError("Couldn't find call to size()")
+
+        val sizeCallResultRegister = (arrayGenMethodImpl.instructions[sizeCallIndex + 1] as Instruction11x).registerA
+
+        arrayGenMethodImpl.replaceInstruction(sizeCallIndex + 1, 
+            "const/4 v$sizeCallResultRegister, 0x0".toInstruction()
         )    
 
-        arrayGenMethod.addInstructions(28, 
+        val (arrayLengthConstIndex, arrayLengthConst) = arrayGenMethodImpl.instructions.withIndex()
+            .first {(it.value as? Instruction11n)?.narrowLiteral == 7 }
+
+        val arrayLengthConstDestination = (arrayLengthConst as Instruction11n).registerA
+
+        val videoSpeedsArrayType = "Lfi/razerman/youtube/XGlobals;->videoSpeeds:[F"
+
+        arrayGenMethod.addInstructions(arrayLengthConstIndex + 1, 
             """
-            sget-object v4, Lfi/razerman/youtube/XGlobals;->videoSpeeds:[F
-            array-length v0, v4
+            sget-object v$arrayLengthConstDestination, $videoSpeedsArrayType
+            array-length v$arrayLengthConstDestination, v$arrayLengthConstDestination
             """
         )
         
-        arrayGenMethod.implementation!!.replaceInstruction(35,
-            "sget-object v4, Lfi/razerman/youtube/XGlobals;->videoSpeeds:[F".toInstruction()
+        val (originalArrayFetchIndex, originalArrayFetch) = arrayGenMethodImpl.instructions.withIndex()
+            .first { 
+                ((it.value as? ReferenceInstruction)?.reference as? FieldReference)?.definingClass?.contains("PlayerConfigModel") ?: false &&
+                ((it.value as? ReferenceInstruction)?.reference as? FieldReference)?.type == "[F"
+            }
+
+        val originalArrayFetchDestination = (originalArrayFetch as Instruction21c).registerA
+
+        arrayGenMethodImpl.replaceInstruction(originalArrayFetchIndex,
+            "sget-object v$originalArrayFetchDestination, $videoSpeedsArrayType".toInstruction()
         )
 
         val limiterMethodImpl = SpeedLimiterSignature.result?.method!!.implementation!!
@@ -58,11 +86,19 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         fun hexFloat(float: Float): String = "0x%08x".format(float.toRawBits()) 
 
-        limiterMethodImpl.replaceInstruction(5, 
-            "const/high16 v0, ${hexFloat(speedLimitMin)}".toInstruction()
+        val (limiterMinConstIndex, limiterMinConst) = limiterMethodImpl.instructions.withIndex()
+            .first { (it.value as? Instruction21ih)?.narrowLiteral == 0.25f.toRawBits() }        
+        val (limiterMaxConstIndex, limiterMaxConst) = limiterMethodImpl.instructions.withIndex()
+            .first { (it.value as? Instruction21ih)?.narrowLiteral == 2.0f.toRawBits() }
+
+        val limiterMinConstDestination = (limiterMinConst as Instruction21ih).registerA
+        val limiterMaxConstDestination = (limiterMaxConst as Instruction21ih).registerA
+
+        limiterMethodImpl.replaceInstruction(limiterMinConstIndex, 
+            "const/high16 v$limiterMinConstDestination, ${hexFloat(speedLimitMin)}".toInstruction()
         )
-        limiterMethodImpl.replaceInstruction(6, 
-            "const/high16 v1, ${hexFloat(speedLimitMax)}".toInstruction()
+        limiterMethodImpl.replaceInstruction(limiterMaxConstIndex, 
+            "const/high16 v$limiterMaxConstDestination, ${hexFloat(speedLimitMax)}".toInstruction()
         )
 
         return PatchResultSuccess()
