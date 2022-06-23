@@ -1,9 +1,3 @@
-
-
-### Bug Fixes
-
-* Change environment from 20.04 to 18.04 ([1e1889f](https://github.com/Itroublve/revanced-patches/commit/1e1889f6b9d9d5a2a7f5fa570835bf656fdc2f38))
-
 ## [1.10.1](https://github.com/revanced/revanced-patches/compare/v1.10.0...v1.10.1) (2022-06-23)
 
 
