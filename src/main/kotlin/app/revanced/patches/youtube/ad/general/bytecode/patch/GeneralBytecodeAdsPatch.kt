@@ -148,11 +148,11 @@ class GeneralBytecodeAdsPatch : BytecodePatch(
                                         mutableClass!!.findMutableMethodOf(method)
 
                                     // TODO: dynamically get registers
-                                    mutableMethod!!.implementation!!.addInstructions(
+                                    mutableMethod!!.addInstructions(
                                         insertIndex, """
                                                 const/16 v1, 0x8
                                                 invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
-                                            """.trimIndent().toInstructions()
+                                            """
                                     )
                                 }
 
@@ -242,25 +242,23 @@ class GeneralBytecodeAdsPatch : BytecodePatch(
                                         BuilderInstruction21t(Opcode.IF_EQZ, 1, lithoRemoveLabel)
 
                                     // create blocks
-                                    val parameters = lithoMethod.parameterTypes.joinToString("") { it }
-                                    val registers = lithoMethodImplementation.registerCount
                                     val block1 = """
                                         invoke-static/range {p3}, $thisType->getTemplateName($templateNameParameterType)Ljava/lang/String;
                                         move-result-object v0
-                                    """.trimIndent().toInstructions(parameters, registers, false)
+                                    """.trimIndent().toInstructions(lithoMethod)
                                     val block2 = """
                                         move-object/from16 v1, p3
                                         iget-object v2, v1, $templateNameParameterType->b:Ljava/nio/ByteBuffer;
-                                        invoke-static {v0, v2}, Lfi/razerman/youtube/litho/LithoAdRemoval;->containsAd(Ljava/lang/String;Ljava/nio/ByteBuffer;)Z
+                                        invoke-static {v0, v2}, Lapp/revanced/integrations/patches/GeneralBytecodeAdsPatch;->containsAd(Ljava/lang/String;Ljava/nio/ByteBuffer;)Z
                                         move-result v1
-                                    """.trimIndent().toInstructions(parameters, registers, false)
+                                    """.trimIndent().toInstructions(lithoMethod)
                                     val block3 = """
                                         move-object/from16 v2, p1
                                         invoke-static {v2}, $descriptor1
                                         move-result-object v0
                                         iget-object v0, v0, $descriptor2
                                         return-object v0
-                                    """.trimIndent().toInstructions(parameters, registers, false)
+                                    """.trimIndent().toInstructions(lithoMethod)
 
                                     // insert blocks and branch instructions
                                     lithoMethodImplementation.insertBlocks(

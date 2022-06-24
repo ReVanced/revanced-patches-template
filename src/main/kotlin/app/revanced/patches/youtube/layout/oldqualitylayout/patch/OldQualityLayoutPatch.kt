@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.implementation.misc.PatchResultSuccess
 import app.revanced.patcher.signature.implementation.method.MethodSignature
 import app.revanced.patcher.signature.implementation.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.signature.implementation.method.annotation.MatchingMethod
-import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.layout.oldqualitylayout.annotations.OldQualityLayoutCompatibility
 import app.revanced.patches.youtube.layout.oldqualitylayout.signatures.OldQualityParentSignature
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -35,7 +34,7 @@ class OldQualityLayoutPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        val result = signatures.first().result!!.findParentMethod(@Name("old-quality-signature") @MatchingMethod(
+        val result = OldQualityParentSignature.result!!.findParentMethod(@Name("old-quality-signature") @MatchingMethod(
             definingClass = "Libh"
         ) @FuzzyPatternScanMethod(2) @OldQualityLayoutCompatibility @Version("0.0.1") object : MethodSignature(
             "L", AccessFlags.FINAL or AccessFlags.PRIVATE, listOf("Z"), listOf(
@@ -57,11 +56,11 @@ class OldQualityLayoutPatch : BytecodePatch(
             Opcode.IF_NEZ, 0, implementation.instructions[result.scanResult.endIndex].location.labels.first()
         )
         implementation.addInstruction(5, jmpInstruction)
-        implementation.addInstructions(
+        result.method.addInstructions(
             0, """
-                invoke-static { }, Lfi/razerman/youtube/XGlobals;->useOldStyleQualitySettings()Z
+                invoke-static { }, Lapp/revanced/integrations/patches/OldStyleQualityPatch;->useOldStyleQualitySettings()Z
                 move-result v0
-            """.trimIndent().toInstructions()
+            """
         )
 
         return PatchResultSuccess()

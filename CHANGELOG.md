@@ -1,3 +1,82 @@
+## [1.10.4](https://github.com/revanced/revanced-patches/compare/v1.10.3...v1.10.4) (2022-06-23)
+
+
+### Bug Fixes
+
+* missing brackets at inlining ([8936c8a](https://github.com/revanced/revanced-patches/commit/8936c8aaedb56817cda5eec5f4a8c32f433862aa))
+
+## [1.10.3](https://github.com/revanced/revanced-patches/compare/v1.10.2...v1.10.3) (2022-06-23)
+
+
+### Bug Fixes
+
+* get create button view register by more reliable means ([#59](https://github.com/revanced/revanced-patches/issues/59)) ([6ab821e](https://github.com/revanced/revanced-patches/commit/6ab821e377176f4e9f1b7ec2b58a924fa40299db))
+
+## [1.10.2](https://github.com/revanced/revanced-patches/compare/v1.10.1...v1.10.2) (2022-06-23)
+
+
+### Bug Fixes
+
+* `disable-create-button` not working with prebuilt jar file ([#55](https://github.com/revanced/revanced-patches/issues/55)) ([78be64a](https://github.com/revanced/revanced-patches/commit/78be64accc2023281c0c376849cdb0213622dc5c))
+
+## [1.10.1](https://github.com/revanced/revanced-patches/compare/v1.10.0...v1.10.1) (2022-06-23)
+
+
+### Bug Fixes
+
+* patcher not propagating dexlib ([980c486](https://github.com/revanced/revanced-patches/commit/980c48673259496d793bc7f864ad355188dcf7b6))
+* update patcher version ([e3d0bb7](https://github.com/revanced/revanced-patches/commit/e3d0bb7ee1923ea996cf637267c62d233a74c7fa))
+
+# [1.10.0](https://github.com/revanced/revanced-patches/compare/v1.9.1...v1.10.0) (2022-06-23)
+
+
+### Features
+
+* add compatibility for YouTube v17.23.36 and v17.24.34 ([1812bc3](https://github.com/revanced/revanced-patches/commit/1812bc39e0e88f1ab02ae8127e9000780eedf49c))
+
+## [1.9.1](https://github.com/revanced/revanced-patches/compare/v1.9.0...v1.9.1) (2022-06-21)
+
+
+### Bug Fixes
+
+* update patcher version ([5f54bc9](https://github.com/revanced/revanced-patches/commit/5f54bc9aa8fd8b83448141a9b05746e3e977369d))
+
+# [1.9.0](https://github.com/revanced/revanced-patches/compare/v1.8.2...v1.9.0) (2022-06-21)
+
+
+### Features
+
+* use `install` mode by default ([c2b2993](https://github.com/revanced/revanced-patches/commit/c2b299336a984d66a2d066e5ebe9c4f9bee5c2aa))
+
+## [1.8.2](https://github.com/revanced/revanced-patches/compare/v1.8.1...v1.8.2) (2022-06-20)
+
+
+### Bug Fixes
+
+* migrate to breaking changes from patcher ([2c0a419](https://github.com/revanced/revanced-patches/commit/2c0a4196fed2fbdcd454ed882b720898d3050c51))
+* old usage of `toInstructions` extension method ([65ddd52](https://github.com/revanced/revanced-patches/commit/65ddd522dca19e0590d9cb6fdb2d85ad7b98481e))
+
+## [1.8.1](https://github.com/revanced/revanced-patches/compare/v1.8.0...v1.8.1) (2022-06-20)
+
+
+### Bug Fixes
+
+* add execute permission to `./gradlew` file ([ff7a560](https://github.com/revanced/revanced-patches/commit/ff7a5602f68428111fea6c60cbea694592039ef1))
+
+# [1.8.0](https://github.com/revanced/revanced-patches/compare/v1.7.0...v1.8.0) (2022-06-20)
+
+
+### Features
+
+* bump compatibility of patches for Youtube to v17.23.35 ([3748d05](https://github.com/revanced/revanced-patches/commit/3748d0533e62a8871ab2202ce9b61170a90dae62))
+
+# [1.7.0](https://github.com/revanced/revanced-patches/compare/v1.6.4...v1.7.0) (2022-06-20)
+
+
+### Features
+
+* `disable-fullscreen-panels` patch ([3bf0561](https://github.com/revanced/revanced-patches/commit/3bf056163500b006d1a20c5f3a3e0c92fec13bd8))
+
 ## [1.6.4](https://github.com/revanced/revanced-patches/compare/v1.6.3...v1.6.4) (2022-06-19)
 
 
