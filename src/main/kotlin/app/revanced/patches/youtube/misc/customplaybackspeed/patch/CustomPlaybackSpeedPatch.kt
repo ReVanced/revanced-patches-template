@@ -54,7 +54,7 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         val arrayLengthConstDestination = (arrayLengthConst as OneRegisterInstruction).registerA
 
-        val videoSpeedsArrayType = "Lapp/revanced/integrations/settings/Settings;->videoSpeeds:[F"
+        val videoSpeedsArrayType = "Lapp/revanced/integrations/videoplayer/videosettings/VideoSpeed;->videoSpeeds:[F"
         
         arrayGenMethod.addInstructions(arrayLengthConstIndex + 1, 
             """
