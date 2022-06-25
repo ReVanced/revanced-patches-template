@@ -7,7 +7,7 @@ import app.revanced.patcher.signature.implementation.method.annotation.FuzzyPatt
 import app.revanced.patcher.signature.implementation.method.annotation.MatchingMethod
 import app.revanced.patches.youtube.layout.watermark.annotations.HideWatermarkCompatibility
 
-@Name("hide-watermark-signature")
+@Name("hide-watermark-parent-signature")
 @MatchingMethod(
     "Ljvy;", "<init>"
 )
