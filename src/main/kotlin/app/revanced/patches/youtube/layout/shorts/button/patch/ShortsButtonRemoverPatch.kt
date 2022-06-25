@@ -38,7 +38,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
         val moveViewInstruction = implementation2.instructions[result2.scanResult.endIndex]
         val viewRegister = (moveViewInstruction as Instruction11x).registerA
 
-        // Save the tab enum in XGlobals to avoid smali/register workarounds
+        // Save the tab enum to avoid smali/register workarounds
         result1.method.addInstruction(
             result1.scanResult.endIndex + 1,
             "sput-object v$enumRegister, Lapp/revanced/integrations/patches/HideShortsButtonPatch;->lastPivotTab:Ljava/lang/Enum;"
