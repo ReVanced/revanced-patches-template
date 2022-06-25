@@ -14,12 +14,12 @@ import app.revanced.patches.youtube.layout.swipecontrols.signatures.SwipeControl
 import app.revanced.patches.youtube.layout.swipecontrols.signatures.SwipeControlBrightnessEnabledSignature
 
 @Patch
-@Name("hide-watermark")
+@Name("swipecontrols")
 @Description("Hide Watermark on the page.")
 @SwipecontrolsCompatibility
 @Version("0.0.1")
 class SwipeControlPatch : BytecodePatch(
-    listOf(SwipeControlBrightnessEnabledSignature, SwipeControlBrightnessEnabledParentSignature)
+    listOf(SwipeControlBrightnessEnabledParentSignature)
 ) {
     override fun execute(data: BytecodeData): PatchResult {
         val result = SwipeControlBrightnessEnabledParentSignature.result!!

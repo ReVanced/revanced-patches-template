@@ -15,5 +15,5 @@ import app.revanced.patches.youtube.layout.swipecontrols.annotations.Swipecontro
 @SwipecontrolsCompatibility
 @Version("0.0.1")
 object SwipeControlBrightnessEnabledParentSignature : MethodSignature(
-    "L", null, null,null, listOf("mediaViewambientBrightnessSensor")
+    "V", null, null,null, listOf("mediaViewambientBrightnessSensor")
 )
