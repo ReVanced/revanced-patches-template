@@ -28,7 +28,7 @@ class HideWatermarkPatch : BytecodePatch(
 
         val method = result.findParentMethod(HideWatermarkSignature)?.method!!
         method.addInstructions(method.implementation!!.instructions.size-4, """
-            invoke-static {p2}, Lapp/revanced/integrations/patches/BrandingWaterMarkPatch;->isBrandingWatermarkShown()Z
+            invoke-static {}, Lapp/revanced/integrations/patches/BrandingWaterMarkPatch;->isBrandingWatermarkShown()Z
             move-result p2
         """)
 
