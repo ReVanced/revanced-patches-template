@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.layout.swipecontrols.signatures.SwipeControl
 import app.revanced.patches.youtube.layout.swipecontrols.signatures.SwipeControlBrightnessEnabledSignature
 
 @Patch
-@Name("swipecontrols")
+@Name("swipeControls")
 @Description("Hide Watermark on the page.")
 @SwipecontrolsCompatibility
 @Version("0.0.1")
