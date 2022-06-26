@@ -3,19 +3,20 @@ package app.revanced.patches.youtube.misc.quality.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.implementation.BytecodeData
+import app.revanced.patcher.data.impl.BytecodeData
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.implementation.BytecodePatch
-import app.revanced.patcher.patch.implementation.misc.PatchResult
-import app.revanced.patcher.patch.implementation.misc.PatchResultSuccess
-import app.revanced.patcher.util.smali.toInstruction
-import app.revanced.patcher.util.smali.toInstructions
+import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.quality.annotations.DefaultVideoQualityCompatibility
-import app.revanced.patches.youtube.misc.quality.signatures.VideoQualitiesFragmentGetterSignature
-import app.revanced.patches.youtube.misc.quality.signatures.VideoQualitySetterSignature
+import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitiesFragmentGetterFingerprint
+import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityFingerprint
+import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 
@@ -28,37 +29,35 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @DefaultVideoQualityCompatibility
 @Version("0.0.1")
 class DefaultVideoQualityPatch : BytecodePatch(
-    listOf(VideoQualitiesFragmentGetterSignature)
+    listOf(
+        VideoQualityFingerprint
+    )
+
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        val signatureResolverResult = VideoQualitiesFragmentGetterSignature.result!!
-        val qualityClass = signatureResolverResult.definingClassProxy.resolve()
+        VideoQualityFingerprint.resolve(data, VideoQualitiesFragmentGetterFingerprint.result!!.classDef)
+        VideoQualityFingerprint.resolve(data, VideoQualitySetterFingerprint.result!!.classDef)
 
-        // get the field where the current video quality is stored
+        val qualityClass = VideoQualitySetterFingerprint.result!!.classDef
         val qualityFieldReference =
-            signatureResolverResult.findParentMethod(VideoQualitySetterSignature)!!.immutableMethod.let { method ->
+            VideoQualitySetterFingerprint.result!!.mutableMethod.let { method ->
                 method.implementation!!.instructions.elementAt(0) as ReferenceInstruction
             }.let { reference ->
                 reference as FieldReference
             }
 
-        // override the quality in this method
-        val videoQualitySelectorMethod = qualityClass.methods.find {
-            it.parameterTypes.any { parameter -> parameter.startsWith("[L") }
-        }!!
-        videoQualitySelectorMethod.implementation!!.addInstructions(
+        VideoQualitySetterFingerprint.result!!.mutableMethod.addInstructions(
             0, """
                 iget-object v0, p0, ${qualityClass.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
-		        invoke-static {p1, p2, v0}, Lfi/razerman/youtube/videosettings/VideoQuality;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;)I
+		        invoke-static {p1, p2, v0}, Lapp/revanced/integrations/videoplayer/videosettings/VideoQuality;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;)I
    		        move-result p2
-            """.trimIndent().toInstructions("IIZI", 7, false)
+            """
         )
 
         // user selected new video quality
-        qualityClass.methods.first { it.name == "onItemClick" }.implementation!!.addInstruction(
-            0, """
-                invoke-static {}, Lfi/razerman/youtube/videosettings/VideoQuality;->userChangedQuality()V
-	        """.trimIndent().toInstruction()
+        VideoQualitiesFragmentGetterFingerprint.result!!.mutableMethod.addInstruction(
+            0,
+            " invoke-static {}, Lapp/revanced/integrations/videoplayer/videosettings/VideoQuality;->userChangedQuality()V"
         )
 
         return PatchResultSuccess()
