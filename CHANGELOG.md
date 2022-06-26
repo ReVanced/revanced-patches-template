@@ -1,3 +1,30 @@
+# [2.0.0](https://github.com/revanced/revanced-patches/compare/v1.11.0...v2.0.0) (2022-06-26)
+
+
+### Code Refactoring
+
+* migrate from `Signature` to `Fingerprint` ([084078e](https://github.com/revanced/revanced-patches/commit/084078e7f1852ccd2045e3fa8aedc25a7fd5faa8))
+
+
+### BREAKING CHANGES
+
+* Not backwards compatible, since a lot of classes where renamed.
+
+# [1.11.0](https://github.com/revanced/revanced-patches/compare/v1.10.5...v1.11.0) (2022-06-26)
+
+
+### Features
+
+* add youtube version 17.24.35 ([ec626cc](https://github.com/revanced/revanced-patches/commit/ec626ccfa2bcf14b722d08110382de009a1c12b4))
+* add youtube version 17.24.35 ([adc60a6](https://github.com/revanced/revanced-patches/commit/adc60a6fa09f6a21800ba51b8ca888d11a17e870))
+
+## [1.10.5](https://github.com/revanced/revanced-patches/compare/v1.10.4...v1.10.5) (2022-06-25)
+
+
+### Bug Fixes
+
+* put back proper variable ([#61](https://github.com/revanced/revanced-patches/issues/61)) ([d26c423](https://github.com/revanced/revanced-patches/commit/d26c4233031fd418eb37c8f05e9bc1857e0572e6))
+
 ## [1.10.4](https://github.com/revanced/revanced-patches/compare/v1.10.3...v1.10.4) (2022-06-23)
 
 
