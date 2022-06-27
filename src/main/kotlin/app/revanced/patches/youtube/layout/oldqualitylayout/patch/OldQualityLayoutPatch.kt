@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
@@ -41,6 +42,7 @@ class OldQualityLayoutPatch : BytecodePatch(
         val jmpInstruction = BuilderInstruction21t(
             Opcode.IF_NEZ, 0, implementation.instructions[result.patternScanResult!!.endIndex].location.labels.first()
         )
+        result.mutableMethod.removeInstructions(0, 1);
         implementation.addInstruction(5, jmpInstruction)
         result.mutableMethod.addInstructions(
             0, """
