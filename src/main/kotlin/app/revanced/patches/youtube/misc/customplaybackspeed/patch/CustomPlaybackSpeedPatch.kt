@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.implementation.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.Dependencies
@@ -45,7 +46,7 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         val sizeCallResultRegister = (arrayGenMethodImpl.instructions[sizeCallIndex + 1] as OneRegisterInstruction).registerA
 
-        arrayGenMethodImpl.replaceInstruction(sizeCallIndex + 1, 
+        arrayGenMethod.replaceInstruction(sizeCallIndex + 1, 
             "const/4 v$sizeCallResultRegister, 0x0".toInstruction()
         )    
 

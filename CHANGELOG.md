@@ -1,3 +1,31 @@
+## [2.0.1](https://github.com/revanced/revanced-patches/compare/v2.0.0...v2.0.1) (2022-06-26)
+
+
+### Bug Fixes
+
+* invalid string in strings list ([f08b53b](https://github.com/revanced/revanced-patches/commit/f08b53b07d93bd8ac6e7da376ea6e6023e53076e))
+* migrate to new `proxy` api ([db32ffe](https://github.com/revanced/revanced-patches/commit/db32ffe56a8e73177bef724ee10eda9a28b367b8))
+
+# [2.0.0](https://github.com/revanced/revanced-patches/compare/v1.11.0...v2.0.0) (2022-06-26)
+
+
+### Code Refactoring
+
+* migrate from `Signature` to `Fingerprint` ([084078e](https://github.com/revanced/revanced-patches/commit/084078e7f1852ccd2045e3fa8aedc25a7fd5faa8))
+
+
+### BREAKING CHANGES
+
+* Not backwards compatible, since a lot of classes where renamed.
+
+# [1.11.0](https://github.com/revanced/revanced-patches/compare/v1.10.5...v1.11.0) (2022-06-26)
+
+
+### Features
+
+* add youtube version 17.24.35 ([ec626cc](https://github.com/revanced/revanced-patches/commit/ec626ccfa2bcf14b722d08110382de009a1c12b4))
+* add youtube version 17.24.35 ([adc60a6](https://github.com/revanced/revanced-patches/commit/adc60a6fa09f6a21800ba51b8ca888d11a17e870))
+
 ## [1.10.5](https://github.com/revanced/revanced-patches/compare/v1.10.4...v1.10.5) (2022-06-25)
 
 
