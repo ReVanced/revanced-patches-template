@@ -5,6 +5,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.removeInstruction
+import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
@@ -30,12 +32,15 @@ class HideWatermarkPatch : BytecodePatch(
 ) {
     override fun execute(data: BytecodeData): PatchResult {
         HideWatermarkFingerprint.resolve(data, HideWatermarkParentFingerprint.result!!.classDef)
-        val result = HideWatermarkParentFingerprint.result
+        val result = HideWatermarkFingerprint.result
             ?: return PatchResultError("Required parent method could not be found.")
 
         val method = result.mutableMethod
+        val line = method.implementation!!.instructions.size - 5
+        
+        method.removeInstruction(line)
         method.addInstructions(
-            method.implementation!!.instructions.size - 4, """
+            line, """
             invoke-static {}, Lapp/revanced/integrations/patches/BrandingWaterMarkPatch;->isBrandingWatermarkShown()Z
             move-result p2
         """
