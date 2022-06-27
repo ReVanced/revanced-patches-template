@@ -37,7 +37,7 @@ class HideWatermarkPatch : BytecodePatch(
 
         val method = result.mutableMethod
         val line = method.implementation!!.instructions.size - 5
-        
+
         method.removeInstruction(line)
         method.addInstructions(
             line, """
