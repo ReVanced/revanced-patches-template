@@ -3,22 +3,19 @@ package app.revanced.patches.youtube.misc.customplaybackspeed.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.implementation.BytecodeData
+import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.util.smali.toInstruction
+import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.Dependencies
-import app.revanced.patcher.patch.implementation.BytecodePatch
-import app.revanced.patcher.patch.implementation.misc.PatchResult
-import app.revanced.patcher.patch.implementation.misc.PatchResultSuccess
-import app.revanced.patcher.patch.implementation.misc.PatchResultError
+import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patches.youtube.misc.customplaybackspeed.annotations.CustomPlaybackSpeedCompatibility
-import app.revanced.patches.youtube.misc.customplaybackspeed.signatures.ArrayGeneratorSignature
-import app.revanced.patches.youtube.misc.customplaybackspeed.signatures.SpeedLimiterSignature
+import app.revanced.patches.youtube.misc.customplaybackspeed.fingerprints.ArrayGeneratorFingerprint
+import app.revanced.patches.youtube.misc.customplaybackspeed.fingerprints.SpeedLimiterFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.builder.BuilderInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -32,11 +29,11 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @CustomPlaybackSpeedCompatibility
 @Version("0.0.1")
 class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
-    ArrayGeneratorSignature, SpeedLimiterSignature
+    ArrayGeneratorFingerprint, SpeedLimiterFingerprint
     )) {
 
     override fun execute(data: BytecodeData): PatchResult {
-        val arrayGenMethod = ArrayGeneratorSignature.result?.method!!
+        val arrayGenMethod = ArrayGeneratorFingerprint.result?.mutableMethod!!
         val arrayGenMethodImpl = arrayGenMethod.implementation!!
 
         val sizeCallIndex = arrayGenMethodImpl.instructions
@@ -44,10 +41,10 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         if(sizeCallIndex == -1) return PatchResultError("Couldn't find call to size()")
 
-        val sizeCallResultRegister = (arrayGenMethodImpl.instructions[sizeCallIndex + 1] as OneRegisterInstruction).registerA
+        val sizeCallResultRegister = (arrayGenMethodImpl.instructions.elementAt(sizeCallIndex + 1) as OneRegisterInstruction).registerA
 
         arrayGenMethod.replaceInstruction(sizeCallIndex + 1, 
-            "const/4 v$sizeCallResultRegister, 0x0".toInstruction()
+            "const/4 v$sizeCallResultRegister, 0x0"
         )    
 
         val (arrayLengthConstIndex, arrayLengthConst) = arrayGenMethodImpl.instructions.withIndex()
@@ -73,11 +70,12 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         val originalArrayFetchDestination = (originalArrayFetch as OneRegisterInstruction).registerA
         
-        arrayGenMethodImpl.replaceInstruction(originalArrayFetchIndex,
-            "sget-object v$originalArrayFetchDestination, $videoSpeedsArrayType".toInstruction()
+        arrayGenMethod.replaceInstruction(originalArrayFetchIndex,
+            "sget-object v$originalArrayFetchDestination, $videoSpeedsArrayType"
         )
 
-        val limiterMethodImpl = SpeedLimiterSignature.result?.method!!.implementation!!
+        val limiterMethod = SpeedLimiterFingerprint.result?.mutableMethod!!;
+        val limiterMethodImpl = limiterMethod.implementation!!
  
         val speedLimitMin = 0.25f 
         val speedLimitMax = 100f
@@ -92,11 +90,11 @@ class CustomPlaybackSpeedPatch : BytecodePatch(listOf(
 
         fun hexFloat(float: Float): String = "0x%08x".format(float.toRawBits()) 
 
-        limiterMethodImpl.replaceInstruction(limiterMinConstIndex, 
-            "const/high16 v$limiterMinConstDestination, ${hexFloat(speedLimitMin)}".toInstruction()
+        limiterMethod.replaceInstruction(limiterMinConstIndex, 
+            "const/high16 v$limiterMinConstDestination, ${hexFloat(speedLimitMin)}"
         )
-        limiterMethodImpl.replaceInstruction(limiterMaxConstIndex, 
-            "const/high16 v$limiterMaxConstDestination, ${hexFloat(speedLimitMax)}".toInstruction()
+        limiterMethod.replaceInstruction(limiterMaxConstIndex, 
+            "const/high16 v$limiterMaxConstDestination, ${hexFloat(speedLimitMax)}"
         )
 
         return PatchResultSuccess()
