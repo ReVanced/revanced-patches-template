@@ -5,14 +5,13 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
-import app.revanced.patcher.data.impl.proxy
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.patch.annotations.Dependencies
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.toInstructions
@@ -245,20 +244,20 @@ class GeneralBytecodeAdsPatch : BytecodePatch(
                                     val block1 = """
                                         invoke-static/range {p3}, $thisType->getTemplateName($templateNameParameterType)Ljava/lang/String;
                                         move-result-object v0
-                                    """.trimIndent().toInstructions(lithoMethod)
+                                    """.toInstructions(lithoMethod)
                                     val block2 = """
                                         move-object/from16 v1, p3
                                         iget-object v2, v1, $templateNameParameterType->b:Ljava/nio/ByteBuffer;
                                         invoke-static {v0, v2}, Lapp/revanced/integrations/patches/GeneralBytecodeAdsPatch;->containsAd(Ljava/lang/String;Ljava/nio/ByteBuffer;)Z
                                         move-result v1
-                                    """.trimIndent().toInstructions(lithoMethod)
+                                    """.toInstructions(lithoMethod)
                                     val block3 = """
                                         move-object/from16 v2, p1
                                         invoke-static {v2}, $descriptor1
                                         move-result-object v0
                                         iget-object v0, v0, $descriptor2
                                         return-object v0
-                                    """.trimIndent().toInstructions(lithoMethod)
+                                    """.toInstructions(lithoMethod)
 
                                     // insert blocks and branch instructions
                                     lithoMethodImplementation.insertBlocks(
@@ -369,7 +368,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch(
             const v0, $lithoConstant
             invoke-static {p0, v0}, ${descriptors[1]}
             move-result-object p0
-        """.trimIndent().toInstructions()
+        """.toInstructions()
         val block2 = """
               invoke-static {p0}, ${descriptors[2]}
               move-result-object p0
@@ -377,12 +376,12 @@ class GeneralBytecodeAdsPatch : BytecodePatch(
               move-result-object v0
               invoke-static {v0}, ${this.type}->getIsEmpty(Ljava/lang/String;)Z
               move-result v0
-        """.trimIndent().toInstructions()
+        """.toInstructions()
         val block3 = """
               invoke-virtual {p0}, ${descriptors[3]}
               move-result-object p0
               return-object p0
-        """.trimIndent().toInstructions()
+        """.toInstructions()
 
         // create target instruction
         val targetInstruction = BuilderInstruction11n(Opcode.CONST_4, 1, 0)
