@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 
 @Name("speed-array-generator-fingerprint")
 @MatchingMethod(
-    "Lzdj", "d"
+    "Lzdj;", "d"
 )
 @FuzzyPatternScanMethod(2)
 @CustomPlaybackSpeedCompatibility

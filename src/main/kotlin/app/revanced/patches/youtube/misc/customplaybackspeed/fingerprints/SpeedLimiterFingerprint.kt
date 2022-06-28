@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 
 @Name("speed-limiter-fingerprint")
 @MatchingMethod(
-    "Lxgy", "y"
+    "Lxgy;", "y"
 )
 @FuzzyPatternScanMethod(2) 
 @CustomPlaybackSpeedCompatibility
@@ -31,5 +31,4 @@ object SpeedLimiterFingerprint : MethodFingerprint(
         Opcode.CONST_HIGH16,
         Opcode.INVOKE_STATIC,
     ),
-    null
 )
