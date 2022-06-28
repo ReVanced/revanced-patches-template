@@ -14,10 +14,10 @@ import org.jf.dexlib2.Opcode
 @MatchingMethod(
     "Lzdj", "d"
 )
-@FuzzyPatternScanMethod(2) 
+@FuzzyPatternScanMethod(2)
 @CustomPlaybackSpeedCompatibility
 @Version("0.0.1")
-object ArrayGeneratorFingerprint : MethodFingerprint(
+object SpeedArrayGeneratorFingerprint : MethodFingerprint(
     "[L",
     AccessFlags.PUBLIC or AccessFlags.STATIC,
     null,
