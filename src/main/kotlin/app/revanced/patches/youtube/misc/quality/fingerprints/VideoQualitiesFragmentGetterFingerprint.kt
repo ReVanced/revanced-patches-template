@@ -12,20 +12,18 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 @Name("video-qualities-fragment-getter-fingerprint")
-@MatchingMethod("Lkdy;", "onItemClick")
+@MatchingMethod("Lkec;", "onItemClick")
 @DirectPatternScanMethod
 @DefaultVideoQualityCompatibility
 @Version("0.0.1")
 object VideoQualitiesFragmentGetterFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
-    listOf("L","I","I","Z","I"),
+    listOf("L","L","I","J"),
     listOf(
-        Opcode.IGET_OBJECT,
-        Opcode.MOVE_OBJECT,
-        Opcode.MOVE_OBJECT,
         Opcode.MOVE,
         Opcode.MOVE_WIDE,
-        Opcode.INVOKE_INTERFACE_RANGE
+        Opcode.INVOKE_INTERFACE_RANGE,
+        Opcode.RETURN_VOID
     )
 )
