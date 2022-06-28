@@ -1,3 +1,17 @@
+## [2.0.3](https://github.com/revanced/revanced-patches/compare/v2.0.2...v2.0.3) (2022-06-27)
+
+
+### Bug Fixes
+
+* check if resource files exist ([ba1f3af](https://github.com/revanced/revanced-patches/commit/ba1f3af99be58edc44ed1b8f1875508d5034efd8))
+
+## [2.0.2](https://github.com/revanced/revanced-patches/compare/v2.0.1...v2.0.2) (2022-06-27)
+
+
+### Bug Fixes
+
+* some more refactoring of integrations, add hide-watermark patch ([#63](https://github.com/revanced/revanced-patches/issues/63)) ([feb09c5](https://github.com/revanced/revanced-patches/commit/feb09c56f475e2537a67d3636b08737848158a8e))
+
 ## [2.0.1](https://github.com/revanced/revanced-patches/compare/v2.0.0...v2.0.1) (2022-06-26)
 
 
