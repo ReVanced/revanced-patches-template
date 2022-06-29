@@ -37,8 +37,4 @@ class ResourceIdMappingProviderResourcePatch : ResourcePatch() {
     }
 }
 
-class ResourceElement(type: String, name: String, id: Long) {
-    val type = type
-    val name = name
-    val id = id
-}
+data class ResourceElement(val type: String, val name: String, val id: Long)
