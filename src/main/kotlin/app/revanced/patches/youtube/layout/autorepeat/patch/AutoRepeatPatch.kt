@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.autorepeat.annotations.AutoRepeatCompatibility
-import app.revanced.patches.youtube.layout.autorepeat.fingerprints.AutoRepeatFingerprint
+import app.revanced.patches.youtube.layout.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
 @Patch
@@ -21,10 +21,16 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 @Version("0.0.1")
 class AutoRepeatPatch : BytecodePatch(
     listOf(
-        AutoRepeatFingerprint
+        AutoRepeatParentFingerprint
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        val parentResult = AutoRepeatParentFingerprint.result
+            ?: return PatchResultError("ParentFingerprint did not resolve.")
+
+        //this one needs to be called
+        val playMethod = parentResult.method;
+
         return PatchResultError("Not yet implemented")
     }
 }

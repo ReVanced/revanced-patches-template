@@ -12,6 +12,7 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.autorepeat.annotations.AutoRepeatCompatibility
+import app.revanced.patches.youtube.layout.createbutton.annotations.CreateButtonCompatibility
 import app.revanced.patches.youtube.layout.createbutton.fingerprints.CreateButtonFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
@@ -25,7 +26,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Dependencies(dependencies = [IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class])
 @Name("disable-create-button")
 @Description("Disable the create button.")
-@AutoRepeatCompatibility
+@CreateButtonCompatibility
 @Version("0.0.1")
 class CreateButtonRemoverPatch : BytecodePatch(
     listOf(
