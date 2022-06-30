@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
-import app.revanced.patches.youtube.layout.autorepeat.annotations.AutoRepeatCompatibility
+import app.revanced.patches.youtube.layout.createbutton.annotations.CreateButtonCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
@@ -15,7 +15,7 @@ import org.jf.dexlib2.Opcode
     "Lknw", "z"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
-@AutoRepeatCompatibility
+@CreateButtonCompatibility
 @Version("0.0.1")
 object CreateButtonFingerprint : MethodFingerprint(
     "V",
