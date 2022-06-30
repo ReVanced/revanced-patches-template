@@ -38,7 +38,6 @@ class AutoplayButtonRemoverPatch : BytecodePatch(
 
         val autonavToggleConstIndex =
             layoutGenMethod.implementation!!.instructions.indexOfFirst { (it as? WideLiteralInstruction)?.wideLiteral == autonavToggle.id }
-
         val autonavPreviewStubConstIndex =
             layoutGenMethod.implementation!!.instructions.indexOfFirst { (it as? WideLiteralInstruction)?.wideLiteral == autonavPreviewStub.id }
 
