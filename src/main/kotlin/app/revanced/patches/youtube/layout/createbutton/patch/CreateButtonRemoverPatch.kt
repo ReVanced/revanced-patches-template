@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
-import app.revanced.patches.youtube.layout.autorepeat.annotations.AutoRepeatCompatibility
 import app.revanced.patches.youtube.layout.createbutton.annotations.CreateButtonCompatibility
 import app.revanced.patches.youtube.layout.createbutton.fingerprints.CreateButtonFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch

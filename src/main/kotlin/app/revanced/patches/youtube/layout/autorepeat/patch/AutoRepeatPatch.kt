@@ -15,8 +15,8 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
 @Patch
 @Dependencies(dependencies = [IntegrationsPatch::class])
-@Name("disable-auto-repeat")
-@Description("Disable auto repeat")
+@Name("enable-standard-auto-repeat")
+@Description("Enables auto repeating of videos by standard.")
 @AutoRepeatCompatibility
 @Version("0.0.1")
 class AutoRepeatPatch : BytecodePatch(
