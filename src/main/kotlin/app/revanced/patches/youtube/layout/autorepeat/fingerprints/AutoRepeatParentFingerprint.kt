@@ -11,11 +11,11 @@ import org.jf.dexlib2.AccessFlags
 
 @Name("auto-repeat-parent-fingerprint")
 @MatchingMethod(
-    "Lywm;", "D"
+    "Laamp;", "E"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 @AutoRepeatCompatibility
-@Version("0.0.1")
+@Version("0.0.1")A
 //This Fingerprints finds the play() method needed to be called when AutoRepeatPatch.shouldAutoRepeat() == true
 object AutoRepeatParentFingerprint : MethodFingerprint(
     "V",

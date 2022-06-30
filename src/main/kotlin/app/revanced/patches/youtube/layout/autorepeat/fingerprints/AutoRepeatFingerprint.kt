@@ -11,33 +11,22 @@ import org.jf.dexlib2.AccessFlags
 
 @Name("auto-repeat-fingerprint")
 @MatchingMethod(
-    "Ljvy;", "<init>"
+    "Laamp;", "ae"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 @AutoRepeatCompatibility
 @Version("0.0.1")
-//ToDo: Find method:
+//Finds method:
 /*
 public final void ae() {
         aq(aabj.ENDED);
     }
  */
-//Change method to:
-/*
-public final void ae() {
-    aq(aabj.ENDED);
-    app.revanced.integrations.sponsorblock.player.VideoInformation.videoEnded();
-    if (app.revanced.integrations.patches.AutoRepeatPatch.shouldAutoRepeat()) {
-        //Method E plays the same video again. Is found by the Parent Fingerprint.
-        E();
-    }
-}
-*/
 object AutoRepeatFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     null,
     null,
     null,
-    null
+    customFingerprint = { methodDef -> methodDef.implementation!!.instructions.count() == 3 }
 )
