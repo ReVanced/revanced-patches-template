@@ -18,7 +18,7 @@ import org.jf.dexlib2.AccessFlags
 @Version("0.0.1")
 //This Fingerprints finds the play() method needed to be called when AutoRepeatPatch.shouldAutoRepeat() == true
 /*
-public final void D() {
+public final void E() {
 Stuff happens
 String str = "play() called when the player wasn't loaded.";
 String str2 = "play() blocked because Background Playability failed";
