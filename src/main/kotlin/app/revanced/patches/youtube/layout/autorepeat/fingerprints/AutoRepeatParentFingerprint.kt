@@ -13,10 +13,18 @@ import org.jf.dexlib2.AccessFlags
 @MatchingMethod(
     "Laamp;", "E"
 )
-@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
+@FuzzyPatternScanMethod(2)
 @AutoRepeatCompatibility
-@Version("0.0.1")A
+@Version("0.0.1")
 //This Fingerprints finds the play() method needed to be called when AutoRepeatPatch.shouldAutoRepeat() == true
+/*
+public final void D() {
+Stuff happens
+String str = "play() called when the player wasn't loaded.";
+String str2 = "play() blocked because Background Playability failed";
+Stuff happens again
+}
+ */
 object AutoRepeatParentFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,

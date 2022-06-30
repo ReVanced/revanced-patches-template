@@ -13,7 +13,7 @@ import org.jf.dexlib2.AccessFlags
 @MatchingMethod(
     "Laamp;", "ae"
 )
-@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
+@FuzzyPatternScanMethod(2)
 @AutoRepeatCompatibility
 @Version("0.0.1")
 //Finds method:
