@@ -13,10 +13,10 @@ import app.revanced.patches.youtube.layout.autorepeat.annotations.AutoRepeatComp
 import app.revanced.patches.youtube.layout.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
-@Patch
+@Patch(include = false)
 @Dependencies(dependencies = [IntegrationsPatch::class])
-@Name("enable-standard-auto-repeat")
-@Description("Enables auto repeating of videos by standard.")
+@Name("autorepeat-by-default")
+@Description("Enables auto repeating of videos by default.")
 @AutoRepeatCompatibility
 @Version("0.0.1")
 class AutoRepeatPatch : BytecodePatch(
@@ -28,7 +28,7 @@ class AutoRepeatPatch : BytecodePatch(
         val parentResult = AutoRepeatParentFingerprint.result
             ?: return PatchResultError("ParentFingerprint did not resolve.")
 
-        //this one needs to be called
+        //this one needs to be called when Setting returns true
         val playMethod = parentResult.method;
 
         return PatchResultError("Not yet implemented")

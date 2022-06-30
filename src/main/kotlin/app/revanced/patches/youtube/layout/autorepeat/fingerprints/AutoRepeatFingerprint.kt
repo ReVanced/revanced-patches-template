@@ -22,6 +22,17 @@ public final void ae() {
         aq(aabj.ENDED);
     }
  */
+//Change method to:
+/*
+public final void ae() {
+    aq(aabj.ENDED);
+    app.revanced.integrations.sponsorblock.player.VideoInformation.videoEnded();
+    if (app.revanced.integrations.patches.AutoRepeatPatch.shouldAutoRepeat()) {
+        //Method E plays the same video again. Is found by the Parent Fingerprint.
+        E();
+    }
+}
+*/
 object AutoRepeatFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
