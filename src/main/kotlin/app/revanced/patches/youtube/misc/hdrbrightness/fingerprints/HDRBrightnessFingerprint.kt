@@ -30,6 +30,6 @@ object HDRBrightnessFingerprint : MethodFingerprint(
     ),
     null,
     customFingerprint = { methodDef ->
-        methodDef.implementation!!.instructions.count() == 16 && methodDef.implementation!!.instructions.any {((methodDef as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits())}
+        methodDef.implementation!!.instructions.count() == 16 && methodDef.implementation!!.instructions.any {((it as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits())}
     }
 )
