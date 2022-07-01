@@ -13,7 +13,7 @@ import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 
 @Name("hdrbrightness-fingerprint")
 @MatchingMethod(
-    "Lghm;", "mX"
+    "Lghz;", "mZ"
 )
 @FuzzyPatternScanMethod(3)
 @HDRBrightnessCompatibility
