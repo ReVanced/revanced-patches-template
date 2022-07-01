@@ -35,12 +35,6 @@ class HDRBrightnessPatch : BytecodePatch(
 
         val method = result.mutableMethod
 
-        /*
-        val debugString = method.definingClass + " :: " + method.name + " :: " + method.implementation!!.instructions.size + " :: " + (method.implementation!!.instructions.get(10) as NarrowLiteralInstruction).narrowLiteral + " :: " + (-1.0f).toRawBits();
-        if(true)
-            return PatchResultError(debugString)
-         */
-
         //Get the index here so we know where to inject our code to override -1.0f
         val index = method.implementation!!.instructions.indexOfFirst { ((it as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits()) }
         val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
