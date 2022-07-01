@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
-import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility
+import app.revanced.patches.youtube.layout.watermark.annotations.HideWatermarkCompatibility
 import app.revanced.patches.youtube.layout.watermark.fingerprints.HideWatermarkParentFingerprint
 import app.revanced.patches.youtube.layout.watermark.fingerprints.HideWatermarkFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 @Dependencies(dependencies = [IntegrationsPatch::class])
 @Name("hide-watermark")
 @Description("Hide Watermark on the page.")
-@HDRBrightnessCompatibility
+@HideWatermarkCompatibility
 @Version("0.0.1")
 class HideWatermarkPatch : BytecodePatch(
     listOf(
