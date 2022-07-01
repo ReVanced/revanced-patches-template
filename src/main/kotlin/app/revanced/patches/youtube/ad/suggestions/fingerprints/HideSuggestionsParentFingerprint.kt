@@ -12,16 +12,14 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 @Name("hide-suggestions-parent-fingerprint")
-@MatchingMethod(
-    "Liff;", "lE"
-)
+@MatchingMethod("Liff;", "lE")
 @FuzzyPatternScanMethod(2)
 @HideSuggestionsCompatibility
 @Version("0.0.1")
 object HideSuggestionsParentFingerprint : MethodFingerprint(
-    "Ljava/lang/String",
+    "Ljava/lang/String;",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
-    null,
+    listOf(),
     null,
     listOf("player_overlay_info_card_teaser"),
     null

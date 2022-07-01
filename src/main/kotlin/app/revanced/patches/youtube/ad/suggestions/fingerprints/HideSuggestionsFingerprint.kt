@@ -11,11 +11,16 @@ import app.revanced.patches.youtube.layout.oldqualitylayout.annotations.OldQuali
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("hide-suggestions-fingerprint")
-@MatchingMethod(definingClass = "Liff;", name = "e")
+@Name("hide-infocard-fingerprint")
+@MatchingMethod("Liff;", "i")
 @FuzzyPatternScanMethod(2)
 @HideSuggestionsCompatibility
 @Version("0.0.1")
 object HideSuggestionsFingerprint : MethodFingerprint(
-    "V", null, null, null,null
+    "Ljava/lang/Boolean;",
+    AccessFlags.PUBLIC or AccessFlags.FINAL,
+    null,
+    null,
+    listOf("vibrator"),
+    null
 )
