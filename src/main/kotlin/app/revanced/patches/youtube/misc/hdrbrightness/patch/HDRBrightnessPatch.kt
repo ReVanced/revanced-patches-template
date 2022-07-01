@@ -14,7 +14,9 @@ import app.revanced.patcher.patch.impl.BytecodePatch;
 import app.revanced.patcher.util.smali.toBuilderInstruction
 import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility;
 import app.revanced.patches.youtube.misc.hdrbrightness.fingerprints.HDRBrightnessFingerprint
+import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @Name("hdr-max-brightness")
@@ -39,10 +41,14 @@ class HDRBrightnessPatch : BytecodePatch(
             return PatchResultError(debugString)
          */
 
+        //Get the index here so we know where to inject our code to override -1.0f
+        val index = method.implementation!!.instructions.indexOfFirst { ((it as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits()) }
+        val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
+
         method.addInstructions(
-            11, """
-           invoke-static {v2}, Lapp/revanced/integrations/patches/HDRMaxBrightnessPatch;->getHDRBrightness(F)F
-           move-result v2 
+            index + 1, """
+           invoke-static {v$register}, Lapp/revanced/integrations/patches/HDRMaxBrightnessPatch;->getHDRBrightness(F)F
+           move-result v$register
         """
         )
 
