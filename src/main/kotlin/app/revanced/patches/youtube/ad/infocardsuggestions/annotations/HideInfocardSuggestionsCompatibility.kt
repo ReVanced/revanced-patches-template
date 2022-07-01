@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.suggestions.annotations
+package app.revanced.patches.youtube.ad.infocardsuggestions.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,4 +10,4 @@ import app.revanced.patcher.annotation.Package
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class HideSuggestionsCompatibility
+internal annotation class HideInfocardSuggestionsCompatibility

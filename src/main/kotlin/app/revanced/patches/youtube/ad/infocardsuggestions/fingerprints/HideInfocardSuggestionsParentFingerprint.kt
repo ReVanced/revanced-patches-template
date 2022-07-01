@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.suggestions.fingerprints
+package app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -6,17 +6,15 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
-import app.revanced.patches.youtube.ad.suggestions.annotations.HideSuggestionsCompatibility
-import app.revanced.patches.youtube.layout.oldqualitylayout.annotations.OldQualityLayoutCompatibility
+import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
 import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.Opcode
 
-@Name("hide-suggestions-parent-fingerprint")
+@Name("hide-infocard-suggestions-parent-fingerprint")
 @MatchingMethod("Liff;", "lE")
 @FuzzyPatternScanMethod(2)
-@HideSuggestionsCompatibility
+@HideInfocardSuggestionsCompatibility
 @Version("0.0.1")
-object HideSuggestionsParentFingerprint : MethodFingerprint(
+object HideInfocardSuggestionsParentFingerprint : MethodFingerprint(
     "Ljava/lang/String;",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     listOf(),
