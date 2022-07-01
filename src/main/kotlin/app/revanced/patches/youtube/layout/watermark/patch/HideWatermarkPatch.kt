@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstruction
-import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
@@ -14,7 +13,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
-import app.revanced.patches.youtube.layout.watermark.annotations.HideWatermarkCompatibility
+import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility
 import app.revanced.patches.youtube.layout.watermark.fingerprints.HideWatermarkParentFingerprint
 import app.revanced.patches.youtube.layout.watermark.fingerprints.HideWatermarkFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -23,7 +22,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 @Dependencies(dependencies = [IntegrationsPatch::class])
 @Name("hide-watermark")
 @Description("Hide Watermark on the page.")
-@HideWatermarkCompatibility
+@HDRBrightnessCompatibility
 @Version("0.0.1")
 class HideWatermarkPatch : BytecodePatch(
     listOf(
