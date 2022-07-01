@@ -18,10 +18,10 @@ import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 
 @Patch
 @Name("hdr-max-brightness")
-@Description("Set brightness to max for HDR videos.")
+@Description("Set brightness to max for HDR videos in fullscreen mode.")
 @HDRBrightnessCompatibility
 @Version("0.0.1")
-class HDRBgithnessPatch : BytecodePatch(
+class HDRBrightnessPatch : BytecodePatch(
     listOf(
         HDRBrightnessFingerprint
     )
