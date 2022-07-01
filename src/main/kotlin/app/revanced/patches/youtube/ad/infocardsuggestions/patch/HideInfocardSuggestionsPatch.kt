@@ -59,9 +59,9 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
 
         method.addInstructions(
             index, """
-            invoke-static {}, Lapp/revanced/patches/HideInfoCardSuggestionsPatch;->hideInfoCardSuggestions()I
+            invoke-static {}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardSuggestions()I
             move-result $register
-            invoke-virtual {p0, $register}, Landroid/view/View;->setVisibility(I)V
+            invoke-virtual {p1, $register}, Landroid/view/View;->setVisibility(I)V
         """
         )
 
