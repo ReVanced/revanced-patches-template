@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.layout.autorepeat.fingerprints.AutoRepeatFin
 import app.revanced.patches.youtube.layout.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 
-@Patch(include = true)
+@Patch(include = false)
 @Dependencies(dependencies = [IntegrationsPatch::class])
 @Name("autorepeat-by-default")
 @Description("Enables auto repeating of videos by default.")
