@@ -9,6 +9,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 
 @Name("hdrbrightness-fingerprint")
 @MatchingMethod(
@@ -17,26 +18,18 @@ import org.jf.dexlib2.Opcode
 @FuzzyPatternScanMethod(3)
 @HDRBrightnessCompatibility
 @Version("0.0.1")
-object HDRBrightnessFingerprint : MethodFingerprint (
+object HDRBrightnessFingerprint : MethodFingerprint(
     "V", AccessFlags.PUBLIC or AccessFlags.FINAL, null,
-    listOf(Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.IF_NEZ,
-        Opcode.RETURN_VOID,
-        Opcode.INVOKE_VIRTUAL,
+    listOf(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CONST_HIGH16,
         Opcode.IPUT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.RETURN_VOID),
+        Opcode.INVOKE_VIRTUAL
+    ),
     null,
-    customFingerprint = { methodDef -> methodDef.implementation!!.instructions.count() == 16}
+    customFingerprint = { methodDef ->
+        methodDef.implementation!!.instructions.count() == 16 && methodDef.implementation!!.instructions.any {((methodDef as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits())}
+    }
 )
-
-// && methodDef.implementation!!.instructions.elementAt(10).toString().contains("-0x40800000")

@@ -14,6 +14,7 @@ import app.revanced.patcher.patch.impl.BytecodePatch;
 import app.revanced.patcher.util.smali.toBuilderInstruction
 import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility;
 import app.revanced.patches.youtube.misc.hdrbrightness.fingerprints.HDRBrightnessFingerprint
+import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 
 @Patch
 @Name("hdr-max-brightness")
@@ -31,7 +32,9 @@ class HDRBgithnessPatch : BytecodePatch(
 
 
         val method = result.mutableMethod
-        val debugString = method.definingClass + " :: " + method.name + " :: " + method.implementation!!.instructions.size
+        val debugString = method.definingClass + " :: " + method.name + " :: " + method.implementation!!.instructions.size + " :: " + (method.implementation!!.instructions.get(10) as NarrowLiteralInstruction).narrowLiteral + " :: " + (-1.0f).toRawBits();
+        if(true)
+            return PatchResultError(debugString)
 
         method.addInstructions(
             11, """
