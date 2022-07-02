@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
 
+import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
@@ -12,6 +13,7 @@ import java.io.OutputStream
 import java.nio.file.Files
 import kotlin.io.path.Path
 
+@Name("sponsorblock-resource-patch")
 @Dependencies(dependencies = [FixLocaleConfigErrorPatch::class])
 @SponsorBlockCompatibility
 @Version("0.0.1")
