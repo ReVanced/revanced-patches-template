@@ -11,7 +11,6 @@ import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlock
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import java.io.OutputStream
 import java.nio.file.Files
-import kotlin.io.path.Path
 
 @Name("sponsorblock-resource-patch")
 @Dependencies(dependencies = [FixLocaleConfigErrorPatch::class])
@@ -22,18 +21,22 @@ class SponsorblockResourcePatch : ResourcePatch() {
         val classLoader = this.javaClass.classLoader
 
         // merge sponsorblock strings to main strings
-        val stringsResourcePath = Path("values").resolve("strings.xml").toString()
-        val stringsResourceInputStream =
-            classLoader.getResourceAsStream(Path("sponsorblock").resolve(stringsResourcePath).toString())!!
+        val stringsResourcePath = "values/strings.xml"
+        val stringsResourceInputStream = classLoader.getResourceAsStream("sponsorblock/$stringsResourcePath")!!
 
         data.xmlEditor["res/$stringsResourcePath"].use { destinationStringsResource ->
-            data.xmlEditor[stringsResourceInputStream, OutputStream.nullOutputStream()].use { sponsorblockStringsResource ->
-                val sponsorblockStringNodes = sponsorblockStringsResource.file.getElementsByTagName("resources").item(0).childNodes
+            val destination = destinationStringsResource.file
+            val destinationNode = destination.getElementsByTagName("resources")
+                .item(0)
 
-                for (index in 0..sponsorblockStringNodes.length) {
-                    destinationStringsResource.file.getElementsByTagName("resources").item(0).appendChild(
-                        sponsorblockStringNodes.item(index)
-                    )
+            data.xmlEditor[stringsResourceInputStream, OutputStream.nullOutputStream()].use { sponsorblockStringsResource ->
+                val sponsorblockStringNodes =
+                    sponsorblockStringsResource.file.getElementsByTagName("resources").item(0).childNodes
+
+                for (index in 0 until sponsorblockStringNodes.length) {
+                    val node = sponsorblockStringNodes.item(index).cloneNode(true)
+                    destination.adoptNode(node)
+                    destinationNode.appendChild(node)
                 }
             }
         }
@@ -45,59 +48,25 @@ class SponsorblockResourcePatch : ResourcePatch() {
             "ic_sb_edit",
             "ic_sb_logo",
             "ic_sb_publish",
-            "ic_sb_voting",
-            "player_fast_forward",
-            "player_fast_rewind"
+            "ic_sb_voting"
         )
         val layouts = "layout" to arrayOf(
             "inline_sponsor_overlay", "new_segment", "skip_sponsor_button"
         )
-        val hdpiDrawables = "drawable-xxxhdpi" to arrayOf(
-            "quantum_ic_fast_forward_grey600_36",
-            "quantum_ic_fast_forward_white_36",
-            "quantum_ic_fast_rewind_grey600_36",
-            "quantum_ic_fast_rewind_white_36"
-        )
 
         // collect resources
         val xmlResources = arrayOf(drawables, layouts)
-        val resources = arrayOf(hdpiDrawables)
+        xmlResources.forEach { (path, resourceNames) ->
+            resourceNames.forEach { name ->
+                val relativePath = "$path/$name.xml"
 
-        // write xml resources
-        xmlResources.forEach { (xmlResourcePath, xmlResources) ->
-            classLoader.writeResources(xmlResourcePath, xmlResources, ResourceType.Xml)
-        }
-
-        // write resources
-        resources.forEach { (resourcePath, resources) ->
-            classLoader.writeResources(resourcePath, resources, ResourceType.Resource)
+                Files.copy(
+                    classLoader.getResourceAsStream("sponsorblock/$relativePath")!!,
+                    data["res"].resolve(relativePath).toPath()
+                )
+            }
         }
 
         return PatchResultSuccess()
-    }
-
-    /**
-     * Writes a list of resources of sponsorblock to the given path.
-     * @param destination The path to write the resources to.
-     * @param resources The resources to write.
-     * @param resourceType The type of the resources.
-     */
-    private fun ClassLoader.writeResources(destination: String, resources: Array<String>, resourceType: ResourceType) {
-        val extension = when (resourceType) {
-            ResourceType.Resource -> "png"
-            ResourceType.Xml -> "xml"
-        }
-
-        for (resource in resources) {
-            val resourcePath = Path(destination, "$resource.$extension").toString()
-            val destinationPath = Path("res", resourcePath)
-
-            this.getResourceAsStream("sponsorblock/$resourcePath")!!.readAllBytes()
-                .let { Files.write(destinationPath, it) }
-        }
-    }
-
-    private enum class ResourceType {
-        Resource, Xml
     }
 }
