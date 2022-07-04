@@ -17,6 +17,6 @@ import org.jf.dexlib2.Opcode
 @Version("0.0.1")
 object PlayerControllerSetTimeReferenceFingerprint : MethodFingerprint(
     null, null, null,
-    listOf(Opcode.INVOKE_DIRECT_RANGE,),
+    listOf(Opcode.INVOKE_DIRECT_RANGE, Opcode.IGET_OBJECT),
     listOf("Media progress reported outside media playback: ")
 )

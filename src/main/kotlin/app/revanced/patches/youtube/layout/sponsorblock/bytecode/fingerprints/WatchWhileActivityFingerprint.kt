@@ -8,15 +8,15 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import org.jf.dexlib2.Opcode
 
-@Name("watch-while-active-fingerprint")
+@Name("watch-while-activity-fingerprint")
 @MatchingMethod(
-    "LWatchWhileActive;", "onCreate"
+    "LWatchWhileActivity;", "onCreate"
 )
 @DirectPatternScanMethod
 @SponsorBlockCompatibility
 @Version("0.0.1")
-object WatchWhileActiveFingerprint : MethodFingerprint(
+object WatchWhileActivityFingerprint : MethodFingerprint(
     null, null, null, listOf(Opcode.INVOKE_DIRECT_RANGE), null, { methodDef ->
-        methodDef.definingClass.endsWith("WatchWhileActive;") && methodDef.name == "onCreate"
+        methodDef.definingClass.endsWith("WatchWhileActivity;") && methodDef.name == "onCreate"
     }
 )

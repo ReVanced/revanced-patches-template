@@ -20,5 +20,5 @@ object NextGenWatchLayoutFingerprint : MethodFingerprint(
     null,
     null,
     null,
-    customFingerprint =  { methodDef -> MethodUtil.isConstructor(methodDef) && methodDef.parameterTypes.size == 3 }
+    customFingerprint =  { methodDef -> MethodUtil.isConstructor(methodDef) && methodDef.parameterTypes.size == 3 && methodDef.definingClass.endsWith("NextGenWatchLayout;") }
 )

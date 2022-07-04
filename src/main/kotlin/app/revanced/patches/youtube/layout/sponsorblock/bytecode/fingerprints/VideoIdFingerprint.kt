@@ -18,7 +18,11 @@ import org.jf.dexlib2.Opcode
 @SponsorBlockCompatibility
 @Version("0.0.1")
 object VideoIdFingerprint : MethodFingerprint(
-    "V", AccessFlags.DECLARED_SYNCHRONIZED or AccessFlags.FINAL or AccessFlags.PUBLIC, listOf("L"), listOf(
-        Opcode.INVOKE_INTERFACE,
-    )
+    "V",
+    AccessFlags.DECLARED_SYNCHRONIZED or AccessFlags.FINAL or AccessFlags.PUBLIC,
+    listOf("L"),
+    listOf(Opcode.INVOKE_INTERFACE),
+    customFingerprint = {
+        it.definingClass.endsWith("PlaybackLifecycleMonitor;")
+    }
 )
