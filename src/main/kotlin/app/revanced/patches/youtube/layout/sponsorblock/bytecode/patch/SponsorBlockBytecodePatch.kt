@@ -7,6 +7,7 @@ import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.data.impl.toMethodWalker
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patcher.patch.PatchResult
@@ -18,25 +19,22 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorblockResourcePatch
-import app.revanced.patches.youtube.layout.sponsorblock.utils.InstructionUtils.findInstructionsByName
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.MethodReference
+import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @Dependencies(
-    dependencies = [
-        IntegrationsPatch::class,
-        ResourceIdMappingProviderResourcePatch::class,
-        SponsorblockResourcePatch::class
-    ]
+    dependencies = [IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorblockResourcePatch::class]
 )
 @Name("sponsorblock")
 @Description("Integrate SponsorBlock.")
@@ -51,7 +49,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerInitFingerprint,
-        WatchWhileActiveFingerprint,
+        WatchWhileActivityFingerprint,
         PlayerOverlaysLayoutInitFingerprint
     )
 ) {
@@ -120,7 +118,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             val invokeInstruction = instruction as Instruction35c
             if ((invokeInstruction.reference as MethodReference).name != "round") continue
 
-            val insertIndex = index + 3
+            val insertIndex = index + 2
 
             // set the thickness of the segment
             seekbarMethod.addInstruction(
@@ -133,10 +131,11 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
         Set rectangle absolute left and right positions
         */
-        val drawRectangleInstructions =
-            seekbarMethodInstructions.findInstructionsByName("drawRect").map { // TODO: improve code
-                seekbarMethodInstructions.indexOf(it) to (it as Instruction35c).registerD
-            }
+        val drawRectangleInstructions = seekbarMethodInstructions.filter {
+            it is ReferenceInstruction && (it.reference as? MethodReference)?.name == "drawRect" && it is FiveRegisterInstruction
+        }.map { // TODO: improve code
+            seekbarMethodInstructions.indexOf(it) to (it as FiveRegisterInstruction).registerD
+        }
 
         val (indexRight, rectangleRightRegister) = drawRectangleInstructions[0]
         val (indexLeft, rectangleLeftRegister) = drawRectangleInstructions[2]
@@ -174,9 +173,11 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         val videoLengthRegister =
             (videoLengthMethodInstructions[videoLengthMethodResult.patternScanResult!!.endIndex - 2] as OneRegisterInstruction).registerA
+        val dummyRegisterForLong =
+            videoLengthRegister + 1 // this is required for long values since they are 64 bit wide
         videoLengthMethod.addInstruction(
             videoLengthMethodResult.patternScanResult!!.endIndex,
-            "invoke-static {v$videoLengthRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setVideoLength(J)V"
+            "invoke-static {v$videoLengthRegister, v$dummyRegisterForLong}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setVideoLength(J)V"
         )
 
         /*
@@ -187,7 +188,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         val controlsLayoutStubResourceId =
             ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
-        val zoomOverlayResourceId = ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
+        val zoomOverlayResourceId =
+            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
 
         methods@ for (method in controlsMethodResult.mutableClass.methods) {
             val instructions = method.implementation?.instructions!!
@@ -237,41 +239,56 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         // set SegmentHelperLayout.context to the player layout instance
         val instanceRegister = 0
         NextGenWatchLayoutFingerprint.result!!.mutableMethod.addInstruction(
-            1,
-            "invoke-static {p$instanceRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->addSkipSponsorView15(Landroid/view/View;)V"
+            3, // after super call
+            "invoke-static/range {p$instanceRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->addSkipSponsorView15(Landroid/view/View;)V"
         )
 
         // append the new time to the player layout
         val appendTimeFingerprintResult = AppendTimeFingerprint.result!!
         val appendTimePatternScanStartIndex = appendTimeFingerprintResult.patternScanResult!!.startIndex
-        val targetRegister = (appendTimeFingerprintResult
-            .method
-            .implementation!!
-            .instructions
-            .elementAt(appendTimePatternScanStartIndex + 1) as OneRegisterInstruction)
-            .registerA
+        val targetRegister =
+            (appendTimeFingerprintResult.method.implementation!!.instructions.elementAt(appendTimePatternScanStartIndex + 1) as OneRegisterInstruction).registerA
 
         appendTimeFingerprintResult.mutableMethod.addInstructions(
-            appendTimePatternScanStartIndex + 2,
-            """
-                    invoke-static {p$targetRegister}, Lapp/revanced/integrations/sponsorblock/SponsorBlockUtils;->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
-                    move-result-object p$targetRegister
+            appendTimePatternScanStartIndex + 2, """
+                    invoke-static {v$targetRegister}, Lapp/revanced/integrations/sponsorblock/SponsorBlockUtils;->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
+                    move-result-object v$targetRegister
             """
         )
 
         // initialize the player controller
+        val initFingerprintResult = PlayerInitFingerprint.result!!
         val initInstanceRegister = 0
-        PlayerInitFingerprint.result!!.mutableClass.methods.first { MethodUtil.isConstructor(it) }.addInstruction(
+        initFingerprintResult.mutableClass.methods.first { MethodUtil.isConstructor(it) }.addInstruction(
             4, // after super class invoke
             "invoke-static {v$initInstanceRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->onCreate(Ljava/lang/Object;)V"
         )
+        // replace "replaceMeWithsetMillisecondMethod" in onCreate method
+        MillisecondsFingerprint.resolve(data, initFingerprintResult.classDef)
+        val millisecondsMethodName = MillisecondsFingerprint.result!!.method.name
+
+        val onCreateMethod = data.proxy(data.classes.first { it.type.endsWith("PlayerController;") })
+            .resolve().methods.single { it.name == "onCreate" }
+        for ((index, it) in onCreateMethod.implementation!!.instructions.withIndex()) {
+            if (it.opcode.ordinal != Opcode.CONST_STRING.ordinal) continue
+
+            if (((it as ReferenceInstruction).reference as StringReference).string != "replaceMeWithsetMillisecondMethod") continue
+
+            val register = (it as OneRegisterInstruction).registerA
+            onCreateMethod.replaceInstruction(
+                index, "const-string v$register, \"$millisecondsMethodName\""
+            )
+
+            break
+        }
+
 
         // show a dialog for sponsor block
-        val watchWhileActiveResult = WatchWhileActiveFingerprint.result!!
-        val watchWhileActiveInstance = 1
-        watchWhileActiveResult.mutableMethod.addInstruction(
-            watchWhileActiveResult.patternScanResult!!.startIndex,
-            "invoke-static {v$watchWhileActiveInstance}, Lapp/revanced/integrations/sponsorblock/dialog/Dialogs;->showDialogsAtStartup(Landroid/app/Activity;)V" // TODO: separate ryd and sb dialogs
+        val watchWhileActivityResult = WatchWhileActivityFingerprint.result!!
+        val watchWhileActivityInstance = 1
+        watchWhileActivityResult.mutableMethod.addInstruction(
+            watchWhileActivityResult.patternScanResult!!.startIndex,
+            "invoke-static {v$watchWhileActivityInstance}, Lapp/revanced/integrations/sponsorblock/dialog/Dialogs;->showDialogsAtStartup(Landroid/app/Activity;)V" // TODO: separate ryd and sb dialogs
         )
 
         // initialize the sponsorblock view
@@ -282,7 +299,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // TODO: isSBChannelWhitelisting implementation
 
-        TODO("Until here some classes have been completely implemented, but not tested yet, continue to implement other classes and test all of them")
         return PatchResultSuccess()
     }
 }
