@@ -36,7 +36,7 @@ class FensterPatch : BytecodePatch(
             "com/google/android/apps/youtube/app/watchwhile/WatchWhileActivity",
             "onStart",
             0,
-            "invoke-static { p0 }, Lapp/revanced/integrations/fenster/FensterHooksEX;->WatchWhileActivity_onStartHookEX(Ljava/lang/Object;)V"
+            "invoke-static { p0 }, Lapp/revanced/integrations/patches/FensterSwipePatch;->WatchWhileActivity_onStartHookEX(Ljava/lang/Object;)V"
         )
 
         // hook YoutubePlayerOverlaysLayout.onFinishInflate (player overlays init hook)
@@ -44,7 +44,7 @@ class FensterPatch : BytecodePatch(
             "com/google/android/apps/youtube/app/common/player/overlay/YouTubePlayerOverlaysLayout",
             "onFinishInflate",
             -2,
-            "invoke-static { p0 }, Lapp/revanced/integrations/fenster/FensterHooksEX;->YouTubePlayerOverlaysLayout_onFinishInflateHookEX(Ljava/lang/Object;)V"
+            "invoke-static { p0 }, Lapp/revanced/integrations/patches/FensterSwipePatch;->YouTubePlayerOverlaysLayout_onFinishInflateHookEX(Ljava/lang/Object;)V"
         )
 
         // hook YoutubePlayerOverlaysLayout.UpdatePlayerType
@@ -54,7 +54,6 @@ class FensterPatch : BytecodePatch(
         )
 
         // hook NextGenWatchLayout.onTouchEvent and NextGenWatchLayout.onInterceptTouchEvent (player touch event hook)
-        //TODO maybe only one hook is actually needed
         injectWatchLayoutTouchHooks(
             data,
             "com/google/android/apps/youtube/app/watch/nextgenwatch/ui/NextGenWatchLayout"
@@ -73,7 +72,7 @@ class FensterPatch : BytecodePatch(
         // insert the hook
         fingerPrintResult.mutableMethod.addInstruction(
             0,
-            "invoke-static { p1 }, Lapp/revanced/integrations/fenster/FensterHooksEX;->YouTubePlayerOverlaysLayout_updatePlayerTypeHookEX(Ljava/lang/Object;)V"
+            "invoke-static { p1 }, Lapp/revanced/integrations/patches/FensterSwipePatch;->YouTubePlayerOverlaysLayout_updatePlayerTypeHookEX(Ljava/lang/Object;)V"
         )
     }
 
@@ -92,7 +91,7 @@ class FensterPatch : BytecodePatch(
                 touchHooksCount++
                 methodDef.injectConsumableEventHook(
                     ImmutableMethodReference(
-                        "Lapp/revanced/integrations/fenster/FensterHooksEX;",
+                        "Lapp/revanced/integrations/patches/FensterSwipePatch;",
                         "NextGenWatchLayout_onTouchEventHookEX",
                         listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
                         "Z"
@@ -105,7 +104,7 @@ class FensterPatch : BytecodePatch(
                 touchHooksCount++
                 methodDef.injectConsumableEventHook(
                     ImmutableMethodReference(
-                        "Lapp/revanced/integrations/fenster/FensterHooksEX;",
+                        "Lapp/revanced/integrations/patches/FensterSwipePatch;",
                         "NextGenWatchLayout_onInterceptTouchEventHookEX",
                         listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
                         "Z"
