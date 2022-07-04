@@ -7,6 +7,7 @@ import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.data.impl.toMethodWalker
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.or
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
@@ -16,20 +17,23 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorblockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
-import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.builder.MutableMethodImplementation
+import org.jf.dexlib2.iface.instruction.*
 import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
+import org.jf.dexlib2.immutable.ImmutableMethod
+import org.jf.dexlib2.immutable.ImmutableMethodParameter
 import org.jf.dexlib2.util.MethodUtil
 
 @Patch
@@ -93,7 +97,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             """
                  invoke-static {v$videoIdRegister}, Lapp/revanced/integrations/sponsorblock/player/VideoInformation;->setCurrentVideoId(Ljava/lang/String;)V
                  invoke-static {v$videoIdRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setCurrentVideoId(Ljava/lang/String;)V
-                 invoke-static {}, Lapp/revanced/integrations/videoplayer/videosettings/VideoSpeed;->NewVideoStarted()V
             """
         )
 
@@ -138,13 +141,13 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         }
 
         val (indexRight, rectangleRightRegister) = drawRectangleInstructions[0]
-        val (indexLeft, rectangleLeftRegister) = drawRectangleInstructions[2]
+        val (indexLeft, rectangleLeftRegister) = drawRectangleInstructions[3]
 
         // order of operation is important here due to the code above which has to be improved
         // the reason for that is that we get the index, add instructions and then the offset would be wrong
         seekbarMethod.addInstruction(
             indexLeft + 1,
-            "invoke-static {v$rectangleLeftRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarAbsoluteRight(Landroid/graphics/Rect;)V"
+            "invoke-static {v$rectangleLeftRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarAbsoluteLeft(Landroid/graphics/Rect;)V"
         )
         seekbarMethod.addInstruction(
             indexRight + 1,
@@ -263,25 +266,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             4, // after super class invoke
             "invoke-static {v$initInstanceRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->onCreate(Ljava/lang/Object;)V"
         )
-        // replace "replaceMeWithsetMillisecondMethod" in onCreate method
-        MillisecondsFingerprint.resolve(data, initFingerprintResult.classDef)
-        val millisecondsMethodName = MillisecondsFingerprint.result!!.method.name
-
-        val onCreateMethod = data.proxy(data.classes.first { it.type.endsWith("PlayerController;") })
-            .resolve().methods.single { it.name == "onCreate" }
-        for ((index, it) in onCreateMethod.implementation!!.instructions.withIndex()) {
-            if (it.opcode.ordinal != Opcode.CONST_STRING.ordinal) continue
-
-            if (((it as ReferenceInstruction).reference as StringReference).string != "replaceMeWithsetMillisecondMethod") continue
-
-            val register = (it as OneRegisterInstruction).registerA
-            onCreateMethod.replaceInstruction(
-                index, "const-string v$register, \"$millisecondsMethodName\""
-            )
-
-            break
-        }
-
 
         // show a dialog for sponsor block
         val watchWhileActivityResult = WatchWhileActivityFingerprint.result!!
@@ -296,6 +280,76 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             6, // after inflating the view
             "invoke-static {p0}, Lapp/revanced/integrations/sponsorblock/player/ui/SponsorBlockView;->initialize(Ljava/lang/Object;)V"
         )
+
+        // lastly create hooks for the player controller
+
+        // get original seek method
+        SeekFingerprint.resolve(data, initFingerprintResult.classDef)
+        val seekFingerprintResultMethod = SeekFingerprint.result!!.method
+        // get enum type for the seek helper method
+        val seekSourceEnumType = seekFingerprintResultMethod.parameterTypes[1].toString()
+
+        // create helper method
+        val seekHelperMethod = ImmutableMethod(
+            seekFingerprintResultMethod.definingClass,
+            "seekHelper",
+            listOf(ImmutableMethodParameter("J", null, "time")),
+            "Z",
+            AccessFlags.PUBLIC or AccessFlags.FINAL,
+            null, null,
+            MutableMethodImplementation(4)
+        ).toMutable()
+
+        // insert helper method instructions
+        seekHelperMethod.addInstructions(
+            0,
+            """
+                sget-object v0, $seekSourceEnumType->a:$seekSourceEnumType
+                invoke-virtual {p0, p1, p2, v0}, ${seekFingerprintResultMethod.definingClass}->${seekFingerprintResultMethod.name}(J$seekSourceEnumType)Z
+                move-result p1
+                return p1
+            """
+        )
+
+        // add the helper method to the original class
+        initFingerprintResult.mutableClass.methods.add(seekHelperMethod)
+
+        // get rectangle field name
+        RectangleFieldInvalidatorFingerprint.resolve(data, seekbarSignatureResult.classDef)
+        val rectangleFieldInvalidatorInstructions =
+            RectangleFieldInvalidatorFingerprint.result!!.method.implementation!!.instructions
+        val rectangleFieldName =
+            ((rectangleFieldInvalidatorInstructions.elementAt(rectangleFieldInvalidatorInstructions.count() - 3) as ReferenceInstruction).reference as FieldReference).name
+
+        // get the player controller class from the integrations
+        val playerControllerMethods =
+            data.proxy(data.classes.first { it.type.endsWith("PlayerController;") }).resolve().methods
+
+        // get the method which contain the "replaceMe" strings
+        val replaceMeMethods =
+            playerControllerMethods.filter { it.name == "onCreate" || it.name == "setSponsorBarRect" }
+
+        fun MutableMethod.replaceStringInstruction(index: Int, instruction: Instruction, with: String) {
+            val register = (instruction as OneRegisterInstruction).registerA
+            this.replaceInstruction(
+                index, "const-string v$register, \"$with\""
+            )
+        }
+
+        // replace the "replaceMeWith*" strings
+        for (method in replaceMeMethods) {
+            for ((index, it) in method.implementation!!.instructions.withIndex()) {
+                if (it.opcode.ordinal != Opcode.CONST_STRING.ordinal) continue
+
+                when (((it as ReferenceInstruction).reference as StringReference).string) {
+                    "replaceMeWithsetSponsorBarRect" ->
+                        method.replaceStringInstruction(index, it, rectangleFieldName)
+
+                    "replaceMeWithsetMillisecondMethod" ->
+                        method.replaceStringInstruction(index, it, "seekHelper")
+                }
+            }
+        }
 
         // TODO: isSBChannelWhitelisting implementation
 
