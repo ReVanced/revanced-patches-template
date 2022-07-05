@@ -32,8 +32,9 @@ object MinimizedPlaybackSettingsFingerprint : MethodFingerprint(
     ),
     customFingerprint = {
         it.implementation!!.instructions.any {
-            (it as? WideLiteralInstruction)?.wideLiteral == ResourceIdMappingProviderResourcePatch.resourceMappings
-                .first { it.type == "string" && it.name == "pref_background_category" }.id
+            (it as? WideLiteralInstruction)?.wideLiteral == resourceId 
         }
     }
 )
+
+val resourceId = ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.type == "string" && it.name == "pref_background_category" }.id
