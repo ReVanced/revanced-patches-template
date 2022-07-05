@@ -20,7 +20,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
 object MinimizedPlaybackSettingsFingerprint : MethodFingerprint(
-    "Ljava/lang/String;",
+    "L",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     null,
     listOf(
