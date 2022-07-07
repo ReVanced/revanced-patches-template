@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.swipecontrols.fingerprints
+package app.revanced.patches.youtube.misc.playertype.fingerprint
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -10,6 +10,7 @@ import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeCo
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
+//TODO constrain to only match in YoutubePlayerOverlaysLayout?
 @Name("update-player-type-fingerprint")
 @MatchingMethod(
     "LYoutubePlayerOverlaysLayout;",
