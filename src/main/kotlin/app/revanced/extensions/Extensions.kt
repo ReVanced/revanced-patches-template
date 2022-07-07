@@ -1,8 +1,6 @@
 package app.revanced.extensions
 
-import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.toInstruction
 import org.jf.dexlib2.AccessFlags
@@ -96,41 +94,6 @@ internal fun MutableMethod.injectConsumableEventHook(hookRef: ImmutableMethodRef
                 // :continue_normal_flow
             )
         )
-    }
-}
-
-/**
- * Insert instructions into a named method
- *
- * @param targetClass the name of the class of which the method is a member
- * @param targetMethod the name of the method to insert into
- * @param index index to insert the instructions at. If the index is negative, it is used as an offset to the last method (so -1 inserts at the end of the method)
- * @param instructions the smali instructions to insert (they'll be compiled by MutableMethod.addInstructions)
- */
-internal fun BytecodeData.injectIntoNamedMethod(
-    targetClass: String,
-    targetMethod: String,
-    index: Int,
-    instructions: String
-) {
-    var injections = 0
-    this.classes.filter { it.type.endsWith("$targetClass;") }.forEach { classDef ->
-        this.proxy(classDef).resolve().methods.filter { it.name == targetMethod }.forEach { methodDef ->
-            // if index is negative, interpret as an offset from the back
-            var insertIndex = index
-            if (insertIndex < 0) {
-                insertIndex += methodDef.implementation!!.instructions.size
-            }
-
-            // insert instructions
-            methodDef.addInstructions(insertIndex, instructions)
-            injections++
-        }
-    }
-
-    // fail if nothing was injected
-    if (injections <= 0) {
-        throw PatchResultError("failed to inject into $targetClass.$targetMethod: no targets were found")
     }
 }
 
