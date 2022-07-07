@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.fenster.patch
+package app.revanced.patches.youtube.interaction.swipecontrols.patch
 
 import app.revanced.extensions.injectConsumableEventHook
 import app.revanced.extensions.injectIntoNamedMethod
@@ -14,18 +14,18 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
-import app.revanced.patches.youtube.interaction.fenster.annotation.FensterCompatibility
-import app.revanced.patches.youtube.interaction.fenster.fingerprints.UpdatePlayerTypeFingerprint
+import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
+import app.revanced.patches.youtube.interaction.swipecontrols.fingerprints.UpdatePlayerTypeFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
 @Patch
-@Name("fenster-swipe-controls")
+@Name("swipe-controls")
 @Description("volume and brightness swipe controls")
-@FensterCompatibility
+@SwipeControlsCompatibility
 @Version("0.0.1")
 @Dependencies(dependencies = [IntegrationsPatch::class])
-class FensterPatch : BytecodePatch(
+class SwipeControlsPatch : BytecodePatch(
     listOf(
         UpdatePlayerTypeFingerprint
     )

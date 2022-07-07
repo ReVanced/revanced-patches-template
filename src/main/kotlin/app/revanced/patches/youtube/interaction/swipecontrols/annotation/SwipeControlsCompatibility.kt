@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.fenster.annotation
+package app.revanced.patches.youtube.interaction.swipecontrols.annotation
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,4 +10,4 @@ import app.revanced.patcher.annotation.Package
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class FensterCompatibility
+internal annotation class SwipeControlsCompatibility

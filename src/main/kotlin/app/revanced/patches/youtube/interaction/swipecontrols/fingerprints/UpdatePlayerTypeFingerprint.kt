@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.fenster.fingerprints
+package app.revanced.patches.youtube.interaction.swipecontrols.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.interaction.fenster.annotation.FensterCompatibility
+import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
@@ -16,7 +16,7 @@ import org.jf.dexlib2.Opcode
     "nM"
 )
 @FuzzyPatternScanMethod(2)
-@FensterCompatibility
+@SwipeControlsCompatibility
 @Version("0.0.1")
 object UpdatePlayerTypeFingerprint : MethodFingerprint(
     "V",
