@@ -41,6 +41,6 @@ import org.jf.dexlib2.AccessFlags
  */
 
 object WideSearchbarOneParentFingerprint : MethodFingerprint(
-    "V", AccessFlags.PRIVATE or AccessFlags.FINAL, listOf("Lcom/google/android/apps/youtube/app/common/ui/navigation/PaneDescriptor;"), null,
+    "V", AccessFlags.PRIVATE or AccessFlags.FINAL, listOf("L"), null,
     listOf("FEhistory", "FEmy_videos", "FEpurchases")
 )

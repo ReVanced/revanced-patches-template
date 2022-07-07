@@ -43,6 +43,6 @@ See:
  */
 
 object WideSearchbarOneFingerprint : MethodFingerprint(
-    "Landroid/view/View;", AccessFlags.PUBLIC or AccessFlags.FINAL, null, null,
+    "L", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L", "L"), null,
     null, null
 )
