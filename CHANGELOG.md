@@ -1,3 +1,67 @@
+## [2.9.4](https://github.com/revanced/revanced-patches/compare/v2.9.3...v2.9.4) (2022-07-06)
+
+
+### Bug Fixes
+
+* add 17.25.34 as supported version for swipe-controls patch ([4d84c19](https://github.com/revanced/revanced-patches/commit/4d84c1914f8ecf51cee25667219bc6cf635a6c1c))
+
+## [2.9.3](https://github.com/revanced/revanced-patches/compare/v2.9.2...v2.9.3) (2022-07-06)
+
+
+### Bug Fixes
+
+* Readd `swipe-controls` patch ([#123](https://github.com/revanced/revanced-patches/issues/123)) ([7f2a2b2](https://github.com/revanced/revanced-patches/commit/7f2a2b2ee4e6045d53aba4e7705431b643981107))
+
+## [2.9.2](https://github.com/revanced/revanced-patches/compare/v2.9.1...v2.9.2) (2022-07-05)
+
+
+### Bug Fixes
+
+* revert `swipe-controls` patch  ([66e1f33](https://github.com/revanced/revanced-patches/commit/66e1f3384a58361737ba889d946be875b23f3163))
+
+## [2.9.1](https://github.com/revanced/revanced-patches/compare/v2.9.0...v2.9.1) (2022-07-05)
+
+
+### Bug Fixes
+
+* make `minimized-playback-manager-fingerprint` unique ([#120](https://github.com/revanced/revanced-patches/issues/120)) ([cd5e911](https://github.com/revanced/revanced-patches/commit/cd5e911f4ed9ad95b02c13c30cd9466d250e8904))
+
+# [2.9.0](https://github.com/revanced/revanced-patches/compare/v2.8.2...v2.9.0) (2022-07-05)
+
+
+### Features
+
+* `swipe-controls` patch ([#115](https://github.com/revanced/revanced-patches/issues/115)) ([1d0a7dc](https://github.com/revanced/revanced-patches/commit/1d0a7dcc0cc3ea2bcd8ce0221d5e2f53d6eb0ae5))
+
+## [2.8.2](https://github.com/revanced/revanced-patches/compare/v2.8.1...v2.8.2) (2022-07-05)
+
+
+### Bug Fixes
+
+* show minimized playback options in settings ([#118](https://github.com/revanced/revanced-patches/issues/118)) ([6e1a538](https://github.com/revanced/revanced-patches/commit/6e1a538d34291d75f19bf66a188bc69241de3a7a))
+
+## [2.8.1](https://github.com/revanced/revanced-patches/compare/v2.8.0...v2.8.1) (2022-07-05)
+
+
+### Bug Fixes
+
+* remove unnecessary version constraints ([#117](https://github.com/revanced/revanced-patches/issues/117)) ([1cddf8d](https://github.com/revanced/revanced-patches/commit/1cddf8d9063da3bbdba0fd7080c8c93768b83a4c))
+
+# [2.8.0](https://github.com/revanced/revanced-patches/compare/v2.7.0...v2.8.0) (2022-07-04)
+
+
+### Features
+
+* `enable-debugging` patch ([#116](https://github.com/revanced/revanced-patches/issues/116)) ([bb355e7](https://github.com/revanced/revanced-patches/commit/bb355e7b7e78e602a10b346fe7e5795463615a81))
+
+# [2.7.0](https://github.com/revanced/revanced-patches/compare/v2.6.0...v2.7.0) (2022-07-03)
+
+
+### Features
+
+* `hdr-max-brightness` patch ([#105](https://github.com/revanced/revanced-patches/issues/105)) ([1310573](https://github.com/revanced/revanced-patches/commit/131057366a777786d6016d3385584b4e17bc4a8b))
+* `hide-infocard-suggestions` patch ([#107](https://github.com/revanced/revanced-patches/issues/107)) ([31a767a](https://github.com/revanced/revanced-patches/commit/31a767adbb152906303ab0ae5250769fc38d0625))
+
 # [2.6.0](https://github.com/revanced/revanced-patches/compare/v2.5.0...v2.6.0) (2022-07-02)
 
 
