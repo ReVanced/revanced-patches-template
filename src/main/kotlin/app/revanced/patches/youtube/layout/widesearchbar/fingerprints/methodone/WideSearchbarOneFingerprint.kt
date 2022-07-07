@@ -3,17 +3,18 @@ package app.revanced.patches.youtube.layout.widesearchbar.fingerprints.methodone
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
+import app.revanced.patcher.fingerprint.method.annotation.DirectPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.reels.annotations.HideReelsCompatibility
 import org.jf.dexlib2.AccessFlags
+import org.jf.dexlib2.Opcode
 
 @Name("wide-searchbar-methodone-fingerprint")
 @MatchingMethod(
     "Ljkg;", "i"
 )
-@FuzzyPatternScanMethod(3)
+@DirectPatternScanMethod
 @HideReelsCompatibility
 @Version("0.0.1")
 
@@ -38,11 +39,9 @@ See:
     iget-object v1, p0, Ljkg;->x:Ltxm;
     invoke-static {v1}, Lfbn;->aF(Ltxm;)Z //THIS IS WHAT WE SEARCH FOR (Method fbn.aF)
     move-result v1
-
-
  */
 
 object WideSearchbarOneFingerprint : MethodFingerprint(
-    "L", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L", "L"), null,
+    "L", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L", "L"), listOf(Opcode.IF_NEZ, Opcode.SGET_OBJECT, Opcode.IGET_OBJECT, Opcode.INVOKE_STATIC),
     null, null
 )
