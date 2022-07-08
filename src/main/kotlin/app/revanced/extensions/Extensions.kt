@@ -1,6 +1,8 @@
 package app.revanced.extensions
 
+import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.toInstruction
 import org.jf.dexlib2.AccessFlags
@@ -12,6 +14,8 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction21t
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 import org.w3c.dom.Node
+import java.io.OutputStream
+import java.nio.file.Files
 
 internal fun MutableMethodImplementation.injectHideCall(
     index: Int,
@@ -94,6 +98,69 @@ internal fun MutableMethod.injectConsumableEventHook(hookRef: ImmutableMethodRef
                 // :continue_normal_flow
             )
         )
+    }
+}
+
+/**
+ * inject resources into the patched app
+ *
+ * @param classLoader classloader to use for loading the resources
+ * @param patchDirectoryPath path to the files. this will be the directory you created under the 'resources' source folder
+ * @param resourceType the resource type, for example 'drawable'. this has to match both the source and the target
+ * @param resourceFileNames names of all resources of this type to inject
+ */
+fun ResourceData.injectResources(
+    classLoader: ClassLoader,
+    patchDirectoryPath: String,
+    resourceType: String,
+    resourceFileNames: List<String>
+) {
+    resourceFileNames.forEach { name ->
+        val relativePath = "$resourceType/$name"
+        val sourceRes = classLoader.getResourceAsStream("$patchDirectoryPath/$relativePath")
+            ?: throw PatchResultError("could not open resource '$patchDirectoryPath/$relativePath'")
+
+        Files.copy(
+            sourceRes,
+            this["res"].resolve(relativePath).toPath()
+        )
+    }
+}
+
+/**
+ * inject strings into the patched app
+ *
+ * @param classLoader classloader to use for loading the resources
+ * @param patchDirectoryPath path to the files. this will be the directory you created under the 'resources' source folder
+ * @param languageIdentifier ISO 639-2 two- letter language code identifier (aka the one android uses for values directory)
+ */
+fun ResourceData.injectStrings(
+    classLoader: ClassLoader,
+    patchDirectoryPath: String,
+    languageIdentifier: String? = null,
+) {
+    val relativePath =
+        if (languageIdentifier.isNullOrBlank()) "values/strings.xml" else "values/strings-$languageIdentifier.xml"
+
+    // open source strings.xml
+    val sourceInputStream = classLoader.getResourceAsStream("$patchDirectoryPath/$relativePath")
+        ?: throw PatchResultError("failed to open '$patchDirectoryPath/$relativePath'")
+    xmlEditor[sourceInputStream, OutputStream.nullOutputStream()].use { sourceStringsXml ->
+        val strings = sourceStringsXml.file.getElementsByTagName("resources").item(0).childNodes
+
+        // open target strings.xml
+        xmlEditor["res/$relativePath"].use { targetStringsXml ->
+            val targetFile = targetStringsXml.file
+            val targetRootNode = targetFile.getElementsByTagName("resources").item(0)
+
+            // process all children strings in the source
+            for (i in 0 until strings.length) {
+                // clone the node from source to target
+                val node = strings.item(i).cloneNode(true)
+                targetFile.adoptNode(node)
+                targetRootNode.appendChild(node)
+            }
+        }
     }
 }
 

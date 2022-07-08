@@ -17,13 +17,14 @@ import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 
 @Patch
 @Name("swipe-controls")
-@Description("volume and brightness swipe controls")
+@Description("Adds volume and brightness swipe controls.")
 @SwipeControlsCompatibility
 @Version("0.0.2")
 @Dependencies(
     dependencies = [
         IntegrationsPatch::class,
-        PlayerTypeHookPatch::class
+        PlayerTypeHookPatch::class,
+        SwipeControlsResourcesPatch::class
     ]
 )
 class SwipeControlsPatch : BytecodePatch(
