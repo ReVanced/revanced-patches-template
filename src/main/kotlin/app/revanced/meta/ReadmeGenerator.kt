@@ -30,7 +30,10 @@ class ReadmeGenerator {
 
             val readmeFile = File("README.md")
 
-            val bundle = JarPatchBundle("build/libs/revanced-patches-2.9.4.jar").loadPatches()
+            val buildDir = File("build/libs/")
+            val buildJar = buildDir.listFiles().first { it.name.startsWith("revanced-patches-") && it.name.endsWith(".jar") }
+
+            val bundle = JarPatchBundle(buildJar.absolutePath).loadPatches()
 
             val builder = StringBuilder()
 
