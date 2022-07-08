@@ -14,17 +14,16 @@ class ReadmeGenerator {
         fun main(args: Array<String>) {
             //should be moved to a file?
             val generalReadme =
-                """
-            # revanced-patches
+                """    
+            # ReVanced Patches
+            🧩 Official patches by ReVanced
 
-            A repository of patches for use with ReVanced tooling
-
-            # List of patches
+            # Patch list
             """.trimIndent()
 
             val tableHeader =
                 """
-            |💊Patch|📜Description|🎯Target package|🏹Target package version|
+            |💊Patch|📜Description|🎯Target Package|🏹Target Version|
             |:-----:|:-----------:|:--------------:|:----------------------:|
             """.trimIndent()
 
