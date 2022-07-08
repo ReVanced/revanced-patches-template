@@ -64,6 +64,6 @@ tasks {
     register<DefaultTask>("publish") {
         group = "publish"
         description = "Dummy task"
-        dependsOn(named("generateDex"))
+        dependsOn(named("generateDex"), named("generateReadme"))
     }
 }
