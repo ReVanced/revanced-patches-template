@@ -44,7 +44,7 @@ class ReadmeGenerator {
                 val compatiblePackage = patch.compatiblePackages?.first()
                 val latestVersion = compatiblePackage?.versions?.maxByOrNull { it.replace(".", "").toInt() } ?: "all"
 
-                builder.appendLine("|$humanName|${patch.description}|${compatiblePackage?.name}|$latestVersion|")
+                builder.appendLine("|$humanName|${patch.description}|`${compatiblePackage?.name}`|$latestVersion|")
             }
 
             readmeFile.writeText(builder.toString())
