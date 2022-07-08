@@ -23,7 +23,7 @@ class ReadmeGenerator {
 
             val tableHeader =
                 """
-            |💊Patch|📜Description|🎯Target Package|🏹Target Version|
+            | 💊 Patch | 📜 Description | 🎯 Target Package | 🏹 Target Version |
             |:-----:|:-----------:|:--------------:|:----------------------:|
             """.trimIndent()
 
