@@ -37,13 +37,12 @@ class DefaultVideoQualityPatch : BytecodePatch(
 ) {
     override fun execute(data: BytecodeData): PatchResult {
 
-        val qualityClass = VideoQualitySetterFingerprint.result!!.classDef
         val setterMethod = VideoQualitySetterFingerprint.result!!
 
-        VideoUserQualityChangeFingerprint.resolve(data, VideoQualitySetterFingerprint.result!!.classDef)
+        VideoUserQualityChangeFingerprint.resolve(data, setterMethod.classDef)
         val fragmentMethod = VideoUserQualityChangeFingerprint.result!!
 
-        VideoQualityReferenceFingerprint.resolve(data, VideoQualitySetterFingerprint.result!!.classDef)
+        VideoQualityReferenceFingerprint.resolve(data, setterMethod.classDef)
         val qualityFieldReference =
             VideoQualityReferenceFingerprint.result!!.method.let { method ->
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
@@ -51,7 +50,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
 
         setterMethod.mutableMethod.addInstructions(
             0, """
-                	  iget-object v0, p0, ${qualityClass.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
+                	  iget-object v0, p0, ${setterMethod.classDef.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
 		        invoke-static {p1, p2, v0}, Lapp/revanced/integrations/patches/VideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;)I
    		        move-result p2
             """,
