@@ -47,7 +47,6 @@ class AutoRepeatPatch : BytecodePatch(
 
         //Instructions to add to the smali code
         val instructions = """
-            invoke-static {}, Lapp/revanced/integrations/sponsorblock/player/VideoInformation;->videoEnded()V
             invoke-static {}, Lapp/revanced/integrations/patches/AutoRepeatPatch;->shouldAutoRepeat()Z
             move-result v0
             if-eqz v0, :noautorepeat
