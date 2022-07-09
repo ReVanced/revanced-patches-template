@@ -40,7 +40,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
         val setterMethod = VideoQualitySetterFingerprint.result!!
 
         VideoUserQualityChangeFingerprint.resolve(data, setterMethod.classDef)
-        val fragmentMethod = VideoUserQualityChangeFingerprint.result!!
+        val userQualityMethod = VideoUserQualityChangeFingerprint.result!!
 
         VideoQualityReferenceFingerprint.resolve(data, setterMethod.classDef)
         val qualityFieldReference =
@@ -56,7 +56,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
             """,
         )
 
-        fragmentMethod.mutableMethod.addInstruction(
+        userQualityMethod.mutableMethod.addInstruction(
             0,
             "invoke-static {}, Lapp/revanced/integrations/patches/VideoQualityPatch;->userChangedQuality()V"
         )
