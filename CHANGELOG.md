@@ -1,3 +1,24 @@
+## [2.10.2](https://github.com/revanced/revanced-patches/compare/v2.10.1...v2.10.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* trigger release on `build` commits ([be8bd1b](https://github.com/revanced/revanced-patches/commit/be8bd1b2a4b91f9763448661a802a5dc4a6b1d1d))
+
+## [2.10.1](https://github.com/revanced/revanced-patches/compare/v2.10.0...v2.10.1) (2022-07-08)
+
+
+### Bug Fixes
+
+* patch description consistency ([#134](https://github.com/revanced/revanced-patches/issues/134)) ([da5896d](https://github.com/revanced/revanced-patches/commit/da5896dde0a2b2b9ffe65e486402e4ef92ec1ce9))
+
+# [2.10.0](https://github.com/revanced/revanced-patches/compare/v2.9.4...v2.10.0) (2022-07-07)
+
+
+### Features
+
+* implement `wide-searchbar` Patch ([#130](https://github.com/revanced/revanced-patches/issues/130)) ([332f4d1](https://github.com/revanced/revanced-patches/commit/332f4d12d06316d65db252a280fe1f263e65c3a8))
+
 ## [2.9.4](https://github.com/revanced/revanced-patches/compare/v2.9.3...v2.9.4) (2022-07-06)
 
 
