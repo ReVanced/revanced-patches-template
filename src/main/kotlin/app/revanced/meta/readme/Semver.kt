@@ -1,19 +1,19 @@
-data class Semver(val major: Int, val minor: Int, val patch: Int) {
+data class SemanticVersion(val major: Int, val minor: Int, val patch: Int) {
     companion object {
-        fun fromString(version: String): Semver {
+        fun fromString(version: String): SemanticVersion {
             var parts = version.split(".")
 
-            if (parts.count() != 3) throw IllegalArgumentException("semver must have 3 parts")
+            if (parts.count() != 3) throw IllegalArgumentException("Invalid semantic version")
 
-            val intParts = parts.map { it.toInt() }
-            return Semver(intParts[0], intParts[1], intParts[2])
+            val versionNumbers = parts.map { it.toInt() }
+            return SemanticVersion(versionNumbers[0], versionNumbers[1], versionNumbers[2])
         }
     }
 
     override fun toString(): String = "$major.$minor.$patch"
 }
 
-class SemverComparator {
+class SemanticVersionComparator {
     companion object : Comparator<Semver> {
         override fun compare(a: Semver, b: Semver): Int = when {
             a.major != b.major -> a.major - b.major
