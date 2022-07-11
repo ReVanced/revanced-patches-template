@@ -16,10 +16,10 @@ import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("hdr-max-brightness")
-@Description("Sets brightness to max for HDR videos in fullscreen mode.")
+@Name("hdr-auto-brightness")
+@Description("Makes the brightness of HDR videos follow the system default.")
 @HDRBrightnessCompatibility
-@Version("0.0.1")
+@Version("0.0.2")
 class HDRBrightnessPatch : BytecodePatch(
     listOf(
         HDRBrightnessFingerprint
@@ -32,9 +32,10 @@ class HDRBrightnessPatch : BytecodePatch(
 
         val method = result.mutableMethod
 
-        //Get the index here, so we know where to inject our code to override -1.0f
-        val index = method.implementation!!.instructions.indexOfFirst { ((it as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits()) }
-        val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
+        //Get the index here, so we know where to inject our code to override to BRIGHTNESS_OVERRIDE_NONE
+        val index =
+            method.implementation!!.instructions.indexOfFirst { ((it as? NarrowLiteralInstruction)?.narrowLiteral == (-1.0f).toRawBits()) }
+        val register = (method.implementation!!.instructions[index] as OneRegisterInstruction).registerA
 
         method.addInstructions(
             index + 1, """
