@@ -13,12 +13,10 @@ data class SemanticVersion(val major: Int, val minor: Int, val patch: Int) {
     override fun toString(): String = "$major.$minor.$patch"
 }
 
-class SemanticVersionComparator {
-    companion object : Comparator<Semver> {
-        override fun compare(a: Semver, b: Semver): Int = when {
-            a.major != b.major -> a.major - b.major
-            a.minor != b.minor -> a.minor - b.minor
-            else -> a.patch - b.patch
-        }
+object SemanticVersionComparator : Comparator<SemanticVersion> {
+    override fun compare(a: SemanticVersion, b: SemanticVersion): Int = when {
+        a.major != b.major -> a.major - b.major
+        a.minor != b.minor -> a.minor - b.minor
+        else -> a.patch - b.patch
     }
 }
