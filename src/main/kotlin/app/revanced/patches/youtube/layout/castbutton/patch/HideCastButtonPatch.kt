@@ -16,10 +16,10 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 @Patch
 @Dependencies(dependencies = [IntegrationsPatch::class])
 @Name("hide-cast-button")
-@Description("Patch to hide the cast button.")
+@Description("Hides the cast button.")
 @CastButtonCompatibility
 @Version("0.0.1")
-class HideCastButtonPatch : BytecodePatch(listOf()) {
+class HideCastButtonPatch : BytecodePatch() {
     override fun execute(data: BytecodeData): PatchResult {
         data.classes.forEach { classDef ->
             classDef.methods.forEach { method ->

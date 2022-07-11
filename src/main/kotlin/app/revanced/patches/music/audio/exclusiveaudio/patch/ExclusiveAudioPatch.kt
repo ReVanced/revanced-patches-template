@@ -17,18 +17,16 @@ import app.revanced.patches.music.audio.exclusiveaudio.fingerprints.ExclusiveAud
 
 @Patch
 @Name("exclusive-audio-playback")
-@Description("Add the option to play music without video.")
+@Description("Adds the option to play music without video.")
 @ExclusiveAudioCompatibility
 @Version("0.0.1")
 class ExclusiveAudioPatch : BytecodePatch(
     listOf(
-        ExclusiveAudioFingerprint
+        AudioOnlyEnablerFingerprint
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        ExclusiveAudioFingerprint.resolve(data, AudioOnlyEnablerFingerprint.result!!.classDef)
-
-        val method = ExclusiveAudioFingerprint.result!!.mutableMethod
+        val method = AudioOnlyEnablerFingerprint.result!!.mutableMethod
         method.replaceInstruction(method.implementation!!.instructions.count() - 1, "const/4 v0, 0x1")
         method.addInstruction("return v0")
 

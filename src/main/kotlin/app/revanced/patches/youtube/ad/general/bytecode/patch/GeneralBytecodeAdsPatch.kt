@@ -42,12 +42,10 @@ import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
     dependencies = [ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class]
 )
 @Name("general-ads")
-@Description("Patch to remove general ads in bytecode.")
+@Description("Removes general ads in bytecode.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
-class GeneralBytecodeAdsPatch : BytecodePatch(
-    listOf()
-) {
+class GeneralBytecodeAdsPatch : BytecodePatch() {
     // a constant used by litho
     private val lithoConstant = 0xaed2868
 
