@@ -50,8 +50,7 @@ class AutoRepeatPatch : BytecodePatch(
             invoke-static {}, Lapp/revanced/integrations/patches/AutoRepeatPatch;->shouldAutoRepeat()Z
             move-result v0
             if-eqz v0, :noautorepeat
-            const/4 v0, 0x0
-            invoke-virtual {}, $methodToCall
+            invoke-virtual {p0}, $methodToCall
             :noautorepeat
             return-void
         """
