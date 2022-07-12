@@ -13,7 +13,7 @@
     <string name="general_adjusting">Adjusting new segment step</string>
     <string name="general_adjusting_sum">This is the number of milliseconds you can move when you use the time adjustment buttons while adding new segment</string>
     <string name="general_min_duration">Minimum segment duration</string>
-    <string name="general_min_duration_sum">Segments shorter than the set value (in seconds) will not be skipped or show in the player</string>
+    <string name="general_min_duration_sum">Segments shorter than the set value (in seconds) will not be skipped or shown in the player</string>
     <string name="general_uuid">Your unique user id</string>
     <string name="general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
     <string name="settings_ie">Import/Export settings</string>
@@ -31,15 +31,15 @@
     <string name="segments_intermission">Intermission/Intro Animation</string>
     <string name="segments_intermission_sum">An interval without actual content. Could be a pause, static frame, repeating animation</string>
     <string name="segments_endcards">Endcards/Credits</string>
-    <string name="segments_endcards_sum">Credits or when the YouTube endcards appear. Not spoken conclusions</string>
+    <string name="segments_endcards_sum">Credits or when the YouTube endcards appear. Not for spoken conclusions</string>
     <string name="segments_subscribe">Interaction Reminder (Subscribe)</string>
     <string name="segments_subscribe_sum">When there is a short reminder to like, subscribe or follow them in the middle of content</string>
     <string name="segments_selfpromo">Unpaid/Self Promotion</string>
-    <string name="segments_selfpromo_sum">Similar to "sponsor" except for unpaid or self promotion. This includes sections about merchandise, donations, or information about who they collaborated with</string>
+    <string name="segments_selfpromo_sum">When there is unpaid or self promotion. This includes specific sections about merchandise, donations, or information about who they collaborated with</string>
     <string name="segments_nomusic">Music: Non-Music Section</string>
     <string name="segments_nomusic_sum">Only for use in music videos. This includes introductions or outros in music videos</string>
     <string name="segments_filler">Filler Tangent/Jokes</string>
-    <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. This should not include segments providing context or background details</string>
+    <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. This should not include context or background details</string>
     <string name="skipped_segment">Skipped a sponsor segment</string>
     <string name="skipped_sponsor">Skipped sponsor</string>
     <string name="skipped_intermission">Skipped intro</string>
@@ -98,9 +98,9 @@
     <string name="new_segment_edit_by_hand_parse_error">Invalid time given</string>
 
     <string name="sb_guidelines_preference_title">View guidelines</string>
-    <string name="sb_guidelines_preference_sum">Guidelines contain tips about submitting a segment</string>
+    <string name="sb_guidelines_preference_sum">Guidelines contain tips and rules about submitting segments</string>
     <string name="sb_guidelines_popup_title">There are guidelines</string>
-    <string name="sb_guidelines_popup_content">It\'s recommended to read the Sponsor Block guidelines before submitting any segment</string>
+    <string name="sb_guidelines_popup_content">It\'s recommended to read the SponsorBlock guidelines before submitting any segment</string>
     <string name="sb_guidelines_popup_already_read">Already read</string>
     <string name="sb_guidelines_popup_open">Show me</string>
 
@@ -147,9 +147,9 @@
     <string name="general_whitelisting">Channel whitelisting</string>
     <string name="general_whitelisting_sum">Use the Segments button under the player to whitelist a channel</string>
     <string name="general_browser_button">Enable SB Browser button</string>
-    <string name="general_browser_button_sum">Clicking this button under the player will open sb.ltn.fi where you can see more details about segments.</string>
+    <string name="general_browser_button_sum">Clicking this button under the player will open sb.ltn.fi where you can see all the segments on the video.</string>
     <string name="segments_preview">Preview/Recap</string>
-    <string name="segments_preview_sum">Quick recap of previous episodes, or a preview of what\'s coming up later in the current video. Meant for edited together clips, not for spoken summaries.</string>
+    <string name="segments_preview_sum">Recap of previous episodes, or a preview of what\'s coming up later in the current video or future videos in the same series. Intended for edited together clips that do not provide additional information.</string>
     <string name="stats">Stats</string>
     <string name="stats_loading">Loading..</string>
     <string name="stats_sb_disabled">SponsorBlock is disabled</string>
@@ -180,5 +180,5 @@
     <string name="api_url_invalid">Provided API URL is invalid</string>
 
     <string name="revanced_sb">SponsorBlock</string>
-    <string name="revanced_sb_firstrun">Are you aware of the SponsorBlock integration in Vanced? With it you can skip sponsored segments in the videos. You can enable/disable this in the settings at any time.</string>
+    <string name="revanced_sb_firstrun">Are you aware of the SponsorBlock integration in ReVanced? With it you can skip sponsored segments in the videos. You can enable/disable this in the settings at any time.</string>
 </resources>
