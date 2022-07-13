@@ -28,9 +28,9 @@
 | `custom-playback-speed` | Allows to change the default playback speed options. | `com.google.android.youtube` | 17.26.35 |
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | `com.google.android.youtube` | 17.26.35 |
 | `enable-debugging` | Enables app debugging by patching the manifest file. | `com.google.android.youtube` | all |
-| `background-play` | Enables playing music in the background. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `exclusive-audio-playback` | Adds the option to play music without video. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `codecs-unlock` | Enables more audio codecs. Usually results in better audio quality but may depend on song and device. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `upgrade-button-remover` | Removes the upgrade tab from the pivot bar in YouTube music. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the Home screen. The same functionality can be triggered from the settings anyway. | `com.google.android.apps.youtube.music` | 5.03.50 |
+| `background-play` | Enables playing music in the background. | `com.google.android.apps.youtube.music` | 5.14.53 |
+| `exclusive-audio-playback` | Adds the option to play music without video. | `com.google.android.apps.youtube.music` | 5.14.53 |
+| `codecs-unlock` | Enables more audio codecs. Usually results in better audio quality but may depend on song and device. | `com.google.android.apps.youtube.music` | 5.14.53 |
+| `upgrade-button-remover` | Removes the upgrade tab from the pivot bar in YouTube music. | `com.google.android.apps.youtube.music` | 5.14.53 |
+| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the Home screen. The same functionality can be triggered from the settings anyway. | `com.google.android.apps.youtube.music` | 5.14.53 |
 
