@@ -25,9 +25,11 @@ class QualityDependency : BytecodePatch(listOf()) {
                 if (classDef.type.endsWith("PlaybackLifecycleMonitor;") && method.name == "l") {
                     val startMethod =
                         data.proxy(classDef).resolve().methods.first { it.name == "l" }
-
+			
+		    val startIndex = startMethod.implementation!!.instructions.size - 7
+			
                     startMethod.addInstructions(
-                        30, """
+                        startIndex, """
 					const/4 v6, 0x1
     					invoke-static {v6}, Lapp/revanced/integrations/utils/ReVancedUtils;->setNewVideo(Z)V
 
