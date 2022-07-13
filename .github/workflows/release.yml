@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          ref: sponsorblock
       - name: Setup JDK
         uses: actions/setup-java@v2
         with:
