@@ -17,6 +17,7 @@ import app.revanced.patches.youtube.misc.forcevp9.fingerprints.ForceVP9CodecFing
 import app.revanced.patches.youtube.misc.forcevp9.fingerprints.ForceVP9CodecFingerprintTwo
 import app.revanced.patches.youtube.misc.forcevp9.fingerprints.ForceVP9ParentFingerprint
 
+//ToDo: Exclude Patch by default before merging PR
 @Patch
 @Name("force-vp9-codec")
 @Description("Forces the VP9 codec for videos.")
