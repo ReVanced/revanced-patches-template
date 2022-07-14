@@ -33,21 +33,21 @@ class RYDPatch : BytecodePatch(
             0,
             """
             const/4 v0, 1
-            invoke-static {v0}, Lapp/revanced/integrations/ryd/ReturnYouTubeDislikes;->sendVote(I)V
+            invoke-static {v0}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->sendVote(I)V
             """
         )
         DislikeFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """
             const/4 v0, -1
-            invoke-static {v0}, Lapp/revanced/integrations/ryd/ReturnYouTubeDislikes;->sendVote(I)V
+            invoke-static {v0}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->sendVote(I)V
             """
         )
         RemoveLikeFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """
             const/4 v0, 0
-            invoke-static {v0}, Lapp/revanced/integrations/ryd/ReturnYouTubeDislikes;->sendVote(I)V
+            invoke-static {v0}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->sendVote(I)V
             """
         )
 
@@ -56,8 +56,8 @@ class RYDPatch : BytecodePatch(
             """
             move-object/from16 v0, p5
             move-object/from16 v1, p17
-            invoke-static {v0, v1}, Lapp/revanced/integrations/ryd/ReturnYouTubeDislikes;->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
-        """
+            invoke-static {v0, v1}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
+            """
         )
 
         return PatchResultSuccess()
