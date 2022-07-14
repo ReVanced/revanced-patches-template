@@ -17,7 +17,7 @@ import org.jf.dexlib2.Opcode
 @DirectPatternScanMethod
 @ForceVP9Compatibility
 @Version("0.0.1")
-object ForceVP9CodedFingerprint : MethodFingerprint(
+object ForceVP9CodecFingerprint : MethodFingerprint(
     "Z", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"), listOf(
         Opcode.SGET, Opcode.IF_NEZ, Opcode.INVOKE_STATIC
     ), null, null

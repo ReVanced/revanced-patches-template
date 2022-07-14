@@ -19,7 +19,7 @@ import org.jf.dexlib2.Opcode
 @Version("0.0.1")
 object ForceVP9CodecFingerprintTwo : MethodFingerprint(
     "Z", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("I"), listOf(
-        Opcode.INVOKE_INTERFACE, Opcode.MOVE_RESULT, Opcode.CONST_4
+        Opcode.INVOKE_STATIC, Opcode.MOVE_RESULT_OBJECT, Opcode.CONST_4
     ), null, null
 )
 
