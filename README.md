@@ -6,11 +6,11 @@
 
 | 💊 Patch | 📜 Description | 🎯 Target Package | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|:-----------------:|
-| `exclusive-audio-playback` | Adds the option to play music without video. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `codecs-unlock` | Enables more audio codecs. Usually results in better audio quality but may depend on song and device. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `background-play` | Enables playing music in the background. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the Home screen. The same functionality can be triggered from the settings anyway. | `com.google.android.apps.youtube.music` | 5.03.50 |
-| `upgrade-button-remover` | Removes the upgrade tab from the pivot bar in YouTube music. | `com.google.android.apps.youtube.music` | 5.03.50 |
+| `exclusive-audio-playback` | Adds the option to play music without video. | `com.google.android.apps.youtube.music` | 5.3.50 |
+| `codecs-unlock` | Enables more audio codecs. Usually results in better audio quality but may depend on song and device. | `com.google.android.apps.youtube.music` | 5.3.50 |
+| `background-play` | Enables playing music in the background. | `com.google.android.apps.youtube.music` | 5.3.50 |
+| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the Home screen. The same functionality can be triggered from the settings anyway. | `com.google.android.apps.youtube.music` | 5.3.50 |
+| `upgrade-button-remover` | Removes the upgrade tab from the pivot bar in YouTube Music. | `com.google.android.apps.youtube.music` | 5.3.50 |
 | `hide-infocard-suggestions` | Hides infocards in videos. | `com.google.android.youtube` | 17.26.35 |
 | `video-ads` | Removes ads in the YouTube video player. | `com.google.android.youtube` | 17.26.35 |
 | `general-ads` | Removes general ads in bytecode. | `com.google.android.youtube` | 17.26.35 |
@@ -21,7 +21,7 @@
 | `autorepeat-by-default` | Enables auto repeating of videos by default. | `com.google.android.youtube` | 17.26.35 |
 | `custom-playback-speed` | Allows to change the default playback speed options. | `com.google.android.youtube` | 17.26.35 |
 | `enable-debugging` | Enables app debugging by patching the manifest file. | `com.google.android.youtube` | all |
-| `old-quality-layout` | Enables the original quality flyout menu. | `com.google.android.youtube` | 17.26.35 |
+| `old-quality-layout` | Enables the original quality flyout menu. | `com.google.android.youtube` | 17.24.35 |
 | `hide-cast-button` | Hides the cast button. | `com.google.android.youtube` | all |
 | `amoled` | Enables pure black theme. | `com.google.android.youtube` | 17.26.35 |
 | `hide-autoplay-button` | Disables the autoplay button. | `com.google.android.youtube` | 17.26.35 |

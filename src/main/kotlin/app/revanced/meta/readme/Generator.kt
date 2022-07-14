@@ -21,7 +21,10 @@ class Generator {
             for (patch in bundle) {
                 val patchName = patch.patchName
                 val compatiblePackage = patch.compatiblePackages?.first()
-                val latestVersion = compatiblePackage?.versions?.maxByOrNull { it.replace(".", "").toInt() } ?: "all"
+                val latestVersion =
+                    compatiblePackage?.versions?.map { SemanticVersion.fromString(it) }?.maxWithOrNull(
+                        SemanticVersionComparator
+                    ) ?: "all"
 
                 patches.appendLine("| `$patchName` | ${patch.description} | `${compatiblePackage?.name}` | $latestVersion |")
             }

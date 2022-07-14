@@ -1,3 +1,26 @@
+## [2.13.6](https://github.com/revanced/revanced-patches/compare/v2.13.5...v2.13.6) (2022-07-14)
+
+## [2.13.5](https://github.com/revanced/revanced-patches/compare/v2.13.4...v2.13.5) (2022-07-14)
+
+
+### Bug Fixes
+
+* `swipe-controls` with active engagement panel ([#177](https://github.com/revanced/revanced-patches/issues/177)) ([000ec6d](https://github.com/revanced/revanced-patches/commit/000ec6d8f6ecbb910a06ec852564ee9e5f03dcf8))
+
+## [2.13.4](https://github.com/revanced/revanced-patches/compare/v2.13.3...v2.13.4) (2022-07-13)
+
+
+### Bug Fixes
+
+* constrain `old-quality-layout` to older version ([add7232](https://github.com/revanced/revanced-patches/commit/add72326199e90f677b450b553b9d88c0bb4c490))
+
+## [2.13.3](https://github.com/revanced/revanced-patches/compare/v2.13.2...v2.13.3) (2022-07-11)
+
+
+### Bug Fixes
+
+* `exclusive-audio-playback` patch ([#153](https://github.com/revanced/revanced-patches/issues/153)) ([9beff95](https://github.com/revanced/revanced-patches/commit/9beff9567f1586e5c58690c1f1d2f7f204025ab7))
+
 ## [2.13.2](https://github.com/revanced/revanced-patches/compare/v2.13.1...v2.13.2) (2022-07-11)
 
 
