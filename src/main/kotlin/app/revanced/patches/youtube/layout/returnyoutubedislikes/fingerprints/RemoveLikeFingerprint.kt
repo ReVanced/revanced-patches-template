@@ -11,15 +11,15 @@ import org.jf.dexlib2.AccessFlags
 
 @Name("remove-like-fingerprint")
 @MatchingMethod(
-    "Ltwz;", "<init>"
+    "Luqw;", "<init>"
 )
 @FuzzyPatternScanMethod(2)
 @RYDCompatibility
-@Version("0.0.1")
+@Version("0.0.2")
 object RemoveLikeFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PROTECTED or AccessFlags.CONSTRUCTOR,
-    listOf("L", "L", "[B", "[B", "[B", "[B"),
+    null,
     null,
     listOf("like/removelike")
 )

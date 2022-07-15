@@ -2,24 +2,22 @@ package app.revanced.patches.youtube.layout.returnyoutubedislikes.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
+import app.revanced.patcher.fingerprint.method.annotation.DirectPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.returnyoutubedislikes.annotations.RYDCompatibility
-import org.jf.dexlib2.AccessFlags
 
-@Name("dislike-fingerprint")
+@Name("text-component-spec-parent-fingerprint")
 @MatchingMethod(
-    "Luqs;", "<init>"
+    "Lnvy;", "e"
 )
-@FuzzyPatternScanMethod(2)
+@DirectPatternScanMethod
 @RYDCompatibility
-@Version("0.0.2")
-object DislikeFingerprint : MethodFingerprint(
-    "V",
-    AccessFlags.PROTECTED or AccessFlags.CONSTRUCTOR,
+@Version("0.0.1")
+object TextComponentSpecParentFingerprint : MethodFingerprint(
     null,
     null,
-    listOf("like/dislike")
+    null,
+    null,
+    listOf("TextComponentSpec: No converter for extension: ")
 )
