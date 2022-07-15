@@ -16,9 +16,10 @@ import app.revanced.patches.youtube.layout.returnyoutubedislikes.fingerprints.Di
 import app.revanced.patches.youtube.layout.returnyoutubedislikes.fingerprints.LikeFingerprint
 import app.revanced.patches.youtube.layout.returnyoutubedislikes.fingerprints.RemoveLikeFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 
 @Patch
-@Dependencies(dependencies = [IntegrationsPatch::class])
+@Dependencies(dependencies = [IntegrationsPatch::class, VideoIdPatch::class])
 @Name("return-youtube-dislikes")
 @Description("Shows the dislike count of videos.")
 @RYDCompatibility
@@ -59,6 +60,8 @@ class RYDPatch : BytecodePatch(
             invoke-static {v0, v1}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
             """
         )
+
+        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->newVideoLoaded(Ljava/lang/String;)V")
 
         return PatchResultSuccess()
     }
