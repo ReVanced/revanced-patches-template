@@ -56,20 +56,19 @@ class RYDPatch : BytecodePatch(
         VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->newVideoLoaded(Ljava/lang/String;)V")
 
         val parentResult = TextComponentSpecParentFingerprint.result!!
-        val classDef = parentResult.classDef
-        val createComponentMethod = data.proxy(classDef)
-            .resolve().methods.find { method ->
+        val createComponentMethod = parentResult.mutableClass.methods.find { method ->
                 method.parameters.size >= 19 && method.parameterTypes.takeLast(4)
                     .all { param -> param == "Ljava/util/concurrent/atomic/AtomicReference;" }
             }
             ?: return PatchResultError("TextComponentSpec.createComponent not found")
 
+        val conversionContextParam = 5
         val textRefParam = createComponentMethod.parameters.size - 2
 
         createComponentMethod.addInstructions(
             0,
             """
-            move-object/from16 v0, p5
+            move-object/from16 v0, p$conversionContextParam
             move-object/from16 v1, p$textRefParam
             invoke-static {v0, v1}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikesPatch;->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
             """
