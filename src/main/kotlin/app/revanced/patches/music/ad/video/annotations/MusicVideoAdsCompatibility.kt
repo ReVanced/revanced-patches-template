@@ -1,4 +1,4 @@
-package app.revanced.patches.music.premium.backgroundplay.annotations
+package app.revanced.patches.music.ad.video.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,5 +10,4 @@ import app.revanced.patcher.annotation.Package
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class BackgroundPlayCompatibility
-
+internal annotation class MusicVideoAdsCompatibility

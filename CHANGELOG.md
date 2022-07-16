@@ -1,3 +1,26 @@
+## [2.14.1](https://github.com/revanced/revanced-patches/compare/v2.14.0...v2.14.1) (2022-07-15)
+
+
+### Bug Fixes
+
+* `codecs-unlock` patch and update Music patches to `5.14.53` ([2437d30](https://github.com/revanced/revanced-patches/commit/2437d3070f6a630d353619f642cefebd47abee20))
+
+# [2.14.0](https://github.com/revanced/revanced-patches/compare/v2.13.6...v2.14.0) (2022-07-15)
+
+
+### Features
+
+* `music-video-ads` patch ([#172](https://github.com/revanced/revanced-patches/issues/172)) ([cbb71b5](https://github.com/revanced/revanced-patches/commit/cbb71b5faf1386ed31dd9e0387f6cf0509d92d31))
+
+## [2.13.6](https://github.com/revanced/revanced-patches/compare/v2.13.5...v2.13.6) (2022-07-14)
+
+## [2.13.5](https://github.com/revanced/revanced-patches/compare/v2.13.4...v2.13.5) (2022-07-14)
+
+
+### Bug Fixes
+
+* `swipe-controls` with active engagement panel ([#177](https://github.com/revanced/revanced-patches/issues/177)) ([000ec6d](https://github.com/revanced/revanced-patches/commit/000ec6d8f6ecbb910a06ec852564ee9e5f03dcf8))
+
 ## [2.13.4](https://github.com/revanced/revanced-patches/compare/v2.13.3...v2.13.4) (2022-07-13)
 
 
