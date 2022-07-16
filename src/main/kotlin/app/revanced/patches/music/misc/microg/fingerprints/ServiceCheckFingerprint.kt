@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 
 @Name("google-play-service-checker-fingerprint")
 @MatchingMethod(
-    "Llss;", "d"
+    "Lnuv;", "d"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 @MusicMicroGPatchCompatibility
@@ -28,7 +28,6 @@ object ServiceCheckFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.NEW_INSTANCE,
-        Opcode.CONST_16,
         Opcode.INVOKE_DIRECT,
         Opcode.CONST_STRING,
         Opcode.INVOKE_VIRTUAL,

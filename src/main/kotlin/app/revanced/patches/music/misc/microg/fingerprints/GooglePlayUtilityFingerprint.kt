@@ -12,13 +12,13 @@ import org.jf.dexlib2.Opcode
 
 @Name("google-play-utility-fingerprint")
 @MatchingMethod(
-    "Llss;", "b"
+    "Lnuv;", "b"
 )
 @FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 @MusicMicroGPatchCompatibility
 @Version("0.0.1")
 object GooglePlayUtilityFingerprint : MethodFingerprint(
-    "I", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "L"), listOf(
+    "I", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"), listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CONST,
@@ -171,7 +171,7 @@ object GooglePlayUtilityFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.INVOKE_STATIC,
         Opcode.CONST_16,
-        Opcode.GOTO,
+        Opcode.GOTO_16,
         Opcode.IF_EQZ,
         Opcode.IF_EQZ,
         Opcode.IGET_OBJECT,
@@ -197,12 +197,7 @@ object GooglePlayUtilityFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT,
         Opcode.IF_GE,
         Opcode.IGET,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
         Opcode.NEW_INSTANCE,
-        Opcode.ADD_INT,
         Opcode.INVOKE_DIRECT,
         Opcode.CONST_STRING,
         Opcode.INVOKE_VIRTUAL,

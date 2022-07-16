@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import app.revanced.patches.music.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
 import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_APP_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_APP_LAUNCHER_NAME
 import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 
 @Name("music-microg-resource-patch")
@@ -25,15 +26,13 @@ class MusicMicroGResourcePatch : ResourcePatch() {
             manifest.replace(
                 "package=\"com.google.android.apps.youtube.music", "package=\"$REVANCED_PACKAGE_NAME"
             ).replace(
-                "android:label=\"@string/application_name", "android:label=\"$REVANCED_APP_NAME"
+                "android:label=\"@string/app_name", "android:label=\"$REVANCED_APP_NAME"
+            ).replace(
+                "android:label=\"@string/app_launcher_name", "android:label=\"$REVANCED_APP_LAUNCHER_NAME"
             ).replace(
                 "android:authorities=\"com.google.android.apps.youtube.music", "android:authorities=\"$REVANCED_PACKAGE_NAME"
             ).replace(
                 "com.google.android.apps.youtube.music.permission.C2D_MESSAGE", "$REVANCED_PACKAGE_NAME.permission.C2D_MESSAGE"
-            ).replace( // TODO: might not be needed
-                "com.google.android.apps.youtube.music.lifecycle-trojan", "$REVANCED_PACKAGE_NAME.lifecycle-trojan"
-            ).replace( // TODO: might not be needed
-                "com.google.android.apps.youtube.musice.photopicker_images", "$REVANCED_PACKAGE_NAME.photopicker_images"
             ).replace(
                 "com.google.android.c2dm", "$BASE_MICROG_PACKAGE_NAME.android.c2dm"
             ).replace(

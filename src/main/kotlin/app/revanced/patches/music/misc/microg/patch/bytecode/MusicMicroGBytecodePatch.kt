@@ -160,8 +160,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
 
         primeMethod.replaceInstruction(
             index, "const-string v$register, \"$REVANCED_PACKAGE_NAME\""
-
-
         )
+
     }
 }
