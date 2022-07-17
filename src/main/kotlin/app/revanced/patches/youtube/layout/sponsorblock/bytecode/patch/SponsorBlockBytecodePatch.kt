@@ -20,14 +20,14 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
-import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorblockResourcePatch
+import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.MutableMethodImplementation
 import org.jf.dexlib2.iface.instruction.*
-import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
@@ -38,7 +38,7 @@ import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @Dependencies(
-    dependencies = [IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorblockResourcePatch::class]
+    dependencies = [IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
 )
 @Name("sponsorblock")
 @Description("Integrate SponsorBlock.")
@@ -48,12 +48,10 @@ class SponsorBlockBytecodePatch : BytecodePatch(
     listOf(
         PlayerControllerSetTimeReferenceFingerprint,
         CreateVideoPlayerSeekbarFingerprint,
-        VideoIdFingerprint,
         VideoTimeFingerprint,
         NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerInitFingerprint,
-        WatchWhileActivityFingerprint,
         PlayerOverlaysLayoutInitFingerprint
     )
 ) {
@@ -85,20 +83,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
          Set current video id
          */
-        VideoIdFingerprint.resolve(data, VideoIdFingerprint.result!!.classDef)
-        val videoIdMethodResult = VideoIdFingerprint.result!!
-
-        val videoIdMethod = videoIdMethodResult.mutableMethod
-        val videoIdRegister =
-            (videoIdMethod.implementation!!.instructions[videoIdMethodResult.patternScanResult!!.endIndex + 1] as Instruction11x).registerA
-
-        videoIdMethod.addInstructions(
-            videoIdMethodResult.patternScanResult!!.endIndex + 2, // after the move result
-            """
-                 invoke-static {v$videoIdRegister}, Lapp/revanced/integrations/sponsorblock/player/VideoInformation;->setCurrentVideoId(Ljava/lang/String;)V
-                 invoke-static {v$videoIdRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setCurrentVideoId(Ljava/lang/String;)V
-            """
-        )
+        VideoIdPatch.injectCall("Lapp/revanced/integrations/sponsorblock/PlayerController;->setCurrentVideoId(Ljava/lang/String;)V")
 
         /*
          Seekbar drawing
@@ -265,14 +250,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         initFingerprintResult.mutableClass.methods.first { MethodUtil.isConstructor(it) }.addInstruction(
             4, // after super class invoke
             "invoke-static {v$initInstanceRegister}, Lapp/revanced/integrations/sponsorblock/PlayerController;->onCreate(Ljava/lang/Object;)V"
-        )
-
-        // show a dialog for sponsor block
-        val watchWhileActivityResult = WatchWhileActivityFingerprint.result!!
-        val watchWhileActivityInstance = 1
-        watchWhileActivityResult.mutableMethod.addInstruction(
-            watchWhileActivityResult.patternScanResult!!.startIndex,
-            "invoke-static {v$watchWhileActivityInstance}, Lapp/revanced/integrations/sponsorblock/dialog/Dialogs;->showDialogsAtStartup(Landroid/app/Activity;)V" // TODO: separate ryd and sb dialogs
         )
 
         // initialize the sponsorblock view
