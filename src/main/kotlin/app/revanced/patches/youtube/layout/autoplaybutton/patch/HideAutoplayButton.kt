@@ -18,9 +18,9 @@ import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProvider
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
-@Dependencies(dependencies = [ResourceIdMappingProviderResourcePatch::class])
+@Dependencies([ResourceIdMappingProviderResourcePatch::class])
 @Name("hide-autoplay-button")
-@Description("Disables the autoplay button.")
+@Description("Hides the autoplay button in the video player.")
 @AutoplayButtonCompatibility
 @Version("0.0.1")
 class HideAutoplayButton : BytecodePatch(
@@ -32,9 +32,9 @@ class HideAutoplayButton : BytecodePatch(
         val layoutGenMethod = LayoutConstructorFingerprint.result!!.mutableMethod
 
         val autonavToggle =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.type == "id" && it.name == "autonav_toggle" }
+            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "autonav_toggle" }
         val autonavPreviewStub =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.type == "id" && it.name == "autonav_preview_stub" }
+            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "autonav_preview_stub" }
 
         val autonavToggleConstIndex =
             layoutGenMethod.implementation!!.instructions.indexOfFirst { (it as? WideLiteralInstruction)?.wideLiteral == autonavToggle.id }
