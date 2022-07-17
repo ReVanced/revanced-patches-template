@@ -1,3 +1,25 @@
+## [2.16.1](https://github.com/revanced/revanced-patches/compare/v2.16.0...v2.16.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* bump youtube version to 17.27.39 ([b93401a](https://github.com/revanced/revanced-patches/commit/b93401a391c0ed4887dd1376ac253f74f98a8d7e))
+
+# [2.16.0](https://github.com/revanced/revanced-patches/compare/v2.15.1...v2.16.0) (2022-07-17)
+
+
+### Features
+
+* `force-vp9-codec` patch ([#157](https://github.com/revanced/revanced-patches/issues/157)) ([07806a1](https://github.com/revanced/revanced-patches/commit/07806a16e5368118949e0e476e901987433ad403))
+
+## [2.15.1](https://github.com/revanced/revanced-patches/compare/v2.15.0...v2.15.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* `old-quality-layout` patch ([2497425](https://github.com/revanced/revanced-patches/commit/2497425c9f11b8b14c861c2f0f34ff47bdbfac53))
+* references to integrations in `return-youtube-dislike` patch ([5824c2c](https://github.com/revanced/revanced-patches/commit/5824c2cdfb1a2d7b8d68044388e5e0746ef2ca09))
+
 # [2.15.0](https://github.com/revanced/revanced-patches/compare/v2.14.1...v2.15.0) (2022-07-16)
 
 
