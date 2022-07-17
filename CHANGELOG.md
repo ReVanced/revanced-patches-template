@@ -1,3 +1,24 @@
+# [2.15.0](https://github.com/revanced/revanced-patches/compare/v2.14.1...v2.15.0) (2022-07-16)
+
+
+### Features
+
+* `return-youtube-dislikes` patch ([#175](https://github.com/revanced/revanced-patches/issues/175)) ([18a66d8](https://github.com/revanced/revanced-patches/commit/18a66d8454cf6e7cfdd4183631a6870c80d16b90))
+
+## [2.14.1](https://github.com/revanced/revanced-patches/compare/v2.14.0...v2.14.1) (2022-07-15)
+
+
+### Bug Fixes
+
+* `codecs-unlock` patch and update Music patches to `5.14.53` ([2437d30](https://github.com/revanced/revanced-patches/commit/2437d3070f6a630d353619f642cefebd47abee20))
+
+# [2.14.0](https://github.com/revanced/revanced-patches/compare/v2.13.6...v2.14.0) (2022-07-15)
+
+
+### Features
+
+* `music-video-ads` patch ([#172](https://github.com/revanced/revanced-patches/issues/172)) ([cbb71b5](https://github.com/revanced/revanced-patches/commit/cbb71b5faf1386ed31dd9e0387f6cf0509d92d31))
+
 ## [2.13.6](https://github.com/revanced/revanced-patches/compare/v2.13.5...v2.13.6) (2022-07-14)
 
 ## [2.13.5](https://github.com/revanced/revanced-patches/compare/v2.13.4...v2.13.5) (2022-07-14)

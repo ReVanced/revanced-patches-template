@@ -17,11 +17,9 @@ import java.nio.file.StandardCopyOption
 import kotlin.io.path.exists
 
 @Patch
-@Dependencies(
-    dependencies = [FixLocaleConfigErrorPatch::class]
-)
+@Dependencies([FixLocaleConfigErrorPatch::class])
 @Name("premium-heading")
-@Description("Shows premium branding on the YouTube home screen.")
+@Description("Shows premium branding on the home screen.")
 @PremiumHeadingCompatibility
 @Version("0.0.1")
 class PremiumHeadingPatch : ResourcePatch() {
@@ -34,7 +32,7 @@ class PremiumHeadingPatch : ResourcePatch() {
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
             val headingDirectory = resDirectory.resolve("drawable-$size")
-            modes.forEach {mode ->
+            modes.forEach { mode ->
                 val fromPath = headingDirectory.resolve("${original}_$mode.png").toPath()
                 val toPath = headingDirectory.resolve("${replacement}_$mode.png").toPath()
 

@@ -1,14 +1,13 @@
-package app.revanced.patches.music.premium.backgroundplay.annotations
+package app.revanced.patches.youtube.layout.returnyoutubedislike.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
 
 @Compatibility(
     [Package(
-        "com.google.android.apps.youtube.music", arrayOf("5.14.53")
+        "com.google.android.youtube", arrayOf("17.14.35", "17.26.35")
     )]
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class BackgroundPlayCompatibility
-
+internal annotation class ReturnYouTubeDislikeCompatibility

@@ -38,11 +38,9 @@ import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
 @Patch
-@Dependencies(
-    dependencies = [ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class]
-)
+@Dependencies([ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class])
 @Name("general-ads")
-@Description("Removes general ads in bytecode.")
+@Description("Removes general ads.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
 class GeneralBytecodeAdsPatch : BytecodePatch() {
