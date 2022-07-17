@@ -40,7 +40,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 @Patch
 @Dependencies([ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class])
 @Name("general-ads")
-@Description("Removes general ads in bytecode.")
+@Description("Removes general ads.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
 class GeneralBytecodeAdsPatch : BytecodePatch() {
@@ -58,7 +58,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         "promoted_video_item_land",
         "promoted_video_item_full_bleed",
     ).map { name ->
-        ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.name == name }.id
+        ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.name == name }.id
     }
 
     private val stringReferences = arrayOf(

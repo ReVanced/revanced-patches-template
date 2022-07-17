@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Patch
 @Dependencies([IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class])
 @Name("disable-create-button")
-@Description("Disables the create button.")
+@Description("Hides the create button in the navigation bar.")
 @CreateButtonCompatibility
 @Version("0.0.1")
 class CreateButtonRemoverPatch : BytecodePatch(
@@ -39,7 +39,7 @@ class CreateButtonRemoverPatch : BytecodePatch(
         val implementation = result.mutableMethod.implementation!!
 
         val imageOnlyLayout =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.type == "layout" && it.name == "image_only_tab" }
+            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "layout" && it.name == "image_only_tab" }
 
         val imageOnlyLayoutConstIndex =
             implementation.instructions.indexOfFirst { (it as? WideLiteralInstruction)?.wideLiteral == imageOnlyLayout.id }
