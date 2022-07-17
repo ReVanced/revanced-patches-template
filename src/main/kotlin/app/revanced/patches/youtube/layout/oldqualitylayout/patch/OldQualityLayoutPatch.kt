@@ -22,7 +22,7 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction21t
 @Patch
 @Dependencies([IntegrationsPatch::class])
 @Name("old-quality-layout")
-@Description("Enables the original quality flyout menu. Which lets you select video quality immediately.")
+@Description("Enables the original quality flyout menu.")
 @OldQualityLayoutCompatibility
 @Version("0.0.1")
 class OldQualityLayoutPatch : BytecodePatch(
