@@ -8,8 +8,8 @@ import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.misc.forcevp9.annotations.ForceVP9Compatibility
 import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.dexbacked.reference.DexBackedFieldReference
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.reference.FieldReference
 
 @Name("replace-device-info-parent-fingerprint")
 @MatchingMethod(
@@ -23,8 +23,8 @@ object ReplaceDeviceInfoFingerprint : MethodFingerprint(
     null,
     customFingerprint = { methodDef ->
         methodDef.implementation!!.instructions.any {
-            ((it as? ReferenceInstruction)?.reference as? DexBackedFieldReference)?.definingClass.equals("Landroid/os/Build;")
-                    && ((it as? ReferenceInstruction)?.reference as? DexBackedFieldReference)?.name.equals("MANUFACTURER")
+            ((it as? ReferenceInstruction)?.reference as? FieldReference)?.definingClass.equals("Landroid/os/Build;")
+                    && ((it as? ReferenceInstruction)?.reference as? FieldReference)?.name.equals("MANUFACTURER")
         }
     }
 )
