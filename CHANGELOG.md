@@ -1,9 +1,95 @@
+<<<<<<< HEAD
 ## [2.13.4](https://github.com/rihaq/revanced-patches/compare/v2.13.3...v2.13.4) (2022-07-13)
+=======
+## [2.18.2](https://github.com/revanced/revanced-patches/compare/v2.18.1...v2.18.2) (2022-07-18)
+>>>>>>> 2fdc50776a0de8d2969d0d7a501634a34ab42c15
 
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * constrain `old-quality-layout` to older version ([add7232](https://github.com/rihaq/revanced-patches/commit/add72326199e90f677b450b553b9d88c0bb4c490))
+=======
+* make all patches toggleable with settings ([#202](https://github.com/revanced/revanced-patches/issues/202)) ([7e1d82f](https://github.com/revanced/revanced-patches/commit/7e1d82f1161237632c3a57f109db6b8903006b33))
+
+## [2.18.1](https://github.com/revanced/revanced-patches/compare/v2.18.0...v2.18.1) (2022-07-18)
+
+
+### Bug Fixes
+
+* `minimized-playback` patch for YouTube Kids videos ([#201](https://github.com/revanced/revanced-patches/issues/201)) ([31e3b42](https://github.com/revanced/revanced-patches/commit/31e3b42c6bbce0d00f049b8a69bafc94900bb3b4))
+
+# [2.18.0](https://github.com/revanced/revanced-patches/compare/v2.17.0...v2.18.0) (2022-07-18)
+
+
+### Features
+
+* `hide-get-premium` patch ([#195](https://github.com/revanced/revanced-patches/issues/195)) ([639aab4](https://github.com/revanced/revanced-patches/commit/639aab411ee514b50840c15c8e9a1a889854403f))
+
+# [2.17.0](https://github.com/revanced/revanced-patches/compare/v2.16.1...v2.17.0) (2022-07-17)
+
+
+### Bug Fixes
+
+* check if node has attributes before accessing them ([2d2ed87](https://github.com/revanced/revanced-patches/commit/2d2ed870dacfe092eb6acbcaae5e51775c611322))
+
+
+### Features
+
+* `sponsorblock` patch ([#101](https://github.com/revanced/revanced-patches/issues/101)) ([36af4cc](https://github.com/revanced/revanced-patches/commit/36af4cc14ff8057c10b99019cb23acc6e5aec3f2)), closes [#89](https://github.com/revanced/revanced-patches/issues/89) [#90](https://github.com/revanced/revanced-patches/issues/90)
+
+## [2.16.1](https://github.com/revanced/revanced-patches/compare/v2.16.0...v2.16.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* bump youtube version to 17.27.39 ([b93401a](https://github.com/revanced/revanced-patches/commit/b93401a391c0ed4887dd1376ac253f74f98a8d7e))
+
+# [2.16.0](https://github.com/revanced/revanced-patches/compare/v2.15.1...v2.16.0) (2022-07-17)
+
+
+### Features
+
+* `force-vp9-codec` patch ([#157](https://github.com/revanced/revanced-patches/issues/157)) ([07806a1](https://github.com/revanced/revanced-patches/commit/07806a16e5368118949e0e476e901987433ad403))
+
+## [2.15.1](https://github.com/revanced/revanced-patches/compare/v2.15.0...v2.15.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* `old-quality-layout` patch ([2497425](https://github.com/revanced/revanced-patches/commit/2497425c9f11b8b14c861c2f0f34ff47bdbfac53))
+* references to integrations in `return-youtube-dislike` patch ([5824c2c](https://github.com/revanced/revanced-patches/commit/5824c2cdfb1a2d7b8d68044388e5e0746ef2ca09))
+
+# [2.15.0](https://github.com/revanced/revanced-patches/compare/v2.14.1...v2.15.0) (2022-07-16)
+
+
+### Features
+
+* `return-youtube-dislikes` patch ([#175](https://github.com/revanced/revanced-patches/issues/175)) ([18a66d8](https://github.com/revanced/revanced-patches/commit/18a66d8454cf6e7cfdd4183631a6870c80d16b90))
+
+## [2.14.1](https://github.com/revanced/revanced-patches/compare/v2.14.0...v2.14.1) (2022-07-15)
+
+
+### Bug Fixes
+
+* `codecs-unlock` patch and update Music patches to `5.14.53` ([2437d30](https://github.com/revanced/revanced-patches/commit/2437d3070f6a630d353619f642cefebd47abee20))
+
+# [2.14.0](https://github.com/revanced/revanced-patches/compare/v2.13.6...v2.14.0) (2022-07-15)
+
+
+### Features
+
+* `music-video-ads` patch ([#172](https://github.com/revanced/revanced-patches/issues/172)) ([cbb71b5](https://github.com/revanced/revanced-patches/commit/cbb71b5faf1386ed31dd9e0387f6cf0509d92d31))
+
+## [2.13.6](https://github.com/revanced/revanced-patches/compare/v2.13.5...v2.13.6) (2022-07-14)
+
+## [2.13.5](https://github.com/revanced/revanced-patches/compare/v2.13.4...v2.13.5) (2022-07-14)
+
+
+### Bug Fixes
+
+* `swipe-controls` with active engagement panel ([#177](https://github.com/revanced/revanced-patches/issues/177)) ([000ec6d](https://github.com/revanced/revanced-patches/commit/000ec6d8f6ecbb910a06ec852564ee9e5f03dcf8))
+>>>>>>> 2fdc50776a0de8d2969d0d7a501634a34ab42c15
 
 ## [2.13.4](https://github.com/revanced/revanced-patches/compare/v2.13.3...v2.13.4) (2022-07-13)
 

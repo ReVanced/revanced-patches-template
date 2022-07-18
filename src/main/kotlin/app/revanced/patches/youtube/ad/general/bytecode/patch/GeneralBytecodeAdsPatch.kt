@@ -38,11 +38,9 @@ import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
 @Patch
-@Dependencies(
-    dependencies = [ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class]
-)
+@Dependencies([ResourceIdMappingProviderResourcePatch::class, IntegrationsPatch::class])
 @Name("general-ads")
-@Description("Removes general ads in bytecode.")
+@Description("Removes general ads.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
 class GeneralBytecodeAdsPatch : BytecodePatch() {
@@ -60,7 +58,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         "promoted_video_item_land",
         "promoted_video_item_full_bleed",
     ).map { name ->
-        ResourceIdMappingProviderResourcePatch.resourceMappings.first { it.name == name }.id
+        ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.name == name }.id
     }
 
     private val stringReferences = arrayOf(
@@ -129,6 +127,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
+                                    //ToDo: Add Settings toggle for whatever this is
                                     mutableMethod!!.implementation!!.removeInstruction(removeIndex)
                                 }
 
@@ -188,6 +187,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
                                     // return the method
                                     val insertIndex = 1 // after super constructor
+                                    //ToDo: Add setting here
                                     mutableMethod!!.implementation!!.addInstruction(
                                         insertIndex, BuilderInstruction10x(Opcode.RETURN_VOID)
                                     )
