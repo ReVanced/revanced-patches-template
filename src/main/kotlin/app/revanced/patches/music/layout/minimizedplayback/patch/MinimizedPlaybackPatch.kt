@@ -17,8 +17,8 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@Name("minimized-playback")
-@Description("Enables minimized playback on Kids videos.")
+@Name("minimized-playback-music")
+@Description("Enables minimized playback on Kids music.")
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
 class MinimizedPlaybackPatch : BytecodePatch(
