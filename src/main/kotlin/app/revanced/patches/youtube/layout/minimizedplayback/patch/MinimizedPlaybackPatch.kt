@@ -34,7 +34,8 @@ class MinimizedPlaybackPatch : BytecodePatch(
         // we return the method at the beginning instead
         MinimizedPlaybackManagerFingerprint.result!!.mutableMethod.addInstructions(
             0, """
-                const/4 v0, 0x1
+                invoke-static {}, Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;->isMinimizedPlaybackEnabled()Z
+                move-result v0
                 return v0
                 """
         )
@@ -49,14 +50,20 @@ class MinimizedPlaybackPatch : BytecodePatch(
 
         settingsBooleanMethod.addInstructions(
             0, """
-                const/4 v0, 0x1
+                invoke-static {}, Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;->isMinimizedPlaybackEnabled()Z
+                move-result v0
                 return v0
                 """
         )
 
         MinimizedPlaybackKidsFingerprint.result!!.mutableMethod.addInstructions(
             0, """
+                invoke-static {}, Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;->isMinimizedPlaybackEnabled()Z
+                move-result v0
+                if-eqz v0, :enable
                 return-void
+                :enable
+                nop
                 """
         )
 
