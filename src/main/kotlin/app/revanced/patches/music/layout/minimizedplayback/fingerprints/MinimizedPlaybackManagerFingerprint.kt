@@ -11,7 +11,7 @@ import org.jf.dexlib2.Opcode
 
 @Name("minimized-playback-manager-fingerprint")
 @MatchingMethod(
-    "Llxw", "c"
+    "Llxw;", "c"
 )
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
