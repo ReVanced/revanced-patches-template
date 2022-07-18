@@ -16,10 +16,11 @@ import org.jf.dexlib2.Opcode
 @HideGetPremiumCompatibility
 @Version("0.0.1")
 object HideGetPremiumFingerprint : MethodFingerprint(
-    "V",
-    AccessFlags.PUBLIC or AccessFlags.FINAL,
-    listOf(),
-    null,
-    listOf("FEmusic_history"),
-    null
+    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf(), listOf(
+        Opcode.IF_NEZ,
+        Opcode.CONST_16,
+        Opcode.GOTO,
+        Opcode.NOP,
+        Opcode.INVOKE_VIRTUAL
+    )
 )

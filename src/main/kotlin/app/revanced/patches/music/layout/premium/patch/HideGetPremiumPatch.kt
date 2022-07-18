@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.music.layout.premium.annotations.HideGetPremiumCompatibility
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumFingerprint
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumParentFingerprint
-import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch
 @Name("hide-get-premium")
@@ -30,22 +29,17 @@ class HideGetPremiumPatch : BytecodePatch(
         val parentResult = HideGetPremiumParentFingerprint.result!!
         HideGetPremiumFingerprint.resolve(data, parentResult.classDef)
 
-        val method = HideGetPremiumFingerprint.result!!.mutableMethod
-
-        val firstIndex = method.implementation!!.instructions.indexOfFirst {
-            ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z")
-        }
-        method.replaceInstruction(
-            firstIndex - 6, """
+        val parentMethod = parentResult.mutableMethod
+        parentMethod.replaceInstruction(
+            parentResult.patternScanResult!!.startIndex, """
             const/4 v1, 0x0
         """
         )
 
-        val secondIndex = method.implementation!!.instructions.indexOfFirst {
-            ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/view/View;->setVisibility(I)V")
-        }
+        val result = HideGetPremiumFingerprint.result!!
+        val method = result.mutableMethod
         method.addInstructions(
-            secondIndex - 4, """
+            result.patternScanResult!!.startIndex, """
             const/16 v0, 0x8
         """
         )

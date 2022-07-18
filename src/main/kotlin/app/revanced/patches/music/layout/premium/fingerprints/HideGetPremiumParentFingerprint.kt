@@ -11,15 +11,19 @@ import org.jf.dexlib2.Opcode
 
 @Name("hide-get-premium-parent-fingerprint")
 @MatchingMethod(
-    "Lktn;", "i"
+    "Lktn;", "k"
 )
 @HideGetPremiumCompatibility
 @Version("0.0.1")
 object HideGetPremiumParentFingerprint : MethodFingerprint(
-    "L",
-    AccessFlags.PUBLIC or AccessFlags.FINAL,
-    listOf(),
-    null,
-    listOf("avatar_menu_activate_switch_account"),
-    null
+    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf(), listOf(
+        Opcode.IGET_BOOLEAN,
+        Opcode.CONST_4,
+        Opcode.IF_EQZ,
+        Opcode.IGET_OBJECT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_STATIC
+    ),
+    listOf("FEmusic_history"),
 )
