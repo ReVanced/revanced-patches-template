@@ -8,7 +8,6 @@ import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.Opcode
 
 @Name("google-play-service-checker-fingerprint")
 @MatchingMethod(
@@ -18,32 +17,6 @@ import org.jf.dexlib2.Opcode
 @MusicMicroGPatchCompatibility
 @Version("0.0.1")
 object ServiceCheckFingerprint : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"), listOf(
-        Opcode.SGET_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
-        Opcode.IF_EQZ,
-        Opcode.SGET_OBJECT,
-        Opcode.CONST_STRING,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.NEW_INSTANCE,
-        Opcode.INVOKE_DIRECT,
-        Opcode.CONST_STRING,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CONST_STRING,
-        Opcode.INVOKE_STATIC,
-        Opcode.IF_NEZ,
-        Opcode.NEW_INSTANCE,
-        Opcode.INVOKE_DIRECT,
-        Opcode.THROW,
-        Opcode.NEW_INSTANCE,
-        Opcode.CONST_STRING,
-        Opcode.INVOKE_DIRECT,
-        Opcode.THROW,
-        Opcode.RETURN_VOID
+    "V", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"), listOf(null,
     ), listOf("Google Play Services not available")
 )

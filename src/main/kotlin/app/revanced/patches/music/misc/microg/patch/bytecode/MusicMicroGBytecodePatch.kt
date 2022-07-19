@@ -13,12 +13,11 @@ import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patches.music.misc.manifest.patch.FixLibraryErrorPatch
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import app.revanced.patches.music.misc.microg.patch.resource.MusicMicroGResourcePatch
 import app.revanced.patches.youtube.misc.microg.patch.resource.enum.StringReplaceMode
-import app.revanced.patches.music.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
-import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
+import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
+import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
 import app.revanced.patches.music.misc.microg.fingerprints.*
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.MutableMethodImplementation
@@ -31,7 +30,6 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @Dependencies(
     dependencies = [
         MusicMicroGResourcePatch::class,
-        FixLibraryErrorPatch::class,
     ]
 )
 @Name("music-microg-support")
@@ -46,7 +44,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        disablePlayServiceChecksAndFixCastIssues()
+        disablePlayServiceChecks()
         data.classes.forEach { classDef ->
             var proxiedClass: MutableClass? = null
 
@@ -107,7 +105,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
                         }
 
                         val newString = if (replaceMode == StringReplaceMode.REPLACE_WITH_REVANCED) stringValue.replace(
-                            "com.google.android.apps.youtube.music", REVANCED_PACKAGE_NAME
+                            "com.google.android.apps.youtube.music", REVANCED_MUSIC_PACKAGE_NAME
                         )
                         else stringValue.replace("com.google", BASE_MICROG_PACKAGE_NAME)
 
@@ -124,7 +122,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    private fun disablePlayServiceChecksAndFixCastIssues() {
+    private fun disablePlayServiceChecks() {
         listOf(
             ServiceCheckFingerprint,
             GooglePlayUtilityFingerprint,
@@ -159,7 +157,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
         }
 
         primeMethod.replaceInstruction(
-            index, "const-string v$register, \"$REVANCED_PACKAGE_NAME\""
+            index, "const-string v$register, \"$REVANCED_MUSIC_PACKAGE_NAME\""
         )
 
     }
