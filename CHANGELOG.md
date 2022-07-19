@@ -1,3 +1,57 @@
+# [2.20.0](https://github.com/revanced/revanced-patches/compare/v2.19.0...v2.20.0) (2022-07-18)
+
+
+### Features
+
+* `minimize-playback-music` patch ([#200](https://github.com/revanced/revanced-patches/issues/200)) ([d4fd18b](https://github.com/revanced/revanced-patches/commit/d4fd18bc74c92e17cdfb21b627b2f6a8919ff2dc))
+
+# [2.19.0](https://github.com/revanced/revanced-patches/compare/v2.18.3...v2.19.0) (2022-07-18)
+
+
+### Features
+
+* `compact-header` patch ([83753ba](https://github.com/revanced/revanced-patches/commit/83753bacf8f56ad16f8abafc02034f1595c12532))
+
+## [2.18.3](https://github.com/revanced/revanced-patches/compare/v2.18.2...v2.18.3) (2022-07-18)
+
+
+### Bug Fixes
+
+* compatibility of `force-vp9-codec-parent-fingerprint` fingerprint with version `17.27.39` ([523fd86](https://github.com/revanced/revanced-patches/commit/523fd8627bc965a724267f725c28fba5e7a25a04))
+
+## [2.18.2](https://github.com/revanced/revanced-patches/compare/v2.18.1...v2.18.2) (2022-07-18)
+
+
+### Bug Fixes
+
+* make all patches toggleable with settings ([#202](https://github.com/revanced/revanced-patches/issues/202)) ([7e1d82f](https://github.com/revanced/revanced-patches/commit/7e1d82f1161237632c3a57f109db6b8903006b33))
+
+## [2.18.1](https://github.com/revanced/revanced-patches/compare/v2.18.0...v2.18.1) (2022-07-18)
+
+
+### Bug Fixes
+
+* `minimized-playback` patch for YouTube Kids videos ([#201](https://github.com/revanced/revanced-patches/issues/201)) ([31e3b42](https://github.com/revanced/revanced-patches/commit/31e3b42c6bbce0d00f049b8a69bafc94900bb3b4))
+
+# [2.18.0](https://github.com/revanced/revanced-patches/compare/v2.17.0...v2.18.0) (2022-07-18)
+
+
+### Features
+
+* `hide-get-premium` patch ([#195](https://github.com/revanced/revanced-patches/issues/195)) ([639aab4](https://github.com/revanced/revanced-patches/commit/639aab411ee514b50840c15c8e9a1a889854403f))
+
+# [2.17.0](https://github.com/revanced/revanced-patches/compare/v2.16.1...v2.17.0) (2022-07-17)
+
+
+### Bug Fixes
+
+* check if node has attributes before accessing them ([2d2ed87](https://github.com/revanced/revanced-patches/commit/2d2ed870dacfe092eb6acbcaae5e51775c611322))
+
+
+### Features
+
+* `sponsorblock` patch ([#101](https://github.com/revanced/revanced-patches/issues/101)) ([36af4cc](https://github.com/revanced/revanced-patches/commit/36af4cc14ff8057c10b99019cb23acc6e5aec3f2)), closes [#89](https://github.com/revanced/revanced-patches/issues/89) [#90](https://github.com/revanced/revanced-patches/issues/90)
+
 ## [2.16.1](https://github.com/revanced/revanced-patches/compare/v2.16.0...v2.16.1) (2022-07-17)
 
 
