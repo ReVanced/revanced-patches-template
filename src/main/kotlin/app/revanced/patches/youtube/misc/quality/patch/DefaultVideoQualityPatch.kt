@@ -48,10 +48,13 @@ class DefaultVideoQualityPatch : BytecodePatch(
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
             }
 
+        val qIndexMethodName = data.classes.single{it.type == qualityFieldReference.type}.methods.single{it.parameterTypes.first() == "I"}.name
+
         setterMethod.mutableMethod.addInstructions(
             0, """
-                	  iget-object v0, p0, ${setterMethod.classDef.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
-		        invoke-static {p1, p2, v0}, Lapp/revanced/integrations/patches/VideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;)I
+                iget-object v0, p0, ${setterMethod.classDef.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
+                const-string v1, "${qIndexMethodName}"
+		        invoke-static {p1, p2, v0, v1}, Lapp/revanced/integrations/patches/VideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;)I
    		        move-result p2
             """,
         )
