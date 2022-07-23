@@ -6,17 +6,17 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.quality.annotations.DefaultVideoQualityCompatibility
-import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityChangeFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityReferenceFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
+import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityChangeFingerprint
 import app.revanced.patches.youtube.misc.videoid.fingerprint.VideoIdFingerprint
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
@@ -49,10 +49,12 @@ class DefaultVideoQualityPatch : BytecodePatch(
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
             }
 
-        val qIndexMethodName = data.classes.single{it.type == qualityFieldReference.type}.methods.single{it.parameterTypes.first() == "I"}.name
+        val qIndexMethodName =
+            data.classes.single { it.type == qualityFieldReference.type }.methods.single { it.parameterTypes.first() == "I" }.name
 
         setterMethod.mutableMethod.addInstructions(
-            0, """
+            0,
+            """
                 iget-object v0, p0, ${setterMethod.classDef.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
                 const-string v1, "$qIndexMethodName"
 		        invoke-static {p1, p2, v0, v1}, Lapp/revanced/integrations/patches/VideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;)I
