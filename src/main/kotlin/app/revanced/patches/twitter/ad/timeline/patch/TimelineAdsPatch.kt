@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.twitter.ad.timeline.annotations.TimelineAdsCompatibility
-import app.revanced.patches.twitter.ad.timeline.fingerprints.TimelineRtbImageAdParserFingerprint
 import app.revanced.patches.twitter.ad.timeline.fingerprints.TimelineTweetJsonParserFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.BuilderInstruction
@@ -37,32 +36,6 @@ class TimelineAdsPatch : BytecodePatch(
             return PatchResultError("The instruction for the tweet id field could not be found")
 
         return PatchResultSuccess()
-    }
-
-    private fun removeRtbImageAds(): Boolean {
-        val (parserFingerprintResult, parserMethod, _) = TimelineRtbImageAdParserFingerprint.unwrap()
-
-        val nullRegister = 1 // This register stores the null value
-        val creativeIdSetterIndex =
-            parserFingerprintResult.patternScanResult!!.startIndex // At this index the createId field is set
-
-        // Create the modified instruction
-        val originalInstruction = parserMethod.instruction(creativeIdSetterIndex) as BuilderInstruction22c
-        val modifiedInstruction = BuilderInstruction22c(
-            Opcode.IPUT_OBJECT,
-            nullRegister,
-            originalInstruction.registerB,
-            originalInstruction.reference
-        )
-
-        // Replace the original instruction with the modified one
-        // This will null the creativeId field
-        parserMethod.implementation!!.replaceInstruction(
-            creativeIdSetterIndex,
-            modifiedInstruction
-        )
-
-        return true
     }
 
     private fun removePromotedAds(): Boolean {
