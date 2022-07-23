@@ -30,13 +30,11 @@ import org.jf.dexlib2.iface.reference.StringReference
 @TimelineAdsCompatibility
 @Version("0.0.1")
 class TimelineAdsPatch : BytecodePatch(
-    listOf(TimelineTweetJsonParserFingerprint/*, TimelineRtbImageAdParserFingerprint*/)
+    listOf(TimelineTweetJsonParserFingerprint)
 ) {
     override fun execute(data: BytecodeData): PatchResult {
         if (removePromotedAds())
             return PatchResultError("The instruction for the tweet id field could not be found")
-
-        /*removeRtbImageAds()*/
 
         return PatchResultSuccess()
     }
