@@ -18,11 +18,10 @@ import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityCh
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityReferenceFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.misc.videoid.fingerprint.VideoIdFingerprint
-import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 
-@Patch
+@Patch(false)
 @Dependencies(
     dependencies = [IntegrationsPatch::class]
 )
@@ -72,10 +71,9 @@ class DefaultVideoQualityPatch : BytecodePatch(
 
         userQualityMethod.mutableMethod.addInstruction(
             0,
-            "invoke-static {}, Lapp/revanced/integrations/patches/VideoQualityPatch;->userChangedQuality()V"
+            "invoke-static {p3}, Lapp/revanced/integrations/patches/VideoQualityPatch;->userChangedQuality(I)V"
         )
 
         return PatchResultSuccess()
     }
 }
-
