@@ -1,3 +1,32 @@
+## [2.21.1](https://github.com/revanced/revanced-patches/compare/v2.21.0...v2.21.1) (2022-07-23)
+
+
+### Bug Fixes
+
+* add v17.28.34 compatiblity for the `hide-shorts-button` patch ([#224](https://github.com/revanced/revanced-patches/issues/224)) ([76166bb](https://github.com/revanced/revanced-patches/commit/76166bb35f940ef661e2802f5bf93ed91f2e2913))
+
+# [2.21.0](https://github.com/revanced/revanced-patches/compare/v2.20.5...v2.21.0) (2022-07-23)
+
+
+### Features
+
+* twitter `timeline-ads` patch ([#222](https://github.com/revanced/revanced-patches/issues/222)) ([f16e67f](https://github.com/revanced/revanced-patches/commit/f16e67fc75c9c3505ff875a216ce7e868022075e))
+
+## [2.20.5](https://github.com/revanced/revanced-patches/compare/v2.20.4...v2.20.5) (2022-07-22)
+
+
+### Bug Fixes
+
+* exclude `swipe-controls` by default due to instability ([bdeb8e0](https://github.com/revanced/revanced-patches/commit/bdeb8e04609a0ca94d9e2921bf7d486b9e229cec))
+
+## [2.20.4](https://github.com/revanced/revanced-patches/compare/v2.20.3...v2.20.4) (2022-07-21)
+
+
+### Bug Fixes
+
+* crash when using force-vp9-codec patch ([7a35e5c](https://github.com/revanced/revanced-patches/commit/7a35e5c985b412d5a84083d1416d3207a40b3e97))
+* use dependency in correct patch ([a2a1ee8](https://github.com/revanced/revanced-patches/commit/a2a1ee8eb5e059b30fe58c918a80976ef4d7b637))
+
 ## [2.20.4](https://github.com/revanced/revanced-patches/compare/v2.20.3...v2.20.4) (2022-07-21)
 
 

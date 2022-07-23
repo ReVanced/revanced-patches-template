@@ -6,6 +6,7 @@
 
 | 💊 Patch | 📜 Description | 🎯 Target Package | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|:-----------------:|
+| `timeline-ads` | Removes ads from the Twitter timeline. | `com.twitter.android` | all |
 | `minimized-playback-music` | Enables minimized playback on Kids music. | `com.google.android.apps.youtube.music` | 5.14.53 |
 | `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the home screen. | `com.google.android.apps.youtube.music` | 5.14.53 |
 | `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | `com.google.android.apps.youtube.music` | 5.14.53 |
@@ -27,7 +28,7 @@
 | `custom-branding` | Changes the YouTube launcher icon to be ReVanced's. | `com.google.android.youtube` | all |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | `com.google.android.youtube` | 17.27.39 |
 | `old-quality-layout` | Enables the original quality flyout menu. | `com.google.android.youtube` | 17.27.39 |
-| `hide-shorts-button` | Hides the shorts button on the navigation bar. | `com.google.android.youtube` | 17.27.39 |
+| `hide-shorts-button` | Hides the shorts button on the navigation bar. | `com.google.android.youtube` | 17.28.34 |
 | `hide-watermark` | Hides creator's watermarks on videos. | `com.google.android.youtube` | 17.27.39 |
 | `sponsorblock` | Integrate SponsorBlock. | `com.google.android.youtube` | 17.27.39 |
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | `com.google.android.youtube` | 17.27.39 |
