@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstruction
-import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
@@ -53,11 +52,15 @@ class HideAutoplayButton : BytecodePatch(
         val autonavInformerMethod = AutonavInformerFingerprint.result!!.mutableMethod
 
         //force disable autoplay since it's hard to do without the button
-        autonavInformerMethod.replaceInstructions(
+        autonavInformerMethod.addInstructions(
             0, """
-            invoke-static {}, Lapp/revanced/integrations/patches/HideAutoplayButtonPatch;->isButtonHidden()Z
-            move-result v0            
+            invoke-static {}, Lapp/revanced/integrations/patches/HideAutoplayButtonPatch;->isButtonShown()Z
+            move-result v0
+            if-nez v0, :hidden
+            const/4 v0, 0x0
             return v0
+            :hidden
+            nop
         """
         )
 
