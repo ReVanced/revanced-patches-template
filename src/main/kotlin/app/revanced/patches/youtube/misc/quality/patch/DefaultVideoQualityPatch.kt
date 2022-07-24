@@ -13,17 +13,18 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import app.revanced.patches.youtube.misc.quality.annotations.DefaultVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityReferenceFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityChangeFingerprint
-import app.revanced.patches.youtube.misc.videoid.fingerprint.VideoIdFingerprint
+import
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 
-@Patch(false)
+@Patch
 @Dependencies(
-    dependencies = [IntegrationsPatch::class]
+    dependencies = [IntegrationsPatch::class, VideoIdPatch::class]
 )
 @Name("default-video-quality")
 @Description("Adds the ability to select preferred video quality.")
@@ -31,13 +32,11 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @Version("0.0.1")
 class DefaultVideoQualityPatch : BytecodePatch(
     listOf(
-        VideoQualitySetterFingerprint,
-        VideoIdFingerprint
+        VideoQualitySetterFingerprint
     )
 
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        val offset = 4
         val setterMethod = VideoQualitySetterFingerprint.result!!
 
         VideoUserQualityChangeFingerprint.resolve(data, setterMethod.classDef)
@@ -62,14 +61,6 @@ class DefaultVideoQualityPatch : BytecodePatch(
             """,
         )
 
-        val newVideoMethod = VideoIdFingerprint.result!!
-        val newVideoIndex = newVideoMethod.patternScanResult!!.endIndex + offset
-        newVideoMethod.mutableMethod.addInstructions(
-            newVideoIndex, """
-                const/4 v6, 0x1 
-                invoke-static {v6}, Lapp/revanced/integrations/utils/ReVancedUtils;->setNewVideo(Z)V
-            """
-        )
 
         userQualityMethod.mutableMethod.addInstruction(
             0,
