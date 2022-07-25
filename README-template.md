@@ -1,7 +1,7 @@
-# ReVanced Patches
+# 🧩 🧩ReVanced Patches
 
-🧩 Official patches by ReVanced
+🧩Official patches by ReVanced
 
-## List of available patches
+## 📜 List of available patches
 
 {{ table }}
