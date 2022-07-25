@@ -4,7 +4,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
+import app.revanced.patcher.fingerprint.method.annotation.DirectPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import org.jf.dexlib2.AccessFlags
@@ -13,7 +13,7 @@ import org.jf.dexlib2.AccessFlags
 @MatchingMethod(
     "Lnuv;", "b"
 )
-@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
+@DirectPatternScanMethod
 @MusicMicroGPatchCompatibility
 @Version("0.0.1")
 object GooglePlayUtilityFingerprint : MethodFingerprint(
