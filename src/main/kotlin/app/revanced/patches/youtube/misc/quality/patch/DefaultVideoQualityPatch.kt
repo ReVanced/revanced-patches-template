@@ -46,7 +46,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
             VideoQualityReferenceFingerprint.result!!.method.let { method ->
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
             }
-
+        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/VideoQualityPatch;->newVideoStarted(Ljava/lang/String;)V")
         val qIndexMethodName =
             data.classes.single { it.type == qualityFieldReference.type }.methods.single { it.parameterTypes.first() == "I" }.name
 
