@@ -31,7 +31,7 @@ object Generator {
         }
 
         for (pkg in packages) {
-            output.appendLine("### `${pkg.key}`")
+            output.appendLine("### \uD83D\uDCE6 `${pkg.key}`")
             output.appendLine("<details>\n")
 
             output.appendLine(TABLE_HEADER)
