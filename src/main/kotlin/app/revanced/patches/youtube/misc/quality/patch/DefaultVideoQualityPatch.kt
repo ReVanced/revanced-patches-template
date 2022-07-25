@@ -13,18 +13,16 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import app.revanced.patches.youtube.misc.quality.annotations.DefaultVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityReferenceFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityChangeFingerprint
+import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 
 @Patch
-@Dependencies(
-    dependencies = [IntegrationsPatch::class, VideoIdPatch::class]
-)
+@Dependencies([IntegrationsPatch::class, VideoIdPatch::class])
 @Name("default-video-quality")
 @Description("Adds the ability to select preferred video quality.")
 @DefaultVideoQualityCompatibility
@@ -33,7 +31,6 @@ class DefaultVideoQualityPatch : BytecodePatch(
     listOf(
         VideoQualitySetterFingerprint
     )
-
 ) {
     override fun execute(data: BytecodeData): PatchResult {
         val setterMethod = VideoQualitySetterFingerprint.result!!
@@ -46,7 +43,9 @@ class DefaultVideoQualityPatch : BytecodePatch(
             VideoQualityReferenceFingerprint.result!!.method.let { method ->
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
             }
+
         VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/VideoQualityPatch;->newVideoStarted(Ljava/lang/String;)V")
+
         val qIndexMethodName =
             data.classes.single { it.type == qualityFieldReference.type }.methods.single { it.parameterTypes.first() == "I" }.name
 
@@ -59,7 +58,6 @@ class DefaultVideoQualityPatch : BytecodePatch(
    		        move-result p2
             """,
         )
-
 
         userQualityMethod.mutableMethod.addInstruction(
             0,
