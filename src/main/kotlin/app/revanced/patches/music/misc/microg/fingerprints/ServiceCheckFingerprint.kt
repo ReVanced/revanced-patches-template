@@ -17,5 +17,5 @@ import org.jf.dexlib2.AccessFlags
 @MusicMicroGPatchCompatibility
 @Version("0.0.1")
 object ServiceCheckFingerprint : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"),null , listOf("Google Play Services not available")
+    "V", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "I"), null, listOf("Google Play Services not available")
 )
