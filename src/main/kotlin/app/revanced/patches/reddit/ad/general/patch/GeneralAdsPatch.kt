@@ -17,7 +17,7 @@ import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 
 @Patch
-@Name("general-ads")
+@Name("general-reddit-ads")
 @Description("Removes general ads from the Reddit frontpage and subreddits.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
