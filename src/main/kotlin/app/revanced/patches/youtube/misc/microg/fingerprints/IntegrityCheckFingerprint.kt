@@ -8,6 +8,7 @@ import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibility
 import org.jf.dexlib2.AccessFlags
+import org.jf.dexlib2.Opcode
 
 @Name("google-play-sig-check-fingerprint")
 @MatchingMethod(
@@ -17,5 +18,18 @@ import org.jf.dexlib2.AccessFlags
 @MicroGPatchCompatibility
 @Version("0.0.1")
 object IntegrityCheckFingerprint : MethodFingerprint(
-    "L", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "L"), null, listOf("This should never happen.", "GooglePlayServicesUtil", "Google Play Store signature invalid.")
+    "L", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L", "L"), listOf(
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_STATIC,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_STATIC,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_STATIC,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.RETURN_OBJECT
+    ), listOf("This should never happen.", "GooglePlayServicesUtil", "Google Play Store signature invalid.")
 )
