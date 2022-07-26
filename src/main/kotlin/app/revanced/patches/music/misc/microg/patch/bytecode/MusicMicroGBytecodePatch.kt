@@ -16,8 +16,8 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import app.revanced.patches.music.misc.microg.patch.resource.MusicMicroGResourcePatch
 import app.revanced.patches.youtube.misc.microg.patch.resource.enum.StringReplaceMode
-import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
-import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
 import app.revanced.patches.music.misc.microg.fingerprints.*
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.MutableMethodImplementation

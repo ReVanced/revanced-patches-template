@@ -8,9 +8,9 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
-import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
-import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_MUSIC_APP_NAME
-import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_MUSIC_APP_NAME
+import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
 
 @Name("music-microg-resource-patch")
 @Description("Resource patch to allow YouTube Music ReVanced to run without root and under a different package name.")
