@@ -1,3 +1,17 @@
+## [2.22.2](https://github.com/revanced/revanced-patches/compare/v2.22.1...v2.22.2) (2022-07-26)
+
+
+### Bug Fixes
+
+* bump youtube version to 17.29.34 ([#236](https://github.com/revanced/revanced-patches/issues/236)) ([be6494a](https://github.com/revanced/revanced-patches/commit/be6494a80989044cba961dc22fc58ffb2e8591f0))
+
+## [2.22.1](https://github.com/revanced/revanced-patches/compare/v2.22.0...v2.22.1) (2022-07-24)
+
+
+### Bug Fixes
+
+* remove broken video-quality patch ([e8d516a](https://github.com/revanced/revanced-patches/commit/e8d516af896971a09bb9aca8b00e7b7bb57c3dd9))
+
 # [2.22.0](https://github.com/revanced/revanced-patches/compare/v2.21.3...v2.22.0) (2022-07-24)
 
 
