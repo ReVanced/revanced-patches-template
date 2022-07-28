@@ -58,7 +58,7 @@ class PlayerControlsBytecodePatch : BytecodePatch(
 
         /**
          * Injects the code to change the visibility of controls.
-         * @param descriptor The descriptor of the method which should be calleed.
+         * @param descriptor The descriptor of the method which should be called.
          */
         fun injectVisibilityCheckCall(descriptor: String) {
             showPlayerControlsFingerprintResult.mutableMethod.addInstruction(
