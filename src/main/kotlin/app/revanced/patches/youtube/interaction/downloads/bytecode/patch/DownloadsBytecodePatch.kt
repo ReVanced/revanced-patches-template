@@ -22,18 +22,21 @@ import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 @Version("0.0.1")
 class DownloadsBytecodePatch : BytecodePatch() {
     override fun execute(data: BytecodeData): PatchResult {
-        val classDescriptor = "Lapp/revanced/integrations/videoplayer/DownloadButton;"
+        val integrationsPackage = "app/revanced/integrations"
+        val classDescriptor = "L$integrationsPackage/videoplayer/DownloadButton;"
 
         // initialize the control
-        PlayerControlsBytecodePatch
-            .initializeControl("$classDescriptor->initializeDownloadButton(Ljava/lang/Object;)V")
+        val initializeDownloadsDescriptor = "$classDescriptor->initializeDownloadButton(Ljava/lang/Object;)V"
+        PlayerControlsBytecodePatch.initializeControl(initializeDownloadsDescriptor)
 
         // add code to change the visibility of the control
-        PlayerControlsBytecodePatch
-            .injectVisibilityCheckCall("$classDescriptor->changeVisibility(Z)V")
+        val changeVisibilityDescriptor = "$classDescriptor->changeVisibility(Z)V"
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall(changeVisibilityDescriptor)
 
         // add code to change to update the video id
-        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/downloads/DownloadsPatch;->setVideoId(Ljava/lang/String;)V")
+        val setVideoIdDescriptor =
+            "L$integrationsPackage/patches/downloads/DownloadsPatch;->setVideoId(Ljava/lang/String;)V"
+        VideoIdPatch.injectCall(setVideoIdDescriptor)
 
         return PatchResultSuccess()
     }
