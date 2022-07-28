@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCo
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResource
+import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 
 @Name("downloads-resource-patch")
@@ -32,7 +32,7 @@ class DownloadsResourcePatch : ResourcePatch() {
          * Copy resources
          */
 
-        data.copyResource("downloads", ResourceUtils.ResourceGroup("drawable", "revanced_yt_download_button.xml"))
+        data.copyResources("downloads", ResourceUtils.ResourceGroup("drawable", "revanced_yt_download_button.xml"))
 
         /*
         * Add download button node

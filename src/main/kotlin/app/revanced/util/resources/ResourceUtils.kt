@@ -11,7 +11,7 @@ internal object ResourceUtils {
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
      */
-    internal fun ResourceData.copyResource(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
+    internal fun ResourceData.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
         val classLoader = ResourceUtils.javaClass.classLoader
         val targetResourceDirectory = this["res"]
 

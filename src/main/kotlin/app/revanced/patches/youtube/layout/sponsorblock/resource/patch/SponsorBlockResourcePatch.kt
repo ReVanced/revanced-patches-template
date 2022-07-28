@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResource
+import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import java.io.OutputStream
 
@@ -36,7 +36,7 @@ class SponsorBlockResourcePatch : ResourcePatch() {
          * Copy SponsorBlock resources
          */
 
-        data.copyResource(
+        data.copyResources(
             "sponsorblock",
             ResourceUtils.ResourceGroup(
                 "drawable",
