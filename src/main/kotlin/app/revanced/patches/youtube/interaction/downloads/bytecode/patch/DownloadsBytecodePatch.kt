@@ -25,15 +25,24 @@ class DownloadsBytecodePatch : BytecodePatch() {
         val integrationsPackage = "app/revanced/integrations"
         val classDescriptor = "L$integrationsPackage/videoplayer/DownloadButton;"
 
-        // initialize the control
+        /*
+        initialize the control
+         */
+
         val initializeDownloadsDescriptor = "$classDescriptor->initializeDownloadButton(Ljava/lang/Object;)V"
         PlayerControlsBytecodePatch.initializeControl(initializeDownloadsDescriptor)
 
-        // add code to change the visibility of the control
+        /*
+         add code to change the visibility of the control
+         */
+
         val changeVisibilityDescriptor = "$classDescriptor->changeVisibility(Z)V"
         PlayerControlsBytecodePatch.injectVisibilityCheckCall(changeVisibilityDescriptor)
 
-        // add code to change to update the video id
+        /*
+         add code to change to update the video id
+         */
+
         val setVideoIdDescriptor =
             "L$integrationsPackage/patches/downloads/DownloadsPatch;->setVideoId(Ljava/lang/String;)V"
         VideoIdPatch.injectCall(setVideoIdDescriptor)
