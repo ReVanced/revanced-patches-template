@@ -39,8 +39,8 @@ class VideoIdPatch : BytecodePatch(
     }
 
     companion object {
-        // move-result-object offset
-        private const val offset = 2
+        private const val offset = 3 // offset so setCurrentVideoId is called before any injected call
+
         private var videoIdRegister: Int = 0
         private lateinit var result: MethodFingerprintResult
         private lateinit var insertMethod: MutableMethod
@@ -53,7 +53,7 @@ class VideoIdPatch : BytecodePatch(
             methodDescriptor: String
         ) {
             insertMethod.addInstructions(
-                result.patternScanResult!!.endIndex + offset,
+                result.patternScanResult!!.endIndex + offset, // move-result-object offset
                 "invoke-static {v$videoIdRegister}, $methodDescriptor"
             )
         }
