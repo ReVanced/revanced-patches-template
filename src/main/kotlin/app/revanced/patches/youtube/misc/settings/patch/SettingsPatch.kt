@@ -121,5 +121,16 @@ class SettingsPatch : ResourcePatch() {
 
             it.file.firstChild.appendChild(rvSettingsElement)
         }
+
+        data.xmlEditor["AndroidManifest.xml"].use {
+            val settingsActivity = it.file.createElement("activity")
+            settingsActivity.setAttribute("android:theme", "@style/Theme.YouTube.Settings")
+            settingsActivity.setAttribute("android:label", "ReVanced settings")
+            settingsActivity.setAttribute("android:name", "app.revanced.integrations.settingsmenu.ReVancedSettingActivity")
+            settingsActivity.setAttribute("android:exported", "true")
+            settingsActivity.setAttribute("android:configChanges", "keyboardHidden")
+
+            it.file.firstChild.lastChild.previousSibling.appendChild(settingsActivity)
+        }
     }
 }
