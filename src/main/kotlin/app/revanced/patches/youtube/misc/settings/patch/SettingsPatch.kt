@@ -32,10 +32,6 @@ class SettingsPatch : ResourcePatch() {
 
         appendToXML("values/arrays.xml", classLoader, data)
         appendToXML("values/strings.xml", classLoader, data)
-        /*
-        Needs to be added after <Preference android:title="@string/pref_developer_category" not at the end of the file. How to do that?
-        appendToXML("xml/settings_fragment.xml", classLoader, data)
-         */
 
         val prefsPath = "xml/revanced_prefs.xml"
         val prefsFile = this.javaClass.classLoader.getResourceAsStream("settings/$prefsPath")!!
@@ -44,6 +40,11 @@ class SettingsPatch : ResourcePatch() {
             prefsFile,
             resDirectory.resolve(prefsPath).toPath()
         )
+
+        /*
+        Only non-root variant
+        */
+        appendSettingsActivity(data)
 
         return PatchResultSuccess()
     }
@@ -71,6 +72,51 @@ class SettingsPatch : ResourcePatch() {
         return AutoCloseable {
             source.close()
             target.close()
+        }
+    }
+
+    private fun appendSettingsActivity(data: ResourceData) {
+        data.xmlEditor["res/xml/settings_fragment.xml"].use {
+            val rydSettingsElementIntent = it.file.createElement("intent")
+            rydSettingsElementIntent.setAttribute("android:data", "ryd_settings")
+            rydSettingsElementIntent.setAttribute("android:targetPackage", "com.revanced.android.youtube")
+            rydSettingsElementIntent.setAttribute(
+                "android:targetClass",
+                "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
+            )
+            val rydSettingsElement = it.file.createElement("Preference")
+            rydSettingsElement.setAttribute("android:title", "@string/revanced_ryd_settings_title")
+            rydSettingsElement.setAttribute("android:summary", "@string/revanced_ryd_settings_summary")
+            rydSettingsElement.appendChild(rydSettingsElementIntent)
+
+            it.file.firstChild.appendChild(rydSettingsElement)
+
+            val sbSettingsElementIntent = it.file.createElement("intent")
+            sbSettingsElementIntent.setAttribute("android:data", "sponsorblock_settings")
+            sbSettingsElementIntent.setAttribute("android:targetPackage", "com.revanced.android.youtube")
+            sbSettingsElementIntent.setAttribute(
+                "android:targetClass",
+                "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
+            )
+            val sbSettingsElement = it.file.createElement("Preference")
+            sbSettingsElement.setAttribute("android:title", "@string/sb_settings")
+            sbSettingsElement.setAttribute("android:summary", "@string/sb_summary")
+            sbSettingsElement.appendChild(rydSettingsElementIntent)
+
+            it.file.firstChild.appendChild(sbSettingsElement)
+
+            val rvSettingsElementIntent = it.file.createElement("intent")
+            rvSettingsElementIntent.setAttribute("android:data", "revanced_settings")
+            rvSettingsElementIntent.setAttribute("android:targetPackage", "com.revanced.android.youtube")
+            rvSettingsElementIntent.setAttribute(
+                "android:targetClass",
+                "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
+            )
+            val rvSettingsElement = it.file.createElement("Preference")
+            rvSettingsElement.setAttribute("android:title", "@string/revanced_settings")
+            rvSettingsElement.appendChild(rydSettingsElementIntent)
+
+            it.file.firstChild.appendChild(rvSettingsElement)
         }
     }
 }
