@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.annotations.Patch
@@ -25,21 +24,15 @@ import java.nio.file.Files
 @Version("0.0.1")
 class SettingsPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
-        val resDirectory = data["res"]
-        if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
-
         val classLoader = this.javaClass.classLoader
 
         appendToXML("values/arrays.xml", classLoader, data)
         appendToXML("values/strings.xml", classLoader, data)
 
-        val prefsPath = "xml/revanced_prefs.xml"
-        val prefsFile = this.javaClass.classLoader.getResourceAsStream("settings/$prefsPath")!!
-
-        Files.copy(
-            prefsFile,
-            resDirectory.resolve(prefsPath).toPath()
-        )
+        copyFile("xml/revanced_prefs.xml", classLoader, data)
+        copyFile("layout/xsettings_toolbar.xml", classLoader, data)
+        copyFile("layout/xsettings_with_toolbar.xml", classLoader, data)
+        copyFile("layout/xsettings_with_toolbar_layout.xml", classLoader, data)
 
         /*
         Only non-root variant
@@ -47,6 +40,16 @@ class SettingsPatch : ResourcePatch() {
         appendSettingsActivity(data)
 
         return PatchResultSuccess()
+    }
+
+    private fun copyFile(file: String, classLoader: ClassLoader, data: ResourceData) {
+        val resDirectory = data["res"]
+        val prefsFile = this.javaClass.classLoader.getResourceAsStream("settings/$file")!!
+
+        Files.copy(
+            prefsFile,
+            resDirectory.resolve(file).toPath()
+        )
     }
 
     private fun appendToXML(file: String, classLoader: ClassLoader, data: ResourceData) {
