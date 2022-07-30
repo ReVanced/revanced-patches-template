@@ -101,7 +101,7 @@ class SettingsPatch : ResourcePatch() {
             val sbSettingsElement = it.file.createElement("Preference")
             sbSettingsElement.setAttribute("android:title", "@string/sb_settings")
             sbSettingsElement.setAttribute("android:summary", "@string/sb_summary")
-            sbSettingsElement.appendChild(rydSettingsElementIntent)
+            sbSettingsElement.appendChild(sbSettingsElementIntent)
 
             it.file.firstChild.appendChild(sbSettingsElement)
 
@@ -114,7 +114,7 @@ class SettingsPatch : ResourcePatch() {
             )
             val rvSettingsElement = it.file.createElement("Preference")
             rvSettingsElement.setAttribute("android:title", "@string/revanced_settings")
-            rvSettingsElement.appendChild(rydSettingsElementIntent)
+            rvSettingsElement.appendChild(rvSettingsElementIntent)
 
             it.file.firstChild.appendChild(rvSettingsElement)
         }
