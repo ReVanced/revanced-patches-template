@@ -9,7 +9,7 @@ import app.revanced.patches.youtube.misc.integrations.annotations.IntegrationsCo
 
 @Name("service-parent-fingerprint")
 @MatchingMethod(
-    "Ladgo", "ld"
+    "YoutubeService", "onBind"
 )
 @DirectPatternScanMethod
 @IntegrationsCompatibility
