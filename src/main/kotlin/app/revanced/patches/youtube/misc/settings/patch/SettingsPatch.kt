@@ -32,6 +32,10 @@ class SettingsPatch : ResourcePatch() {
 
         appendToXML("values/arrays.xml", classLoader, data)
         appendToXML("values/strings.xml", classLoader, data)
+        /*
+        Needs to be added after <Preference android:title="@string/pref_developer_category" not at the end of the file. How to do that?
+        appendToXML("xml/settings_fragment.xml", classLoader, data)
+         */
 
         val prefsPath = "xml/revanced_prefs.xml"
         val prefsFile = this.javaClass.classLoader.getResourceAsStream("settings/$prefsPath")!!
