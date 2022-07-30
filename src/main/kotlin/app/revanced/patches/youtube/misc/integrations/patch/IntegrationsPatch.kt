@@ -74,7 +74,7 @@ class IntegrationsPatch : BytecodePatch(
             ).toMutable()
         )
 
-        val serviceIndex = serviceMethod.implementation!!.instructions.size - 1
+        val serviceIndex = serviceMethod.implementation!!.instructions.size
         serviceMethod.addInstructions(
             serviceIndex, """
                invoke-static {}, Lcom/google/android/apps/youtube/app/YouTubeTikTokRoot_Application;->getAppContext()Landroid/content/Context;
