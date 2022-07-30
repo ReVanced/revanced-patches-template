@@ -53,6 +53,7 @@ class IntegrationsPatch : BytecodePatch(
             0,
             "sput-object v$count, Lapp/revanced/integrations/utils/ReVancedUtils;->context:Landroid/content/Context;"
         )
+        
         val classDef = initMethod.mutableClass
         classDef.methods.add(
             ImmutableMethod(
@@ -75,8 +76,8 @@ class IntegrationsPatch : BytecodePatch(
 
         val serviceIndex = serviceMethod.implementation!!.instructions.size - 1
         serviceMethod.addInstructions(
-            serviceIndex,
-            """invoke-static {}, Lcom/google/android/apps/youtube/app/YouTubeTikTokRoot_Application;->getAppContext()Landroid/content/Context;
+            serviceIndex, """
+               invoke-static {}, Lcom/google/android/apps/youtube/app/YouTubeTikTokRoot_Application;->getAppContext()Landroid/content/Context;
                move-result-object p0
                sput-object p0, Lapp/revanced/integrations/utils/ReVancedUtils;->context:Landroid/content/Context;
             """
