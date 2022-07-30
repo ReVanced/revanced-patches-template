@@ -15,6 +15,7 @@ import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrand
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import java.io.OutputStream
+import java.nio.file.Files
 
 @Patch
 @Dependencies([FixLocaleConfigErrorPatch::class, IntegrationsPatch::class])
@@ -31,6 +32,14 @@ class SettingsPatch : ResourcePatch() {
 
         appendToXML("values/arrays.xml", classLoader, data)
         appendToXML("values/strings.xml", classLoader, data)
+
+        val prefsPath = "xml/revanced_prefs.xml"
+        val prefsFile = this.javaClass.classLoader.getResourceAsStream("settings/$prefsPath")!!
+
+        Files.copy(
+            prefsFile,
+            resDirectory.resolve(prefsPath).toPath()
+        )
 
         return PatchResultSuccess()
     }
