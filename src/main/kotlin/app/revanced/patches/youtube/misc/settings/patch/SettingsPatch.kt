@@ -1,8 +1,9 @@
-package app.revanced.patches.youtube.mist.settings.patch
+package app.revanced.patches.youtube.misc.settings.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
@@ -13,6 +14,7 @@ import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
+import java.io.OutputStream
 
 @Patch
 @Dependencies([FixLocaleConfigErrorPatch::class, IntegrationsPatch::class])
@@ -25,13 +27,37 @@ class SettingsPatch : ResourcePatch() {
         val resDirectory = data["res"]
         if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
 
-        val iconFile = this.javaClass.classLoader.getResourceAsStream("res/xml/revanced_prefs.xml")
-            ?: return PatchResultError("The file revanced_prefs.xml can not be found.")
+        val classLoader = this.javaClass.classLoader
 
-        /*Files.write(
-            resDirectory.resolve("mipmap-$iconDirectory").resolve("$iconName.png").toPath(), iconFile.readAllBytes()
-        )*/
+        appendToXML("values/arrays.xml", classLoader, data)
+        appendToXML("values/strings.xml", classLoader, data)
 
         return PatchResultSuccess()
+    }
+
+    private fun appendToXML(file: String, classLoader: ClassLoader, data: ResourceData) {
+        val inputStream = classLoader.getResourceAsStream("settings/$file")!!
+        "resources".copyXmlNode(
+            data.xmlEditor[inputStream, OutputStream.nullOutputStream()],
+            data.xmlEditor["res/$file"]
+        ).close() // close afterwards
+    }
+
+    private fun String.copyXmlNode(source: DomFileEditor, target: DomFileEditor): AutoCloseable {
+        val hostNodes = source.file.getElementsByTagName(this).item(0).childNodes
+
+        val destinationResourceFile = target.file
+        val destinationNode = destinationResourceFile.getElementsByTagName(this).item(0)
+
+        for (index in 0 until hostNodes.length) {
+            val node = hostNodes.item(index).cloneNode(true)
+            destinationResourceFile.adoptNode(node)
+            destinationNode.appendChild(node)
+        }
+
+        return AutoCloseable {
+            source.close()
+            target.close()
+        }
     }
 }
