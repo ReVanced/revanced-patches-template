@@ -13,9 +13,10 @@ import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibi
 import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Name("microg-resource-patch")
-@Dependencies([FixLocaleConfigErrorPatch::class])
+@Dependencies([FixLocaleConfigErrorPatch::class, SettingsResourcePatch::class])
 @Description("Resource patch to allow YouTube ReVanced to run without root and under a different package name.")
 @MicroGPatchCompatibility
 @Version("0.0.1")
@@ -32,6 +33,12 @@ class MicroGResourcePatch : ResourcePatch() {
 
             it.file.firstChild.appendChild(settingsElement)
         }
+
+        val settings_fragment = data.get("res/xml/settings_fragment.xml")
+        val text = settings_fragment.readText()
+        settings_fragment.writeText(
+            text.replace("android:targetPackage=\"com.google.android.youtube", "android:targetPackage=\"$REVANCED_PACKAGE_NAME")
+        )
 
         val manifest = data.get("AndroidManifest.xml").readText()
 

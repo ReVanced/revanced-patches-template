@@ -6,7 +6,7 @@
     <Preference android:title="@string/sb_settings" android:summary="@string/sb_summary">
         <intent android:targetPackage="com.google.android.youtube" android:data="sponsorblock_settings" android:targetClass="com.google.android.libraries.social.licenses.LicenseActivity"/>
     </Preference>
-    <Preference android:title="@string/revanced_settings" android:summary="17.03.38 - Build - 01.55.00 ">
+    <Preference android:title="@string/revanced_settings">
         <intent android:targetPackage="com.google.android.youtube" android:data="revanced_settings" android:targetClass="com.google.android.libraries.social.licenses.LicenseActivity"/>
     </Preference>
 </PreferenceScreen>
