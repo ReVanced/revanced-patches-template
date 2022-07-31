@@ -105,9 +105,6 @@
     <string name="sb_guidelines_popup_already_read">Already read</string>
     <string name="sb_guidelines_popup_open">Show me</string>
 
-    <string name="sb_settings">SponsorBlock settings</string>
-    <string name="sb_summary">Uses the sponsor.ajay.app API</string>
-
     <string name="general_time_without_sb">Show time without segments</string>
     <string name="general_time_without_sb_sum">This time appears in brackets next to the current time. This shows the total video duration minus any segments.</string>
     <string name="general_whitelisting">Channel whitelisting</string>
