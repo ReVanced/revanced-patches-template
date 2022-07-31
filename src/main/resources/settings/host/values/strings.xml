@@ -3,9 +3,9 @@
     <string name="revanced_auto_repeat_button_summary_off">"Doesn't show auto-repeat button in the player overlay. Use the toggle below to control auto-repeat"</string>
     <string name="revanced_auto_repeat_button_summary_on">Auto-repeat button is shown in the player overlay</string>
     <string name="revanced_auto_repeat_button_title">Auto-repeat button</string>
-    <string name="revanced_auto_repeat_summary_off">Auto-repeat is off</string>
-    <string name="revanced_auto_repeat_summary_on">Auto-repeat is on</string>
-    <string name="revanced_auto_repeat_title">Auto-repeat</string>
+    <string name="revanced_auto_repeat_summary_off">Always Auto-repeat is off</string>
+    <string name="revanced_auto_repeat_summary_on">Always Auto-repeat is on</string>
+    <string name="revanced_auto_repeat_title">Always Auto-repeat</string>
     <string name="revanced_branding_watermark_summary_off">Video watermark is hidden</string>
     <string name="revanced_branding_watermark_summary_on">Video watermark is shown</string>
     <string name="revanced_branding_watermark_title">Video watermark</string>
@@ -183,8 +183,8 @@
     <string name="litho_shorts_shelf_off">Shorts Shelf removal is turned off</string>
     <string name="litho_shorts_shelf_on">Shorts Shelf removal is turned on</string>
 
-    <string name="revanced_create_button_summary_off">Create Button has default visibility</string>
-    <string name="revanced_create_button_summary_on">Create Button is forcefully disabled</string>
+    <string name="revanced_create_button_summary_off">Create Button is hidden</string>
+    <string name="revanced_create_button_summary_on">Create Button is shown</string>
     <string name="revanced_create_button_title">Create Button</string>
 
     <string name="litho_community_guidelines">Community Guidelines</string>
