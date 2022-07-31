@@ -218,6 +218,8 @@
     <string name="revanced_button_location_entry_both">Both</string>
     <string name="revanced_ryd_settings_title">Return YouTube Dislike settings</string>
     <string name="revanced_ryd_settings_summary">Uses the RYD API</string>
+    <string name="sb_settings">SponsorBlock settings</string>
+    <string name="sb_summary">Uses the sponsor.ajay.app API</string>
     <string name="revanced_ryd_title">Enable RYD</string>
     <string name="revanced_ryd_summary">Switch this on to see the dislike counts again</string>
     <string name="revanced_ryd_attribution_title">Return YouTube Dislike Integration</string>
