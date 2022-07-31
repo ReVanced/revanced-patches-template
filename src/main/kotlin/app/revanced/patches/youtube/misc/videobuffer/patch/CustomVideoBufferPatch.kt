@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.videobuffer.fingerprints.PlaybackBuffer
 import app.revanced.patches.youtube.misc.videobuffer.fingerprints.ReBufferFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(include = false)
+@Patch
 @Name("custom-video-buffer")
 @Description("Lets you change the buffers of videos. Has no use without settings yet.")
 @CustomVideoBufferCompatibility
@@ -39,7 +39,7 @@ class CustomVideoBufferPatch : BytecodePatch(
         val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
         method.addInstructions(
             index + 1, """
-           invoke-static {v$register}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getMaxBuffer()I
+           invoke-static {}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getMaxBuffer()I
            move-result v$register
         """
         )
@@ -52,7 +52,7 @@ class CustomVideoBufferPatch : BytecodePatch(
         val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
         method.addInstructions(
             index + 1, """
-           invoke-static {v$register}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getPlaybackBuffer()I
+           invoke-static {}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getPlaybackBuffer()I
            move-result v$register
         """
         )
@@ -65,7 +65,7 @@ class CustomVideoBufferPatch : BytecodePatch(
         val register = (method.implementation!!.instructions.get(index) as OneRegisterInstruction).registerA
         method.addInstructions(
             index + 1, """
-           invoke-static {v$register}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getReBuffer()I
+           invoke-static {}, Lapp/revanced/integrations/patches/VideoBufferPatch;->getReBuffer()I
            move-result v$register
         """
         )
