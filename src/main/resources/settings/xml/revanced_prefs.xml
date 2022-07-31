@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:yt="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory android:title="@string/microg_settings">
-        <PreferenceScreen android:title="@string/microg_notification_settings" android:summary="@string/microg_notification_settings_summary">
-            <intent android:targetPackage="com.mgoogle.android.gms" android:targetClass="org.microg.gms.ui.SettingsActivity" />
-        </PreferenceScreen>
-    </PreferenceCategory>
     <PreferenceCategory
             android:layout_height="match_parent"
             android:title="@string/revanced_settings" />

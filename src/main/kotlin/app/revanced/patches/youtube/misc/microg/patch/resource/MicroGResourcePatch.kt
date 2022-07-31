@@ -22,6 +22,18 @@ import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourc
 @Version("0.0.1")
 class MicroGResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
+        data.xmlEditor["res/xml/settings_fragment.xml"].use {
+            val settingsElementIntent = it.file.createElement("intent")
+            settingsElementIntent.setAttribute("android:targetPackage", "$BASE_MICROG_PACKAGE_NAME.android.gms")
+            settingsElementIntent.setAttribute("android:targetClass", "org.microg.gms.ui.SettingsActivity")
+
+            val settingsElement = it.file.createElement("Preference")
+            settingsElement.setAttribute("android:title", "@string/microg_settings")
+            settingsElement.appendChild(settingsElementIntent)
+
+            it.file.firstChild.appendChild(settingsElement)
+        }
+
         val settings_fragment = data.get("res/xml/settings_fragment.xml")
         val text = settings_fragment.readText()
         settings_fragment.writeText(
