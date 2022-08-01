@@ -9,15 +9,16 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Dependencies
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVancedSettingsActivityFingerprint
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
-@Patch
 @Dependencies([IntegrationsPatch::class, SettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings for ReVanced to YouTube.")
@@ -52,5 +53,14 @@ class SettingsPatch : BytecodePatch(
             "invoke-static { p0 }, ${settingsClass.type}->$setThemeMethodName(${licenseActivityClass.type})V"
         )
         return PatchResultSuccess()
+    }
+
+    internal companion object {
+        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
+            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+        fun addPreference(preference: Preference) =
+            SettingsResourcePatch.addPreference(preference)
+        fun addArray(arrayResource: ArrayResource) =
+            SettingsResourcePatch.addArray(arrayResource)
     }
 }

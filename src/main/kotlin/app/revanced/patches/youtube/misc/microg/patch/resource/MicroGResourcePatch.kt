@@ -13,10 +13,10 @@ import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibi
 import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("microg-resource-patch")
-@Dependencies([FixLocaleConfigErrorPatch::class, SettingsResourcePatch::class])
+@Dependencies([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
 @Description("Resource patch to allow YouTube ReVanced to run without root and under a different package name.")
 @MicroGPatchCompatibility
 @Version("0.0.1")
