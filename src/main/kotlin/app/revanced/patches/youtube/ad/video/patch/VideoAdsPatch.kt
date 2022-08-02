@@ -16,7 +16,6 @@ import app.revanced.patches.youtube.ad.video.fingerprints.ShowVideoAdsConstructo
 import app.revanced.patches.youtube.ad.video.fingerprints.ShowVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
@@ -32,21 +31,19 @@ class VideoAdsPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        SettingsPatch.addPreferenceScreen(
-            PreferenceScreen(
-                "revanced_video_ads", StringResource("revanced_video_ads_title", "Video Ads"), listOf(
-                    SwitchPreference(
-                        "revanced_video_ads_enabled",
-                        StringResource("revanced_video_ads_enabled_title", "Show video ads"),
-                        true,
-                        StringResource("revanced_video_ads_enabled_summary_on", "Video ads are enabled."),
-                        StringResource("revanced_video_ads_enabled_summary_off", "Video ads are disabled.")
-                    ),
-                )
+        SettingsPatch.PreferenceScreen.ADS.addPreferences(
+            SwitchPreference(
+                "revanced_video_ads_enabled",
+                StringResource("revanced_video_ads_enabled_title", "Show video ads"),
+                true,
+                StringResource("revanced_video_ads_enabled_summary_on", "Video ads are enabled."),
+                StringResource("revanced_video_ads_enabled_summary_off", "Video ads are disabled.")
             )
         )
 
-        ShowVideoAdsFingerprint.resolve(data, ShowVideoAdsConstructorFingerprint.result!!.classDef)
+        ShowVideoAdsFingerprint.resolve(
+            data, ShowVideoAdsConstructorFingerprint.result!!.classDef
+        )
 
         // Override the parameter by calling shouldShowAds and setting the parameter to the result
         ShowVideoAdsFingerprint.result!!.mutableMethod.addInstructions(
