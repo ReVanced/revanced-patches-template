@@ -40,7 +40,7 @@ class CustomBrandingPatch : ResourcePatch() {
             "mdpi" to 48
         ).forEach { (iconDirectory, size) ->
             iconNames.forEach iconLoop@{ iconName ->
-                val iconFile = this.javaClass.classLoader.getResourceAsStream("branding/$size/$iconName.png")
+                val iconFile = this.javaClass.classLoader.getResourceAsStream("branding/youtube/$size/$iconName.png")
                     ?: return PatchResultError("The icon $iconName can not be found.")
 
                 Files.write(
