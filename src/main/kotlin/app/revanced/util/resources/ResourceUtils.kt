@@ -3,6 +3,7 @@ package app.revanced.util.resources
 import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 internal object ResourceUtils {
     /**
@@ -19,7 +20,7 @@ internal object ResourceUtils {
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
                 Files.copy(
                     classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!,
-                    targetResourceDirectory.resolve(resourceFile).toPath()
+                    targetResourceDirectory.resolve(resourceFile).toPath(), StandardCopyOption.REPLACE_EXISTING
                 )
             }
         }
