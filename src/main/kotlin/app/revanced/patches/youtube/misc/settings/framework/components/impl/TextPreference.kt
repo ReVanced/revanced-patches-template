@@ -18,5 +18,5 @@ internal class TextPreference(
     var default: String? = null,
     var summary: StringResource? = null
 ) : BasePreference(key, title) {
-    override val tag: String = "BaseTextPreference"
+    override val tag: String = "EditTextPreference"
 }
