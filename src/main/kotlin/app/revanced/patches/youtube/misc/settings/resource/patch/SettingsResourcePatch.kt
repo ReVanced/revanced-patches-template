@@ -26,7 +26,12 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
 
     override fun execute(data: ResourceData): PatchResult {
         /*
-         * Copy layout resources
+         * create missing directory for the resources
+         */
+        data["res/drawable-ldrtl-xxxhdpi"].mkdirs()
+
+        /*
+         * copy layout resources
          */
         arrayOf(
             ResourceUtils.ResourceGroup(
@@ -34,45 +39,57 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                 "revanced_settings_toolbar.xml",
                 "revanced_settings_with_toolbar.xml",
                 "revanced_settings_with_toolbar_layout.xml"
-            ), ResourceUtils.ResourceGroup(
+            ),
+            ResourceUtils.ResourceGroup(
                 "xml", "revanced_prefs.xml" // template for new preferences
+            ),
+            ResourceUtils.ResourceGroup(
+                // required resource for back button, because when the base APK is used, this resource will not exist
+                "drawable-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
+            ),
+            ResourceUtils.ResourceGroup(
+                // required resource for back button, because when the base APK is used, this resource will not exist
+                "drawable-ldrtl-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
             )
         ).forEach { resourceGroup ->
             data.copyResources("settings", resourceGroup)
         }
 
-        data.xmlEditor["AndroidManifest.xml"].use {
-            val manifestNode = it.file.getElementsByTagName("manifest").item(0)
-
-            val element = it.file.createElement("uses-permission")
-            element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
-            manifestNode.appendChild(element)
+        data.xmlEditor["AndroidManifest.xml"].use { editor ->
+            editor.file.getElementsByTagName("manifest").item(0).also {
+                it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
+                    element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
+                })
+            }
         }
 
-        reVancedPreferencesEditor = data.xmlEditor["res/xml/revanced_prefs.xml"]
-        preferencesEditor = data.xmlEditor["res/values/arrays.xml"]
+        revancedPreferencesEditor = data.xmlEditor["res/xml/revanced_prefs.xml"]
+        preferencesEditor = data.xmlEditor["res/xml/settings_fragment.xml"]
 
         stringsEditor = data.xmlEditor["res/values/strings.xml"]
         arraysEditor = data.xmlEditor["res/values/arrays.xml"]
+
+        // include the existing string of the from revanced_settings_toolbar.xml
+        StringResource("revanced_settings", "ReVanced Settings").include()
 
         return PatchResultSuccess()
     }
 
 
     internal companion object {
-        // If this is not null, all intents will be renamed to this
+        // if this is not null, all intents will be renamed to this
         private var overrideIntentPackage: String? = null
 
-        private var reVancedPreferenceNode: Node? = null
+        private var revancedPreferenceNode: Node? = null
         private var preferencesNode: Node? = null
 
         private var stringsNode: Node? = null
         private var arraysNode: Node? = null
 
-        private var reVancedPreferencesEditor: DomFileEditor? = null
+        private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
                 field = value
-                this.reVancedPreferenceNode = value.getNode("PreferenceScreen")
+                this.revancedPreferenceNode = value.getNode("PreferenceScreen")
             }
         private var preferencesEditor: DomFileEditor? = null
             set(value) {
@@ -91,24 +108,23 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                 this.arraysNode = value.getNode("resources")
             }
 
-        private val stringResources: MutableList<String> = mutableListOf()
-
         /**
          * Add an array to the resources.
          *
          * @param arrayResource The array resource to add.
          */
         fun addArray(arrayResource: ArrayResource) {
-            arraysNode!!.appendChild(arraysNode.createElement("string-array").also { arrayNode ->
+            arraysNode!!.appendChild(arraysNode!!.ownerDocument.createElement("string-array").also { arrayNode ->
                 arrayResource.items.forEach { item ->
                     item.include()
 
                     arrayNode.setAttribute("name", item.name)
 
-                    arraysNode.createElement("item").also { itemNode ->
-                        itemNode.textContent = item.value
-                        arrayNode.appendChild(itemNode)
-                    }
+                    arrayNode.appendChild(
+                        arrayNode.ownerDocument.createElement("item").also { itemNode ->
+                            itemNode.textContent = item.value
+                        }
+                    )
                 }
             })
         }
@@ -118,11 +134,8 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
          *
          * @param preferenceScreen The name of the preference screen.
          */
-        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) {
-            reVancedPreferencesEditor!!.use {
-                reVancedPreferenceNode!!.addPreference(preferenceScreen)
-            }
-        }
+        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
+            revancedPreferenceNode!!.addPreference(preferenceScreen)
 
         /**
          * Add a preference fragment to the preferences.
@@ -132,7 +145,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
         fun addPreference(preference: Preference) {
             preferencesNode!!.appendChild(
                 preferencesNode.createElement(preference.tag).also { preferenceNode ->
-                    preferenceNode.setAttribute("android:title", preference.title.also { it.include() }.name)
+                    preferenceNode.setAttribute("android:title", "@string/${preference.title.also { it.include() }.name}")
                     preference.summary?.let { summary ->
                         preferenceNode.setAttribute("android:summary", summary.also { it.include() }.name)
                     }
@@ -153,7 +166,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
          * @param preference The preference to add.
          */
         private fun Node.addPreference(preference: BasePreference) {
-            // Add a summary to the element
+            // add a summary to the element
             fun Element.addSummary(summaryResource: StringResource?, summaryType: SummaryType = SummaryType.DEFAULT) =
                 summaryResource?.let { summary ->
                     setAttribute("android:${summaryType.type}", "@string/${summary.also { it.include() }.name}")
@@ -173,12 +186,11 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
 
             val preferenceElement = ownerDocument.createElement(preference.tag)
             preferenceElement.setAttribute("android:key", preference.key)
-
             preferenceElement.setAttribute("android:title", "@string/${preference.title.also { it.include() }.name}")
 
             when (preference) {
                 is PreferenceScreen -> {
-                    for (childPreference in preference.preferences) addPreference(childPreference)
+                    for (childPreference in preference.preferences) preferenceElement.addPreference(childPreference)
                     preferenceElement.addSummary(preference.summary)
                 }
                 is SwitchPreference -> {
@@ -201,17 +213,23 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
          *
          * @throws IllegalArgumentException if the string already exists.
          */
-        private fun StringResource.include() = if (stringResources.contains(name)) {
-            throw IllegalArgumentException("String resource with the same name already exists: $name")
-        } else {
+        private fun StringResource.include() {
+            val strings = stringsNode!!.childNodes
+            for (i in 1 until strings.length) {
+                val stringNode = strings.item(i)
+
+                if (!stringNode.hasAttributes()) continue
+                // check if the string already exists, if so, reuse it
+                if (stringNode.attributes.getNamedItem("name").nodeValue == name) return
+            }
+
             stringsNode!!.appendChild(
                 stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
                     stringElement.setAttribute("name", name)
+
                     stringElement.textContent = value
                 }
             )
-
-            stringResources.add(name)
         }
 
         private fun DomFileEditor?.getNode(tagName: String) =
@@ -225,7 +243,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
     }
 
     override fun close() {
-        // Rename the intent package names if it was set
+        // rename the intent package names if it was set
         overrideIntentPackage?.let { packageName ->
             val preferences = preferencesEditor!!.getNode("PreferenceScreen").childNodes
             for (i in 0 until preferences.length)
@@ -233,7 +251,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                     .setAttribute("android:targetPackage", packageName)
         }
 
-        reVancedPreferencesEditor?.close()
+        revancedPreferencesEditor?.close()
         preferencesEditor?.close()
         stringsEditor?.close()
         arraysEditor?.close()
