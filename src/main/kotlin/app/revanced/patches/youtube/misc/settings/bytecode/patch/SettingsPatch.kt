@@ -14,10 +14,13 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVancedSettingsActivityFingerprint
+import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import java.io.Closeable
 
 @Dependencies([IntegrationsPatch::class, SettingsResourcePatch::class])
 @Name("settings")
@@ -26,7 +29,7 @@ import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourc
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint)
-) {
+), Closeable {
     override fun execute(data: BytecodeData): PatchResult {
         val licenseActivityResult = LicenseActivityFingerprint.result!!
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
@@ -57,7 +60,7 @@ class SettingsPatch : BytecodePatch(
     }
 
     internal companion object {
-        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
+        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
         fun addPreference(preference: Preference) =
@@ -70,4 +73,42 @@ class SettingsPatch : BytecodePatch(
             SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
         }
     }
+
+    /**
+     * Preference screens patches should add their settings to.
+     */
+    internal enum class PreferenceScreen(
+        private val key: String,
+        private val title: String,
+        private val summary: String? = null,
+        private val preferences: MutableList<BasePreference> = mutableListOf()
+    ) : Closeable {
+        ADS("ads", "Ads", "Ad related settings"),
+        INTERACTIONS("interactions", "Interaction", "Settings related to interactions with YouTube"),
+        LAYOUT("layout", "Layout", "Settings related to the layout of YouTube"),
+        MISC("misc", "Miscellaneous", "Miscellaneous patches");
+
+        override fun close() {
+            if (preferences.size == 0) return
+
+            addPreferenceScreen(
+                PreferenceScreen(
+                    key,
+                    StringResource("${key}_title", title),
+                    preferences,
+                    summary?.let { summary ->
+                        StringResource("${key}_summary", summary)
+                    }
+                )
+            )
+        }
+
+        /**
+         * Add preferences to the preference screen.
+         */
+        fun addPreferences(vararg preferences: BasePreference) = this.preferences.addAll(preferences)
+    }
+
+    override fun close() = PreferenceScreen.values().forEach(PreferenceScreen::close)
+
 }
