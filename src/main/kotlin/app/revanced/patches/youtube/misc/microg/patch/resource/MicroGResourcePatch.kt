@@ -14,6 +14,8 @@ import app.revanced.patches.youtube.misc.microg.shared.Constants.BASE_MICROG_PAC
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 
 @Name("microg-resource-patch")
 @Dependencies([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
@@ -22,28 +24,20 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Version("0.0.1")
 class MicroGResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
-        data.xmlEditor["res/xml/settings_fragment.xml"].use {
-            val settingsElementIntent = it.file.createElement("intent")
-            settingsElementIntent.setAttribute("android:targetPackage", "$BASE_MICROG_PACKAGE_NAME.android.gms")
-            settingsElementIntent.setAttribute("android:targetClass", "org.microg.gms.ui.SettingsActivity")
-
-            val settingsElement = it.file.createElement("Preference")
-            settingsElement.setAttribute("android:title", "@string/microg_settings")
-            settingsElement.appendChild(settingsElementIntent)
-
-            it.file.firstChild.appendChild(settingsElement)
-        }
-
-        val settings_fragment = data.get("res/xml/settings_fragment.xml")
-        val text = settings_fragment.readText()
-        settings_fragment.writeText(
-            text.replace("android:targetPackage=\"com.google.android.youtube", "android:targetPackage=\"$REVANCED_PACKAGE_NAME")
+        SettingsPatch.addPreference(
+            Preference(
+                StringResource("microg_settings", "MicroG Settings"),
+                Preference.Intent("$BASE_MICROG_PACKAGE_NAME.android.gms", "", "org.microg.gms.ui.SettingsActivity"),
+                StringResource("microg_settings_summary", "Settings for MicroG"),
+            )
         )
+        SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
 
-        val manifest = data.get("AndroidManifest.xml").readText()
+        val manifest = data["AndroidManifest.xml"]
 
-        data.get("AndroidManifest.xml").writeText(
-            manifest.replace(
+        val manifestText = manifest.readText()
+        manifest.writeText(
+            manifestText.replace(
                 "package=\"com.google.android.youtube", "package=\"$REVANCED_PACKAGE_NAME"
             ).replace(
                 "android:label=\"@string/application_name", "android:label=\"$REVANCED_APP_NAME"
