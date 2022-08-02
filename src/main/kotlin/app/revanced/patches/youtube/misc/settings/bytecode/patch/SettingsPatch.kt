@@ -17,7 +17,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVanced
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Dependencies([IntegrationsPatch::class, SettingsResourcePatch::class])
@@ -29,19 +28,6 @@ class SettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint)
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        // Add the ReVanced settings to the YouTube settings
-        val youtubePackage = "com.google.android.youtube"
-        addPreference(
-            Preference(
-                StringResource("revanced_settings", "ReVanced Settings"),
-                Preference.Intent(
-                    youtubePackage,
-                    "revanced_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
-                )
-            )
-        )
-
         val licenseActivityResult = LicenseActivityFingerprint.result!!
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
 
@@ -73,9 +59,15 @@ class SettingsPatch : BytecodePatch(
     internal companion object {
         fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+
         fun addPreference(preference: Preference) =
             SettingsResourcePatch.addPreference(preference)
+
         fun addArray(arrayResource: ArrayResource) =
             SettingsResourcePatch.addArray(arrayResource)
+
+        fun renameIntentsTargetPackage(newPackage: String) {
+            SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
+        }
     }
 }

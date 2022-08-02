@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotations.Dependencies
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
 import app.revanced.util.resources.ResourceUtils
@@ -69,8 +70,19 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
         stringsEditor = data.xmlEditor["res/values/strings.xml"]
         arraysEditor = data.xmlEditor["res/values/arrays.xml"]
 
-        // include the existing string of the from revanced_settings_toolbar.xml
-        StringResource("revanced_settings", "ReVanced Settings").include()
+        // Add the ReVanced settings to the YouTube settings
+        val youtubePackage = "com.google.android.youtube"
+        SettingsPatch.addPreference(
+            Preference(
+                StringResource("revanced_settings", "ReVanced Settings"),
+                Preference.Intent(
+                    youtubePackage,
+                    "revanced_settings",
+                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                ),
+                StringResource("revanced_settings_summary", "ReVanced specific settings"),
+            )
+        )
 
         return PatchResultSuccess()
     }
@@ -78,7 +90,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
 
     internal companion object {
         // if this is not null, all intents will be renamed to this
-        private var overrideIntentPackage: String? = null
+        var overrideIntentsTargetPackage: String? = null
 
         private var revancedPreferenceNode: Node? = null
         private var preferencesNode: Node? = null
@@ -145,9 +157,12 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
         fun addPreference(preference: Preference) {
             preferencesNode!!.appendChild(
                 preferencesNode.createElement(preference.tag).also { preferenceNode ->
-                    preferenceNode.setAttribute("android:title", "@string/${preference.title.also { it.include() }.name}")
+                    preferenceNode.setAttribute(
+                        "android:title",
+                        "@string/${preference.title.also { it.include() }.name}"
+                    )
                     preference.summary?.let { summary ->
-                        preferenceNode.setAttribute("android:summary", summary.also { it.include() }.name)
+                        preferenceNode.setAttribute("android:summary", "@string/${summary.also { it.include() }.name}")
                     }
 
                     preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
@@ -244,11 +259,29 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
 
     override fun close() {
         // rename the intent package names if it was set
-        overrideIntentPackage?.let { packageName ->
+        overrideIntentsTargetPackage?.let { packageName ->
             val preferences = preferencesEditor!!.getNode("PreferenceScreen").childNodes
-            for (i in 0 until preferences.length)
-                (preferences.item(i).firstChild as Element)
-                    .setAttribute("android:targetPackage", packageName)
+            for (i in 1 until preferences.length) {
+                val preferenceNode = preferences.item(i)
+                // preferences have a child node with the intent tag, skip over every other node
+                if (preferenceNode.childNodes.length == 0) continue
+
+                val intentNode = preferenceNode.firstChild
+
+                // if the node doesn't have a target package attribute, skip it
+                val targetPackageAttribute = intentNode.attributes.getNamedItem("android:targetPackage") ?: continue
+
+                // do not replace intent target package if the package name is not from YouTube
+                val youtubePackage = "com.google.android.youtube"
+                if (targetPackageAttribute.nodeValue != youtubePackage) continue
+
+                // replace the target package name
+                intentNode.attributes.setNamedItem(
+                    preferenceNode.ownerDocument.createAttribute("android:targetPackage").also { attribute ->
+                        attribute.value = packageName
+                    }
+                )
+            }
         }
 
         revancedPreferencesEditor?.close()
