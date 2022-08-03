@@ -6,33 +6,61 @@ import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import java.nio.file.Files
 
 @Name("sponsorblock-resource-patch")
 @SponsorBlockCompatibility
-@Dependencies([FixLocaleConfigErrorPatch::class])
+@DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
-        //TODO: somehow implement sponsorblock setting menu
-
+        val youtubePackage = "com.google.android.youtube"
+        SettingsPatch.addPreference(
+            Preference(
+                StringResource("sb_settings", "SponsorBlock Settings"),
+                Preference.Intent(
+                    youtubePackage,
+                    "sponsorblock_settings",
+                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                ),
+                StringResource("revanced_sponsorblock_settings_summary", "SponsorBlock related settings"),
+            )
+        )
         val classLoader = this.javaClass.classLoader
 
         /*
          merge SponsorBlock strings to main strings
          */
-        val stringsResourcePath = "values/strings.xml"
+        val stringsResourcePath = "host/values/strings.xml"
         val stringsResourceInputStream = classLoader.getResourceAsStream("sponsorblock/$stringsResourcePath")!!
 
-        // copy nodes from the resources node to the real resource node
-        "resources".copyXmlNode(
-            data.xmlEditor[stringsResourceInputStream],
-            data.xmlEditor["res/$stringsResourcePath"]
-        ).close() // close afterwards
+        data.xmlEditor[stringsResourceInputStream].use {
+            val stringsNode = it.file.getElementsByTagName("resources").item(0).childNodes
+
+            for (i in 1 until stringsNode.length - 1) {
+                val stringNode = stringsNode.item(i)
+
+                // TODO: figure out why this is needed
+                if (!stringNode.hasAttributes()) continue
+
+                val attributes = stringNode.attributes
+                val key = attributes.getNamedItem("name")!!.nodeValue!!
+                val value = stringNode.textContent!!
+
+                // all strings of SponsorBlock which have this attribute have the attribute value false,
+                // hence a null check suffices
+                val formatted = attributes.getNamedItem("formatted") == null
+
+                SettingsPatch.addString(key, value, formatted)
+            }
+        }
 
         /*
          merge SponsorBlock drawables to main drawables
