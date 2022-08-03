@@ -8,7 +8,7 @@ import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.createbutton.annotations.CreateButtonCompatibility
@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@Dependencies([IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SettingsPatch::class])
 @Name("disable-create-button")
 @Description("Hides the create button in the navigation bar.")
 @CreateButtonCompatibility
@@ -39,10 +39,10 @@ class CreateButtonRemoverPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_create_button_enabled",
-                StringResource("revanced_create_button_enabled_title", "Show create button"),
-                false,
-                StringResource("revanced_create_button_summary_on", "Create button is shown."),
-                StringResource("revanced_create_button_summary_off", "Create button is hidden.")
+                StringResource("revanced_create_button_enabled_title", "Hide create button"),
+                true,
+                StringResource("revanced_create_button_summary_on", "Create button is hidden."),
+                StringResource("revanced_create_button_summary_off", "Create button is shown.")
             )
         )
 
