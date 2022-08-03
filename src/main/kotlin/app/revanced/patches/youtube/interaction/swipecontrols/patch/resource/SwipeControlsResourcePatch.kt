@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -14,6 +15,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Name("swipe-controls-resource-patch")
+@DependsOn([SettingsPatch::class])
 @SwipeControlsCompatibility
 @Version("0.0.1")
 class SwipeControlsResourcePatch : ResourcePatch() {

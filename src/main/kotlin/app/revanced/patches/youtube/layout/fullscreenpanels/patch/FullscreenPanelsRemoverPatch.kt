@@ -10,7 +10,7 @@ import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.reso
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.fullscreenpanels.annotations.FullscreenPanelsCompatibility
@@ -23,7 +23,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 
 @Patch
 @Name("disable-fullscreen-panels")
-@Dependencies([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class])
 @Description("Disables video description and comments panel in fullscreen view.")
 @FullscreenPanelsCompatibility
 @Version("0.0.1")
