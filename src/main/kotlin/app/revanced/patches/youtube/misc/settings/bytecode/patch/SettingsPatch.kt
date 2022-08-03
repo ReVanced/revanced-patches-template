@@ -8,7 +8,7 @@ import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import java.io.Closeable
 
-@Dependencies([IntegrationsPatch::class, SettingsResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings for ReVanced to YouTube.")
 @SettingsCompatibility
@@ -60,6 +60,8 @@ class SettingsPatch : BytecodePatch(
     }
 
     internal companion object {
+        fun addString(identifier: String, value: String, formatted: Boolean = true) = SettingsResourcePatch.addString(identifier, value, formatted)
+
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
@@ -84,8 +86,8 @@ class SettingsPatch : BytecodePatch(
         private val preferences: MutableList<BasePreference> = mutableListOf()
     ) : Closeable {
         ADS("ads", "Ads", "Ad related settings"),
-        INTERACTIONS("interactions", "Interaction", "Settings related to interactions with YouTube"),
-        LAYOUT("layout", "Layout", "Settings related to the layout of YouTube"),
+        INTERACTIONS("interactions", "Interaction", "Settings related to interactions"),
+        LAYOUT("layout", "Layout", "Settings related to the layout"),
         MISC("misc", "Miscellaneous", "Miscellaneous patches");
 
         override fun close() {

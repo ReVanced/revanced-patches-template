@@ -6,7 +6,7 @@ import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
@@ -21,7 +21,7 @@ import java.io.Closeable
 
 @Name("settings-resource-patch")
 @SettingsCompatibility
-@Dependencies([FixLocaleConfigErrorPatch::class])
+@DependsOn([FixLocaleConfigErrorPatch::class])
 @Version("0.0.1")
 class SettingsResourcePatch : ResourcePatch(), Closeable {
 
@@ -98,6 +98,8 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
         private var stringsNode: Node? = null
         private var arraysNode: Node? = null
 
+        private var strings = mutableListOf<StringResource>()
+
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
                 field = value
@@ -119,6 +121,16 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                 field = value
                 this.arraysNode = value.getNode("resources")
             }
+
+        /**
+         * Add a new string to the resources.
+         *
+         * @param identifier The key of the string.
+         * @param value The value of the string.
+         * @throws IllegalArgumentException if the string already exists.
+         */
+        fun addString(identifier: String, value: String, formatted: Boolean) =
+            StringResource(identifier, value, formatted).include()
 
         /**
          * Add an array to the resources.
@@ -229,22 +241,8 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
          * @throws IllegalArgumentException if the string already exists.
          */
         private fun StringResource.include() {
-            val strings = stringsNode!!.childNodes
-            for (i in 1 until strings.length) {
-                val stringNode = strings.item(i)
-
-                if (!stringNode.hasAttributes()) continue
-                // check if the string already exists, if so, reuse it
-                if (stringNode.attributes.getNamedItem("name").nodeValue == name) return
-            }
-
-            stringsNode!!.appendChild(
-                stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
-                    stringElement.setAttribute("name", name)
-
-                    stringElement.textContent = value
-                }
-            )
+            if (strings.any { it.name == name }) return
+            strings.add(this)
         }
 
         private fun DomFileEditor?.getNode(tagName: String) =
@@ -258,6 +256,20 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
     }
 
     override fun close() {
+        // merge all strings, skip duplicates
+        strings.forEach { stringResource ->
+            stringsNode!!.appendChild(
+                stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
+                    stringElement.setAttribute("name", stringResource.name)
+
+                    // if the string is un-formatted, explicitly add the formatted attribute
+                    if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
+
+                    stringElement.textContent = stringResource.value
+                }
+            )
+        }
+
         // rename the intent package names if it was set
         overrideIntentsTargetPackage?.let { packageName ->
             val preferences = preferencesEditor!!.getNode("PreferenceScreen").childNodes
