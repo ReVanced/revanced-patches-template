@@ -8,13 +8,13 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
 
-@Dependencies(dependencies = [FixLocaleConfigErrorPatch::class])
+@DependsOn(dependencies = [FixLocaleConfigErrorPatch::class])
 @Name("general-resource-ads")
 @Description("Patch to remove general ads in resources.")
 @GeneralAdsCompatibility
