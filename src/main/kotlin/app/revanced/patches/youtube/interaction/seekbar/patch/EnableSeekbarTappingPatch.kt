@@ -55,7 +55,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
             if (it.implementation == null) continue
 
             val instructions = it.implementation!!.instructions
-            // here we make sure we actually find the method because it has more    than 7 instructions
+            // here we make sure we actually find the method because it has more than 7 instructions
             if (instructions.count() < 7) continue
 
             // we know that the 7th instruction has the opcode CONST_4

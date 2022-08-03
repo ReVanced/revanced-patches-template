@@ -36,7 +36,7 @@ class VideoAdsPatch : BytecodePatch(
                 "revanced_video_ads_enabled",
                 StringResource("revanced_video_ads_enabled_title", "Hide video ads"),
                 true,
-                StringResource("revanced_video_ads_enabled_summary_on", "Video ads are blocked."),
+                StringResource("revanced_video_ads_enabled_summary_on", "Video ads are hidden."),
                 StringResource("revanced_video_ads_enabled_summary_off", "Video ads are shown.")
             )
         )
