@@ -31,6 +31,8 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        //TODO: figure out how to include RYD settings if not included (not sure)
+
         LikeFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """

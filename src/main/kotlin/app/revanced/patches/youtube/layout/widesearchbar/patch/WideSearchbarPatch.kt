@@ -32,6 +32,8 @@ class WideSearchbarPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        //TODO: add settings for wide searchbar patch
+
         WideSearchbarOneFingerprint.resolve(data, WideSearchbarOneParentFingerprint.result!!.classDef)
         WideSearchbarTwoFingerprint.resolve(data, WideSearchbarTwoParentFingerprint.result!!.classDef)
 

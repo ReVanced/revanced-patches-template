@@ -12,6 +12,9 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.youtube.layout.castbutton.annotations.CastButtonCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
 @Dependencies([IntegrationsPatch::class])
@@ -21,6 +24,16 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 @Version("0.0.1")
 class HideCastButtonPatch : BytecodePatch() {
     override fun execute(data: BytecodeData): PatchResult {
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+            SwitchPreference(
+                "revanced_cast_button_enabled",
+                StringResource("revanced_cast_button_enabled_title", "Show cast button"),
+                false,
+                StringResource("revanced_cast_button_summary_on", "Cast button is shown."),
+                StringResource("revanced_cast_button_summary_off", "Cast button is hidden.")
+            )
+        )
+
         data.classes.forEach { classDef ->
             classDef.methods.forEach { method ->
                 if (classDef.type.endsWith("MediaRouteButton;") && method.name == "setVisibility") {

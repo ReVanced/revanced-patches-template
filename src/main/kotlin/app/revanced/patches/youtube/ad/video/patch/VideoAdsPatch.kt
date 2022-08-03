@@ -34,10 +34,10 @@ class VideoAdsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_video_ads_enabled",
-                StringResource("revanced_video_ads_enabled_title", "Show video ads"),
+                StringResource("revanced_video_ads_enabled_title", "Hide video ads"),
                 true,
-                StringResource("revanced_video_ads_enabled_summary_on", "Video ads are enabled."),
-                StringResource("revanced_video_ads_enabled_summary_off", "Video ads are disabled.")
+                StringResource("revanced_video_ads_enabled_summary_on", "Video ads are blocked."),
+                StringResource("revanced_video_ads_enabled_summary_off", "Video ads are shown.")
             )
         )
 

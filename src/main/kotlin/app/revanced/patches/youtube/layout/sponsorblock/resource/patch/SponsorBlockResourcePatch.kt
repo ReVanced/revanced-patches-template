@@ -18,6 +18,8 @@ import java.nio.file.Files
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
+        //TODO: somehow implement sponsorblock setting menu
+
         val classLoader = this.javaClass.classLoader
 
         /*

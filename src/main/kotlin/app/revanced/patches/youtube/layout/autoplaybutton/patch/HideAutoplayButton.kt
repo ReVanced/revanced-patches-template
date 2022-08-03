@@ -17,6 +17,9 @@ import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.AutonavIn
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 
@@ -32,6 +35,16 @@ class HideAutoplayButton : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+            SwitchPreference(
+                "revanced_autoplay_button_enabled",
+                StringResource("revanced_autoplay_button_enabled_title", "Show autoplay button"),
+                false,
+                StringResource("revanced_autoplay_button_summary_on", "Autoplay button is shown."),
+                StringResource("revanced_autoplay_button_summary_off", "Autoplay button is hidden.")
+            )
+        )
+
         val layoutGenMethod = LayoutConstructorFingerprint.result!!.mutableMethod
 
         val autonavToggle =
