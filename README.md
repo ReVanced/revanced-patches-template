@@ -20,14 +20,6 @@ Official patches by ReVanced
 | `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | all |
 </details>
 
-### 📦 `de.dwd.warnapp`
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `promo-code-unlock` | Disable the validation of promo code, any string will work to unlock all features. | all |
-</details>
-
 ### 📦 `com.google.android.apps.youtube.music`
 <details>
 
