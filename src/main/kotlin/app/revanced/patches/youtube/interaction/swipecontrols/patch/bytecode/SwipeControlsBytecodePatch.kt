@@ -11,12 +11,15 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
+import app.revanced.patches.youtube.interaction.swipecontrols.fingerprints.SwipeControlsHostActivityFingerprint
 import app.revanced.patches.youtube.interaction.swipecontrols.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.patches.youtube.interaction.swipecontrols.patch.resource.SwipeControlsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import org.jf.dexlib2.AccessFlags
+import org.jf.dexlib2.immutable.ImmutableMethod
 
 @Patch
 @Name("swipe-controls")
@@ -32,13 +35,12 @@ import org.jf.dexlib2.AccessFlags
 )
 class SwipeControlsBytecodePatch : BytecodePatch(
     listOf(
-        WatchWhileActivityFingerprint
+        WatchWhileActivityFingerprint,
+        SwipeControlsHostActivityFingerprint
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        val wrapperClass = data.findClass(
-            "Lapp/revanced/integrations/swipecontrols/SwipeControlsHostActivity;"
-        )!!.resolve()
+        val wrapperClass = SwipeControlsHostActivityFingerprint.result!!.mutableClass
         val targetClass = WatchWhileActivityFingerprint.result!!.mutableClass
 
         // inject the wrapper class from integrations into the class hierarchy of WatchWhileActivity
@@ -49,8 +51,16 @@ class SwipeControlsBytecodePatch : BytecodePatch(
         data.traverseClassHierarchy(targetClass) {
             accessFlags = accessFlags and AccessFlags.FINAL.value.inv()
             transformMethods {
-                setAccessFlags(accessFlags and AccessFlags.FINAL.value.inv())
-                this
+                ImmutableMethod(
+                    definingClass,
+                    name,
+                    parameters,
+                    returnType,
+                    accessFlags and AccessFlags.FINAL.value.inv(),
+                    annotations,
+                    hiddenApiRestrictions,
+                    implementation
+                ).toMutable()
             }
         }
         return PatchResultSuccess()
