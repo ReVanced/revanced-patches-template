@@ -26,8 +26,9 @@ class PromoCodeUnlockPatch : BytecodePatch(
 ) {
 
     override fun execute(data: BytecodeData): PatchResult {
-        PromoCodeUnlockFingerprint.result!!.mutableMethod.removeInstructions(0, PromoCodeUnlockFingerprint.result!!.mutableMethod.implementation!!.instructions.size - 1)
-        PromoCodeUnlockFingerprint.result!!.mutableMethod.addInstructions(
+        val method = PromoCodeUnlockFingerprint.result!!.mutableMethod
+        method.removeInstructions(0, method.implementation!!.instructions.size - 1)
+        method.addInstructions(
             0,
             """
                 const/4 v0, 0x1
