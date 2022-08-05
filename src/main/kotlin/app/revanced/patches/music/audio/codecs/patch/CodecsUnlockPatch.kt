@@ -13,6 +13,7 @@ import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patches.music.audio.codecs.annotations.CodecsUnlockCompatibility
 import app.revanced.patches.music.audio.codecs.fingerprints.AllCodecsReferenceFingerprint
 import app.revanced.patches.music.audio.codecs.fingerprints.CodecsLockFingerprint
+import org.jf.dexlib2.Opcode
 
 @Patch
 @Name("codecs-unlock")
@@ -29,7 +30,13 @@ class CodecsUnlockPatch : BytecodePatch(
 
         val implementation = result.mutableMethod.implementation!!
 
-        val instructionIndex = result.patternScanResult!!.startIndex
+        val instructionIndex = if (implementation.instructions[result.patternScanResult!!.startIndex - 1].opcode == Opcode.CHECK_CAST) {
+            // for 5.16.xx and lower
+            result.patternScanResult!!.startIndex - 3
+        } else {
+            // since 5.17.xx
+            result.patternScanResult!!.startIndex - 2
+        }
 
         result = AllCodecsReferenceFingerprint.result!!
         val codecMethod =
