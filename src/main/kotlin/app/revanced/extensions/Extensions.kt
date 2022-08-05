@@ -37,7 +37,7 @@ internal fun MutableMethodImplementation.injectHideCall(
  */
 fun BytecodeData.traverseClassHierarchy(targetClass: MutableClass, callback: MutableClass.() -> Unit) {
     callback(targetClass)
-    this.findClass(targetClass.superclass ?: "")?.resolve()?.let {
+    this.findClass(targetClass.superclass ?: return)?.resolve()?.let {
         traverseClassHierarchy(it, callback)
     }
 }
