@@ -117,7 +117,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     )
                                 }
 
-                                resourceIds[4], resourceIds[5] -> {
+                                resourceIds[4] -> {
                                     //  and is followed by an instruction with the mnemonic INVOKE_DIRECT
                                     val insertIndex = index + 3
                                     val invokeInstruction = instructions.elementAt(insertIndex)
@@ -131,6 +131,10 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     // insert hide call to hide the view corresponding to the resource
                                     val viewRegister = (invokeInstruction as Instruction35c).registerE
                                     mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
+                                }
+
+                                resourceIds[5] -> {
+                                    // TODO, go to class, hide the inflated view
                                 }
                             }
                         }
