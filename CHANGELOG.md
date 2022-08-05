@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Titivoot/revanced-patches/compare/v1.0.0...v1.1.0) (2022-08-05)
+
+
+### Features
+
+* custom branding by afnshie ([29a3414](https://github.com/Titivoot/revanced-patches/commit/29a3414598be7d88a7675c031aa621fba23d3ec1))
+
 # 1.0.0 (2022-08-05)
 
 
