@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Titivoot/revanced-patches/compare/v1.1.0...v1.1.1) (2022-08-05)
+
+
+### Bug Fixes
+
+* remove vp9 strings and set default settings ([7fa5b78](https://github.com/Titivoot/revanced-patches/commit/7fa5b78584a850432174962f2b3fc6e23d8e86b2))
+
 # [1.1.0](https://github.com/Titivoot/revanced-patches/compare/v1.0.0...v1.1.0) (2022-08-05)
 
 
