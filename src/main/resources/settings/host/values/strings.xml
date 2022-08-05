@@ -16,7 +16,6 @@
     <string name="revanced_autoplay_button_summary_off">Autoplay button is hidden</string>
     <string name="revanced_autoplay_button_summary_on">Autoplay button is shown</string>
     <string name="revanced_autoplay_button_title">Autoplay button</string>
-    <string name="revanced_codec_override_title">Codec override</string>
     <string name="revanced_debug_summary_off">Extra debug logging is disabled</string>
     <string name="revanced_debug_summary_on">Extra Debug logging is enabled</string>
     <string name="revanced_debug_title">Debug mode</string>
@@ -50,10 +49,6 @@
     <string name="revanced_support_summary">Support links</string>
     <string name="revanced_support_title">Support</string>
     <string name="revanced_video_settings_title">Video settings</string>
-    <string name="revanced_vp9_summary">Tap to force usage of the VP9 codec</string>
-    <string name="revanced_vp9_summary_off">VP9 codec not forced</string>
-    <string name="revanced_vp9_summary_on">VP9 codec is enabled by default for supported devices, disable if you encounter stuttering/slowness in videos</string>
-    <string name="revanced_vp9_title">VP9 codec</string>
     <string name="revanced_new_actionbar_title">Wide search bar</string>
     <string name="revanced_new_actionbar_summary_off">Search bar style is defined by the app</string>
     <string name="revanced_new_actionbar_summary_on">Forcing wide search bar</string>
