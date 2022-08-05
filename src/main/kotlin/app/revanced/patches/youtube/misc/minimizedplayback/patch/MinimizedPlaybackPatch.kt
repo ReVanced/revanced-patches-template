@@ -27,7 +27,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Patch
 @Name("minimized-playback")
 @Description("Enables minimized and background playback.")
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
 class MinimizedPlaybackPatch : BytecodePatch(

@@ -7,8 +7,13 @@ import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.InputType
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.TextPreference
 import app.revanced.patches.youtube.misc.videobuffer.annotations.CustomVideoBufferCompatibility
 import app.revanced.patches.youtube.misc.videobuffer.fingerprints.MaxBufferFingerprint
 import app.revanced.patches.youtube.misc.videobuffer.fingerprints.PlaybackBufferFingerprint
@@ -17,7 +22,8 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @Name("custom-video-buffer")
-@Description("Lets you change the buffers of videos. Has no use without settings yet.")
+@Description("Lets you change the buffers of videos.")
+@DependsOn([SettingsPatch::class])
 @CustomVideoBufferCompatibility
 @Version("0.0.1")
 class CustomVideoBufferPatch : BytecodePatch(
@@ -26,6 +32,39 @@ class CustomVideoBufferPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+            TextPreference(
+                "revanced_pref_max_buffer_ms",
+                StringResource("revanced_pref_max_buffer_ms_title", "Maximum buffer size"),
+                InputType.NUMBER,
+                "120000",
+                StringResource(
+                    "revanced_pref_max_buffer_ms_summary",
+                    "The maximum size of buffer."
+                )
+            ),
+            TextPreference(
+                "revanced_pref_buffer_for_playback_ms",
+                StringResource("revanced_pref_buffer_for_playback_ms_title", "Maximum buffer for playback"),
+                InputType.NUMBER,
+                "2500",
+                StringResource(
+                    "revanced_pref_buffer_for_playback_ms_summary",
+                    "Maximum size of a buffer for playback."
+                )
+            ),
+            TextPreference(
+                "revanced_pref_buffer_for_playback_after_rebuffer_ms",
+                StringResource("revanced_pref_buffer_for_playback_after_rebuffer_ms_title", "Maximum buffer for playback after rebuffer"),
+                InputType.NUMBER,
+                "5000",
+                StringResource(
+                    "revanced_pref_buffer_for_playback_after_rebuffer_ms_summary",
+                    "Maximum size of a buffer for playback after rebuffering."
+                )
+            ),
+        )
+
         execMaxBuffer(data)
         execPlaybackBuffer(data)
         execReBuffer(data)

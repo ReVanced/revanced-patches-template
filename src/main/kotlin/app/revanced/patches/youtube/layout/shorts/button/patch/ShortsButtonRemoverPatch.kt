@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-shorts-button")
 @Description("Hides the shorts button on the navigation bar.")
 @ShortsButtonCompatibility

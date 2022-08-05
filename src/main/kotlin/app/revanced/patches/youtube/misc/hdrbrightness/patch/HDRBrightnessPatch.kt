@@ -26,7 +26,7 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @Description("Makes the brightness of HDR videos follow the system default.")
 @HDRBrightnessCompatibility
 @Version("0.0.2")
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 class HDRBrightnessPatch : BytecodePatch(
     listOf(
         HDRBrightnessFingerprintXXZ

@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-watermark")
 @Description("Hides creator's watermarks on videos.")
 @HideWatermarkCompatibility

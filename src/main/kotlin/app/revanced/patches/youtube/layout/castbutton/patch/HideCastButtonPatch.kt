@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-cast-button")
 @Description("Hides the cast button in the video player.")
 @CastButtonCompatibility

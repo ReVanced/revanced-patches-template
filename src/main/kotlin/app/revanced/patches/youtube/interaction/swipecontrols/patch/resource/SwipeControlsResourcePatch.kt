@@ -10,9 +10,11 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.TextPreference
 
 @Name("swipe-controls-resource-patch")
 @DependsOn([SettingsPatch::class])
@@ -50,9 +52,44 @@ class SwipeControlsResourcePatch : ResourcePatch() {
                         true,
                         StringResource("revanced_swipe_haptic_feedback_summary_on", "Haptic feedback is enabled."),
                         StringResource("revanced_swipe_haptic_feedback_summary_off", "Haptic feedback is disabled.")
+                    ),
+                    TextPreference(
+                        "revanced_swipe_overlay_timeout",
+                        StringResource("revanced_swipe_overlay_timeout_title", "Swipe overlay timeout"),
+                        InputType.NUMBER,
+                        "500L",
+                        StringResource(
+                            "revanced_swipe_overlay_timeout_summary",
+                            "The amount of milliseconds the overlay is visible."
+                        )
+                    ),
+                    TextPreference(
+                        "revanced_swipe_overlay_text_size",
+                        StringResource("revanced_swipe_overlay_text_size_title", "Swipe overlay text size"),
+                        InputType.NUMBER,
+                        "22f",
+                        StringResource("revanced_swipe_overlay_text_size_summary", "The text size for swipe overlay.")
+                    ),
+                    TextPreference(
+                        "revanced_swipe_overlay_background_alpha",
+                        StringResource("revanced_swipe_overlay_background_alpha_title", "Swipe background visibility"),
+                        InputType.NUMBER,
+                        "127",
+                        StringResource(
+                            "revanced_swipe_overlay_background_alpha_summary",
+                            "The visibility of swipe overlay background."
+                        )
+                    ),
+                    TextPreference(
+                        "revanced_swipe_magnitude_threshold",
+                        StringResource("revanced_swipe_magnitude_threshold_title", "Swipe magnitude threshold"),
+                        InputType.NUMBER,
+                        "30f",
+                        StringResource(
+                            "revanced_swipe_magnitude_threshold_summary",
+                            "The amount of threshold for swipe to occur."
+                        )
                     )
-
-                    //TODO: add remaining components to swipe controls settings once they are implemented
                 )
             )
         )

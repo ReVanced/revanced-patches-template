@@ -23,7 +23,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 
 @Patch
 @Name("disable-fullscreen-panels")
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Description("Disables video description and comments panel in fullscreen view.")
 @FullscreenPanelsCompatibility
 @Version("0.0.1")

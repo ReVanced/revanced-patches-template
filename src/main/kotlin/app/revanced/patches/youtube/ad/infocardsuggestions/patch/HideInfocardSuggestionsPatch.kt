@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-infocard-suggestions")
 @Description("Hides infocards in videos.")
 @HideInfocardSuggestionsCompatibility

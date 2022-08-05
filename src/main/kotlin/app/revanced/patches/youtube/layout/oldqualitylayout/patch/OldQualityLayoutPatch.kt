@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("old-quality-layout")
 @Description("Enables the original quality flyout menu.")
 @OldQualityLayoutCompatibility
