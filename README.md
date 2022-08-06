@@ -68,7 +68,7 @@ Official patches by ReVanced
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 17.29.34 |
 | `custom-video-buffer` | Lets you change the buffers of videos. Has no use without settings yet. | 17.29.34 |
 | `always-autorepeat` | Always repeats the playing video again. | 17.29.34 |
-| `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG | 17.29.34 |
+| `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 17.29.34 |
 | `settings` | Adds settings for ReVanced to YouTube. | all |
 | `enable-debugging` | Enables app debugging by patching the manifest file. | all |
 | `custom-playback-speed` | Adds more video playback speed options. | 17.29.34 |
