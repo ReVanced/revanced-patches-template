@@ -26,12 +26,12 @@ class CodecsUnlockPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        var result = CodecsLockFingerprint.result!!
+        val codecsLockResult = CodecsLockFingerprint.result!!
 
-        val implementation = result.mutableMethod.implementation!!
+        val implementation = codecsLockResult.mutableMethod.implementation!!
 
-        val scanResultStartIndex = result.patternScanResult!!.startIndex
-        val instructionIndex = scanResultStartIndex  +
+        val scanResultStartIndex = codecsLockResult.patternScanResult!!.startIndex
+        val instructionIndex = scanResultStartIndex +
                 if (implementation.instructions[scanResultStartIndex - 1].opcode == Opcode.CHECK_CAST) {
                     // for 5.16.xx and lower
                     -3
@@ -40,13 +40,15 @@ class CodecsUnlockPatch : BytecodePatch(
                     -2
                 }
 
-        result = AllCodecsReferenceFingerprint.result!!
-        val codecMethod =
-            data.toMethodWalker(result.method).nextMethod(result.patternScanResult!!.startIndex).getMethod()
+        val allCodecsResult = AllCodecsReferenceFingerprint.result!!
+        val allCodecsMethod =
+            data.toMethodWalker(allCodecsResult.method)
+                .nextMethod(allCodecsResult.patternScanResult!!.startIndex)
+                .getMethod()
 
         implementation.replaceInstruction(
             instructionIndex,
-            "invoke-static {}, ${codecMethod.definingClass}->${codecMethod.name}()Ljava/util/Set;".toInstruction()
+            "invoke-static {}, ${allCodecsMethod.definingClass}->${allCodecsMethod.name}()Ljava/util/Set;".toInstruction()
         )
 
         return PatchResultSuccess()
