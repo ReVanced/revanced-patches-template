@@ -11,10 +11,6 @@ import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.TextPreference
 
 @Name("swipe-controls-resource-patch")
 @DependsOn([SettingsPatch::class])
@@ -57,7 +53,7 @@ class SwipeControlsResourcePatch : ResourcePatch() {
                         "revanced_swipe_overlay_timeout",
                         StringResource("revanced_swipe_overlay_timeout_title", "Swipe overlay timeout"),
                         InputType.NUMBER,
-                        "500L",
+                        "500",
                         StringResource(
                             "revanced_swipe_overlay_timeout_summary",
                             "The amount of milliseconds the overlay is visible."
@@ -67,7 +63,7 @@ class SwipeControlsResourcePatch : ResourcePatch() {
                         "revanced_swipe_overlay_text_size",
                         StringResource("revanced_swipe_overlay_text_size_title", "Swipe overlay text size"),
                         InputType.NUMBER,
-                        "22f",
+                        "22",
                         StringResource("revanced_swipe_overlay_text_size_summary", "The text size for swipe overlay.")
                     ),
                     TextPreference(
@@ -84,7 +80,7 @@ class SwipeControlsResourcePatch : ResourcePatch() {
                         "revanced_swipe_magnitude_threshold",
                         StringResource("revanced_swipe_magnitude_threshold_title", "Swipe magnitude threshold"),
                         InputType.NUMBER,
-                        "30f",
+                        "30",
                         StringResource(
                             "revanced_swipe_magnitude_threshold_summary",
                             "The amount of threshold for swipe to occur."
