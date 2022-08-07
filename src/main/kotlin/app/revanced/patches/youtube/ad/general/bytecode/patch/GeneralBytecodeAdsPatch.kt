@@ -74,8 +74,8 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_home_ads_enabled",
-                StringResource("revanced_home_ads_enabled_title", "Show home ads"),
-                false,
+                StringResource("revanced_home_ads_enabled_title", "Hide home ads"),
+                true,
                 StringResource("revanced_home_ads_enabled_summary_on", "Home ads are shown."),
                 StringResource("revanced_home_ads_enabled_summary_off", "Home ads are hidden.")
             ),
