@@ -38,8 +38,8 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
                 "revanced_info_cards_enabled",
                 StringResource("revanced_info_cards_enabled_title", "Show info-cards"),
                 false,
-                StringResource("revanced_info_cards_enabled_summary_on", "Info-cards are shown."),
-                StringResource("revanced_info_cards_enabled_summary_off", "Info-cards are hidden.")
+                StringResource("revanced_info_cards_enabled_summary_on", "Info-cards are shown"),
+                StringResource("revanced_info_cards_enabled_summary_off", "Info-cards are hidden")
             )
         )
 

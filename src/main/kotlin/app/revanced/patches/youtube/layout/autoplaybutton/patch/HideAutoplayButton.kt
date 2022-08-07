@@ -37,8 +37,8 @@ class HideAutoplayButton : BytecodePatch(
                 "revanced_autoplay_button_enabled",
                 StringResource("revanced_autoplay_button_enabled_title", "Show autoplay button"),
                 false,
-                StringResource("revanced_autoplay_button_summary_on", "Autoplay button is shown."),
-                StringResource("revanced_autoplay_button_summary_off", "Autoplay button is hidden.")
+                StringResource("revanced_autoplay_button_summary_on", "Autoplay button is shown"),
+                StringResource("revanced_autoplay_button_summary_off", "Autoplay button is hidden")
             )
         )
 

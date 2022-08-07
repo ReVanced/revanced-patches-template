@@ -32,8 +32,8 @@ class HideReelsPatch : BytecodePatch(
                 "revanced_reel_button_enabled",
                 StringResource("revanced_reel_button_enabled_title", "Show reels button"),
                 false,
-                StringResource("revanced_reel_button_summary_on", "Reels button is shown."),
-                StringResource("revanced_reel_button_summary_off", "Reels button is hidden.")
+                StringResource("revanced_reel_button_summary_on", "Reels button is shown"),
+                StringResource("revanced_reel_button_summary_off", "Reels button is hidden")
             )
         )
 

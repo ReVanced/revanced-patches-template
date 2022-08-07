@@ -38,8 +38,8 @@ class AutoRepeatPatch : BytecodePatch(
                 "revanced_pref_auto_repeat",
                 StringResource("revanced_auto_repeat_enabled_title", "Enable auto-repeat"),
                 true,
-                StringResource("revanced_auto_repeat_summary_on", "Auto-repeat is enabled."),
-                StringResource("revanced_auto_repeat_summary_off", "Auto-repeat is disabled.")
+                StringResource("revanced_auto_repeat_summary_on", "Auto-repeat is enabled"),
+                StringResource("revanced_auto_repeat_summary_off", "Auto-repeat is disabled")
             )
         )
 

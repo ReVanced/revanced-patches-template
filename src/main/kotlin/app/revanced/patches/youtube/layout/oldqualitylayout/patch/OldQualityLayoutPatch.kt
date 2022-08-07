@@ -33,8 +33,8 @@ class OldQualityLayoutPatch : BytecodePatch(
                 "revanced_use_old_style_quality_settings",
                 StringResource("revanced_old_style_quality_settings_enabled_title", "Use old quality layout"),
                 true,
-                StringResource("revanced_old_style_quality_settings_summary_on", "Old quality settings are shown."),
-                StringResource("revanced_old_style_quality_settings_summary_off", "New quality settings are shown.")
+                StringResource("revanced_old_style_quality_settings_summary_on", "Old quality settings are shown"),
+                StringResource("revanced_old_style_quality_settings_summary_off", "New quality settings are shown")
             )
         )
 

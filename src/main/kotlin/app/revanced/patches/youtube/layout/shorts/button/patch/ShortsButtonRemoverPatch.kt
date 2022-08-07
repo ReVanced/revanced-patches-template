@@ -36,8 +36,8 @@ class ShortsButtonRemoverPatch : BytecodePatch(
                 "revanced_shorts_button_enabled",
                 StringResource("revanced_shorts_button_enabled_title", "Show shorts button"),
                 false,
-                StringResource("revanced_shorts_button_summary_on", "Shorts button is shown."),
-                StringResource("revanced_shorts_button_summary_off", "Shorts button is hidden.")
+                StringResource("revanced_shorts_button_summary_on", "Shorts button is shown"),
+                StringResource("revanced_shorts_button_summary_off", "Shorts button is hidden")
             )
         )
 

@@ -41,8 +41,8 @@ class EnableSeekbarTappingPatch : BytecodePatch(
                 "revanced_enable_tap_seeking",
                 StringResource("revanced_seekbar_tapping_enabled_title", "Enable seekbar tapping"),
                 true,
-                StringResource("revanced_seekbar_tapping_summary_on", "Seekbar tapping is enabled."),
-                StringResource("revanced_seekbar_tapping_summary_off", "Seekbar tapping is disabled.")
+                StringResource("revanced_seekbar_tapping_summary_on", "Seekbar tapping is enabled"),
+                StringResource("revanced_seekbar_tapping_summary_off", "Seekbar tapping is disabled")
             )
         )
 

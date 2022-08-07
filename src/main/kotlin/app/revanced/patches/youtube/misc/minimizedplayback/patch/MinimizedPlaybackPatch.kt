@@ -41,8 +41,8 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 "revanced_enable_minimized_playback",
                 StringResource("revanced_minimized_playback_enabled_title", "Enable minimized playback"),
                 true,
-                StringResource("revanced_minimized_playback_summary_on", "Minimized playback is enabled."),
-                StringResource("revanced_minimized_playback_summary_off", "Minimized playback is disabled.")
+                StringResource("revanced_minimized_playback_summary_on", "Minimized playback is enabled"),
+                StringResource("revanced_minimized_playback_summary_off", "Minimized playback is disabled")
             )
         )
 

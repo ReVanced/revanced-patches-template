@@ -38,8 +38,8 @@ class HideWatermarkPatch : BytecodePatch(
                 "revanced_branding_watermark_enabled",
                 StringResource("revanced_branding_watermark_enabled_title", "Show branding watermark"),
                 false,
-                StringResource("revanced_branding_watermark_summary_on", "Branding watermark is shown."),
-                StringResource("revanced_branding_watermark_summary_off", "Branding watermark is hidden.")
+                StringResource("revanced_branding_watermark_summary_on", "Branding watermark is shown"),
+                StringResource("revanced_branding_watermark_summary_off", "Branding watermark is hidden")
             )
         )
 

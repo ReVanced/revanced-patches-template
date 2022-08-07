@@ -41,8 +41,8 @@ class CreateButtonRemoverPatch : BytecodePatch(
                 "revanced_create_button_enabled",
                 StringResource("revanced_create_button_enabled_title", "Hide create button"),
                 true,
-                StringResource("revanced_create_button_summary_on", "Create button is hidden."),
-                StringResource("revanced_create_button_summary_off", "Create button is shown.")
+                StringResource("revanced_create_button_summary_on", "Create button is hidden"),
+                StringResource("revanced_create_button_summary_off", "Create button is shown")
             )
         )
 
