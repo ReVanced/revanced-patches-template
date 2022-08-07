@@ -64,25 +64,25 @@
                 android:summaryOn="@string/litho_compact_movie_on"
                 android:title="@string/litho_compact_movie" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_feed_survey"
                 android:summaryOff="@string/litho_in_feed_survey_off"
                 android:summaryOn="@string/litho_in_feed_survey_on"
                 android:title="@string/litho_in_feed_survey" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_shorts_shelf"
                 android:summaryOff="@string/litho_shorts_shelf_off"
                 android:summaryOn="@string/litho_shorts_shelf_on"
                 android:title="@string/litho_shorts_shelf" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_community_guideline"
                 android:summaryOff="@string/litho_community_guidelines_off"
                 android:summaryOn="@string/litho_community_guidelines_on"
                 android:title="@string/litho_community_guidelines" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_emergency_box_removal"
                 android:summaryOff="@string/litho_emergency_box_off"
                 android:summaryOn="@string/litho_emergency_box_on"
@@ -94,7 +94,7 @@
                 android:summaryOn="@string/litho_info_panel_on"
                 android:title="@string/litho_info_panel" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_medical_panel"
                 android:summaryOff="@string/litho_medical_panel_off"
                 android:summaryOn="@string/litho_medical_panel_on"
@@ -106,13 +106,13 @@
                 android:summaryOn="@string/litho_paid_content_on"
                 android:title="@string/litho_paid_content" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_suggested"
                 android:summaryOff="@string/litho_suggested_off"
                 android:summaryOn="@string/litho_suggested_on"
                 android:title="@string/litho_suggested" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_hide_suggestions"
                 android:summaryOff="@string/litho_hide_suggestions_off"
                 android:summaryOn="@string/litho_hide_suggestions_on"
@@ -124,7 +124,7 @@
                 android:summaryOn="@string/litho_latest_posts_on"
                 android:title="@string/litho_latest_posts" />
         <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="revanced_adremover_hide_channel_guidelines"
                 android:summaryOff="@string/litho_channel_guidelines_off"
                 android:summaryOn="@string/litho_channel_guidelines_on"
