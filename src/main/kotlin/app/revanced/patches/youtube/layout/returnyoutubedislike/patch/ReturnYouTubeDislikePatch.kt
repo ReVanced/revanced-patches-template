@@ -12,11 +12,13 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
-import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.TextComponentSpecParentFingerprint
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.DislikeFingerprint
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.LikeFingerprint
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.RemoveLikeFingerprint
+import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.TextComponentSpecParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
 import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 
 @Patch
@@ -31,7 +33,29 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        //TODO: figure out how to include RYD settings if not included (not sure)
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+            PreferenceScreen(
+                "ryd_preferences",
+                StringResource("ryd_name", "Return YouTube Dislike"),
+                listOf(
+                    SwitchPreference(
+                        "ryd_enabled",
+                        StringResource("ryd_enable_title", "Enable Return YouTube Dislike"),
+                        true,
+                        StringResource("ryd_enable_summary_on", "Return YouTube Dislike is enabled"),
+                        StringResource("ryd_enable_summary_off", "Return YouTube Dislike is disabled"),
+                    ),
+                    TextPreference(
+                        "ryd_userId",
+                        StringResource("ryd_user_id_title", "Return YouTube Dislike user id"),
+                        InputType.STRING,
+                        null,
+                        StringResource("ryd_user_id_summary", "Your personal id which is used for interacting with the Return YouTube Dislike API")
+                    )
+                ),
+                StringResource("ryd_summary", "Settings for Return YouTube Dislike")
+            )
+        )
 
         LikeFingerprint.result!!.mutableMethod.addInstructions(
             0,
@@ -59,9 +83,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         val parentResult = TextComponentSpecParentFingerprint.result!!
         val createComponentMethod = parentResult.mutableClass.methods.find { method ->
-                method.parameters.size >= 19 && method.parameterTypes.takeLast(4)
-                    .all { param -> param == "Ljava/util/concurrent/atomic/AtomicReference;" }
-            }
+            method.parameters.size >= 19 && method.parameterTypes.takeLast(4)
+                .all { param -> param == "Ljava/util/concurrent/atomic/AtomicReference;" }
+        }
             ?: return PatchResultError("TextComponentSpec.createComponent not found")
 
         val conversionContextParam = 5
