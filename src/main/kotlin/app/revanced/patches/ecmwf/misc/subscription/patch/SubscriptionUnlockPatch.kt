@@ -22,7 +22,6 @@ class SubscriptionUnlockPatch : BytecodePatch(
         SubscriptionUnlockFingerprint
     )
 ) {
-
     override fun execute(data: BytecodeData): PatchResult {
         val result = SubscriptionUnlockFingerprint.result!!
         val method = result.mutableMethod
@@ -37,6 +36,4 @@ class SubscriptionUnlockPatch : BytecodePatch(
         )
         return PatchResultSuccess()
     }
-
-
 }
