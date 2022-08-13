@@ -27,8 +27,6 @@ class SubscriptionUnlockPatch : BytecodePatch(
         val result = SubscriptionUnlockFingerprint.result!!
         val method = result.mutableMethod
 
-
-        // addInstructions needs an index which starts counting at 0 and size starts counting at 1
         val index = method.implementation!!.instructions.size
 
         // remove R() at 10212
