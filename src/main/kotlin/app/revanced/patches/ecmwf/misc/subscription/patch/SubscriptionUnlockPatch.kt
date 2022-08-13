@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -26,10 +27,19 @@ class SubscriptionUnlockPatch : BytecodePatch(
         val result = SubscriptionUnlockFingerprint.result!!
         val method = result.mutableMethod
 
+
+        // addInstructions needs an index which starts counting at 0 and size starts counting at 1
+        val index = method.implementation!!.instructions.size
+
+        // remove R() at 10212
+        method.removeInstruction(index - 3)
+        // remove R() at 10206
+        method.removeInstruction(index - 5)
+
         val insertIndex = method.implementation!!.instructions.count()
 
         method.addInstructions(
-            insertIndex - 1, 
+            (insertIndex - 1), 
             """
                 const/4 p1, 0x1
             """
