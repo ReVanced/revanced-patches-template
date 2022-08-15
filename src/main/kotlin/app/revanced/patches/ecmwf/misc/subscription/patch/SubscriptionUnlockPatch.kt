@@ -14,7 +14,7 @@ import app.revanced.patches.ecmwf.misc.subscription.annotations.SubscriptionUnlo
 import app.revanced.patches.ecmwf.misc.subscription.fingerprints.SubscriptionUnlockFingerprint
 
 @Patch
-@Name("subscription-unlock")
+@Name("pflotsh-ecmwf-subscription-unlock")
 @Description("Unlocks all subscription features.")
 @SubscriptionUnlockCompatibility
 @Version("0.0.1")
