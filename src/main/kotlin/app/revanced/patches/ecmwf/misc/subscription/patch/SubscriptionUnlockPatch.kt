@@ -34,10 +34,10 @@ class SubscriptionUnlockPatch : BytecodePatch(
         // remove R() at 10206
         method.removeInstruction(index - 5)
 
-        val insertIndex = method.implementation!!.instructions.count()
+        val insertIndex = index
 
         method.addInstructions(
-            (insertIndex - 1), 
+            insertIndex - 1 - 2, 
             """
                 const/4 p1, 0x1
             """
