@@ -1,3 +1,38 @@
+## [2.36.2](https://github.com/revanced/revanced-patches/compare/v2.36.1...v2.36.2) (2022-08-14)
+
+
+### Bug Fixes
+
+* disable cast modules in YouTube Music ([#337](https://github.com/revanced/revanced-patches/issues/337)) ([86eaba8](https://github.com/revanced/revanced-patches/commit/86eaba8248100987f46540a224956099bcf9da2c))
+
+## [2.36.1](https://github.com/revanced/revanced-patches/compare/v2.36.0...v2.36.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* add missing switch for tablet mini-player ([b824d35](https://github.com/revanced/revanced-patches/commit/b824d35960df9e99c2a2d248356c3c9342cfe130))
+
+# [2.36.0](https://github.com/revanced/revanced-patches/compare/v2.35.0...v2.36.0) (2022-08-14)
+
+
+### Features
+
+* `swipe-controls` override volume button behaviour ([#285](https://github.com/revanced/revanced-patches/issues/285)) ([69465f3](https://github.com/revanced/revanced-patches/commit/69465f3a9934973a2449605a248a462510e10ff6))
+
+# [2.35.0](https://github.com/revanced/revanced-patches/compare/v2.34.0...v2.35.0) (2022-08-14)
+
+
+### Features
+
+* `tiktok-ads` patch ([#335](https://github.com/revanced/revanced-patches/issues/335)) ([81bef57](https://github.com/revanced/revanced-patches/commit/81bef57742bfaefcdfe02fd290cca6923341149a))
+
+# [2.34.0](https://github.com/revanced/revanced-patches/compare/v2.33.2...v2.34.0) (2022-08-14)
+
+
+### Features
+
+* `tablet-mini-player` patch ([dae41f1](https://github.com/revanced/revanced-patches/commit/dae41f1c59d26d00b1ba821dbe1521e68226f47c))
+
 ## [2.33.2](https://github.com/revanced/revanced-patches/compare/v2.33.1...v2.33.2) (2022-08-07)
 
 ## [2.33.1](https://github.com/revanced/revanced-patches/compare/v2.33.0...v2.33.1) (2022-08-07)
