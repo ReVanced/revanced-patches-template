@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="revanced_auto_repeat_button_summary_off">"Doesn't show auto-repeat button in the player overlay. Use the toggle below to control auto-repeat"</string>
+    <string name="revanced_auto_repeat_button_summary_off">"Doesn't show auto-repeat button in the player overlay. Use the toggle below to control Always Auto-repeat"</string>
     <string name="revanced_auto_repeat_button_summary_on">Auto-repeat button is shown in the player overlay</string>
     <string name="revanced_auto_repeat_button_title">Auto-repeat button</string>
     <string name="revanced_auto_repeat_summary_off">Always Auto-repeat is off</string>
@@ -193,9 +193,9 @@
 
     <string name="revanced_copy_video_url_summary_off">Copy Link Button is hidden from the player overlay</string>
     <string name="revanced_copy_video_url_summary_on">Copy Link Button is shown in the player overlay</string>
-    <string name="revanced_copy_video_url_timestamp_summary_off">Copy Link Button With Timestamp is hidden from the player overlay</string>
-    <string name="revanced_copy_video_url_timestamp_summary_on">Copy Link Button With Timestamp is shown in the player overlay</string>
-    <string name="revanced_copy_video_url_timestamp_title">Copy Link Button With Timestamp</string>
+    <string name="revanced_copy_video_url_timestamp_summary_off">Copy Link With Timestamp Button is hidden from the player overlay</string>
+    <string name="revanced_copy_video_url_timestamp_summary_on">Copy Link With Timestamp Button is shown in the player overlay</string>
+    <string name="revanced_copy_video_url_timestamp_title">Copy Link With Timestamp Button</string>
     <string name="revanced_copy_video_url_title">Copy Link Button</string>
 
     <string name="revanced_old_style_quality_settings_title">Quality Settings style</string>
