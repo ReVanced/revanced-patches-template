@@ -32,7 +32,6 @@ import java.io.Closeable
     [
         IntegrationsPatch::class,
         SettingsResourcePatch::class,
-        ResourceIdMappingProviderResourcePatch::class
     ]
 )
 @Name("settings")
@@ -72,7 +71,7 @@ class SettingsPatch : BytecodePatch(
             )
         }
 
-        // add the setTheme call to the onCreate method to not affect the offsets.
+        // add the setTheme call to the onCreate method to not affect the offsets
         onCreate.addInstructions(
             1,
             """
@@ -81,7 +80,6 @@ class SettingsPatch : BytecodePatch(
             """
         )
 
-        // add the initializeSettings call to the onCreate method.
         // add the initializeSettings call to the onCreate method
         onCreate.addInstruction(
             0,
@@ -96,11 +94,12 @@ class SettingsPatch : BytecodePatch(
 
     internal companion object {
         // TODO: hide this somehow
-        val appearanceStringId = ResourceIdMappingProviderResourcePatch.resourceMappings.find {
+        var appearanceStringId: Long = ResourceIdMappingProviderResourcePatch.resourceMappings.find {
             it.type == "string" && it.name == "app_theme_appearance_dark"
         }!!.id
 
-        fun addString(identifier: String, value: String, formatted: Boolean = true) = SettingsResourcePatch.addString(identifier, value, formatted)
+        fun addString(identifier: String, value: String, formatted: Boolean = true) =
+            SettingsResourcePatch.addString(identifier, value, formatted)
 
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)

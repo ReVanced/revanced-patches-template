@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
@@ -21,7 +22,7 @@ import java.io.Closeable
 
 @Name("settings-resource-patch")
 @SettingsCompatibility
-@DependsOn([FixLocaleConfigErrorPatch::class])
+@DependsOn([FixLocaleConfigErrorPatch::class, ResourceIdMappingProviderResourcePatch::class])
 @Version("0.0.1")
 class SettingsResourcePatch : ResourcePatch(), Closeable {
 
@@ -40,15 +41,12 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                 "revanced_settings_toolbar.xml",
                 "revanced_settings_with_toolbar.xml",
                 "revanced_settings_with_toolbar_layout.xml"
-            ),
-            ResourceUtils.ResourceGroup(
+            ), ResourceUtils.ResourceGroup(
                 "xml", "revanced_prefs.xml" // template for new preferences
-            ),
-            ResourceUtils.ResourceGroup(
+            ), ResourceUtils.ResourceGroup(
                 // required resource for back button, because when the base APK is used, this resource will not exist
                 "drawable-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
-            ),
-            ResourceUtils.ResourceGroup(
+            ), ResourceUtils.ResourceGroup(
                 // required resource for back button, because when the base APK is used, this resource will not exist
                 "drawable-ldrtl-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
             )
@@ -76,9 +74,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
             Preference(
                 StringResource("revanced_settings", "ReVanced"),
                 Preference.Intent(
-                    youtubePackage,
-                    "revanced_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                    youtubePackage, "revanced_settings", "com.google.android.libraries.social.licenses.LicenseActivity"
                 ),
                 StringResource("revanced_settings_summary", "ReVanced specific settings"),
             )
@@ -144,11 +140,9 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
 
                     arrayNode.setAttribute("name", item.name)
 
-                    arrayNode.appendChild(
-                        arrayNode.ownerDocument.createElement("item").also { itemNode ->
-                            itemNode.textContent = item.value
-                        }
-                    )
+                    arrayNode.appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
+                        itemNode.textContent = item.value
+                    })
                 }
             })
         }
@@ -167,23 +161,20 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
          * @param preference The preference to add.
          */
         fun addPreference(preference: Preference) {
-            preferencesNode!!.appendChild(
-                preferencesNode.createElement(preference.tag).also { preferenceNode ->
-                    preferenceNode.setAttribute(
-                        "android:title",
-                        "@string/${preference.title.also { it.include() }.name}"
-                    )
-                    preference.summary?.let { summary ->
-                        preferenceNode.setAttribute("android:summary", "@string/${summary.also { it.include() }.name}")
-                    }
-
-                    preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
-                        intentNode.setAttribute("android:targetPackage", preference.intent.targetPackage)
-                        intentNode.setAttribute("android:data", preference.intent.data)
-                        intentNode.setAttribute("android:targetClass", preference.intent.targetClass)
-                    })
+            preferencesNode!!.appendChild(preferencesNode.createElement(preference.tag).also { preferenceNode ->
+                preferenceNode.setAttribute(
+                    "android:title", "@string/${preference.title.also { it.include() }.name}"
+                )
+                preference.summary?.let { summary ->
+                    preferenceNode.setAttribute("android:summary", "@string/${summary.also { it.include() }.name}")
                 }
-            )
+
+                preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
+                    intentNode.setAttribute("android:targetPackage", preference.intent.targetPackage)
+                    intentNode.setAttribute("android:data", preference.intent.data)
+                    intentNode.setAttribute("android:targetClass", preference.intent.targetClass)
+                })
+            })
         }
 
 
@@ -245,8 +236,7 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
             strings.add(this)
         }
 
-        private fun DomFileEditor?.getNode(tagName: String) =
-            this!!.file.getElementsByTagName(tagName).item(0)
+        private fun DomFileEditor?.getNode(tagName: String) = this!!.file.getElementsByTagName(tagName).item(0)
 
         private fun Node?.createElement(tagName: String) = this!!.ownerDocument.createElement(tagName)
 
@@ -258,16 +248,14 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
     override fun close() {
         // merge all strings, skip duplicates
         strings.forEach { stringResource ->
-            stringsNode!!.appendChild(
-                stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
-                    stringElement.setAttribute("name", stringResource.name)
+            stringsNode!!.appendChild(stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
+                stringElement.setAttribute("name", stringResource.name)
 
-                    // if the string is un-formatted, explicitly add the formatted attribute
-                    if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
+                // if the string is un-formatted, explicitly add the formatted attribute
+                if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
 
-                    stringElement.textContent = stringResource.value
-                }
-            )
+                stringElement.textContent = stringResource.value
+            })
         }
 
         // rename the intent package names if it was set
@@ -288,11 +276,10 @@ class SettingsResourcePatch : ResourcePatch(), Closeable {
                 if (targetPackageAttribute.nodeValue != youtubePackage) continue
 
                 // replace the target package name
-                intentNode.attributes.setNamedItem(
-                    preferenceNode.ownerDocument.createAttribute("android:targetPackage").also { attribute ->
+                intentNode.attributes.setNamedItem(preferenceNode.ownerDocument.createAttribute("android:targetPackage")
+                    .also { attribute ->
                         attribute.value = packageName
-                    }
-                )
+                    })
             }
         }
 
