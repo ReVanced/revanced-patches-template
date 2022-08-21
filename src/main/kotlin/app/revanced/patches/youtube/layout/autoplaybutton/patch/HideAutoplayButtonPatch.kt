@@ -15,18 +15,22 @@ import app.revanced.patches.youtube.layout.autoplaybutton.annotations.AutoplayBu
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.AutoNavInformerFingerprint
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.iface.instruction.Instruction
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
+import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceIdMappingProviderResourcePatch::class])
 @Name("hide-autoplay-button")
 @Description("Hides the autoplay button in the video player.")
 @AutoplayButtonCompatibility
 @Version("0.0.1")
-class HideAutoplayButton : BytecodePatch(
+class HideAutoplayButtonPatch : BytecodePatch(
     listOf(
         LayoutConstructorFingerprint, AutoNavInformerFingerprint
     )
@@ -48,12 +52,22 @@ class HideAutoplayButton : BytecodePatch(
         val layoutGenMethod = layoutGenMethodResult.mutableMethod
         val layoutGenMethodInstructions = layoutGenMethod.implementation!!.instructions
 
-        val scanStartIndex = layoutGenMethodResult.patternScanResult!!.startIndex
-        val relativeOffset = 12 // offset to the instruction that is being jumped to
-        val jumpInstruction = layoutGenMethodInstructions[scanStartIndex + relativeOffset] as Instruction
+        // resolve the offsets such as ...
+        val autoNavPreviewStubId = ResourceIdMappingProviderResourcePatch.resourceMappings.single {
+            it.name == "autonav_preview_stub"
+        }.id
+        // where to insert the branch instructions and ...
+        val insertIndex = layoutGenMethodInstructions.indexOfFirst {
+            (it as? WideLiteralInstruction)?.wideLiteral == autoNavPreviewStubId
+        }
+        // where to branch away
+        val branchIndex = layoutGenMethodInstructions.subList(insertIndex + 1, layoutGenMethodInstructions.size - 1).indexOfFirst {
+            ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "addOnLayoutChangeListener"
+        } + 2
 
+        val jumpInstruction = layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
         layoutGenMethod.addInstructions(
-            scanStartIndex, """
+            insertIndex, """
                 invoke-static {}, Lapp/revanced/integrations/patches/HideAutoplayButtonPatch;->isButtonShown()Z
                 move-result v11
                 if-eqz v11, :hidden
