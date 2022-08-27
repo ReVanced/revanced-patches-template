@@ -29,8 +29,8 @@ class EnableDebuggingPatch : ResourcePatch() {
                 "revanced_debug_enabled",
                 StringResource("revanced_debug_title", "Debug"),
                 false,
-                StringResource("revanced_debug_on", "ReVanced logs are enabled"),
-                StringResource("revanced_debug_off", "ReVanced logs are disabled")
+                StringResource("revanced_debug_on", "Debug logs are enabled"),
+                StringResource("revanced_debug_off", "Debug logs are disabled")
             )
         )
 
