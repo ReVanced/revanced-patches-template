@@ -84,7 +84,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 17.32.35 |
 | `tablet-mini-player` | Enables the tablet mini player layout. | 17.32.35 |
 | `minimized-playback` | Enables minimized and background playback. | 17.32.35 |
-| `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
+| `client-spoof` | Spoofs the YouTube client to prevent playback issues. | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 17.32.35 |
 | `always-autorepeat` | Always repeats the playing video again. | 17.32.35 |
 | `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 17.32.35 |
@@ -96,6 +96,14 @@ The official Patch bundle provided by ReVanced and the community.
 | `video-ads` | Removes ads in the video player. | 17.32.35 |
 | `general-ads` | Removes general ads. | 17.32.35 |
 | `hide-infocard-suggestions` | Hides infocards in videos. | 17.32.35 |
+</details>
+
+### 📦 `com.vanced.android.youtube`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `client-spoof` | Spoofs the YouTube Vanced client to prevent playback issues. | all |
 </details>
 
 
