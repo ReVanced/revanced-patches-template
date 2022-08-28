@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -43,8 +42,7 @@ class HDRBrightnessPatch : BytecodePatch(
             )
         )
 
-        val method = HDRBrightnessFingerprintXXZ.result?.mutableMethod
-            ?: return PatchResultError("HDRBrightnessFingerprint could not resolve the method!")
+        val method = HDRBrightnessFingerprintXXZ.result!!.mutableMethod
 
         method.implementation!!.instructions.filter {
             ((it as? ReferenceInstruction)?.reference as? FieldReference)?.let { field ->

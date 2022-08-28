@@ -18,8 +18,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.Opcode
-
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-shorts-button")
@@ -45,28 +43,14 @@ class ShortsButtonRemoverPatch : BytecodePatch(
         val tabEnumResult = PivotBarButtonTabEnumFingerprint.result!!
         val tabEnumImplementation = tabEnumResult.mutableMethod.implementation!!
         val scanResultEndIndex = tabEnumResult.patternScanResult!!.endIndex
-        val tabEnumIndex = scanResultEndIndex +
-                if (tabEnumImplementation.instructions[scanResultEndIndex + 1].opcode == Opcode.IGET_OBJECT) {
-                    // for 17.31.xx and lower
-                    7
-                } else {
-                    // since 17.32.xx
-                    10
-                }
+        val tabEnumIndex = scanResultEndIndex + 10
         val moveEnumInstruction = tabEnumImplementation.instructions[tabEnumIndex]
         val enumRegister = (moveEnumInstruction as OneRegisterInstruction).registerA
 
         val buttonsViewResult = PivotBarButtonsViewFingerprint.result!!
         val buttonsViewImplementation = buttonsViewResult.mutableMethod.implementation!!
         val scanResultStartIndex = buttonsViewResult.patternScanResult!!.startIndex
-        val buttonsViewIndex = scanResultStartIndex +
-                if (buttonsViewImplementation.instructions[scanResultStartIndex - 1].opcode == Opcode.IF_NEZ) {
-                    // for 17.31.xx and lower
-                    -3
-                } else {
-                    // since 17.32.xx
-                    -6
-                }
+        val buttonsViewIndex = scanResultStartIndex - 5
         val moveViewInstruction = buttonsViewImplementation.instructions[buttonsViewIndex - 1]
         val viewRegister = (moveViewInstruction as OneRegisterInstruction).registerA
 
