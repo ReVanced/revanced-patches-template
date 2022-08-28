@@ -7,7 +7,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -27,7 +27,7 @@ import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 
 @Patch
-@Dependencies([MusicMicroGResourcePatch::class])
+@DependsOn([MusicMicroGResourcePatch::class])
 @Name("music-microg-support")
 @Description("Allows YouTube Music ReVanced to run without root and under a different package name.")
 @MusicMicroGPatchCompatibility
@@ -36,6 +36,9 @@ class MusicMicroGBytecodePatch : BytecodePatch(
     listOf(
         ServiceCheckFingerprint,
         GooglePlayUtilityFingerprint,
+        CastDynamiteModuleFingerprint,
+        CastDynamiteModuleV2Fingerprint,
+        CastContextFetchFingerprint,
         PrimeFingerprint,
     )
 ) {
@@ -122,9 +125,17 @@ class MusicMicroGBytecodePatch : BytecodePatch(
         listOf(
             ServiceCheckFingerprint,
             GooglePlayUtilityFingerprint,
+            CastDynamiteModuleFingerprint,
+            CastDynamiteModuleV2Fingerprint,
+            CastContextFetchFingerprint,
         ).forEach { fingerprint ->
             val result = fingerprint.result!!
             val stringInstructions = when (result.method.returnType.first()) {
+                'L' -> """
+                        const/4 v0, 0x0
+                        return-object v0
+                        """
+
                 'V' -> "return-void"
                 'I' -> """
                         const/4 v0, 0x0

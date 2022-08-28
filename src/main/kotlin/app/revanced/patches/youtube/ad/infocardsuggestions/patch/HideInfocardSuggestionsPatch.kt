@@ -9,17 +9,20 @@ import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.reso
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
 import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardSuggestionsFingerprint
 import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardSuggestionsParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch
-@Dependencies([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-infocard-suggestions")
 @Description("Hides infocards in videos.")
 @HideInfocardSuggestionsCompatibility
@@ -30,6 +33,16 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        SettingsPatch.PreferenceScreen.ADS.addPreferences(
+            SwitchPreference(
+                "revanced_info_cards_enabled",
+                StringResource("revanced_info_cards_enabled_title", "Show info-cards"),
+                false,
+                StringResource("revanced_info_cards_enabled_summary_on", "Info-cards are shown"),
+                StringResource("revanced_info_cards_enabled_summary_off", "Info-cards are hidden")
+            )
+        )
+
         val parentResult = HideInfocardSuggestionsParentFingerprint.result
             ?: return PatchResultError("Parent fingerprint not resolved!")
 

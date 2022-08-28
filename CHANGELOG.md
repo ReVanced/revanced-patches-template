@@ -1,3 +1,228 @@
+# [2.44.0](https://github.com/revanced/revanced-patches/compare/v2.43.2...v2.44.0) (2022-08-27)
+
+
+### Features
+
+* add debug switch ([#391](https://github.com/revanced/revanced-patches/issues/391)) ([ee4b776](https://github.com/revanced/revanced-patches/commit/ee4b7761d8bb4549f2f100f721c90c664eedfe4a))
+
+## [2.43.2](https://github.com/revanced/revanced-patches/compare/v2.43.1...v2.43.2) (2022-08-26)
+
+
+### Bug Fixes
+
+* package name for Vanced ([#390](https://github.com/revanced/revanced-patches/issues/390)) ([85206b9](https://github.com/revanced/revanced-patches/commit/85206b99e1399d00e5eaebded8aadc5fb982aaa4))
+
+## [2.43.1](https://github.com/revanced/revanced-patches/compare/v2.43.0...v2.43.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* `Patch` annotation for `client-spoof` patch ([6a8af47](https://github.com/revanced/revanced-patches/commit/6a8af47f2dfb319a53db9b5f9deb0392f10f4185))
+
+# [2.43.0](https://github.com/revanced/revanced-patches/compare/v2.42.1...v2.43.0) (2022-08-26)
+
+
+### Features
+
+* `client-spoof` patch ([5512c07](https://github.com/revanced/revanced-patches/commit/5512c072fa4b047849dbea0d2d382dd85e3a0827))
+
+## [2.42.1](https://github.com/revanced/revanced-patches/compare/v2.42.0...v2.42.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* changed default value for autorepeat setting ([#386](https://github.com/revanced/revanced-patches/issues/386)) ([d43add7](https://github.com/revanced/revanced-patches/commit/d43add7c21f0d9f45830476704985755e37d33ef))
+
+# [2.42.0](https://github.com/revanced/revanced-patches/compare/v2.41.0...v2.42.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* default values for settings ([834c4ad](https://github.com/revanced/revanced-patches/commit/834c4add71570d36b645246621ba24da3869d613))
+
+
+### Features
+
+* setting for downloader package name ([965d05c](https://github.com/revanced/revanced-patches/commit/965d05cfa55d7a51f64a11f0219e2867568ba852))
+* v17.29.34 compatibility for `downloads` patch ([#374](https://github.com/revanced/revanced-patches/issues/374)) ([d81f1af](https://github.com/revanced/revanced-patches/commit/d81f1af327e0d7471f410811af46da34ddfb1bb4))
+
+# [2.41.0](https://github.com/revanced/revanced-patches/compare/v2.40.2...v2.41.0) (2022-08-22)
+
+
+### Features
+
+* `downloads` patch ([#215](https://github.com/revanced/revanced-patches/issues/215)) ([304fbac](https://github.com/revanced/revanced-patches/commit/304fbacab22538fb0945f564e061783b47120120))
+
+## [2.40.2](https://github.com/revanced/revanced-patches/compare/v2.40.1...v2.40.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* correct title for `tablet-miniplayer` setting switch ([6af6c02](https://github.com/revanced/revanced-patches/commit/6af6c02154d170153093bd846dfcb7a6205dd6fa))
+
+## [2.40.1](https://github.com/revanced/revanced-patches/compare/v2.40.0...v2.40.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* add missing switch for `tablet-mini-player` patch ([244a1b2](https://github.com/revanced/revanced-patches/commit/244a1b2cb9f77272dc62287a4a34a487b0289295))
+
+# [2.40.0](https://github.com/revanced/revanced-patches/compare/v2.39.1...v2.40.0) (2022-08-22)
+
+
+### Features
+
+* `settings` patch framework ([#266](https://github.com/revanced/revanced-patches/issues/266)) ([084a99b](https://github.com/revanced/revanced-patches/commit/084a99bc6f5ed67c0b270e219c2dd75a30f302f1))
+
+## [2.39.1](https://github.com/revanced/revanced-patches/compare/v2.39.0...v2.39.1) (2022-08-21)
+
+
+### Bug Fixes
+
+* make `custom-branding` cross-platform ([#366](https://github.com/revanced/revanced-patches/issues/366)) ([02ac62b](https://github.com/revanced/revanced-patches/commit/02ac62b0ea7e47ff3aa5078ce4645421f410b154))
+
+# [2.39.0](https://github.com/revanced/revanced-patches/compare/v2.38.0...v2.39.0) (2022-08-19)
+
+
+### Features
+
+* bundle `dex` file into `jar` file ([#359](https://github.com/revanced/revanced-patches/issues/359)) ([f419252](https://github.com/revanced/revanced-patches/commit/f4192526eab1e3e0208e7460847b892e077fcf5a))
+
+# [2.38.0](https://github.com/revanced/revanced-patches/compare/v2.37.0...v2.38.0) (2022-08-17)
+
+
+### Features
+
+* bump YouTube patches to `v17.32.35` ([#347](https://github.com/revanced/revanced-patches/issues/347)) ([5292a0e](https://github.com/revanced/revanced-patches/commit/5292a0e973953225f94eed887a5d8f1ead17bb97))
+
+# [2.37.0](https://github.com/revanced/revanced-patches/compare/v2.36.2...v2.37.0) (2022-08-15)
+
+
+### Features
+
+* ˋpflotsh-ecmwf-subscription-unlockˋ patch ([#332](https://github.com/revanced/revanced-patches/issues/332)) ([ae2a1d8](https://github.com/revanced/revanced-patches/commit/ae2a1d8362e388032c3521101ff60698c4af1583))
+
+## [2.36.2](https://github.com/revanced/revanced-patches/compare/v2.36.1...v2.36.2) (2022-08-14)
+
+
+### Bug Fixes
+
+* disable cast modules in YouTube Music ([#337](https://github.com/revanced/revanced-patches/issues/337)) ([86eaba8](https://github.com/revanced/revanced-patches/commit/86eaba8248100987f46540a224956099bcf9da2c))
+
+## [2.36.1](https://github.com/revanced/revanced-patches/compare/v2.36.0...v2.36.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* add missing switch for tablet mini-player ([b824d35](https://github.com/revanced/revanced-patches/commit/b824d35960df9e99c2a2d248356c3c9342cfe130))
+
+# [2.36.0](https://github.com/revanced/revanced-patches/compare/v2.35.0...v2.36.0) (2022-08-14)
+
+
+### Features
+
+* `swipe-controls` override volume button behaviour ([#285](https://github.com/revanced/revanced-patches/issues/285)) ([69465f3](https://github.com/revanced/revanced-patches/commit/69465f3a9934973a2449605a248a462510e10ff6))
+
+# [2.35.0](https://github.com/revanced/revanced-patches/compare/v2.34.0...v2.35.0) (2022-08-14)
+
+
+### Features
+
+* `tiktok-ads` patch ([#335](https://github.com/revanced/revanced-patches/issues/335)) ([81bef57](https://github.com/revanced/revanced-patches/commit/81bef57742bfaefcdfe02fd290cca6923341149a))
+
+# [2.34.0](https://github.com/revanced/revanced-patches/compare/v2.33.2...v2.34.0) (2022-08-14)
+
+
+### Features
+
+* `tablet-mini-player` patch ([dae41f1](https://github.com/revanced/revanced-patches/commit/dae41f1c59d26d00b1ba821dbe1521e68226f47c))
+
+## [2.33.2](https://github.com/revanced/revanced-patches/compare/v2.33.1...v2.33.2) (2022-08-07)
+
+## [2.33.1](https://github.com/revanced/revanced-patches/compare/v2.33.0...v2.33.1) (2022-08-07)
+
+
+### Bug Fixes
+
+* spoof `X-Android-Cert` of Firebase `authToken` api request ([#315](https://github.com/revanced/revanced-patches/issues/315)) ([c81d61f](https://github.com/revanced/revanced-patches/commit/c81d61f685449590473fa5205e7709f81872a9b9))
+
+# [2.33.0](https://github.com/revanced/revanced-patches/compare/v2.32.1...v2.33.0) (2022-08-06)
+
+
+### Features
+
+* bump music patches to 5.17.51 ([#307](https://github.com/revanced/revanced-patches/issues/307)) ([c303589](https://github.com/revanced/revanced-patches/commit/c303589bd8d1956ce2e3c4c285d45a648b5db30f))
+
+## [2.32.1](https://github.com/revanced/revanced-patches/compare/v2.32.0...v2.32.1) (2022-08-04)
+
+
+### Bug Fixes
+
+* incorrect compatibilty attribute ([#296](https://github.com/revanced/revanced-patches/issues/296)) ([0ab3e97](https://github.com/revanced/revanced-patches/commit/0ab3e9724157c628555964273c6b65f9f48f9664))
+
+# [2.32.0](https://github.com/revanced/revanced-patches/compare/v2.31.0...v2.32.0) (2022-08-04)
+
+
+### Features
+
+* `promo-code-unlock` patch ([#292](https://github.com/revanced/revanced-patches/issues/292)) ([d5df2e6](https://github.com/revanced/revanced-patches/commit/d5df2e68f47cbb3d374b8ce24769872959014051))
+
+# [2.31.0](https://github.com/revanced/revanced-patches/compare/v2.30.1...v2.31.0) (2022-08-03)
+
+
+### Features
+
+* remove `force-vp9-codec` patch ([#287](https://github.com/revanced/revanced-patches/issues/287)) ([e428978](https://github.com/revanced/revanced-patches/commit/e42897801b20e7439969954753e2c15c85eb41b5))
+
+## [2.30.1](https://github.com/revanced/revanced-patches/compare/v2.30.0...v2.30.1) (2022-08-03)
+
+
+### Bug Fixes
+
+* migrate to new patcher api ([f43446e](https://github.com/revanced/revanced-patches/commit/f43446ed189e583302fcd899f5eb7517f2a77144))
+
+# [2.30.0](https://github.com/revanced/revanced-patches/compare/v2.29.0...v2.30.0) (2022-08-03)
+
+
+### Bug Fixes
+
+* incorrect fingerprint version [skip ci] ([f8c62ae](https://github.com/revanced/revanced-patches/commit/f8c62ae16b088ff6d0e96a4ef62dc707cd83beb9))
+* rollback to `Dependencies` annotation ([36a2ae8](https://github.com/revanced/revanced-patches/commit/36a2ae886c63f1d22bb1cca9e7110af6c3f6f2d3))
+
+
+### Features
+
+* set the correct theme of the settings screen ([70d850c](https://github.com/revanced/revanced-patches/commit/70d850cf295d306b0de9419efe6a4bbf3857d3a0))
+
+# [2.29.0](https://github.com/revanced/revanced-patches/compare/v2.28.2...v2.29.0) (2022-08-02)
+
+
+### Features
+
+* add "Application Icon Path" option to branding ([1748d1e](https://github.com/revanced/revanced-patches/commit/1748d1e5badf61213d793ff7ae1d090ea2ea82f0))
+* add "Application Name" option to branding and move renaming to CustomBrandingPatch.kt ([8dafe05](https://github.com/revanced/revanced-patches/commit/8dafe05b2c5e2b0291d46b02717d910721673712))
+
+## [2.28.2](https://github.com/revanced/revanced-patches/compare/v2.28.1...v2.28.2) (2022-08-02)
+
+
+### Bug Fixes
+
+* remove requirement for solution [skip ci] ([#271](https://github.com/revanced/revanced-patches/issues/271)) ([553fad3](https://github.com/revanced/revanced-patches/commit/553fad3fe1bb79bdf34e9f91c0e1cbfda78e1054))
+
+## [2.28.1](https://github.com/revanced/revanced-patches/compare/v2.28.0...v2.28.1) (2022-07-31)
+
+
+### Bug Fixes
+
+* add missing permission to reboot app ([#260](https://github.com/revanced/revanced-patches/issues/260)) ([6ced6df](https://github.com/revanced/revanced-patches/commit/6ced6df8ed7642dea51e1acd1c12f4de4874b972))
+
+# [2.28.0](https://github.com/revanced/revanced-patches/compare/v2.27.0...v2.28.0) (2022-07-31)
+
+
+### Features
+
+* add `custom-video-buffer` patch ([9f117c7](https://github.com/revanced/revanced-patches/commit/9f117c74cdbdcf98eae97cf4c37f0baca451d695))
+
 # [2.27.0](https://github.com/revanced/revanced-patches/compare/v2.26.0...v2.27.0) (2022-07-31)
 
 

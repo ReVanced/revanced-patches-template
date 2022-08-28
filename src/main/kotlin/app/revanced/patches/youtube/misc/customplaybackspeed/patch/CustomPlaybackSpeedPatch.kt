@@ -9,7 +9,7 @@ import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.misc.customplaybackspeed.annotations.CustomPlaybackSpeedCompatibility
@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Patch
 @Name("custom-playback-speed")
 @Description("Adds more video playback speed options.")
-@Dependencies([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class])
 @CustomPlaybackSpeedCompatibility
 @Version("0.0.1")
 class CustomPlaybackSpeedPatch : BytecodePatch(
@@ -35,6 +35,8 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
 ) {
 
     override fun execute(data: BytecodeData): PatchResult {
+        //TODO: include setting to skip remembering the new speed
+
         val arrayGenMethod = SpeedArrayGeneratorFingerprint.result?.mutableMethod!!
         val arrayGenMethodImpl = arrayGenMethod.implementation!!
 

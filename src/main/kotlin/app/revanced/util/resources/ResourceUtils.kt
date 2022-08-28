@@ -2,10 +2,38 @@ package app.revanced.util.resources
 
 import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
-import java.io.OutputStream
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import org.w3c.dom.Node
 import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 internal object ResourceUtils {
+
+    /**
+     * Settings related utilities
+     */
+    internal object Settings {
+        /**
+         * Merge strings. This handles [StringResource]s automatically.
+         * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
+         */
+        internal fun ResourceData.mergeStrings(host: String) {
+            this.iterateXmlNodeChildren(host, "resources") {
+                // TODO: figure out why this is needed
+                if (!it.hasAttributes()) return@iterateXmlNodeChildren
+
+                val attributes = it.attributes
+                val key = attributes.getNamedItem("name")!!.nodeValue!!
+                val value = it.textContent!!
+
+                val formatted = attributes.getNamedItem("formatted") == null
+
+                SettingsPatch.addString(key, value, formatted)
+            }
+        }
+    }
+
     /**
      * Copy resources from the current class loader to the resource directory.
      * @param sourceResourceDirectory The source resource directory name.
@@ -20,7 +48,7 @@ internal object ResourceUtils {
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
                 Files.copy(
                     classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!,
-                    targetResourceDirectory.resolve(resourceFile).toPath()
+                    targetResourceDirectory.resolve(resourceFile).toPath(), StandardCopyOption.REPLACE_EXISTING
                 )
             }
         }
@@ -34,20 +62,17 @@ internal object ResourceUtils {
     internal class ResourceGroup(val resourceDirectoryName: String, vararg val resources: String)
 
     /**
-     * Copy resources from the current class loader to the resource directory.
-     * @param resourceDirectory The directory of the resource.
-     * @param targetResource The target resource.
-     * @param elementTag The element to copy.
+     * Iterate through the children of a node by its tag.
+     * @param resource The xml resource.
+     * @param targetTag The target xml node.
+     * @param callback The callback to call when iterating over the nodes.
      */
-    internal fun ResourceData.copyXmlNode(resourceDirectory: String, targetResource: String, elementTag: String) {
-        val stringsResourceInputStream = ResourceUtils.javaClass.classLoader.getResourceAsStream("$resourceDirectory/$targetResource")!!
+    internal fun ResourceData.iterateXmlNodeChildren(resource: String, targetTag: String, callback: (node: Node) -> Unit) =
+        xmlEditor[ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!].use {
+            val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
+            for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
+        }
 
-        // Copy nodes from the resources node to the real resource node
-        elementTag.copyXmlNode(
-            this.xmlEditor[stringsResourceInputStream, OutputStream.nullOutputStream()],
-            this.xmlEditor["res/$targetResource"]
-        ).close()
-    }
 
     /**
      * Copies the specified node of the source [DomFileEditor] to the target [DomFileEditor].
@@ -55,7 +80,7 @@ internal object ResourceUtils {
      * @param target the target [DomFileEditor]-
      * @return AutoCloseable that closes the target [DomFileEditor]s.
      */
-    internal fun String.copyXmlNode(source: DomFileEditor, target: DomFileEditor): AutoCloseable {
+    fun String.copyXmlNode(source: DomFileEditor, target: DomFileEditor): AutoCloseable {
         val hostNodes = source.file.getElementsByTagName(this).item(0).childNodes
 
         val destinationResourceFile = target.file

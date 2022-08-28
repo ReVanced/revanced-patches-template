@@ -2,10 +2,9 @@ package app.revanced.patches.youtube.misc.settings.bytecode.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
+import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 
 // TODO: This is more of a class fingerprint than a method fingerprint.
 //  Convert to a class fingerprint whenever possible.
@@ -13,9 +12,8 @@ import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.Retu
 @MatchingMethod(
     "Lapp/revanced/integrations/settingsmenu/ReVancedSettingActivity;", "initializeSettings"
 )
-@FuzzyPatternScanMethod(2)
-@ReturnYouTubeDislikeCompatibility
-@Version("0.0.2")
+@SettingsCompatibility
+@Version("0.0.1")
 object ReVancedSettingsActivityFingerprint : MethodFingerprint(
     null,
     null,

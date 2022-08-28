@@ -9,11 +9,12 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patches.youtube.layout.castbutton.patch.HideCastButtonPatch
+import app.revanced.patches.youtube.misc.clientspoof.patch.ClientSpoofPatch
 import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibility
 import app.revanced.patches.youtube.misc.microg.fingerprints.*
 import app.revanced.patches.youtube.misc.microg.patch.resource.MicroGResourcePatch
@@ -28,14 +29,15 @@ import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 
 @Patch
-@Dependencies(
+@DependsOn(
     [
         MicroGResourcePatch::class,
         HideCastButtonPatch::class,
+        ClientSpoofPatch::class
     ]
 )
 @Name("microg-support")
-@Description("Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG")
+@Description("Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG.")
 @MicroGPatchCompatibility
 @Version("0.0.1")
 class MicroGBytecodePatch : BytecodePatch(

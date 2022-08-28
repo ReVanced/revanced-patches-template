@@ -13,7 +13,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -23,6 +23,7 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
@@ -37,8 +38,8 @@ import org.jf.dexlib2.immutable.ImmutableMethodParameter
 import org.jf.dexlib2.util.MethodUtil
 
 @Patch
-@Dependencies(
-    dependencies = [IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
+@DependsOn(
+    dependencies = [PlayerControlsBytecodePatch::class, IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
 )
 @Name("sponsorblock")
 @Description("Integrate SponsorBlock.")
@@ -147,7 +148,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             it.registerC to it.registerE
         }
         seekbarMethod.addInstruction(
-            drawSegmentInstructionInsertIndex - 1,
+            drawSegmentInstructionInsertIndex,
             "invoke-static {v$canvasInstance, v$centerY}, Lapp/revanced/integrations/sponsorblock/PlayerController;->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
         )
 
@@ -171,8 +172,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
         Voting & Shield button
          */
-        ShowPlayerControlsFingerprint.resolve(data, data.classes.find { it.type.endsWith("YouTubeControlsOverlay;") }!!)
-        val controlsMethodResult = ShowPlayerControlsFingerprint.result!!
+        val controlsMethodResult = PlayerControlsBytecodePatch.showPlayerControlsFingerprintResult
 
         val controlsLayoutStubResourceId =
             ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
@@ -217,12 +217,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         }
 
         // change visibility of the buttons
-        controlsMethodResult.mutableMethod.addInstructions(
-            0, """
-                invoke-static {p1}, Lapp/revanced/integrations/sponsorblock/ShieldButton;->changeVisibility(Z)V
-                invoke-static {p1}, Lapp/revanced/integrations/sponsorblock/VotingButton;->changeVisibility(Z)V
-            """.trimIndent()
-        )
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/ShieldButton;->changeVisibility(Z)V")
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/VotingButton;->changeVisibility(Z)V")
 
         // set SegmentHelperLayout.context to the player layout instance
         val instanceRegister = 0

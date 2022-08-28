@@ -10,17 +10,20 @@ import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.reso
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Dependencies
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.fullscreenpanels.annotations.FullscreenPanelsCompatibility
 import app.revanced.patches.youtube.layout.fullscreenpanels.fingerprints.FullscreenViewAdderFingerprint
 import app.revanced.patches.youtube.layout.fullscreenpanels.fingerprints.FullscreenViewAdderParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
 @Name("disable-fullscreen-panels")
-@Dependencies([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Description("Disables video description and comments panel in fullscreen view.")
 @FullscreenPanelsCompatibility
 @Version("0.0.1")
@@ -30,6 +33,16 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+            SwitchPreference(
+                "revanced_fullscreen_panels_enabled",
+                StringResource("revanced_fullscreen_panels_enabled_title", "Show fullscreen panels"),
+                false,
+                StringResource("revanced_fullscreen_panels_summary_on", "Fullscreen panels are shown"),
+                StringResource("revanced_fullscreen_panels_summary_off", "Fullscreen panels are hidden")
+            )
+        )
+
         val parentResult = FullscreenViewAdderParentFingerprint.result!!
         FullscreenViewAdderFingerprint.resolve(data, parentResult.method, parentResult.classDef)
         val result = FullscreenViewAdderParentFingerprint.result
