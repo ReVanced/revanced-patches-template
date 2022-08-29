@@ -15,7 +15,7 @@ import org.jf.dexlib2.Opcode
 @FuzzyPatternScanMethod(3)
 @HDRBrightnessCompatibility
 @Version("0.0.1")
-object HDRBrightnessFingerprintXXZ : MethodFingerprint(
+object HDRBrightnessFingerprintYJK : MethodFingerprint(
     "V", null, null,
     listOf(
         Opcode.SGET_OBJECT,

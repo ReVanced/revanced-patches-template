@@ -20,8 +20,6 @@ object PivotBarButtonsViewFingerprint : MethodFingerprint(
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     listOf("Z"),
     listOf(
-        Opcode.CHECK_CAST,
-        Opcode.GOTO,
         Opcode.SGET_OBJECT,
         Opcode.IGET,
         Opcode.INVOKE_STATIC,

@@ -9,36 +9,36 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.misc.hdrbrightness.annotations.HDRBrightnessCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.reference.FieldReference
 
-@Name("hdr-brightness-fingerprint-ghz")
+@Name("hdr-brightness-fingerprint-xxz")
 @MatchingMethod(
-    "Lghz;", "g"
+    "Lyel;", "G"
 )
 @FuzzyPatternScanMethod(3)
 @HDRBrightnessCompatibility
 @Version("0.0.1")
-object HDRBrightnessFingerprintGHZ : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, null,
+object HDRBrightnessFingerprintYEL : MethodFingerprint(
+    "V", AccessFlags.PUBLIC or AccessFlags.FINAL,
+    listOf("I", "I", "I", "I"),
     listOf(
-        /* WindowManager.LayoutParams lp = br.getWindow().getAttributes();
-         * lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_FULL;
-         * br.getWindow().setAttributes(lp);
-         */
+        Opcode.SGET_OBJECT,
+        Opcode.IGET_OBJECT,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CONST_HIGH16,
+        Opcode.IGET,
         Opcode.IPUT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IGET_OBJECT,
         Opcode.INVOKE_VIRTUAL
     ),
     null,
     customFingerprint = { methodDef ->
-        methodDef.implementation!!.instructions.count() == 16 && methodDef.implementation!!.instructions.any {
-            ((it as? NarrowLiteralInstruction)?.narrowLiteral == (/*BRIGHTNESS_OVERRIDE_FULL*/ 1.0f).toRawBits())
+        methodDef.implementation!!.instructions.any {
+            ((it as? ReferenceInstruction)?.reference as? FieldReference)?.let { field ->
+                // iput vx, vy, Landroid/view/WindowManager$LayoutParams;->screenBrightness:F
+                field.definingClass == "Landroid/view/WindowManager\$LayoutParams;" && field.name == "screenBrightness"
+            } == true
         }
     }
 )
