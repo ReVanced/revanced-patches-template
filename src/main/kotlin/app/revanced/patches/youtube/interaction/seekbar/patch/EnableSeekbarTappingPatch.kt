@@ -85,6 +85,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         val register = (instruction as Instruction35c).registerC
 
         // the instructions are written in reverse order.
+        val elseLabel = implementation.newLabelForIndex(result.patternScanResult!!.endIndex + 1)
         result.mutableMethod.addInstructions(
             result.patternScanResult!!.endIndex + 1, """
                invoke-virtual { v$register, v2 }, ${oMethod.definingClass}->${oMethod.name}(I)V
@@ -93,7 +94,6 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         )
 
         // if tap-seeking is disabled, do not invoke the two methods above by jumping to the else label
-        val elseLabel = implementation.newLabelForIndex(result.patternScanResult!!.endIndex + 1)
         implementation.addInstruction(
             result.patternScanResult!!.endIndex + 1, BuilderInstruction21t(Opcode.IF_EQZ, 0, elseLabel)
         )
