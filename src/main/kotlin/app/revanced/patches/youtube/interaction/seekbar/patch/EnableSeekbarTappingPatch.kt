@@ -84,8 +84,8 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return PatchResultError("Could not find the correct register")
         val register = (instruction as Instruction35c).registerC
 
-        // the instructions are written in reverse order.
         val elseLabel = implementation.newLabelForIndex(result.patternScanResult!!.endIndex + 1)
+        // the instructions are written in reverse order.
         result.mutableMethod.addInstructions(
             result.patternScanResult!!.endIndex + 1, """
                invoke-virtual { v$register, v2 }, ${oMethod.definingClass}->${oMethod.name}(I)V
