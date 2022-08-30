@@ -5,12 +5,12 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.tiktok.interaction.seekbar.annotations.SeekbarCompatibility
+import app.revanced.patches.tiktok.interaction.downloads.annotations.DownloadsCompatibility
 import org.jf.dexlib2.AccessFlags
 
 @Name("acl-common-share-get-show-type")
 @MatchingMethod("ACLCommonShare", "getShowType")
-@SeekbarCompatibility
+@DownloadsCompatibility
 @Version("0.0.1")
 object ACLCommonShareFingerprint2 : MethodFingerprint(
     "I",
