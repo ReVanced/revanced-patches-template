@@ -37,7 +37,8 @@ class TiktokSeekbarPatch : BytecodePatch(
         implementation.addInstructions(
             1, listOf(
                 BuilderInstruction11n(Opcode.CONST_4, 1, 1),
-                BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["showProgressBar"]!!)
+                BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["showProgressBar"]!!),
+                BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["draftProgressBar"]!!)
             )
         )
         return PatchResultSuccess()
