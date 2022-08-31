@@ -10,8 +10,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.tiktok.interaction.downloads.annotations.DownloadsCompatibility
-import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonShareFingerprint
-import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonShareFingerprint2
+import app.revanced.patches.tiktok.interaction.downloads.fingerprints.*
 
 @Patch
 @Name("tiktok-download")
@@ -21,7 +20,8 @@ import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonS
 class DownloadsPatch : BytecodePatch(
     listOf(
         ACLCommonShareFingerprint,
-        ACLCommonShareFingerprint2
+        ACLCommonShareFingerprint2,
+        ACLCommonShareFingerprint3
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
@@ -38,6 +38,15 @@ class DownloadsPatch : BytecodePatch(
             0,
             """
                 const/4 v0, 0x2
+                return v0
+            """
+        )
+        //Download videos without watermark.
+        val method3 = ACLCommonShareFingerprint3.result!!.mutableMethod
+        method3.replaceInstructions(
+            0,
+            """
+                const/4 v0, 0x1
                 return v0
             """
         )
