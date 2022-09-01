@@ -39,11 +39,11 @@ class TiktokAdsPatch : BytecodePatch(
             for ((index, instruction) in method.implementation!!.instructions.withIndex()) {
                 // conditions for the instruction we need
                 if (instruction.opcode.ordinal != Opcode.IPUT_OBJECT.ordinal) continue
-                val clonePreloadAdsFieldInstruction = (instruction as? ReferenceInstruction)
-                if ((clonePreloadAdsFieldInstruction?.reference as? FieldReference)?.name != "preloadAds") continue
+                val preloadAdsFieldInstruction = (instruction as? ReferenceInstruction)
+                if ((preloadAdsFieldInstruction?.reference as? FieldReference)?.name != "preloadAds") continue
 
                 // set null instead of the field "preloadAds"
-                val overrideRegister = (clonePreloadAdsFieldInstruction as TwoRegisterInstruction).registerA
+                val overrideRegister = (preloadAdsFieldInstruction as TwoRegisterInstruction).registerA
                 method.addInstruction(
                     index,
                     "const/4 v$overrideRegister, 0x0"

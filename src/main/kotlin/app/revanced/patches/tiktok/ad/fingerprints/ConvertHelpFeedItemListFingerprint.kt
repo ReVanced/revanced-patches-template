@@ -16,6 +16,6 @@ import app.revanced.patches.tiktok.ad.annotations.TiktokAdsCompatibility
 object ConvertHelpFeedItemListFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("/ConvertHelp;") &&
-                methodDef.name == "com${'$'}ss${'$'}ugc${'$'}aweme${'$'}proto${'$'}aweme_v2_feed_response${'$'}${'$'}com${'$'}ss${'$'}android${'$'}ugc${'$'}aweme${'$'}feed${'$'}model${'$'}FeedItemList"
+                methodDef.name.endsWith("${'$'}FeedItemList")
     }
 )
