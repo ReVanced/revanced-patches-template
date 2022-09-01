@@ -6,7 +6,7 @@ import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.tiktok.ad.annotations.TiktokAdsCompatibility
 
-@Name("feed-item-clone-fingerprint")
+@Name("convert-help-v2-feeditemlist-fingerprint")
 @MatchingMethod(
     "Lbeancopy/ConvertHelp;",
     "com${'$'}ss${'$'}ugc${'$'}aweme${'$'}proto${'$'}aweme_v2_feed_response${'$'}${'$'}com${'$'}ss${'$'}android${'$'}ugc${'$'}aweme${'$'}feed${'$'}model${'$'}FeedItemList",
