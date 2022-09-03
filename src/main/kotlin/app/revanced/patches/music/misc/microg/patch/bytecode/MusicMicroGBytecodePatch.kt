@@ -1,9 +1,7 @@
 package app.revanced.patches.music.misc.microg.patch.bytecode
 
 import app.revanced.extensions.equalsAny
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
@@ -32,6 +30,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @Description("Allows YouTube Music ReVanced to run without root and under a different package name.")
 @MusicMicroGPatchCompatibility
 @Version("0.0.1")
+@Tags(["essential"])
 class MusicMicroGBytecodePatch : BytecodePatch(
     listOf(
         ServiceCheckFingerprint,

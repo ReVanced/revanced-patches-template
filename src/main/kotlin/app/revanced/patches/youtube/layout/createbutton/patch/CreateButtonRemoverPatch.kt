@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.createbutton.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.PatchResult
@@ -30,6 +28,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Description("Hides the create button in the navigation bar.")
 @CreateButtonCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class CreateButtonRemoverPatch : BytecodePatch(
     listOf(
         CreateButtonFingerprint

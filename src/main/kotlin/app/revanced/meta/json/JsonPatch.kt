@@ -5,6 +5,7 @@ package app.revanced.meta.json
 data class JsonPatch(
     val name: String,
     val description: String,
+    val category: String,
     val version: String,
     val excluded: Boolean,
     val dependencies: Array<String>,

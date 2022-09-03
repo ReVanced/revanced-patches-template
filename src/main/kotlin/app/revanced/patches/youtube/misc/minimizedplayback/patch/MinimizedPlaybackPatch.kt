@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.minimizedplayback.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.data.impl.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
@@ -30,6 +28,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         MinimizedPlaybackKidsFingerprint, MinimizedPlaybackManagerFingerprint, MinimizedPlaybackSettingsFingerprint

@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.interaction.seekbar.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
@@ -30,6 +28,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 @Description("Enables tap-to-seek on the seekbar of the video player.")
 @SeekbarTappingCompatibility
 @Version("0.0.1")
+@Tags(["controls"])
 class EnableSeekbarTappingPatch : BytecodePatch(
     listOf(
         SeekbarTappingParentFingerprint, SeekbarTappingFingerprint

@@ -1,8 +1,6 @@
 package app.revanced.patches.warnwetter.misc.firebasegetcert.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
@@ -15,6 +13,7 @@ import app.revanced.patches.warnwetter.misc.firebasegetcert.annotations.Firebase
 @Description("Spoofs the X-Android-Cert header.")
 @FirebaseGetCertPatchCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class FirebaseGetCertPatch : BytecodePatch(
     listOf(
         GetReqistrationCertFingerprint,

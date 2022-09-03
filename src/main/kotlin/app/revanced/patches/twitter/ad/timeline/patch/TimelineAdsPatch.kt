@@ -1,8 +1,6 @@
 package app.revanced.patches.twitter.ad.timeline.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
@@ -28,6 +26,7 @@ import org.jf.dexlib2.iface.reference.StringReference
 @Description("Removes ads from the Twitter timeline.")
 @TimelineAdsCompatibility
 @Version("0.0.1")
+@Tags(["ads"])
 class TimelineAdsPatch : BytecodePatch(
     listOf(TimelineTweetJsonParserFingerprint)
 ) {

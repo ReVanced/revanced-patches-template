@@ -2,6 +2,7 @@ package app.revanced.patches.youtube.misc.playercontrols.resource.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Tags
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
@@ -18,6 +19,7 @@ import java.io.Closeable
 @Description("Manages the resources for the bottom controls of the YouTube player.")
 @PlayerControlsCompatibility
 @Version("0.0.1")
+@Tags(["misc", "controls"])
 class BottomControlsResourcePatch : ResourcePatch(), Closeable {
     override fun execute(data: ResourceData): PatchResult {
         resourceData = data

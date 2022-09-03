@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.enabledebugging.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -22,6 +20,7 @@ import org.w3c.dom.Element
 @Description("Enables app debugging by patching the manifest file.")
 @EnableDebuggingCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class EnableDebuggingPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(

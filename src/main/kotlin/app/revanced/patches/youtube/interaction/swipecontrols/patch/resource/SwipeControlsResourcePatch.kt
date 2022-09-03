@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.interaction.swipecontrols.patch.resource
 
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Tags
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
@@ -17,6 +18,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @DependsOn([SettingsPatch::class])
 @SwipeControlsCompatibility
 @Version("0.0.1")
+@Tags(["controls", "interaction"])
 class SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(

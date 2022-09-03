@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -20,6 +18,7 @@ import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
 @Description("Adds the preferences for Return YouTube Dislike.")
 @ReturnYouTubeDislikeCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         val youtubePackage = "com.google.android.youtube"

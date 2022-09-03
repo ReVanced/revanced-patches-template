@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.ad.general.bytecode.patch
 
 import app.revanced.extensions.injectHideCall
+import app.revanced.patcher.annotation.Tags
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -46,6 +47,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 @Description("Removes general ads.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
+@Tags(["ads"])
 class GeneralBytecodeAdsPatch : BytecodePatch() {
     // a constant used by litho
     private val lithoConstant = 0xaed2868

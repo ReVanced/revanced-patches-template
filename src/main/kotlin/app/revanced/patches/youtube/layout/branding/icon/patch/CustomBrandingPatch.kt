@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.branding.icon.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -22,6 +20,7 @@ import java.nio.file.Files
 @Description("Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).")
 @CustomBrandingCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class CustomBrandingPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         val resDirectory = data["res"]

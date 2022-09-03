@@ -1,8 +1,6 @@
 package app.revanced.patches.tiktok.interaction.seekbar.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
@@ -21,6 +19,7 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction22c
 @Description("Show progress bar for all video.")
 @SeekbarCompatibility
 @Version("0.0.1")
+@Tags(["interaction"])
 class TiktokSeekbarPatch : BytecodePatch(
     listOf(
         AwemeGetVideoControlFingerprint

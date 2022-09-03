@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.quality.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
@@ -27,6 +25,7 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @Description("Adds the ability to remember the video quality you chose in the video quality flyout.")
 @DefaultVideoQualityCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class RememberVideoQualityPatch : BytecodePatch(
     listOf(
         VideoQualitySetterFingerprint

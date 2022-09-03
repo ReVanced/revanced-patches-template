@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.autorepeat.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstruction
@@ -27,6 +25,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Description("Always repeats the playing video again.")
 @AutoRepeatCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class AutoRepeatPatch : BytecodePatch(
     listOf(
         AutoRepeatParentFingerprint

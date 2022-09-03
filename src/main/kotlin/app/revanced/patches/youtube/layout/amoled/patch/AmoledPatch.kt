@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.amoled.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -20,6 +18,7 @@ import java.io.File
 @Description("Enables pure black theme.")
 @AmoledCompatibility
 @Version("0.0.1")
+@Tags(["appearance"])
 class AmoledPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         data.xmlEditor["res${File.separator}values${File.separator}colors.xml"].use { editor ->

@@ -1,9 +1,7 @@
 package app.revanced.patches.youtube.misc.microg.patch.bytecode
 
 import app.revanced.extensions.equalsAny
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
@@ -40,6 +38,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @Description("Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG.")
 @MicroGPatchCompatibility
 @Version("0.0.1")
+@Tags(["essential"])
 class MicroGBytecodePatch : BytecodePatch(
     listOf(
         IntegrityCheckFingerprint,

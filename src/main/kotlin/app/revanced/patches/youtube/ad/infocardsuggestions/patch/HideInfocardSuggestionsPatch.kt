@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.ad.infocardsuggestions.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
@@ -27,6 +25,7 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 @Description("Hides infocards in videos.")
 @HideInfocardSuggestionsCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class HideInfocardSuggestionsPatch : BytecodePatch(
     listOf(
         HideInfocardSuggestionsParentFingerprint

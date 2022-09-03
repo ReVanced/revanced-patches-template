@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
@@ -26,6 +24,7 @@ import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 @Description("Shows the dislike count of videos using the Return YouTube Dislike API.")
 @ReturnYouTubeDislikeCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentSpecParentFingerprint, LikeFingerprint, DislikeFingerprint, RemoveLikeFingerprint

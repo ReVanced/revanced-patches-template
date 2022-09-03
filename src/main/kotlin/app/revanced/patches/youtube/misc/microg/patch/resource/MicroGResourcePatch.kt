@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.microg.patch.resource
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -22,6 +20,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 @Description("Resource patch to allow YouTube ReVanced to run without root and under a different package name.")
 @MicroGPatchCompatibility
 @Version("0.0.1")
+@Tags(["essential"])
 class MicroGResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         SettingsPatch.addPreference(

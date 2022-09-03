@@ -1,9 +1,7 @@
 package app.revanced.patches.youtube.misc.mapping.patch
 
 import app.revanced.extensions.doRecursively
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -13,6 +11,7 @@ import org.w3c.dom.Element
 @Name("resource-id-mapping-provider-resource-patch-dependency")
 @Description("Acts as a provider/dependency for resource mappings.")
 @Version("0.0.1")
+@Tags(["misc"])
 class ResourceIdMappingProviderResourcePatch : ResourcePatch() {
     companion object {
         internal lateinit var resourceMappings: List<ResourceElement>

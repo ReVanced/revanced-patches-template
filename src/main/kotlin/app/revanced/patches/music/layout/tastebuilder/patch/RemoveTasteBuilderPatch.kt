@@ -1,8 +1,6 @@
 package app.revanced.patches.music.layout.tastebuilder.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,6 +16,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction22c
 @Description("Removes the \"Tell us which artists you like\" card from the home screen.")
 @RemoveTasteBuilderCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class RemoveTasteBuilderPatch : BytecodePatch(
     listOf(
         TasteBuilderConstructorFingerprint

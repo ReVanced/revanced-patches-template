@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.interaction.downloads.resource.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -22,6 +20,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @Description("Makes necessary changes to resources for the download button.")
 @DownloadsCompatibility
 @Version("0.0.1")
+@Tags(["interaction"])
 class DownloadsResourcePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(

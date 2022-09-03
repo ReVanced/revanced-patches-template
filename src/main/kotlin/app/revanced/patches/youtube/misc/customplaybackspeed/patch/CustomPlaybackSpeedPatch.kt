@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.customplaybackspeed.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
@@ -28,6 +26,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @DependsOn([IntegrationsPatch::class])
 @CustomPlaybackSpeedCompatibility
 @Version("0.0.1")
+@Tags(["controls", "interaction"])
 class CustomPlaybackSpeedPatch : BytecodePatch(
     listOf(
         SpeedArrayGeneratorFingerprint, SpeedLimiterFingerprint

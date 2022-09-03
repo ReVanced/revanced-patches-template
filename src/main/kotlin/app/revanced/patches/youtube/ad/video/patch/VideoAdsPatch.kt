@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.ad.video.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
@@ -25,6 +23,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Description("Removes ads in the video player.")
 @VideoAdsCompatibility
 @Version("0.0.1")
+@Tags(["ads"])
 class VideoAdsPatch : BytecodePatch(
     listOf(
         ShowVideoAdsConstructorFingerprint

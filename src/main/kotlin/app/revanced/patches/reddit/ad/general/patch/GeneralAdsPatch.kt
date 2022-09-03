@@ -1,8 +1,6 @@
 package app.revanced.patches.reddit.ad.general.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.annotations.Patch
@@ -21,6 +19,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @Description("Removes general ads from the Reddit frontpage and subreddits.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
+@Tags(["ads"])
 class GeneralAdsPatch : BytecodePatch() {
     override fun execute(data: BytecodeData): PatchResult {
         data.classes.forEach { classDef ->

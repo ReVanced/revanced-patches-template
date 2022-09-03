@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.shorts.button.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.PatchResult
@@ -26,6 +24,7 @@ import org.jf.dexlib2.Opcode
 @Description("Hides the shorts button on the navigation bar.")
 @ShortsButtonCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class ShortsButtonRemoverPatch : BytecodePatch(
     listOf(
         PivotBarButtonTabEnumFingerprint, PivotBarButtonsViewFingerprint

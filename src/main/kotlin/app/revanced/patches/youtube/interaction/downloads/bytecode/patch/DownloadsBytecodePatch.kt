@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.interaction.downloads.bytecode.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -20,6 +18,7 @@ import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 @Description("Enables downloading music and videos from YouTube.")
 @DownloadsCompatibility
 @Version("0.0.1")
+@Tags(["interaction"])
 class DownloadsBytecodePatch : BytecodePatch() {
     override fun execute(data: BytecodeData): PatchResult {
         val integrationsPackage = "app/revanced/integrations"

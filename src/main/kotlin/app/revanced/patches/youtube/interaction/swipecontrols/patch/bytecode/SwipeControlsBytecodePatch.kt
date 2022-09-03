@@ -2,9 +2,7 @@ package app.revanced.patches.youtube.interaction.swipecontrols.patch.bytecode
 
 import app.revanced.extensions.transformMethods
 import app.revanced.extensions.traverseClassHierarchy
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -26,6 +24,7 @@ import org.jf.dexlib2.immutable.ImmutableMethod
 @Description("Adds volume and brightness swipe controls.")
 @SwipeControlsCompatibility
 @Version("0.0.3")
+@Tags(["controls", "interaction"])
 @DependsOn(
     [
         IntegrationsPatch::class,

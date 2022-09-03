@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.autoplaybutton.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
@@ -30,6 +28,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Description("Hides the autoplay button in the video player.")
 @AutoplayButtonCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class HideAutoplayButtonPatch : BytecodePatch(
     listOf(
         LayoutConstructorFingerprint, AutoNavInformerFingerprint

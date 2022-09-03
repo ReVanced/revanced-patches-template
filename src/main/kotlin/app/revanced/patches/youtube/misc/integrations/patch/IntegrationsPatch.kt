@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.integrations.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.or
@@ -22,6 +20,7 @@ import org.jf.dexlib2.immutable.ImmutableMethodImplementation
 @Description("Applies mandatory patches to implement the ReVanced integrations into the application.")
 @IntegrationsCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class IntegrationsPatch : BytecodePatch(
     listOf(
         InitFingerprint

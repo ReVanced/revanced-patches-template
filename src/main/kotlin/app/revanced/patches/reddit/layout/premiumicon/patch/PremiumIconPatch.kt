@@ -1,8 +1,6 @@
 package app.revanced.patches.reddit.layout.premiumicon.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.annotations.Patch
@@ -17,6 +15,7 @@ import app.revanced.patches.reddit.layout.premiumicon.fingerprints.PremiumIconFi
 @Description("Unlocking Premium Icons in reddit app.")
 @PremiumIconCompatibility
 @Version("0.0.1")
+@Tags(["premium"])
 class PremiumIconPatch : BytecodePatch(
     listOf(
         PremiumIconFingerprint

@@ -1,8 +1,6 @@
 package app.revanced.patches.music.audio.codecs.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.data.impl.toMethodWalker
 import app.revanced.patcher.patch.annotations.Patch
@@ -20,6 +18,7 @@ import org.jf.dexlib2.Opcode
 @Description("Adds more audio codec options. The new audio codecs usually result in better audio quality.")
 @CodecsUnlockCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class CodecsUnlockPatch : BytecodePatch(
     listOf(
         CodecsLockFingerprint, AllCodecsReferenceFingerprint

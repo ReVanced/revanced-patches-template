@@ -1,8 +1,6 @@
 package app.revanced.patches.music.layout.minimizedplayback.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.data.impl.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
@@ -21,6 +19,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Description("Enables minimized playback on Kids music.")
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
+@Tags(["layout"])
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         MinimizedPlaybackManagerFingerprint

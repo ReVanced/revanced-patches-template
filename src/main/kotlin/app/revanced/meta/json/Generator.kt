@@ -1,6 +1,7 @@
 package app.revanced.meta.json
 
 import app.revanced.meta.Bundle
+import app.revanced.patcher.extensions.PatchExtensions.tags
 import app.revanced.patcher.extensions.PatchExtensions.compatiblePackages
 import app.revanced.patcher.extensions.PatchExtensions.dependencies
 import app.revanced.patcher.extensions.PatchExtensions.description
@@ -17,6 +18,7 @@ fun generateJson(bundle: Bundle) {
         JsonPatch(
             it.patchName,
             it.description ?: "This patch has no description.",
+            it.tags ?: arrayOf(),
             it.version ?: "0.0.0",
             !it.include,
             it.dependencies?.map { dep ->

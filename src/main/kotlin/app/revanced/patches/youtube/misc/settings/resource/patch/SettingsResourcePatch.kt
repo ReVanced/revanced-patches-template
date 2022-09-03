@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.misc.settings.resource.patch
 
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Tags
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.DomFileEditor
 import app.revanced.patcher.data.impl.ResourceData
@@ -24,6 +25,7 @@ import java.io.Closeable
 @SettingsCompatibility
 @DependsOn([FixLocaleConfigErrorPatch::class, ResourceIdMappingProviderResourcePatch::class])
 @Version("0.0.1")
+@Tags(["essential"])
 class SettingsResourcePatch : ResourcePatch(), Closeable {
 
     override fun execute(data: ResourceData): PatchResult {

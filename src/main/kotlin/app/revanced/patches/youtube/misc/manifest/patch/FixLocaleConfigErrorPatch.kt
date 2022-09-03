@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.manifest.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.impl.ResourceData
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -14,6 +12,7 @@ import org.w3c.dom.Element
 @Description("Fixes an error when building the resources by patching the manifest file.")
 @FixLocaleConfigErrorCompatibility
 @Version("0.0.1")
+@Tags(["misc"])
 class FixLocaleConfigErrorPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
         // create an xml editor instance
