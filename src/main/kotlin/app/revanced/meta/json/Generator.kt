@@ -18,7 +18,7 @@ fun generateJson(bundle: Bundle) {
         JsonPatch(
             it.patchName,
             it.description ?: "This patch has no description.",
-            it.tags ?: arrayOf(),
+            it.tags ?: emptyArray(),
             it.version ?: "0.0.0",
             !it.include,
             it.dependencies?.map { dep ->
