@@ -30,7 +30,7 @@ class ThemePatch : ResourcePatch() {
                 val node = resourcesNode.childNodes.item(i)
                 if (node !is Element) continue
 
-                val element = resourcesNode.childNodes.item(i) as Element
+                val element = node as Element
                 element.textContent = theme.applier(element.getAttribute("name")) ?: continue
             }
         }
