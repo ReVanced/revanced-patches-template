@@ -39,7 +39,7 @@ class ThemePatch : ResourcePatch() {
     }
 
     companion object : OptionsContainer() {
-        private var theme: String by PatchOption.StringListOption(
+        var theme: String by PatchOption.StringListOption(
             key = "theme",
             default = null,
             options = Themes.names,
