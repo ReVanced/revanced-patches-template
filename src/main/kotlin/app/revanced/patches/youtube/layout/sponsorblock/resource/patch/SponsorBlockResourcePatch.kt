@@ -3,7 +3,6 @@ package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.ResourceData
-import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -13,8 +12,6 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
-import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ShortsPlayerConstructorFingerprint
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
 import app.revanced.util.resources.ResourceUtils.copyResources
@@ -104,24 +101,6 @@ class SponsorBlockResourcePatch : ResourcePatch() {
                 break
             }
         }.close() // close afterwards
-
-        val startVideoInformerMethod = StartVideoInformerFingerprint.result!!.mutableMethod
-
-        startVideoInformerMethod.addInstructions(
-            0, """
-            const/4 v0, 0x1
-            sput-boolean v0, Lapp/revanced/integrations/settings/SettingsEnum;->SB_SHORTS_ENABLED:Z
-        """
-        )
-
-        val shortsPlayerConstructorMethod = ShortsPlayerConstructorFingerprint.result!!.mutableMethod
-
-        shortsPlayerConstructorMethod.addInstructions(
-            0, """
-            const/4 v0, 0x0
-            sput-boolean v0, Lapp/revanced/integrations/settings/SettingsEnum;->SB_SHORTS_ENABLED:Z
-        """
-        )
 
         return PatchResultSuccess()
     }
