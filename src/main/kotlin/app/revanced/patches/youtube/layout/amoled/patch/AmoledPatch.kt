@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.layout.amoled.annotations.AmoledCompatibility
-import app.revanced.patches.youtube.layout.theme.Themes
 import app.revanced.patches.youtube.layout.theme.patch.ThemePatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 
@@ -23,7 +22,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 @PatchDeprecated("Theme patch already includes the Amoled theme.", ThemePatch::class)
 class AmoledPatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
-        ThemePatch.theme = Themes.Amoled.name
+        ThemePatch.theme = ThemePatch.Themes.Amoled.name
         return ThemePatch().execute(data)
     }
 }
