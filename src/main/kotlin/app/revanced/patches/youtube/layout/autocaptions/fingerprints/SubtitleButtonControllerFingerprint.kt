@@ -9,7 +9,7 @@ import app.revanced.patches.youtube.layout.autocaptions.annotations.AutoCaptions
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("subtitlebuttoncontroller-fingerprint")
+@Name("subtitle-button-controller-fingerprint")
 @MatchingMethod("Lcom/google/android/apps/youtube/app/player/overlay/SubtitleButtonController;", "E")
 @AutoCaptionsCompatibility
 @Version("0.0.1")

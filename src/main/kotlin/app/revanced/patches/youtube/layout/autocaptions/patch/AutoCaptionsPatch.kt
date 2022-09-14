@@ -21,8 +21,8 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("forced-autocaptions-disabler")
-@Description("Disable forced captions inside video player.")
+@Name("disable-auto-captions")
+@Description("Disable forced captions from being automatically enabled.")
 @AutoCaptionsCompatibility
 @Version("0.0.1")
 class AutoCaptionsPatch : BytecodePatch(
@@ -34,10 +34,10 @@ class AutoCaptionsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_autocaptions_enabled",
-                StringResource("revanced_autocaptions_enabled_title", "Disable forced captions"),
+                StringResource("revanced_autocaptions_enabled_title", "Disable auto-captions"),
                 false,
-                StringResource("revanced_autocaptions_summary_on", "Forced captions is enabled"),
-                StringResource("revanced_autocaptions_summary_off", "Forced captions is disabled")
+                StringResource("revanced_autocaptions_summary_on", "Auto-captions are enabled"),
+                StringResource("revanced_autocaptions_summary_off", "Auto-captions are disabled")
             )
         )
 
@@ -46,7 +46,7 @@ class AutoCaptionsPatch : BytecodePatch(
         startVideoInformerMethod.addInstructions(
             0, """
             const/4 v0, 0x0
-            sput-boolean v0, Lapp/revanced/integrations/patches/ForceDisableCaptionsPatch;->captionsButtonDisabled:Z
+            sput-boolean v0, Lapp/revanced/integrations/patches/DisableAutoCaptionsPatch;->captionsButtonDisabled:Z
         """
         )
 
@@ -55,7 +55,7 @@ class AutoCaptionsPatch : BytecodePatch(
         subtitleButtonControllerMethod.addInstructions(
             0, """
             const/4 v0, 0x1
-            sput-boolean v0, Lapp/revanced/integrations/patches/ForceDisableCaptionsPatch;->captionsButtonDisabled:Z
+            sput-boolean v0, Lapp/revanced/integrations/patches/DisableAutoCaptionsPatch;->captionsButtonDisabled:Z
         """
         )
 
@@ -63,14 +63,14 @@ class AutoCaptionsPatch : BytecodePatch(
 
         subtitleTrackMethod.addInstructions(
             0, """
-            invoke-static {}, Lapp/revanced/integrations/patches/ForceDisableCaptionsPatch;->autoCaptionsEnabled()Z
+            invoke-static {}, Lapp/revanced/integrations/patches/DisableAutoCaptionsPatch;->autoCaptionsEnabled()Z
             move-result v0
-            if-eqz v0, :forced_captions
-            sget-boolean v0, Lapp/revanced/integrations/patches/ForceDisableCaptionsPatch;->captionsButtonDisabled:Z
-            if-nez v0, :forced_captions
+            if-eqz v0, :auto_captions_enabled
+            sget-boolean v0, Lapp/revanced/integrations/patches/DisableAutoCaptionsPatch;->captionsButtonDisabled:Z
+            if-nez v0, :auto_captions_enabled
             const/4 v0, 0x1
             return v0
-            :forced_captions
+            :auto_captions_enabled
             nop
         """
         )
