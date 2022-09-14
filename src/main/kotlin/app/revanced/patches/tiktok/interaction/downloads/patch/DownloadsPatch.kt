@@ -66,16 +66,14 @@ class DownloadsPatch : BytecodePatch(
         val instructions = implementation4!!.instructions
         var targetOffset = -1
         //Search for the target method called instruction offset.
-        run breaking@{
-            instructions.forEachIndexed { index, instruction ->
-                if (instruction.opcode != Opcode.CONST_STRING) return@forEachIndexed
-                val reference = (instruction as ReferenceInstruction).reference as StringReference
-                if (reference.string != "video/mp4") return@forEachIndexed
-                val targetInstruction = instructions[index + 1] as ReferenceInstruction
-                if (targetInstruction.opcode != Opcode.INVOKE_STATIC) return@forEachIndexed
-                targetOffset = index + 1
-                return@breaking
-            }
+        for ((index, instruction) in instructions.withIndex()) {
+            if (instruction.opcode != Opcode.CONST_STRING) continue
+            val reference = (instruction as ReferenceInstruction).reference as StringReference
+            if (reference.string != "video/mp4") continue
+            val targetInstruction = instructions[index + 1]
+            if (targetInstruction.opcode != Opcode.INVOKE_STATIC) continue
+            targetOffset = index + 1
+            break
         }
         if (targetOffset == -1) return PatchResultError("Can not find download path uri method.")
         //Change videos' download path.
