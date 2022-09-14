@@ -66,16 +66,20 @@ class DownloadsPatch : BytecodePatch(
         val instructions = implementation4!!.instructions
         var targetOffset = -1
         //Search for the target method called instruction offset.
-        instructions.forEachIndexed { index, instruction ->
-            if (instruction.opcode != Opcode.CONST_STRING) return@forEachIndexed
-            val reference = (instruction as ReferenceInstruction).reference as StringReference
-            if (reference.string != "video/mp4") return@forEachIndexed
-            val targetInstruction = instructions[index + 1] as ReferenceInstruction
-            if (targetInstruction.opcode != Opcode.INVOKE_STATIC) return@forEachIndexed
-            targetOffset = index + 1
+        run found@{
+            instructions.forEachIndexed { index, instruction ->
+                if (instruction.opcode != Opcode.CONST_STRING) return@forEachIndexed
+                val reference = (instruction as ReferenceInstruction).reference as StringReference
+                if (reference.string != "video/mp4") return@forEachIndexed
+                val targetInstruction = instructions[index + 1] as ReferenceInstruction
+                if (targetInstruction.opcode != Opcode.INVOKE_STATIC) return@forEachIndexed
+                targetOffset = index + 1
+                return@found
+            }
         }
         if (targetOffset == -1) return PatchResultError("Can not find download path uri method.")
         //Change videos' download path.
+        val downloadPath = "$downloadPathParent/$downloadPathChild"
         val downloadUriMethod = data
             .toMethodWalker(DownloadPathParentFingerprint.result!!.method)
             .nextMethod(targetOffset, true)
@@ -86,7 +90,7 @@ class DownloadsPatch : BytecodePatch(
                 downloadUriMethod.replaceInstruction(
                     index,
                     """
-                        const-string v$overrideRegister, "${downloadPath!!}"
+                        const-string v$overrideRegister, "$downloadPath"
                     """
                 )
             }
@@ -108,12 +112,24 @@ class DownloadsPatch : BytecodePatch(
     }
 
     companion object : OptionsContainer() {
-        private var downloadPath: String? by option(
+        private var downloadPathParent: String? by option(
+            PatchOption.StringListOption(
+                key = "downloadPathParent",
+                default = "DCIM",
+                options = listOf(
+                    "DCIM", "Movies", "Pictures"
+                ),
+                title = "Download Path Parent",
+                description = "Select \"DCIM\", \"Movies\" or \"Pictures\" as a parent directory.",
+                required = true
+            )
+        )
+        private var downloadPathChild: String? by option(
             PatchOption.StringOption(
-                key = "downloadPath",
-                default = "DCIM/Tiktok",
-                title = "Download Path",
-                description = "The custom download path. Allow directories are DCIM, Movies, Pictures.",
+                key = "downloadPathChild",
+                default = "Tiktok",
+                title = "Download Path Child",
+                description = "Custom child directory name.",
                 required = true
             )
         )
