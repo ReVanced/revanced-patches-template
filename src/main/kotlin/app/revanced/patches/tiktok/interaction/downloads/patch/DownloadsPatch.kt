@@ -66,7 +66,7 @@ class DownloadsPatch : BytecodePatch(
         val instructions = implementation4!!.instructions
         var targetOffset = -1
         //Search for the target method called instruction offset.
-        run found@{
+        run breaking@{
             instructions.forEachIndexed { index, instruction ->
                 if (instruction.opcode != Opcode.CONST_STRING) return@forEachIndexed
                 val reference = (instruction as ReferenceInstruction).reference as StringReference
@@ -74,7 +74,7 @@ class DownloadsPatch : BytecodePatch(
                 val targetInstruction = instructions[index + 1] as ReferenceInstruction
                 if (targetInstruction.opcode != Opcode.INVOKE_STATIC) return@forEachIndexed
                 targetOffset = index + 1
-                return@found
+                return@breaking
             }
         }
         if (targetOffset == -1) return PatchResultError("Can not find download path uri method.")
@@ -120,16 +120,16 @@ class DownloadsPatch : BytecodePatch(
                     "DCIM", "Movies", "Pictures"
                 ),
                 title = "Download Path Parent",
-                description = "Select \"DCIM\", \"Movies\" or \"Pictures\" as a parent directory.",
+                description = "Parent media directory for downloads.",
                 required = true
             )
         )
         private var downloadPathChild: String? by option(
             PatchOption.StringOption(
                 key = "downloadPathChild",
-                default = "Tiktok",
+                default = "TikTok",
                 title = "Download Path Child",
-                description = "Custom child directory name.",
+                description = "Custom child directory name where downloaded TikTok's will be saved.",
                 required = true
             )
         )
