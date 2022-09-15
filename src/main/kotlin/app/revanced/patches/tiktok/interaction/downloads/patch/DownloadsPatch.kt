@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
 @Name("tiktok-download")
-@Description("Remove restrictions on downloads video and change download path.")
+@Description("Removes download restrictions and changes the default path to download to.")
 @DownloadsCompatibility
 @Version("0.0.1")
 class DownloadsPatch : BytecodePatch(
