@@ -112,22 +112,22 @@ class DownloadsPatch : BytecodePatch(
     companion object : OptionsContainer() {
         private var downloadPathParent: String? by option(
             PatchOption.StringListOption(
-                key = "downloadPathParent",
+                key = "mediaFolder",
                 default = "DCIM",
                 options = listOf(
                     "DCIM", "Movies", "Pictures"
                 ),
-                title = "Download Path Parent",
-                description = "Parent media directory for downloads.",
+                title = "Media folder",
+                description = "The media root folder to download to.",
                 required = true
             )
         )
         private var downloadPathChild: String? by option(
             PatchOption.StringOption(
-                key = "downloadPathChild",
+                key = "downloadPath",
                 default = "TikTok",
-                title = "Download Path Child",
-                description = "Custom child directory name where downloaded TikTok's will be saved.",
+                title = "Download path",
+                description = "Download path relative to the media folder.",
                 required = true
             )
         )
