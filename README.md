@@ -9,7 +9,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `timeline-ads` | Removes ads from the Twitter timeline. | all |
+| `timeline-ads` | Removes ads from the Twitter timeline. | 9.50.0 |
 </details>
 
 ### 📦 `com.reddit.frontpage`
