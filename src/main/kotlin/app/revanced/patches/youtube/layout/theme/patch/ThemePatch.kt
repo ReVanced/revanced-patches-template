@@ -56,6 +56,15 @@ class ThemePatch : ResourcePatch() {
                 "yt_selected_nav_label_dark" -> "#ffdf0000"
                 else -> null
             }
+        }),
+
+        MaterialYou({ attr ->
+            when (attr) {
+                "yt_black1", "yt_black1_opacity95", "yt_black2", "yt_black3", "yt_black4", "yt_status_bar_background_dark" -> "@android:color/system_neutral1_900"
+                "yt_white1", "yt_white1_opacity95", "yt_white2", "yt_white3", "yt_white4" -> "@android:color/system_neutral1_50"
+                "yt_selected_nav_label_dark", "yt_selected_nav_label_light" -> "#ffdf0000"
+                else -> null
+            }
         });
 
         companion object {
