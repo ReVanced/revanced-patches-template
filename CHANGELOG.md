@@ -1,3 +1,75 @@
+# [2.55.0](https://github.com/revanced/revanced-patches/compare/v2.54.1...v2.55.0) (2022-09-15)
+
+
+### Features
+
+* `disable-auto-captions` patch ([#435](https://github.com/revanced/revanced-patches/issues/435)) ([8ee12d0](https://github.com/revanced/revanced-patches/commit/8ee12d0beadfd0a8fdce0a331646e8786527e84d))
+
+## [2.54.1](https://github.com/revanced/revanced-patches/compare/v2.54.0...v2.54.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* alignment of download button icon ([#477](https://github.com/revanced/revanced-patches/issues/477)) ([2093f11](https://github.com/revanced/revanced-patches/commit/2093f11e762c471a0987fb57f03c7f48d565fdce))
+
+# [2.54.0](https://github.com/revanced/revanced-patches/compare/v2.53.0...v2.54.0) (2022-09-14)
+
+
+### Features
+
+* bump YouTube Music patches to v5.23.50 ([#462](https://github.com/revanced/revanced-patches/issues/462)) ([15c10b1](https://github.com/revanced/revanced-patches/commit/15c10b1e0368a021b0f2ec46bc2e9ea84a5d5afd))
+
+# [2.53.0](https://github.com/revanced/revanced-patches/compare/v2.52.3...v2.53.0) (2022-09-13)
+
+
+### Features
+
+* patch requests issue template ([#467](https://github.com/revanced/revanced-patches/issues/467)) ([d8bb354](https://github.com/revanced/revanced-patches/commit/d8bb35472258c0634599102f4f4bf4cea587a817)), closes [revanced/revanced-patches#463](https://github.com/revanced/revanced-patches/issues/463)
+
+## [2.52.3](https://github.com/revanced/revanced-patches/compare/v2.52.2...v2.52.3) (2022-09-11)
+
+
+### Bug Fixes
+
+* path for download icon ([#465](https://github.com/revanced/revanced-patches/issues/465)) ([bff22c3](https://github.com/revanced/revanced-patches/commit/bff22c3a154fd8059f4f8995a303354633a50517))
+
+## [2.52.2](https://github.com/revanced/revanced-patches/compare/v2.52.1...v2.52.2) (2022-09-11)
+
+
+### Bug Fixes
+
+* design language for download icon ([#464](https://github.com/revanced/revanced-patches/issues/464)) ([c24dc17](https://github.com/revanced/revanced-patches/commit/c24dc175f705fd5364b8bcf01f27f3ac8ecc0e64))
+
+## [2.52.1](https://github.com/revanced/revanced-patches/compare/v2.52.0...v2.52.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* multiple compatible pkgs on readme ([3f82a13](https://github.com/revanced/revanced-patches/commit/3f82a1349fb11b1152ac10d76deb930f7325b7c9))
+
+# [2.52.0](https://github.com/revanced/revanced-patches/compare/v2.51.3...v2.52.0) (2022-09-08)
+
+
+### Features
+
+* add deprecated & options to patches.json ([759315b](https://github.com/revanced/revanced-patches/commit/759315be1b23a6b3655fc87b56a8974ebac648cc))
+
+## [2.51.3](https://github.com/revanced/revanced-patches/compare/v2.51.2...v2.51.3) (2022-09-08)
+
+
+### Bug Fixes
+
+* cleanup & trigger release for ThemePatch ([8d25b21](https://github.com/revanced/revanced-patches/commit/8d25b214e297797092432b5fe1a4ede1f42115c8)), closes [#447](https://github.com/revanced/revanced-patches/issues/447) [revanced/revanced-patcher#99](https://github.com/revanced/revanced-patcher/issues/99)
+
+## [2.51.2](https://github.com/revanced/revanced-patches/compare/v2.51.1...v2.51.2) (2022-09-08)
+
+## [2.51.1](https://github.com/revanced/revanced-patches/compare/v2.51.0...v2.51.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* wrap theme option ([150c173](https://github.com/revanced/revanced-patches/commit/150c173adce31d9984d6feca694b472649233056))
+
 # [2.51.0](https://github.com/revanced/revanced-patches/compare/v2.50.8...v2.51.0) (2022-09-08)
 
 

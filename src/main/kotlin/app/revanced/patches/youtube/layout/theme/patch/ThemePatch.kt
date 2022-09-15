@@ -20,7 +20,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class ThemePatch : ResourcePatch() {
     override fun execute(data: ResourceData): PatchResult {
-        val theme = Themes.of(theme) ?: return PatchResultError("Theme '$theme' not found.")
+        val theme = Themes.of(theme!!) ?: return PatchResultError("Theme '$theme' not found.")
 
         data.xmlEditor["res/values/colors.xml"].use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
@@ -35,10 +35,10 @@ class ThemePatch : ResourcePatch() {
     }
 
     companion object : OptionsContainer() {
-        var theme: String by option(
+        var theme: String? by option(
             PatchOption.StringListOption(
                 key = "theme",
-                default = null,
+                default = Themes.Amoled.name,
                 options = Themes.names,
                 title = "Theme",
                 description = "Select a theme.",
@@ -50,7 +50,9 @@ class ThemePatch : ResourcePatch() {
     enum class Themes(val apply: (String) -> String?) {
         Amoled({ attr ->
             when (attr) {
-                "yt_black1", "yt_black1_opacity95", "yt_black2", "yt_black3", "yt_black4", "yt_status_bar_background_dark" -> "@android:color/black"
+                "yt_black1", "yt_black1_opacity95", "yt_black2", "yt_black3", "yt_black4",
+                "yt_status_bar_background_dark" -> "@android:color/black"
+
                 "yt_selected_nav_label_dark" -> "#ffdf0000"
                 else -> null
             }
