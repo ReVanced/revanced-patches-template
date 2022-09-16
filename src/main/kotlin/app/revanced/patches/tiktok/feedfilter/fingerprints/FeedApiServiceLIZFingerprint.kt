@@ -8,7 +8,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibility
 import org.jf.dexlib2.AccessFlags
 
-@Name("feed-item-clone-fingerprint")
+@Name("feed-api-service-fingerprint")
 @MatchingMethod(
     "Lcom/ss/android/ugc/aweme/feed/FeedApiService;",
     "LIZ",
