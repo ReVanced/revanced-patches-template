@@ -1,3 +1,25 @@
+# [2.57.0](https://github.com/revanced/revanced-patches/compare/v2.56.1...v2.57.0) (2022-09-16)
+
+
+### Features
+
+* **amoled:** remove in favour of `theme` patch ([0032301](https://github.com/revanced/revanced-patches/commit/00323010ed7356a639e4e86916dcbae96a53f7f6))
+* **theme:** arbitrary background color for dark theme ([afd5502](https://github.com/revanced/revanced-patches/commit/afd5502afdb207d5f52516653869b26fae7e5d21))
+
+## [2.56.1](https://github.com/revanced/revanced-patches/compare/v2.56.0...v2.56.1) (2022-09-15)
+
+
+### Bug Fixes
+
+* `auto-captions` patch switch description ([#488](https://github.com/revanced/revanced-patches/issues/488)) ([57824fb](https://github.com/revanced/revanced-patches/commit/57824fb16c56889d8f18299e9bab2563bb13e5c2))
+
+# [2.56.0](https://github.com/revanced/revanced-patches/compare/v2.55.0...v2.56.0) (2022-09-15)
+
+
+### Features
+
+* **tiktok-download:** custom download path ([#479](https://github.com/revanced/revanced-patches/issues/479)) ([944aa48](https://github.com/revanced/revanced-patches/commit/944aa485cec513faa30a21b91887dcacf9d70b45))
+
 # [2.55.0](https://github.com/revanced/revanced-patches/compare/v2.54.1...v2.55.0) (2022-09-15)
 
 
