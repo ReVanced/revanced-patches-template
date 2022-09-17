@@ -57,6 +57,7 @@ class TikTokSettingsPatch : BytecodePatch(
                 )
                 break
             }
+            break
         }
         //Implement revanced settings screen in `AdPersonalizationActivity`
         val method2 = AdPersonalizationActivityFingerprint.result!!.mutableMethod
@@ -66,10 +67,11 @@ class TikTokSettingsPatch : BytecodePatch(
             method2.addInstructions(
                 index + 1,
                 """
-                    invoke-static {v$thisRegister}, Lapp/revanced/integrations/tiktok/settingsmenu/SettingsMenu;->initializeSettings(Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;)V
+                    invoke-static {v$thisRegister}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->initializeSettings(Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;)V
                     return-void
                 """
             )
+            break
         }
         return PatchResultSuccess()
     }

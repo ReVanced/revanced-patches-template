@@ -22,7 +22,7 @@ class TikTokIntegrationsPatch : BytecodePatch(
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        if (data.findClass("Lapp/revanced/integrations/utils/ReVancedUtils") == null)
+        if (data.findClass("Lapp/revanced/tiktok/utils/ReVancedUtils") == null)
             return PatchResultError("Integrations have not been merged yet. This patch can not succeed without the integrations.")
         val result = InitFingerprint.result!!
 
@@ -31,7 +31,7 @@ class TikTokIntegrationsPatch : BytecodePatch(
         val count = implementation.registerCount - 1
 
         method.addInstruction(
-            0, "sput-object v$count, Lapp/revanced/integrations/utils/ReVancedUtils;->context:Landroid/content/Context;"
+            0, "sput-object v$count, Lapp/revanced/tiktok/utils/ReVancedUtils;->context:Landroid/content/Context;"
         )
         return PatchResultSuccess()
     }

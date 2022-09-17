@@ -35,7 +35,7 @@ class TiktokFeedFilter : BytecodePatch(
             val feedItemsRegister = (instruction as OneRegisterInstruction).registerA
             method.addInstruction(
                 index,
-                "invoke-static {v$feedItemsRegister}, Lapp/revanced/integrations/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
+                "invoke-static {v$feedItemsRegister}, Lapp/revanced/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
             )
             break
         }
