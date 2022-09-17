@@ -7,12 +7,13 @@ import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityFingerprint
-import app.revanced.patches.tiktok.misc.settings.fingerprints.AdsSettingsStringFingerprint
+import app.revanced.patches.tiktok.misc.settings.fingerprints.CopyRightSettingsStringFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
@@ -28,17 +29,17 @@ import org.jf.dexlib2.iface.reference.StringReference
 class TikTokSettingsPatch : BytecodePatch(
     listOf(
         AdPersonalizationActivityFingerprint,
-        AdsSettingsStringFingerprint
+        CopyRightSettingsStringFingerprint
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
-        //Replace string `Ads` to 'Revanced Settings` in TikTok settings.
-        val method1 = AdsSettingsStringFingerprint.result!!.mutableMethod
+        //Replace string `Copyright Policy` to 'Revanced Settings` in TikTok settings.
+        val method1 = CopyRightSettingsStringFingerprint.result!!.mutableMethod
         val implementation1 = method1.implementation!!
         for ((index, instruction) in implementation1.instructions.withIndex()) {
             if (instruction.opcode != Opcode.CONST_STRING) continue
             val string = ((instruction as ReferenceInstruction).reference as StringReference).string
-            if (string != "setting_ads") continue
+            if (string != "copyright_policy") continue
             var targetIndex = index
             while (targetIndex >= 0) {
                 targetIndex--
@@ -57,6 +58,22 @@ class TikTokSettingsPatch : BytecodePatch(
                 )
                 break
             }
+            //Change onClick to start settings activity.
+            val clickInstruction = implementation1.instructions[index - 1]
+            if (clickInstruction.opcode != Opcode.INVOKE_DIRECT)
+                return PatchResultError("Can not find click listener.")
+            val clickClass = ((clickInstruction as ReferenceInstruction).reference as MethodReference).definingClass
+            val mutableClickClass = data.findClass(clickClass)!!.resolve()
+            val mutableOnClickMethod = mutableClickClass.methods.first {
+                it.name == "onClick"
+            }
+            mutableOnClickMethod.addInstructions(
+                0,
+                """
+                    invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                    return-void
+                """
+            )
             break
         }
         //Implement revanced settings screen in `AdPersonalizationActivity`

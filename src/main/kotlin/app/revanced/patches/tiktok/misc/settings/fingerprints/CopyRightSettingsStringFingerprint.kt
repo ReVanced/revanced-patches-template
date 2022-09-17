@@ -6,14 +6,14 @@ import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
 
-@Name("ads-settings-string-fingerprint")
+@Name("copyright-settings-string-fingerprint")
 @MatchingMethod(
     "Lcom/ss/android/ugc/aweme/setting/ui/SettingNewVersionFragment;",
     "onViewCreated"
 )
 @TikTokSettingsCompatibility
 @Version("0.0.1")
-object AdsSettingsStringFingerprint : MethodFingerprint(
+object CopyRightSettingsStringFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("/SettingNewVersionFragment;") &&
                 methodDef.name == "onViewCreated"
