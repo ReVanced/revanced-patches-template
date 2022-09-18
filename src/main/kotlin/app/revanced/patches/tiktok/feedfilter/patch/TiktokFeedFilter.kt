@@ -13,6 +13,7 @@ import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibility
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
 import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
+import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.tiktok.misc.settings.patch.TikTokSettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -25,7 +26,8 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class TiktokFeedFilter : BytecodePatch(
     listOf(
-        FeedApiServiceLIZFingerprint
+        FeedApiServiceLIZFingerprint,
+        SettingsStatusLoadFingerprint
     )
 ) {
     override fun execute(data: BytecodeData): PatchResult {
@@ -39,6 +41,11 @@ class TiktokFeedFilter : BytecodePatch(
             )
             break
         }
+        val method2 = SettingsStatusLoadFingerprint.result!!.mutableMethod
+        method2.addInstruction(
+            0,
+            "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableFeedFilter()V"
+        )
         return PatchResultSuccess()
     }
 }

@@ -9,8 +9,10 @@ import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.CopyRightSettingsStringFingerprint
@@ -22,6 +24,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
+@DependsOn([TikTokIntegrationsPatch::class])
 @Name("tiktok-settings")
 @Description("Add settings menu to TikTok.")
 @TikTokSettingsCompatibility
