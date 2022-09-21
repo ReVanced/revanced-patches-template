@@ -7,8 +7,11 @@ import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Name("shorts-player-constructor-fingerprint")
 @MatchingMethod("Lhgp;", "<init>")
@@ -33,6 +36,17 @@ object ShortsPlayerConstructorFingerprint : MethodFingerprint(
         Opcode.IPUT_OBJECT,
         Opcode.NEW_INSTANCE,
         Opcode.INVOKE_DIRECT,
-        Opcode.IPUT_OBJECT
-    )
+        Opcode.IPUT_OBJECT,
+        Opcode.IPUT_OBJECT,
+        Opcode.CONST_4
+    ),
+    customFingerprint = { methodDef ->
+        val targetResourceId = ResourceIdMappingProviderResourcePatch.resourceMappings.single {
+            it.type == "id" && it.name == "reel_persistent_edu_button_group"
+        }.id
+        methodDef.implementation?.instructions?.any { instruction ->
+            (instruction as? WideLiteralInstruction)?.wideLiteral ==
+                    targetResourceId
+        } == true
+    }
 )
