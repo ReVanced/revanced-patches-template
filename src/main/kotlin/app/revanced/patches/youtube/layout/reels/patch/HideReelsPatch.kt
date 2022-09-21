@@ -42,7 +42,7 @@ class HideReelsPatch : BytecodePatch(
         // HideReel will hide the reel view before it is being used,
         // so we pass the view to the HideReel method
         result.mutableMethod.addInstruction(
-            result.scanResult.patternScanResult!!.endIndex,
+            result.patternScanResult!!.endIndex,
             "invoke-static { v2 }, Lapp/revanced/integrations/patches/HideReelsPatch;->HideReel(Landroid/view/View;)V"
         )
 
