@@ -1,3 +1,32 @@
+# [2.63.0](https://github.com/revanced/revanced-patches/compare/v2.62.0...v2.63.0) (2022-09-21)
+
+
+### Features
+
+* `disable-auto-player-popup-panels` ([#543](https://github.com/revanced/revanced-patches/issues/543)) ([d1fa2c3](https://github.com/revanced/revanced-patches/commit/d1fa2c3bc359018146f1f90b1ed4448b7f19b247))
+* disable sponsorblock on shorts ([#439](https://github.com/revanced/revanced-patches/issues/439)) ([47fbcba](https://github.com/revanced/revanced-patches/commit/47fbcba3f845b5c3ef35c4dded8d6f9ffafc5d9e))
+
+# [2.62.0](https://github.com/revanced/revanced-patches/compare/v2.61.1...v2.62.0) (2022-09-21)
+
+
+### Features
+
+* `hide-time-and-seekbar` patch ([#544](https://github.com/revanced/revanced-patches/issues/544)) ([ef7afc7](https://github.com/revanced/revanced-patches/commit/ef7afc7231f8fa6b9b7f84c2b5b9a9fda80aa0f4))
+
+## [2.61.1](https://github.com/revanced/revanced-patches/compare/v2.61.0...v2.61.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **sponsorblock:** reflect strings from official guidelines ([#523](https://github.com/revanced/revanced-patches/issues/523)) ([1c83959](https://github.com/revanced/revanced-patches/commit/1c83959e69bfbf5140edbf7ef4d2c8901975bfd4))
+
+# [2.61.0](https://github.com/revanced/revanced-patches/compare/v2.60.0...v2.61.0) (2022-09-20)
+
+
+### Features
+
+* section `acknowledgements` for issue templates ([f663935](https://github.com/revanced/revanced-patches/commit/f663935382036cfdccf04627ca77306c5f951b4c))
+
 # [2.60.0](https://github.com/revanced/revanced-patches/compare/v2.59.0...v2.60.0) (2022-09-19)
 
 
