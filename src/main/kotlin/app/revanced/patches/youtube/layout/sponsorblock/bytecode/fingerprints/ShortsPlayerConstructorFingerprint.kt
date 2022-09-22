@@ -41,12 +41,13 @@ object ShortsPlayerConstructorFingerprint : MethodFingerprint(
         Opcode.CONST_4
     ),
     customFingerprint = { methodDef ->
-        val targetResourceId = ResourceIdMappingProviderResourcePatch.resourceMappings.single {
-            it.type == "id" && it.name == "reel_persistent_edu_button_group"
-        }.id
         methodDef.implementation?.instructions?.any { instruction ->
             (instruction as? WideLiteralInstruction)?.wideLiteral ==
                     targetResourceId
         } == true
     }
 )
+
+val targetResourceId = ResourceIdMappingProviderResourcePatch.resourceMappings.single {
+    it.type == "id" && it.name == "reel_persistent_edu_button_group"
+}.id
