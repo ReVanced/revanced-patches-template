@@ -40,7 +40,7 @@ import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @DependsOn(
-    dependencies = [PlayerControlsBytecodePatch::class, IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
+    dependencies = [PlayerControlsBytecodePatch::class, IntegrationsPatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
 )
 @Name("sponsorblock")
 @Description("Integrate SponsorBlock.")
