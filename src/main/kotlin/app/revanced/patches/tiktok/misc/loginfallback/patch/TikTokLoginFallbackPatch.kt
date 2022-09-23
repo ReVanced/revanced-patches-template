@@ -13,7 +13,7 @@ import app.revanced.patches.tiktok.misc.loginfallback.annotations.TikTokWebLogin
 
 @Patch
 @Name("tiktok-web-login")
-@Description("Login with google use web auth.")
+@Description("Allows logging in with a Google account.")
 @TikTokWebLoginCompatibility
 @Version("0.0.1")
 class TikTokLoginFallbackPatch : BytecodePatch() {
