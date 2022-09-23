@@ -4,6 +4,14 @@ The official Patch bundle provided by ReVanced and the community.
 
 > Looking for the JSON variant of this? [Click here](patches.json).
 
+### 📦 `com.spotify.music`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-premium-navbar` | Removes the premium tab from the navbar. | all |
+</details>
+
 ### 📦 `com.twitter.android`
 <details>
 

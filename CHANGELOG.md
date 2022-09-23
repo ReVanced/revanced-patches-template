@@ -1,3 +1,50 @@
+# [2.68.0](https://github.com/revanced/revanced-patches/compare/v2.67.1...v2.68.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **hide-premium-navbar:** remove the correct instructions ([#591](https://github.com/revanced/revanced-patches/issues/591)) ([b4b0c97](https://github.com/revanced/revanced-patches/commit/b4b0c972d28cf7591ece04d154d1183c8431cb77))
+
+
+### Features
+
+* **tiktok:** adapt `tiktok-download` with `tiktok-settings`. ([#586](https://github.com/revanced/revanced-patches/issues/586)) ([876b726](https://github.com/revanced/revanced-patches/commit/876b7266109b099597dd19d6ed3fa3dac098b73b))
+
+## [2.67.1](https://github.com/revanced/revanced-patches/compare/v2.67.0...v2.67.1) (2022-09-23)
+
+# [2.67.0](https://github.com/revanced/revanced-patches/compare/v2.66.2...v2.67.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **hide-premium-nav-bar:** invalid import ([#590](https://github.com/revanced/revanced-patches/issues/590)) ([37ad223](https://github.com/revanced/revanced-patches/commit/37ad22360e6ac5e1b1dce474fe6a4e3813e03330))
+
+
+### Features
+
+* `hide-premium-nav-bar` patch ([#589](https://github.com/revanced/revanced-patches/issues/589)) ([1811416](https://github.com/revanced/revanced-patches/commit/18114168d7f8c3dd41d1f124c3524c7ca850d33d))
+
+## [2.66.2](https://github.com/revanced/revanced-patches/compare/v2.66.1...v2.66.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* **custom-playback-speed:** implement own method instead of `takeWhile` ([8522d4c](https://github.com/revanced/revanced-patches/commit/8522d4cd705118bf1108ec88bbed542a0cb15943))
+
+## [2.66.1](https://github.com/revanced/revanced-patches/compare/v2.66.0...v2.66.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* **sponsorblock:** broken fingerprint and invert setting `shorts_playing` ([#579](https://github.com/revanced/revanced-patches/issues/579)) ([59fb674](https://github.com/revanced/revanced-patches/commit/59fb674437207aeabed5b92ba32bda120820fb8f))
+
+# [2.66.0](https://github.com/revanced/revanced-patches/compare/v2.65.0...v2.66.0) (2022-09-22)
+
+
+### Features
+
+* **custom-playback-speed:** max, min, granularity option ([b1e423d](https://github.com/revanced/revanced-patches/commit/b1e423d9cdca51e54c154cc39a24c508ca322f60))
+
 # [2.65.0](https://github.com/revanced/revanced-patches/compare/v2.64.2...v2.65.0) (2022-09-21)
 
 
