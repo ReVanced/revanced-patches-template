@@ -19,7 +19,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("no-premium-navbar-tab-spotify")
+@Name("hide-premium-nav-bar")
 @Description("Removes the premium tab from the navbar.")
 @PremiumNavbarTabCompatibility
 @Version("0.0.1")
