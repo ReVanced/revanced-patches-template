@@ -24,4 +24,5 @@ data class Option(
     val description: String,
     val required: Boolean,
     val choices: Array<*>?,
+    val type: String,
 )

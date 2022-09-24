@@ -29,6 +29,7 @@ fun generateJson(bundle: Bundle) {
                     option.title,
                     option.description,
                     option.required,
+                    option.type,
                     option.let { lo ->
                         if (lo is PatchOption.ListOption<*>) {
                             lo.options.toMutableList().toTypedArray()
