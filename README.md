@@ -4,6 +4,15 @@ The official Patch bundle provided by ReVanced and the community.
 
 > Looking for the JSON variant of this? [Click here](patches.json).
 
+### 📦 `com.spotify.music`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-premium-navbar` | Removes the premium tab from the navbar. | all |
+| `spotify-theme` | Applies a custom theme. | all |
+</details>
+
 ### 📦 `com.twitter.android`
 <details>
 
@@ -59,8 +68,11 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
+| `tiktok-feed-filter` | Filters tiktok videos: removing ads, removing livestreams. | all |
 | `tiktok-download` | Removes download restrictions and changes the default path to download to. | all |
 | `tiktok-seekbar` | Show progress bar for all video. | all |
+| `tiktok-force-login` | Do not force login. | all |
+| `tiktok-settings` | Add settings menu to TikTok. | all |
 | `tiktok-ads` | Removes ads from TikTok. | all |
 </details>
 
@@ -69,8 +81,11 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
+| `tiktok-feed-filter` | Filters tiktok videos: removing ads, removing livestreams. | all |
 | `tiktok-download` | Removes download restrictions and changes the default path to download to. | all |
 | `tiktok-seekbar` | Show progress bar for all video. | all |
+| `tiktok-force-login` | Do not force login. | all |
+| `tiktok-settings` | Add settings menu to TikTok. | all |
 | `tiktok-ads` | Removes ads from TikTok. | all |
 </details>
 
@@ -95,6 +110,8 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-watermark` | Hides creator's watermarks on videos. | 17.36.37 |
 | `sponsorblock` | Integrate SponsorBlock. | 17.36.37 |
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 17.36.37 |
+| `hide-time-and-seekbar` | Hides progress bar and time counter on videos. | 17.36.37 |
+| `disable-auto-player-popup-panels` | Disable automatic popup panels (playlist or live chat) on video player. | 17.36.37 |
 | `tablet-mini-player` | Enables the tablet mini player layout. | 17.36.37 |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 17.36.37 |
 | `minimized-playback` | Enables minimized and background playback. | 17.36.37 |
