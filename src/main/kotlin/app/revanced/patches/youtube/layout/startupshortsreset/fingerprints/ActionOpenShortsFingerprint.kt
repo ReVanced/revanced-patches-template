@@ -3,7 +3,6 @@ package app.revanced.patches.youtube.layout.startupshortsreset.fingerprints
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.startupshortsreset.annotations.StartupShortsResetCompatibility
@@ -12,7 +11,6 @@ import org.jf.dexlib2.Opcode
 
 @Name("action-open-shorts-fingerprint")
 @MatchingMethod("Lkyt;", "l")
-@FuzzyPatternScanMethod(3)
 @StartupShortsResetCompatibility
 @Version("0.0.1")
 object ActionOpenShortsFingerprint : MethodFingerprint(
@@ -33,5 +31,10 @@ object ActionOpenShortsFingerprint : MethodFingerprint(
         Opcode.IGET_OBJECT,
         Opcode.IF_EQZ,
         Opcode.IGET_OBJECT,
-    )
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IF_EQZ,
+        Opcode.CONST_CLASS,
+    ),
+    listOf("com.google.android.youtube.action.open.shorts"),
 )

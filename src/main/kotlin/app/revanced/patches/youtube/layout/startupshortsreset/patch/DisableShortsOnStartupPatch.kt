@@ -5,22 +5,22 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.impl.BytecodeData
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
+import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumFingerprint
+import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumParentFingerprint
 import app.revanced.patches.youtube.layout.startupshortsreset.annotations.StartupShortsResetCompatibility
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.ActionOpenShortsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
-import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -47,42 +47,17 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         val actionOpenShortsMethod = ActionOpenShortsFingerprint.result!!.mutableMethod
         val actionOpenShortsIstructions = actionOpenShortsMethod.implementation!!.instructions
 
-        var constStringIndex = 0
-        var moveResultIndex = 0
-        var moveResultRegister = 0
-        var iPutBooleanRegister = 0
-        actionOpenShortsIstructions.forEachIndexed { i, instruction ->
-            if (!(instruction.opcode == Opcode.CONST_STRING ||
-                instruction.opcode == Opcode.MOVE_RESULT ||
-                instruction.opcode == Opcode.IPUT_BOOLEAN)) return@forEachIndexed
+        val parentResult = ActionOpenShortsFingerprint.result!!
+        ActionOpenShortsFingerprint.resolve(data, parentResult.classDef)
 
-            if (constStringIndex == 0 &&
-                instruction.opcode == Opcode.CONST_STRING &&
-                ((instruction as Instruction21c).reference as StringReference).string ==
-                    "com.google.android.youtube.action.open.shorts")
-            {
-                constStringIndex = i
-            }
+        val moveResultIndex = parentResult.scanResult.patternScanResult!!.endIndex + 21
+        val iPutBooleanIndex = moveResultIndex + 2
 
-            if (constStringIndex > 0 &&
-                moveResultRegister == 0 &&
-                instruction.opcode == Opcode.MOVE_RESULT)
-            {
-                moveResultIndex = i + 1
-
-                moveResultRegister = (instruction as OneRegisterInstruction).registerA
-            }
-
-            if (moveResultIndex > 0 &&
-                iPutBooleanRegister == 0 &&
-                instruction.opcode == Opcode.IPUT_BOOLEAN)
-            {
-                iPutBooleanRegister = (instruction as TwoRegisterInstruction).registerA
-            }
-        }
+        val moveResultRegister = (actionOpenShortsIstructions[moveResultIndex] as OneRegisterInstruction).registerA
+        val iPutBooleanRegister = (actionOpenShortsIstructions[iPutBooleanIndex] as TwoRegisterInstruction).registerA
 
         actionOpenShortsMethod.addInstructions(
-            moveResultIndex, """
+            moveResultIndex + 1, """
             invoke-static { }, Lapp/revanced/integrations/patches/DisableStartupShortsPlayerPatch;->disableStartupShortsPlayer()Z
             move-result v1
             if-eqz v1, :cond_startup_shorts_reset
