@@ -54,6 +54,7 @@ class ThemePatch : ResourcePatch() {
                 default = "@android:color/black",
                 title = "Background color for the dark theme",
                 description = "The background color of the dark theme. Can be a hex color or a resource reference.",
+                type = String
             )
         )
 
@@ -63,6 +64,7 @@ class ThemePatch : ResourcePatch() {
                 default = "@android:color/white",
                 title = "Background color for the light theme",
                 description = "The background color of the light theme. Can be a hex color or a resource reference.",
+                type = String
             )
         )
     }

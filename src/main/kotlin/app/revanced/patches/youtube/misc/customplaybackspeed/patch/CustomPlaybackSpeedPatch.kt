@@ -165,7 +165,8 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
                 "16",
                 "Video speed granularity",
                 "The granularity of the video speeds. The higher the value, the more speeds will be available.",
-                true
+                true,
+                Int
             ) {
                 it.validate()
             }
@@ -177,7 +178,8 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
                 "0.25",
                 "Minimum video speed",
                 "The minimum video speed.",
-                true
+                true,
+                Float
             ) {
                 it.validate()
             }
@@ -189,7 +191,8 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
                 "5.0",
                 "Maximum video speed",
                 "The maximum video speed. Must be greater than the minimum video speed and smaller than 5.",
-                true
+                true,
+                Float
             ) {
                 it.validate(5)
             }

@@ -81,7 +81,8 @@ class CustomBrandingPatch : ResourcePatch() {
                 default = "YouTube ReVanced",
                 title = "Application Name",
                 description = "The name of the application it will show on your home screen.",
-                required = true
+                required = true,
+                type = String
             )
         )
 
@@ -90,7 +91,8 @@ class CustomBrandingPatch : ResourcePatch() {
                 key = "appIconPath",
                 default = null,
                 title = "Application Icon Path",
-                description = "A path to the icon of the application."
+                description = "A path to the icon of the application.",
+                type = String
             )
         )
     }
