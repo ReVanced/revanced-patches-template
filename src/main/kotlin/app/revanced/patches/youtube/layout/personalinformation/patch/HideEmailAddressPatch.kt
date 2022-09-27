@@ -19,6 +19,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
@@ -52,27 +53,19 @@ class HideEmailAddressPatch : BytecodePatch(
         val accountSwitcherAccessibilityLabelMethod = AccountSwitcherAccessibilityLabelFingerprint.result!!.mutableMethod
         val accountSwitcherAccessibilityLabelInstruction = accountSwitcherAccessibilityLabelMethod.implementation!!.instructions
 
-        val resourceIndex = accountSwitcherAccessibilityLabelInstruction.indexOfFirst {
-            it.opcode == Opcode.CONST &&
-                    (it as? WideLiteralInstruction)?.wideLiteral == accountSwitcherAccessibilityLabelId
-        }
-        val setVisibilityIndex = accountSwitcherAccessibilityLabelInstruction.subList(
-            resourceIndex,
-            accountSwitcherAccessibilityLabelInstruction.size - 1
-        ).indexOfFirst {
-            it.opcode == Opcode.INVOKE_VIRTUAL &&
-                    (((it as? BuilderInstruction35c)?.reference as? MethodReference)?.name == "setVisibility")
-        } + resourceIndex
+        val setVisibilityConstIndex = accountSwitcherAccessibilityLabelInstruction.indexOfFirst {
+            (it as? WideLiteralInstruction)?.wideLiteral == accountSwitcherAccessibilityLabelId
+        } - 2
 
-        val setVisibilityRegister = (accountSwitcherAccessibilityLabelInstruction[setVisibilityIndex] as BuilderInstruction35c).registerD
-        val toggleRegister = (setVisibilityRegister - 1)
+        val setVisibilityConstRegister = (accountSwitcherAccessibilityLabelInstruction[setVisibilityConstIndex] as OneRegisterInstruction).registerA
+        val toggleRegister = (setVisibilityConstRegister - 3)
 
         accountSwitcherAccessibilityLabelMethod.addInstructions(
-            setVisibilityIndex, """
+            setVisibilityConstIndex + 1, """
             invoke-static {}, Lapp/revanced/integrations/patches/HideEmailAddressPatch;->hideEmailAddress()Z
             move-result v$toggleRegister
             if-eqz v$toggleRegister, :hide
-            const/16 v$setVisibilityRegister, 0x8
+            const/16 v$setVisibilityConstRegister, 0x8
             :hide
             nop
         """
