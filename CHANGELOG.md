@@ -1,3 +1,66 @@
+## [2.71.1](https://github.com/revanced/revanced-patches/compare/v2.71.0...v2.71.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* **disable-auto-player-popup-panels:** swap switch toggle state description ([#653](https://github.com/revanced/revanced-patches/issues/653)) ([f881301](https://github.com/revanced/revanced-patches/commit/f88130143689c7a63fd67df3dff37caec5db9548))
+
+# [2.71.0](https://github.com/revanced/revanced-patches/compare/v2.70.0...v2.71.0) (2022-09-28)
+
+
+### Features
+
+* `hide-email-address` patch ([#578](https://github.com/revanced/revanced-patches/issues/578)) ([82cb632](https://github.com/revanced/revanced-patches/commit/82cb6321beace1e5feed248d3f3d6ae56cf0d96b))
+
+# [2.70.0](https://github.com/revanced/revanced-patches/compare/v2.69.4...v2.70.0) (2022-09-28)
+
+
+### Features
+
+* `monochrome-icon` patch ([#643](https://github.com/revanced/revanced-patches/issues/643)) ([127c8e5](https://github.com/revanced/revanced-patches/commit/127c8e54e54709c2716029044ae337ad53daafad))
+
+## [2.69.4](https://github.com/revanced/revanced-patches/compare/v2.69.3...v2.69.4) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** dynamically insert `setSponsorBarRect` call ([#644](https://github.com/revanced/revanced-patches/issues/644)) ([998a249](https://github.com/revanced/revanced-patches/commit/998a249a23d09eb752b35c4da731f4223be40a3b))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.2](https://github.com/revanced/revanced-patches/compare/v2.69.1...v2.69.2) (2022-09-26)
+
+
+### Performance Improvements
+
+* **resource-mapping:** map resources with multiple threads ([a7e4da0](https://github.com/revanced/revanced-patches/commit/a7e4da018bf939accdf6d406b471ac74f9078095))
+
+## [2.69.1](https://github.com/revanced/revanced-patches/compare/v2.69.0...v2.69.1) (2022-09-24)
+
+
+### Bug Fixes
+
+* **sponsorblock:** reflect changes to strings ([#585](https://github.com/revanced/revanced-patches/issues/585)) ([d03568a](https://github.com/revanced/revanced-patches/commit/d03568aa39195a07bec62f43d929923825c67d3f))
+
+# [2.69.0](https://github.com/revanced/revanced-patches/compare/v2.68.3...v2.69.0) (2022-09-24)
+
+
+### Features
+
+* `spotify-theme` patch ([#608](https://github.com/revanced/revanced-patches/issues/608)) ([7ee1b78](https://github.com/revanced/revanced-patches/commit/7ee1b78e8048698ef6490445dd012e2d88b4d332))
+
 ## [2.68.3](https://github.com/revanced/revanced-patches/compare/v2.68.2...v2.68.3) (2022-09-23)
 
 

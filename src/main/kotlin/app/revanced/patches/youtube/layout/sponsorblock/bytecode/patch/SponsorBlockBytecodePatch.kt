@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlock
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
@@ -99,10 +99,14 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
          Get the instance of the seekbar rectangle
          */
-        seekbarMethod.addInstruction(
-            1,
-            "invoke-static {v0}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarRect(Ljava/lang/Object;)V"
-        )
+        for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
+            if (instruction.opcode != Opcode.MOVE_OBJECT_FROM16) continue
+            seekbarMethod.addInstruction(
+                index + 1,
+                "invoke-static {v0}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarRect(Ljava/lang/Object;)V"
+            )
+            break
+        }
 
         for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
             if (instruction.opcode != Opcode.INVOKE_STATIC) continue
@@ -178,9 +182,9 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         val controlsMethodResult = PlayerControlsBytecodePatch.showPlayerControlsFingerprintResult
 
         val controlsLayoutStubResourceId =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
+            ResourceMappingResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
         val zoomOverlayResourceId =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
+            ResourceMappingResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
 
         methods@ for (method in controlsMethodResult.mutableClass.methods) {
             val instructions = method.implementation?.instructions!!
@@ -331,7 +335,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         startVideoInformerMethod.addInstructions(
             0, """
             const/4 v0, 0x0
-            sput-boolean v0, Lapp/revanced/integrations/settings/SettingsEnum;->shorts_playing:Z
+            sput-boolean v0, Lapp/revanced/integrations/sponsorblock/PlayerController;->shorts_playing:Z
         """
         )
 
@@ -340,7 +344,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         shortsPlayerConstructorMethod.addInstructions(
             0, """
             const/4 v0, 0x1
-            sput-boolean v0, Lapp/revanced/integrations/settings/SettingsEnum;->shorts_playing:Z
+            sput-boolean v0, Lapp/revanced/integrations/sponsorblock/PlayerController;->shorts_playing:Z
         """
         )
 
