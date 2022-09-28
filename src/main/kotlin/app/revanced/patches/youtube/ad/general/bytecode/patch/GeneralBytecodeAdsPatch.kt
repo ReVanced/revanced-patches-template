@@ -245,7 +245,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                         mutableClass!!.findMutableMethodOf(method)
 
                                     val viewRegister = (iPutInstruction as Instruction22c).registerA
-                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
+                                    mutableMethod!!.implementation!!.injectHideCallReels(insertIndex, viewRegister)
                                 }
 
                                 resourceIds[2] -> { // info cards ads
