@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("disable-startup-shorts-player")
-@Description("Disable playing YouTube Shorts when launching YouTube.")
+@Description("Disables playing YouTube Shorts when launching YouTube.")
 @StartupShortsResetCompatibility
 @Version("0.0.1")
 class DisableShortsOnStartupPatch : BytecodePatch(
