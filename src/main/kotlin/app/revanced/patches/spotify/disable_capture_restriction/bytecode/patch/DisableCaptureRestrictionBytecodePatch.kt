@@ -21,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @Name("disable-capture-restriction")
 @DependsOn([DisableCaptureRestrictionResourcePatch::class])
-@Description("Allow capturing Spotify's audio output while screen sharing or screen recording")
+@Description("Allows capturing Spotify's audio output while screen sharing or screen recording.")
 @DisableCaptureRestrictionCompatibility
 @Version("0.0.1")
 class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
