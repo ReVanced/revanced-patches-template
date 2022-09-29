@@ -17,7 +17,7 @@ import org.jf.dexlib2.Opcode
 
 @Patch
 @Name("tiktok-speed")
-@Description("Force enable playback speed option.")
+@Description("Enables the playback speed option for all videos.")
 @SpeedCompatibility
 @Version("0.0.1")
 class SpeedPatch : BytecodePatch(
