@@ -1,3 +1,53 @@
+## [2.75.1](https://github.com/revanced/revanced-patches/compare/v2.75.0...v2.75.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **disable-startup-shorts-player:** incorrect offsets, invert branch condition ([#672](https://github.com/revanced/revanced-patches/issues/672)) ([bfe1e38](https://github.com/revanced/revanced-patches/commit/bfe1e3808ece85fbb0785a4378ee95591115ac33))
+
+# [2.75.0](https://github.com/revanced/revanced-patches/compare/v2.74.0...v2.75.0) (2022-09-29)
+
+
+### Features
+
+* `disable-capture-restriction` patch ([#655](https://github.com/revanced/revanced-patches/issues/655)) ([3cc26c3](https://github.com/revanced/revanced-patches/commit/3cc26c31d378c27ca7f768f777daa00e3f849dff))
+
+# [2.74.0](https://github.com/revanced/revanced-patches/compare/v2.73.0...v2.74.0) (2022-09-29)
+
+
+### Features
+
+* `disable-startup-shorts-player` patch ([#670](https://github.com/revanced/revanced-patches/issues/670)) ([feb3bd0](https://github.com/revanced/revanced-patches/commit/feb3bd02aaf67379733d10988fd58b0c3924f88e))
+
+# [2.73.0](https://github.com/revanced/revanced-patches/compare/v2.72.1...v2.73.0) (2022-09-29)
+
+
+### Features
+
+* `dynamic-color` patch ([#652](https://github.com/revanced/revanced-patches/issues/652)) ([a16575b](https://github.com/revanced/revanced-patches/commit/a16575b984354138b9ab175307be8d15de60b6a6))
+
+## [2.72.1](https://github.com/revanced/revanced-patches/compare/v2.72.0...v2.72.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **hdr-brightness:** trim list of compatible versions ([#602](https://github.com/revanced/revanced-patches/issues/602)) ([3209d90](https://github.com/revanced/revanced-patches/commit/3209d902e4d1aa73b59ce059cf3f76ef2095af70))
+
+# [2.72.0](https://github.com/revanced/revanced-patches/compare/v2.71.2...v2.72.0) (2022-09-29)
+
+
+### Features
+
+* `tiktok-speed` patch ([#668](https://github.com/revanced/revanced-patches/issues/668)) ([23fff16](https://github.com/revanced/revanced-patches/commit/23fff16e6ab02bf281d46d8b5f93788425d8b525))
+* bump YouTube Music patches to v5.25.51 ([#669](https://github.com/revanced/revanced-patches/issues/669)) ([563c846](https://github.com/revanced/revanced-patches/commit/563c8466568d578de7c8a8e869fb1aa74370784a))
+
+## [2.71.2](https://github.com/revanced/revanced-patches/compare/v2.71.1...v2.71.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **hide-email-address:** invalid instruction offsets ([#654](https://github.com/revanced/revanced-patches/issues/654)) ([1a3db44](https://github.com/revanced/revanced-patches/commit/1a3db44b5bd9628b7b25cc113a3a53bf8a85bd2b))
+
 ## [2.71.1](https://github.com/revanced/revanced-patches/compare/v2.71.0...v2.71.1) (2022-09-28)
 
 
