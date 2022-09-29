@@ -56,7 +56,7 @@ class DisableShortsOnStartupPatch : BytecodePatch(
             moveResultIndex + 1, """
             invoke-static { }, Lapp/revanced/integrations/patches/DisableStartupShortsPlayerPatch;->disableStartupShortsPlayer()Z
             move-result v$moveResultRegister
-            if-nez v$moveResultRegister, :cond_startup_shorts_reset
+            if-eqz v$moveResultRegister, :cond_startup_shorts_reset
             const/4 v$iPutBooleanRegister, 0x0
             :cond_startup_shorts_reset
             nop
