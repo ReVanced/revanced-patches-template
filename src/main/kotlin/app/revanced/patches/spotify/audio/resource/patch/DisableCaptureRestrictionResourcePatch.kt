@@ -1,4 +1,4 @@
-package app.revanced.patches.spotify.disable_capture_restriction.resource.patch
+package app.revanced.patches.spotify.audio.resource.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.impl.ResourcePatch
-import app.revanced.patches.spotify.disable_capture_restriction.annotation.DisableCaptureRestrictionCompatibility
+import app.revanced.patches.spotify.audio.annotation.DisableCaptureRestrictionCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
 

@@ -1,4 +1,4 @@
-package app.revanced.patches.spotify.disable_capture_restriction.bytecode.patch
+package app.revanced.patches.spotify.audio.bytecode.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -12,9 +12,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.spotify.disable_capture_restriction.annotation.DisableCaptureRestrictionCompatibility
-import app.revanced.patches.spotify.disable_capture_restriction.fingerprints.DisableCaptureRestrictionAudioDriverFingerprint
-import app.revanced.patches.spotify.disable_capture_restriction.resource.patch.DisableCaptureRestrictionResourcePatch
+import app.revanced.patches.spotify.audio.annotation.DisableCaptureRestrictionCompatibility
+import app.revanced.patches.spotify.audio.fingerprints.DisableCaptureRestrictionAudioDriverFingerprint
+import app.revanced.patches.spotify.audio.resource.patch.DisableCaptureRestrictionResourcePatch
 import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -32,7 +32,7 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
     private fun MutableMethod.replaceConstant4Instruction(index: Int, instruction: Instruction, with: Int) {
         val register = (instruction as OneRegisterInstruction).registerA
         this.replaceInstruction(
-            index, "const/4 v$register, 0x${"%x".format(with)}"
+            index, "const/4 v$register, $with}"
         )
     }
 

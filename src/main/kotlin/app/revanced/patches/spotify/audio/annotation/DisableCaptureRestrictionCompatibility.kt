@@ -1,4 +1,4 @@
-package app.revanced.patches.spotify.disable_capture_restriction.annotation
+package app.revanced.patches.spotify.audio.annotation
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
