@@ -46,7 +46,7 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         val actionOpenShortsMethod = actionOpenShortsResult!!.mutableMethod
         val actionOpenShortsInstructions = actionOpenShortsMethod.implementation!!.instructions
 
-        val moveResultIndex = actionOpenShortsResult.scanResult.stringsScanResult!!.matches[0].index
+        val moveResultIndex = actionOpenShortsResult.scanResult.stringsScanResult!!.matches[0].index + 5
 
         val iPutBooleanIndex = moveResultIndex + 6
 
