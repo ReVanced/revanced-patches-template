@@ -14,7 +14,7 @@ import org.w3c.dom.Element
 
 @Name("disable-capture-restriction-resource-patch")
 @DependsOn([FixLocaleConfigErrorPatch::class])
-@Description("Set allowAudioPlaybackCapture in manifest to true")
+@Description("Sets allowAudioPlaybackCapture in manifest to true.")
 @DisableCaptureRestrictionCompatibility
 @Version("0.0.1")
 class DisableCaptureRestrictionResourcePatch : ResourcePatch() {
