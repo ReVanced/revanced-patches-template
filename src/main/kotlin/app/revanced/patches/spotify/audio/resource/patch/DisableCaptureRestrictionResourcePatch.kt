@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import org.w3c.dom.Element
 
 @Name("disable-capture-restriction-resource-patch")
-@Description("Disables audio capturing restrictions.")
+@Description("Sets allowAudioPlaybackCapture in manifest to true.")
 @DisableCaptureRestrictionCompatibility
 @Version("0.0.1")
 class DisableCaptureRestrictionResourcePatch : ResourcePatch() {
