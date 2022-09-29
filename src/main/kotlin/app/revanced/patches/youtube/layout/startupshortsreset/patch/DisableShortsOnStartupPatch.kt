@@ -44,14 +44,14 @@ class DisableShortsOnStartupPatch : BytecodePatch(
 
         val actionOpenShortsResult = ActionOpenShortsFingerprint.result
         val actionOpenShortsMethod = actionOpenShortsResult!!.mutableMethod
-        val actionOpenShortsIstructions = actionOpenShortsMethod.implementation!!.instructions
+        val actionOpenShortsInstructions = actionOpenShortsMethod.implementation!!.instructions
 
         val moveResultIndex = actionOpenShortsResult.scanResult.stringsScanResult!!.matches[0].index
 
         val iPutBooleanIndex = moveResultIndex + 6
 
-        val moveResultRegister = (actionOpenShortsIstructions[moveResultIndex] as OneRegisterInstruction).registerA
-        val iPutBooleanRegister = (actionOpenShortsIstructions[iPutBooleanIndex] as TwoRegisterInstruction).registerA
+        val moveResultRegister = (actionOpenShortsInstructions[moveResultIndex] as OneRegisterInstruction).registerA
+        val iPutBooleanRegister = (actionOpenShortsInstructions[iPutBooleanIndex] as TwoRegisterInstruction).registerA
 
         actionOpenShortsMethod.addInstructions(
             moveResultIndex + 1, """
