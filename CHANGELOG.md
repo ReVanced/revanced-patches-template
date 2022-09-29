@@ -1,3 +1,67 @@
+# [2.72.0](https://github.com/revanced/revanced-patches/compare/v2.71.2...v2.72.0) (2022-09-29)
+
+
+### Features
+
+* `tiktok-speed` patch ([#668](https://github.com/revanced/revanced-patches/issues/668)) ([23fff16](https://github.com/revanced/revanced-patches/commit/23fff16e6ab02bf281d46d8b5f93788425d8b525))
+* bump YouTube Music patches to v5.25.51 ([#669](https://github.com/revanced/revanced-patches/issues/669)) ([563c846](https://github.com/revanced/revanced-patches/commit/563c8466568d578de7c8a8e869fb1aa74370784a))
+
+## [2.71.2](https://github.com/revanced/revanced-patches/compare/v2.71.1...v2.71.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **hide-email-address:** invalid instruction offsets ([#654](https://github.com/revanced/revanced-patches/issues/654)) ([1a3db44](https://github.com/revanced/revanced-patches/commit/1a3db44b5bd9628b7b25cc113a3a53bf8a85bd2b))
+
+## [2.71.1](https://github.com/revanced/revanced-patches/compare/v2.71.0...v2.71.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* **disable-auto-player-popup-panels:** swap switch toggle state description ([#653](https://github.com/revanced/revanced-patches/issues/653)) ([f881301](https://github.com/revanced/revanced-patches/commit/f88130143689c7a63fd67df3dff37caec5db9548))
+
+# [2.71.0](https://github.com/revanced/revanced-patches/compare/v2.70.0...v2.71.0) (2022-09-28)
+
+
+### Features
+
+* `hide-email-address` patch ([#578](https://github.com/revanced/revanced-patches/issues/578)) ([82cb632](https://github.com/revanced/revanced-patches/commit/82cb6321beace1e5feed248d3f3d6ae56cf0d96b))
+
+# [2.70.0](https://github.com/revanced/revanced-patches/compare/v2.69.4...v2.70.0) (2022-09-28)
+
+
+### Features
+
+* `monochrome-icon` patch ([#643](https://github.com/revanced/revanced-patches/issues/643)) ([127c8e5](https://github.com/revanced/revanced-patches/commit/127c8e54e54709c2716029044ae337ad53daafad))
+
+## [2.69.4](https://github.com/revanced/revanced-patches/compare/v2.69.3...v2.69.4) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** dynamically insert `setSponsorBarRect` call ([#644](https://github.com/revanced/revanced-patches/issues/644)) ([998a249](https://github.com/revanced/revanced-patches/commit/998a249a23d09eb752b35c4da731f4223be40a3b))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.2](https://github.com/revanced/revanced-patches/compare/v2.69.1...v2.69.2) (2022-09-26)
+
+
+### Performance Improvements
+
+* **resource-mapping:** map resources with multiple threads ([a7e4da0](https://github.com/revanced/revanced-patches/commit/a7e4da018bf939accdf6d406b471ac74f9078095))
+
 ## [2.69.1](https://github.com/revanced/revanced-patches/compare/v2.69.0...v2.69.1) (2022-09-24)
 
 
