@@ -32,7 +32,7 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
     private fun MutableMethod.replaceConstant4Instruction(index: Int, instruction: Instruction, with: Int) {
         val register = (instruction as OneRegisterInstruction).registerA
         this.replaceInstruction(
-            index, "const/4 v$register, $with}"
+            index, "const/4 v$register, $with"
         )
     }
 
