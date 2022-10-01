@@ -1,3 +1,45 @@
+# [2.77.0](https://github.com/revanced/revanced-patches/compare/v2.76.3...v2.77.0) (2022-10-01)
+
+
+### Features
+
+* **youtube/hdr-auto-brightness:** increase strength of fingerprint ([2379b58](https://github.com/revanced/revanced-patches/commit/2379b5892b3505c8780f475bbc56f520613fa31d))
+
+## [2.76.3](https://github.com/revanced/revanced-patches/compare/v2.76.2...v2.76.3) (2022-10-01)
+
+
+### Performance Improvements
+
+* **general-ads:** hook pathBuilder ([b9bad0b](https://github.com/revanced/revanced-patches/commit/b9bad0bb922bbd44ddf2acbfae87243beb28851a))
+
+## [2.76.2](https://github.com/revanced/revanced-patches/compare/v2.76.1...v2.76.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* **twitter/monochrome-icon:** add missing `File.write` call ([#682](https://github.com/revanced/revanced-patches/issues/682)) ([de22e3f](https://github.com/revanced/revanced-patches/commit/de22e3f03ef1d6db08f9446f02e687721d9017d7))
+
+## [2.76.1](https://github.com/revanced/revanced-patches/compare/v2.76.0...v2.76.1) (2022-09-30)
+
+
+### Bug Fixes
+
+* **disable-startup-shorts-player:** remove redundant opcode pattern ([#679](https://github.com/revanced/revanced-patches/issues/679)) ([5197a24](https://github.com/revanced/revanced-patches/commit/5197a24cc5ecc1b51cdc5c00c77c873b86394994))
+
+# [2.76.0](https://github.com/revanced/revanced-patches/compare/v2.75.2...v2.76.0) (2022-09-30)
+
+
+### Features
+
+* bump YouTube Music patches compatibility to v5.26.52 ([#681](https://github.com/revanced/revanced-patches/issues/681)) ([f195734](https://github.com/revanced/revanced-patches/commit/f195734925dd41596d058f9cbf2b7e619a8d5833))
+
+## [2.75.2](https://github.com/revanced/revanced-patches/compare/v2.75.1...v2.75.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* **twitter patches.:** use wider compatible Java API for writing to file ([#678](https://github.com/revanced/revanced-patches/issues/678)) ([4448de8](https://github.com/revanced/revanced-patches/commit/4448de80a6277862d81c7a29b9489e4fbec48496))
+
 ## [2.75.1](https://github.com/revanced/revanced-patches/compare/v2.75.0...v2.75.1) (2022-09-29)
 
 
