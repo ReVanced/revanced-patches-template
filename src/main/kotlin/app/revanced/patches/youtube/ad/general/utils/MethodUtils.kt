@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.general.bytecode.utils
+package app.revanced.patches.youtube.ad.general.utils
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable

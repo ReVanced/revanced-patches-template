@@ -1,20 +1,18 @@
-package app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints
+package app.revanced.patches.youtube.layout.infocards.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
+import app.revanced.patches.youtube.layout.infocards.annotations.HideInfoCardsCompatibility
 import org.jf.dexlib2.AccessFlags
 
-@Name("hide-infocard-suggestions-fingerprint")
+@Name("info-cards-fingerprint")
 @MatchingMethod("Liff;", "i")
-@FuzzyPatternScanMethod(2)
-@HideInfocardSuggestionsCompatibility
+@HideInfoCardsCompatibility
 @Version("0.0.1")
-object HideInfocardSuggestionsFingerprint : MethodFingerprint(
+object InfoCardsFingerprint : MethodFingerprint(
     "Ljava/lang/Boolean;",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     strings = listOf("vibrator")

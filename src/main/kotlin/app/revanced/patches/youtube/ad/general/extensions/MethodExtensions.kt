@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.general.bytecode.extensions
+package app.revanced.patches.youtube.ad.general.extensions
 
 import app.revanced.patcher.extensions.softCompareTo
 import app.revanced.patcher.patch.PatchResultError
