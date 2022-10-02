@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Package
 
 @Compatibility(
     [Package(
-        "com.google.android.youtube", arrayOf("17.33.42", "17.36.37")
+        "com.google.android.youtube", arrayOf("17.33.42", "17.36.37", "17.38.36")
     )]
 )
 @Target(AnnotationTarget.CLASS)
