@@ -1,3 +1,24 @@
+# [2.79.0](https://github.com/revanced/revanced-patches/compare/v2.78.0...v2.79.0) (2022-10-03)
+
+
+### Features
+
+* `hide-video-buttons` patch ([584803a](https://github.com/revanced/revanced-patches/commit/584803aa900f94de1b2b2a0c41fb0884fa9270d3))
+
+# [2.78.0](https://github.com/revanced/revanced-patches/compare/v2.77.1...v2.78.0) (2022-10-02)
+
+
+### Features
+
+* **youtube/general-ads:** check for ad in identifier ([fd0506e](https://github.com/revanced/revanced-patches/commit/fd0506eb95dbf398eb7d6bfa8732f517b9867545))
+
+## [2.77.1](https://github.com/revanced/revanced-patches/compare/v2.77.0...v2.77.1) (2022-10-01)
+
+
+### Bug Fixes
+
+* **tiktok/tiktok-downloads:** add missing patch dependencies ([#686](https://github.com/revanced/revanced-patches/issues/686)) ([5c3b4ed](https://github.com/revanced/revanced-patches/commit/5c3b4ed0530e89d50db3b5bb9893e1ef4b463bae))
+
 # [2.77.0](https://github.com/revanced/revanced-patches/compare/v2.76.3...v2.77.0) (2022-10-01)
 
 
