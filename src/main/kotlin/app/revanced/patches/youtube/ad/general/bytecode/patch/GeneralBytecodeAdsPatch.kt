@@ -359,7 +359,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                         """
                                                 move-object/from16 $clobberedRegister, v28
                                                 iget-object $clobberedRegister, $clobberedRegister, ${lithoMethod.parameters[2]};->b:Ljava/nio/ByteBuffer;
-                                                invoke-static {v5, v2}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
+                                                invoke-static {v5, v2, $clobberedRegister}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/nio/ByteBuffer;)Z
                                                 move-result v$clobberedRegister
                                                 if-eqz v$clobberedRegister, :not_an_ad
                                                 move-object/from16 v2, p1
