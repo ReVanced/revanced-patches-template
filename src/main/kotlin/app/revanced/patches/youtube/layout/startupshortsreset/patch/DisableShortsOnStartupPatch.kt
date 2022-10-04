@@ -41,9 +41,7 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         )
 
         val userWasInShortsResult = UserWasInShortsFingerprint.result!!
-
         val userWasInShortsMethod = userWasInShortsResult.mutableMethod
-
         val moveResultIndex = userWasInShortsResult.scanResult.patternScanResult!!.endIndex
 
         userWasInShortsMethod.addInstructions(
