@@ -1,3 +1,24 @@
+# [2.80.0](https://github.com/revanced/revanced-patches/compare/v2.79.2...v2.80.0) (2022-10-04)
+
+
+### Features
+
+* **youtube/remember-video-quality:** remember current quality option ([9c510d4](https://github.com/revanced/revanced-patches/commit/9c510d472048f5bce127eb0329e53aaf259e9b1b))
+
+## [2.79.2](https://github.com/revanced/revanced-patches/compare/v2.79.1...v2.79.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* **youtube/disable-startup-shorts-player:** don't affect functionality of navigation bar  ([#716](https://github.com/revanced/revanced-patches/issues/716)) ([05f5cc1](https://github.com/revanced/revanced-patches/commit/05f5cc17e3fcbf255c6fe5b503c9fd20c218f5a1))
+
+## [2.79.1](https://github.com/revanced/revanced-patches/compare/v2.79.0...v2.79.1) (2022-10-03)
+
+
+### Bug Fixes
+
+* **youtube/disable-startup-shorts-player:** do not prevent playing videos on startup ([#714](https://github.com/revanced/revanced-patches/issues/714)) ([9a0d379](https://github.com/revanced/revanced-patches/commit/9a0d3798afd75bba5c63e1b8803dc25814586be9))
+
 # [2.79.0](https://github.com/revanced/revanced-patches/compare/v2.78.0...v2.79.0) (2022-10-03)
 
 
