@@ -1,7 +1,7 @@
 package app.revanced.meta.readme
 
 import app.revanced.meta.Bundle
-import app.revanced.patcher.data.Data
+import app.revanced.patcher.data.Context
 import app.revanced.patcher.extensions.PatchExtensions.compatiblePackages
 import app.revanced.patcher.extensions.PatchExtensions.description
 import app.revanced.patcher.extensions.PatchExtensions.patchName
@@ -15,15 +15,13 @@ private val TABLE_REGEX = Regex("\\{\\{\\s?table\\s?}}")
 
 fun generateText(bundle: Bundle) {
     val output = StringBuilder()
-    val packages = mutableMapOf<String, MutableList<Class<out Patch<Data>>>>()
+    val packages = mutableMapOf<String, MutableList<Class<out Patch<Context>>>>()
 
-    bundle.map {
-        val packageName = it.compatiblePackages?.first()?.name!!
-        if (!packages.contains(packageName)) {
-            packages[packageName] = mutableListOf()
+    for (patch in bundle) {
+        patch.compatiblePackages?.forEach { pkg ->
+            if (!packages.contains(pkg.name)) packages[pkg.name] = mutableListOf()
+            packages[pkg.name]!!.add(patch)
         }
-
-        packages[packageName]?.add(it)
     }
 
     for (pkg in packages) {

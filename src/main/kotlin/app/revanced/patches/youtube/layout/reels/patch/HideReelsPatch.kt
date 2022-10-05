@@ -2,13 +2,13 @@ package app.revanced.patches.youtube.layout.reels.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.BytecodeData
+import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.addInstruction
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.layout.reels.annotations.HideReelsCompatibility
 import app.revanced.patches.youtube.layout.reels.fingerprints.HideReelsFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -26,7 +26,7 @@ class HideReelsPatch : BytecodePatch(
         HideReelsFingerprint
     )
 ) {
-    override fun execute(data: BytecodeData): PatchResult {
+    override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_reel_button_enabled",
@@ -42,7 +42,7 @@ class HideReelsPatch : BytecodePatch(
         // HideReel will hide the reel view before it is being used,
         // so we pass the view to the HideReel method
         result.mutableMethod.addInstruction(
-            result.patternScanResult!!.endIndex,
+            result.scanResult.patternScanResult!!.endIndex,
             "invoke-static { v2 }, Lapp/revanced/integrations/patches/HideReelsPatch;->HideReel(Landroid/view/View;)V"
         )
 

@@ -3,14 +3,12 @@ package app.revanced.patches.youtube.layout.branding.icon.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.ResourceData
+import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.impl.ResourcePatch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
@@ -22,9 +20,9 @@ import java.nio.file.Files
 @Description("Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).")
 @CustomBrandingCompatibility
 @Version("0.0.1")
-class CustomBrandingPatch : ResourcePatch() {
-    override fun execute(data: ResourceData): PatchResult {
-        val resDirectory = data["res"]
+class CustomBrandingPatch : ResourcePatch {
+    override fun execute(context: ResourceContext): PatchResult {
+        val resDirectory = context["res"]
         if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
 
         // Icon branding
@@ -42,28 +40,19 @@ class CustomBrandingPatch : ResourcePatch() {
             "hdpi" to 72,
             "mdpi" to 48
         ).forEach { (iconDirectory, size) ->
-            iconNames.forEach iconLoop@{ iconName ->
+            iconNames.forEach { iconName ->
                 val iconFile = getIconStream("branding/$size/$iconName.png")
                     ?: return PatchResultError("The icon $iconName can not be found.")
 
-                val outputStream = ByteArrayOutputStream()
-                iconFile.use { input ->
-                    outputStream.use { output ->
-                        input.copyTo(output)
-                    }
-                }
-
                 Files.write(
                     resDirectory.resolve("mipmap-$iconDirectory").resolve("$iconName.png").toPath(),
-                    outputStream.toByteArray()
+                    iconFile.readBytes()
                 )
             }
         }
 
         // Name branding
-        val appName: String by options[keyAppName]
-
-        val manifest = data["AndroidManifest.xml"]
+        val manifest = context["AndroidManifest.xml"]
         manifest.writeText(
             manifest.readText()
                 .replace(
@@ -75,24 +64,7 @@ class CustomBrandingPatch : ResourcePatch() {
         return PatchResultSuccess()
     }
 
-    override val options = PatchOptions(
-        PatchOption.StringOption(
-            key = keyAppName,
-            default = "YouTube ReVanced",
-            title = "Application Name",
-            description = "The name of the application it will show on your home screen.",
-            required = true
-        ),
-        PatchOption.StringOption(
-            key = keyAppIconPath,
-            default = null,
-            title = "Application Icon Path",
-            description = "A path to the icon of the application."
-        )
-    )
-
     private fun getIconStream(iconPath: String): InputStream? {
-        val appIconPath: String? by options[keyAppIconPath]
         if (appIconPath == null) {
             return this.javaClass.classLoader.getResourceAsStream(iconPath)
         }
@@ -101,8 +73,24 @@ class CustomBrandingPatch : ResourcePatch() {
         return FileInputStream(file)
     }
 
-    private companion object {
-        private const val keyAppName = "appName"
-        private const val keyAppIconPath = "appIconPath"
+    companion object : OptionsContainer() {
+        private var appName: String? by option(
+            PatchOption.StringOption(
+                key = "appName",
+                default = "YouTube ReVanced",
+                title = "Application Name",
+                description = "The name of the application it will show on your home screen.",
+                required = true
+            )
+        )
+
+        private var appIconPath: String? by option(
+            PatchOption.StringOption(
+                key = "appIconPath",
+                default = null,
+                title = "Application Icon Path",
+                description = "A path to the icon of the application."
+            )
+        )
     }
 }

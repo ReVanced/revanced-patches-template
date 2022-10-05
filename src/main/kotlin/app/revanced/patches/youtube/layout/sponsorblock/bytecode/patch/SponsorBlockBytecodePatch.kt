@@ -3,26 +3,27 @@ package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.BytecodeData
-import app.revanced.patcher.data.impl.toMethodWalker
+import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patcher.fingerprint.method.utils.MethodFingerprintUtils.resolve
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.AccessFlags
@@ -39,7 +40,7 @@ import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @DependsOn(
-    dependencies = [PlayerControlsBytecodePatch::class, IntegrationsPatch::class, ResourceIdMappingProviderResourcePatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
+    dependencies = [PlayerControlsBytecodePatch::class, IntegrationsPatch::class, SponsorBlockResourcePatch::class, VideoIdPatch::class]
 )
 @Name("sponsorblock")
 @Description("Integrate SponsorBlock.")
@@ -53,15 +54,18 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerInitFingerprint,
-        PlayerOverlaysLayoutInitFingerprint
+        PlayerOverlaysLayoutInitFingerprint,
+        ShortsPlayerConstructorFingerprint,
+        StartVideoInformerFingerprint
     )
 ) {
-    override fun execute(data: BytecodeData): PatchResult {/*
+    override fun execute(context: BytecodeContext): PatchResult {/*
         Set current video time
         */
         val referenceResult = PlayerControllerSetTimeReferenceFingerprint.result!!
         val playerControllerSetTimeMethod =
-            data.toMethodWalker(referenceResult.method).nextMethod(referenceResult.patternScanResult!!.startIndex, true)
+            context.toMethodWalker(referenceResult.method)
+                .nextMethod(referenceResult.scanResult.patternScanResult!!.startIndex, true)
                 .getMethod() as MutableMethod
         playerControllerSetTimeMethod.addInstruction(
             2,
@@ -73,7 +77,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
          */
         val constructorFingerprint =
             object : MethodFingerprint("V", null, listOf("J", "J", "J", "J", "I", "L"), null) {}
-        constructorFingerprint.resolve(data, VideoTimeFingerprint.result!!.classDef)
+        constructorFingerprint.resolve(context, VideoTimeFingerprint.result!!.classDef)
 
         val constructor = constructorFingerprint.result!!.mutableMethod
         constructor.addInstruction(
@@ -96,10 +100,14 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
          Get the instance of the seekbar rectangle
          */
-        seekbarMethod.addInstruction(
-            1,
-            "invoke-static {v0}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarRect(Ljava/lang/Object;)V"
-        )
+        for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
+            if (instruction.opcode != Opcode.MOVE_OBJECT_FROM16) continue
+            seekbarMethod.addInstruction(
+                index + 1,
+                "invoke-static {v0}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setSponsorBarRect(Ljava/lang/Object;)V"
+            )
+            break
+        }
 
         for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
             if (instruction.opcode != Opcode.INVOKE_STATIC) continue
@@ -155,17 +163,17 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
         Set video length
          */
-        VideoLengthFingerprint.resolve(data, seekbarSignatureResult.classDef)
+        VideoLengthFingerprint.resolve(context, seekbarSignatureResult.classDef)
         val videoLengthMethodResult = VideoLengthFingerprint.result!!
         val videoLengthMethod = videoLengthMethodResult.mutableMethod
         val videoLengthMethodInstructions = videoLengthMethod.implementation!!.instructions
 
         val videoLengthRegister =
-            (videoLengthMethodInstructions[videoLengthMethodResult.patternScanResult!!.endIndex - 2] as OneRegisterInstruction).registerA
+            (videoLengthMethodInstructions[videoLengthMethodResult.scanResult.patternScanResult!!.endIndex - 2] as OneRegisterInstruction).registerA
         val dummyRegisterForLong =
             videoLengthRegister + 1 // this is required for long values since they are 64 bit wide
         videoLengthMethod.addInstruction(
-            videoLengthMethodResult.patternScanResult!!.endIndex,
+            videoLengthMethodResult.scanResult.patternScanResult!!.endIndex,
             "invoke-static {v$videoLengthRegister, v$dummyRegisterForLong}, Lapp/revanced/integrations/sponsorblock/PlayerController;->setVideoLength(J)V"
         )
 
@@ -175,9 +183,9 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         val controlsMethodResult = PlayerControlsBytecodePatch.showPlayerControlsFingerprintResult
 
         val controlsLayoutStubResourceId =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
+            ResourceMappingResourcePatch.resourceMappings.single { it.type == "id" && it.name == "controls_layout_stub" }.id
         val zoomOverlayResourceId =
-            ResourceIdMappingProviderResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
+            ResourceMappingResourcePatch.resourceMappings.single { it.type == "id" && it.name == "video_zoom_overlay_stub" }.id
 
         methods@ for (method in controlsMethodResult.mutableClass.methods) {
             val instructions = method.implementation?.instructions!!
@@ -203,7 +211,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
                     zoomOverlayResourceId -> {
                         val invertVisibilityMethod =
-                            data.toMethodWalker(method).nextMethod(index - 6, true).getMethod() as MutableMethod
+                            context.toMethodWalker(method).nextMethod(index - 6, true).getMethod() as MutableMethod
                         // change visibility of the buttons
                         invertVisibilityMethod.addInstructions(
                             0, """
@@ -229,7 +237,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // append the new time to the player layout
         val appendTimeFingerprintResult = AppendTimeFingerprint.result!!
-        val appendTimePatternScanStartIndex = appendTimeFingerprintResult.patternScanResult!!.startIndex
+        val appendTimePatternScanStartIndex = appendTimeFingerprintResult.scanResult.patternScanResult!!.startIndex
         val targetRegister =
             (appendTimeFingerprintResult.method.implementation!!.instructions.elementAt(appendTimePatternScanStartIndex + 1) as OneRegisterInstruction).registerA
 
@@ -257,7 +265,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         // lastly create hooks for the player controller
 
         // get original seek method
-        SeekFingerprint.resolve(data, initFingerprintResult.classDef)
+        SeekFingerprint.resolve(context, initFingerprintResult.classDef)
         val seekFingerprintResultMethod = SeekFingerprint.result!!.method
         // get enum type for the seek helper method
         val seekSourceEnumType = seekFingerprintResultMethod.parameterTypes[1].toString()
@@ -288,7 +296,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         initFingerprintResult.mutableClass.methods.add(seekHelperMethod)
 
         // get rectangle field name
-        RectangleFieldInvalidatorFingerprint.resolve(data, seekbarSignatureResult.classDef)
+        RectangleFieldInvalidatorFingerprint.resolve(context, seekbarSignatureResult.classDef)
         val rectangleFieldInvalidatorInstructions =
             RectangleFieldInvalidatorFingerprint.result!!.method.implementation!!.instructions
         val rectangleFieldName =
@@ -296,7 +304,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // get the player controller class from the integrations
         val playerControllerMethods =
-            data.proxy(data.classes.first { it.type.endsWith("PlayerController;") }).resolve().methods
+            context.proxy(context.classes.first { it.type.endsWith("PlayerController;") }).mutableClass.methods
 
         // get the method which contain the "replaceMe" strings
         val replaceMeMethods =
@@ -323,6 +331,23 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                 }
             }
         }
+
+        val startVideoInformerMethod = StartVideoInformerFingerprint.result!!.mutableMethod
+        startVideoInformerMethod.addInstructions(
+            0, """
+            const/4 v0, 0x0
+            sput-boolean v0, Lapp/revanced/integrations/sponsorblock/PlayerController;->shorts_playing:Z
+        """
+        )
+
+        val shortsPlayerConstructorMethod = ShortsPlayerConstructorFingerprint.result!!.mutableMethod
+
+        shortsPlayerConstructorMethod.addInstructions(
+            0, """
+            const/4 v0, 0x1
+            sput-boolean v0, Lapp/revanced/integrations/sponsorblock/PlayerController;->shorts_playing:Z
+        """
+        )
 
         // TODO: isSBChannelWhitelisting implementation
 

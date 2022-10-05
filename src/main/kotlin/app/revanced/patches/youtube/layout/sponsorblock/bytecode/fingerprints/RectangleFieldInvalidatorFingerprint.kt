@@ -2,27 +2,18 @@ package app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.fingerprint.method.annotation.DirectPatternScanMethod
-import app.revanced.patcher.fingerprint.method.annotation.MatchingMethod
+
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Name("rectangle-field-invalidator-fingerprint")
-@MatchingMethod(
-    "Lfcm;", "kY"
-)
-@DirectPatternScanMethod
 @SponsorBlockCompatibility
 @Version("0.0.1")
 object RectangleFieldInvalidatorFingerprint : MethodFingerprint(
     "V",
-    null,
-    null,
-    null,
-    null,
-    custom@{ methodDef ->
+    customFingerprint = custom@{ methodDef ->
         val instructions = methodDef.implementation?.instructions!!
         val instructionCount = instructions.count()
 

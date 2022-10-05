@@ -3,19 +3,19 @@ package app.revanced.patches.youtube.layout.autoplaybutton.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.BytecodeData
+import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.layout.autoplaybutton.annotations.AutoplayButtonCompatibility
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.AutoNavInformerFingerprint
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.mapping.patch.ResourceIdMappingProviderResourcePatch
+import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceIdMappingProviderResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingResourcePatch::class])
 @Name("hide-autoplay-button")
 @Description("Hides the autoplay button in the video player.")
 @AutoplayButtonCompatibility
@@ -35,7 +35,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
         LayoutConstructorFingerprint, AutoNavInformerFingerprint
     )
 ) {
-    override fun execute(data: BytecodeData): PatchResult {
+    override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_autoplay_button_enabled",
@@ -53,7 +53,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
         val layoutGenMethodInstructions = layoutGenMethod.implementation!!.instructions
 
         // resolve the offsets such as ...
-        val autoNavPreviewStubId = ResourceIdMappingProviderResourcePatch.resourceMappings.single {
+        val autoNavPreviewStubId = ResourceMappingResourcePatch.resourceMappings.single {
             it.name == "autonav_preview_stub"
         }.id
         // where to insert the branch instructions and ...

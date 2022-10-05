@@ -3,14 +3,14 @@ package app.revanced.patches.youtube.interaction.seekbar.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.BytecodeData
+import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patches.youtube.interaction.seekbar.annotation.SeekbarTappingCompatibility
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingParentFingerprint
@@ -35,7 +35,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         SeekbarTappingParentFingerprint, SeekbarTappingFingerprint
     )
 ) {
-    override fun execute(data: BytecodeData): PatchResult {
+    override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_enable_tap_seeking",
@@ -79,15 +79,17 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         val pMethod = tapSeekMethods["P"]!!
         val oMethod = tapSeekMethods["O"]!!
 
+        val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
+
         // get the required register
-        val instruction = implementation.instructions[result.patternScanResult!!.endIndex]
+        val instruction = implementation.instructions[insertIndex - 1]
         if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return PatchResultError("Could not find the correct register")
         val register = (instruction as Instruction35c).registerC
 
-        val elseLabel = implementation.newLabelForIndex(result.patternScanResult!!.endIndex + 1)
+        val elseLabel = implementation.newLabelForIndex(insertIndex)
         // the instructions are written in reverse order.
         result.mutableMethod.addInstructions(
-            result.patternScanResult!!.endIndex + 1, """
+            insertIndex, """
                invoke-virtual { v$register, v2 }, ${oMethod.definingClass}->${oMethod.name}(I)V
                invoke-virtual { v$register, v2 }, ${pMethod.definingClass}->${pMethod.name}(I)V
             """
@@ -95,10 +97,10 @@ class EnableSeekbarTappingPatch : BytecodePatch(
 
         // if tap-seeking is disabled, do not invoke the two methods above by jumping to the else label
         implementation.addInstruction(
-            result.patternScanResult!!.endIndex + 1, BuilderInstruction21t(Opcode.IF_EQZ, 0, elseLabel)
+            insertIndex, BuilderInstruction21t(Opcode.IF_EQZ, 0, elseLabel)
         )
         result.mutableMethod.addInstructions(
-            result.patternScanResult!!.endIndex + 1, """
+            insertIndex, """
                 invoke-static { }, Lapp/revanced/integrations/patches/SeekbarTappingPatch;->isTapSeekingEnabled()Z
                 move-result v0
             """

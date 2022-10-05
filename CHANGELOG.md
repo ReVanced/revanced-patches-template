@@ -1,3 +1,493 @@
+# [2.80.0](https://github.com/revanced/revanced-patches/compare/v2.79.2...v2.80.0) (2022-10-04)
+
+
+### Features
+
+* **youtube/remember-video-quality:** remember current quality option ([9c510d4](https://github.com/revanced/revanced-patches/commit/9c510d472048f5bce127eb0329e53aaf259e9b1b))
+
+## [2.79.2](https://github.com/revanced/revanced-patches/compare/v2.79.1...v2.79.2) (2022-10-04)
+
+
+### Bug Fixes
+
+* **youtube/disable-startup-shorts-player:** don't affect functionality of navigation bar  ([#716](https://github.com/revanced/revanced-patches/issues/716)) ([05f5cc1](https://github.com/revanced/revanced-patches/commit/05f5cc17e3fcbf255c6fe5b503c9fd20c218f5a1))
+
+## [2.79.1](https://github.com/revanced/revanced-patches/compare/v2.79.0...v2.79.1) (2022-10-03)
+
+
+### Bug Fixes
+
+* **youtube/disable-startup-shorts-player:** do not prevent playing videos on startup ([#714](https://github.com/revanced/revanced-patches/issues/714)) ([9a0d379](https://github.com/revanced/revanced-patches/commit/9a0d3798afd75bba5c63e1b8803dc25814586be9))
+
+# [2.79.0](https://github.com/revanced/revanced-patches/compare/v2.78.0...v2.79.0) (2022-10-03)
+
+
+### Features
+
+* `hide-video-buttons` patch ([584803a](https://github.com/revanced/revanced-patches/commit/584803aa900f94de1b2b2a0c41fb0884fa9270d3))
+
+# [2.78.0](https://github.com/revanced/revanced-patches/compare/v2.77.1...v2.78.0) (2022-10-02)
+
+
+### Features
+
+* **youtube/general-ads:** check for ad in identifier ([fd0506e](https://github.com/revanced/revanced-patches/commit/fd0506eb95dbf398eb7d6bfa8732f517b9867545))
+
+## [2.77.1](https://github.com/revanced/revanced-patches/compare/v2.77.0...v2.77.1) (2022-10-01)
+
+
+### Bug Fixes
+
+* **tiktok/tiktok-downloads:** add missing patch dependencies ([#686](https://github.com/revanced/revanced-patches/issues/686)) ([5c3b4ed](https://github.com/revanced/revanced-patches/commit/5c3b4ed0530e89d50db3b5bb9893e1ef4b463bae))
+
+# [2.77.0](https://github.com/revanced/revanced-patches/compare/v2.76.3...v2.77.0) (2022-10-01)
+
+
+### Features
+
+* **youtube/hdr-auto-brightness:** increase strength of fingerprint ([2379b58](https://github.com/revanced/revanced-patches/commit/2379b5892b3505c8780f475bbc56f520613fa31d))
+
+## [2.76.3](https://github.com/revanced/revanced-patches/compare/v2.76.2...v2.76.3) (2022-10-01)
+
+
+### Performance Improvements
+
+* **general-ads:** hook pathBuilder ([b9bad0b](https://github.com/revanced/revanced-patches/commit/b9bad0bb922bbd44ddf2acbfae87243beb28851a))
+
+## [2.76.2](https://github.com/revanced/revanced-patches/compare/v2.76.1...v2.76.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* **twitter/monochrome-icon:** add missing `File.write` call ([#682](https://github.com/revanced/revanced-patches/issues/682)) ([de22e3f](https://github.com/revanced/revanced-patches/commit/de22e3f03ef1d6db08f9446f02e687721d9017d7))
+
+## [2.76.1](https://github.com/revanced/revanced-patches/compare/v2.76.0...v2.76.1) (2022-09-30)
+
+
+### Bug Fixes
+
+* **disable-startup-shorts-player:** remove redundant opcode pattern ([#679](https://github.com/revanced/revanced-patches/issues/679)) ([5197a24](https://github.com/revanced/revanced-patches/commit/5197a24cc5ecc1b51cdc5c00c77c873b86394994))
+
+# [2.76.0](https://github.com/revanced/revanced-patches/compare/v2.75.2...v2.76.0) (2022-09-30)
+
+
+### Features
+
+* bump YouTube Music patches compatibility to v5.26.52 ([#681](https://github.com/revanced/revanced-patches/issues/681)) ([f195734](https://github.com/revanced/revanced-patches/commit/f195734925dd41596d058f9cbf2b7e619a8d5833))
+
+## [2.75.2](https://github.com/revanced/revanced-patches/compare/v2.75.1...v2.75.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* **twitter patches.:** use wider compatible Java API for writing to file ([#678](https://github.com/revanced/revanced-patches/issues/678)) ([4448de8](https://github.com/revanced/revanced-patches/commit/4448de80a6277862d81c7a29b9489e4fbec48496))
+
+## [2.75.1](https://github.com/revanced/revanced-patches/compare/v2.75.0...v2.75.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **disable-startup-shorts-player:** incorrect offsets, invert branch condition ([#672](https://github.com/revanced/revanced-patches/issues/672)) ([bfe1e38](https://github.com/revanced/revanced-patches/commit/bfe1e3808ece85fbb0785a4378ee95591115ac33))
+
+# [2.75.0](https://github.com/revanced/revanced-patches/compare/v2.74.0...v2.75.0) (2022-09-29)
+
+
+### Features
+
+* `disable-capture-restriction` patch ([#655](https://github.com/revanced/revanced-patches/issues/655)) ([3cc26c3](https://github.com/revanced/revanced-patches/commit/3cc26c31d378c27ca7f768f777daa00e3f849dff))
+
+# [2.74.0](https://github.com/revanced/revanced-patches/compare/v2.73.0...v2.74.0) (2022-09-29)
+
+
+### Features
+
+* `disable-startup-shorts-player` patch ([#670](https://github.com/revanced/revanced-patches/issues/670)) ([feb3bd0](https://github.com/revanced/revanced-patches/commit/feb3bd02aaf67379733d10988fd58b0c3924f88e))
+
+# [2.73.0](https://github.com/revanced/revanced-patches/compare/v2.72.1...v2.73.0) (2022-09-29)
+
+
+### Features
+
+* `dynamic-color` patch ([#652](https://github.com/revanced/revanced-patches/issues/652)) ([a16575b](https://github.com/revanced/revanced-patches/commit/a16575b984354138b9ab175307be8d15de60b6a6))
+
+## [2.72.1](https://github.com/revanced/revanced-patches/compare/v2.72.0...v2.72.1) (2022-09-29)
+
+
+### Bug Fixes
+
+* **hdr-brightness:** trim list of compatible versions ([#602](https://github.com/revanced/revanced-patches/issues/602)) ([3209d90](https://github.com/revanced/revanced-patches/commit/3209d902e4d1aa73b59ce059cf3f76ef2095af70))
+
+# [2.72.0](https://github.com/revanced/revanced-patches/compare/v2.71.2...v2.72.0) (2022-09-29)
+
+
+### Features
+
+* `tiktok-speed` patch ([#668](https://github.com/revanced/revanced-patches/issues/668)) ([23fff16](https://github.com/revanced/revanced-patches/commit/23fff16e6ab02bf281d46d8b5f93788425d8b525))
+* bump YouTube Music patches to v5.25.51 ([#669](https://github.com/revanced/revanced-patches/issues/669)) ([563c846](https://github.com/revanced/revanced-patches/commit/563c8466568d578de7c8a8e869fb1aa74370784a))
+
+## [2.71.2](https://github.com/revanced/revanced-patches/compare/v2.71.1...v2.71.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **hide-email-address:** invalid instruction offsets ([#654](https://github.com/revanced/revanced-patches/issues/654)) ([1a3db44](https://github.com/revanced/revanced-patches/commit/1a3db44b5bd9628b7b25cc113a3a53bf8a85bd2b))
+
+## [2.71.1](https://github.com/revanced/revanced-patches/compare/v2.71.0...v2.71.1) (2022-09-28)
+
+
+### Bug Fixes
+
+* **disable-auto-player-popup-panels:** swap switch toggle state description ([#653](https://github.com/revanced/revanced-patches/issues/653)) ([f881301](https://github.com/revanced/revanced-patches/commit/f88130143689c7a63fd67df3dff37caec5db9548))
+
+# [2.71.0](https://github.com/revanced/revanced-patches/compare/v2.70.0...v2.71.0) (2022-09-28)
+
+
+### Features
+
+* `hide-email-address` patch ([#578](https://github.com/revanced/revanced-patches/issues/578)) ([82cb632](https://github.com/revanced/revanced-patches/commit/82cb6321beace1e5feed248d3f3d6ae56cf0d96b))
+
+# [2.70.0](https://github.com/revanced/revanced-patches/compare/v2.69.4...v2.70.0) (2022-09-28)
+
+
+### Features
+
+* `monochrome-icon` patch ([#643](https://github.com/revanced/revanced-patches/issues/643)) ([127c8e5](https://github.com/revanced/revanced-patches/commit/127c8e54e54709c2716029044ae337ad53daafad))
+
+## [2.69.4](https://github.com/revanced/revanced-patches/compare/v2.69.3...v2.69.4) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** dynamically insert `setSponsorBarRect` call ([#644](https://github.com/revanced/revanced-patches/issues/644)) ([998a249](https://github.com/revanced/revanced-patches/commit/998a249a23d09eb752b35c4da731f4223be40a3b))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.3](https://github.com/revanced/revanced-patches/compare/v2.69.2...v2.69.3) (2022-09-27)
+
+
+### Bug Fixes
+
+* **sponsorblock:** correct class name for field reference ([#582](https://github.com/revanced/revanced-patches/issues/582)) ([7cd585c](https://github.com/revanced/revanced-patches/commit/7cd585cd78e284a82cee17d09f8049f0a5cdf2e8))
+
+## [2.69.2](https://github.com/revanced/revanced-patches/compare/v2.69.1...v2.69.2) (2022-09-26)
+
+
+### Performance Improvements
+
+* **resource-mapping:** map resources with multiple threads ([a7e4da0](https://github.com/revanced/revanced-patches/commit/a7e4da018bf939accdf6d406b471ac74f9078095))
+
+## [2.69.1](https://github.com/revanced/revanced-patches/compare/v2.69.0...v2.69.1) (2022-09-24)
+
+
+### Bug Fixes
+
+* **sponsorblock:** reflect changes to strings ([#585](https://github.com/revanced/revanced-patches/issues/585)) ([d03568a](https://github.com/revanced/revanced-patches/commit/d03568aa39195a07bec62f43d929923825c67d3f))
+
+# [2.69.0](https://github.com/revanced/revanced-patches/compare/v2.68.3...v2.69.0) (2022-09-24)
+
+
+### Features
+
+* `spotify-theme` patch ([#608](https://github.com/revanced/revanced-patches/issues/608)) ([7ee1b78](https://github.com/revanced/revanced-patches/commit/7ee1b78e8048698ef6490445dd012e2d88b4d332))
+
+## [2.68.3](https://github.com/revanced/revanced-patches/compare/v2.68.2...v2.68.3) (2022-09-23)
+
+
+### Bug Fixes
+
+* **seekbar-tapping:** do not disable seekbar when hiding it ([#600](https://github.com/revanced/revanced-patches/issues/600)) ([68a9457](https://github.com/revanced/revanced-patches/commit/68a9457464c786a61b756eb18ca5f1ce05316636))
+
+## [2.68.2](https://github.com/revanced/revanced-patches/compare/v2.68.1...v2.68.2) (2022-09-23)
+
+
+### Bug Fixes
+
+* **hide-time-and-seekbar:** don't draw the seekbar ([#594](https://github.com/revanced/revanced-patches/issues/594)) ([46e0195](https://github.com/revanced/revanced-patches/commit/46e0195f760dc11ec8d2068ffb57997eccab1aff))
+
+## [2.68.1](https://github.com/revanced/revanced-patches/compare/v2.68.0...v2.68.1) (2022-09-23)
+
+
+### Bug Fixes
+
+* **sponsorblock:** resolve unresolved fingerprint ([e7296f3](https://github.com/revanced/revanced-patches/commit/e7296f3424bed78a0149cca9bf6e29243e962150))
+
+# [2.68.0](https://github.com/revanced/revanced-patches/compare/v2.67.1...v2.68.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **hide-premium-navbar:** remove the correct instructions ([#591](https://github.com/revanced/revanced-patches/issues/591)) ([b4b0c97](https://github.com/revanced/revanced-patches/commit/b4b0c972d28cf7591ece04d154d1183c8431cb77))
+
+
+### Features
+
+* **tiktok:** adapt `tiktok-download` with `tiktok-settings`. ([#586](https://github.com/revanced/revanced-patches/issues/586)) ([876b726](https://github.com/revanced/revanced-patches/commit/876b7266109b099597dd19d6ed3fa3dac098b73b))
+
+## [2.67.1](https://github.com/revanced/revanced-patches/compare/v2.67.0...v2.67.1) (2022-09-23)
+
+# [2.67.0](https://github.com/revanced/revanced-patches/compare/v2.66.2...v2.67.0) (2022-09-23)
+
+
+### Bug Fixes
+
+* **hide-premium-nav-bar:** invalid import ([#590](https://github.com/revanced/revanced-patches/issues/590)) ([37ad223](https://github.com/revanced/revanced-patches/commit/37ad22360e6ac5e1b1dce474fe6a4e3813e03330))
+
+
+### Features
+
+* `hide-premium-nav-bar` patch ([#589](https://github.com/revanced/revanced-patches/issues/589)) ([1811416](https://github.com/revanced/revanced-patches/commit/18114168d7f8c3dd41d1f124c3524c7ca850d33d))
+
+## [2.66.2](https://github.com/revanced/revanced-patches/compare/v2.66.1...v2.66.2) (2022-09-22)
+
+
+### Bug Fixes
+
+* **custom-playback-speed:** implement own method instead of `takeWhile` ([8522d4c](https://github.com/revanced/revanced-patches/commit/8522d4cd705118bf1108ec88bbed542a0cb15943))
+
+## [2.66.1](https://github.com/revanced/revanced-patches/compare/v2.66.0...v2.66.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* **sponsorblock:** broken fingerprint and invert setting `shorts_playing` ([#579](https://github.com/revanced/revanced-patches/issues/579)) ([59fb674](https://github.com/revanced/revanced-patches/commit/59fb674437207aeabed5b92ba32bda120820fb8f))
+
+# [2.66.0](https://github.com/revanced/revanced-patches/compare/v2.65.0...v2.66.0) (2022-09-22)
+
+
+### Features
+
+* **custom-playback-speed:** max, min, granularity option ([b1e423d](https://github.com/revanced/revanced-patches/commit/b1e423d9cdca51e54c154cc39a24c508ca322f60))
+
+# [2.65.0](https://github.com/revanced/revanced-patches/compare/v2.64.2...v2.65.0) (2022-09-21)
+
+
+### Features
+
+* `tiktok-feed-filter` , `tiktok-settings` and `tiktok-force-login` patch ([#501](https://github.com/revanced/revanced-patches/issues/501)) ([10e0286](https://github.com/revanced/revanced-patches/commit/10e028626f2b9d9d01279682198daf135bc82c20))
+* **theme:** arbitrary background color for light theme  ([#565](https://github.com/revanced/revanced-patches/issues/565)) ([da40e7e](https://github.com/revanced/revanced-patches/commit/da40e7e0cf266edc89353e62b9821b450f8f0295))
+
+## [2.64.2](https://github.com/revanced/revanced-patches/compare/v2.64.1...v2.64.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **custom-video-buffer:** use correct offset for `getMaxBuffer` call injection ([6773122](https://github.com/revanced/revanced-patches/commit/6773122d0b1598af78d4619b8af2811be11f6b95))
+
+## [2.64.1](https://github.com/revanced/revanced-patches/compare/v2.64.0...v2.64.1) (2022-09-21)
+
+# [2.64.0](https://github.com/revanced/revanced-patches/compare/v2.63.0...v2.64.0) (2022-09-21)
+
+
+### Features
+
+* explicit support for YouTube v17.34.35 and v17.34.36 ([#527](https://github.com/revanced/revanced-patches/issues/527)) ([1b6a64b](https://github.com/revanced/revanced-patches/commit/1b6a64b49c54ab53df463981a9ad7ec67729939f))
+
+# [2.63.0](https://github.com/revanced/revanced-patches/compare/v2.62.0...v2.63.0) (2022-09-21)
+
+
+### Features
+
+* `disable-auto-player-popup-panels` ([#543](https://github.com/revanced/revanced-patches/issues/543)) ([d1fa2c3](https://github.com/revanced/revanced-patches/commit/d1fa2c3bc359018146f1f90b1ed4448b7f19b247))
+* disable sponsorblock on shorts ([#439](https://github.com/revanced/revanced-patches/issues/439)) ([47fbcba](https://github.com/revanced/revanced-patches/commit/47fbcba3f845b5c3ef35c4dded8d6f9ffafc5d9e))
+
+# [2.62.0](https://github.com/revanced/revanced-patches/compare/v2.61.1...v2.62.0) (2022-09-21)
+
+
+### Features
+
+* `hide-time-and-seekbar` patch ([#544](https://github.com/revanced/revanced-patches/issues/544)) ([ef7afc7](https://github.com/revanced/revanced-patches/commit/ef7afc7231f8fa6b9b7f84c2b5b9a9fda80aa0f4))
+
+## [2.61.1](https://github.com/revanced/revanced-patches/compare/v2.61.0...v2.61.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **sponsorblock:** reflect strings from official guidelines ([#523](https://github.com/revanced/revanced-patches/issues/523)) ([1c83959](https://github.com/revanced/revanced-patches/commit/1c83959e69bfbf5140edbf7ef4d2c8901975bfd4))
+
+# [2.61.0](https://github.com/revanced/revanced-patches/compare/v2.60.0...v2.61.0) (2022-09-20)
+
+
+### Features
+
+* section `acknowledgements` for issue templates ([f663935](https://github.com/revanced/revanced-patches/commit/f663935382036cfdccf04627ca77306c5f951b4c))
+
+# [2.60.0](https://github.com/revanced/revanced-patches/compare/v2.59.0...v2.60.0) (2022-09-19)
+
+
+### Features
+
+* **downloads:** missing package installation request ([bc9e81a](https://github.com/revanced/revanced-patches/commit/bc9e81a6c343a912cab6fe3c2560d759fbf1be8a))
+
+# [2.59.0](https://github.com/revanced/revanced-patches/compare/v2.58.0...v2.59.0) (2022-09-18)
+
+
+### Features
+
+* **sponsorblock:** string for response error code 400 ([#512](https://github.com/revanced/revanced-patches/issues/512)) ([d42569f](https://github.com/revanced/revanced-patches/commit/d42569fcc4367fa65c5c88ddc75098d4e208f7f3))
+
+# [2.58.0](https://github.com/revanced/revanced-patches/compare/v2.57.0...v2.58.0) (2022-09-18)
+
+
+### Bug Fixes
+
+* **hdr-auto-brightness:** increase patching compatibility across versions ([bc5c8c1](https://github.com/revanced/revanced-patches/commit/bc5c8c118d5f95905fb7f0fb6afaf97bdcb753bf))
+* **hide-create-button:** increase patching compatibility across versions ([b217a1e](https://github.com/revanced/revanced-patches/commit/b217a1e89f4b9e3ad030ece08a1b81e507c7cc02))
+* **hide-shorts-button:** increase patching compatibility across versions ([7f17934](https://github.com/revanced/revanced-patches/commit/7f1793490f25b9fa16539e80cdc417b3b3e0e639))
+
+
+### Features
+
+* bump patches compatibility to v17.36.37 ([4493d7e](https://github.com/revanced/revanced-patches/commit/4493d7e6c7d76760cf4bc93968bf425b23c994de))
+
+# [2.57.0](https://github.com/revanced/revanced-patches/compare/v2.56.1...v2.57.0) (2022-09-16)
+
+
+### Features
+
+* **amoled:** remove in favour of `theme` patch ([0032301](https://github.com/revanced/revanced-patches/commit/00323010ed7356a639e4e86916dcbae96a53f7f6))
+* **theme:** arbitrary background color for dark theme ([afd5502](https://github.com/revanced/revanced-patches/commit/afd5502afdb207d5f52516653869b26fae7e5d21))
+
+## [2.56.1](https://github.com/revanced/revanced-patches/compare/v2.56.0...v2.56.1) (2022-09-15)
+
+
+### Bug Fixes
+
+* `auto-captions` patch switch description ([#488](https://github.com/revanced/revanced-patches/issues/488)) ([57824fb](https://github.com/revanced/revanced-patches/commit/57824fb16c56889d8f18299e9bab2563bb13e5c2))
+
+# [2.56.0](https://github.com/revanced/revanced-patches/compare/v2.55.0...v2.56.0) (2022-09-15)
+
+
+### Features
+
+* **tiktok-download:** custom download path ([#479](https://github.com/revanced/revanced-patches/issues/479)) ([944aa48](https://github.com/revanced/revanced-patches/commit/944aa485cec513faa30a21b91887dcacf9d70b45))
+
+# [2.55.0](https://github.com/revanced/revanced-patches/compare/v2.54.1...v2.55.0) (2022-09-15)
+
+
+### Features
+
+* `disable-auto-captions` patch ([#435](https://github.com/revanced/revanced-patches/issues/435)) ([8ee12d0](https://github.com/revanced/revanced-patches/commit/8ee12d0beadfd0a8fdce0a331646e8786527e84d))
+
+## [2.54.1](https://github.com/revanced/revanced-patches/compare/v2.54.0...v2.54.1) (2022-09-14)
+
+
+### Bug Fixes
+
+* alignment of download button icon ([#477](https://github.com/revanced/revanced-patches/issues/477)) ([2093f11](https://github.com/revanced/revanced-patches/commit/2093f11e762c471a0987fb57f03c7f48d565fdce))
+
+# [2.54.0](https://github.com/revanced/revanced-patches/compare/v2.53.0...v2.54.0) (2022-09-14)
+
+
+### Features
+
+* bump YouTube Music patches to v5.23.50 ([#462](https://github.com/revanced/revanced-patches/issues/462)) ([15c10b1](https://github.com/revanced/revanced-patches/commit/15c10b1e0368a021b0f2ec46bc2e9ea84a5d5afd))
+
+# [2.53.0](https://github.com/revanced/revanced-patches/compare/v2.52.3...v2.53.0) (2022-09-13)
+
+
+### Features
+
+* patch requests issue template ([#467](https://github.com/revanced/revanced-patches/issues/467)) ([d8bb354](https://github.com/revanced/revanced-patches/commit/d8bb35472258c0634599102f4f4bf4cea587a817)), closes [revanced/revanced-patches#463](https://github.com/revanced/revanced-patches/issues/463)
+
+## [2.52.3](https://github.com/revanced/revanced-patches/compare/v2.52.2...v2.52.3) (2022-09-11)
+
+
+### Bug Fixes
+
+* path for download icon ([#465](https://github.com/revanced/revanced-patches/issues/465)) ([bff22c3](https://github.com/revanced/revanced-patches/commit/bff22c3a154fd8059f4f8995a303354633a50517))
+
+## [2.52.2](https://github.com/revanced/revanced-patches/compare/v2.52.1...v2.52.2) (2022-09-11)
+
+
+### Bug Fixes
+
+* design language for download icon ([#464](https://github.com/revanced/revanced-patches/issues/464)) ([c24dc17](https://github.com/revanced/revanced-patches/commit/c24dc175f705fd5364b8bcf01f27f3ac8ecc0e64))
+
+## [2.52.1](https://github.com/revanced/revanced-patches/compare/v2.52.0...v2.52.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* multiple compatible pkgs on readme ([3f82a13](https://github.com/revanced/revanced-patches/commit/3f82a1349fb11b1152ac10d76deb930f7325b7c9))
+
+# [2.52.0](https://github.com/revanced/revanced-patches/compare/v2.51.3...v2.52.0) (2022-09-08)
+
+
+### Features
+
+* add deprecated & options to patches.json ([759315b](https://github.com/revanced/revanced-patches/commit/759315be1b23a6b3655fc87b56a8974ebac648cc))
+
+## [2.51.3](https://github.com/revanced/revanced-patches/compare/v2.51.2...v2.51.3) (2022-09-08)
+
+
+### Bug Fixes
+
+* cleanup & trigger release for ThemePatch ([8d25b21](https://github.com/revanced/revanced-patches/commit/8d25b214e297797092432b5fe1a4ede1f42115c8)), closes [#447](https://github.com/revanced/revanced-patches/issues/447) [revanced/revanced-patcher#99](https://github.com/revanced/revanced-patcher/issues/99)
+
+## [2.51.2](https://github.com/revanced/revanced-patches/compare/v2.51.1...v2.51.2) (2022-09-08)
+
+## [2.51.1](https://github.com/revanced/revanced-patches/compare/v2.51.0...v2.51.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* wrap theme option ([150c173](https://github.com/revanced/revanced-patches/commit/150c173adce31d9984d6feca694b472649233056))
+
+# [2.51.0](https://github.com/revanced/revanced-patches/compare/v2.50.8...v2.51.0) (2022-09-08)
+
+
+### Features
+
+* Theme Patch ([#440](https://github.com/revanced/revanced-patches/issues/440)) ([f3b92ca](https://github.com/revanced/revanced-patches/commit/f3b92cab5a057ce605b6d9e75e3b99161bf1422c))
+
+## [2.50.8](https://github.com/revanced/revanced-patches/compare/v2.50.7...v2.50.8) (2022-09-08)
+
+## [2.50.7](https://github.com/revanced/revanced-patches/compare/v2.50.6...v2.50.7) (2022-09-08)
+
+## [2.50.6](https://github.com/revanced/revanced-patches/compare/v2.50.5...v2.50.6) (2022-09-07)
+
+## [2.50.5](https://github.com/revanced/revanced-patches/compare/v2.50.4...v2.50.5) (2022-09-07)
+
+## [2.50.4](https://github.com/revanced/revanced-patches/compare/v2.50.3...v2.50.4) (2022-09-03)
+
+
+### Bug Fixes
+
+* don't respect primary color for the download button icon ([#424](https://github.com/revanced/revanced-patches/issues/424)) ([3fa70f4](https://github.com/revanced/revanced-patches/commit/3fa70f48a206c56f6ca8aed88baed722e76281e2))
+
+## [2.50.3](https://github.com/revanced/revanced-patches/compare/v2.50.2...v2.50.3) (2022-09-01)
+
+
+### Bug Fixes
+
+* partial ad blockage in `tiktok-ads` patch ([#420](https://github.com/revanced/revanced-patches/issues/420)) ([bc6d192](https://github.com/revanced/revanced-patches/commit/bc6d19205940e3b4b228a9b5de627a2260abd00e))
+
+## [2.50.2](https://github.com/revanced/revanced-patches/compare/v2.50.1...v2.50.2) (2022-08-31)
+
+
+### Bug Fixes
+
+* wrong dependency version ([1e63a57](https://github.com/revanced/revanced-patches/commit/1e63a57b86475670442e6a24a7f24c02dabee239))
+
+## [2.50.1](https://github.com/revanced/revanced-patches/compare/v2.50.0...v2.50.1) (2022-08-31)
+
+
+### Bug Fixes
+
+* resolve fingerprint in `premium-icon-reddit` patch ([#413](https://github.com/revanced/revanced-patches/issues/413)) ([60ec2c6](https://github.com/revanced/revanced-patches/commit/60ec2c6f8a29cfc36313617a92e976f01213ce00))
+
+# [2.50.0](https://github.com/revanced/revanced-patches/compare/v2.49.0...v2.50.0) (2022-08-31)
+
+
+### Features
+
+* `tiktok-download` and `tiktok-seekbar` patch ([#405](https://github.com/revanced/revanced-patches/issues/405)) ([f36e000](https://github.com/revanced/revanced-patches/commit/f36e0007c52f4e925a3a2370cdb51bd45ee00a1b))
+
 # [2.49.0](https://github.com/revanced/revanced-patches/compare/v2.48.2...v2.49.0) (2022-08-31)
 
 
