@@ -41,14 +41,18 @@ class RememberVideoQualityPatch : BytecodePatch(
                 "revanced_remember_video_quality_selection",
                 StringResource("revanced_remember_video_quality_selection_title", "Remember current video quality"),
                 true,
-                StringResource(
-                    "revanced_remember_video_quality_selection_summary_on",
-                    "The current video quality will not change"
-                ),
-                StringResource(
-                    "revanced_remember_video_quality_selection_summary_off",
-                    "Video quality will be remembered until a new quality is chosen"
-                )
+                StringResource("revanced_remember_video_quality_selection_summary_on", "The current video quality will not change"),
+                StringResource("revanced_remember_video_quality_selection_summary_off", "Video quality will be remembered until a new quality is chosen")
+            ),
+            ListPreference(
+                "revanced_pref_video_quality_wifi",
+                StringResource("revanced_preferred_video_quality_wifi_title","Preferred video quality Wi-Fi"),
+                StringResource("revanced_preferred_video_quality_wifi_summary","Select preferred video resolution on Wi-Fi Network")
+            ),
+            ListPreference(
+                "revanced_pref_video_quality_mobile",
+                StringResource("revanced_preferred_video_quality_mobile_title","Preferred video quality Cellular"),
+                StringResource("revanced_preferred_video_quality_mobile_summary","Select preferred video resolution on Cellular Network")
             )
         )
 
