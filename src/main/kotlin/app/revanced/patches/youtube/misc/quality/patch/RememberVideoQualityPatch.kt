@@ -18,6 +18,8 @@ import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualityRefere
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.misc.quality.fingerprints.VideoUserQualityChangeFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.ListPreference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.videoid.patch.VideoIdPatch
@@ -44,15 +46,22 @@ class RememberVideoQualityPatch : BytecodePatch(
                 StringResource("revanced_remember_video_quality_selection_summary_on", "The current video quality will not change"),
                 StringResource("revanced_remember_video_quality_selection_summary_off", "Video quality will be remembered until a new quality is chosen")
             ),
-            ListPreference(
-                "revanced_pref_video_quality_wifi",
-                StringResource("revanced_preferred_video_quality_wifi_title","Preferred video quality Wi-Fi"),
-                StringResource("revanced_preferred_video_quality_wifi_summary","Select preferred video resolution on Wi-Fi Network")
-            ),
-            ListPreference(
-                "revanced_pref_video_quality_mobile",
-                StringResource("revanced_preferred_video_quality_mobile_title","Preferred video quality Cellular"),
-                StringResource("revanced_preferred_video_quality_mobile_summary","Select preferred video resolution on Cellular Network")
+            PreferenceScreen(
+                "revanced_pref_default_video_quality",
+                StringResource("revanced_default_video_quality_title","Preferred video quality"),
+                listOf(
+                    ListPreference(
+                        "revanced_pref_video_quality_wifi",
+                        StringResource("revanced_preferred_video_quality_wifi_title","Preferred video quality Wi-Fi"),
+                        StringResource("revanced_preferred_video_quality_wifi_summary","Select preferred video resolution on Wi-Fi Network")
+                    ),
+                    ListPreference(
+                        "revanced_pref_video_quality_mobile",
+                        StringResource("revanced_preferred_video_quality_mobile_title","Preferred video quality Cellular"),
+                        StringResource("revanced_preferred_video_quality_mobile_summary","Select preferred video resolution on Cellular Network")
+                    )
+                ),
+                StringResource("revanced_pref_default_video_quality_summary","Select preferred video quality")
             )
         )
 
