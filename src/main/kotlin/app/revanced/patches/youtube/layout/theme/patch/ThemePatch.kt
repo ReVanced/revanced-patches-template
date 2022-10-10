@@ -8,11 +8,12 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
+import app.revanced.patches.youtube.layout.theme.patch.CommentActionbarPatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
 
 @Patch
-@DependsOn([FixLocaleConfigErrorPatch::class])
+@DependsOn([CommentActionbarPatch::class, FixLocaleConfigErrorPatch::class])
 @Name("theme")
 @Description("Applies a custom theme.")
 @ThemeCompatibility
