@@ -23,9 +23,8 @@ class CommentsFilterBarPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-
         val result = CommentsFilterBarFingerprint.result!!
-        val method = CommentsFilterBarFingerprint.result!!.mutableMethod
+        val method = result.mutableMethod
         val patchIndex = result.scanResult.patternScanResult!!.endIndex - 1
 
         method.addInstructions(
