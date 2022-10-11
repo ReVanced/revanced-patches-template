@@ -29,10 +29,14 @@ class CommentsFilterBarPatch : BytecodePatch(
 
         method.addInstructions(
             patchIndex, """
-                const v1, -0xdededf
-                if-ne v1, p1, :comments_action_bar
+                const v1, -0x1
+                if-ne v1, p1, :comments_filter_white
                 const/4 p1, 0x0
-            """, listOf(ExternalLabel("comments_action_bar", method.instruction(patchIndex)))
+                :comments_filter_white
+                const v1, -0xdededf
+                if-ne v1, p1, :comments_filter_dark
+                const/4 p1, 0x0
+            """, listOf(ExternalLabel("comments_filter_dark", method.instruction(patchIndex)))
         )
         return PatchResultSuccess()
     }
