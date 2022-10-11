@@ -1,7 +1,7 @@
 package app.revanced.extensions
 
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.BytecodeContext
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass

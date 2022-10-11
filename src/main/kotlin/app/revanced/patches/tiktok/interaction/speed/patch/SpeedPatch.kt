@@ -3,8 +3,8 @@ package app.revanced.patches.tiktok.interaction.speed.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.toMethodWalker
+import app.revanced.patcher.BytecodeContext
+import app.revanced.patcher.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult

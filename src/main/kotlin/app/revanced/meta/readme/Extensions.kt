@@ -1,6 +1,6 @@
 package app.revanced.meta.readme
 
-import app.revanced.patcher.data.Context
+import app.revanced.patcher.Context
 import app.revanced.patcher.extensions.PatchExtensions.compatiblePackages
 import app.revanced.patcher.patch.Patch
 

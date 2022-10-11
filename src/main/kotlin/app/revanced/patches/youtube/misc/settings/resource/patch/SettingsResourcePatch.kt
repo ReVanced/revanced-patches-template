@@ -2,8 +2,8 @@ package app.revanced.patches.youtube.misc.settings.resource.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.DomFileEditor
-import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.DomFileEditor
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch

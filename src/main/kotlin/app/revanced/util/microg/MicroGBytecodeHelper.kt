@@ -1,6 +1,6 @@
 package app.revanced.util.microg
 
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint

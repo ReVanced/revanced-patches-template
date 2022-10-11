@@ -3,8 +3,8 @@ package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.toMethodWalker
+import app.revanced.patcher.BytecodeContext
+import app.revanced.patcher.toMethodWalker
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.or

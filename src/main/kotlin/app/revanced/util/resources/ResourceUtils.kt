@@ -1,7 +1,7 @@
 package app.revanced.util.resources
 
-import app.revanced.patcher.data.DomFileEditor
-import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.DomFileEditor
+import app.revanced.patcher.ResourceContext
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import org.w3c.dom.Node
