@@ -22,13 +22,8 @@ import org.w3c.dom.Element
 class GeneralResourceAdsPatch : ResourcePatch {
     // list of resource file names which need to be hidden
     private val resourceFileNames = arrayOf(
-        "compact_promoted_video_item.xml",
-        "inline_muted_metadata_swap.xml",
-        "interstitial_promo_view.xml",
-        "pip_ad_overlay.xml",
-        "promoted_",
-        "watch_metadata_companion_cards.xml",
-        //"watch_while_activity.xml" // FIXME: find out why patching this resource fails
+        "compact_promoted_",
+        "promoted_video_",
     )
 
     // the attributes to change the value of
