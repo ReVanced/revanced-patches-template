@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.CommentsFilterBarFingerprint
 
 @Name("comment-filter-bar-theme")
-@Description("Apply theme to comments filter action bar.")
+@Description("Applies custom theming to comments filter action bar.")
 @ThemeCompatibility
 @Version("0.0.1")
 class CommentsFilterBarPatch : BytecodePatch(
