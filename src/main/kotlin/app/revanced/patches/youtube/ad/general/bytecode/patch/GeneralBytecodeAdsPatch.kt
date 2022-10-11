@@ -1,10 +1,10 @@
 package app.revanced.patches.youtube.ad.general.bytecode.patch
 
 import app.revanced.extensions.injectHideCall
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -136,8 +136,14 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                 "revanced_adremover_community_guidelines",
                 StringResource("revanced_adremover_community_guidelines_enabled_title", "Remove community guidelines"),
                 true,
-                StringResource("revanced_adremover_community_guidelines_enabled_summary_on", "Community guidelines are hidden"),
-                StringResource("revanced_adremover_community_guidelines_enabled_summary_off", "Community guidelines are shown")
+                StringResource(
+                    "revanced_adremover_community_guidelines_enabled_summary_on",
+                    "Community guidelines are hidden"
+                ),
+                StringResource(
+                    "revanced_adremover_community_guidelines_enabled_summary_off",
+                    "Community guidelines are shown"
+                )
             ),
             SwitchPreference(
                 "revanced_adremover_emergency_box_removal",
@@ -185,8 +191,14 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                 "revanced_adremover_hide_channel_guidelines",
                 StringResource("revanced_adremover_hide_channel_guidelines_enabled_title", "Hide channel guidelines"),
                 true,
-                StringResource("revanced_adremover_hide_channel_guidelines_enabled_summary_on", "Channel guidelines are hidden"),
-                StringResource("revanced_adremover_hide_channel_guidelines_enabled_summary_off", "Channel guidelines are shown")
+                StringResource(
+                    "revanced_adremover_hide_channel_guidelines_enabled_summary_on",
+                    "Channel guidelines are hidden"
+                ),
+                StringResource(
+                    "revanced_adremover_hide_channel_guidelines_enabled_summary_off",
+                    "Channel guidelines are shown"
+                )
             ),
         )
 

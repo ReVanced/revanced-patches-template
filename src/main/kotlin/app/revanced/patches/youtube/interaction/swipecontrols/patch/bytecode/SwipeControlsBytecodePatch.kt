@@ -2,10 +2,10 @@ package app.revanced.patches.youtube.interaction.swipecontrols.patch.bytecode
 
 import app.revanced.extensions.transformMethods
 import app.revanced.extensions.traverseClassHierarchy
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess

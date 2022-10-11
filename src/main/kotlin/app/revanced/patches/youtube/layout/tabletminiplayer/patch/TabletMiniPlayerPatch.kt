@@ -1,9 +1,9 @@
 package app.revanced.patches.youtube.layout.tabletminiplayer.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
@@ -57,7 +57,10 @@ class TabletMiniPlayerPatch : BytecodePatch(
         val (method, _, parameterRegister) = MiniPlayerOverrideNoContextFingerprint.addProxyCall()
         // - 1 means to insert before the return instruction
         val secondInsertIndex = method.implementation!!.instructions.size - 1
-        method.insertOverride(secondInsertIndex, parameterRegister /** same register used to return **/)
+        method.insertOverride(
+            secondInsertIndex, parameterRegister
+            /** same register used to return **/
+        )
 
         /*
          * method with context parameter

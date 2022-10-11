@@ -1,9 +1,9 @@
 package app.revanced.patches.twitter.misc.dynamiccolor.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -32,7 +32,7 @@ class DynamicColorPatch : ResourcePatch {
         listOf(valuesV31Directory, valuesNightV31Directory).forEach { it ->
             val colorsXml = it.resolve("colors.xml")
 
-            if(!colorsXml.exists()) {
+            if (!colorsXml.exists()) {
                 FileWriter(colorsXml).use {
                     it.write("<?xml version=\"1.0\" encoding=\"utf-8\"?><resources></resources>")
                 }

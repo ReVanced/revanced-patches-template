@@ -1,8 +1,8 @@
 package app.revanced.patches.youtube.interaction.swipecontrols.patch.resource
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
@@ -88,7 +88,7 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         )
                     )
                 ),
-                StringResource("revanced_swipe_controls_summary","Control volume and brightness")
+                StringResource("revanced_swipe_controls_summary", "Control volume and brightness")
             )
         )
 

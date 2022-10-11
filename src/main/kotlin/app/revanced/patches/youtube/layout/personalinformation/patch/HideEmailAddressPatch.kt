@@ -1,9 +1,9 @@
 package app.revanced.patches.youtube.layout.personalinformation.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -47,14 +47,17 @@ class HideEmailAddressPatch : BytecodePatch(
                 it.type == "string" && it.name == "account_switcher_accessibility_label"
             }.id
 
-        val accountSwitcherAccessibilityLabelMethod = AccountSwitcherAccessibilityLabelFingerprint.result!!.mutableMethod
-        val accountSwitcherAccessibilityLabelInstruction = accountSwitcherAccessibilityLabelMethod.implementation!!.instructions
+        val accountSwitcherAccessibilityLabelMethod =
+            AccountSwitcherAccessibilityLabelFingerprint.result!!.mutableMethod
+        val accountSwitcherAccessibilityLabelInstruction =
+            accountSwitcherAccessibilityLabelMethod.implementation!!.instructions
 
         val setVisibilityConstIndex = accountSwitcherAccessibilityLabelInstruction.indexOfFirst {
             (it as? WideLiteralInstruction)?.wideLiteral == accountSwitcherAccessibilityLabelId
         } - 1
 
-        val setVisibilityConstRegister = (accountSwitcherAccessibilityLabelInstruction[setVisibilityConstIndex] as OneRegisterInstruction).registerA
+        val setVisibilityConstRegister =
+            (accountSwitcherAccessibilityLabelInstruction[setVisibilityConstIndex] as OneRegisterInstruction).registerA
         val toggleRegister = (setVisibilityConstRegister + 1)
 
         accountSwitcherAccessibilityLabelMethod.addInstructions(

@@ -1,9 +1,9 @@
 package app.revanced.patches.youtube.layout.autoplaybutton.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -61,9 +61,10 @@ class HideAutoplayButtonPatch : BytecodePatch(
             (it as? WideLiteralInstruction)?.wideLiteral == autoNavPreviewStubId
         }
         // where to branch away
-        val branchIndex = layoutGenMethodInstructions.subList(insertIndex + 1, layoutGenMethodInstructions.size - 1).indexOfFirst {
-            ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "addOnLayoutChangeListener"
-        } + 2
+        val branchIndex =
+            layoutGenMethodInstructions.subList(insertIndex + 1, layoutGenMethodInstructions.size - 1).indexOfFirst {
+                ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "addOnLayoutChangeListener"
+            } + 2
 
         val jumpInstruction = layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
         layoutGenMethod.addInstructions(

@@ -1,4 +1,3 @@
-
 package app.revanced.patches.youtube.misc.quality.fingerprints
 
 import app.revanced.patcher.annotation.Name

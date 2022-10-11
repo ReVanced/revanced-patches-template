@@ -1,9 +1,9 @@
 package app.revanced.patches.reddit.ad.general.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -42,7 +42,9 @@ class GeneralAdsPatch : BytecodePatch() {
                     }
                     proxiedImplementation.replaceInstruction(
                         i, BuilderInstruction21c(
-                            Opcode.CONST_STRING, (proxiedImplementation.instructions[i] as BuilderInstruction21c).registerA, ImmutableStringReference(newString)
+                            Opcode.CONST_STRING,
+                            (proxiedImplementation.instructions[i] as BuilderInstruction21c).registerA,
+                            ImmutableStringReference(newString)
                         )
                     )
                 }

@@ -15,7 +15,7 @@ import org.jf.dexlib2.Opcode
 @Version(
     "0.0.1"
 )
-object  AudioOnlyEnablerFingerprint: MethodFingerprint(
+object AudioOnlyEnablerFingerprint : MethodFingerprint(
     "Z", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf(), listOf(
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_INTERFACE,

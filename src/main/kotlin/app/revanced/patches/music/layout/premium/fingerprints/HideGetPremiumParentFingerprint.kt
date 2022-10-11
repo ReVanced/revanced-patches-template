@@ -12,7 +12,8 @@ import org.jf.dexlib2.Opcode
 @HideGetPremiumCompatibility
 @Version("0.0.1")
 object HideGetPremiumParentFingerprint : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf(), listOf(
+    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf(),
+    listOf(
         Opcode.IGET_BOOLEAN,
         Opcode.CONST_4,
         Opcode.IF_EQZ,

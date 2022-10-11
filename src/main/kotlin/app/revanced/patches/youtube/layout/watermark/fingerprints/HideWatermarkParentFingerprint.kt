@@ -10,6 +10,6 @@ import org.jf.dexlib2.AccessFlags
 @Name("hide-watermark-parent-signature")
 @HideWatermarkCompatibility
 @Version("0.0.1")
-object HideWatermarkParentFingerprint : MethodFingerprint (
+object HideWatermarkParentFingerprint : MethodFingerprint(
     "L", AccessFlags.PUBLIC or AccessFlags.FINAL, strings = listOf("player_overlay_in_video_programming")
 )
