@@ -10,6 +10,8 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 @Patch
 @DependsOn([CommentsFilterBarPatch::class, FixLocaleConfigErrorPatch::class])
@@ -30,13 +32,25 @@ class ThemePatch : ResourcePatch {
 
                 node.textContent = when (node.getAttribute("name")) {
                     "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3", "yt_black4",
-                    "yt_status_bar_background_dark" -> darkThemeBackgroundColor
+                    "yt_status_bar_background_dark", "sud_glif_v3_dialog_background_color_dark" -> darkThemeBackgroundColor
 
                     "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3",
-                    "yt_white4" -> lightThemeBackgroundColor
+                    "yt_white4", "sud_glif_v3_dialog_background_color_light" -> lightThemeBackgroundColor
 
                     else -> continue
                 }
+            }
+        }
+
+        arrayOf("values-night-v31" to arrayOf("styles")).forEach { (path, resourceNames) ->
+            resourceNames.forEach { name ->
+                val relativePath = "$path/$name.xml"
+
+                Files.copy(
+                    this.javaClass.classLoader.getResourceAsStream("theme/$relativePath")!!,
+                    context["res"].resolve(relativePath).toPath(),
+                    StandardCopyOption.REPLACE_EXISTING
+                )
             }
         }
 
