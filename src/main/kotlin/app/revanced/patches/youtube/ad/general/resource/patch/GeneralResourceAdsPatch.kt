@@ -5,11 +5,11 @@ import app.revanced.extensions.startsWithAny
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.impl.ResourceData
+import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.impl.ResourcePatch
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
@@ -19,7 +19,7 @@ import org.w3c.dom.Element
 @Description("Patch to remove general ads in resources.")
 @GeneralAdsCompatibility
 @Version("0.0.1")
-class GeneralResourceAdsPatch : ResourcePatch() {
+class GeneralResourceAdsPatch : ResourcePatch {
     // list of resource file names which need to be hidden
     private val resourceFileNames = arrayOf(
         "compact_promoted_video_item.xml",
@@ -38,12 +38,12 @@ class GeneralResourceAdsPatch : ResourcePatch() {
         "marginTop",
     )
 
-    override fun execute(data: ResourceData): PatchResult {
-        data.forEach {
+    override fun execute(context: ResourceContext): PatchResult {
+        context.forEach {
             if (!it.name.startsWithAny(*resourceFileNames)) return@forEach
 
             // for each file in the "layouts" directory replace all necessary attributes content
-            data.xmlEditor[it.absolutePath].use { editor ->
+            context.xmlEditor[it.absolutePath].use { editor ->
                 editor.file.doRecursively { node ->
                     replacements.forEach replacement@{ replacement ->
                         if (node !is Element) return@replacement
