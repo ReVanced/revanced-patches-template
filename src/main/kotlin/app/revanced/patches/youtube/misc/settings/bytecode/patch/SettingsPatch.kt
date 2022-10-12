@@ -127,7 +127,8 @@ class SettingsPatch : BytecodePatch(
         ADS("ads", "Ads", "Ad related settings"),
         INTERACTIONS("interactions", "Interaction", "Settings related to interactions"),
         LAYOUT("layout", "Layout", "Settings related to the layout"),
-        MISC("misc", "Miscellaneous", "Miscellaneous patches");
+        MISC("misc", "Miscellaneous", "Miscellaneous patches"),
+        VIDEO("video", "Video Settings", "Video related settings");
 
         override fun close() {
             if (preferences.size == 0) return
