@@ -15,6 +15,11 @@ import app.revanced.patches.youtube.misc.customplaybackspeed.fingerprints.SpeedL
 import app.revanced.patches.youtube.misc.customplaybackspeed.fingerprints.VideoSpeedPatchFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.ListPreference
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.builder.instruction.BuilderArrayPayload
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -38,6 +43,28 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext): PatchResult {
         //TODO: include setting to skip remembering the new speed
+
+        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+            PreferenceScreen(
+                "revanced_pref_default_video_speed",
+                StringResource("revanced_default_video_speed_title","Preferred video speed"),
+                listOf(
+                    ListPreference(
+                        "revanced_pref_video_speed",
+                        StringResource("revanced_preferred_video_speed_title","Preferred video speed"),
+                        StringResource("revanced_preferred_video_speed_summary","Select preferred video speed")
+                    ),
+                    SwitchPreference(
+                        "revanced_pref_custom_playback_speed",
+                        StringResource("revanced_custom_playback_speed", "Custom Playback Speed"),
+                        false,
+                        StringResource("revanced_custom_playback_speed_on", "Custom Playback Speed is enabled"),
+                        StringResource("revanced_custom_playback_speed_off", "Custom Playback Speed is disabled")
+                    )
+                ),
+                StringResource("revanced_pref_default_video_quality_summary","Video speed settings")
+            )
+        )
 
         val speedLimitMin = minVideoSpeed!!.toFloat()
         val speedLimitMax = maxVideoSpeed!!.toFloat().coerceAtLeast(speedLimitMin)
