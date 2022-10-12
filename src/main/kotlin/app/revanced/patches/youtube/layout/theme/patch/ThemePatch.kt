@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import org.w3c.dom.Element
 
 @Patch
-@DependsOn([FixLocaleConfigErrorPatch::class])
+@DependsOn([CommentsFilterBarPatch::class, FixLocaleConfigErrorPatch::class])
 @Name("theme")
 @Description("Applies a custom theme.")
 @ThemeCompatibility
@@ -29,10 +29,10 @@ class ThemePatch : ResourcePatch {
                 val node = resourcesNode.childNodes.item(i) as? Element ?: continue
 
                 node.textContent = when (node.getAttribute("name")) {
-                    "yt_black1", "yt_black1_opacity95", "yt_black2", "yt_black3", "yt_black4",
+                    "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3", "yt_black4",
                     "yt_status_bar_background_dark" -> darkThemeBackgroundColor
 
-                    "yt_white1", "yt_white1_opacity95", "yt_white2", "yt_white3",
+                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3",
                     "yt_white4" -> lightThemeBackgroundColor
 
                     else -> continue

@@ -21,6 +21,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.findMutableMethodOf
 import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.toDescriptor
+import app.revanced.patches.youtube.ad.general.resource.patch.GeneralResourceAdsPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -38,7 +39,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
-@DependsOn([ResourceMappingResourcePatch::class, IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([ResourceMappingResourcePatch::class, IntegrationsPatch::class, SettingsPatch::class, GeneralResourceAdsPatch::class])
 @Name("general-ads")
 @Description("Removes general ads.")
 @GeneralAdsCompatibility
@@ -93,7 +94,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
             SwitchPreference(
                 "revanced_adremover_community_posts_removal",
                 StringResource("revanced_adremover_community_posts_enabled_title", "Remove community posts"),
-                true,
+                false,
                 StringResource("revanced_adremover_community_posts_enabled_summary_on", "Community posts are hidden"),
                 StringResource("revanced_adremover_community_posts_enabled_summary_off", "Community posts are shown")
             ),
