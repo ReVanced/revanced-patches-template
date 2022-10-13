@@ -20,7 +20,7 @@ import org.w3c.dom.Element
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
-        val lightThemeBackgroundColor = lightThemeBackgroundColor!!
+//      val lightThemeBackgroundColor = lightThemeBackgroundColor!!
 
         context.xmlEditor["res/values/colors.xml"].use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
@@ -32,8 +32,8 @@ class ThemePatch : ResourcePatch {
                     "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3", "yt_black4",
                     "yt_status_bar_background_dark" -> darkThemeBackgroundColor
 
-                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3",
-                    "yt_white4" -> lightThemeBackgroundColor
+//                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3",
+//                    "yt_white4" -> lightThemeBackgroundColor
 
                     else -> continue
                 }
@@ -53,13 +53,13 @@ class ThemePatch : ResourcePatch {
             )
         )
 
-        var lightThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "lightThemeBackgroundColor",
-                default = "@android:color/white",
-                title = "Background color for the light theme",
-                description = "The background color of the light theme. Can be a hex color or a resource reference.",
-            )
-        )
+//        var lightThemeBackgroundColor: String? by option(
+//            PatchOption.StringOption(
+//                key = "lightThemeBackgroundColor",
+//                default = "@android:color/white",
+//                title = "Background color for the light theme",
+//                description = "The background color of the light theme. Can be a hex color or a resource reference.",
+//            )
+//        )
     }
 }
