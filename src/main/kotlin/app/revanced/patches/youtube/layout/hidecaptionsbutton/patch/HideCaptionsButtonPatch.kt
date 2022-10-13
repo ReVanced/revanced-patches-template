@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.layout.autocaptions.annotations.AutoCaptionsCompatibility
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleButtonControllerFingerprint
-import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleTrackFingerprint
 import app.revanced.patches.youtube.layout.hidecaptionsbutton.fingerprints.CaptionsButtonOnClickFingerprint
 import app.revanced.patches.youtube.layout.hidecaptionsbutton.fingerprints.CaptionsButtonOnLongClickFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -30,7 +29,6 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Version("0.0.1")
 class HideCaptionsButtonPatch : BytecodePatch(listOf(
     SubtitleButtonControllerFingerprint,
-    SubtitleTrackFingerprint,
     CaptionsButtonOnClickFingerprint,
     CaptionsButtonOnLongClickFingerprint,
 )) {
@@ -53,17 +51,6 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
                 if-eqz v0, :hide_captions_button
                 return-void
             """, listOf(ExternalLabel("hide_captions_button", subtitleButtonControllerMethod.instruction(0)))
-        )
-
-        val subtitleTrackMethod = SubtitleTrackFingerprint.result!!.mutableMethod
-        subtitleTrackMethod.addInstructions(
-            0, """
-                invoke-static {}, Lapp/revanced/integrations/patches/HideCaptionsButtonPatch;->hideCaptionsButton()Z
-                move-result v0
-                if-eqz v0, :hide_captions_button
-                const/4 v0, 0x1
-                return v0
-            """, listOf(ExternalLabel("hide_captions_button", subtitleTrackMethod.instruction(0)))
         )
 
         val captionsButtonOnClickMethod = CaptionsButtonOnClickFingerprint.result!!.mutableMethod
