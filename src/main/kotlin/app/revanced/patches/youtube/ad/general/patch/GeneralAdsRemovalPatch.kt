@@ -16,10 +16,10 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.impl.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.general.annotations.GeneralAdsRemovalPatchCompatibility
-import app.revanced.patches.youtube.ad.general.extensions.MethodExtensions.toDescriptor
 import app.revanced.patches.youtube.ad.general.fingerprints.LithoFingerprint
 import app.revanced.patches.youtube.ad.general.fingerprints.PromotedVideoItemFullBleedFingerprint
 import app.revanced.patches.youtube.ad.general.fingerprints.PromotedVideoItemLandFingerprint
+import app.revanced.patches.youtube.ad.general.resource.patch.GeneralResourceAdsPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -29,13 +29,10 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.BuilderInstruction
 import org.jf.dexlib2.builder.instruction.*
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
-import org.jf.dexlib2.iface.reference.FieldReference
-import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingResourcePatch::class, GeneralResourceAdsPatch::class])
 @Name("general-ads")
 @Description("Removes general ads.")
 @GeneralAdsRemovalPatchCompatibility
@@ -270,9 +267,6 @@ class GeneralAdsRemovalPatch : BytecodePatch(
         //Litho
         val lithoResult = LithoFingerprint.result
         val lithoMethod = lithoResult!!.mutableMethod
-        val lithoInstructions = lithoMethod.implementation!!.instructions
-
-        val lithoPatchIndex = lithoResult.scanResult.stringsScanResult!!.matches.first().index
 
         val pathBuilderAnchorFingerprint = object : MethodFingerprint(
             opcodes = listOf(
@@ -289,19 +283,6 @@ class GeneralAdsRemovalPatch : BytecodePatch(
         val clobberedRegister =
             (lithoMethod.instruction(pathBuilderScanResult.startIndex) as OneRegisterInstruction).registerA
 
-        val instructionWithNeededDescriptor =
-            lithoMethod.implementation!!.instructions.indexOfFirst {
-                it.opcode == Opcode.INVOKE_STATIC_RANGE
-            }
-
-        // get required descriptors
-        val createEmptyComponentDescriptor =
-            lithoMethod.instruction(instructionWithNeededDescriptor)
-                .toDescriptor<MethodReference>()
-        val emptyComponentFieldDescriptor =
-            lithoMethod.instruction(instructionWithNeededDescriptor + 2)
-                .toDescriptor<FieldReference>()
-
         val insertIndex = pathBuilderScanResult.endIndex + 1
         lithoMethod.addInstructions(
             insertIndex, // right after setting the component.pathBuilder field,
@@ -309,10 +290,7 @@ class GeneralAdsRemovalPatch : BytecodePatch(
                 invoke-static {v5}, Lapp/revanced/integrations/patches/GeneralBytecodeAdsPatch;->isAdComponent(Ljava/lang/StringBuilder;)Z
                 move-result v$clobberedRegister
                 if-eqz v$clobberedRegister, :not_an_ad
-                move-object/from16 v2, p1
-                invoke-static {v2}, $createEmptyComponentDescriptor
-                move-result-object v0
-                iget-object v0, v0, $emptyComponentFieldDescriptor
+                const/4 v0, 0x0
                 return-object v0
             """, listOf(ExternalLabel("not_an_ad", lithoMethod.instruction(insertIndex)))
         )
