@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
@@ -61,5 +61,5 @@ class MusicMicroGBytecodePatch : BytecodePatch(
                 CastDynamiteModuleV2Fingerprint,
                 CastContextFetchFingerprint
             )
-        ).let { PatchResultSuccess() }
+        ).let { PatchResult.Success }
 }

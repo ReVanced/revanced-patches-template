@@ -7,7 +7,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.warnwetter.misc.firebasegetcert.annotations.FirebaseGetCertPatchCompatibility
 import app.revanced.patches.warnwetter.misc.firebasegetcert.fingerprints.GetMessagingCertFingerprint
 import app.revanced.patches.warnwetter.misc.firebasegetcert.fingerprints.GetReqistrationCertFingerprint
@@ -41,6 +40,6 @@ class FirebaseGetCertPatch : BytecodePatch(
             spoofedInstruction
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

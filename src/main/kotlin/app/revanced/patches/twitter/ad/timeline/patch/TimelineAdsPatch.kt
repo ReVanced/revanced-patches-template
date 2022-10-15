@@ -9,9 +9,8 @@ import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.twitter.ad.timeline.annotations.TimelineAdsCompatibility
@@ -33,9 +32,9 @@ class TimelineAdsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         if (removePromotedAds())
-            return PatchResultError("The instruction for the tweet id field could not be found")
+            return PatchResult.Error("The instruction for the tweet id field could not be found")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun removePromotedAds(): Boolean {

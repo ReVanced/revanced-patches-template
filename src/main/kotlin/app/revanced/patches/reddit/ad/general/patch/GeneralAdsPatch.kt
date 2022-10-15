@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.reddit.ad.general.annotations.GeneralAdsCompatibility
 import org.jf.dexlib2.Opcode
@@ -30,7 +29,7 @@ class GeneralAdsPatch : BytecodePatch() {
                     if (instruction.opcode != Opcode.CONST_STRING) return@forEachIndexed
                     if (((instruction as ReferenceInstruction).reference as StringReference).string != "AdPost") return@forEachIndexed
 
-                    val proxiedClass = context.proxy(classDef).mutableClass
+                    val proxiedClass = context.classes.proxy(classDef).mutableClass
 
                     val proxiedImplementation = proxiedClass.methods.first {
                         it.name == method.name && it.parameterTypes.containsAll(method.parameterTypes)
@@ -51,6 +50,6 @@ class GeneralAdsPatch : BytecodePatch() {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

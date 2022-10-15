@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCompatibility
@@ -47,6 +46,6 @@ class DownloadsBytecodePatch : BytecodePatch() {
             "L$integrationsPackage/patches/downloads/DownloadsPatch;->setVideoId(Ljava/lang/String;)V"
         VideoIdPatch.injectCall(setVideoIdDescriptor)
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

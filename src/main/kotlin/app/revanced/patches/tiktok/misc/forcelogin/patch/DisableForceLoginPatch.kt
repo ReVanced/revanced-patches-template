@@ -7,7 +7,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.misc.forcelogin.annotations.DisableForceLoginCompatibility
 import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint
@@ -38,6 +37,6 @@ class DisableForceLoginPatch : BytecodePatch(
             """
             )
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

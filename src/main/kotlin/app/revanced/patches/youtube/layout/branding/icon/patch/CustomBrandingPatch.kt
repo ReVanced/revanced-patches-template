@@ -4,7 +4,10 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.OptionsContainer
+import app.revanced.patcher.patch.PatchOption
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
@@ -22,8 +25,8 @@ import java.nio.file.Files
 @Version("0.0.1")
 class CustomBrandingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context["res"]
-        if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
+        val resDirectory = context.getFile("res")
+        if (!resDirectory.isDirectory) return PatchResult.Error("The res folder can not be found.")
 
         // Icon branding
         val iconNames = arrayOf(
@@ -42,7 +45,7 @@ class CustomBrandingPatch : ResourcePatch {
         ).forEach { (iconDirectory, size) ->
             iconNames.forEach { iconName ->
                 val iconFile = getIconStream("branding/$size/$iconName.png")
-                    ?: return PatchResultError("The icon $iconName can not be found.")
+                    ?: return PatchResult.Error("The icon $iconName can not be found.")
 
                 Files.write(
                     resDirectory.resolve("mipmap-$iconDirectory").resolve("$iconName.png").toPath(),
@@ -52,7 +55,7 @@ class CustomBrandingPatch : ResourcePatch {
         }
 
         // Name branding
-        val manifest = context["AndroidManifest.xml"]
+        val manifest = context.getFile("AndroidManifest.xml")
         manifest.writeText(
             manifest.readText()
                 .replace(
@@ -61,7 +64,7 @@ class CustomBrandingPatch : ResourcePatch {
                 )
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun getIconStream(iconPath: String): InputStream? {

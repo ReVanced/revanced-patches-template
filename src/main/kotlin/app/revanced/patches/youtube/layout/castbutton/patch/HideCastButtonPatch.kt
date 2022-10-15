@@ -7,7 +7,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.castbutton.annotations.CastButtonCompatibility
@@ -38,7 +37,7 @@ class HideCastButtonPatch : BytecodePatch() {
             classDef.methods.forEach { method ->
                 if (classDef.type.endsWith("MediaRouteButton;") && method.name == "setVisibility") {
                     val setVisibilityMethod =
-                        context.proxy(classDef).mutableClass.methods.first { it.name == "setVisibility" }
+                        context.classes.proxy(classDef).mutableClass.methods.first { it.name == "setVisibility" }
 
                     setVisibilityMethod.addInstructions(
                         0, """
@@ -50,6 +49,6 @@ class HideCastButtonPatch : BytecodePatch() {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

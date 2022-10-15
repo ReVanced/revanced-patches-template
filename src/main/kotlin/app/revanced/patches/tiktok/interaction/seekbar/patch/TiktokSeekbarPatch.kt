@@ -6,9 +6,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.interaction.seekbar.annotations.SeekbarCompatibility
 import app.revanced.patches.tiktok.interaction.seekbar.fingerprints.AwemeGetVideoControlFingerprint
@@ -28,8 +27,8 @@ class TiktokSeekbarPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         //Get VideoControl FieldReference
-        val videoControl = context.findClass { it.type.endsWith("/VideoControl;") }
-            ?: return PatchResultError("Can not find target class")
+        val videoControl = context.classes.findClassProxied { it.type.endsWith("/VideoControl;") }
+            ?: return PatchResult.Error("Can not find target class")
         val fieldList = videoControl.immutableClass.fields.associateBy { field -> field.name }
 
         val method = AwemeGetVideoControlFingerprint.result!!.mutableMethod
@@ -41,7 +40,7 @@ class TiktokSeekbarPatch : BytecodePatch(
                 BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["draftProgressBar"]!!)
             )
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
 }

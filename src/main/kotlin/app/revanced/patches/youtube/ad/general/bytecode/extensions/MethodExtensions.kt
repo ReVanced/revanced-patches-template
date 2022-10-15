@@ -1,7 +1,8 @@
 package app.revanced.patches.youtube.ad.general.bytecode.extensions
 
 import app.revanced.patcher.extensions.softCompareTo
-import app.revanced.patcher.patch.PatchResultError
+import app.revanced.patcher.patch.PatchResult
+
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
@@ -39,7 +40,7 @@ internal object MethodExtensions {
                 "${fieldReference.definingClass}->${fieldReference.name}:${fieldReference.type}"
             }
 
-            else -> throw PatchResultError("Unsupported reference type")
+            else -> throw PatchResult.Error("Unsupported reference type")
         }
     }
 }

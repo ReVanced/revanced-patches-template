@@ -26,7 +26,7 @@ internal object MicroGManifestHelper {
         spoofedPackage: String,
         spoofedSignature: String
     ) {
-        context.xmlEditor["AndroidManifest.xml"].use {
+        context.openEditor("AndroidManifest.xml").use {
             val applicationNode = it
                 .file
                 .getElementsByTagName("application")

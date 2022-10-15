@@ -6,9 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.toMethodWalker
 import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patches.music.audio.codecs.annotations.CodecsUnlockCompatibility
 import app.revanced.patches.music.audio.codecs.fingerprints.AllCodecsReferenceFingerprint
@@ -51,6 +49,6 @@ class CodecsUnlockPatch : BytecodePatch(
             "invoke-static {}, ${allCodecsMethod.definingClass}->${allCodecsMethod.name}()Ljava/util/Set;".toInstruction()
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

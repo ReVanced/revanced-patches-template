@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.spotify.audio.annotation.DisableCaptureRestrictionCompatibility
 import org.w3c.dom.Element
@@ -17,7 +16,7 @@ import org.w3c.dom.Element
 class DisableCaptureRestrictionResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         // create an xml editor instance
-        context.xmlEditor["AndroidManifest.xml"].use { dom ->
+        context.openEditor("AndroidManifest.xml").use { dom ->
             // get the application node
             val applicationNode = dom
                 .file
@@ -28,6 +27,6 @@ class DisableCaptureRestrictionResourcePatch : ResourcePatch {
             applicationNode.setAttribute("android:allowAudioPlaybackCapture", "true")
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

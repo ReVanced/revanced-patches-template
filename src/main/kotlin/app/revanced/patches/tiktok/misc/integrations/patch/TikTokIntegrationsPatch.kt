@@ -6,9 +6,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.tiktok.misc.integrations.annotations.TikTokIntegrationsCompatibility
 import app.revanced.patches.tiktok.misc.integrations.fingerprints.InitFingerprint
 
@@ -22,8 +21,8 @@ class TikTokIntegrationsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        if (context.findClass("Lapp/revanced/tiktok/utils/ReVancedUtils") == null)
-            return PatchResultError("Integrations have not been merged yet. This patch can not succeed without the integrations.")
+        if (context.classes.findClassProxied("Lapp/revanced/tiktok/utils/ReVancedUtils") == null)
+            return PatchResult.Error("Integrations have not been merged yet. This patch can not succeed without the integrations.")
         val result = InitFingerprint.result!!
 
         val method = result.mutableMethod
@@ -33,6 +32,6 @@ class TikTokIntegrationsPatch : BytecodePatch(
         method.addInstruction(
             0, "sput-object v$count, Lapp/revanced/tiktok/utils/ReVancedUtils;->context:Landroid/content/Context;"
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

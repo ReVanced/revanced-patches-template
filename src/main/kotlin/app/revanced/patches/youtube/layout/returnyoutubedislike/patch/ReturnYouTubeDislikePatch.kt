@@ -6,9 +6,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
@@ -61,7 +60,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             method.parameters.size >= 19 && method.parameterTypes.takeLast(4)
                 .all { param -> param == "Ljava/util/concurrent/atomic/AtomicReference;" }
         }
-            ?: return PatchResultError("TextComponentSpec.createComponent not found")
+            ?: return PatchResult.Error("TextComponentSpec.createComponent not found")
 
         val conversionContextParam = 5
         val textRefParam = createComponentMethod.parameters.size - 2
@@ -75,6 +74,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             """
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

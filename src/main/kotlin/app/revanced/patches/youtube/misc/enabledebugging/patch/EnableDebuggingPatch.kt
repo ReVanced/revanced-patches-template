@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -35,7 +34,7 @@ class EnableDebuggingPatch : ResourcePatch {
         )
 
         // create an xml editor instance
-        context.xmlEditor["AndroidManifest.xml"].use { dom ->
+        context.openEditor("AndroidManifest.xml").use { dom ->
             // get the application node
             val applicationNode = dom
                 .file
@@ -46,6 +45,6 @@ class EnableDebuggingPatch : ResourcePatch {
             applicationNode.setAttribute("android:debuggable", "true")
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

@@ -12,10 +12,9 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.toMethodWalker
+
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
@@ -304,7 +303,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // get the player controller class from the integrations
         val playerControllerMethods =
-            context.proxy(context.classes.first { it.type.endsWith("PlayerController;") }).mutableClass.methods
+            context.classes.proxy(context.classes.first { it.type.endsWith("PlayerController;") }).mutableClass.methods
 
         // get the method which contain the "replaceMe" strings
         val replaceMeMethods =
@@ -351,6 +350,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // TODO: isSBChannelWhitelisting implementation
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

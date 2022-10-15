@@ -8,7 +8,6 @@ import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.toInstruction
@@ -89,7 +88,7 @@ class SettingsPatch : BytecodePatch(
         // get rid of, now, useless overridden methods
         licenseActivityResult.mutableClass.methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     internal companion object {

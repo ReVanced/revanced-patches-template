@@ -8,7 +8,6 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -37,7 +36,7 @@ class VideoIdPatch : BytecodePatch(
 
         offset++ // offset so setCurrentVideoId is called before any injected call
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     companion object {

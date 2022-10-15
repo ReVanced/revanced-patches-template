@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -76,6 +75,6 @@ class HideButtonsPatch : ResourcePatch {
                 StringResource("revanced_hide_buttons_summary", "Hide or show buttons under videos")
             )
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

@@ -7,9 +7,8 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
@@ -44,16 +43,16 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
         )
 
         val parentResult = HideInfocardSuggestionsParentFingerprint.result
-            ?: return PatchResultError("Parent fingerprint not resolved!")
+            ?: return PatchResult.Error("Parent fingerprint not resolved!")
 
 
         HideInfocardSuggestionsFingerprint.resolve(context, parentResult.classDef)
         val result = HideInfocardSuggestionsFingerprint.result
-            ?: return PatchResultError("Required parent method could not be found.")
+            ?: return PatchResult.Error("Required parent method could not be found.")
 
         val method = result.mutableMethod
         val implementation = method.implementation
-            ?: return PatchResultError("Implementation not found.")
+            ?: return PatchResult.Error("Implementation not found.")
 
         val index =
             implementation.instructions.indexOfFirst { ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/view/View;->setVisibility(I)V") }
@@ -64,7 +63,7 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
         """
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
 }

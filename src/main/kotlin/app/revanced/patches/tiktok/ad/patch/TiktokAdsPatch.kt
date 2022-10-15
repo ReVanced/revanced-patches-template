@@ -6,9 +6,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.ad.annotations.TiktokAdsCompatibility
 import app.revanced.patches.tiktok.ad.fingerprints.ConvertHelpFeedItemListFingerprint
@@ -50,8 +49,8 @@ class TiktokAdsPatch : BytecodePatch(
                 )
                 return@forEach
             }
-            return PatchResultError("Can not find required instruction.")
+            return PatchResult.Error("Can not find required instruction.")
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

@@ -41,7 +41,7 @@ internal object ResourceUtils {
      */
     internal fun ResourceContext.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
         val classLoader = ResourceUtils.javaClass.classLoader
-        val targetResourceDirectory = this["res"]
+        val targetResourceDirectory = this.getFile("res")
 
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
@@ -72,7 +72,7 @@ internal object ResourceUtils {
         targetTag: String,
         callback: (node: Node) -> Unit
     ) =
-        xmlEditor[ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!].use {
+        openEditor(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
             val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
             for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
         }

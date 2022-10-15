@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCompatibility
@@ -70,6 +69,6 @@ class DownloadsResourcePatch : ResourcePatch {
 
         BottomControlsResourcePatch.addControls("downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

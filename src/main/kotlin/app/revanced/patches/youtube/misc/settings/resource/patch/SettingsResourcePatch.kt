@@ -5,7 +5,6 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
@@ -29,7 +28,7 @@ class SettingsResourcePatch : ResourcePatch {
         /*
          * create missing directory for the resources
          */
-        context["res/drawable-ldrtl-xxxhdpi"].mkdirs()
+        context.getFile("res/drawable-ldrtl-xxxhdpi").mkdirs()
 
         /*
          * copy layout resources
@@ -53,7 +52,7 @@ class SettingsResourcePatch : ResourcePatch {
             context.copyResources("settings", resourceGroup)
         }
 
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
+        context.openEditor("AndroidManifest.xml").use { editor ->
             editor.file.getElementsByTagName("manifest").item(0).also {
                 it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
                     element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
@@ -61,11 +60,11 @@ class SettingsResourcePatch : ResourcePatch {
             }
         }
 
-        revancedPreferencesEditor = context.xmlEditor["res/xml/revanced_prefs.xml"]
-        preferencesEditor = context.xmlEditor["res/xml/settings_fragment.xml"]
+        revancedPreferencesEditor = context.openEditor("res/xml/revanced_prefs.xml")
+        preferencesEditor = context.openEditor("res/xml/settings_fragment.xml")
 
-        stringsEditor = context.xmlEditor["res/values/strings.xml"]
-        arraysEditor = context.xmlEditor["res/values/arrays.xml"]
+        stringsEditor = context.openEditor("res/values/strings.xml")
+        arraysEditor = context.openEditor("res/values/arrays.xml")
 
         // Add the ReVanced settings to the YouTube settings
         val youtubePackage = "com.google.android.youtube"
@@ -79,7 +78,7 @@ class SettingsResourcePatch : ResourcePatch {
             )
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
 

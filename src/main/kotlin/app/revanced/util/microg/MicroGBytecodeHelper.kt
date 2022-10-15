@@ -179,7 +179,7 @@ internal object MicroGBytecodeHelper {
                     val transformedStr = transformFn(str)
                     if (transformedStr != null) {
                         // make class and method mutable, if not already
-                        mutableClass = mutableClass ?: proxy(classDef).mutableClass
+                        mutableClass = mutableClass ?: classes.proxy(classDef).mutableClass
                         mutableMethod = mutableMethod ?: mutableClass!!.methods.first {
                             it.name == methodDef.name && it.parameterTypes.containsAll(methodDef.parameterTypes)
                         }

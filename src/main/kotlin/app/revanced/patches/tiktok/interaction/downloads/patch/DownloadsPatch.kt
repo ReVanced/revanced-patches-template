@@ -9,12 +9,10 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.toMethodWalker
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.tiktok.interaction.downloads.annotations.DownloadsCompatibility
 import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonShareFingerprint
@@ -90,7 +88,7 @@ class DownloadsPatch : BytecodePatch(
             targetOffset = index + 1
             break
         }
-        if (targetOffset == -1) return PatchResultError("Can not find download path uri method.")
+        if (targetOffset == -1) return PatchResult.Error("Can not find download path uri method.")
         //Change videos' download path.
         val downloadUriMethod = context
             .toMethodWalker(DownloadPathParentFingerprint.result!!.method)
@@ -126,6 +124,6 @@ class DownloadsPatch : BytecodePatch(
             0,
             "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableDownload()V"
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

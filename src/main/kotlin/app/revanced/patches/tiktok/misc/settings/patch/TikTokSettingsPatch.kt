@@ -7,9 +7,8 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
@@ -64,9 +63,9 @@ class TikTokSettingsPatch : BytecodePatch(
             //Change onClick to start settings activity.
             val clickInstruction = implementation1.instructions[index - 1]
             if (clickInstruction.opcode != Opcode.INVOKE_DIRECT)
-                return PatchResultError("Can not find click listener.")
+                return PatchResult.Error("Can not find click listener.")
             val clickClass = ((clickInstruction as ReferenceInstruction).reference as MethodReference).definingClass
-            val mutableClickClass = context.findClass(clickClass)!!.mutableClass
+            val mutableClickClass = context.classes.findClassProxied(clickClass)!!.mutableClass
             val mutableOnClickMethod = mutableClickClass.methods.first {
                 it.name == "onClick"
             }
@@ -93,6 +92,6 @@ class TikTokSettingsPatch : BytecodePatch(
             )
             break
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

@@ -4,9 +4,8 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -24,8 +23,9 @@ import kotlin.io.path.exists
 @Version("0.0.1")
 class PremiumHeadingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context["res"]
-        if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
+        val resDirectory = context.getFileOr("res/drawable-hdpi").parentFile
+
+        if (!resDirectory.isDirectory) return PatchResult.Error("The res folder can not be found.")
 
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
@@ -37,7 +37,7 @@ class PremiumHeadingPatch : ResourcePatch {
                 val toPath = headingDirectory.resolve("${replacement}_$mode.png").toPath()
 
                 if (!fromPath.exists())
-                    return PatchResultError("The file $fromPath does not exist in the resources. Therefore, this patch can not succeed.")
+                    return PatchResult.Error("The file $fromPath does not exist in the resources. Therefore, this patch can not succeed.")
                 Files.copy(
                     fromPath,
                     toPath,
@@ -46,6 +46,6 @@ class PremiumHeadingPatch : ResourcePatch {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

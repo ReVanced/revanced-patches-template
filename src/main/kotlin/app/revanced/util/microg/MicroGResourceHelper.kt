@@ -20,8 +20,10 @@ internal object MicroGResourceHelper {
         toPackageName: String,
         toName: String
     ) {
-        val manifest = context["AndroidManifest.xml"].readText()
-        context["AndroidManifest.xml"].writeText(
+        context.getFile("AndroidManifest.xml", ResourceContext.ApkContext.BASE)
+
+        val manifest = context.getFile("AndroidManifest.xml").readText()
+        context.getFile("AndroidManifest.xml").writeText(
             manifest.replace(
                 "package=\"$fromPackageName",
                 "package=\"$toPackageName"

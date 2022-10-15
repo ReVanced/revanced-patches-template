@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.music.misc.microg.annotations.MusicMicroGPatchCompatibility
 import app.revanced.patches.music.misc.microg.shared.Constants.MUSIC_PACKAGE_NAME
@@ -36,6 +35,6 @@ class MusicMicroGResourcePatch : ResourcePatch {
             SPOOFED_PACKAGE_NAME,
             SPOOFED_PACKAGE_SIGNATURE
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }
