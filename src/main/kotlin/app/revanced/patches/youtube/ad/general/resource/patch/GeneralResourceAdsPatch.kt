@@ -10,14 +10,14 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
+import app.revanced.patches.youtube.ad.general.annotations.GeneralAdsRemovalPatchCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
 
 @DependsOn(dependencies = [FixLocaleConfigErrorPatch::class])
 @Name("general-resource-ads")
 @Description("Patch to remove general ads in resources.")
-@GeneralAdsCompatibility
+@GeneralAdsRemovalPatchCompatibility
 @Version("0.0.1")
 class GeneralResourceAdsPatch : ResourcePatch {
     // list of resource file names which need to be hidden
