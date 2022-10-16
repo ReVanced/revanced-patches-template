@@ -43,7 +43,7 @@ class CustomVideoBufferPatch : BytecodePatch(
                 listOf(
                     TextPreference(
                         "revanced_pref_max_buffer_ms",
-                        StringResource("revanced_pref_max_buffer_ms_title", "Maximum buffer size"),
+                        StringResource("revanced_pref_max_buffer_ms_title", "Maximum buffer for media"),
                         InputType.NUMBER,
                         "120000",
                         StringResource(
