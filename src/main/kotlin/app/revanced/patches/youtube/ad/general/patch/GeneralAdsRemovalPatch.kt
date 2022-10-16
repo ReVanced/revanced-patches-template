@@ -286,7 +286,9 @@ class GeneralAdsRemovalPatch : BytecodePatch(
         lithoMethod.addInstructions(
             insertIndex, // right after setting the component.pathBuilder field,
             """
-                invoke-static {v5}, Lapp/revanced/integrations/patches/GeneralBytecodeAdsPatch;->isAdComponent(Ljava/lang/StringBuilder;)Z
+                move-object/from16 v$clobberedRegister, p3
+                iget-object v$clobberedRegister, v$clobberedRegister, ${lithoMethod.parameters[2]}->b:Ljava/nio/ByteBuffer;
+                invoke-static {v5, v2, v$clobberedRegister}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;Ljava/nio/ByteBuffer;)Z
                 move-result v$clobberedRegister
                 if-eqz v$clobberedRegister, :not_an_ad
                 const/4 v0, 0x0
