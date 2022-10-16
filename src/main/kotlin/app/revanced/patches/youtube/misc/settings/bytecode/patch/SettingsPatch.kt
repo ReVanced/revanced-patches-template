@@ -18,12 +18,18 @@ import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibil
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVancedSettingsActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterFingerprint
+import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterParentFingerprint
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.builder.instruction.BuilderInstruction31i
+import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.util.MethodUtil
 import java.io.Closeable
 
@@ -39,12 +45,30 @@ import java.io.Closeable
 @SettingsCompatibility
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
-    listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint, ThemeSetterFingerprint)
+    listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint, ThemeSetterFingerprint, ThemeSetterParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val licenseActivityResult = LicenseActivityFingerprint.result!!
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
         val themeSetterResult = ThemeSetterFingerprint.result!!
+
+        val themeSetterParentResult = ThemeSetterParentFingerprint.result!!
+        val themeSetterParentMethod = themeSetterParentResult.mutableMethod
+        val themeSetterParentInstructions = themeSetterParentMethod.implementation!!.instructions
+        val themeSetterParentResultIndex = themeSetterParentResult.scanResult.patternScanResult!!.endIndex
+
+        themeSetterParentMethod.addInstructions(
+        themeSetterParentResultIndex + 1, """
+                    const/4 v0, 0x1
+                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
+            """
+        )
+        themeSetterParentMethod.addInstructions(
+            themeSetterParentInstructions.size - 2, """
+                    const/4 v0, 0x0
+                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
+            """
+        )
 
         val licenseActivityClass = licenseActivityResult.mutableClass
         val settingsClass = settingsResult.mutableClass
