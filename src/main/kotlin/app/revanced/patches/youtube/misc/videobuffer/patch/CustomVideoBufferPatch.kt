@@ -48,7 +48,7 @@ class CustomVideoBufferPatch : BytecodePatch(
                         "120000",
                         StringResource(
                             "revanced_pref_max_buffer_ms_summary",
-                            "The maximum size of a buffer for playback"
+                            "Maximum duration of media that the player will try to buffer"
                         )
                     ),
                     TextPreference(
