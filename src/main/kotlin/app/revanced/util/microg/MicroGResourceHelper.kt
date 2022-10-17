@@ -20,32 +20,40 @@ internal object MicroGResourceHelper {
         toPackageName: String,
         toName: String
     ) {
-        context.getFile("AndroidManifest.xml", ResourceContext.ApkContext.BASE)
+        // patch the manifest in all manifest files if present
+        ResourceContext.ApkContext.values().forEach { apkContext ->
+            with(context.getFile("AndroidManifest.xml", apkContext)) {
+                if (apkContext == ResourceContext.ApkContext.BASE) {
+                    // in the case of the base apk additional transformations are needed
+                    this.readText().replace(
+                        "android:label=\"@string/app_name",
+                        "android:label=\"$toName"
+                    ).replace(
+                        "android:label=\"@string/app_launcher_name",
+                        "android:label=\"$toName"
+                    ).replace(
+                        "android:authorities=\"$fromPackageName",
+                        "android:authorities=\"$toPackageName"
+                    ).replace(
+                        "$fromPackageName.permission.C2D_MESSAGE",
+                        "$toPackageName.permission.C2D_MESSAGE"
+                    ).replace(
+                        "com.google.android.c2dm",
+                        "${Constants.MICROG_VENDOR}.android.c2dm"
+                    ).replace(
+                        "</queries>",
+                        "<package android:name=\"${Constants.MICROG_VENDOR}.android.gms\"/></queries>"
+                    )
+                } else {
+                    // the other splits might not exist in the current context, in that case simply continue with the next apk
+                    if (!this.exists()) return
 
-        val manifest = context.getFile("AndroidManifest.xml").readText()
-        context.getFile("AndroidManifest.xml").writeText(
-            manifest.replace(
-                "package=\"$fromPackageName",
-                "package=\"$toPackageName"
-            ).replace(
-                "android:label=\"@string/app_name",
-                "android:label=\"$toName"
-            ).replace(
-                "android:label=\"@string/app_launcher_name",
-                "android:label=\"$toName"
-            ).replace(
-                "android:authorities=\"$fromPackageName",
-                "android:authorities=\"$toPackageName"
-            ).replace(
-                "$fromPackageName.permission.C2D_MESSAGE",
-                "$toPackageName.permission.C2D_MESSAGE"
-            ).replace(
-                "com.google.android.c2dm",
-                "${Constants.MICROG_VENDOR}.android.c2dm"
-            ).replace(
-                "</queries>",
-                "<package android:name=\"${Constants.MICROG_VENDOR}.android.gms\"/></queries>"
-            )
-        )
+                    this.readText()
+                }.replace(
+                    "package=\"$fromPackageName",
+                    "package=\"$toPackageName"
+                ).let(this::writeText)
+            }
+        }
     }
 }
