@@ -30,14 +30,14 @@ class PremiumHeadingPatch : ResourcePatch {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
 
-        arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
+        arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@ { size ->
             val headingDirectory = resDirectory.resolve("drawable-$size")
             modes.forEach { mode ->
                 val fromPath = headingDirectory.resolve("${original}_$mode.png").toPath()
                 val toPath = headingDirectory.resolve("${replacement}_$mode.png").toPath()
 
-                if (!fromPath.exists())
-                    return PatchResult.Error("The file $fromPath does not exist in the resources. Therefore, this patch can not succeed.")
+                if (!fromPath.exists()) return@dpi
+
                 Files.copy(
                     fromPath,
                     toPath,
