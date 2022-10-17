@@ -60,11 +60,13 @@ class SettingsResourcePatch : ResourcePatch {
             }
         }
 
-        revancedPreferencesEditor = context.openEditor("res/xml/revanced_prefs.xml")
-        preferencesEditor = context.openEditor("res/xml/settings_fragment.xml")
+        with(context) {
+            revancedPreferencesEditor = openEditor("res/xml/revanced_prefs.xml")
+            preferencesEditor = openEditor("res/xml/settings_fragment.xml")
 
-        stringsEditor = context.openEditor("res/values/strings.xml")
-        arraysEditor = context.openEditor("res/values/arrays.xml")
+            stringsEditor = openEditor("res/values/strings.xml")
+            arraysEditor = openEditor("res/values/arrays.xml")
+        }
 
         // Add the ReVanced settings to the YouTube settings
         val youtubePackage = "com.google.android.youtube"
@@ -96,24 +98,20 @@ class SettingsResourcePatch : ResourcePatch {
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                revancedPreferenceNode = value.getNode("PreferenceScreen")
+                field = value.also { revancedPreferenceNode = it.getNode("PreferenceScreen") }
             }
         private var preferencesEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                preferencesNode = value.getNode("PreferenceScreen")
+                field = value.also { preferencesNode = it.getNode("PreferenceScreen") }
             }
 
         private var stringsEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                stringsNode = value.getNode("resources")
+                field = value.also { stringsNode = it.getNode("resources") }
             }
         private var arraysEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                arraysNode = value.getNode("resources")
+                field = value.also { arraysNode = it.getNode("resources") }
             }
 
         /**
@@ -136,11 +134,12 @@ class SettingsResourcePatch : ResourcePatch {
                 arrayResource.items.forEach { item ->
                     item.include()
 
-                    arrayNode.setAttribute("name", item.name)
-
-                    arrayNode.appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
-                        itemNode.textContent = item.value
-                    })
+                    with(arrayNode) {
+                        setAttribute("name", item.name)
+                        appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
+                            itemNode.textContent = item.value
+                        })
+                    }
                 }
             })
         }
@@ -168,9 +167,11 @@ class SettingsResourcePatch : ResourcePatch {
                 }
 
                 preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
-                    intentNode.setAttribute("android:targetPackage", preference.intent.targetPackage)
-                    intentNode.setAttribute("android:data", preference.intent.data)
-                    intentNode.setAttribute("android:targetClass", preference.intent.targetClass)
+                    with(intentNode) {
+                        setAttribute("android:targetPackage", preference.intent.targetPackage)
+                        setAttribute("android:data", preference.intent.data)
+                        setAttribute("android:targetClass", preference.intent.targetClass)
+                    }
                 })
             })
         }
@@ -200,28 +201,32 @@ class SettingsResourcePatch : ResourcePatch {
                 }
             }
 
-            val preferenceElement = ownerDocument.createElement(preference.tag)
-            preferenceElement.setAttribute("android:key", preference.key)
-            preferenceElement.setAttribute("android:title", "@string/${preference.title.also { it.include() }.name}")
+            with(ownerDocument.createElement(preference.tag)) {
+                setAttribute("android:key", preference.key)
+                setAttribute(
+                    "android:title",
+                    "@string/${preference.title.also { it.include() }.name}"
+                )
 
-            when (preference) {
-                is PreferenceScreen -> {
-                    for (childPreference in preference.preferences) preferenceElement.addPreference(childPreference)
-                    preferenceElement.addSummary(preference.summary)
+                when (preference) {
+                    is PreferenceScreen -> {
+                        for (childPreference in preference.preferences) addPreference(childPreference)
+                        addSummary(preference.summary)
+                    }
+                    is SwitchPreference -> {
+                        addDefault(preference.default)
+                        addSummary(preference.summaryOn, SummaryType.ON)
+                        addSummary(preference.summaryOff, SummaryType.OFF)
+                    }
+                    is TextPreference -> {
+                        setAttribute("android:inputType", preference.inputType.type)
+                        addDefault(preference.default)
+                        addSummary(preference.summary)
+                    }
                 }
-                is SwitchPreference -> {
-                    preferenceElement.addDefault(preference.default)
-                    preferenceElement.addSummary(preference.summaryOn, SummaryType.ON)
-                    preferenceElement.addSummary(preference.summaryOff, SummaryType.OFF)
-                }
-                is TextPreference -> {
-                    preferenceElement.setAttribute("android:inputType", preference.inputType.type)
-                    preferenceElement.addDefault(preference.default)
-                    preferenceElement.addSummary(preference.summary)
-                }
+
+                this@addPreference.appendChild(this)
             }
-
-            appendChild(preferenceElement)
         }
 
         /**
@@ -247,12 +252,14 @@ class SettingsResourcePatch : ResourcePatch {
         // merge all strings, skip duplicates
         strings.forEach { stringResource ->
             stringsNode!!.appendChild(stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
-                stringElement.setAttribute("name", stringResource.name)
+                with(stringElement) {
+                    setAttribute("name", stringResource.name)
 
-                // if the string is un-formatted, explicitly add the formatted attribute
-                if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
+                    // if the string is un-formatted, explicitly add the formatted attribute
+                    if (!stringResource.formatted) setAttribute("formatted", "false")
 
-                stringElement.textContent = stringResource.value
+                    textContent = stringResource.value
+                }
             })
         }
 
@@ -281,9 +288,6 @@ class SettingsResourcePatch : ResourcePatch {
             }
         }
 
-        revancedPreferencesEditor?.close()
-        preferencesEditor?.close()
-        stringsEditor?.close()
-        arraysEditor?.close()
+        arrayOf(revancedPreferencesEditor, preferencesEditor, stringsEditor, arraysEditor).forEach { it?.close() }
     }
 }
