@@ -1,14 +1,13 @@
 package app.revanced.patches.ticktick.misc.themeunlock.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.ticktick.misc.themeunlock.annotations.UnlockThemesCompatibility
 import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.CheckLockedThemesFingerprint
@@ -37,7 +36,7 @@ class UnlockProPatch : BytecodePatch(
         
         val setThemeMethod = SetThemeFingerprint.result!!.mutableMethod
         setThemeMethod.removeInstructions(0, 9)
-        
-        return PatchResultSuccess()
+
+        return PatchResult.Success
     }
 }

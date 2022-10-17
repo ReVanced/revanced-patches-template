@@ -1,14 +1,12 @@
 package app.revanced.patches.iconpackstudio.misc.pro.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.iconpackstudio.misc.pro.annotations.UnlockProCompatibility
 import app.revanced.patches.iconpackstudio.misc.pro.fingerprints.CheckProFingerprint
@@ -32,7 +30,7 @@ class UnlockProPatch : BytecodePatch(
                 return v0
             """
         )
-        
-        return PatchResultSuccess()
+
+        return PatchResult.Success
     }
 }

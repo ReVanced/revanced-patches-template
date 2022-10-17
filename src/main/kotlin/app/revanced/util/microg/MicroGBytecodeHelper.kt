@@ -1,6 +1,6 @@
 package app.revanced.util.microg
 
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
@@ -191,7 +191,7 @@ internal object MicroGBytecodeHelper {
                     val transformedStr = transformFn(str)
                     if (transformedStr != null) {
                         // make class and method mutable, if not already
-                        mutableClass = mutableClass ?: proxy(classDef).mutableClass
+                        mutableClass = mutableClass ?: classes.proxy(classDef).mutableClass
                         mutableMethod = mutableMethod ?: mutableClass!!.methods.first {
                             it.name == methodDef.name && it.parameterTypes.containsAll(methodDef.parameterTypes)
                         }

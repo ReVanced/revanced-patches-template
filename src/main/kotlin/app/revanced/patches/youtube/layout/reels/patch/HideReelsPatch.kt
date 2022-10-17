@@ -1,13 +1,12 @@
 package app.revanced.patches.youtube.layout.reels.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.layout.reels.annotations.HideReelsCompatibility
 import app.revanced.patches.youtube.layout.reels.fingerprints.HideReelsFingerprint
@@ -46,6 +45,6 @@ class HideReelsPatch : BytecodePatch(
             "invoke-static { v2 }, Lapp/revanced/integrations/patches/HideReelsPatch;->HideReel(Landroid/view/View;)V"
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

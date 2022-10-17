@@ -1,15 +1,13 @@
 package app.revanced.patches.twitch.ad.embedded.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
@@ -31,7 +29,8 @@ class EmbeddedAdsPatch : BytecodePatch(
     listOf(CreateUsherClientFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = CreateUsherClientFingerprint.result ?: return PatchResultError("${CreateUsherClientFingerprint.name} not found")
+        val result = CreateUsherClientFingerprint.result
+            ?: return PatchResult.Error("${CreateUsherClientFingerprint.name} not found")
 
         // Inject OkHttp3 application interceptor
         result.mutableMethod.addInstructions(
@@ -73,6 +72,6 @@ class EmbeddedAdsPatch : BytecodePatch(
         SettingsPatch.addString("revanced_embedded_ads_service_unavailable", "%s is unavailable. Ads may show. Try switching to another ad block service in settings.")
         SettingsPatch.addString("revanced_embedded_ads_service_failed", "%s server returned an error. Ads may show. Try switching to another ad block service in settings.")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

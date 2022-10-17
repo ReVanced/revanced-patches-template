@@ -1,12 +1,10 @@
 package app.revanced.patches.twitter.misc.dynamiccolor.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.dynamiccolor.annotations.DynamicColorCompatibility
@@ -20,8 +18,8 @@ import java.nio.file.Files
 @Version("0.0.1")
 class DynamicColorPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context["res"]
-        if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
+        val resDirectory = context.getFile("res", context.apkBundle.base)!!
+        if (!resDirectory.isDirectory) return PatchResult.Error("The res folder can not be found.")
 
         val valuesV31Directory = resDirectory.resolve("values-v31")
         if (!valuesV31Directory.isDirectory) Files.createDirectories(valuesV31Directory.toPath())
@@ -39,7 +37,7 @@ class DynamicColorPatch : ResourcePatch {
             }
         }
 
-        context.xmlEditor["res/values-v31/colors.xml"].use { editor ->
+        context.openEditor("res/values-v31/colors.xml").use { editor ->
             val document = editor.file
 
             mapOf(
@@ -62,7 +60,7 @@ class DynamicColorPatch : ResourcePatch {
             }
         }
 
-        context.xmlEditor["res/values-night-v31/colors.xml"].use { editor ->
+        context.openEditor("res/values-night-v31/colors.xml").use { editor ->
             val document = editor.file
 
             mapOf(
@@ -82,6 +80,6 @@ class DynamicColorPatch : ResourcePatch {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

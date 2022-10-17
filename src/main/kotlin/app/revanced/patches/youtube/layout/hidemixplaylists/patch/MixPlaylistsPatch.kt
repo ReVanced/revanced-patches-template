@@ -1,17 +1,16 @@
 package app.revanced.patches.youtube.layout.hidemixplaylists.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hidemixplaylists.annotations.MixPlaylistsPatchCompatibility
 import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.CreateMixPlaylistFingerprint
 import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.SecondCreateMixPlaylistFingerprint
@@ -45,7 +44,7 @@ class MixPlaylistsPatch : BytecodePatch(
 
         arrayOf(CreateMixPlaylistFingerprint, SecondCreateMixPlaylistFingerprint).forEach(::addHook)
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun addHook(fingerprint: MethodFingerprint) {

@@ -1,17 +1,16 @@
 package app.revanced.patches.youtube.layout.personalinformation.resource.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.youtube.layout.personalinformation.annotations.HideEmailAddressCompatibility
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.layout.personalinformation.annotations.HideEmailAddressCompatibility
 
 @Name("hide-email-address-resource-patch")
 @HideEmailAddressCompatibility
@@ -37,6 +36,6 @@ class HideEmailAddressResourcePatch : ResourcePatch {
             it.type == "string" && it.name == "account_switcher_accessibility_label"
         }.id
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

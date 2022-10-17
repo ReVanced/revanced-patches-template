@@ -1,14 +1,13 @@
 package app.revanced.patches.youtube.misc.fix.spoof.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.misc.fix.spoof.annotations.ClientSpoofCompatibility
 import app.revanced.patches.youtube.misc.fix.spoof.fingerprints.UserAgentHeaderBuilderFingerprint
@@ -32,6 +31,6 @@ class ClientSpoofPatch : BytecodePatch(
         val originalPackageName = "com.google.android.youtube"
         method.addInstruction(insertIndex, "const-string v$packageNameRegister, \"$originalPackageName\"")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

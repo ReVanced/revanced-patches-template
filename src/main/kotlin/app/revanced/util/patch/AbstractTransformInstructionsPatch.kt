@@ -1,10 +1,9 @@
 package app.revanced.util.patch
 
 import app.revanced.extensions.findMutableMethodOf
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
@@ -48,7 +47,7 @@ internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() 
             }
         }.forEach { (classDef, methods) ->
             // And finally transform the instructions...
-            with(context.proxy(classDef).mutableClass) {
+            context.classes.proxy(classDef).mutableClass.apply {
                 methods.forEach { (method, patches) ->
                     val mutableMethod = findMutableMethodOf(method)
                     while (!patches.isEmpty()) {
@@ -58,6 +57,6 @@ internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() 
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

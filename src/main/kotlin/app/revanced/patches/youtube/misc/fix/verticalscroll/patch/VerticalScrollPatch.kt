@@ -1,14 +1,13 @@
 package app.revanced.patches.youtube.misc.fix.verticalscroll.patch
 
 import app.revanced.extensions.toErrorResult
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.youtube.misc.fix.verticalscroll.annotations.VerticalScrollCompatibility
 import app.revanced.patches.youtube.misc.fix.verticalscroll.fingerprints.CanScrollVerticallyFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -34,6 +33,6 @@ class VerticalScrollPatch : BytecodePatch(
             )
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

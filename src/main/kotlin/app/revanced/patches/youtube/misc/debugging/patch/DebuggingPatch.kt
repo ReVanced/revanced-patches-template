@@ -1,9 +1,9 @@
 package app.revanced.patches.youtube.misc.debugging.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -60,7 +60,7 @@ class DebuggingPatch : ResourcePatch {
         )
 
         if (debuggable == true) {
-            context.xmlEditor["AndroidManifest.xml"].use { dom ->
+            context.openEditor("AndroidManifest.xml").use { dom ->
                 val applicationNode = dom
                     .file
                     .getElementsByTagName("application")
@@ -71,7 +71,7 @@ class DebuggingPatch : ResourcePatch {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

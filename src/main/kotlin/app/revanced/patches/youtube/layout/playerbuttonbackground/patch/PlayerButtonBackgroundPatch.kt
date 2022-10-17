@@ -1,14 +1,13 @@
 package app.revanced.patches.youtube.layout.playerbuttonbackground.patch
 
-import app.revanced.extensions.doRecursively
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.util.dom.DomUtil.doRecursively
 import app.revanced.patches.youtube.layout.playerbuttonbackground.annotations.PlayerButtonBackgroundCompatibility
 import org.w3c.dom.Element
 
@@ -23,7 +22,7 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
     }
     
     override fun execute(context: ResourceContext): PatchResult {
-        context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
+        context.openEditor(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
                 if (node !is Element) return@node
 
@@ -33,6 +32,6 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

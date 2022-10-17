@@ -1,11 +1,10 @@
 package app.revanced.patches.idaustria.detection.signature.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.*
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.idaustria.detection.shared.annotations.DetectionCompatibility
 import app.revanced.patches.idaustria.detection.signature.fingerprints.SpoofSignatureFingerprint
@@ -40,6 +39,6 @@ class SpoofSignaturePatch : BytecodePatch(
                 return-object v0 
             """
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

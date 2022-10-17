@@ -1,16 +1,14 @@
 package app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch
 
 import app.revanced.extensions.toErrorResult
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.annotation.FixBackToExitGestureCompatibility
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewScrollingFingerprint
@@ -49,12 +47,12 @@ class FixBackToExitGesturePatch : BytecodePatch(
         ).forEach { (fingerprint, target) ->
             try {
                 fingerprint.injectCall(target)
-            } catch (error: PatchResultError) {
+            } catch (error: PatchResult.Error) {
                 return error
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private companion object {

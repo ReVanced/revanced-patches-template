@@ -1,14 +1,15 @@
 package app.revanced.patches.twitch.misc.settings.bytecode.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.*
+import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
@@ -19,7 +20,10 @@ import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.components.CustomPreferenceCategory
-import app.revanced.patches.twitch.misc.settings.fingerprints.*
+import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
+import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsUpdatedFingerprint
+import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsActivityOnCreateFingerprint
+import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEnumFingerprint
 import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
@@ -98,7 +102,7 @@ class SettingsPatch : BytecodePatch(
         addString("revanced_reboot", "Restart", false)
         addString("revanced_cancel", "Cancel", false)
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     internal companion object {

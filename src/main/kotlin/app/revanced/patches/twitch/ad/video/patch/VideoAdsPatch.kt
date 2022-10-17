@@ -1,13 +1,12 @@
 package app.revanced.patches.twitch.ad.video.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -116,7 +115,8 @@ class VideoAdsPatch : AbstractAdPatch(
 
         // Spoof showAds JSON field
         with(ContentConfigShowAdsFingerprint.result!!) {
-            mutableMethod.addInstructions(0, """
+            mutableMethod.addInstructions(
+                0, """
                     ${createConditionInstructions()}
                     const/4 v0, 0
                     :$skipLabelName
@@ -144,6 +144,6 @@ class VideoAdsPatch : AbstractAdPatch(
             )
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

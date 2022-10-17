@@ -1,6 +1,6 @@
 package app.revanced.patches.twitter.layout.hideviews.patch
 
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -8,7 +8,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.InlineActionTypesFingerprint
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.TweetStatsContainerConstructorFingerprint
@@ -29,7 +28,7 @@ class HideViewsBytecodePatch : BytecodePatch(
         removeTweetStatViewInitializer(context)
         removeTweetStatViewWrapperInitializer(context)
         removeViewDelegateBinderSubscription()
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun removeViewsFromTimeline(context: BytecodeContext) {

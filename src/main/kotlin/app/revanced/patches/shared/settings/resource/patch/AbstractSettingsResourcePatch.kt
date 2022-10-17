@@ -1,9 +1,8 @@
 package app.revanced.patches.shared.settings.resource.patch
 
-import app.revanced.patcher.data.DomFileEditor
-import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.DomFileEditor
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.IResource
@@ -29,7 +28,7 @@ abstract class AbstractSettingsResourcePatch(
         /*
          * used for self-restart
          */
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
+        context.openEditor("AndroidManifest.xml").use { editor ->
             editor.file.getElementsByTagName("manifest").item(0).also {
                 it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
                     element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
@@ -46,11 +45,11 @@ abstract class AbstractSettingsResourcePatch(
         )
 
         /* prepare xml editors */
-        stringsEditor = context.xmlEditor["res/values/strings.xml"]
-        arraysEditor = context.xmlEditor["res/values/arrays.xml"]
-        revancedPreferencesEditor = context.xmlEditor["res/xml/$preferenceFileName.xml"]
+        stringsEditor = context.openEditor("res/values/strings.xml")
+        arraysEditor = context.openEditor("res/values/arrays.xml")
+        revancedPreferencesEditor = context.openEditor("res/xml/$preferenceFileName.xml")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     internal companion object {

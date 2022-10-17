@@ -1,16 +1,14 @@
 package app.revanced.patches.youtube.ad.general.bytecode.patch
 
 import app.revanced.extensions.findMutableMethodOf
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -61,7 +59,7 @@ class GeneralAdsPatch : BytecodePatch(
 
                             // Hide the view
                             val viewRegister = (this as Instruction35c).registerC
-                            context.proxy(classDef)
+                            context.classes.proxy(classDef)
                                 .mutableClass
                                 .findMutableMethodOf(method)
                                 .injectHideCall(insertIndex, viewRegister, "hideAdAttributionView")
@@ -73,7 +71,7 @@ class GeneralAdsPatch : BytecodePatch(
 
         with(
             ReelConstructorFingerprint.result
-                ?: return PatchResultError("Could not resolve fingerprint")
+                ?: return PatchResult.Error("Could not resolve fingerprint")
         ) {
             // iput-object v$viewRegister, ...
             val insertIndex = this.scanResult.patternScanResult!!.startIndex + 2
@@ -86,7 +84,7 @@ class GeneralAdsPatch : BytecodePatch(
 
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
 }

@@ -1,9 +1,9 @@
 package app.revanced.patches.twitch.chat.antidelete.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.*
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -98,6 +98,6 @@ class ShowDeletedMessagesPatch : BytecodePatch(
 
         SettingsPatch.addString("revanced_deleted_msg", "message deleted")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

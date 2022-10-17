@@ -1,21 +1,20 @@
 package app.revanced.patches.youtube.layout.autoplaybutton.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.autoplaybutton.annotations.AutoplayButtonCompatibility
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.AutoNavInformerFingerprint
 import app.revanced.patches.youtube.layout.autoplaybutton.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
@@ -87,6 +86,6 @@ class HideAutoplayButtonPatch : BytecodePatch(
         """
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

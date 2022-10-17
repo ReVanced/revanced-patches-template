@@ -1,6 +1,6 @@
 package app.revanced.meta
 
-import app.revanced.patcher.data.Context
+import app.revanced.patcher.Context
 import app.revanced.patcher.patch.Patch
 import app.revanced.patcher.util.patch.PatchBundle
 import java.io.File

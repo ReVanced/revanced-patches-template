@@ -1,10 +1,9 @@
 package app.revanced.patches.youtube.interaction.swipecontrols.patch.resource
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
@@ -106,6 +105,6 @@ class SwipeControlsResourcePatch : ResourcePatch {
                 "ic_sc_volume_normal.xml"
             )
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

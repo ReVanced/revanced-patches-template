@@ -1,16 +1,15 @@
 package app.revanced.patches.youtube.layout.homepage.breakingnews.resource.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("breaking-news-shelf-resource-patch")
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
@@ -35,6 +34,6 @@ class BreakingNewsResourcePatch : ResourcePatch {
             it.type == "layout" && it.name == "horizontal_card_list"
         }.id
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

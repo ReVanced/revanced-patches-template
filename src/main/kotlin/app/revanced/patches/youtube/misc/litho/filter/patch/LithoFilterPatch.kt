@@ -1,15 +1,13 @@
 package app.revanced.patches.youtube.misc.litho.filter.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -62,9 +60,9 @@ class LithoFilterPatch : BytecodePatch(
                     listOf(ExternalLabel("not_an_ad", instruction(insertHookIndex)))
                 )
             }
-        } ?: return PatchResultError("Could not find the method to hook.")
+        } ?: return PatchResult.Error("Could not find the method to hook.")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private companion object {
@@ -74,8 +72,9 @@ class LithoFilterPatch : BytecodePatch(
                     ""
                 ) { it }
             })${reference.returnType}"
+
             is FieldReference -> "${reference.definingClass}->${reference.name}:${reference.type}"
-            else -> throw PatchResultError("Unsupported reference type")
+            else -> throw PatchResult.Error("Unsupported reference type")
         }
     }
 }

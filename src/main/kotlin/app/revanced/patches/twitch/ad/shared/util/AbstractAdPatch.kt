@@ -1,6 +1,6 @@
 package app.revanced.patches.twitch.ad.shared.util
 
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -23,16 +23,17 @@ abstract class AbstractAdPatch(
 
     protected fun BytecodeContext.blockMethods(clazz: String, vararg methodNames: String, returnMethod: ReturnMethod = ReturnMethod()): Boolean {
 
-        return with(findClass(clazz)?.mutableClass) {
+        return with(classes.findClassProxied(clazz)?.mutableClass) {
             this ?: return false
 
             this.methods.filter { methodNames.contains(it.name) }.forEach {
-                val retIntructions = when(returnMethod.returnType) {
+                val retIntructions = when (returnMethod.returnType) {
                     'V' -> "return-void"
                     'Z' -> """
                         const/4 v0, ${returnMethod.value}
                         return v0
                     """
+
                     else -> throw NotImplementedError()
                 }
                 it.addInstructions(

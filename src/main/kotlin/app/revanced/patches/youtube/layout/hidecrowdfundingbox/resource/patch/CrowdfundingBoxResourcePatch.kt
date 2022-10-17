@@ -1,17 +1,16 @@
 package app.revanced.patches.youtube.layout.hidecrowdfundingbox.resource.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.youtube.layout.hidecrowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.layout.hidecrowdfundingbox.annotations.CrowdfundingBoxCompatibility
 
 @Name("crowdfunding-box-resource-patch")
 @CrowdfundingBoxCompatibility
@@ -37,6 +36,6 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
             it.type == "layout" && it.name == "donation_companion"
         }.id
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

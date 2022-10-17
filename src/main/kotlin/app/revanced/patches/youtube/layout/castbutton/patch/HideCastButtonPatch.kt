@@ -1,14 +1,12 @@
 package app.revanced.patches.youtube.layout.castbutton.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.castbutton.annotations.CastButtonCompatibility
@@ -36,12 +34,12 @@ class HideCastButtonPatch : BytecodePatch() {
         )
 
         with(
-            context.findClass("MediaRouteButton")
-                ?: return PatchResultError("MediaRouteButton class not found.")
+            context.classes.findClassProxied("MediaRouteButton")
+                ?: return PatchResult.Error("MediaRouteButton class not found.")
         ) {
             with(
                 mutableClass.methods.find { it.name == "setVisibility" }
-                    ?: return PatchResultError("setVisibility method not found.")
+                    ?: return PatchResult.Error("setVisibility method not found.")
             ) {
                 addInstructions(
                     0, """
@@ -52,6 +50,6 @@ class HideCastButtonPatch : BytecodePatch() {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

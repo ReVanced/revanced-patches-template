@@ -1,13 +1,12 @@
 package app.revanced.patches.tiktok.misc.login.disablerequirement.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.misc.login.disablerequirement.annotations.DisableLoginRequirementCompatibility
 import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint
@@ -38,6 +37,6 @@ class DisableLoginRequirementPatch : BytecodePatch(
             """
             )
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

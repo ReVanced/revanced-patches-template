@@ -1,18 +1,16 @@
 package app.revanced.patches.tiktok.misc.settings.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
@@ -51,7 +49,7 @@ class SettingsPatch : BytecodePatch(
                     instruction(index).opcode != Opcode.NEW_INSTANCE ||
                     instruction(index - 4).opcode != Opcode.MOVE_RESULT_OBJECT
                 )
-                    return PatchResultError("Hardcode offset changed.")
+                    return PatchResult.Error("Hardcode offset changed.")
                 patchOptionNameAndOnClickEvent(index, context)
             }
         }
@@ -70,7 +68,7 @@ class SettingsPatch : BytecodePatch(
                 break
             }
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun findOptionsOnClickIndex(): IntArray {
@@ -106,7 +104,7 @@ class SettingsPatch : BytecodePatch(
 
             // Patch option OnClick Event
             with(((instruction(index) as ReferenceInstruction).reference as TypeReference).type) {
-                context.findClass(this)!!.mutableClass.methods.first { it.name == "onClick" }
+                context.classes.findClassProxied(this)!!.mutableClass.methods.first { it.name == "onClick" }
                     .addInstructions(
                         0,
                         """

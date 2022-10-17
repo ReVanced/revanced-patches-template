@@ -1,20 +1,19 @@
 package app.revanced.patches.youtube.layout.hideartistcard.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.layout.buttons.annotations.HideArtistCardCompatibility
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.layout.buttons.annotations.HideArtistCardCompatibility
+import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 
 @Patch
 @DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class])
@@ -33,6 +32,6 @@ class HideArtistCardPatch : ResourcePatch {
                 StringResource("revanced_hide_hide_artist_card_off", "Artist card is shown")
             ),
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

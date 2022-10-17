@@ -1,14 +1,13 @@
 package app.revanced.patches.shared.integrations.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint.RegisterResolver
 import org.jf.dexlib2.iface.Method
 
 @Description("Applies mandatory patches to implement the ReVanced integrations into the application.")
@@ -37,9 +36,9 @@ abstract class AbstractIntegrationsPatch(
                     "sput-object v$contextRegister, " +
                             "$integrationsDescriptor->context:Landroid/content/Context;"
                 )
-            } ?: return PatchResultError("Could not find hook target fingerprint.")
+            } ?: return PatchResult.Error("Could not find hook target fingerprint.")
 
-            return PatchResultSuccess()
+            return PatchResult.Success
         }
 
         interface RegisterResolver : (Method) -> Int {
@@ -48,17 +47,17 @@ abstract class AbstractIntegrationsPatch(
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
-        if (context.findClass(integrationsDescriptor) == null) return MISSING_INTEGRATIONS
+        if (context.classes.find { it.type == integrationsDescriptor } == null) return MISSING_INTEGRATIONS
 
         for (hook in hooks) hook.invoke(integrationsDescriptor).let {
-            if (it is PatchResultError) return it
+            if (it is PatchResult.Error) return it
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private companion object {
-        val MISSING_INTEGRATIONS = PatchResultError(
+        val MISSING_INTEGRATIONS = PatchResult.Error(
             "Integrations have not been merged yet. " +
                     "This patch can not succeed without merging the integrations."
         )

@@ -1,16 +1,15 @@
 package app.revanced.patches.tiktok.misc.spoof.sim.patch
 
 import app.revanced.extensions.findMutableMethodOf
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -72,7 +71,7 @@ class SpoofSimPatch : BytecodePatch() {
                 }
             }
         }.forEach { (classDef, methods) ->
-            with(context.proxy(classDef).mutableClass) {
+            with(context.classes.proxy(classDef).mutableClass) {
                 methods.forEach { (method, patches) ->
                     with(findMutableMethodOf(method)) {
                         while (!patches.isEmpty()) {
@@ -92,7 +91,7 @@ class SpoofSimPatch : BytecodePatch() {
             )
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     // Patch Android API and return fake sim information
