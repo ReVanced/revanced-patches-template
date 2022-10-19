@@ -40,7 +40,7 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
 
         val subtitleButtonControllerMethod = SubtitleButtonControllerFingerprint.result!!.mutableMethod
 
-        //Due to previosly applied patches, scanResult index cannot be used in this context
+        // Due to previously applied patches, scanResult index cannot be used in this context
         val igetBooleanIndex = subtitleButtonControllerMethod.implementation!!.instructions.indexOfFirst {
             it.opcode == Opcode.IGET_BOOLEAN
         }
