@@ -7,7 +7,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
 
 @Name("load-ads-fingerprint")
-
 @VideoAdsCompatibility
 @Version("0.0.1")
 object LoadAdsFingerprint : MethodFingerprint(

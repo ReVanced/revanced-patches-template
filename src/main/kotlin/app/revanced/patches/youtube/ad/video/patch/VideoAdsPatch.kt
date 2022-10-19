@@ -14,6 +14,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadAdsFingerprint
+import app.revanced.patches.youtube.ad.video.fingerprints.LoadAdsParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -27,7 +28,8 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Version("0.0.1")
 class VideoAdsPatch : BytecodePatch(
     listOf(
-        LoadAdsFingerprint
+        LoadAdsFingerprint,
+        LoadAdsParentFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -50,6 +52,13 @@ class VideoAdsPatch : BytecodePatch(
                 if-nez v0, :show_video_ads
                 return-void
             """, listOf(ExternalLabel("show_video_ads", lithoAdsFingerprintMethod.instruction(0)))
+        )
+
+        LoadAdsParentFingerprint.result!!.mutableMethod.addInstructions(
+            0, """
+                invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
+                move-result v1
+            """
         )
 
         return PatchResultSuccess()
