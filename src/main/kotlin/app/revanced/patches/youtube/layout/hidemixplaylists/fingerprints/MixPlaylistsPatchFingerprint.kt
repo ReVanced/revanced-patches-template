@@ -8,7 +8,7 @@ import app.revanced.patches.youtube.layout.hidemixplaylists.annotations.MixPlayl
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("my-mix-fingerprint")
+@Name("mix-playlists-fingerprint")
 @MixPlaylistsPatchCompatibility
 @Version("0.0.1")
 object MixPlaylistsPatchFingerprint : MethodFingerprint(
