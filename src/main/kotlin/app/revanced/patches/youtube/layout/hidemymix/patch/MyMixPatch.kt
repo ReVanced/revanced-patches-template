@@ -33,11 +33,11 @@ class MyMixPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_mix_playlist",
-                StringResource("revanced_my_mix_title", "My Mix (Playlist)"),
+                "revanced_mix_playlists_enabled",
+                StringResource("revanced_mix_playlist_title", "Show mix playlist"),
                 true,
-                StringResource("revanced_my_mix_summary_on", "My Mix (Playlist) is hidden"),
-                StringResource("revanced_my_mix_summary_off", "My Mix (Playlist) is shown")
+                StringResource("revanced_my_mix_summary_on", "Mix Playlist is shown."),
+                StringResource("revanced_my_mix_summary_off", "Mix Playlist is hidden.")
             )
         )
 
