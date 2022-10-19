@@ -2,19 +2,21 @@ package app.revanced.patches.youtube.ad.video.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.extensions.or
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
-import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.AccessFlags
 
 @Name("load-ads-fingerprint")
 
 @VideoAdsCompatibility
 @Version("0.0.1")
 object LoadAdsFingerprint : MethodFingerprint(
-    opcodes = listOf(Opcode.INVOKE_INTERFACE_RANGE),
+    "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L"),
     strings = listOf(
-        "Received unsupported ad type, this should never happen.",
-        "AdBreakRenderer path ad playerResponse cannot be deserialized."
+        "OnFulfillmentTriggersActivated has non registered slot",
+        "markFillRequested",
+        "Trying to enter a slot when a slot of same type and physical position is already active. Its status: ",
     )
 )
