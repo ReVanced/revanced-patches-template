@@ -48,7 +48,7 @@ class MyMixPatch : BytecodePatch(
 
         method.addInstruction(
             index + 2,
-            "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMyMixPatch;->HideMyMix(Landroid/view/View;)V"
+            "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
         )
 
         return PatchResultSuccess()
