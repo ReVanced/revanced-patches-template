@@ -13,8 +13,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
-import app.revanced.patches.youtube.ad.video.fingerprints.LoadAdsFingerprint
-import app.revanced.patches.youtube.ad.video.fingerprints.LoadAdsParentFingerprint
+import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
+import app.revanced.patches.youtube.ad.video.fingerprints.ShowVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -28,8 +28,8 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Version("0.0.1")
 class VideoAdsPatch : BytecodePatch(
     listOf(
-        LoadAdsFingerprint,
-        LoadAdsParentFingerprint,
+        LoadVideoAdsFingerprint,
+        ShowVideoAdsFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -43,7 +43,7 @@ class VideoAdsPatch : BytecodePatch(
             )
         )
 
-        val lithoAdsFingerprintMethod = LoadAdsFingerprint.result!!.mutableMethod
+        val lithoAdsFingerprintMethod = LoadVideoAdsFingerprint.result!!.mutableMethod
 
         lithoAdsFingerprintMethod.addInstructions(
             0, """
@@ -54,7 +54,7 @@ class VideoAdsPatch : BytecodePatch(
             """, listOf(ExternalLabel("show_video_ads", lithoAdsFingerprintMethod.instruction(0)))
         )
 
-        LoadAdsParentFingerprint.result!!.mutableMethod.addInstructions(
+        ShowVideoAdsFingerprint.result!!.mutableMethod.addInstructions(
             0, """
                 invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
                 move-result v1

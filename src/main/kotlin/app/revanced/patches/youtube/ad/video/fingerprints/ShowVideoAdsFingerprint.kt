@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 @Name("load-ads-parent-fingerprint")
 @VideoAdsCompatibility
 @Version("0.0.1")
-object LoadAdsParentFingerprint : MethodFingerprint(
+object ShowVideoAdsFingerprint : MethodFingerprint(
     "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("Z"), listOf(
         Opcode.IPUT_BOOLEAN,
         Opcode.INVOKE_VIRTUAL,
