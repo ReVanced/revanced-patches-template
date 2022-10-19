@@ -21,7 +21,7 @@ import org.jf.dexlib2.Opcode
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-captions-button")
-@Description("Hide the captions button on video player.")
+@Description("Hides the captions button on video player.")
 @AutoCaptionsCompatibility
 @Version("0.0.1")
 class HideCaptionsButtonPatch : BytecodePatch(listOf(
