@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class])
 @Name("hide-my-mix")
-@Description("Remove My Mix from home feed.")
+@Description("Removes mix playlists from the feed.")
 @MyMixCompatibility
 @Version("0.0.1")
 class MyMixPatch : BytecodePatch(
