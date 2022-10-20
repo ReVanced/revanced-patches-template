@@ -8,7 +8,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-@Name("theme-setter-fingerprint")
+@Name("theme-setter-system-fingerprint")
 @SettingsCompatibility
 @Version("0.0.1")
 object ThemeSetterSystemFingerprint : MethodFingerprint(

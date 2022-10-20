@@ -8,7 +8,7 @@ import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibil
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("theme-setter-parent-fingerprint")
+@Name("theme-setter-app-fingerprint")
 @SettingsCompatibility
 @Version("0.0.1")
 object ThemeSetterAppFingerprint : MethodFingerprint(
