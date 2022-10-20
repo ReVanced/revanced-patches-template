@@ -1,3 +1,17 @@
+# [2.84.0](https://github.com/revanced/revanced-patches/compare/v2.83.3...v2.84.0) (2022-10-20)
+
+
+### Features
+
+* **youtube:** `hide-mix-playlists` patch  ([#816](https://github.com/revanced/revanced-patches/issues/816)) ([e76c73b](https://github.com/revanced/revanced-patches/commit/e76c73b455c65aa605e418f19d88b64e0e244901))
+
+## [2.83.3](https://github.com/revanced/revanced-patches/compare/v2.83.2...v2.83.3) (2022-10-20)
+
+
+### Bug Fixes
+
+* **youtube/video-ads:** revert faulty method patch ([#820](https://github.com/revanced/revanced-patches/issues/820)) ([666248a](https://github.com/revanced/revanced-patches/commit/666248ae65d1ee84d1a278714c0dcd2528c5dd14))
+
 ## [2.83.2](https://github.com/revanced/revanced-patches/compare/v2.83.1...v2.83.2) (2022-10-19)
 
 
