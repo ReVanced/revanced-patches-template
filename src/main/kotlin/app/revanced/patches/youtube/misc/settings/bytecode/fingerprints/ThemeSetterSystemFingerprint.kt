@@ -11,7 +11,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @Name("theme-setter-fingerprint")
 @SettingsCompatibility
 @Version("0.0.1")
-object ThemeSetterFingerprint : MethodFingerprint(
+object ThemeSetterSystemFingerprint : MethodFingerprint(
     "L",
     opcodes = listOf(Opcode.RETURN_OBJECT),
     customFingerprint = { methodDef ->

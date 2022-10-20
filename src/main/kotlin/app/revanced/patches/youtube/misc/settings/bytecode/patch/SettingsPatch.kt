@@ -17,16 +17,14 @@ import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePa
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVancedSettingsActivityFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterParentFingerprint
+import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
+import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterAppFingerprint
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.util.MethodUtil
 import java.io.Closeable
 
@@ -42,30 +40,13 @@ import java.io.Closeable
 @SettingsCompatibility
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
-    listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint, ThemeSetterFingerprint, ThemeSetterParentFingerprint)
+    listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val licenseActivityResult = LicenseActivityFingerprint.result!!
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
-        val themeSetterResult = ThemeSetterFingerprint.result!!
-
-        val themeSetterParentResult = ThemeSetterParentFingerprint.result!!
-        val themeSetterParentMethod = themeSetterParentResult.mutableMethod
-        val themeSetterParentInstructions = themeSetterParentMethod.implementation!!.instructions
-        val themeSetterParentResultIndex = themeSetterParentResult.scanResult.patternScanResult!!.endIndex
-
-        themeSetterParentMethod.addInstructions(
-        themeSetterParentResultIndex + 1, """
-                    const/4 v0, 0x1
-                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
-            """
-        )
-        themeSetterParentMethod.addInstructions(
-            themeSetterParentInstructions.size - 2, """
-                    const/4 v0, 0x0
-                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
-            """
-        )
+        val themeSetterSystemResult = ThemeSetterSystemFingerprint.result!!
+        val themeSetterAppResult = ThemeSetterAppFingerprint.result!!
 
         val licenseActivityClass = licenseActivityResult.mutableClass
         val settingsClass = settingsResult.mutableClass
@@ -73,24 +54,40 @@ class SettingsPatch : BytecodePatch(
         val onCreate = licenseActivityResult.mutableMethod
         val setThemeMethodName = "setTheme"
         val initializeSettings = settingsResult.mutableMethod
+        val themeSetterAppMethod = themeSetterAppResult.mutableMethod
 
-        val setThemeInstruction =
+        val setSystemThemeInstruction =
             "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V".toInstruction(
-                themeSetterResult.mutableMethod
+                themeSetterSystemResult.mutableMethod
             )
 
-        // add instructions to set the theme of the settings activity
-        themeSetterResult.mutableMethod.implementation!!.let {
+        // add instructions to set the theme of the settings activity, based on Android system tint
+        themeSetterSystemResult.mutableMethod.implementation!!.let {
             it.addInstruction(
-                themeSetterResult.scanResult.patternScanResult!!.startIndex,
-                setThemeInstruction
+                themeSetterSystemResult.scanResult.patternScanResult!!.startIndex,
+                setSystemThemeInstruction
             )
 
             it.addInstruction(
                 it.instructions.size - 1, // add before return
-                setThemeInstruction
+                setSystemThemeInstruction
             )
         }
+
+        fun setAppThemeInstructions(value: Int): String {
+            return """
+                const/4 v0, 0x$value
+                invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
+            """
+        }
+
+        // add instructions to set the theme of the settings activity, based on app tint
+        themeSetterAppMethod.addInstructions(
+            themeSetterAppResult.scanResult.patternScanResult!!.endIndex + 1, setAppThemeInstructions(1)
+        )
+        themeSetterAppMethod.addInstructions(
+            themeSetterAppMethod.implementation!!.instructions.size - 2, setAppThemeInstructions(0)
+        )
 
         // add the setTheme call to the onCreate method to not affect the offsets
         onCreate.addInstructions(
