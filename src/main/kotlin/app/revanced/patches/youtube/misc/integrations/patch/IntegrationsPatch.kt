@@ -30,49 +30,30 @@ class IntegrationsPatch : BytecodePatch(
         InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint
     )
 ) {
+    companion object {
+        private const val INTEGRATIONS_DESCRIPTOR = "Lapp/revanced/integrations/utils/ReVancedUtils;"
+    }
+
     override fun execute(context: BytecodeContext): PatchResult {
-        if (context.findClass("Lapp/revanced/integrations/utils/ReVancedUtils") == null) return PatchResultError("Integrations have not been merged yet. This patch can not succeed without the integrations.")
+        if (context.findClass(INTEGRATIONS_DESCRIPTOR) == null)
+            return PatchResultError("Integrations have not been merged yet. This patch can not succeed without merging the integrations.")
 
-        val fingerprints = arrayOf(InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint)
+        arrayOf(InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint).map {
+            it to (it.result ?: return PatchResultError("${it.name} failed to resolve"))
+        }.forEach { (fingerprint, result) ->
+            with(result.mutableMethod) {
+                // parameter which holds the context
+                val contextParameter = if (fingerprint == ServiceFingerprint) parameters.size else 1
+                // register which holds the context
+                val contextRegister = implementation!!.registerCount - contextParameter
 
-        fingerprints.forEach {
-            val result = it.result
-
-            if (it.result == null) {
-                return PatchResultError("${it.name} failed to resolve")
+                addInstruction(
+                    0,
+                    "sput-object v$contextRegister, $INTEGRATIONS_DESCRIPTOR->context:Landroid/content/Context;"
+                )
             }
-
-            val method = result!!.mutableMethod
-            val register = method.implementation!!.registerCount - if (it == ServiceFingerprint) {
-                method.parameters.size
-            } else 1
-
-            method.addInstruction(
-                0,
-                "sput-object v$register, Lapp/revanced/integrations/utils/ReVancedUtils;->context:Landroid/content/Context;"
-            )
         }
 
-
-        val classDef = InitFingerprint.result!!.mutableClass
-        classDef.methods.add(
-            ImmutableMethod(
-                classDef.type,
-                "getAppContext",
-                null,
-                "Landroid/content/Context;",
-                AccessFlags.PUBLIC or AccessFlags.STATIC,
-                null,
-                null,
-                ImmutableMethodImplementation(
-                    1, """
-                        invoke-static { }, Lapp/revanced/integrations/utils/ReVancedUtils;->getAppContext()Landroid/content/Context;
-                        move-result-object v0
-                        return-object v0
-                    """.toInstructions(), null, null
-                )
-            ).toMutable()
-        )
         return PatchResultSuccess()
     }
 }
