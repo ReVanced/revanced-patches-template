@@ -43,8 +43,10 @@ class IntegrationsPatch : BytecodePatch(
             }
 
             val method = result!!.mutableMethod
-            val register =
-                if (result == ServiceFingerprint.result!!) method.implementation!!.registerCount - method.parameters.size else method.implementation!!.registerCount - 1
+            val register = method.implementation!!.registerCount - if (it == ServiceFingerprint) {
+                method.parameters.size
+            } else 1
+
             method.addInstruction(
                 0,
                 "sput-object v$register, Lapp/revanced/integrations/utils/ReVancedUtils;->context:Landroid/content/Context;"
