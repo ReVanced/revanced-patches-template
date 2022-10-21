@@ -13,8 +13,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
-@Name("litho-ui-theme")
-@Description("Applies a custom theme to litho UI elements.")
+@Name("litho-components-theme")
+@Description("Applies a custom theme to litho components.")
 @ThemeCompatibility
 @Version("0.0.1")
 class LithoThemePatch : BytecodePatch(
