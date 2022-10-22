@@ -1,4 +1,4 @@
-package app.revanced.util.resources
+package app.revanced.util
 
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext

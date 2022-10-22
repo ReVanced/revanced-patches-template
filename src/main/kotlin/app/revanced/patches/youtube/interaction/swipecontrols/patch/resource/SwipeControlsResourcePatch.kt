@@ -9,8 +9,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.copyResources
 
 @Name("swipe-controls-resource-patch")
 @DependsOn([SettingsPatch::class])

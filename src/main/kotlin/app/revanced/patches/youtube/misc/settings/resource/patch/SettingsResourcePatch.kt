@@ -13,8 +13,8 @@ import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibil
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.copyResources
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 

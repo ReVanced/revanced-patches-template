@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
+import app.revanced.util.ResourceUtils.Settings.mergeStrings
 
 @DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
 @Name("return-youtube-dislike-resource-patch")

@@ -1,6 +1,7 @@
 package app.revanced.util.microg
 
 import app.revanced.patcher.ResourceContext
+import app.revanced.patcher.apk.Apk
 
 /**
  * Helper class for applying resource patches needed for the microg-support patches.
@@ -20,10 +21,9 @@ internal object MicroGResourceHelper {
         toPackageName: String,
         toName: String
     ) {
-        // patch the manifest in all manifest files if present
-        ResourceContext.ApkContext.values().forEach { apkContext ->
-            with(context.getFile("AndroidManifest.xml", apkContext)) {
-                if (apkContext == ResourceContext.ApkContext.BASE) {
+        fun Apk.transform() {
+            with(context.getFile("AndroidManifest.xml", this)) {
+                if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed
                     this.readText().replace(
                         "android:label=\"@string/app_name",
@@ -45,15 +45,17 @@ internal object MicroGResourceHelper {
                         "<package android:name=\"${Constants.MICROG_VENDOR}.android.gms\"/></queries>"
                     )
                 } else {
-                    // the other splits might not exist in the current context, in that case simply continue with the next apk
-                    if (!this.exists()) return
-
                     this.readText()
                 }.replace(
                     "package=\"$fromPackageName",
                     "package=\"$toPackageName"
                 ).let(this::writeText)
             }
+        }
+
+        with(context.apkBundle) {
+            base.transform()
+            splits?.forEach(Apk::transform)
         }
     }
 }

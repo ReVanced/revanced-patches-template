@@ -12,10 +12,10 @@ import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePa
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
-import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.copyXmlNode
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.Settings.mergeStrings
+import app.revanced.util.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils.copyXmlNode
 
 @Name("sponsorblock-resource-patch")
 @SponsorBlockCompatibility

@@ -12,9 +12,9 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.Settings.mergeStrings
+import app.revanced.util.ResourceUtils.copyResources
 
 @Name("downloads-resource-patch")
 @DependsOn([BottomControlsResourcePatch::class, FixLocaleConfigErrorPatch::class, SettingsPatch::class])
