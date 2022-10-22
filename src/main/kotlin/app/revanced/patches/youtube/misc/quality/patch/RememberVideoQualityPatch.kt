@@ -40,7 +40,7 @@ class RememberVideoQualityPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
-                "revanced_pref_default_video_quality",
+                "revanced_default_video_quality",
                 StringResource("revanced_default_video_quality_title", "Video quality settings"),
                 listOf(
                     SwitchPreference(
@@ -51,17 +51,17 @@ class RememberVideoQualityPatch : BytecodePatch(
                         StringResource("revanced_remember_video_quality_selection_summary_off", "Video quality will be remembered until a new quality is chosen")
                     ),
                     ListPreference(
-                        "revanced_pref_video_quality_wifi",
+                        "revanced_default_video_quality_wifi",
                         StringResource("revanced_default_video_quality_wifi_title", "Default video quality Wi-Fi"),
                         StringResource("revanced_default_video_quality_wifi_summary", "Select default video resolution on Wi-Fi Network")
                     ),
                     ListPreference(
-                        "revanced_pref_video_quality_mobile",
+                        "revanced_default_video_quality_mobile",
                         StringResource("revanced_default_video_quality_mobile_title", "Default video quality Cellular"),
                         StringResource("revanced_default_video_quality_mobile_summary", "Select default video resolution on Cellular Network")
                     )
                 ),
-                StringResource("revanced_pref_default_video_quality_summary", "Select default video quality")
+                StringResource("revanced_default_video_quality_summary", "Select default video quality")
             )
         )
         val setterMethod = VideoQualitySetterFingerprint.result!!
