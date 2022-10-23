@@ -55,7 +55,7 @@ internal object MicroGResourceHelper {
 
         with(context.apkBundle) {
             base.transform()
-            splits?.forEach(Apk::transform)
+            split?.all?.forEach(Apk::transform)
         }
     }
 }
