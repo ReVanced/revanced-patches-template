@@ -43,23 +43,15 @@ class SettingsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val licenseActivityResult = LicenseActivityFingerprint.result!!
+        val licenseActivityMutableClass = licenseActivityResult.mutableClass
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
-        val themeSetterSystemResult = ThemeSetterSystemFingerprint.result!!
-        val themeSetterAppResult = ThemeSetterAppFingerprint.result!!
-
-        val licenseActivityClass = licenseActivityResult.mutableClass
-        val settingsClass = settingsResult.mutableClass
-
-        val onCreate = licenseActivityResult.mutableMethod
-        val setThemeMethodName = "setTheme"
-        val initializeSettings = settingsResult.mutableMethod
-
-        val setSystemThemeInstruction =
-            "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
 
         // add instructions to set the theme of the settings activity, based on Android system tint
-        with(themeSetterSystemResult) {
+        with(ThemeSetterSystemFingerprint.result!!) {
             with(mutableMethod) {
+                val setSystemThemeInstruction =
+                    "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
+
                 addInstruction(
                     scanResult.patternScanResult!!.startIndex,
                     setSystemThemeInstruction
@@ -72,14 +64,14 @@ class SettingsPatch : BytecodePatch(
             }
         }
 
-        fun setAppThemeInstructions(value: Int) = """
-            const/4 v0, 0x$value
-            invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
-        """
-
         // add instructions to set the theme of the settings activity, based on app tint
-        with(themeSetterAppResult) {
+        with(ThemeSetterAppFingerprint.result!!) {
             with(mutableMethod) {
+                fun setAppThemeInstructions(value: Int) = """
+                    const/4 v0, 0x$value
+                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
+                """
+
                 addInstructions(
                     scanResult.patternScanResult!!.endIndex + 1,
                     setAppThemeInstructions(1)
@@ -92,23 +84,29 @@ class SettingsPatch : BytecodePatch(
             }
         }
 
-        // add the setTheme call to the onCreate method to not affect the offsets
-        onCreate.addInstructions(
-            1,
-            """
-                invoke-static { p0 }, ${settingsClass.type}->${initializeSettings.name}(${licenseActivityClass.type})V
-                return-void
-            """
-        )
+        with(licenseActivityResult) {
+            with(mutableMethod) {
+                fun licenseActivityInvokeInstruction(classname: String, returnVoid: Boolean) = """
+                    invoke-static {p0}, ${settingsResult.mutableClass.type}->${classname}(${licenseActivityMutableClass.type})V
+                    ${if (returnVoid) "return-void" else ""}
+                """
 
-        // add the initializeSettings call to the onCreate method
-        onCreate.addInstruction(
-            0,
-            "invoke-static { p0 }, ${settingsClass.type}->$setThemeMethodName(${licenseActivityClass.type})V"
-        )
+                // add the setTheme call to the onCreate method to not affect the offsets
+                addInstruction(
+                    1,
+                    licenseActivityInvokeInstruction(name,true)
+                )
+
+                // add the initializeSettings call to the onCreate method
+                addInstruction(
+                    0,
+                    licenseActivityInvokeInstruction("setTheme",false)
+                )
+            }
+        }
 
         // get rid of, now, useless overridden methods
-        licenseActivityResult.mutableClass.methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
+        licenseActivityMutableClass.methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
 
         return PatchResultSuccess()
     }
@@ -127,9 +125,6 @@ class SettingsPatch : BytecodePatch(
 
         fun addPreference(preference: Preference) =
             SettingsResourcePatch.addPreference(preference)
-
-        fun addArray(arrayResource: ArrayResource) =
-            SettingsResourcePatch.addArray(arrayResource)
 
         fun renameIntentsTargetPackage(newPackage: String) {
             SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
