@@ -61,7 +61,7 @@ class SettingsPatch : BytecodePatch(
                 themeSetterSystemResult.mutableMethod
             )
 
-        // add instructions to set the theme of the settings activity, with Android system tint
+        // add instructions to set the theme of the settings activity, based on Android system tint
         themeSetterSystemResult.mutableMethod.implementation!!.let {
             it.addInstruction(
                 themeSetterSystemResult.scanResult.patternScanResult!!.startIndex,
@@ -79,7 +79,7 @@ class SettingsPatch : BytecodePatch(
             invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
         """
 
-        // add instructions to set the theme of the settings activity, with app tint
+        // add instructions to set the theme of the settings activity, based on app tint
         themeSetterAppMethod.addInstructions(
             themeSetterAppResult.scanResult.patternScanResult!!.endIndex + 1, setAppThemeInstructions(1)
         )
