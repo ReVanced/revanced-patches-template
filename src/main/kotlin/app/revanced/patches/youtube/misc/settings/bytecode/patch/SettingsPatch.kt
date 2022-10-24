@@ -19,7 +19,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVanced
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterAppFingerprint
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.ArrayResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
