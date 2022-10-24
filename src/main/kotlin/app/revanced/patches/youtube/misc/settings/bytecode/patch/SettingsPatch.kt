@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
@@ -57,21 +56,21 @@ class SettingsPatch : BytecodePatch(
         val themeSetterAppMethod = themeSetterAppResult.mutableMethod
 
         val setSystemThemeInstruction =
-            "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V".toInstruction(
-                themeSetterSystemResult.mutableMethod
-            )
+            "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
 
         // add instructions to set the theme of the settings activity, based on Android system tint
-        themeSetterSystemResult.mutableMethod.implementation!!.let {
-            it.addInstruction(
-                themeSetterSystemResult.scanResult.patternScanResult!!.startIndex,
-                setSystemThemeInstruction
-            )
+        with(themeSetterSystemResult) {
+            with(mutableMethod) {
+                addInstruction(
+                    scanResult.patternScanResult!!.startIndex,
+                    setSystemThemeInstruction
+                )
 
-            it.addInstruction(
-                it.instructions.size - 1, // add before return
-                setSystemThemeInstruction
-            )
+                addInstruction(
+                    mutableMethod.implementation!!.instructions.size - 1,
+                    setSystemThemeInstruction
+                )
+            }
         }
 
         fun setAppThemeInstructions(value: Int) = """
@@ -80,12 +79,19 @@ class SettingsPatch : BytecodePatch(
         """
 
         // add instructions to set the theme of the settings activity, based on app tint
-        themeSetterAppMethod.addInstructions(
-            themeSetterAppResult.scanResult.patternScanResult!!.endIndex + 1, setAppThemeInstructions(1)
-        )
-        themeSetterAppMethod.addInstructions(
-            themeSetterAppMethod.implementation!!.instructions.size - 2, setAppThemeInstructions(0)
-        )
+        with(themeSetterAppResult) {
+            with(mutableMethod) {
+                addInstructions(
+                    scanResult.patternScanResult!!.endIndex + 1,
+                    setAppThemeInstructions(1)
+                )
+
+                addInstructions(
+                    mutableMethod.implementation!!.instructions.size - 2,
+                    setAppThemeInstructions(0)
+                )
+            }
+        }
 
         // add the setTheme call to the onCreate method to not affect the offsets
         onCreate.addInstructions(
