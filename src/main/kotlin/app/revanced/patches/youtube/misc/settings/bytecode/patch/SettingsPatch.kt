@@ -53,7 +53,6 @@ class SettingsPatch : BytecodePatch(
         val onCreate = licenseActivityResult.mutableMethod
         val setThemeMethodName = "setTheme"
         val initializeSettings = settingsResult.mutableMethod
-        val themeSetterAppMethod = themeSetterAppResult.mutableMethod
 
         val setSystemThemeInstruction =
             "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
