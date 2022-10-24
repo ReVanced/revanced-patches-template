@@ -43,7 +43,6 @@ class SettingsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val licenseActivityResult = LicenseActivityFingerprint.result!!
-        val licenseActivityMutableClass = licenseActivityResult.mutableClass
         val settingsResult = ReVancedSettingsActivityFingerprint.result!!
 
         // add instructions to set the theme of the settings activity, based on Android system tint
@@ -87,7 +86,7 @@ class SettingsPatch : BytecodePatch(
         with(licenseActivityResult) {
             with(mutableMethod) {
                 fun licenseActivityInvokeInstruction(classname: String, returnVoid: Boolean) = """
-                    invoke-static {p0}, ${settingsResult.mutableClass.type}->${classname}(${licenseActivityMutableClass.type})V
+                    invoke-static {p0}, ${settingsResult.mutableClass.type}->${classname}(${licenseActivityResult.mutableClass.type})V
                     ${if (returnVoid) "return-void" else ""}
                 """
 
