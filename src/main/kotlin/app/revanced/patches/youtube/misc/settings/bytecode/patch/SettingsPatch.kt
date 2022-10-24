@@ -102,11 +102,13 @@ class SettingsPatch : BytecodePatch(
                     0,
                     licenseActivityInvokeInstruction("setTheme",false)
                 )
+
+                // get rid of, now, useless overridden methods
+                with(mutableClass) {
+                    methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
+                }
             }
         }
-
-        // get rid of, now, useless overridden methods
-        licenseActivityMutableClass.methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
 
         return PatchResultSuccess()
     }
