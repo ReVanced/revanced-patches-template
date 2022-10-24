@@ -12,12 +12,10 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ReVancedSettingsActivityFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterAppFingerprint
+import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.PreferenceScreen
@@ -38,73 +36,79 @@ import java.io.Closeable
 @SettingsCompatibility
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
-    listOf(LicenseActivityFingerprint, ReVancedSettingsActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
+    listOf(LicenseActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val licenseActivityResult = LicenseActivityFingerprint.result!!
-        val settingsResult = ReVancedSettingsActivityFingerprint.result!!
+        fun buildInvokeInstructionsString(
+            registers: String = "v0",
+            classDescriptor: String = THEME_HELPER_DESCRIPTOR,
+            methodName: String = SET_THEME_METHOD_NAME,
+            parameters: String = "Ljava/lang/Object;"
+        ) = "invoke-static {$registers}, $classDescriptor->$methodName($parameters)V"
 
-        // add instructions to set the theme of the settings activity, based on Android system tint
+        // apply the current theme of the settings page
         with(ThemeSetterSystemFingerprint.result!!) {
             with(mutableMethod) {
-                val setSystemThemeInstruction =
-                    "invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(Ljava/lang/Object;)V"
+                val call = buildInvokeInstructionsString()
 
                 addInstruction(
                     scanResult.patternScanResult!!.startIndex,
-                    setSystemThemeInstruction
+                    call
                 )
 
                 addInstruction(
                     mutableMethod.implementation!!.instructions.size - 1,
-                    setSystemThemeInstruction
+                    call
                 )
             }
         }
 
-        // add instructions to set the theme of the settings activity, based on app tint
+        // set the theme based on the preference of the app
         with(ThemeSetterAppFingerprint.result!!) {
             with(mutableMethod) {
-                fun setAppThemeInstructions(value: Int) = """
-                    const/4 v0, 0x$value
-                    invoke-static {v0}, Lapp/revanced/integrations/utils/ThemeHelper;->setTheme(I)V
+                fun buildInstructionsString(theme: Int) = """
+                    const/4 v0, 0x$theme
+                    ${buildInvokeInstructionsString(parameters = "I")}
                 """
 
                 addInstructions(
                     scanResult.patternScanResult!!.endIndex + 1,
-                    setAppThemeInstructions(1)
+                    buildInstructionsString(1)
                 )
 
                 addInstructions(
                     mutableMethod.implementation!!.instructions.size - 2,
-                    setAppThemeInstructions(0)
+                    buildInstructionsString(0)
                 )
             }
         }
 
-        with(licenseActivityResult) {
+        // set the theme based on the preference of the device
+        with(LicenseActivityFingerprint.result!!) licenseActivity@{
             with(mutableMethod) {
-                fun licenseActivityInvokeInstruction(classname: String, returnVoid: Boolean) = """
-                    invoke-static {p0}, ${settingsResult.mutableClass.type}->${classname}(${licenseActivityResult.mutableClass.type})V
-                    ${if (returnVoid) "return-void" else ""}
-                """
+                fun buildSettingsActivityInvokeString(
+                    registers: String = "p0",
+                    classDescriptor: String = SETTINGS_ACTIVITY_DESCRIPTOR,
+                    methodName: String = name,
+                    parameters: String = this@licenseActivity.mutableClass.type
+                ) = buildInvokeInstructionsString(registers, classDescriptor, methodName, parameters)
 
-                // add the setTheme call to the onCreate method to not affect the offsets
+                // initialize the settings
                 addInstruction(
                     1,
-                    licenseActivityInvokeInstruction(name,true)
+                    """
+                        ${buildSettingsActivityInvokeString()}
+                        return-void
+                    """
                 )
 
-                // add the initializeSettings call to the onCreate method
-                addInstruction(
-                    0,
-                    licenseActivityInvokeInstruction("setTheme",false)
-                )
+                // set the current theme
+                addInstruction(0, buildSettingsActivityInvokeString(methodName = "setTheme"))
+            }
 
-                // get rid of, now, useless overridden methods
-                with(mutableClass) {
-                    methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
-                }
+            // remove method overrides
+            with(mutableClass) {
+                methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
             }
         }
 
@@ -112,10 +116,12 @@ class SettingsPatch : BytecodePatch(
     }
 
     internal companion object {
-        // TODO: hide this somehow
-        var appearanceStringId: Long = ResourceMappingResourcePatch.resourceMappings.find {
-            it.type == "string" && it.name == "app_theme_appearance_dark"
-        }!!.id
+        private const val INTEGRATIONS_PACKAGE = "app/revanced/integrations"
+
+        private const val SETTINGS_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/settingsmenu"
+
+        private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
+        private const val SET_THEME_METHOD_NAME = "setTheme"
 
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
