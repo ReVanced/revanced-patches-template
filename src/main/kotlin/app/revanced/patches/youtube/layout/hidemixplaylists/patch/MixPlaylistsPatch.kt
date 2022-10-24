@@ -12,6 +12,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hidemixplaylists.annotations.MixPlaylistsPatchCompatibility
 import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.MixPlaylistsPatchFingerprint
+import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.MixPlaylistsPatchSecondFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -21,12 +22,12 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class])
 @Name("hide-my-mix")
-@Description("Removes mix playlists from the feed.")
+@Description("Removes mix playlists from the feed and video player.")
 @MixPlaylistsPatchCompatibility
 @Version("0.0.1")
 class MixPlaylistsPatch : BytecodePatch(
     listOf(
-        MixPlaylistsPatchFingerprint
+        MixPlaylistsPatchFingerprint, MixPlaylistsPatchSecondFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -40,14 +41,24 @@ class MixPlaylistsPatch : BytecodePatch(
             )
         )
 
-        val result = MixPlaylistsPatchFingerprint.result!!
-        val method = result.mutableMethod
-        val index = result.scanResult.patternScanResult!!.endIndex - 6
-        val register = (method.implementation!!.instructions[index] as OneRegisterInstruction).registerA
+        val firstResult = MixPlaylistsPatchFingerprint.result!!
+        val firstMethod = firstResult.mutableMethod
+        val firstIndex = firstResult.scanResult.patternScanResult!!.endIndex - 6
+        val firstRegister = (firstMethod.implementation!!.instructions[firstIndex] as OneRegisterInstruction).registerA
 
-        method.addInstruction(
-            index + 2,
-            "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
+        firstMethod.addInstruction(
+            firstIndex + 2,
+            "invoke-static {v$firstRegister}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
+        )
+
+        val secondResult = MixPlaylistsPatchSecondFingerprint.result!!
+        val secondMethod = secondResult.mutableMethod
+        val secondIndex = secondResult.scanResult.patternScanResult!!.endIndex - 5
+        val secondRegister = (secondMethod.implementation!!.instructions[secondIndex] as OneRegisterInstruction).registerA
+
+        secondMethod.addInstruction(
+            secondIndex + 2,
+            "invoke-static {v$secondRegister}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
         )
 
         return PatchResultSuccess()
