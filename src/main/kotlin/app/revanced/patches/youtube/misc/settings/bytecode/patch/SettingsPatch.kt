@@ -89,12 +89,12 @@ class SettingsPatch : BytecodePatch(
                 fun buildSettingsActivityInvokeString(
                     registers: String = "p0",
                     classDescriptor: String = SETTINGS_ACTIVITY_DESCRIPTOR,
-                    methodName: String = name,
+                    methodName: String = "initializeSettings",
                     parameters: String = this@licenseActivity.mutableClass.type
                 ) = buildInvokeInstructionsString(registers, classDescriptor, methodName, parameters)
 
                 // initialize the settings
-                addInstruction(
+                addInstructions(
                     1,
                     """
                         ${buildSettingsActivityInvokeString()}
@@ -118,7 +118,7 @@ class SettingsPatch : BytecodePatch(
     internal companion object {
         private const val INTEGRATIONS_PACKAGE = "app/revanced/integrations"
 
-        private const val SETTINGS_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/settingsmenu;"
+        private const val SETTINGS_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/settingsmenu/ReVancedSettingActivity;"
 
         private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
         private const val SET_THEME_METHOD_NAME = "setTheme"
