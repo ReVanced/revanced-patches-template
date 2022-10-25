@@ -47,7 +47,7 @@ class CrowdfundingBoxPatch : BytecodePatch(
         val crowdfundingBoxResult = CrowdfundingBoxFingerprint.result!!
         val crowdfundingBoxMethod = crowdfundingBoxResult.mutableMethod
 
-        val moveResultObjectIndex = crowdfundingBoxResult.scanResult.patternScanResult!!.endIndex + 2
+        val moveResultObjectIndex = crowdfundingBoxResult.scanResult.patternScanResult!!.endIndex
 
         crowdfundingBoxMethod.addInstruction(
             moveResultObjectIndex + 1, """

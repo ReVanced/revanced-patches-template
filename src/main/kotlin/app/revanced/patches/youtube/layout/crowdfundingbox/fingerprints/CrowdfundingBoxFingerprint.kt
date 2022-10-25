@@ -31,5 +31,7 @@ object CrowdfundingBoxFingerprint : MethodFingerprint(
         Opcode.CONST_4,
         Opcode.CONST_4,
         Opcode.CONST,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
     )
 )
