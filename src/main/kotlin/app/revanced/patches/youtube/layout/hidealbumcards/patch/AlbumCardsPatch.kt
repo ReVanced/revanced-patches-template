@@ -45,8 +45,6 @@ class AlbumCardsPatch : BytecodePatch(
         val albumCardsResult = AlbumCardsFingerprint.result!!
         val albumCardsMethod = albumCardsResult.mutableMethod
 
-        println(albumCardsMethod)
-
         val checkCastIndex = albumCardsResult.scanResult.patternScanResult!!.endIndex
         val patchIndex = checkCastIndex + 1
 
