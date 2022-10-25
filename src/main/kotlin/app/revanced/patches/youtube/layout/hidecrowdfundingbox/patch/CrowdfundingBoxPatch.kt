@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingResourcePatch::class])
 @Name("hide-crowdfunding-box")
-@Description("Hides the crowdfunding box between player and video description.")
+@Description("Hides the crowdfunding box between the player and video description.")
 @CrowdfundingBoxCompatibility
 @Version("0.0.1")
 class CrowdfundingBoxPatch : BytecodePatch(
@@ -34,11 +34,11 @@ class CrowdfundingBoxPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_crowdfunding_box",
-                StringResource("revanced_crowdfunding_box_title", "Hide the crowdfunding box"),
+                "revanced_hide_crowdfunding_box",
+                StringResource("revanced_hide_crowdfunding_box_title", "Hide the crowdfunding box"),
                 false,
-                StringResource("revanced_crowdfunding_box_summary_on", "Crowdfunding box is hidden"),
-                StringResource("revanced_crowdfunding_box_summary_off", "Crowdfunding box is visible")
+                StringResource("revanced_hide_crowdfunding_box_summary_on", "Crowdfunding box is hidden"),
+                StringResource("revanced_hide_crowdfunding_box_summary_off", "Crowdfunding box is visible")
             )
         )
 
