@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class])
 @Name("hide-my-mix")
-@Description("Removes mix playlists from the feed and video player.")
+@Description("Removes mix playlists.")
 @MixPlaylistsPatchCompatibility
 @Version("0.0.1")
 class MixPlaylistsPatch : BytecodePatch(
