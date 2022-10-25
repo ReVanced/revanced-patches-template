@@ -1,3 +1,87 @@
+## [2.85.2](https://github.com/revanced/revanced-patches/compare/v2.85.1...v2.85.2) (2022-10-22)
+
+
+### Bug Fixes
+
+* **youtube/integrations:** set context for remaining activities ([#828](https://github.com/revanced/revanced-patches/issues/828)) ([b2b6a3d](https://github.com/revanced/revanced-patches/commit/b2b6a3d1492bc2d5a6e27c68c74e3904764dda4b))
+
+## [2.85.1](https://github.com/revanced/revanced-patches/compare/v2.85.0...v2.85.1) (2022-10-21)
+
+
+### Bug Fixes
+
+* **youtube/theme:** extend dark mode theming ([#827](https://github.com/revanced/revanced-patches/issues/827)) ([6d803c5](https://github.com/revanced/revanced-patches/commit/6d803c5386e1f6f6fb6a7fa0a9f0bb81ee1022ac))
+
+# [2.85.0](https://github.com/revanced/revanced-patches/compare/v2.84.1...v2.85.0) (2022-10-20)
+
+
+### Features
+
+* **youtube:** `hide-captions-button` patch ([#770](https://github.com/revanced/revanced-patches/issues/770)) ([478af6a](https://github.com/revanced/revanced-patches/commit/478af6ad54ffdf6f99abab35a84a4f50b59d28c8))
+
+## [2.84.1](https://github.com/revanced/revanced-patches/compare/v2.84.0...v2.84.1) (2022-10-20)
+
+
+### Bug Fixes
+
+* **youtube/hide-mix-playlists:** correct switch title, summary and defaults ([#821](https://github.com/revanced/revanced-patches/issues/821)) ([f9eea33](https://github.com/revanced/revanced-patches/commit/f9eea332cea0b8c3d5c3dfff645b60861e925b5a))
+
+# [2.84.0](https://github.com/revanced/revanced-patches/compare/v2.83.3...v2.84.0) (2022-10-20)
+
+
+### Features
+
+* **youtube:** `hide-mix-playlists` patch  ([#816](https://github.com/revanced/revanced-patches/issues/816)) ([e76c73b](https://github.com/revanced/revanced-patches/commit/e76c73b455c65aa605e418f19d88b64e0e244901))
+
+## [2.83.3](https://github.com/revanced/revanced-patches/compare/v2.83.2...v2.83.3) (2022-10-20)
+
+
+### Bug Fixes
+
+* **youtube/video-ads:** revert faulty method patch ([#820](https://github.com/revanced/revanced-patches/issues/820)) ([666248a](https://github.com/revanced/revanced-patches/commit/666248ae65d1ee84d1a278714c0dcd2528c5dd14))
+
+## [2.83.2](https://github.com/revanced/revanced-patches/compare/v2.83.1...v2.83.2) (2022-10-19)
+
+
+### Bug Fixes
+
+* **youtube/video-ads:** add back initial method to block ads ([#818](https://github.com/revanced/revanced-patches/issues/818)) ([8b02acd](https://github.com/revanced/revanced-patches/commit/8b02acd3b33c4702d81ec46dccb35604ec5fbe02))
+
+## [2.83.1](https://github.com/revanced/revanced-patches/compare/v2.83.0...v2.83.1) (2022-10-19)
+
+
+### Bug Fixes
+
+* **youtube/video-ads:** block earlier in call hirarchy ([#813](https://github.com/revanced/revanced-patches/issues/813)) ([f9517d2](https://github.com/revanced/revanced-patches/commit/f9517d2058c7561cf89b59ed36f690417dc076f7))
+
+# [2.83.0](https://github.com/revanced/revanced-patches/compare/v2.82.1...v2.83.0) (2022-10-18)
+
+
+### Features
+
+* bump YouTube Music patches compatibility ([#809](https://github.com/revanced/revanced-patches/issues/809)) ([09f2d8e](https://github.com/revanced/revanced-patches/commit/09f2d8e14937b582bc4bfb7d3a8bb2b7622f772d))
+
+## [2.82.1](https://github.com/revanced/revanced-patches/compare/v2.82.0...v2.82.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* **youtube/video-ads:** return empty ad list earlier ([a47ce9b](https://github.com/revanced/revanced-patches/commit/a47ce9ba4f75673de23eb6054f5652224a48f43e))
+
+# [2.82.0](https://github.com/revanced/revanced-patches/compare/v2.81.11...v2.82.0) (2022-10-13)
+
+
+### Features
+
+* **youtube/remember-video-quality:** remember the quality until changed by default ([1aebabe](https://github.com/revanced/revanced-patches/commit/1aebabefdb0b163e0020fd3b52d7d1fa2404764b))
+
+## [2.81.11](https://github.com/revanced/revanced-patches/compare/v2.81.10...v2.81.11) (2022-10-11)
+
+
+### Bug Fixes
+
+* **youtube/theme:** add missing theme condition check ([#771](https://github.com/revanced/revanced-patches/issues/771)) ([40b70b9](https://github.com/revanced/revanced-patches/commit/40b70b9f9a24cfbf76bcd69f562b87e5cfade66f))
+
 ## [2.81.10](https://github.com/revanced/revanced-patches/compare/v2.81.9...v2.81.10) (2022-10-11)
 
 
