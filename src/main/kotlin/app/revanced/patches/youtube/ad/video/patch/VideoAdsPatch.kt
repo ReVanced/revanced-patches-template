@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
-import app.revanced.patches.youtube.ad.video.fingerprints.LoadAdsFingerprint
+import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -27,7 +27,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Version("0.0.1")
 class VideoAdsPatch : BytecodePatch(
     listOf(
-        LoadAdsFingerprint
+        LoadVideoAdsFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -41,21 +41,16 @@ class VideoAdsPatch : BytecodePatch(
             )
         )
 
-        with(LoadAdsFingerprint.result!!) {
-            val insertIndex = scanResult.patternScanResult!!.startIndex
-            with(mutableMethod) {
-                addInstructions(
-                    insertIndex,
-                    """ 
-                            invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
-                            move-result v4
-                            if-nez v4, :show_video_ads
-                            return-object v3
-                         """,
-                    listOf(ExternalLabel("show_video_ads", instruction(insertIndex)))
-                )
-            }
-        }
+        val loadVideoAdsFingerprintMethod = LoadVideoAdsFingerprint.result!!.mutableMethod
+
+        loadVideoAdsFingerprintMethod.addInstructions(
+            0, """
+                invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
+                move-result v0
+                if-nez v0, :show_video_ads
+                return-void
+            """, listOf(ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.instruction(0)))
+        )
 
         return PatchResultSuccess()
     }
