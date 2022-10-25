@@ -18,21 +18,19 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 
 @Patch
 @DependsOn([ResourceMappingResourcePatch::class, GeneralBytecodeAdsPatch::class])
-@Name("hide-preview-comment")
-@Description("Hides preview comment below the video player.")
+@Name("hide-comments")
+@Description("Hides comments section below the video player.")
 @HideCommentsCompatibility
 @Version("0.0.1")
-class HidePreviewCommentPatch : ResourcePatch {
+class HideCommentsPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            SwitchPreference(
-                "revanced_hide_preview_comment",
-                StringResource("revanced_hide_preview_comment_title", "Hide preview comment"),
-                false,
-                StringResource("revanced_hide_preview_comment_on", "Preview comment is hidden"),
-                StringResource("revanced_hide_preview_comment_off", "Preview comment is shown")
-            ),
-        )
+        SwitchPreference(
+            "revanced_hide_comments_section",
+            StringResource("revanced_hide_comments_section_title", "Remove comments section"),
+            false,
+            StringResource("revanced_hide_comments_section_summary_on", "Comment section is hidden"),
+            StringResource("revanced_hide_comments_section_summary_off", "Comment section is shown")
+        ),
         return PatchResultSuccess()
     }
 }
