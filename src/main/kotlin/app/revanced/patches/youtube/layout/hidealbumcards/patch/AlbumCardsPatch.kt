@@ -34,11 +34,11 @@ class AlbumCardsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_album_cards",
-                StringResource("revanced_album_cards_title", "Hide the album cards"),
+                "revanced_hide_album_cards",
+                StringResource("revanced_hide_album_cards_title", "Hide the album cards"),
                 false,
-                StringResource("revanced_album_cards_summary_on", "Album cards is hidden"),
-                StringResource("revanced_album_cards_summary_off", "Album cards is visible")
+                StringResource("revanced_hide_album_cards_summary_on", "Album cards is hidden"),
+                StringResource("revanced_hide_album_cards_summary_off", "Album cards is visible")
             )
         )
 
