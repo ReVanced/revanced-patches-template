@@ -41,26 +41,23 @@ class MixPlaylistsPatch : BytecodePatch(
             )
         )
 
-        val firstResult = MixPlaylistsPatchFingerprint.result!!
-        val firstMethod = firstResult.mutableMethod
-        val firstIndex = firstResult.scanResult.patternScanResult!!.endIndex - 6
-        val firstRegister = (firstMethod.implementation!!.instructions[firstIndex] as OneRegisterInstruction).registerA
-
-        firstMethod.addInstruction(
-            firstIndex + 2,
-            "invoke-static {v$firstRegister}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
-        )
-
-        val secondResult = MixPlaylistsPatchSecondFingerprint.result!!
-        val secondMethod = secondResult.mutableMethod
-        val secondIndex = secondResult.scanResult.patternScanResult!!.endIndex - 5
-        val secondRegister = (secondMethod.implementation!!.instructions[secondIndex] as OneRegisterInstruction).registerA
-
-        secondMethod.addInstruction(
-            secondIndex + 2,
-            "invoke-static {v$secondRegister}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
-        )
+        removeMixPlaylists(MixPlaylistsPatchFingerprint, true)
+        removeMixPlaylists(MixPlaylistsPatchSecondFingerprint, false)
 
         return PatchResultSuccess()
+    }
+    
+    private fun removeMixPlaylists(methodFingerprint : MethodFingerprint, isFirstFingerprint : Boolean) {
+        val indexValue = if (isFirstFingerprint) 6 else 5
+
+        val result = methodFingerprint.result!!
+        val method = result.mutableMethod
+        val index = result.scanResult.patternScanResult!!.endIndex - indexValue
+        val register = (method.implementation!!.instructions[index] as OneRegisterInstruction).registerA
+
+        method.addInstruction(
+            index + 2,
+            "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
+        )
     }
 }
