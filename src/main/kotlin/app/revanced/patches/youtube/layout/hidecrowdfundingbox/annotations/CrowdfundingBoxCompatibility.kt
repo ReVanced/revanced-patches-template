@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.crowdfundingbox.annotations
+package app.revanced.patches.youtube.layout.hidecrowdfundingbox.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

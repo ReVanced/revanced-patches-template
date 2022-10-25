@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.layout.crowdfundingbox.fingerprints
+package app.revanced.patches.youtube.layout.hidecrowdfundingbox.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.crowdfundingbox.annotations.CrowdfundingBoxCompatibility
+import app.revanced.patches.youtube.layout.hidecrowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
