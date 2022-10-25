@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 
 @Patch
 @DependsOn([ResourceMappingResourcePatch::class, GeneralBytecodeAdsPatch::class])
-@Name("hide-comments-components")
+@Name("comments")
 @Description("Hides comments components below the video player.")
 @CommentsCompatibility
 @Version("0.0.1")
