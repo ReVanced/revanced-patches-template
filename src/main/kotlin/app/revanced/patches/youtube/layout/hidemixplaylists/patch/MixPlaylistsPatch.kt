@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -12,8 +13,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hidemixplaylists.annotations.MixPlaylistsPatchCompatibility
-import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.MixPlaylistsPatchFingerprint
-import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.MixPlaylistsPatchSecondFingerprint
+import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.CreateMixPlaylistFingerprint
+import app.revanced.patches.youtube.layout.hidemixplaylists.fingerprints.SecondCreateMixPlaylistFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -28,7 +29,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class MixPlaylistsPatch : BytecodePatch(
     listOf(
-        MixPlaylistsPatchFingerprint, MixPlaylistsPatchSecondFingerprint
+        CreateMixPlaylistFingerprint, SecondCreateMixPlaylistFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -42,23 +43,22 @@ class MixPlaylistsPatch : BytecodePatch(
             )
         )
 
-        removeMixPlaylists(MixPlaylistsPatchFingerprint, true)
-        removeMixPlaylists(MixPlaylistsPatchSecondFingerprint, false)
+        arrayOf(CreateMixPlaylistFingerprint, SecondCreateMixPlaylistFingerprint).forEach(::addHook)
 
         return PatchResultSuccess()
     }
-    
-    private fun removeMixPlaylists(methodFingerprint : MethodFingerprint, isFirstFingerprint : Boolean) {
-        val indexValue = if (isFirstFingerprint) 6 else 5
 
-        val result = methodFingerprint.result!!
-        val method = result.mutableMethod
-        val index = result.scanResult.patternScanResult!!.endIndex - indexValue
-        val register = (method.implementation!!.instructions[index] as OneRegisterInstruction).registerA
+    private fun addHook(fingerprint: MethodFingerprint) {
+        with (fingerprint.result!!) {
+            val insertIndex = scanResult.patternScanResult!!.endIndex - 3
 
-        method.addInstruction(
-            index + 2,
-            "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
-        )
+            val register = (mutableMethod.instruction(insertIndex - 2) as OneRegisterInstruction).registerA
+
+            mutableMethod.addInstruction(
+                insertIndex,
+                "invoke-static {v$register}, Lapp/revanced/integrations/patches/HideMixPlaylistsPatch;->hideMixPlaylists(Landroid/view/View;)V"
+            )
+        }
+
     }
 }

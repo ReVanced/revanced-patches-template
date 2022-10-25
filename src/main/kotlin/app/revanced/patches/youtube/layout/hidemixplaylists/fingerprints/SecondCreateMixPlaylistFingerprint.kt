@@ -8,11 +8,11 @@ import app.revanced.patches.youtube.layout.hidemixplaylists.annotations.MixPlayl
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("mix-playlists-fingerprint")
+@Name("second-create-mix-playlist-fingerprint")
 @MixPlaylistsPatchCompatibility
 @Version("0.0.1")
-object MixPlaylistsPatchFingerprint : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR, listOf("L", "L", "L", "L", "L", "L", "L"), listOf(
+object SecondCreateMixPlaylistFingerprint : MethodFingerprint(
+    "V", AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR, listOf("L", "L", "L", "L", "L", "L"), listOf(
         Opcode.INVOKE_DIRECT,
         Opcode.IPUT_OBJECT,
         Opcode.INVOKE_VIRTUAL,
@@ -22,7 +22,6 @@ object MixPlaylistsPatchFingerprint : MethodFingerprint(
         Opcode.IPUT_OBJECT,
         Opcode.NEW_INSTANCE,
         Opcode.INVOKE_DIRECT,
-        Opcode.IPUT_OBJECT,
         Opcode.IPUT_OBJECT,
         Opcode.IPUT_OBJECT,
         Opcode.INVOKE_VIRTUAL,
