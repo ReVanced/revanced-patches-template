@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.buttons.annotations
+package app.revanced.patches.youtube.layout.hidepreviewcomment.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

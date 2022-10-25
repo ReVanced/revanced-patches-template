@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hidepreviewcomment.patch
+package app.revanced.patches.youtube.layout.hidecomments.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -10,9 +10,8 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.ad.general.bytecode.patch.GeneralBytecodeAdsPatch
-import app.revanced.patches.youtube.layout.buttons.annotations.HideCommentsCompatibility
+import app.revanced.patches.youtube.layout.hidecomments.annotations.HideCommentsCompatibility
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
@@ -30,7 +29,7 @@ class HideCommentsPatch : ResourcePatch {
             false,
             StringResource("revanced_hide_comments_section_summary_on", "Comment section is hidden"),
             StringResource("revanced_hide_comments_section_summary_off", "Comment section is shown")
-        ),
+        )
         return PatchResultSuccess()
     }
 }

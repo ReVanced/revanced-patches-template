@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.ad.general.bytecode.patch.GeneralBytecodeAdsPatch
-import app.revanced.patches.youtube.layout.buttons.annotations.HideCommentsCompatibility
+import app.revanced.patches.youtube.layout.hidepreviewcomment.annotations.HidePreviewCommentCompatibility
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
@@ -20,18 +20,16 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @DependsOn([ResourceMappingResourcePatch::class, GeneralBytecodeAdsPatch::class])
 @Name("hide-preview-comment")
 @Description("Hides preview comment below the video player.")
-@HideCommentsCompatibility
+@HidePreviewCommentCompatibility
 @Version("0.0.1")
 class HidePreviewCommentPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            SwitchPreference(
-                "revanced_hide_preview_comment",
-                StringResource("revanced_hide_preview_comment_title", "Hide preview comment"),
-                false,
-                StringResource("revanced_hide_preview_comment_on", "Preview comment is hidden"),
-                StringResource("revanced_hide_preview_comment_off", "Preview comment is shown")
-            ),
+        SwitchPreference(
+            "revanced_hide_preview_comment",
+            StringResource("revanced_hide_preview_comment_title", "Hide preview comment"),
+            false,
+            StringResource("revanced_hide_preview_comment_on", "Preview comment is hidden"),
+            StringResource("revanced_hide_preview_comment_off", "Preview comment is shown")
         )
         return PatchResultSuccess()
     }
