@@ -52,7 +52,7 @@ class CrowdfundingBoxPatch : BytecodePatch(
 
         crowdfundingBoxMethod.addInstruction(
             patchIndex, """
-            invoke-static {v${(crowdfundingBoxMethod.implementation!!.instructions[moveResultObjectIndex] as OneRegisterInstruction).registerA}}, Lapp/revanced/integrations/patches/HideCrowdfundingBoxPatch;->hideCrowdfundingBox(Landroid/view/View;)V
+            invoke-static {v${(crowdfundingBoxMethod.instruction(moveResultObjectIndex) as OneRegisterInstruction).registerA}}, Lapp/revanced/integrations/patches/HideCrowdfundingBoxPatch;->hideCrowdfundingBox(Landroid/view/View;)V
         """
         )
 
