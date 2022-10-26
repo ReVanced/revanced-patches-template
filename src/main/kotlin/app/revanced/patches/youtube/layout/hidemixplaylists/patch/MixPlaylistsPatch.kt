@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class])
 @Name("hide-my-mix")
-@Description("Removes mix playlists.")
+@Description("Hides mix playlists.")
 @MixPlaylistsPatchCompatibility
 @Version("0.0.1")
 class MixPlaylistsPatch : BytecodePatch(
