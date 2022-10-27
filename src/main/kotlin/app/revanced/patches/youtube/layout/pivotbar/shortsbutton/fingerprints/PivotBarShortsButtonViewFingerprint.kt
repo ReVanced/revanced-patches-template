@@ -11,7 +11,7 @@ import org.jf.dexlib2.Opcode
 @Version("0.0.1")
 object PivotBarShortsButtonViewFingerprint : MethodFingerprint(
     opcodes = listOf(
-        Opcode.INVOKE_VIRTUAL_RANGE, // unique instruction anchor
+        Opcode.INVOKE_VIRTUAL_RANGE, // target reference
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.GOTO,
     )
