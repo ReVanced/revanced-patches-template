@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.comments.patch
+package app.revanced.patches.youtube.layout.comments.bytecode.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -15,7 +15,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.ad.general.bytecode.patch.GeneralBytecodeAdsPatch
 import app.revanced.patches.youtube.layout.comments.annotations.CommentsCompatibility
-import app.revanced.patches.youtube.layout.comments.fingerprints.ShortsCommentsButtonFingerprint
+import app.revanced.patches.youtube.layout.comments.bytecode.fingerprints.ShortsCommentsButtonFingerprint
+import app.revanced.patches.youtube.layout.comments.resource.patch.CommentsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -26,7 +27,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingResourcePatch::class, GeneralBytecodeAdsPatch::class])
+@DependsOn([IntegrationsPatch::class, CommentsResourcePatch::class])
 @Name("comments")
 @Description("Hides comments components below the video player.")
 @CommentsCompatibility
@@ -37,37 +38,6 @@ class CommentsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            PreferenceScreen(
-                "revanced_comments",
-                StringResource("revanced_comments_title", "Comments"),
-                listOf(
-                    SwitchPreference(
-                        "revanced_hide_comments_section",
-                        StringResource("revanced_hide_comments_section_title", "Remove comments section"),
-                        false,
-                        StringResource("revanced_hide_comments_section_summary_on", "Comment section is hidden"),
-                        StringResource("revanced_hide_comments_section_summary_off", "Comment section is shown")
-                    ),
-                    SwitchPreference(
-                        "revanced_hide_preview_comment",
-                        StringResource("revanced_hide_preview_comment_title", "Hide preview comment"),
-                        false,
-                        StringResource("revanced_hide_preview_comment_on", "Preview comment is hidden"),
-                        StringResource("revanced_hide_preview_comment_off", "Preview comment is shown")
-                    ),
-                    SwitchPreference(
-                        "revanced_hide_shorts_comments_button",
-                        StringResource("revanced_hide_shorts_comments_button_title", "Hide shorts comments button"),
-                        false,
-                        StringResource("revanced_hide_shorts_comments_button_on", "Shorts comments button is hidden"),
-                        StringResource("revanced_hide_shorts_comments_button_off", "Shorts comments button is shown")
-                    ),
-                ),
-                StringResource("revanced_comments_summary", "Manage the visibility of comments section components")
-            )
-        )
-
         val shortsCommentsButtonResult = ShortsCommentsButtonFingerprint.result!!
         val shortsCommentsButtonMethod = shortsCommentsButtonResult.mutableMethod
 
@@ -93,11 +63,5 @@ class CommentsPatch : BytecodePatch(
         )
 
         return PatchResultSuccess()
-    }
-
-    internal companion object {
-        internal var shortsCommentsButtonId: Long = ResourceMappingResourcePatch.resourceMappings.single {
-            it.type == "drawable" && it.name == "ic_right_comment_32c"
-        }.id
     }
 }
