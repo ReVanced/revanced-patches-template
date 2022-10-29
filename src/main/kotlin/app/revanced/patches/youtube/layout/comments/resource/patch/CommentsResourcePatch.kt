@@ -21,6 +21,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 class CommentsResourcePatch : ResourcePatch {
     companion object {
         internal var shortsCommentsButtonId: Long = -1
+        internal var liveChatButtonId: Long = -1
     }
 
     override fun execute(context: ResourceContext): PatchResult {
@@ -50,6 +51,13 @@ class CommentsResourcePatch : ResourcePatch {
                         StringResource("revanced_hide_shorts_comments_button_on", "Shorts comments button is hidden"),
                         StringResource("revanced_hide_shorts_comments_button_off", "Shorts comments button is shown")
                     ),
+                    SwitchPreference(
+                        "revanced_hide_live_chat_full_screen_button",
+                        StringResource("revanced_hide_live_chat_full_screen_button_title", "Hide full screen live chat button"),
+                        false,
+                        StringResource("revanced_hide_live_chat_full_screen_button_on", "Full screen live chat button is hidden"),
+                        StringResource("revanced_hide_live_chat_full_screen_button_off", "Full screen live chat button is shown")
+                    ),
                 ),
                 StringResource("revanced_comments_summary", "Manage the visibility of comments section components")
             )
@@ -57,6 +65,10 @@ class CommentsResourcePatch : ResourcePatch {
 
         shortsCommentsButtonId = ResourceMappingResourcePatch.resourceMappings.single {
             it.type == "drawable" && it.name == "ic_right_comment_32c"
+        }.id
+
+        liveChatButtonId = ResourceMappingResourcePatch.resourceMappings.single {
+            it.type == "id" && it.name == "live_chat_overlay_button"
         }.id
 
         return PatchResultSuccess()
