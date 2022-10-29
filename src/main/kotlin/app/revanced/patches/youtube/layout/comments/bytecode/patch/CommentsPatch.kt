@@ -52,6 +52,7 @@ class CommentsPatch : BytecodePatch(
                 Opcode.CHECK_CAST,
             )
         ) {}
+
         val checkCastAnchorIndex = checkCastAnchorFingerprint.also {
             it.resolve(context, shortsCommentsButtonMethod, shortsCommentsButtonResult.classDef)
         }.result!!.scanResult.patternScanResult!!.endIndex
