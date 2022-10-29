@@ -1,3 +1,66 @@
+# [2.97.0](https://github.com/revanced/revanced-patches/compare/v2.96.0...v2.97.0) (2022-10-29)
+
+
+### Features
+
+* **youtube/microg-support:** handle availability of Vanced MicroG ([bfd0d14](https://github.com/revanced/revanced-patches/commit/bfd0d1418fb68f1d37687ec2072d3b64a9c3c6ee))
+
+# [2.96.0](https://github.com/revanced/revanced-patches/compare/v2.95.0...v2.96.0) (2022-10-28)
+
+
+### Features
+
+* **youtube/return-youtube-dislike:** compatibility for old and new button layout ([6629bd7](https://github.com/revanced/revanced-patches/commit/6629bd71716a753be06617724e536b8ab4c3b69a))
+
+# [2.95.0](https://github.com/revanced/revanced-patches/compare/v2.94.0...v2.95.0) (2022-10-28)
+
+
+### Features
+
+* **youtube:** bump patches compatibility to v17.41.37 ([#888](https://github.com/revanced/revanced-patches/issues/888)) ([11ed0c0](https://github.com/revanced/revanced-patches/commit/11ed0c0fb3236d87284806d2fa957699e908cc61))
+
+# [2.94.0](https://github.com/revanced/revanced-patches/compare/v2.93.0...v2.94.0) (2022-10-28)
+
+
+### Features
+
+* remove compatibility for YouTube  v17.41.37 ([#886](https://github.com/revanced/revanced-patches/issues/886)) ([0f4bc19](https://github.com/revanced/revanced-patches/commit/0f4bc197455574b84dd1cb1a43f03af90858bc39))
+
+# [2.93.0](https://github.com/revanced/revanced-patches/compare/v2.92.3...v2.93.0) (2022-10-27)
+
+
+### Features
+
+* bump YouTube patches to v17.41.37 ([#878](https://github.com/revanced/revanced-patches/issues/878)) ([9072986](https://github.com/revanced/revanced-patches/commit/9072986f99e624386ff51c7eeb1d65158bd9249a))
+
+## [2.92.3](https://github.com/revanced/revanced-patches/compare/v2.92.2...v2.92.3) (2022-10-27)
+
+
+### Bug Fixes
+
+* **youtube:** resolve fingerprints on mutable methods ([10e4af3](https://github.com/revanced/revanced-patches/commit/10e4af386652d51c621519f7a67aac8c22ed8c18))
+
+## [2.92.2](https://github.com/revanced/revanced-patches/compare/v2.92.1...v2.92.2) (2022-10-27)
+
+
+### Bug Fixes
+
+* **youtube/theme:** theme missing gray color ([#873](https://github.com/revanced/revanced-patches/issues/873)) ([5267d56](https://github.com/revanced/revanced-patches/commit/5267d56a05b4053d556171ffd2d2870f3f932e8e))
+
+## [2.92.1](https://github.com/revanced/revanced-patches/compare/v2.92.0...v2.92.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* **youtube/custom-branding:** use proper scaled icons ([24b5bcd](https://github.com/revanced/revanced-patches/commit/24b5bcdd703474c940fd436a37f0ae924d8b8c74))
+
+# [2.92.0](https://github.com/revanced/revanced-patches/compare/v2.91.0...v2.92.0) (2022-10-26)
+
+
+### Features
+
+* **youtube/hide-mix-playlists:** hide in video suggestions ([#854](https://github.com/revanced/revanced-patches/issues/854)) ([acde5f0](https://github.com/revanced/revanced-patches/commit/acde5f066053ca3d58ca09fc2a6a1381ba27d84b))
+
 # [2.91.0](https://github.com/revanced/revanced-patches/compare/v2.90.0...v2.91.0) (2022-10-26)
 
 
