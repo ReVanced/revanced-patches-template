@@ -29,7 +29,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, CommentsResourcePatch::class])
 @Name("comments")
-@Description("Hides comments components below the video player.")
+@Description("Hides components related to comments.")
 @CommentsCompatibility
 @Version("0.0.1")
 class CommentsPatch : BytecodePatch(
