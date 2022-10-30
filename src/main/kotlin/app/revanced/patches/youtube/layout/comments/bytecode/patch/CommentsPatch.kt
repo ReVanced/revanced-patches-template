@@ -86,10 +86,11 @@ class CommentsPatch : BytecodePatch(
 
         for (fingerprint in setVisibilityAnchorFingerprints) {
             with (fingerprint.result!!) {
+                val setVisibilityAnchorMethod = mutableMethod
+
                 fun buildLiveChatButtonInvokeString(
-                    method: MutableMethod,
                     index: Int,
-                    instruction: BuilderInstruction35c = method.instruction(index) as BuilderInstruction35c,
+                    instruction: BuilderInstruction35c = setVisibilityAnchorMethod.instruction(index) as BuilderInstruction35c,
                     firstRegister: Int = instruction.registerC,
                     secondRegister: Int = instruction.registerD,
                     classDescriptor: String = LIVE_CHAT_ACTIVITY_DESCRIPTOR,
@@ -100,19 +101,17 @@ class CommentsPatch : BytecodePatch(
                     move-result v$secondRegister
                 """
 
-                val setVisibilityAnchorMethod = mutableMethod
-
                 val invokeVirtualEndIndex = getScanEndIndex(this)
                 setVisibilityAnchorMethod.addInstructions(
                     invokeVirtualEndIndex,
-                    buildLiveChatButtonInvokeString(index = invokeVirtualEndIndex, method = mutableMethod)
+                    buildLiveChatButtonInvokeString(index = invokeVirtualEndIndex)
                 )
 
                 if (fingerprint == FirstSetVisibilityAnchor) {
                     val invokeVirtualStartIndex = getScanStartIndex(this)
                     setVisibilityAnchorMethod.addInstructions(
                         invokeVirtualStartIndex,
-                        buildLiveChatButtonInvokeString(index = invokeVirtualStartIndex, method = mutableMethod)
+                        buildLiveChatButtonInvokeString(index = invokeVirtualStartIndex)
                     )
                 }
             }
