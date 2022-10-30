@@ -4,7 +4,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
@@ -62,11 +61,7 @@ class CommentsPatch : BytecodePatch(
             """
         )
 
-        println("invoke-static {v${(shortsCommentsButtonMethod.instruction(checkCastAnchorIndex) as OneRegisterInstruction).registerA}}, L$INTEGRATIONS_PATCHES_PACKAGE/HideShortsCommentsButtonPatch;->hideShortsCommentsButton(Landroid/view/View;)V")
-
         // hide fullscreen live chat button
-
-
         val liveChatFullscreenButtonMethod = LiveChatFullscreenButtonFingerprint.result!!.mutableMethod
         val constIndex = liveChatFullscreenButtonMethod.implementation?.instructions?.indexOfFirst {
             it.opcode.ordinal == Opcode.CONST.ordinal &&
