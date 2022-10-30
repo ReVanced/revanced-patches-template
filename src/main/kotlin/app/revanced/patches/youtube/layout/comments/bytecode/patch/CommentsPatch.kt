@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.comments.annotations.CommentsCompatibility
 import app.revanced.patches.youtube.layout.comments.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.comments.resource.patch.CommentsResourcePatch
