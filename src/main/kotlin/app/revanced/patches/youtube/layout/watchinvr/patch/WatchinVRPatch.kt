@@ -35,7 +35,7 @@ class WatchinVRPatch : BytecodePatch(
                 StringResource("revanced_hide_watch_in_vr_title", "Hide Watch in VR option"),
                 false,
                 StringResource("revanced_hide_watch_in_vr_summary_on", "Watch in VR option is hidden"),
-                StringResource("revanced_hide_watch_in_vr_summary_off", "Watch in vr item is shown from menu item")
+                StringResource("revanced_hide_watch_in_vr_summary_off", "Watch in VR option is shown")
             )
         )
 
