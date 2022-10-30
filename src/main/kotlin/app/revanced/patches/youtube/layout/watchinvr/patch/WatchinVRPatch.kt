@@ -32,7 +32,7 @@ class WatchinVRPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_watch_in_vr",
-                StringResource("revanced_hide_watch_in_vr_title", "Hide watch in vr"),
+                StringResource("revanced_hide_watch_in_vr_title", "Hide Watch in VR option"),
                 false,
                 StringResource("revanced_hide_watch_in_vr_summary_on", "Watch in vr item is hidden from menu item"),
                 StringResource("revanced_hide_watch_in_vr_summary_off", "Watch in vr item is shown from menu item")
