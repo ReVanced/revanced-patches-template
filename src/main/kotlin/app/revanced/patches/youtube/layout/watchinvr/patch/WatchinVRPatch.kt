@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-watch-in-vr")
-@Description("Hide the Watch in VR item from the menu item.")
+@Description("Hides the "Watch in VR" context item from the player settings flyout panel.")
 @WatchinVRCompatibility
 @Version("0.0.1")
 class WatchinVRPatch : BytecodePatch(
