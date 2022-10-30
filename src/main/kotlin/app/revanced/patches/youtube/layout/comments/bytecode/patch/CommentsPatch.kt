@@ -26,7 +26,6 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
-import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @DependsOn([IntegrationsPatch::class, CommentsResourcePatch::class])
