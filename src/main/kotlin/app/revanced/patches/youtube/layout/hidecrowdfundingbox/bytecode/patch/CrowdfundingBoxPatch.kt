@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -15,7 +14,6 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hidecrowdfundingbox.resource.patch.CrowdfundingBoxResourcePatch
 import app.revanced.patches.youtube.layout.hidecrowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import app.revanced.patches.youtube.layout.hidecrowdfundingbox.bytecode.fingerprints.CrowdfundingBoxFingerprint
-import app.revanced.patches.youtube.layout.hidecrowdfundingbox.bytecode.fingerprints.CrowdfundingBoxParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -28,16 +26,14 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class CrowdfundingBoxPatch : BytecodePatch(
     listOf(
         CrowdfundingBoxFingerprint,
-        CrowdfundingBoxParentFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val crowdfundingBoxResult = CrowdfundingBoxFingerprint.result!!
         val crowdfundingBoxMethod = crowdfundingBoxResult.mutableMethod
 
-        val moveResultObjectIndex = CrowdfundingBoxParentFingerprint.also {
-            it.resolve(context, crowdfundingBoxMethod, crowdfundingBoxResult.classDef)
-        }.result!!.scanResult.patternScanResult!!.endIndex - 2
+        val moveResultObjectIndex =
+            crowdfundingBoxResult.scanResult.patternScanResult!!.endIndex - 2
 
         crowdfundingBoxMethod.addInstruction(
             moveResultObjectIndex + 1, """

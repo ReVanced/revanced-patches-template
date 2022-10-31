@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -14,7 +13,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hidealbumcards.annotations.AlbumCardsCompatibility
 import app.revanced.patches.youtube.layout.hidealbumcards.bytecode.fingerprints.AlbumCardsFingerprint
-import app.revanced.patches.youtube.layout.hidealbumcards.bytecode.fingerprints.AlbumCardsParentFingerprint
 import app.revanced.patches.youtube.layout.hidealbumcards.resource.patch.AlbumCardsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -28,16 +26,13 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class AlbumCardsPatch : BytecodePatch(
     listOf(
         AlbumCardsFingerprint,
-        AlbumCardsParentFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val albumCardsResult = AlbumCardsFingerprint.result!!
         val albumCardsMethod = albumCardsResult.mutableMethod
 
-        val checkCastAnchorIndex = AlbumCardsParentFingerprint.also {
-            it.resolve(context, albumCardsMethod, albumCardsResult.classDef)
-        }.result!!.scanResult.patternScanResult!!.endIndex
+        val checkCastAnchorIndex = albumCardsResult.scanResult.patternScanResult!!.endIndex
 
         albumCardsMethod.addInstruction(
             checkCastAnchorIndex + 1, """

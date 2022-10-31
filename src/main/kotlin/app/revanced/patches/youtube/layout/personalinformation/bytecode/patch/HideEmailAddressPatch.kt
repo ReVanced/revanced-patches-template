@@ -17,7 +17,6 @@ import app.revanced.patches.youtube.layout.personalinformation.bytecode.fingerpr
 import app.revanced.patches.youtube.layout.personalinformation.resource.patch.HideEmailAddressResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, HideEmailAddressResourcePatch::class])
@@ -31,27 +30,22 @@ class HideEmailAddressPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val accountSwitcherAccessibilityLabelMethod = AccountSwitcherAccessibilityLabelFingerprint.result!!.mutableMethod
+        val accountSwitcherAccessibilityLabelResult = AccountSwitcherAccessibilityLabelFingerprint.result!!
+        val accountSwitcherAccessibilityLabelMethod = accountSwitcherAccessibilityLabelResult.mutableMethod
 
         val setVisibilityConstIndex =
-            accountSwitcherAccessibilityLabelMethod.implementation!!.instructions.indexOfFirst {
-                (it as? WideLiteralInstruction)?.wideLiteral ==
-                HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId
-            } - 1
+            accountSwitcherAccessibilityLabelResult.scanResult.patternScanResult!!.endIndex
 
         val setVisibilityConstRegister = (
-                accountSwitcherAccessibilityLabelMethod.instruction(setVisibilityConstIndex) as
-                OneRegisterInstruction
+                accountSwitcherAccessibilityLabelMethod.instruction
+                (setVisibilityConstIndex - 2) as OneRegisterInstruction
             ).registerA
-        val toggleRegister = (setVisibilityConstRegister + 1)
 
         accountSwitcherAccessibilityLabelMethod.addInstructions(
-            setVisibilityConstIndex + 1, """
-            invoke-static {}, Lapp/revanced/integrations/patches/HideEmailAddressPatch;->hideEmailAddress()Z
-            move-result v$toggleRegister
-            if-eqz v$toggleRegister, :hide_email_address
-            const/16 v$setVisibilityConstRegister, 0x8
-        """, listOf(ExternalLabel("hide_email_address", accountSwitcherAccessibilityLabelMethod.instruction(setVisibilityConstIndex + 1)))
+            setVisibilityConstIndex, """
+            invoke-static {v$setVisibilityConstRegister}, Lapp/revanced/integrations/patches/HideEmailAddressPatch;->hideEmailAddress(I)I
+            move-result v$setVisibilityConstRegister
+        """
         )
 
         return PatchResultSuccess()

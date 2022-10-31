@@ -13,16 +13,17 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @Version("0.0.1")
 object AccountSwitcherAccessibilityLabelFingerprint : MethodFingerprint(
     opcodes = listOf(
-        Opcode.CHECK_CAST,
+        Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,
-        Opcode.NEW_INSTANCE,
         Opcode.IGET_OBJECT,
-        Opcode.INVOKE_DIRECT,
+        Opcode.NEW_ARRAY,
         Opcode.CONST_4,
-        Opcode.INVOKE_INTERFACE,
+        Opcode.APUT_OBJECT,
+        Opcode.CONST,
     ),
     customFingerprint = { methodDef ->
         methodDef.implementation?.instructions?.any { instruction ->
+            instruction.opcode.ordinal == Opcode.CONST.ordinal &&
             (instruction as? WideLiteralInstruction)?.wideLiteral == HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId
         } == true
     }
