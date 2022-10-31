@@ -32,13 +32,17 @@ class HideEmailAddressPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val accountSwitcherAccessibilityLabelMethod = AccountSwitcherAccessibilityLabelFingerprint.result!!.mutableMethod
-        val accountSwitcherAccessibilityLabelInstruction = accountSwitcherAccessibilityLabelMethod.implementation!!.instructions
 
-        val setVisibilityConstIndex = accountSwitcherAccessibilityLabelInstruction.indexOfFirst {
-            (it as? WideLiteralInstruction)?.wideLiteral == HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId
-        } - 1
+        val setVisibilityConstIndex =
+            accountSwitcherAccessibilityLabelMethod.implementation!!.instructions.indexOfFirst {
+                (it as? WideLiteralInstruction)?.wideLiteral ==
+                HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId
+            } - 1
 
-        val setVisibilityConstRegister = (accountSwitcherAccessibilityLabelInstruction[setVisibilityConstIndex] as OneRegisterInstruction).registerA
+        val setVisibilityConstRegister = (
+                accountSwitcherAccessibilityLabelMethod.instruction(setVisibilityConstIndex) as
+                OneRegisterInstruction
+            ).registerA
         val toggleRegister = (setVisibilityConstRegister + 1)
 
         accountSwitcherAccessibilityLabelMethod.addInstructions(
