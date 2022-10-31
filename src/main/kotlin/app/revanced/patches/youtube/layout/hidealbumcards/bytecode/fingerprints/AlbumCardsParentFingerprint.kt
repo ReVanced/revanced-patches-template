@@ -11,6 +11,7 @@ import org.jf.dexlib2.Opcode
 @Version("0.0.1")
 object AlbumCardsParentFingerprint : MethodFingerprint(
     opcodes = listOf(
+        Opcode.MOVE_RESULT_OBJECT,
         Opcode.CONST,
         Opcode.CONST_4,
         Opcode.INVOKE_VIRTUAL,
