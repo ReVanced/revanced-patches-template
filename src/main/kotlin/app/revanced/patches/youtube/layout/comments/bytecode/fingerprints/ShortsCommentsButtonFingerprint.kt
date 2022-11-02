@@ -14,7 +14,15 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @CommentsCompatibility
 @Version("0.0.1")
 object ShortsCommentsButtonFingerprint : MethodFingerprint(
-    "V", AccessFlags.PRIVATE or AccessFlags.FINAL, listOf("Z", "Z", "L"),
+    opcodes = listOf(
+        Opcode.CONST,
+        Opcode.CONST_HIGH16,
+        Opcode.IF_EQZ,
+        Opcode.CONST,
+        Opcode.INVOKE_STATIC,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.CHECK_CAST,
+    ),
     customFingerprint = { methodDef ->
         methodDef.implementation?.instructions?.any {
             it.opcode.ordinal == Opcode.CONST.ordinal && (it as WideLiteralInstruction).wideLiteral == CommentsResourcePatch.shortsCommentsButtonId

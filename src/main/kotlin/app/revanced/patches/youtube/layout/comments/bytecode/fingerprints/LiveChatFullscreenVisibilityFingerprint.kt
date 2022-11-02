@@ -5,22 +5,22 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.comments.annotations.CommentsCompatibility
-import app.revanced.patches.youtube.layout.comments.resource.patch.CommentsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-@Name("shorts-comments-button-parent-fingerprint")
+@Name("live-chat-fullscreen-button-visibility-fingerprint")
 @CommentsCompatibility
 @Version("0.0.1")
-object ShortsCommentsButtonParentFingerprint : MethodFingerprint(
-    opcodes = listOf(
-        Opcode.CONST,
-        Opcode.CONST_HIGH16,
+object LiveChatFullscreenVisibilityFingerprint : MethodFingerprint(
+    "V", AccessFlags.PRIVATE or AccessFlags.FINAL, listOf("Z", "Z"), listOf(
+        Opcode.IGET_OBJECT,
+        Opcode.IGET_OBJECT,
+        Opcode.INVOKE_INTERFACE,
         Opcode.IF_EQZ,
-        Opcode.CONST,
-        Opcode.INVOKE_STATIC,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CHECK_CAST,
+        Opcode.IF_EQZ,
+        Opcode.IGET_WIDE,
+        Opcode.GOTO,
+        Opcode.IGET_WIDE,
+        Opcode.CONST_WIDE_16,
     )
 )

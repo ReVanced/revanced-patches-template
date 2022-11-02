@@ -7,13 +7,13 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.findMutableMethodOf
 import app.revanced.patches.youtube.layout.comments.annotations.CommentsCompatibility
 import app.revanced.patches.youtube.layout.comments.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.comments.resource.patch.CommentsResourcePatch
@@ -32,98 +32,68 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 class CommentsPatch : BytecodePatch(
     listOf(
         ShortsCommentsButtonFingerprint,
-        ShortsCommentsButtonParentFingerprint,
-        LiveChatFullscreenButtonFingerprint,
-        LiveChatFullscreenButtonVisibilityFingerprint,
-        FirstSetVisibilityAnchor,
-        SecondSetVisibilityAnchor,
-        ThirdSetVisibilityAnchor,
+        LiveChatFullscreenResourceFingerprint,
+        LiveChatFullscreenVisibilityFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        fun getScanStartIndex(fingerprintResult: MethodFingerprintResult) =
-            fingerprintResult.scanResult.patternScanResult!!.startIndex
-        fun getScanEndIndex(fingerprintResult: MethodFingerprintResult) =
-            fingerprintResult.scanResult.patternScanResult!!.endIndex
-
         // hide shorts comments button
         val shortsCommentsButtonResult = ShortsCommentsButtonFingerprint.result!!
         val shortsCommentsButtonMethod = shortsCommentsButtonResult.mutableMethod
 
-        val checkCastAnchorIndex = getScanEndIndex(ShortsCommentsButtonParentFingerprint.also {
-            it.resolve(context, shortsCommentsButtonMethod, shortsCommentsButtonResult.classDef)
-        }.result!!)
+        val checkCastAnchorIndex = shortsCommentsButtonResult.scanResult.patternScanResult!!.endIndex
 
         shortsCommentsButtonMethod.addInstructions(
             checkCastAnchorIndex + 1, """
-                invoke-static {v${(shortsCommentsButtonMethod.instruction(checkCastAnchorIndex) as OneRegisterInstruction).registerA}}, L$INTEGRATIONS_PATCHES_PACKAGE/HideShortsCommentsButtonPatch;->hideShortsCommentsButton(Landroid/view/View;)V
+                invoke-static {v${(shortsCommentsButtonMethod.instruction(checkCastAnchorIndex) as OneRegisterInstruction).registerA}}, Lapp/revanced/integrations/patches/HideShortsCommentsButtonPatch;->hideShortsCommentsButton(Landroid/view/View;)V
             """
         )
 
         // hide fullscreen live chat button
-        val liveChatFullscreenButtonMethod = LiveChatFullscreenButtonFingerprint.result!!.mutableMethod
-        val constIndex = liveChatFullscreenButtonMethod.implementation?.instructions?.indexOfFirst {
+        val liveChatFullscreenResourceMethod = LiveChatFullscreenResourceFingerprint.result!!.mutableMethod
+
+        val constIndex = liveChatFullscreenResourceMethod.implementation?.instructions?.indexOfFirst {
             it.opcode.ordinal == Opcode.CONST.ordinal &&
             (it as WideLiteralInstruction).wideLiteral == CommentsResourcePatch.liveChatButtonId
         }!!
 
-        liveChatFullscreenButtonMethod.addInstruction(
+        liveChatFullscreenResourceMethod.addInstruction(
             constIndex + 1, """
-                sput v${(liveChatFullscreenButtonMethod.instruction(constIndex) as OneRegisterInstruction).registerA}, $LIVE_CHAT_ACTIVITY_DESCRIPTOR->fullScreenLiveChatButtonId:I
+                sput v${(liveChatFullscreenResourceMethod.instruction(constIndex) as OneRegisterInstruction).registerA}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->fullScreenLiveChatButtonId:I
             """
         )
 
-        val setVisibilityAnchorFingerprints = listOf(
-            FirstSetVisibilityAnchor,
-            SecondSetVisibilityAnchor,
-            ThirdSetVisibilityAnchor
-        )
-        setVisibilityAnchorFingerprints.resolve(
-            context,
-            listOf(LiveChatFullscreenButtonVisibilityFingerprint.result!!.classDef)
-        )
+        val liveChatFullscreenVisibilityResult = LiveChatFullscreenVisibilityFingerprint.result!!
+        var jumpInstruction = true
 
-        for (fingerprint in setVisibilityAnchorFingerprints) {
-            with (fingerprint.result!!) {
-                val setVisibilityAnchorMethod = mutableMethod
+        for (method in liveChatFullscreenVisibilityResult.classDef.methods) {
+            with (liveChatFullscreenVisibilityResult.mutableClass.findMutableMethodOf(method)) {
+                implementation!!.instructions.forEachIndexed { compiledInstructionIndex, compiledInstruction ->
+                    if (compiledInstruction.opcode.ordinal == Opcode.INVOKE_VIRTUAL.ordinal) {
+                        val definedInstruction = (compiledInstruction as? BuilderInstruction35c)
 
-                fun buildLiveChatButtonInvokeString(
-                    index: Int,
-                    instruction: BuilderInstruction35c = setVisibilityAnchorMethod.instruction(index) as BuilderInstruction35c,
-                    firstRegister: Int = instruction.registerC,
-                    secondRegister: Int = instruction.registerD,
-                    classDescriptor: String = LIVE_CHAT_ACTIVITY_DESCRIPTOR,
-                    methodName: String = LIVE_CHAT_RESOURCE_METHOD_NAME,
-                    parameters: String = "Landroid/view/View;"
-                ) = """
-                    invoke-static {v$firstRegister, v$secondRegister}, $classDescriptor->$methodName($parameters)V
-                    move-result v$secondRegister
-                """
+                        if (definedInstruction?.reference.toString() ==
+                            "Landroid/view/View;->setVisibility(I)V") {
 
-                val invokeVirtualEndIndex = getScanEndIndex(this)
-                setVisibilityAnchorMethod.addInstructions(
-                    invokeVirtualEndIndex,
-                    buildLiveChatButtonInvokeString(index = invokeVirtualEndIndex)
-                )
+                            jumpInstruction = !jumpInstruction
 
-                if (fingerprint == FirstSetVisibilityAnchor) {
-                    val invokeVirtualStartIndex = getScanStartIndex(this)
-                    setVisibilityAnchorMethod.addInstructions(
-                        invokeVirtualStartIndex,
-                        buildLiveChatButtonInvokeString(index = invokeVirtualStartIndex)
-                    )
+                            if (jumpInstruction) return@forEachIndexed
+
+                            val firstRegister = definedInstruction?.registerC
+                            val secondRegister = definedInstruction?.registerD
+
+                            addInstructions(
+                                compiledInstructionIndex, """
+                                    invoke-static {v$firstRegister, v$secondRegister}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->hideLiveChatFullScreenButton(Landroid/view/View;I)I
+                                    move-result v$secondRegister
+                                """
+                            )
+                        }
+                    }
                 }
             }
         }
 
         return PatchResultSuccess()
-    }
-
-    internal companion object {
-        private const val INTEGRATIONS_PATCHES_PACKAGE = "app/revanced/integrations/patches"
-
-        private const val LIVE_CHAT_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PATCHES_PACKAGE/patches/HideLiveChatFullScreenButtonPatch;"
-
-        private const val LIVE_CHAT_RESOURCE_METHOD_NAME = "hideLiveChatFullScreenButton"
     }
 }

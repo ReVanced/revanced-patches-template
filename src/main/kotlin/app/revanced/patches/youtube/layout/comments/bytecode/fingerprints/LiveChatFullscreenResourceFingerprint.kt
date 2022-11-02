@@ -13,11 +13,11 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @Name("live-chat-fullscreen-button-fingerprint")
 @CommentsCompatibility
 @Version("0.0.1")
-object LiveChatFullscreenButtonFingerprint : MethodFingerprint(
-    "V", AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR, listOf("L", "I"),
+object LiveChatFullscreenResourceFingerprint : MethodFingerprint(
     customFingerprint = {methodDef ->
         methodDef.implementation?.instructions?.any {
-            it.opcode.ordinal == Opcode.CONST.ordinal && (it as WideLiteralInstruction).wideLiteral == CommentsResourcePatch.liveChatButtonId
+            it.opcode.ordinal == Opcode.CONST.ordinal &&
+            (it as WideLiteralInstruction).wideLiteral == CommentsResourcePatch.liveChatButtonId
         } == true
     }
 )
