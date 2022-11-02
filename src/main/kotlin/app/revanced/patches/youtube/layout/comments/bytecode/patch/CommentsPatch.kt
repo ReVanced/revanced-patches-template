@@ -12,13 +12,14 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.findMutableMethodOf
 import app.revanced.patches.youtube.layout.comments.annotations.CommentsCompatibility
 import app.revanced.patches.youtube.layout.comments.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.comments.resource.patch.CommentsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
@@ -33,7 +34,6 @@ class CommentsPatch : BytecodePatch(
     listOf(
         ShortsCommentsButtonFingerprint,
         LiveChatFullscreenResourceFingerprint,
-        LiveChatFullscreenVisibilityFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -45,7 +45,7 @@ class CommentsPatch : BytecodePatch(
 
         shortsCommentsButtonMethod.addInstructions(
             checkCastAnchorIndex + 1, """
-                invoke-static {v${(shortsCommentsButtonMethod.instruction(checkCastAnchorIndex) as OneRegisterInstruction).registerA}}, Lapp/revanced/integrations/patches/HideShortsCommentsButtonPatch;->hideShortsCommentsButton(Landroid/view/View;)V
+                invoke-static {v${(getInstructionByIndex(shortsCommentsButtonMethod, checkCastAnchorIndex) as OneRegisterInstruction).registerA}}, Lapp/revanced/integrations/patches/HideShortsCommentsButtonPatch;->hideShortsCommentsButton(Landroid/view/View;)V
             """
         )
 
@@ -59,35 +59,40 @@ class CommentsPatch : BytecodePatch(
 
         liveChatFullscreenResourceMethod.addInstruction(
             constIndex + 1, """
-                sput v${(liveChatFullscreenResourceMethod.instruction(constIndex) as OneRegisterInstruction).registerA}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->fullScreenLiveChatButtonId:I
+                sput v${(getInstructionByIndex(liveChatFullscreenResourceMethod, constIndex) as OneRegisterInstruction).registerA}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->fullScreenLiveChatButtonId:I
             """
         )
 
-        val liveChatFullscreenVisibilityResult = LiveChatFullscreenVisibilityFingerprint.result!!
-        var jumpInstruction = true
+        with (getInstructionByIndex(liveChatFullscreenResourceMethod,constIndex - 1)) {
+            if (opcode.ordinal == Opcode.NEW_INSTANCE.ordinal) {
+                val liveChatFullscreenVisibilityClass =
+                    context.findClass((this as BuilderInstruction21c).reference.toString())!!.mutableClass
 
-        for (method in liveChatFullscreenVisibilityResult.classDef.methods) {
-            with (liveChatFullscreenVisibilityResult.mutableClass.findMutableMethodOf(method)) {
-                implementation!!.instructions.forEachIndexed { compiledInstructionIndex, compiledInstruction ->
-                    if (compiledInstruction.opcode.ordinal == Opcode.INVOKE_VIRTUAL.ordinal) {
-                        val definedInstruction = (compiledInstruction as? BuilderInstruction35c)
+                for (method in liveChatFullscreenVisibilityClass.methods) {
+                    with (liveChatFullscreenVisibilityClass.findMutableMethodOf(method)) {
+                        var jumpInstruction = true
 
-                        if (definedInstruction?.reference.toString() ==
-                            "Landroid/view/View;->setVisibility(I)V") {
+                        implementation!!.instructions.forEachIndexed { compiledInstructionIndex, compiledInstruction ->
+                            if (compiledInstruction.opcode.ordinal == Opcode.INVOKE_VIRTUAL.ordinal) {
+                                val definedInstruction = (compiledInstruction as? BuilderInstruction35c)
 
-                            jumpInstruction = !jumpInstruction
+                                if (definedInstruction?.reference.toString() ==
+                                    "Landroid/view/View;->setVisibility(I)V") {
 
-                            if (jumpInstruction) return@forEachIndexed
+                                    jumpInstruction = !jumpInstruction
+                                    if (jumpInstruction) return@forEachIndexed
 
-                            val firstRegister = definedInstruction?.registerC
-                            val secondRegister = definedInstruction?.registerD
+                                    val firstRegister = definedInstruction?.registerC
+                                    val secondRegister = definedInstruction?.registerD
 
-                            addInstructions(
-                                compiledInstructionIndex, """
-                                    invoke-static {v$firstRegister, v$secondRegister}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->hideLiveChatFullScreenButton(Landroid/view/View;I)I
-                                    move-result v$secondRegister
-                                """
-                            )
+                                    addInstructions(
+                                        compiledInstructionIndex, """
+                                            invoke-static {v$firstRegister, v$secondRegister}, Lapp/revanced/integrations/patches/HideLiveChatFullScreenButtonPatch;->hideLiveChatFullScreenButton(Landroid/view/View;I)I
+                                            move-result v$secondRegister
+                                        """
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -95,5 +100,9 @@ class CommentsPatch : BytecodePatch(
         }
 
         return PatchResultSuccess()
+    }
+
+    companion object {
+        fun getInstructionByIndex(method: MutableMethod, index: Int) = method.instruction(index)
     }
 }
