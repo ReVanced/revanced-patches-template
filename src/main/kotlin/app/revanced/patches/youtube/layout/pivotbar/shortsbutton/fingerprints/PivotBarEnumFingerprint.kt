@@ -3,11 +3,11 @@ package app.revanced.patches.youtube.layout.pivotbar.shortsbutton.fingerprints
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.pivotbar.shortsbutton.annotations.ShortsButtonCompatibility
+import app.revanced.patches.youtube.layout.pivotbar.annotations.PivotBarCompatibility
 import org.jf.dexlib2.Opcode
 
 @Name("pivot-bar-enum-fingerprint")
-@ShortsButtonCompatibility
+@PivotBarCompatibility
 @Version("0.0.1")
 object PivotBarEnumFingerprint : MethodFingerprint(
     opcodes = listOf(
