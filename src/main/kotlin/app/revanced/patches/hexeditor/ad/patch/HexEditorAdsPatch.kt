@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.hexeditor.ad.annotations.HexEditorAdsCompatibility
-import app.revanced.patches.hexeditor.ad.fingerprints.HexEditorAdsFingerprint
+import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
 
 @Patch
 @Name("disable-ads")
@@ -20,7 +20,7 @@ import app.revanced.patches.hexeditor.ad.fingerprints.HexEditorAdsFingerprint
 
 class HexEditorAdsPatch : BytecodePatch(
     listOf(
-        HexEditorAdsFingerprint
+        PrimaryAdsFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
