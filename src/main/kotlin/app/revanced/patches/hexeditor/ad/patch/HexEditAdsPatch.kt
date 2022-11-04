@@ -1,0 +1,38 @@
+package app.revanced.patches.hexeditor.ad.patch
+
+import app.revanced.patcher.annotation.Description
+import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.hexeditor.ad.annotations.HexEditorAdsCompatibility
+import app.revanced.patches.hexeditor.ad.fingerprints.HexEditorAdsFingerprint
+
+@Patch
+@Name("disable-ads")
+@Description("Disables ads in HexEditor.")
+@HexEditorAdsCompatibility
+@Version("0.0.1")
+
+class HexEditAdsPatch : BytecodePatch(
+    listOf(
+        PrimaryAdsFingerprint
+    )
+) {
+    override fun execute(context: BytecodeContext): PatchResult {
+        val method = HexEditorAdsFingerprint.result!!.mutableMethod
+        method.addInstructions(
+            0,
+            """
+                const/4 v0, 0x1
+                return v0
+            """
+        )
+
+        return PatchResultSuccess()
+    }
+}
