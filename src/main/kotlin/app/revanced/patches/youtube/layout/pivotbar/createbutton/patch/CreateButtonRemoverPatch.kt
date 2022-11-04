@@ -12,22 +12,19 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.pivotbar.createbutton.annotations.CreateButtonCompatibility
+import app.revanced.patches.youtube.layout.pivotbar.annotations.PivotBarCompatibility
 import app.revanced.patches.youtube.layout.pivotbar.createbutton.fingerprints.PivotBarCreateButtonViewFingerprint
 import app.revanced.patches.youtube.layout.pivotbar.fingerprints.PivotBarFingerprint
+import app.revanced.patches.youtube.layout.pivotbar.resource.patch.PivotBarResourcePatch
 import app.revanced.patches.youtube.layout.pivotbar.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.pivotbar.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, ResourceMappingResourcePatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, PivotBarResourcePatch::class])
 @Name("hide-create-button")
 @Description("Hides the create button in the navigation bar.")
-@CreateButtonCompatibility
+@PivotBarCompatibility
 @Version("0.0.1")
 class CreateButtonRemoverPatch : BytecodePatch(
     listOf(
@@ -35,16 +32,6 @@ class CreateButtonRemoverPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            SwitchPreference(
-                "revanced_create_button_enabled",
-                StringResource("revanced_create_button_enabled_title", "Show create button"),
-                false,
-                StringResource("revanced_create_button_summary_on", "Create button is shown"),
-                StringResource("revanced_create_button_summary_off", "Create button is hidden")
-            )
-        )
-
         /*
          * Resolve fingerprints
          */

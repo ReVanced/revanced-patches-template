@@ -13,36 +13,24 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.pivotbar.fingerprints.PivotBarFingerprint
-import app.revanced.patches.youtube.layout.pivotbar.shortsbutton.annotations.ShortsButtonCompatibility
+import app.revanced.patches.youtube.layout.pivotbar.resource.patch.PivotBarResourcePatch
+import app.revanced.patches.youtube.layout.pivotbar.annotations.PivotBarCompatibility
 import app.revanced.patches.youtube.layout.pivotbar.shortsbutton.fingerprints.PivotBarEnumFingerprint
 import app.revanced.patches.youtube.layout.pivotbar.shortsbutton.fingerprints.PivotBarShortsButtonViewFingerprint
 import app.revanced.patches.youtube.layout.pivotbar.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.pivotbar.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, PivotBarResourcePatch::class])
 @Name("hide-shorts-button")
 @Description("Hides the shorts button on the navigation bar.")
-@ShortsButtonCompatibility
+@PivotBarCompatibility
 @Version("0.0.1")
 class ShortsButtonRemoverPatch : BytecodePatch(
     listOf(PivotBarFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            SwitchPreference(
-                "revanced_shorts_button_enabled",
-                StringResource("revanced_shorts_button_enabled_title", "Show shorts button"),
-                false,
-                StringResource("revanced_shorts_button_summary_on", "Shorts button is shown"),
-                StringResource("revanced_shorts_button_summary_off", "Shorts button is hidden")
-            )
-        )
-
         /*
          * Resolve fingerprints
          */
