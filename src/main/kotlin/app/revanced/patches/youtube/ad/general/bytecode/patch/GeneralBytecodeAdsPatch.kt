@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -18,6 +19,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.findMutableMethodOf
 import app.revanced.patches.youtube.ad.general.bytecode.extensions.MethodExtensions.toDescriptor
@@ -29,11 +31,9 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
+import org.jf.dexlib2.dexbacked.instruction.DexBackedInstruction21c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.instruction.formats.Instruction22c
-import org.jf.dexlib2.iface.instruction.formats.Instruction31i
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import org.jf.dexlib2.iface.instruction.formats.*
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
@@ -52,11 +52,10 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
     private val resourceIds = arrayOf(
         "ad_attribution",
         "reel_multiple_items_shelf",
-        "info_cards_drawer_header",
         "endscreen_element_layout_video",
         "endscreen_element_layout_circle",
         "endscreen_element_layout_icon",
-        "promoted_video_item_land",
+        "promoted_video_item_land_stark_ad_badge",
         "promoted_video_item_full_bleed",
     ).map { name ->
         ResourceMappingResourcePatch.resourceMappings.single { it.name == name }.id
@@ -64,7 +63,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
     private val stringReferences = arrayOf(
         "Claiming to use more elements than provided",
-        "loadVideo() called on LocalDirector in wrong state",
         "LoggingProperties are not in proto format"
     )
 
@@ -182,6 +180,13 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                 StringResource("revanced_adremover_hide_channel_guidelines_enabled_summary_on", "Channel guidelines are hidden"),
                 StringResource("revanced_adremover_hide_channel_guidelines_enabled_summary_off", "Channel guidelines are shown")
             ),
+            SwitchPreference(
+                "revanced_end_cards_enabled",
+                StringResource("revanced_end_cards_enabled_title", "Show end-cards"),
+                false,
+                StringResource("revanced_end_cards_enabled_summary_on", "End-cards are shown"),
+                StringResource("revanced_end_cards_enabled_summary_off", "End-cards are hidden")
+            ),
         )
 
         // iterating through all classes is expensive
@@ -232,46 +237,17 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
                                 }
 
-                                resourceIds[2] -> { // info cards ads
-                                    //  and is followed by an instruction with the mnemonic INVOKE_VIRTUAL
-                                    val removeIndex = index - 1
-                                    val invokeInstruction = instructions.elementAt(removeIndex)
-                                    if (invokeInstruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
+                                resourceIds[2], resourceIds[3], resourceIds[4] -> { // end screen ads
+                                    //  and is followed by an instruction with the mnemonic CHECK_CAST
+                                    var insertIndex = index + 4
+                                    var checkCastInstruction = instructions.elementAt(insertIndex)
+                                    if (checkCastInstruction.opcode != Opcode.CHECK_CAST) {
+                                        // perform a new check for endscreen_element_layout_icon
+                                        insertIndex -= 1
+                                        checkCastInstruction = instructions.elementAt(insertIndex)
 
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    //ToDo: Add Settings toggle for whatever this is
-                                    mutableMethod!!.implementation!!.removeInstruction(removeIndex)
-                                }
-
-                                resourceIds[3], resourceIds[4], resourceIds[5] -> { // end screen ads
-                                    //  and is followed by an instruction with the mnemonic IPUT_OBJECT
-                                    val insertIndex = index + 7
-                                    val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.IPUT_OBJECT) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    // TODO: dynamically get registers
-                                    mutableMethod!!.addInstructions(
-                                        insertIndex, """
-                                                const/16 v1, 0x8
-                                                invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
-                                            """
-                                    )
-                                }
-
-                                resourceIds[6] -> {
-                                    //  and is followed by an instruction with the mnemonic INVOKE_DIRECT
-                                    val insertIndex = index + 3
-                                    val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.INVOKE_DIRECT) return@forEachIndexed
+                                        if (checkCastInstruction.opcode != Opcode.CHECK_CAST) return@forEachIndexed
+                                    }
 
                                     // create proxied method, make sure to not re-resolve() the current class
                                     if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
@@ -279,12 +255,53 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                         mutableClass!!.findMutableMethodOf(method)
 
                                     // insert hide call to hide the view corresponding to the resource
-                                    val viewRegister = (invokeInstruction as Instruction35c).registerE
-                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
+                                    val viewRegister = (checkCastInstruction as Instruction21c).registerA
+                                    mutableMethod!!.addInstruction(
+                                        insertIndex,
+                                        "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenPatch;->HideEndscreen(Landroid/view/View;)V"
+                                    )
                                 }
 
-                                resourceIds[7] -> {
-                                    // TODO, go to class, hide the inflated view
+                                resourceIds[5] -> {
+                                    val insertIndex = index + 3
+
+                                    //  and is preceded by an instruction with the mnemonic IGET
+                                    val iGetInstruction = instructions.elementAt(insertIndex - 2)
+                                    //  and is followed by an instruction with the mnemonic MOVE_RESULT_OBJECT
+                                    val moveResultObjectInstruction = instructions.elementAt(insertIndex)
+                                    if (iGetInstruction.opcode != Opcode.IGET ||
+                                        moveResultObjectInstruction.opcode != Opcode.MOVE_RESULT_OBJECT)
+                                            return@forEachIndexed
+
+                                    // create proxied method, make sure to not re-resolve() the current class
+                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
+                                    if (mutableMethod == null) mutableMethod = mutableClass!!.findMutableMethodOf(method)
+
+                                    // insert hide call to hide the view corresponding to the resource
+                                    val viewRegister = (moveResultObjectInstruction as Instruction11x).registerA
+                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex + 1, viewRegister)
+                                }
+
+                                resourceIds[6] -> {
+                                    //  and is preceded by an instruction with the mnemonic NEW_INSTANCE
+                                    var insertIndex = index - 1
+                                    val newInstanceInstruction = instructions.elementAt(insertIndex)
+                                    if (newInstanceInstruction.opcode != Opcode.NEW_INSTANCE) return@forEachIndexed
+
+                                    // create proxied method, make sure to not re-resolve() the current class
+                                    if (mutableClass == null) mutableClass = context.findClass(
+                                        (newInstanceInstruction as DexBackedInstruction21c).reference.toString()
+                                    )!!.mutableClass
+                                    if (mutableMethod == null) mutableMethod = mutableClass!!.methods.toMutableList()[0]
+
+                                    // and is based on an instruction with the mnemonic MOVE_RESULT_OBJECT
+                                    insertIndex = 5
+                                    val invokeInstruction = mutableMethod!!.implementation!!.instructions.elementAt(insertIndex)
+                                    if (invokeInstruction.opcode != Opcode.MOVE_RESULT_OBJECT) return@forEachIndexed
+
+                                    // insert hide call to hide the view corresponding to the resource
+                                    val viewRegister = (invokeInstruction as Instruction11x).registerA
+                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex + 1, viewRegister)
                                 }
                             }
                         }
@@ -308,11 +325,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     )
                                 }
 
-                                stringReferences[1] -> {
-                                    // TODO: migrate video ads patch to here if necessary
-                                }
-
-                                stringReferences[2] -> { // Litho ads
+                                stringReferences[1] -> { // Litho ads
                                     val proxy = context.proxy(classDef)
                                     val proxiedClass = proxy.mutableClass
 
