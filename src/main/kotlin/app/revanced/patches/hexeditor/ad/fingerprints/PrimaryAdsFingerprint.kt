@@ -8,7 +8,7 @@ import app.revanced.patches.hexeditor.ad.annotations.HexEditorAdsCompatibility
 @Name("ads-fingerprint-primary")
 @HexEditorAdsCompatibility
 @Version("0.0.1")
-object HexEditorAdsFingerprint : MethodFingerprint(
+object PrimaryAdsFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("PreferencesHelper;") && methodDef.name == "isAdsDisabled"
     }

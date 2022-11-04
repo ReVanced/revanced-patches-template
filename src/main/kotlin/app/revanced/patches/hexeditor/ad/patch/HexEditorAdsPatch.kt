@@ -18,7 +18,7 @@ import app.revanced.patches.hexeditor.ad.fingerprints.HexEditorAdsFingerprint
 @HexEditorAdsCompatibility
 @Version("0.0.1")
 
-class HexEditAdsPatch : BytecodePatch(
+class HexEditorAdsPatch : BytecodePatch(
     listOf(
         HexEditorAdsFingerprint
     )
