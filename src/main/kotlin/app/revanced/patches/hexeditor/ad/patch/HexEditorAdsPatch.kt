@@ -35,9 +35,6 @@ class HexEditorAdsPatch : BytecodePatch(
             """
         )
 
-        for(i in 0..4)
-            method.removeInstruction(2)
-
         return PatchResultSuccess()
     }
 }
