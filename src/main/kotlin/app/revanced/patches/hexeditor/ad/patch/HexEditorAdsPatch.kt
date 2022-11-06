@@ -25,13 +25,17 @@ class HexEditorAdsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val method = PrimaryAdsFingerprint.result!!.mutableMethod
-        method.addInstructions(
+        
+        method.replaceInstructions(
             0,
             """
                 const/4 v0, 0x1
                 return v0
             """
         )
+
+        for(i in 0..4)
+            method.removeInstruction(2)
 
         return PatchResultSuccess()
     }
