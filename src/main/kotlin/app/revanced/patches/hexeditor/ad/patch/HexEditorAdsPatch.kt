@@ -18,7 +18,6 @@ import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
 @Description("Disables ads in HexEditor.")
 @HexEditorAdsCompatibility
 @Version("0.0.1")
-
 class HexEditorAdsPatch : BytecodePatch(
     listOf(
         PrimaryAdsFingerprint
