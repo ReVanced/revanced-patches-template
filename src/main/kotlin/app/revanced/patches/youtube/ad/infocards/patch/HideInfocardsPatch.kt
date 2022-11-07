@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.infocardsuggestions.patch
+package app.revanced.patches.youtube.ad.infocards.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -15,21 +15,21 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsIncognitoFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsMethodCallFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsIncognitoParentFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.resource.patch.HideInfocardSuggestionsResourcePatch
+import app.revanced.patches.youtube.ad.infocards.annotations.HideInfocardsCompatibility
+import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsIncognitoFingerprint
+import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsMethodCallFingerprint
+import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsIncognitoParentFingerprint
+import app.revanced.patches.youtube.ad.infocards.resource.patch.HideInfocardsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch
-@DependsOn([IntegrationsPatch::class, HideInfocardSuggestionsResourcePatch::class])
-@Name("hide-infocard-suggestions")
+@DependsOn([IntegrationsPatch::class, HideInfocardsResourcePatch::class])
+@Name("hide-infocards")
 @Description("Hides infocards in videos.")
-@HideInfocardSuggestionsCompatibility
+@HideInfocardsCompatibility
 @Version("0.0.1")
-class HideInfocardSuggestionsPatch : BytecodePatch(
+class HideInfocardsPatch : BytecodePatch(
     listOf(
         InfocardsIncognitoParentFingerprint,
         InfocardsMethodCallFingerprint,
@@ -51,21 +51,21 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
         val index = implementation.instructions.indexOfFirst { ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/view/View;->setVisibility(I)V") }
 
         method.replaceInstruction(index, """
-            invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardIncognito(Landroid/view/View;)V
+            invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
         """)
 
-        val hideInfocardResult = InfocardsMethodCallFingerprint.result!!
-        val hideInfocardMethod = hideInfocardResult.mutableMethod
+        val hideInfocardsCallResult = InfocardsMethodCallFingerprint.result!!
+        val hideInfocardsCallMethod = hideInfocardsCallResult.mutableMethod
 
-        val invokeInterfaceIndex = hideInfocardResult.scanResult.patternScanResult!!.endIndex
-        val toggleRegister = hideInfocardMethod.implementation!!.registerCount - 1
+        val invokeInterfaceIndex = hideInfocardsCallResult.scanResult.patternScanResult!!.endIndex
+        val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
 
-        hideInfocardMethod.addInstructions(
+        hideInfocardsCallMethod.addInstructions(
             invokeInterfaceIndex, """
-                invoke-static {}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCard()Z
+                invoke-static {}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsMethodCall()Z
                 move-result v$toggleRegister
-                if-eqz v$toggleRegister, :hide_info_cards_header
-            """, listOf(ExternalLabel("hide_info_cards_header", hideInfocardMethod.instruction(invokeInterfaceIndex + 1)))
+                if-eqz v$toggleRegister, :hide_info_cards
+            """, listOf(ExternalLabel("hide_info_cards", hideInfocardsCallMethod.instruction(invokeInterfaceIndex + 1)))
         )
 
         return PatchResultSuccess()
