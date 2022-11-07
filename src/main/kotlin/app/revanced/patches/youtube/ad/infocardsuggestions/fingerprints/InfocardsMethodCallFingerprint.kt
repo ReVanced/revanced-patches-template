@@ -8,10 +8,10 @@ import app.revanced.patches.youtube.ad.infocardsuggestions.resource.patch.HideIn
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-@Name("info-cards-drawer-header-fingerprint")
+@Name("infocards-method-call-fingerprint")
 @HideInfocardSuggestionsCompatibility
 @Version("0.0.1")
-object HideInfocardFingerprint : MethodFingerprint(
+object InfocardsMethodCallFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,

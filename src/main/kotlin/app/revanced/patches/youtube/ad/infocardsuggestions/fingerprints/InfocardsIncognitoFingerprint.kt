@@ -8,11 +8,11 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
 import org.jf.dexlib2.AccessFlags
 
-@Name("hide-infocard-suggestions-fingerprint")
+@Name("infocards-incognito-fingerprint")
 @FuzzyPatternScanMethod(2)
 @HideInfocardSuggestionsCompatibility
 @Version("0.0.1")
-object HideInfocardIncognitoFingerprint : MethodFingerprint(
+object InfocardsIncognitoFingerprint : MethodFingerprint(
     "Ljava/lang/Boolean;",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
     strings = listOf("vibrator")

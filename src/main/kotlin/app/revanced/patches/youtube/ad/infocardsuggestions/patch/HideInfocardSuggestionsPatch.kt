@@ -16,9 +16,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardIncognitoFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardIncognitoParentFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsIncognitoFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsMethodCallFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.InfocardsIncognitoParentFingerprint
 import app.revanced.patches.youtube.ad.infocardsuggestions.resource.patch.HideInfocardSuggestionsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
@@ -31,17 +31,17 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 @Version("0.0.1")
 class HideInfocardSuggestionsPatch : BytecodePatch(
     listOf(
-        HideInfocardIncognitoParentFingerprint,
-        HideInfocardFingerprint,
+        InfocardsIncognitoParentFingerprint,
+        InfocardsMethodCallFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val parentResult = HideInfocardIncognitoParentFingerprint.result
+        val parentResult = InfocardsIncognitoParentFingerprint.result
             ?: return PatchResultError("Parent fingerprint not resolved!")
 
 
-        HideInfocardIncognitoFingerprint.resolve(context, parentResult.classDef)
-        val result = HideInfocardIncognitoFingerprint.result
+        InfocardsIncognitoFingerprint.resolve(context, parentResult.classDef)
+        val result = InfocardsIncognitoFingerprint.result
             ?: return PatchResultError("Required parent method could not be found.")
 
         val method = result.mutableMethod
@@ -54,7 +54,7 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
             invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardIncognito(Landroid/view/View;)V
         """)
 
-        val hideInfocardResult = HideInfocardFingerprint.result!!
+        val hideInfocardResult = InfocardsMethodCallFingerprint.result!!
         val hideInfocardMethod = hideInfocardResult.mutableMethod
 
         val invokeInterfaceIndex = hideInfocardResult.scanResult.patternScanResult!!.endIndex
