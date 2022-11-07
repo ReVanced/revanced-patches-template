@@ -55,9 +55,6 @@ class HideInfocardsPatch : BytecodePatch(
 
             val invokeInterfaceIndex = scanResult.patternScanResult!!.endIndex
             val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
-
-            println(hideInfocardsCallMethod)
-
             hideInfocardsCallMethod.addInstructions(
                 invokeInterfaceIndex, """
                     invoke-static {}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsMethodCall()Z
