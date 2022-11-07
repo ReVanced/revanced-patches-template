@@ -37,8 +37,8 @@ class HideEndscreenCardsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        fun injectInvokeCall(fingerprint: MethodFingerprint) {
-            val layoutResult = fingerprint.result!!
+        fun MethodFingerprint.injectHideCall() {
+            val layoutResult = result!!
             val layoutMethod = layoutResult.mutableMethod
 
             val checkCastIndex = layoutResult.scanResult.patternScanResult!!.endIndex
@@ -49,10 +49,8 @@ class HideEndscreenCardsPatch : BytecodePatch(
                 "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenCardsPatch;->hideEndscreen(Landroid/view/View;)V"
             )
         }
-
-        injectInvokeCall(LayoutCircleFingerprint)
-        injectInvokeCall(LayoutIconFingerprint)
-        injectInvokeCall(LayoutVideoFingerprint)
+        
+        listOf(LayoutCircleFingerprint, LayoutIconFingerprint, LayoutVideoFingerprint).forEach(::injectHideCall())
 
         return PatchResultSuccess()
     }
