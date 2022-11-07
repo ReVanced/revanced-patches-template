@@ -11,7 +11,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @Name("info-cards-drawer-header-fingerprint")
 @HideInfocardSuggestionsCompatibility
 @Version("0.0.1")
-object HideInfocardSuggestionsHeaderFingerprint : MethodFingerprint(
+object HideInfocardFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,

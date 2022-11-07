@@ -16,9 +16,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.ad.infocardsuggestions.annotations.HideInfocardSuggestionsCompatibility
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardSuggestionsFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardSuggestionsHeaderFingerprint
-import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardSuggestionsParentFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardIncognitoFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardFingerprint
+import app.revanced.patches.youtube.ad.infocardsuggestions.fingerprints.HideInfocardIncognitoParentFingerprint
 import app.revanced.patches.youtube.ad.infocardsuggestions.resource.patch.HideInfocardSuggestionsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
@@ -31,17 +31,17 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 @Version("0.0.1")
 class HideInfocardSuggestionsPatch : BytecodePatch(
     listOf(
-        HideInfocardSuggestionsParentFingerprint,
-        HideInfocardSuggestionsHeaderFingerprint,
+        HideInfocardIncognitoParentFingerprint,
+        HideInfocardFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val parentResult = HideInfocardSuggestionsParentFingerprint.result
+        val parentResult = HideInfocardIncognitoParentFingerprint.result
             ?: return PatchResultError("Parent fingerprint not resolved!")
 
 
-        HideInfocardSuggestionsFingerprint.resolve(context, parentResult.classDef)
-        val result = HideInfocardSuggestionsFingerprint.result
+        HideInfocardIncognitoFingerprint.resolve(context, parentResult.classDef)
+        val result = HideInfocardIncognitoFingerprint.result
             ?: return PatchResultError("Required parent method could not be found.")
 
         val method = result.mutableMethod
@@ -51,22 +51,21 @@ class HideInfocardSuggestionsPatch : BytecodePatch(
         val index = implementation.instructions.indexOfFirst { ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/view/View;->setVisibility(I)V") }
 
         method.replaceInstruction(index, """
-            invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardSuggestions(Landroid/view/View;)V
+            invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardIncognito(Landroid/view/View;)V
         """)
 
-        // hide the header creation to prevent the info card to pop up for a second
-        val hideInfocardsHeaderResult = HideInfocardSuggestionsHeaderFingerprint.result!!
-        val hideInfocardsHeaderMethod = hideInfocardsHeaderResult.mutableMethod
+        val hideInfocardResult = HideInfocardFingerprint.result!!
+        val hideInfocardMethod = hideInfocardResult.mutableMethod
 
-        val invokeInterfaceIndex = hideInfocardsHeaderResult.scanResult.patternScanResult!!.endIndex
-        val toggleRegister = hideInfocardsHeaderMethod.implementation!!.registerCount - 1
+        val invokeInterfaceIndex = hideInfocardResult.scanResult.patternScanResult!!.endIndex
+        val toggleRegister = hideInfocardMethod.implementation!!.registerCount - 1
 
-        hideInfocardsHeaderMethod.addInstructions(
+        hideInfocardMethod.addInstructions(
             invokeInterfaceIndex, """
-                invoke-static {}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCardHeaderSuggestions()Z
+                invoke-static {}, Lapp/revanced/integrations/patches/HideInfoCardSuggestionsPatch;->hideInfoCard()Z
                 move-result v$toggleRegister
                 if-eqz v$toggleRegister, :hide_info_cards_header
-            """, listOf(ExternalLabel("hide_info_cards_header", hideInfocardsHeaderMethod.instruction(invokeInterfaceIndex + 1)))
+            """, listOf(ExternalLabel("hide_info_cards_header", hideInfocardMethod.instruction(invokeInterfaceIndex + 1)))
         )
 
         return PatchResultSuccess()
