@@ -29,11 +29,9 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
+import org.jf.dexlib2.dexbacked.instruction.DexBackedInstruction21c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.instruction.formats.Instruction22c
-import org.jf.dexlib2.iface.instruction.formats.Instruction31i
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import org.jf.dexlib2.iface.instruction.formats.*
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
@@ -284,7 +282,25 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                 }
 
                                 resourceIds[7] -> {
-                                    // TODO, go to class, hide the inflated view
+                                    //  and is preceded by an instruction with the mnemonic NEW_INSTANCE
+                                    var insertIndex = index - 1
+                                    val newInstanceInstruction = instructions.elementAt(insertIndex)
+                                    if (newInstanceInstruction.opcode != Opcode.NEW_INSTANCE) return@forEachIndexed
+
+                                    // create proxied method, make sure to not re-resolve() the current class
+                                    if (mutableClass == null) mutableClass = context.findClass(
+                                        (newInstanceInstruction as DexBackedInstruction21c).reference.toString()
+                                    )!!.mutableClass
+                                    if (mutableMethod == null) mutableMethod = mutableClass!!.methods.toMutableList()[0]
+
+                                    // and is based on an instruction with the mnemonic MOVE_RESULT_OBJECT
+                                    insertIndex = 5
+                                    val invokeInstruction = mutableMethod!!.implementation!!.instructions.elementAt(insertIndex)
+                                    if (invokeInstruction.opcode != Opcode.MOVE_RESULT_OBJECT) return@forEachIndexed
+
+                                    // insert hide call to hide the view corresponding to the resource
+                                    val viewRegister = (invokeInstruction as Instruction11x).registerA
+                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex + 1, viewRegister)
                                 }
                             }
                         }
