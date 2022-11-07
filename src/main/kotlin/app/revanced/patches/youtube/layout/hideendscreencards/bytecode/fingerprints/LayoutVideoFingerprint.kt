@@ -3,13 +3,13 @@ package app.revanced.patches.youtube.layout.hideendscreencards.bytecode.fingerpr
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.hideendscreencards.annotations.HideEndScreenCardsCompatibility
+import app.revanced.patches.youtube.layout.hideendscreencards.annotations.HideEndscreenCardsCompatibility
 import app.revanced.patches.youtube.layout.hideendscreencards.resource.patch.HideEndscreenCardsResourcePatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Name("layout-video-fingerprint")
-@HideEndScreenCardsCompatibility
+@HideEndscreenCardsCompatibility
 @Version("0.0.1")
 object LayoutVideoFingerprint : MethodFingerprint(
     opcodes = listOf(
