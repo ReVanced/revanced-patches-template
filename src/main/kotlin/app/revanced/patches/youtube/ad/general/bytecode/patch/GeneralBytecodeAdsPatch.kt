@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -248,22 +249,27 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                 }
 
                                 resourceIds[3], resourceIds[4], resourceIds[5] -> { // end screen ads
-                                    //  and is followed by an instruction with the mnemonic IPUT_OBJECT
-                                    val insertIndex = index + 7
-                                    val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.IPUT_OBJECT) return@forEachIndexed
+                                    //  and is followed by an instruction with the mnemonic CHECK_CAST
+                                    var insertIndex = index + 4
+                                    var checkCastInstruction = instructions.elementAt(insertIndex)
+                                    if (checkCastInstruction.opcode != Opcode.CHECK_CAST) {
+                                        // perform a new check for endscreen_element_layout_icon
+                                        insertIndex -= 1
+                                        checkCastInstruction = instructions.elementAt(insertIndex)
+
+                                        if (checkCastInstruction.opcode != Opcode.CHECK_CAST) return@forEachIndexed
+                                    }
 
                                     // create proxied method, make sure to not re-resolve() the current class
                                     if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
-                                    // TODO: dynamically get registers
-                                    mutableMethod!!.addInstructions(
-                                        insertIndex, """
-                                                const/16 v1, 0x8
-                                                invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
-                                            """
+                                    // insert hide call to hide the view corresponding to the resource
+                                    val viewRegister = (checkCastInstruction as Instruction21c).registerA
+                                    mutableMethod!!.addInstruction(
+                                        insertIndex,
+                                        "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenPatch;->HideEndscreen(Landroid/view/View;)V"
                                     )
                                 }
 
