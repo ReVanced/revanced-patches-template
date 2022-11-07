@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -30,11 +29,9 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
+import org.jf.dexlib2.dexbacked.instruction.DexBackedInstruction21c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.instruction.formats.Instruction22c
-import org.jf.dexlib2.iface.instruction.formats.Instruction31i
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import org.jf.dexlib2.iface.instruction.formats.*
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
@@ -54,8 +51,9 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         "ad_attribution",
         "reel_multiple_items_shelf",
         "info_cards_drawer_header",
-        "promoted_video_item_land",
-        "promoted_video_item_full_bleed",
+        "endscreen_element_layout_video",
+        "endscreen_element_layout_circle",
+        "endscreen_element_layout_icon",
     ).map { name ->
         ResourceMappingResourcePatch.resourceMappings.single { it.name == name }.id
     }
@@ -245,24 +243,24 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     mutableMethod!!.implementation!!.removeInstruction(removeIndex)
                                 }
 
-                                resourceIds[3] -> {
-                                    //  and is followed by an instruction with the mnemonic INVOKE_DIRECT
-                                    val insertIndex = index + 3
+                                resourceIds[3], resourceIds[4], resourceIds[5] -> { // end screen ads
+                                    //  and is followed by an instruction with the mnemonic IPUT_OBJECT
+                                    val insertIndex = index + 7
                                     val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.INVOKE_DIRECT) return@forEachIndexed
+                                    if (invokeInstruction.opcode != Opcode.IPUT_OBJECT) return@forEachIndexed
 
                                     // create proxied method, make sure to not re-resolve() the current class
                                     if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
-                                    // insert hide call to hide the view corresponding to the resource
-                                    val viewRegister = (invokeInstruction as Instruction35c).registerE
-                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
-                                }
-
-                                resourceIds[4] -> {
-                                    // TODO, go to class, hide the inflated view
+                                    // TODO: dynamically get registers
+                                    mutableMethod!!.addInstructions(
+                                        insertIndex, """
+                                                const/16 v1, 0x8
+                                                invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
+                                            """
+                                    )
                                 }
                             }
                         }
