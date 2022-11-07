@@ -54,9 +54,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         "ad_attribution",
         "reel_multiple_items_shelf",
         "info_cards_drawer_header",
-        "endscreen_element_layout_video",
-        "endscreen_element_layout_circle",
-        "endscreen_element_layout_icon",
         "promoted_video_item_land",
         "promoted_video_item_full_bleed",
     ).map { name ->
@@ -248,32 +245,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     mutableMethod!!.implementation!!.removeInstruction(removeIndex)
                                 }
 
-                                resourceIds[3], resourceIds[4], resourceIds[5] -> { // end screen ads
-                                    //  and is followed by an instruction with the mnemonic CHECK_CAST
-                                    var insertIndex = index + 4
-                                    var checkCastInstruction = instructions.elementAt(insertIndex)
-                                    if (checkCastInstruction.opcode != Opcode.CHECK_CAST) {
-                                        // perform a new check for endscreen_element_layout_icon
-                                        insertIndex -= 1
-                                        checkCastInstruction = instructions.elementAt(insertIndex)
-
-                                        if (checkCastInstruction.opcode != Opcode.CHECK_CAST) return@forEachIndexed
-                                    }
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    // insert hide call to hide the view corresponding to the resource
-                                    val viewRegister = (checkCastInstruction as Instruction21c).registerA
-                                    mutableMethod!!.addInstruction(
-                                        insertIndex,
-                                        "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenPatch;->HideEndscreen(Landroid/view/View;)V"
-                                    )
-                                }
-
-                                resourceIds[6] -> {
+                                resourceIds[3] -> {
                                     //  and is followed by an instruction with the mnemonic INVOKE_DIRECT
                                     val insertIndex = index + 3
                                     val invokeInstruction = instructions.elementAt(insertIndex)
@@ -289,7 +261,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
                                 }
 
-                                resourceIds[7] -> {
+                                resourceIds[4] -> {
                                     // TODO, go to class, hide the inflated view
                                 }
                             }
