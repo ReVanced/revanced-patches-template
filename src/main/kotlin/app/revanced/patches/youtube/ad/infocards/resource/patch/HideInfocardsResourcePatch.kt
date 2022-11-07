@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.ad.infocards.resource.patch
 
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
@@ -13,7 +12,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 
-@Name("hide-infocards-resource")
 @HideInfocardsCompatibility
 @DependsOn([SettingsPatch::class, ResourceMappingResourcePatch::class])
 @Version("0.0.1")

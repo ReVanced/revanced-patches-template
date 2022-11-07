@@ -21,6 +21,8 @@ import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsMethodCal
 import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsIncognitoParentFingerprint
 import app.revanced.patches.youtube.ad.infocards.resource.patch.HideInfocardsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.video.information.fingerprints.SeekFingerprint
+import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch
@@ -36,37 +38,34 @@ class HideInfocardsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val parentResult = InfocardsIncognitoParentFingerprint.result
-            ?: return PatchResultError("Parent fingerprint not resolved!")
+        with(InfocardsIncognitoFingerprint.also {
+            it.resolve(context, InfocardsIncognitoParentFingerprint.result!!.classDef)
+        }.result!!.mutableMethod) {
+                val invokeInstructionIndex = implementation!!.instructions.indexOfFirst {
+                    it.opcode.ordinal == Opcode.INVOKE_VIRTUAL.ordinal &&
+                    ((it as? BuilderInstruction35c)?.reference.toString() ==
+                        "Landroid/view/View;->setVisibility(I)V")
+                }
 
+                replaceInstruction(invokeInstructionIndex, """
+                    invoke-static {${(instruction(invokeInstructionIndex) as? BuilderInstruction35c)?.registerC}}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
+                """)
+        }
 
-        InfocardsIncognitoFingerprint.resolve(context, parentResult.classDef)
-        val result = InfocardsIncognitoFingerprint.result
-            ?: return PatchResultError("Required parent method could not be found.")
+        with(InfocardsMethodCallFingerprint.result!!) {
+            val hideInfocardsCallMethod = mutableMethod
 
-        val method = result.mutableMethod
-        val implementation = method.implementation
-            ?: return PatchResultError("Implementation not found.")
+            val invokeInterfaceIndex = scanResult.patternScanResult!!.endIndex
+            val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
 
-        val index = implementation.instructions.indexOfFirst { ((it as? BuilderInstruction35c)?.reference.toString() == "Landroid/view/View;->setVisibility(I)V") }
-
-        method.replaceInstruction(index, """
-            invoke-static {p1}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
-        """)
-
-        val hideInfocardsCallResult = InfocardsMethodCallFingerprint.result!!
-        val hideInfocardsCallMethod = hideInfocardsCallResult.mutableMethod
-
-        val invokeInterfaceIndex = hideInfocardsCallResult.scanResult.patternScanResult!!.endIndex
-        val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
-
-        hideInfocardsCallMethod.addInstructions(
-            invokeInterfaceIndex, """
-                invoke-static {}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsMethodCall()Z
-                move-result v$toggleRegister
-                if-eqz v$toggleRegister, :hide_info_cards
-            """, listOf(ExternalLabel("hide_info_cards", hideInfocardsCallMethod.instruction(invokeInterfaceIndex + 1)))
-        )
+            hideInfocardsCallMethod.addInstructions(
+                invokeInterfaceIndex, """
+                    invoke-static {}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsMethodCall()Z
+                    move-result v$toggleRegister
+                    if-eqz v$toggleRegister, :hide_info_cards
+                """, listOf(ExternalLabel("hide_info_cards", hideInfocardsCallMethod.instruction(invokeInterfaceIndex + 1)))
+            )
+        }
 
         return PatchResultSuccess()
     }
