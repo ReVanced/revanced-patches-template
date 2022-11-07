@@ -16,8 +16,8 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Swit
 @DependsOn([SettingsPatch::class, ResourceMappingResourcePatch::class])
 @Version("0.0.1")
 class HideInfocardsResourcePatch : ResourcePatch {
-    companion object {
-        internal var drawerResourceId: Long = -1
+    internal companion object {
+        var drawerResourceId: Long = -1
     }
 
     override fun execute(context: ResourceContext): PatchResult {
