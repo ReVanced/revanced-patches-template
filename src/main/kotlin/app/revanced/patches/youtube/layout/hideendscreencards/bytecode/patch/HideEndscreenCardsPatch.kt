@@ -50,7 +50,7 @@ class HideEndscreenCardsPatch : BytecodePatch(
             )
         }
         
-        listOf(LayoutCircleFingerprint, LayoutIconFingerprint, LayoutVideoFingerprint).forEach(::injectHideCall())
+        listOf(LayoutCircleFingerprint, LayoutIconFingerprint, LayoutVideoFingerprint).forEach(MethodFingerprint::injectHideCall)
 
         return PatchResultSuccess()
     }
