@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.infocards.annotations
+package app.revanced.patches.youtube.layout.hideinfocards.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

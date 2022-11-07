@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.infocards.patch
+package app.revanced.patches.youtube.layout.hideinfocards.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -10,18 +10,16 @@ import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.ad.infocards.annotations.HideInfocardsCompatibility
-import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsIncognitoFingerprint
-import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsMethodCallFingerprint
-import app.revanced.patches.youtube.ad.infocards.fingerprints.InfocardsIncognitoParentFingerprint
-import app.revanced.patches.youtube.ad.infocards.resource.patch.HideInfocardsResourcePatch
+import app.revanced.patches.youtube.layout.hideinfocards.annotations.HideInfocardsCompatibility
+import app.revanced.patches.youtube.layout.hideinfocards.fingerprints.InfocardsIncognitoFingerprint
+import app.revanced.patches.youtube.layout.hideinfocards.fingerprints.InfocardsMethodCallFingerprint
+import app.revanced.patches.youtube.layout.hideinfocards.fingerprints.InfocardsIncognitoParentFingerprint
+import app.revanced.patches.youtube.layout.hideinfocards.resource.patch.HideInfocardsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.video.information.fingerprints.SeekFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 

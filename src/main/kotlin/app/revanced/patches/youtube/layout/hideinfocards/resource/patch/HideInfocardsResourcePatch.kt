@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.infocards.resource.patch
+package app.revanced.patches.youtube.layout.hideinfocards.resource.patch
 
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.ResourceContext
@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.youtube.ad.infocards.annotations.HideInfocardsCompatibility
+import app.revanced.patches.youtube.layout.hideinfocards.annotations.HideInfocardsCompatibility
 import app.revanced.patches.youtube.misc.mapping.patch.ResourceMappingResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
