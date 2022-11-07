@@ -54,8 +54,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
         "endscreen_element_layout_video",
         "endscreen_element_layout_circle",
         "endscreen_element_layout_icon",
-        "promoted_video_item_land",
-        "promoted_video_item_full_bleed",
     ).map { name ->
         ResourceMappingResourcePatch.resourceMappings.single { it.name == name }.id
     }
@@ -263,44 +261,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                                 invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
                                             """
                                     )
-                                }
-
-                                resourceIds[6] -> {
-                                    //  and is followed by an instruction with the mnemonic INVOKE_DIRECT
-                                    val insertIndex = index + 3
-                                    val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.INVOKE_DIRECT) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    // insert hide call to hide the view corresponding to the resource
-                                    val viewRegister = (invokeInstruction as Instruction35c).registerE
-                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
-                                }
-
-                                resourceIds[7] -> {
-                                    //  and is preceded by an instruction with the mnemonic NEW_INSTANCE
-                                    var insertIndex = index - 1
-                                    val newInstanceInstruction = instructions.elementAt(insertIndex)
-                                    if (newInstanceInstruction.opcode != Opcode.NEW_INSTANCE) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.findClass(
-                                        (newInstanceInstruction as DexBackedInstruction21c).reference.toString()
-                                    )!!.mutableClass
-                                    if (mutableMethod == null) mutableMethod = mutableClass!!.methods.toMutableList()[0]
-
-                                    // and is based on an instruction with the mnemonic MOVE_RESULT_OBJECT
-                                    insertIndex = 5
-                                    val invokeInstruction = mutableMethod!!.implementation!!.instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.MOVE_RESULT_OBJECT) return@forEachIndexed
-
-                                    // insert hide call to hide the view corresponding to the resource
-                                    val viewRegister = (invokeInstruction as Instruction11x).registerA
-                                    mutableMethod!!.implementation!!.injectHideCall(insertIndex + 1, viewRegister)
                                 }
                             }
                         }
