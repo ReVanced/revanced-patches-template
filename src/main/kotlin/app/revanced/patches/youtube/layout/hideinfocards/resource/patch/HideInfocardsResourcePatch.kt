@@ -25,9 +25,9 @@ class HideInfocardsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_infocards",
                 StringResource("revanced_hide_infocards_title", "Show info-cards"),
-                false,
-                StringResource("revanced_hide_infocards_summary_on", "Info-cards are shown"),
-                StringResource("revanced_hide_infocards_summary_off", "Info-cards are hidden")
+                true,
+                StringResource("revanced_hide_infocards_summary_on", "Info-cards are hidden"),
+                StringResource("revanced_hide_infocards_summary_off", "Info-cards are shown")
             )
         )
 
