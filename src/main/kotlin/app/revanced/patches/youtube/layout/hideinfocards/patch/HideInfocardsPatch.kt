@@ -67,5 +67,4 @@ class HideInfocardsPatch : BytecodePatch(
 
         return PatchResultSuccess()
     }
-
 }
