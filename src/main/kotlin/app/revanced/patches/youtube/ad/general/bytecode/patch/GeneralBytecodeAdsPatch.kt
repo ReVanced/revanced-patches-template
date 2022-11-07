@@ -257,7 +257,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     // insert hide call to hide the view corresponding to the resource
                                     val viewRegister = (checkCastInstruction as Instruction21c).registerA
                                     mutableMethod!!.addInstruction(
-                                        insertIndex,
+                                        insertIndex + 1,
                                         "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenPatch;->HideEndscreen(Landroid/view/View;)V"
                                     )
                                 }
