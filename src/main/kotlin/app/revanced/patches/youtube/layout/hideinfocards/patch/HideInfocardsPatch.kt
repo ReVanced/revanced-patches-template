@@ -47,7 +47,8 @@ class HideInfocardsPatch : BytecodePatch(
 
                 replaceInstruction(invokeInstructionIndex, """
                     invoke-static {v${(instruction(invokeInstructionIndex) as? BuilderInstruction35c)?.registerC}}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
-                """)
+                    """
+                )
         }
 
         with(InfocardsMethodCallFingerprint.result!!) {
