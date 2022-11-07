@@ -6,13 +6,16 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.fingerprint.Fingerprint
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.hideendscreencards.annotations.HideEndScreenCardsCompatibility
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.youtube.layout.hideendscreencards.annotations.HideEndscreenCardsCompatibility
 import app.revanced.patches.youtube.layout.hideendscreencards.bytecode.fingerprints.LayoutCircleFingerprint
 import app.revanced.patches.youtube.layout.hideendscreencards.bytecode.fingerprints.LayoutIconFingerprint
 import app.revanced.patches.youtube.layout.hideendscreencards.bytecode.fingerprints.LayoutVideoFingerprint
@@ -24,7 +27,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 @DependsOn([IntegrationsPatch::class, HideEndscreenCardsResourcePatch::class])
 @Name("hide-endscreen-cards-patch")
 @Description("Hides the suggested video cards at the end of a video in fullscreen.")
-@HideEndScreenCardsCompatibility
+@HideEndscreenCardsCompatibility
 @Version("0.0.1")
 class HideEndscreenCardsPatch : BytecodePatch(
     listOf(
@@ -34,21 +37,22 @@ class HideEndscreenCardsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        fun injectInvokeCall(result: MethodFingerprintResult) {
-            val layoutMethod = result.mutableMethod
+        fun injectInvokeCall(fingerprint: MethodFingerprint) {
+            val layoutResult = fingerprint.result!!
+            val layoutMethod = layoutResult.mutableMethod
 
-            val checkCastIndex = result.scanResult.patternScanResult!!.endIndex
+            val checkCastIndex = layoutResult.scanResult.patternScanResult!!.endIndex
             val viewRegister = (layoutMethod.instruction(checkCastIndex) as Instruction21c).registerA
 
             layoutMethod.addInstruction(
                 checkCastIndex + 1,
-                "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenPatch;->HideEndscreen(Landroid/view/View;)V"
+                "invoke-static { v$viewRegister }, Lapp/revanced/integrations/patches/HideEndscreenCardsPatch;->hideEndscreen(Landroid/view/View;)V"
             )
         }
 
-        injectInvokeCall(LayoutCircleFingerprint.result!!)
-        injectInvokeCall(LayoutIconFingerprint.result!!)
-        injectInvokeCall(LayoutVideoFingerprint.result!!)
+        injectInvokeCall(LayoutCircleFingerprint)
+        injectInvokeCall(LayoutIconFingerprint)
+        injectInvokeCall(LayoutVideoFingerprint)
 
         return PatchResultSuccess()
     }
