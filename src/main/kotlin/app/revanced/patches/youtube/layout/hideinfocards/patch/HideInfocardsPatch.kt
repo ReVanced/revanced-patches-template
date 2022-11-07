@@ -46,7 +46,7 @@ class HideInfocardsPatch : BytecodePatch(
                 }
 
                 replaceInstruction(invokeInstructionIndex, """
-                    invoke-static {${(instruction(invokeInstructionIndex) as? BuilderInstruction35c)?.registerC}}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
+                    invoke-static {v${(instruction(invokeInstructionIndex) as? BuilderInstruction35c)?.registerC}}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsIncognito(Landroid/view/View;)V
                 """)
         }
 
@@ -56,11 +56,13 @@ class HideInfocardsPatch : BytecodePatch(
             val invokeInterfaceIndex = scanResult.patternScanResult!!.endIndex
             val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
 
+            println(hideInfocardsCallMethod)
+
             hideInfocardsCallMethod.addInstructions(
                 invokeInterfaceIndex, """
                     invoke-static {}, Lapp/revanced/integrations/patches/HideInfocardsPatch;->hideInfocardsMethodCall()Z
                     move-result v$toggleRegister
-                    if-eqz v$toggleRegister, :hide_info_cards
+                    if-nez v$toggleRegister, :hide_info_cards
                 """, listOf(ExternalLabel("hide_info_cards", hideInfocardsCallMethod.instruction(invokeInterfaceIndex + 1)))
             )
         }
