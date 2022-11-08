@@ -35,7 +35,7 @@ class ParseUriRedirectPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_uri_redirect",
-                StringResource("revanced_uri_redirect_title", "Redirect YouTube link"),
+                StringResource("revanced_uri_redirect_title", "Open links directly"),
                 true,
                 StringResource("revanced_uri_redirect_summary_on", "Open url by bypassing youtube.com/redirect"),
                 StringResource("revanced_uri_redirect_summary_off" , "Follow redirect policy of YouTube")
