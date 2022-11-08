@@ -28,7 +28,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_endscreen_cards",
-                StringResource("revanced_hide_endscreen_cards_title", "Remove end-screen cards"),
+                StringResource("revanced_hide_endscreen_cards_title", "Hide end-screen cards"),
                 true,
                 StringResource("revanced_hide_endscreen_cards_summary_on", "End-screen cards are hidden"),
                 StringResource("revanced_hide_endscreen_cards_summary_off", "End-screen cards are shown")
