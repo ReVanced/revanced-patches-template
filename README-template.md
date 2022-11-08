@@ -122,3 +122,30 @@ Example:
   }
 ]
 ```
+
+## 🛠️ Building
+
+1. Make sure you are authenticated to GitHub Packages.
+
+This will assume you have a GitHub account.
+\
+Create a PAT with the scope `read:packages` [here](https://github.com/settings/tokens/new?scopes=read:packages&description=Revanced) and add your token to `~/.gradle/gradle.properties`.
+\
+Example `gradle.properties` file:
+
+```properties
+gpr.user = YourUsername
+gpr.key = ghp_longrandomkey
+```
+
+2. Clone the repository
+
+```bash
+git clone https://github.com/revanced/revanced-patches && cd revanced-patches
+```
+
+3. Build the project
+
+```bash
+./gradlew build
+```
