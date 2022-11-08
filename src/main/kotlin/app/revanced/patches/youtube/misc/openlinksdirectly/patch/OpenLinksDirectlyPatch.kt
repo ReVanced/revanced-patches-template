@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("open-links-directly")
 @Description("Bypassed youtube.com/redirect links and allows opening links directly.")
 @OpenLinksDirectlyCompatibility
