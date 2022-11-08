@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 @Patch
 @DependsOn([IntegrationsPatch::class])
 @Name("open-links-directly")
-@Description("Follow direct links, bypassing youtube.com/redirect.")
+@Description("Bypassed youtube.com/redirect links and allows opening links directly.")
 @ParseUriRedirectCompatibility
 @Version("0.0.1")
 class ParseUriRedirectPatch : BytecodePatch(
