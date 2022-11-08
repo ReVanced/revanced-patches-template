@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Package
 
 @Compatibility(
     [Package(
-        "com.awedea.nyx", arrayOf("2.2.5")
+        "com.awedea.nyx" 
     )]
 )
 @Target(AnnotationTarget.CLASS)
