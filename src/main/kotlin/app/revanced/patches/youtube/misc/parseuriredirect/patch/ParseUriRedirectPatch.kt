@@ -38,7 +38,7 @@ class ParseUriRedirectPatch : BytecodePatch(
                 StringResource("revanced_uri_redirect_title", "Open links directly"),
                 true,
                 StringResource("revanced_uri_redirect_summary_on", "Enabled"),
-                StringResource("revanced_uri_redirect_summary_off" , "Follow redirect policy of YouTube")
+                StringResource("revanced_uri_redirect_summary_off" , "Disabled")
             )
         )
 
