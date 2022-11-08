@@ -50,10 +50,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
     private val resourceIds = arrayOf(
         "ad_attribution",
         "reel_multiple_items_shelf",
-        "info_cards_drawer_header",
-        "endscreen_element_layout_video",
-        "endscreen_element_layout_circle",
-        "endscreen_element_layout_icon",
     ).map { name ->
         ResourceMappingResourcePatch.resourceMappings.single { it.name == name }.id
     }
@@ -226,41 +222,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
                                     val viewRegister = (iPutInstruction as Instruction22c).registerA
                                     mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
-                                }
-
-                                resourceIds[2] -> { // info cards ads
-                                    //  and is followed by an instruction with the mnemonic INVOKE_VIRTUAL
-                                    val removeIndex = index - 1
-                                    val invokeInstruction = instructions.elementAt(removeIndex)
-                                    if (invokeInstruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    //ToDo: Add Settings toggle for whatever this is
-                                    mutableMethod!!.implementation!!.removeInstruction(removeIndex)
-                                }
-
-                                resourceIds[3], resourceIds[4], resourceIds[5] -> { // end screen ads
-                                    //  and is followed by an instruction with the mnemonic IPUT_OBJECT
-                                    val insertIndex = index + 7
-                                    val invokeInstruction = instructions.elementAt(insertIndex)
-                                    if (invokeInstruction.opcode != Opcode.IPUT_OBJECT) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    // TODO: dynamically get registers
-                                    mutableMethod!!.addInstructions(
-                                        insertIndex, """
-                                                const/16 v1, 0x8
-                                                invoke-virtual {v0,v1}, Landroid/widget/FrameLayout;->setVisibility(I)V
-                                            """
-                                    )
                                 }
                             }
                         }
