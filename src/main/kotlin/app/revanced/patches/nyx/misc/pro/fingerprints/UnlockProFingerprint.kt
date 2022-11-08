@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.nyx.misc.pro.annotations.UnlockProCompatibility
 
-@Name("unlock-pro")
+@Name("check-pro-fingerprint")
 @UnlockProCompatibility
 @Version("0.0.1")
 object UnlockProFingerprint : MethodFingerprint(
