@@ -8,7 +8,7 @@ import app.revanced.patches.nyx.misc.pro.annotations.UnlockProCompatibility
 @Name("check-pro-fingerprint")
 @UnlockProCompatibility
 @Version("0.0.1")
-object UnlockProFingerprint : MethodFingerprint(
+object CheckProFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("BillingManager;") && methodDef.name == "isProVersion"
     }

@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.nyx.misc.pro.annotations.UnlockProCompatibility
-import app.revanced.patches.nyx.misc.pro.fingerprints.UnlockProFingerprint
+import app.revanced.patches.nyx.misc.pro.fingerprints.CheckProFingerprint
 
 @Patch
 @Name("unlock-pro")
@@ -20,11 +20,11 @@ import app.revanced.patches.nyx.misc.pro.fingerprints.UnlockProFingerprint
 @Version("0.0.1")
 class UnlockProPatch : BytecodePatch(
     listOf(
-        UnlockProFingerprint
+        CheckProFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val method = UnlockProFingerprint.result!!.mutableMethod
+        val method = CheckProFingerprint.result!!.mutableMethod
         method.addInstructions(
             0,
             """
