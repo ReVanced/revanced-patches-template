@@ -18,6 +18,7 @@ import app.revanced.patches.youtube.misc.openlinksdirectly.fingerprints.OpenLink
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
+import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 
@@ -43,29 +44,29 @@ class OpenLinksDirectlyPatch : BytecodePatch(
             )
         )
 
-        arrayOf(OpenLinksDirectlyFingerprintPrimary, OpenLinksDirectlyFingerprintSecondary).forEach(::openLinksDirectly)
+        OpenLinksDirectlyFingerprintPrimary.hookUriParser(true)
+        OpenLinksDirectlyFingerprintSecondary.hookUriParser(false)
 
         return PatchResultSuccess()
     }
+}
 
-    private fun openLinksDirectly(fingerprint: MethodFingerprint) {
-        val isPrimaryFingerprint = fingerprint == OpenLinksDirectlyFingerprintPrimary
-        with(fingerprint.result!!) {
-            val startIndex = scanResult.patternScanResult!!.startIndex
-            val instruction = method.implementation!!.instructions.elementAt(startIndex+1)
-            val insertIndex = if (isPrimaryFingerprint) 1 else 2
-            val targetRegister =
-                if (isPrimaryFingerprint)
-                    (instruction as Instruction35c).registerC
-                else
-                    (instruction as Instruction11x).registerA
+fun MethodFingerprint.hookUriParser(isPrimaryFingerprint: Boolean) {
+    fun getTargetRegister(instruction: Instruction): Int {
+        if (isPrimaryFingerprint) return (instruction as Instruction35c).registerC
+        return (instruction as Instruction11x).registerA
+    }
+    with(this.result!!) {
+        val startIndex = scanResult.patternScanResult!!.startIndex
+        val instruction = method.implementation!!.instructions.elementAt(startIndex + 1)
+        val insertIndex = if (isPrimaryFingerprint) 1 else 2
+        val targetRegister = getTargetRegister(instruction)
 
-            mutableMethod.addInstructions(
-                startIndex + insertIndex, """
+        mutableMethod.addInstructions(
+            startIndex + insertIndex, """
                invoke-static {v$targetRegister}, Lapp/revanced/integrations/patches/OpenLinksDirectlyPatch;->parseRedirectUri(Ljava/lang/String;)Ljava/lang/String;
                move-result-object v$targetRegister
             """
-            )
-        }
+        )
     }
 }
