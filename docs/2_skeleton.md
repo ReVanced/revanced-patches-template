@@ -47,7 +47,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 @Patch
 @Name("disable-ads")
 @Description("Disables ads.")
-@DisableAdsCompatibility
+@Compatibility([Package("com.some.app", arrayOf("0.1.0"))])
 @Version("0.0.1")
 ```
 
