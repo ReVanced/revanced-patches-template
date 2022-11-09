@@ -12,7 +12,7 @@ import org.jf.dexlib2.Opcode
 @OpenLinksDirectlyCompatibility
 @Version("0.0.1")
 object OpenLinksDirectlyFingerprintPrimary : MethodFingerprint(
-    "Ljava/lang/Object", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L"), listOf(
+    "L", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L"), listOf(
         Opcode.CHECK_CAST,
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT,
