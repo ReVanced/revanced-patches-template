@@ -28,7 +28,6 @@ import app.revanced.patches.youtube.misc.settings.framework.components.impl.Stri
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.MutableMethodImplementation
-import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -57,10 +56,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
     ).map { name ->
         ResourceMappingResourcePatch.resourceMappings.single { it.name == name }.id
     }
-
-    private val stringReferences = arrayOf(
-        "LoggingProperties are not in proto format"
-    )
 
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
@@ -229,7 +224,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
                         Opcode.CONST_STRING -> {
                             when (((instruction as Instruction21c).reference as StringReference).string) {
-                                stringReferences[0] -> { // Litho ads
+                                "LoggingProperties are not in proto format" -> { // Litho ads
                                     val proxy = context.proxy(classDef)
                                     val proxiedClass = proxy.mutableClass
 
