@@ -88,7 +88,7 @@ The [ReVanced patches](https://github.com/revanced/revanced-patches) follow a co
 
 Example: _The class for a patch which disables ads should be called `DisableAdsPatch`, for a patch which adds a new download feature it should be called `DownloadsPatch`._
 
-Each patch implements the [Patch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L15) interface by extending off [ResourcePatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L35) or [BytecodedPatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L42). The current example extends off `BytecodePatch`:
+Each patch implicitly implements the [Patch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L15) interface when extending off [ResourcePatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L35) or [BytecodePatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L42). The current example extends off `BytecodePatch`:
 
 ```kt
 class DisableAdsPatch : BytecodePatch( /* Parameters */ ) {
