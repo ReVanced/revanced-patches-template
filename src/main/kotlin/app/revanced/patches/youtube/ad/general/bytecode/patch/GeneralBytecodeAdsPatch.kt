@@ -46,9 +46,6 @@ import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 @GeneralAdsCompatibility
 @Version("0.0.1")
 class GeneralBytecodeAdsPatch : BytecodePatch() {
-    // a constant used by litho
-    private val lithoConstant = 0xaed2868
-
     // list of resource names to get the id of
     private val resourceIds = arrayOf(
         "ad_attribution",
@@ -263,15 +260,15 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     lithoMethod.addInstructions(
                                         insertIndex, // right after setting the component.pathBuilder field,
                                         """
-                                                invoke-static {v5, v2}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
-                                                move-result v$clobberedRegister
-                                                if-eqz v$clobberedRegister, :not_an_ad
-                                                move-object/from16 v2, p1
-                                                invoke-static {v2}, $createEmptyComponentDescriptor
-                                                move-result-object v0
-                                                iget-object v0, v0, $emptyComponentFieldDescriptor
-                                                return-object v0
-                                            """,
+                                            invoke-static {v5, v2}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
+                                            move-result v$clobberedRegister
+                                            if-eqz v$clobberedRegister, :not_an_ad
+                                            move-object/from16 v2, p1
+                                            invoke-static {v2}, $createEmptyComponentDescriptor
+                                            move-result-object v0
+                                            iget-object v0, v0, $emptyComponentFieldDescriptor
+                                            return-object v0
+                                        """,
                                         listOf(ExternalLabel("not_an_ad", lithoMethod.instruction(insertIndex)))
                                     )
                                 }
@@ -289,7 +286,8 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
     private fun getLithoMethod(mutableClass: MutableClass) = mutableClass.methods.firstOrNull {
         it.implementation?.instructions?.any { instruction ->
-            instruction.opcode == Opcode.CONST && (instruction as Instruction31i).narrowLiteral == lithoConstant
+            instruction.opcode == Opcode.CONST &&
+            (instruction as Instruction31i).narrowLiteral == 0xaed2868// a constant used by litho
         } ?: false
     }
 
