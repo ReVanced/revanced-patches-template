@@ -55,7 +55,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
     }
 
     private val stringReferences = arrayOf(
-        "Claiming to use more elements than provided",
         "LoggingProperties are not in proto format"
     )
 
@@ -205,7 +204,6 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     // insert hide call to hide the view corresponding to the resource
                                     val viewRegister = (invokeInstruction as Instruction35c).registerC
                                     mutableMethod!!.implementation!!.injectHideCall(insertIndex, viewRegister)
-
                                 }
 
                                 resourceIds[1] -> { // reel ads
@@ -227,24 +225,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
 
                         Opcode.CONST_STRING -> {
                             when (((instruction as Instruction21c).reference as StringReference).string) {
-                                stringReferences[0] -> {
-                                    val stringInstruction = instructions.elementAt(3)
-                                    if (stringInstruction.opcode == Opcode.CONST_STRING) return@forEachIndexed
-
-                                    // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
-                                    if (mutableMethod == null) mutableMethod =
-                                        mutableClass!!.findMutableMethodOf(method)
-
-                                    // return the method
-                                    val insertIndex = 1 // after super constructor
-                                    //ToDo: Add setting here
-                                    mutableMethod!!.implementation!!.addInstruction(
-                                        insertIndex, BuilderInstruction10x(Opcode.RETURN_VOID)
-                                    )
-                                }
-
-                                stringReferences[1] -> { // Litho ads
+                                stringReferences[0] -> { // Litho ads
                                     val proxy = context.proxy(classDef)
                                     val proxiedClass = proxy.mutableClass
 
