@@ -1,7 +1,6 @@
 package app.revanced.patches.youtube.layout.playerbuttonoverlay.patch
 
 import app.revanced.extensions.doRecursively
-import app.revanced.extensions.startsWithAny
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -22,9 +21,7 @@ import org.w3c.dom.Element
 @PlayerButtonOverlayCompatibility
 @Version("0.0.1")
 class PlayerButtonOverlayPatch : ResourcePatch {
-    private val resourceFileNames = arrayOf(
-        "player_button_circle_background.xml"
-    )
+    private val resourceFilePath = "res/drawable/player_button_circle_background.xml"
 
     // the attributes to change the value of
     private val replacements = arrayOf(
@@ -32,22 +29,18 @@ class PlayerButtonOverlayPatch : ResourcePatch {
     )
 
     override fun execute(context: ResourceContext): PatchResult {
-        context.forEach {
-            if (!it.name.startsWithAny(*resourceFileNames)) return@forEach
+        context.xmlEditor[resourceFilePath].use { editor ->
+            editor.file.doRecursively { node ->
+                replacements.forEach replacement@{ replacement ->
+                    if (node !is Element) return@replacement
 
-            // for each file in the "layouts" directory replace all necessary attributes content
-            context.xmlEditor[it.absolutePath].use { editor ->
-                editor.file.doRecursively { node ->
-                    replacements.forEach replacement@{ replacement ->
-                        if (node !is Element) return@replacement
-
-                        node.getAttributeNode("android:$replacement")?.let { attribute ->
-                            attribute.textContent = "@android:color/transparent"
-                        }
+                    node.getAttributeNode("android:$replacement")?.let { attribute ->
+                        attribute.textContent = "@android:color/transparent"
                     }
                 }
             }
         }
+
         return PatchResultSuccess()
     }
 }
