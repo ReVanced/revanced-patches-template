@@ -242,6 +242,6 @@ The following properties are utilized by bytecode patches:
 
 ## ⏭️ Whats next
 
-The next section will introduce the concept of fingerprinting methods.
+The next section will give a suggestion on coding conventions and on the file structure of a patch.
 
-Continue: [Introduction to the ReVanced patcher](1_introduction.md)
+Continue: [📜 Patch file structure and conventions](4_structure_and_conventions.md)
