@@ -140,7 +140,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
    return PatchResultSuccess()
    ```
 
-> Details of this implementation and what exactly `Fingerprints` are will be introduced properly on another page.
+> **Note**: Details of this implementation and what exactly `Fingerprints` are will be introduced properly on another page.
 
 ## 🤏 Minimal template for a bytecode patch
 
