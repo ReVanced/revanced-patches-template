@@ -5,7 +5,9 @@ import app.revanced.patches.youtube.misc.settings.framework.components.BasePrefe
 internal class ListPreference(
     key : String,
     title : StringResource,
-    val summary : StringResource
+    var entries : ArrayResource,
+    var entryValues : ArrayResource,
+    var summary : StringResource
 ): BasePreference(key, title) {
     override val tag: String = "ListPreference"
 }
