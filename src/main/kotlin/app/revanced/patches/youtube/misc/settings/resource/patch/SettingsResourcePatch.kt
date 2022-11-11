@@ -24,8 +24,14 @@ import org.w3c.dom.Node
 @DependsOn([FixLocaleConfigErrorPatch::class, ResourceMappingResourcePatch::class])
 @Version("0.0.1")
 class SettingsResourcePatch : ResourcePatch {
-
     override fun execute(context: ResourceContext): PatchResult {
+        /*
+         * used by a fingerprint of SettingsPatch
+         */
+        appearanceStringId = ResourceMappingResourcePatch.resourceMappings.find {
+            it.type == "string" && it.name == "app_theme_appearance_dark"
+        }!!.id
+
         /*
          * create missing directory for the resources
          */
@@ -73,7 +79,9 @@ class SettingsResourcePatch : ResourcePatch {
             Preference(
                 StringResource("revanced_settings", "ReVanced"),
                 Preference.Intent(
-                    youtubePackage, "revanced_settings", "com.google.android.libraries.social.licenses.LicenseActivity"
+                    youtubePackage,
+                    "revanced_settings",
+                    "com.google.android.libraries.social.licenses.LicenseActivity"
                 ),
                 StringResource("revanced_settings_summary", "ReVanced specific settings"),
             )
@@ -84,6 +92,12 @@ class SettingsResourcePatch : ResourcePatch {
 
 
     internal companion object {
+        // Used by a fingerprint of SettingsPatch
+        // this field is located in the SettingsResourcePatch
+        // because if it were to be defined in the SettingsPatch companion object,
+        // the companion object could be initialized before ResourceMappingResourcePatch has executed.
+        internal var appearanceStringId: Long = -1
+
         // if this is not null, all intents will be renamed to this
         var overrideIntentsTargetPackage: String? = null
 
@@ -94,6 +108,8 @@ class SettingsResourcePatch : ResourcePatch {
         private var arraysNode: Node? = null
 
         private var strings = mutableListOf<StringResource>()
+
+        private var arrays = mutableListOf<ArrayResource>()
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
@@ -133,17 +149,19 @@ class SettingsResourcePatch : ResourcePatch {
          * @param arrayResource The array resource to add.
          */
         fun addArray(arrayResource: ArrayResource) {
-            arraysNode!!.appendChild(arraysNode!!.ownerDocument.createElement("string-array").also { arrayNode ->
-                arrayResource.items.forEach { item ->
-                    item.include()
+            arraysNode!!.appendChild(
+                arraysNode!!.ownerDocument.createElement("string-array").also { arrayNode ->
+                    arrayResource.items.forEach { item ->
+                        item.include()
 
-                    arrayNode.setAttribute("name", item.name)
+                        arrayNode.setAttribute("name", item.name)
 
-                    arrayNode.appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
-                        itemNode.textContent = item.value
-                    })
-                }
-            })
+                        arrayNode.appendChild(
+                            arrayNode.ownerDocument.createElement("item").also { itemNode ->
+                                itemNode.textContent = item.value
+                            })
+                    }
+                })
         }
 
         /**
@@ -160,20 +178,31 @@ class SettingsResourcePatch : ResourcePatch {
          * @param preference The preference to add.
          */
         fun addPreference(preference: Preference) {
-            preferencesNode!!.appendChild(preferencesNode.createElement(preference.tag).also { preferenceNode ->
-                preferenceNode.setAttribute(
-                    "android:title", "@string/${preference.title.also { it.include() }.name}"
-                )
-                preference.summary?.let { summary ->
-                    preferenceNode.setAttribute("android:summary", "@string/${summary.also { it.include() }.name}")
-                }
+            preferencesNode!!.appendChild(
+                preferencesNode.createElement(preference.tag).also { preferenceNode ->
+                    preferenceNode.setAttribute(
+                        "android:title", "@string/${preference.title.also { it.include() }.name}"
+                    )
+                    preference.summary?.let { summary ->
+                        preferenceNode.setAttribute(
+                            "android:summary",
+                            "@string/${summary.also { it.include() }.name}"
+                        )
+                    }
 
-                preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
-                    intentNode.setAttribute("android:targetPackage", preference.intent.targetPackage)
-                    intentNode.setAttribute("android:data", preference.intent.data)
-                    intentNode.setAttribute("android:targetClass", preference.intent.targetClass)
+                    preferenceNode.appendChild(
+                        preferenceNode.createElement("intent").also { intentNode ->
+                            intentNode.setAttribute(
+                                "android:targetPackage",
+                                preference.intent.targetPackage
+                            )
+                            intentNode.setAttribute("android:data", preference.intent.data)
+                            intentNode.setAttribute(
+                                "android:targetClass",
+                                preference.intent.targetClass
+                            )
+                        })
                 })
-            })
         }
 
 
@@ -184,9 +213,15 @@ class SettingsResourcePatch : ResourcePatch {
          */
         private fun Node.addPreference(preference: BasePreference) {
             // add a summary to the element
-            fun Element.addSummary(summaryResource: StringResource?, summaryType: SummaryType = SummaryType.DEFAULT) =
+            fun Element.addSummary(
+                summaryResource: StringResource?,
+                summaryType: SummaryType = SummaryType.DEFAULT
+            ) =
                 summaryResource?.let { summary ->
-                    setAttribute("android:${summaryType.type}", "@string/${summary.also { it.include() }.name}")
+                    setAttribute(
+                        "android:${summaryType.type}",
+                        "@string/${summary.also { it.include() }.name}"
+                    )
                 }
 
             fun <T> Element.addDefault(default: T) {
@@ -207,7 +242,9 @@ class SettingsResourcePatch : ResourcePatch {
 
             when (preference) {
                 is PreferenceScreen -> {
-                    for (childPreference in preference.preferences) preferenceElement.addPreference(childPreference)
+                    for (childPreference in preference.preferences) preferenceElement.addPreference(
+                        childPreference
+                    )
                     preferenceElement.addSummary(preference.summary)
                 }
                 is SwitchPreference -> {
@@ -218,6 +255,11 @@ class SettingsResourcePatch : ResourcePatch {
                 is TextPreference -> {
                     preferenceElement.setAttribute("android:inputType", preference.inputType.type)
                     preferenceElement.addDefault(preference.default)
+                    preferenceElement.addSummary(preference.summary)
+                }
+                is ListPreference -> {
+                    preferenceElement.setAttribute("android:entries", "@array/${preference.entries.also { it.include() }.name}")
+                    preferenceElement.setAttribute("android:entryValues", "@array/${preference.entryValues.also { it.include() }.name}")
                     preferenceElement.addSummary(preference.summary)
                 }
             }
@@ -235,9 +277,19 @@ class SettingsResourcePatch : ResourcePatch {
             strings.add(this)
         }
 
-        private fun DomFileEditor?.getNode(tagName: String) = this!!.file.getElementsByTagName(tagName).item(0)
+        /**
+         * Add a new array to resources
+         */
+        private fun ArrayResource.include() {
+            if (arrays.any { it.name == name }) return
+            arrays.add(this)
+        }
 
-        private fun Node?.createElement(tagName: String) = this!!.ownerDocument.createElement(tagName)
+        private fun DomFileEditor?.getNode(tagName: String) =
+            this!!.file.getElementsByTagName(tagName).item(0)
+
+        private fun Node?.createElement(tagName: String) =
+            this!!.ownerDocument.createElement(tagName)
 
         private enum class SummaryType(val type: String) {
             DEFAULT("summary"), ON("summaryOn"), OFF("summaryOff")
@@ -247,14 +299,15 @@ class SettingsResourcePatch : ResourcePatch {
     override fun close() {
         // merge all strings, skip duplicates
         strings.forEach { stringResource ->
-            stringsNode!!.appendChild(stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
-                stringElement.setAttribute("name", stringResource.name)
+            stringsNode!!.appendChild(
+                stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
+                    stringElement.setAttribute("name", stringResource.name)
 
-                // if the string is un-formatted, explicitly add the formatted attribute
-                if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
+                    // if the string is un-formatted, explicitly add the formatted attribute
+                    if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
 
-                stringElement.textContent = stringResource.value
-            })
+                    stringElement.textContent = stringResource.value
+                })
         }
 
         // rename the intent package names if it was set
@@ -268,7 +321,8 @@ class SettingsResourcePatch : ResourcePatch {
                 val intentNode = preferenceNode.firstChild
 
                 // if the node doesn't have a target package attribute, skip it
-                val targetPackageAttribute = intentNode.attributes.getNamedItem("android:targetPackage") ?: continue
+                val targetPackageAttribute =
+                    intentNode.attributes.getNamedItem("android:targetPackage") ?: continue
 
                 // do not replace intent target package if the package name is not from YouTube
                 val youtubePackage = "com.google.android.youtube"
