@@ -14,18 +14,18 @@ For this guide, the official [ReVanced patches](https://github.com/revanced/reva
 
 1. Clone the repository
 
-    ```bash
-    git clone https://github.com/revanced/revanced-patches && cd revanced-patches
-    ```
+   ```bash
+   git clone https://github.com/revanced/revanced-patches && cd revanced-patches
+   ```
 
 2. Build the patches
 
-    ```bash
-    ./gradlew build
-    ```
+   ```bash
+   ./gradlew build
+   ```
 
 ## ⏭️ Whats next
 
 The following section will give you a basic understanding of the [ReVanced patcher](https://github.com/revanced/revanced-patcher).
 
-Continue: [Introduction to the ReVanced patcher](1_introduction.md)
+Continue: [💉 Introduction to the ReVanced patcher](1_introduction.md)
