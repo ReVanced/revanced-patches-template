@@ -196,7 +196,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
 
 After a `MethodFingerprint` resolves successfully, its result can be used. The result contains mutable and immutable references to the method and the class it is defined in.
 
-> **Note**: By default the immutable references **should be used** to prevent a mutable copy of the immutable references. For a patch to properly use a fingerprint though, usually write access is required. For that the mutable references can be used.
+> **Warning**: By default the immutable references **should be used** to prevent a mutable copy of the immutable references. For a patch to properly use a fingerprint though, usually write access is required. For that the mutable references can be used.
 
 Among them, the result also contains [MethodFingerprintResult.scanResult](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L239) which contains additional useful properties:
 
