@@ -76,7 +76,7 @@ After creating a fingerprint, add it to the constructor of the `BytecodePatch`:
 ```kt
 class DisableAdsPatch : BytecodePatch(
     listOf(LoadAdsFingerprint)
-) { /* Code */ }
+) { /* .. */ }
 ```
 
 The ReVanced patcher will try to [resolve the fingerprint](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63) **before** it calls the `execute` method of the patch.
