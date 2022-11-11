@@ -40,4 +40,4 @@ val result = patcher.save()
 
 The next section will give you an understanding of a [ReVanced patch](https://github.com/revanced/revanced-patcher).
 
-Continue: [Skeleton of a patch](2_skeleton.md)
+Continue: [🧩 Skeleton of a patch](2_skeleton.md)
