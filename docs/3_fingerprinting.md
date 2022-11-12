@@ -65,8 +65,8 @@ Each attribute of the fingerprint is responsible to describe a specific but dist
 - Method implementation (Line 8 & 12)
 
   ```kt
-    strings = listOf("pro"),
-    opcodes = listOf(Opcode.RETURN)
+  strings = listOf("pro"),
+  opcodes = listOf(Opcode.RETURN)
   ```
 
 ## 🔨 How to use fingerprints
