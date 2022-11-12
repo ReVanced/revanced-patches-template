@@ -118,7 +118,7 @@ data class MethodFingerprintResult(
 
 ## 🏹 Different ways to resolve a fingerprint
 
-Usually, fingerprints are mostly resolved by the patcher, but it is also possible to manually resolve a fingerprint in a patch. This can be quite useful in lots of situations. To resolve a fingerprint you need a context to resolve it on. The context contains classes and thus methods to which the fingerprint can be resolved against. Example: _You have a fingerprint which you manually want to resolve **without** the help of the patcher._
+Usually, fingerprints are mostly resolved by the patcher, but it is also possible to manually resolve a fingerprint in a patch. This can be quite useful in lots of situations. To resolve a fingerprint you need a `BytecodeContext` to resolve it on. This context contains classes and thus methods to which the fingerprint can be resolved against. Example: _You have a fingerprint which you manually want to resolve **without** the help of the patcher._
 
 > **Note**: A fingerprint should not be added to the constructor of `BytecodePatch` if manual resolution is intended, because the patcher would try resolve it before manual resolution.
 
