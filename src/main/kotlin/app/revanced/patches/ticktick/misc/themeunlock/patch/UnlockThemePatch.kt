@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.ticktick.misc.themeunlock.annotations.UnlockThemesCompatibility
 import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.CheckLockedThemesFingerprint
-import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.ProThemesFingerprint
+import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.SetThemeFingerprint
 
 @Patch
 @Name("unlock-themes")
@@ -22,7 +22,7 @@ import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.ProThemesFing
 class UnlockProPatch : BytecodePatch(
     listOf(
         CheckLockedThemesFingerprint,
-        ProThemesFingerprint
+        SetThemeFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -35,8 +35,8 @@ class UnlockProPatch : BytecodePatch(
             """
         )
         
-        val proThemesMethod = ProThemesFingerprint.result!!.mutableMethod
-        proThemesMethod.removeInstructions(0, 9)
+        val setThemeMethod = SetThemeFingerprint.result!!.mutableMethod
+        setThemeMethod.removeInstructions(0, 9)
         
         return PatchResultSuccess()
     }
