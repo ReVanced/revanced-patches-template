@@ -225,7 +225,7 @@ The following properties are utilized by bytecode patches:
 
 - If a fingerprint defines `MethodFingerprint.opcodes`, the start and end index of the first instructions matching that pattern will be available. These are useful to patch the implementation of methods relative to the pattern. Ideally the pattern contains the instructions opcodes pattern which is to be patched, in order to guarantee a successfull patch.
 
-  > **Note**: Sometimes long patterns might be necessary, but the bigger the pattern list, the higher the chance it mutates if the app updates. For that reason the annotation `FuzzyPatternScanMethod` can be used on a fingerprint. The `FuzzyPatternScanMethod.threshold` will define, how many opcodes can remain unmatched. `PatternScanResult.warnings` can then be used if necessary, if it is necessary to know where pattern missmatches occured.
+  > **Note**: Sometimes long patterns might be necessary, but the bigger the pattern list, the higher the chance it mutates if the app updates. For that reason the annotation `FuzzyPatternScanMethod` can be used on a fingerprint. The `FuzzyPatternScanMethod.threshold` will define, how many opcodes can remain unmatched. `PatternScanResult.warnings` can then be used, if is necessary to know where pattern missmatches occured.
 
 ## ⭐ Closely related code examples
 
