@@ -17,7 +17,7 @@ object LoadAdsFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Z"),
     opcodes = listOf(Opcode.RETURN),
-    strings = listOf("is_pro"),
+    strings = listOf("pro"),
     customFingerprint = { it.definingClass == "Lcom/some/app/ads/Loader;"}
 )
 ```
