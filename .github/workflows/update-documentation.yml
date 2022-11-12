@@ -15,4 +15,4 @@ jobs:
           token: ${{ secrets.DOCUMENTATION_REPO_ACCESS_TOKEN  }}
           repository: revanced/revanced-documentation
           event-type: update-documentation
-          client-payload: '{"ref": "${{ github.ref }}"}'
+          client-payload: '{"repo": "${{ github.event.repository.name }}", "ref": "${{ github.ref }}"}'
