@@ -201,22 +201,22 @@ After a `MethodFingerprint` resolves successfully, its result can be used. The r
 Among them, the result also contains [MethodFingerprintResult.scanResult](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L239) which contains additional useful properties:
 
 ```kt
-    data class MethodFingerprintScanResult(
-        val patternScanResult: PatternScanResult?,
-        val stringsScanResult: StringsScanResult?
-    ) {
-       data class PatternScanResult(
-            val startIndex: Int,
-            val endIndex: Int,
-            var warnings: List<Warning>? = null
-        )
+data class MethodFingerprintScanResult(
+    val patternScanResult: PatternScanResult?,
+    val stringsScanResult: StringsScanResult?
+) {
+    data class PatternScanResult(
+        val startIndex: Int,
+        val endIndex: Int,
+        var warnings: List<Warning>? = null
+    )
 
-        data class StringsScanResult(val matches: List<StringMatch>){
-            data class StringMatch(val string: String, val index: Int)
-        }
-
-        // ...
+    data class StringsScanResult(val matches: List<StringMatch>){
+        data class StringMatch(val string: String, val index: Int)
     }
+
+    // ...
+}
 ```
 
 The following properties are utilized by bytecode patches:
@@ -238,7 +238,6 @@ The following properties are utilized by bytecode patches:
 
 - [LoadVideoAdsFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
 - [SeekbarTappingParentFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
--
 
 ## ⏭️ Whats next
 
