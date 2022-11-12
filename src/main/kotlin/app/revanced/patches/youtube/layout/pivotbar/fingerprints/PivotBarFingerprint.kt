@@ -5,6 +5,8 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patches.youtube.layout.pivotbar.shortsbutton.annotations.ShortsButtonCompatibility
+import app.revanced.patches.youtube.layout.pivotbar.createbutton.annotations.CreateButtonCompatibility
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
@@ -12,6 +14,7 @@ import org.jf.dexlib2.Opcode
 @FuzzyPatternScanMethod(2)
 // TODO: This fingerprint is used in multiple patches, so technically two compatibilities are needed
 // @CreateButtonCompatibility
+// @ShortsButtonCompatibility
 @Version("0.0.1")
 object PivotBarFingerprint : MethodFingerprint(
     "V",
@@ -38,9 +41,9 @@ object PivotBarFingerprint : MethodFingerprint(
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.NEW_INSTANCE,
+        Opcode.CONST,
         Opcode.NEW_INSTANCE,
         Opcode.INVOKE_DIRECT,
-        Opcode.CONST,
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.MOVE_OBJECT,
