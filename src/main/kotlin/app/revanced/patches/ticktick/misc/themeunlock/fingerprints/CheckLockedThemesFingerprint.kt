@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.ticktick.misc.themeunlock.annotations.UnlockThemesCompatibility
 
-@Name("check-locked-theme")
+@Name("check-locked-theme-fingerprint")
 @UnlockThemesCompatibility
 @Version("0.0.1")
 object CheckLockedThemesFingerprint : MethodFingerprint(
