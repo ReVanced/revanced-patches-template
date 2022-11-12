@@ -182,7 +182,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
           }.result?.let { result ->
               // Use the fingerprints result
               result.scanResult.stringsScanResult!!.matches.forEach { match ->
-                      println("The index of the string '${match.string}' is {match.index}")
+                      println("The index of the string '${match.string}' is ${match.index}")
                   }
 
           } ?: return PatchResultError("pro strings fingerprint not found")
