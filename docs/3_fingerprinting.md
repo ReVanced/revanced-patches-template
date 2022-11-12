@@ -234,7 +234,7 @@ The following properties are utilized by bytecode patches:
 - [CommentsPatch](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/layout/comments/bytecode/patch/CommentsPatch.kt)
 - [MusicVideoAdsPatch](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/music/ad/video/patch/MusicVideoAdsPatch.kt)
 
-### Fingerprints
+### 🔍 Fingerprints
 
 - [LoadVideoAdsFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
 - [SeekbarTappingParentFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
