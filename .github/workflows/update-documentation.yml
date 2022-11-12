@@ -1,0 +1,18 @@
+name: Update documentation
+
+on:
+  push:
+    paths:
+      - docs/**
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    name: Dispatch event to documentation repository
+    steps:
+      - uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.DOCUMENTATION_REPO_ACCESS_TOKEN  }}
+          repository: revanced/revanced-documentation
+          event-type: update-documentation
+          client-payload: '{"ref": "${{ github.ref }}"}'
