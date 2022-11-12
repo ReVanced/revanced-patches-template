@@ -35,7 +35,7 @@ The example fingerprint called `LoadAdsFingerprint` which extends on [`MethodFin
  5     public final Boolean <methodName>(<field>: Boolean) {
            // ...
 
- 8         val pro_status = "pro";
+ 8         val userStatus = "pro";
 
            // ...
 
