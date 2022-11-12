@@ -227,7 +227,7 @@ The following properties are utilized by bytecode patches:
 
   > **Note**: Sometimes long patterns might be necessary, but the bigger the pattern list, the higher the chance it mutates if the app updates. For that reason the annotation `FuzzyPatternScanMethod` can be used on a fingerprint. The `FuzzyPatternScanMethod.threshold` will define, how many opcodes can remain unmatched. `PatternScanResult.warnings` can then be used if necessary, if it is necessary to know where pattern missmatches occured.
 
-## ⭐ Useful code closely related to fingerprints
+## ⭐ Closely related code examples
 
 ### 🧩 Patches
 
