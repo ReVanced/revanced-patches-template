@@ -185,7 +185,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
                       println("The index of the string '${match.string}' is {match.index}")
                   }
 
-          } ?: return PatchResultError("LoadAdsFingerprint not found")
+          } ?: return PatchResultError("pro strings fingerprint not found")
 
           return PatchResultSuccess
       }
