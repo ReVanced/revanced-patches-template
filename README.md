@@ -86,7 +86,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `sponsorblock` | Integrate SponsorBlock. | 17.44.34 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 17.44.34 |
 | `hide-watch-in-vr` | Hides the Watch in VR option from the player settings flyout panel. | 17.44.34 |
-| `hide-album-cards` | Hides the album cards below the artist description. | 17.43.36 |
+| `hide-album-cards` | Hides the album cards below the artist description. | 17.44.34 |
 | `disable-auto-player-popup-panels` | Disable automatic popup panels (playlist or live chat) on video player. | 17.44.34 |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 17.44.34 |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 17.44.34 |
