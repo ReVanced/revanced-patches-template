@@ -9,7 +9,6 @@ import app.revanced.patches.twitch.chat.antidelete.annotations.ShowDeletedMessag
 import org.jf.dexlib2.AccessFlags
 
 @Name("deleted-msg-span-ctor-fingerprint")
-
 @ShowDeletedMessagesCompatibility
 @Version("0.0.1")
 object DeletedMessageClickableSpanCtorFingerprint : MethodFingerprint(
