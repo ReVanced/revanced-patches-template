@@ -7,7 +7,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.twitch.debug.annotations.DebugModeCompatibility
 
 @Name("is-debug-config-enabled-fingerprint")
-
 @DebugModeCompatibility
 @Version("0.0.1")
 object IsDebugConfigEnabledFingerprint : MethodFingerprint(
