@@ -122,7 +122,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
 
 > **Note**: A fingerprint should not be added to the constructor of `BytecodePatch` if manual resolution is intended, because the patcher would try resolve it before manual resolution.
 
-- On a **list of classes** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L49)
+- On a **list of classes** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L49)
 
   This can be useful, if a fingerprint should be resolved to a smaller subset of classes, otherwise the fingerprint can be resolved by the patcher automatically.
 
