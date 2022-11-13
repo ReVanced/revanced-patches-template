@@ -139,7 +139,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
   }
   ```
 
-- On a **single class** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63)
+- On a **single class** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63)
 
   Sometimes you know a class but you need certain methods. In such case, you can resolve fingerprints on a class.
 
