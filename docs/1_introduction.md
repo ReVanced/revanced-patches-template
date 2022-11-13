@@ -38,6 +38,6 @@ val result = patcher.save()
 
 ## ⏭️ Whats next
 
-The next section will give you an understanding of a [ReVanced patch](https://github.com/revanced/revanced-patcher).
+The next section will give you an understanding of a patch.
 
 Continue: [🧩 Skeleton of a patch](2_skeleton.md)
