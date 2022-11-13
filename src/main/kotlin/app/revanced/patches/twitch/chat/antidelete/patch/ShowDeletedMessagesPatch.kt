@@ -13,7 +13,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
 
 @Patch
-@Name("twitch-show-deleted-messages")
+@Name("show-deleted-messages")
 @Description("Show deleted chat messages behind a clickable spoiler.")
 @ShowDeletedMessagesCompatibility
 @Version("0.0.1")
