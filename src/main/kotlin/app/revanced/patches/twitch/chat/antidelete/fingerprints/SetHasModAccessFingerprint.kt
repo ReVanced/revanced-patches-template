@@ -7,7 +7,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.twitch.chat.antidelete.annotations.ShowDeletedMessagesCompatibility
 
 @Name("has-mod-access-fingerprint")
-
 @ShowDeletedMessagesCompatibility
 @Version("0.0.1")
 object SetHasModAccessFingerprint : MethodFingerprint(
