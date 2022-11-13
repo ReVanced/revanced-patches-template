@@ -26,6 +26,6 @@ For this guide, the [ReVanced Patches](https://github.com/revanced/revanced-patc
 
 ## ⏭️ Whats next
 
-The following section will give you a basic understanding of the [ReVanced patcher](https://github.com/revanced/revanced-patcher).
+The following section will give you a basic understanding of the [ReVanced Patcher](https://github.com/revanced/revanced-patcher).
 
-Continue: [💉 Introduction to the ReVanced patcher](1_introduction.md)
+Continue: [💉 Introduction to the ReVanced Patcher](1_introduction.md)
