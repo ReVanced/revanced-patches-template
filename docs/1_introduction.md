@@ -1,4 +1,4 @@
-# 💉 Introduction to the [ReVanced patcher](https://github.com/revanced/revanced-patcher)
+# 💉 Introduction to the [Patcher framework](https://github.com/revanced/revanced-patcher)
 
 Familiarize yourself with the [ReVanced patcher](https://github.com/revanced/revanced-patcher).
 
