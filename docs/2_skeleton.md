@@ -84,7 +84,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
    Usually, patches consist out of a single class. The class can be used to create methods and fields for the patch, or provide a framework for other patches, in case it is meant to be used as a dependency patch.
 
-   The [ReVanced patches](https://github.com/revanced/revanced-patches) follow a convention to name the class of patches:
+   The [ReVanced Patches](https://github.com/revanced/revanced-patches) follow a convention to name the class of patches:
 
    Example: _The class for a patch which disables ads should be called `DisableAdsPatch`, for a patch which adds a new download feature it should be called `DownloadsPatch`._
 
