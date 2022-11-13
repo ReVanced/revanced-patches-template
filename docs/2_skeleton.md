@@ -112,7 +112,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
    fun execute(context: /* Omitted */ T): PatchResult
    ```
 
-   It is the **first** method executed when running the patch. The current example extends off `BytecodePatch`. Since patches which extend on it can interact with the bytecode, the signature for the execute method when implemented requires a [BytecodeContext](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/data/Context.kt#L23) as a parameter:
+   It is the **first** method executed when running the patch. The current example extends off `BytecodePatch`. Since patches that extend on it can interact with the bytecode, the signature for the execute method when implemented requires a [BytecodeContext](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/data/Context.kt#L23) as a parameter:
 
    ```kt
    override fun execute(context: BytecodeContext): PatchResult {
