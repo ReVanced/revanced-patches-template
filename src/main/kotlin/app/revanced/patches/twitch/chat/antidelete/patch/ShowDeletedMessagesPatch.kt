@@ -29,9 +29,9 @@ class ShowDeletedMessagesPatch : BytecodePatch(
             addInstructions(
                 implementation!!.instructions.lastIndex, /* place in front of return-void */
                 """
-                        const/4 v0, 1
-                        iput-boolean v0, p0, $definingClass->hasModAccess:Z
-                    """
+                    const/4 v0, 1
+                    iput-boolean v0, p0, $definingClass->hasModAccess:Z
+                """
             )
         }
 
