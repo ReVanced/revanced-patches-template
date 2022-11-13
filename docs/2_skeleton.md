@@ -88,7 +88,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
    Example: _The class for a patch which disables ads should be called `DisableAdsPatch`, for a patch which adds a new download feature it should be called `DownloadsPatch`._
 
-   Each patch implicitly implements the [Patch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L15) interface when extending off [ResourcePatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L35) or [BytecodePatch](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L42). The current example extends off `BytecodePatch`:
+   Each patch implicitly implements the [Patch](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L15) interface when extending off [ResourcePatch](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L35) or [BytecodePatch](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L42). The current example extends off `BytecodePatch`:
 
    ```kt
    class DisableAdsPatch : BytecodePatch( /* Parameters */ ) {
