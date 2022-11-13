@@ -24,7 +24,7 @@ object LoadAdsFingerprint : MethodFingerprint(
 
 ## 🆗 Understanding the example fingerprint
 
-The example fingerprint called `LoadAdsFingerprint` which extends on [`MethodFingerprint`](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L28) is made to uniquely identify a certain method by capturing various attributes of the method such as the return type, access flags, an opcode pattern and more. The following code can be inferred just from the fingerprint:
+The example fingerprint called `LoadAdsFingerprint` which extends on [`MethodFingerprint`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L28) is made to uniquely identify a certain method by capturing various attributes of the method such as the return type, access flags, an opcode pattern and more. The following code can be inferred just from the fingerprint:
 
 ```kt
     package com.some.app.ads
