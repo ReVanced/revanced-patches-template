@@ -1,6 +1,6 @@
 # 📜 Patch file structure and conventions
 
-ReVanced follows couple conventions when creating patches which can be found in [ReVanced patches](https://github.com/revanced/revanced-patches).
+ReVanced follows a couple of conventions when creating patches which can be found in the [ReVanced Patches](https://github.com/revanced/revanced-patches).
 
 ## 📁 File structure
 
