@@ -122,7 +122,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
    The `BytecodeContext` contains everything necessary related to bytecode for patches, including every class of the app on which the patch will be applied. Likewise, a `ResourcePatch` will require a [ResourceContext](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/data/Context.kt#L89) parameter and provide the patch with everything necessary to patch resources.
 
-   The `execute` method has to be returned with [PatchResult](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/patch/PatchResult.kt#L3). Patches can return early with `PatchResultError` if something went wrong. If this patch is used as a dependency for other patches, those patches will not execute subsequently. If a patch succeeds `PatchResultSuccess` is expected to be returned.
+   The `execute` method has to be returned with [PatchResult](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/PatchResult.kt#L3). Patches may return early with `PatchResultError` if something went wrong. If this patch is used as a dependency for other patches, those patches will not execute subsequently. If a patch succeeds, `PatchResultSuccess` must be returned.
 
    In the current example the `execute` method runs the following code to replace instructions at the index `0` of the methods instruction list:
 
