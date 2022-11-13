@@ -19,7 +19,7 @@ Each patch is structured the following way:
 
 ### 🆗 Example
 
-As an example the structure of [`VideoAdsPatch`](https://github.com/revanced/revanced-patches/tree/main/src/main/kotlin/app/revanced/patches/youtube/ad/video) can be used as a reference:
+As an example the structure of [`VideoAdsPatch`](https://github.com/revanced/revanced-patches/tree/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/ad/video) can be used as a reference:
 
 ```text
 📦app.revanced.patches.youtube.ad.video
