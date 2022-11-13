@@ -9,17 +9,12 @@ import app.revanced.patches.twitch.ad.video.annotations.VideoAdsCompatibility
 import org.jf.dexlib2.AccessFlags
 
 @Name("check-ad-eligibility-fingerprint")
-
 @VideoAdsCompatibility
 @Version("0.0.1")
 object CheckAdEligibilityLambdaFingerprint : MethodFingerprint(
-    "Lio/reactivex/SingleSource;",
+    "L",
     AccessFlags.PRIVATE or AccessFlags.FINAL or AccessFlags.STATIC,
-    listOf(
-        "Ltv/twitch/android/shared/ads/models/AdRequestInfo;",
-        "Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;",
-        "Ltv/twitch/android/util/Optional;"
-    ),
+    listOf("L", "L", "L"),
     customFingerprint = { method ->
         method.definingClass.endsWith("AdEligibilityFetcher;") &&
                 method.name.contains("shouldRequestAd")
