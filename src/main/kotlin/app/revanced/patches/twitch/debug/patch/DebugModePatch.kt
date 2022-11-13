@@ -14,7 +14,7 @@ import app.revanced.patches.twitch.debug.fingerprints.IsDebugConfigEnabledFinger
 import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
 
-@Patch(include=false)
+@Patch(false)
 @Name("debug-mode")
 @Description("Enables Twitch's internal debugging mode.")
 @DebugModeCompatibility
