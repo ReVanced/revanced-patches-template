@@ -158,7 +158,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
   }
   ```
 
-- On a **method** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L78)
+- On a **method** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L78)
 
   Resolving a fingerprint on a method is mostly only useful if the fingerprint is used to resolve certain information about a method such as `MethodFingerprintResult.scanResult`. Example: _A fingerprint should be used to resolve the method which loads ads. For that the fingerprint is added to the constructor of `BytecodePatch`. An additional fingerprint is responsible for finding the indices of the instructions with certain string references in the implementation of the method the first fingerprint resolved to._
 
@@ -198,7 +198,7 @@ After a `MethodFingerprint` resolves successfully, its result can be used. The r
 
 > **Warning**: By default the immutable references **should be used** to prevent a mutable copy of the immutable references. For a patch to properly use a fingerprint though, usually write access is required. For that the mutable references can be used.
 
-Among them, the result also contains [MethodFingerprintResult.scanResult](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L239) which contains additional useful properties:
+Among them, the result also contains [MethodFingerprintResult.scanResult](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L239) which contains additional useful properties:
 
 ```kt
 data class MethodFingerprintScanResult(
@@ -231,13 +231,13 @@ The following properties are utilized by bytecode patches:
 
 ### 🧩 Patches
 
-- [CommentsPatch](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/layout/comments/bytecode/patch/CommentsPatch.kt)
-- [MusicVideoAdsPatch](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/music/ad/video/patch/MusicVideoAdsPatch.kt)
+- [CommentsPatch](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/layout/comments/bytecode/patch/CommentsPatch.kt)
+- [MusicVideoAdsPatch](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/music/ad/video/patch/MusicVideoAdsPatch.kt)
 
 ### 🔍 Fingerprints
 
-- [LoadVideoAdsFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
-- [SeekbarTappingParentFingerprint](https://github.com/revanced/revanced-patches/blob/main/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
+- [LoadVideoAdsFingerprint](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
+- [SeekbarTappingParentFingerprint](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
 
 ## ⏭️ Whats next
 
