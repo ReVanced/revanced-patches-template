@@ -40,4 +40,4 @@ val result = patcher.save()
 
 The next section will give you an understanding of a patch.
 
-Continue: [🧩 Skeleton of a patch](2_skeleton.md)
+Continue: [🧩 Skeleton of a Patch](2_skeleton.md)
