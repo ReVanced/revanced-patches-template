@@ -1,4 +1,4 @@
-# 🧩 Skeleton of a [ReVanced patch](https://github.com/revanced/revanced-patches)
+# 🧩 Skeleton of a Patch
 
 Patches are what make ReVanced, ReVanced. On the following page the basic structure of a patch will be explained.
 
