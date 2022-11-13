@@ -79,7 +79,7 @@ class DisableAdsPatch : BytecodePatch(
 ) { /* .. */ }
 ```
 
-The ReVanced patcher will try to [resolve the fingerprint](https://github.com/revanced/revanced-patcher/blob/main/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63) **before** it calls the `execute` method of the patch.
+The ReVanced Patcher will try to [resolve the fingerprint](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63) **before** it calls the `execute` method of the patch.
 
 The fingerprint can now be used in the patch by accessing [`MethodFingerprint.result`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L227):
 
