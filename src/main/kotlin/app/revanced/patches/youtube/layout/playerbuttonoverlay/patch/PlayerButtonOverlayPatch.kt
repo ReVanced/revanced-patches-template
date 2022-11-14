@@ -22,7 +22,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class PlayerButtonOverlayPatch : ResourcePatch {
     private companion object {
-        const val resourceFilePath = "res/drawable/player_button_circle_background.xml"
+        const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
         // the attributes to change the value of
         val replacements = arrayOf(
             "color"
@@ -30,7 +30,7 @@ class PlayerButtonOverlayPatch : ResourcePatch {
     }
     
     override fun execute(context: ResourceContext): PatchResult {
-        context.xmlEditor[resourceFilePath].use { editor ->
+        context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
             editor.file.doRecursively { node ->
                 replacements.forEach replacement@{ replacement ->
                     if (node !is Element) return@replacement
