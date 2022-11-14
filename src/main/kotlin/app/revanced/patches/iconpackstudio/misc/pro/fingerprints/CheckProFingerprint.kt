@@ -9,7 +9,6 @@ import app.revanced.patches.iconpackstudio.misc.pro.annotations.UnlockProCompati
 @UnlockProCompatibility
 @Version("0.0.1")
 object CheckProFingerprint : MethodFingerprint(
-    customFingerprint = { methodDef ->
-        methodDef.definingClass.endsWith("IPSPurchaseRepository;") && methodDef.name == "b"
-    }
+    "Z",
+    customFingerprint = { it.definingClass.endsWith("IPSPurchaseRepository;")}
 )
