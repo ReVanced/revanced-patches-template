@@ -10,6 +10,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
+import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ShortsPlayerConstructorFingerprint
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
@@ -33,6 +35,19 @@ class LithoThemePatch : BytecodePatch(
                 move-result p1
             """
         )
+
+        fun buildInvokeString(player: Int) = """
+            const/4 v0, 0x$player
+            sput-boolean v0, Lapp/revanced/integrations/patches/LithoThemePatch;->isStandardPlayer:Z
+        """
+
+        StartVideoInformerFingerprint.result!!.mutableMethod.addInstructions(
+            0, buildInvokeString(1)
+        )
+        ShortsPlayerConstructorFingerprint.result!!.mutableMethod.addInstructions(
+            0, buildInvokeString(0)
+        )
+
         return PatchResultSuccess()
     }
 }
