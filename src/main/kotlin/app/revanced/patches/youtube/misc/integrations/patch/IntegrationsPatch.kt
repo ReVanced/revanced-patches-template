@@ -5,17 +5,11 @@ import app.revanced.patches.youtube.misc.integrations.annotations.IntegrationsCo
 import app.revanced.patches.youtube.misc.integrations.fingerprints.InitFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.ServiceFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.StandalonePlayerFingerprint
-import app.revanced.util.AbstractIntegrationsPatch
+import app.revanced.shared.patches.AbstractIntegrationsPatch
 
 @Name("integrations")
 @IntegrationsCompatibility
 class IntegrationsPatch : AbstractIntegrationsPatch(
-    listOf(InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint),
     "Lapp/revanced/integrations/utils/ReVancedUtils;",
-    { m, fp ->
-        // parameter which holds the context
-        val contextParameter = if (fp == ServiceFingerprint) m.parameters.size else 1
-        // register which holds the context
-        m.implementation!!.registerCount - contextParameter
-    }
+    listOf(InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint),
 )
