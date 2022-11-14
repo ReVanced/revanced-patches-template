@@ -16,8 +16,8 @@ import org.w3c.dom.Element
 
 @Patch
 @DependsOn([FixLocaleConfigErrorPatch::class])
-@Name("remove-playerbutton-background")
-@Description("Disable Player Button Overlay Background")
+@Name("remove-player-button-background")
+@Description("Removes the background from the video player buttons.")
 @PlayerButtonOverlayCompatibility
 @Version("0.0.1")
 class PlayerButtonOverlayPatch : ResourcePatch {
