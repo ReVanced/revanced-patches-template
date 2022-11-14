@@ -21,13 +21,14 @@ import org.w3c.dom.Element
 @PlayerButtonOverlayCompatibility
 @Version("0.0.1")
 class PlayerButtonOverlayPatch : ResourcePatch {
-    private val resourceFilePath = "res/drawable/player_button_circle_background.xml"
-
-    // the attributes to change the value of
-    private val replacements = arrayOf(
-        "color"
-    )
-
+    private companion object {
+        const val resourceFilePath = "res/drawable/player_button_circle_background.xml"
+        // the attributes to change the value of
+        val replacements = arrayOf(
+            "color"
+        )
+    }
+    
     override fun execute(context: ResourceContext): PatchResult {
         context.xmlEditor[resourceFilePath].use { editor ->
             editor.file.doRecursively { node ->
