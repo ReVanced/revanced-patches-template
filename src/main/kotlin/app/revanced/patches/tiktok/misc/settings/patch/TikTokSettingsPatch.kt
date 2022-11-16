@@ -47,28 +47,21 @@ class TikTokSettingsPatch : BytecodePatch(
             if (instruction.opcode != Opcode.CONST_STRING) continue
             val string = ((instruction as ReferenceInstruction).reference as StringReference).string
             if (string != "copyright_policy") continue
-            var targetIndex = index
-            while (targetIndex >= 0) {
-                targetIndex--
-                val invokeInstruction = settingsOnViewCreatedImpl.instructions[targetIndex]
-                if (invokeInstruction.opcode != Opcode.INVOKE_VIRTUAL) continue
-                val methodName = ((invokeInstruction as Instruction35c).reference as MethodReference).name
-                if (methodName != "getString") continue
-                val resultInstruction = settingsOnViewCreatedImpl.instructions[targetIndex + 1]
-                if (resultInstruction.opcode != Opcode.MOVE_RESULT_OBJECT) continue
-                val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
-                settingsOnViewCreatedMethod.replaceInstruction(
-                    targetIndex + 1,
-                    """
+            val targetIndex = index - 6
+            val resultInstruction = settingsOnViewCreatedImpl.instructions[targetIndex]
+            if (resultInstruction.opcode != Opcode.MOVE_RESULT_OBJECT)
+                return PatchResultError("Hardcode offset changed.")
+            val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
+            settingsOnViewCreatedMethod.replaceInstruction(
+                targetIndex,
+                """
                         const-string v$overrideRegister, "Revanced Settings"
                     """
-                )
-                break
-            }
+            )
             //Change onClick to start settings activity.
             val clickInstruction = settingsOnViewCreatedImpl.instructions[index - 1]
             if (clickInstruction.opcode != Opcode.INVOKE_DIRECT)
-                return PatchResultError("Can not find click listener.")
+                return PatchResultError("Hardcode offset changed.")
             val clickClass = ((clickInstruction as ReferenceInstruction).reference as MethodReference).definingClass
             val mutableClickClass = context.findClass(clickClass)!!.mutableClass
             val mutableOnClickMethod = mutableClickClass.methods.first {
