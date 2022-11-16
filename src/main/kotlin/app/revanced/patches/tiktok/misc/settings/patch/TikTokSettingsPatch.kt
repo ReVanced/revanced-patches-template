@@ -20,9 +20,11 @@ import app.revanced.patches.tiktok.misc.settings.fingerprints.CopyRightSettingsS
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
+import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([TikTokIntegrationsPatch::class])
@@ -81,34 +83,6 @@ class TikTokSettingsPatch : BytecodePatch(
             )
             break
         }
-        //Replace string `About` to 'Revanced Settings` in TikTok settings.
-        for ((index, instruction) in implementation1.instructions.withIndex()) {
-            if (instruction.opcode != Opcode.CONST_STRING) continue
-            val string = ((instruction as ReferenceInstruction).reference as StringReference).string
-            if (string != "switch_account") continue
-            var targetIndex = index
-            var matchTime = 0
-            while (targetIndex >= 0) {
-                targetIndex--
-                val invokeInstruction = implementation1.instructions[targetIndex]
-                if (invokeInstruction.opcode != Opcode.INVOKE_VIRTUAL) continue
-                val methodName = ((invokeInstruction as Instruction35c).reference as MethodReference).name
-                if (methodName != "getString") continue
-                matchTime++
-                if (matchTime != 2) continue
-                val resultInstruction = implementation1.instructions[targetIndex + 1]
-                if (resultInstruction.opcode != Opcode.MOVE_RESULT_OBJECT) continue
-                val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
-                method1.replaceInstruction(
-                    targetIndex + 1,
-                    """
-                        const-string v$overrideRegister, "Revanced Settings"
-                    """
-                )
-                break
-            }
-            break
-        }
         //Change onClick of About to start revanced settings
         val method2 = AboutOnClickMethodFingerprint.result!!.mutableMethod
         method2.addInstructions(
@@ -118,6 +92,24 @@ class TikTokSettingsPatch : BytecodePatch(
                     return-void
                 """
         )
+        //Replace string `About` to 'Revanced Settings` in TikTok settings.
+        for ((index, instruction) in implementation1.instructions.withIndex()) {
+            if (instruction.opcode != Opcode.NEW_INSTANCE) continue
+            val onClickClass = ((instruction as Instruction21c).reference as TypeReference).type
+            if (onClickClass != method2.definingClass) continue
+            val targetIndex = index - 4
+            val resultInstruction = implementation1.instructions[targetIndex]
+            if (resultInstruction.opcode != Opcode.MOVE_RESULT_OBJECT)
+                return PatchResultError("Hardcode offset changed.")
+            val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
+            method1.replaceInstruction(
+                targetIndex,
+                """
+                        const-string v$overrideRegister, "Revanced Settings"
+                    """
+            )
+            break
+        }
         //Implement revanced settings screen in `AdPersonalizationActivity`
         val method3 = AdPersonalizationActivityFingerprint.result!!.mutableMethod
         for ((index, instruction) in method3.implementation!!.instructions.withIndex()) {
