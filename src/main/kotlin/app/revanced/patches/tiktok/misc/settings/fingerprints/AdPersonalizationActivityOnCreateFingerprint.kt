@@ -8,7 +8,7 @@ import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompa
 @Name("ad-personalization-activity-fingerprint")
 @TikTokSettingsCompatibility
 @Version("0.0.1")
-object AdPersonalizationActivityFingerprint : MethodFingerprint(
+object AdPersonalizationActivityOnCreateFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("/AdPersonalizationActivity;") &&
                 methodDef.name == "onCreate"

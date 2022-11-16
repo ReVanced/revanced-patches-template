@@ -8,7 +8,7 @@ import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompa
 @Name("copyright-settings-string-fingerprint")
 @TikTokSettingsCompatibility
 @Version("0.0.1")
-object CopyRightSettingsStringFingerprint : MethodFingerprint(
+object SettingsOnViewCreatedFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.definingClass.endsWith("/SettingNewVersionFragment;") &&
                 methodDef.name == "onViewCreated"
