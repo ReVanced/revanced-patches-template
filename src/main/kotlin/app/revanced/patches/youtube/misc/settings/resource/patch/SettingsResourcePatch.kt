@@ -1,11 +1,10 @@
 package app.revanced.patches.youtube.misc.settings.resource.patch
 
+import app.revanced.patcher.DomFileEditor
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.DomFileEditor
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
@@ -14,8 +13,8 @@ import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibil
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.copyResources
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -35,7 +34,7 @@ class SettingsResourcePatch : ResourcePatch {
         /*
          * create missing directory for the resources
          */
-        context["res/drawable-ldrtl-xxxhdpi"].mkdirs()
+        context.getFile("res/drawable-ldrtl-xxxhdpi").mkdirs()
 
         /*
          * copy layout resources
@@ -59,7 +58,7 @@ class SettingsResourcePatch : ResourcePatch {
             context.copyResources("settings", resourceGroup)
         }
 
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
+        context.openEditor("AndroidManifest.xml").use { editor ->
             editor.file.getElementsByTagName("manifest").item(0).also {
                 it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
                     element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
@@ -67,11 +66,13 @@ class SettingsResourcePatch : ResourcePatch {
             }
         }
 
-        revancedPreferencesEditor = context.xmlEditor["res/xml/revanced_prefs.xml"]
-        preferencesEditor = context.xmlEditor["res/xml/settings_fragment.xml"]
+        with(context) {
+            revancedPreferencesEditor = openEditor("res/xml/revanced_prefs.xml")
+            preferencesEditor = openEditor("res/xml/settings_fragment.xml")
 
-        stringsEditor = context.xmlEditor["res/values/strings.xml"]
-        arraysEditor = context.xmlEditor["res/values/arrays.xml"]
+            stringsEditor = openEditor("res/values/strings.xml")
+            arraysEditor = openEditor("res/values/arrays.xml")
+        }
 
         // Add the ReVanced settings to the YouTube settings
         val youtubePackage = "com.google.android.youtube"
@@ -85,7 +86,7 @@ class SettingsResourcePatch : ResourcePatch {
             )
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
 
@@ -109,24 +110,20 @@ class SettingsResourcePatch : ResourcePatch {
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                revancedPreferenceNode = value.getNode("PreferenceScreen")
+                field = value.also { revancedPreferenceNode = it.getNode("PreferenceScreen") }
             }
         private var preferencesEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                preferencesNode = value.getNode("PreferenceScreen")
+                field = value.also { preferencesNode = it.getNode("PreferenceScreen") }
             }
 
         private var stringsEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                stringsNode = value.getNode("resources")
+                field = value.also { stringsNode = it.getNode("resources") }
             }
         private var arraysEditor: DomFileEditor? = null
             set(value) {
-                field = value
-                arraysNode = value.getNode("resources")
+                field = value.also { arraysNode = it.getNode("resources") }
             }
 
         /**
@@ -149,11 +146,12 @@ class SettingsResourcePatch : ResourcePatch {
                 arrayResource.items.forEach { item ->
                     item.include()
 
-                    arrayNode.setAttribute("name", item.name)
-
-                    arrayNode.appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
-                        itemNode.textContent = item.value
-                    })
+                    with(arrayNode) {
+                        setAttribute("name", item.name)
+                        appendChild(arrayNode.ownerDocument.createElement("item").also { itemNode ->
+                            itemNode.textContent = item.value
+                        })
+                    }
                 }
             })
         }
@@ -181,9 +179,11 @@ class SettingsResourcePatch : ResourcePatch {
                 }
 
                 preferenceNode.appendChild(preferenceNode.createElement("intent").also { intentNode ->
-                    intentNode.setAttribute("android:targetPackage", preference.intent.targetPackage)
-                    intentNode.setAttribute("android:data", preference.intent.data)
-                    intentNode.setAttribute("android:targetClass", preference.intent.targetClass)
+                    with(intentNode) {
+                        setAttribute("android:targetPackage", preference.intent.targetPackage)
+                        setAttribute("android:data", preference.intent.data)
+                        setAttribute("android:targetClass", preference.intent.targetClass)
+                    }
                 })
             })
         }
@@ -213,28 +213,32 @@ class SettingsResourcePatch : ResourcePatch {
                 }
             }
 
-            val preferenceElement = ownerDocument.createElement(preference.tag)
-            preferenceElement.setAttribute("android:key", preference.key)
-            preferenceElement.setAttribute("android:title", "@string/${preference.title.also { it.include() }.name}")
+            with(ownerDocument.createElement(preference.tag)) {
+                setAttribute("android:key", preference.key)
+                setAttribute(
+                    "android:title",
+                    "@string/${preference.title.also { it.include() }.name}"
+                )
 
-            when (preference) {
-                is PreferenceScreen -> {
-                    for (childPreference in preference.preferences) preferenceElement.addPreference(childPreference)
-                    preferenceElement.addSummary(preference.summary)
+                when (preference) {
+                    is PreferenceScreen -> {
+                        for (childPreference in preference.preferences) addPreference(childPreference)
+                        addSummary(preference.summary)
+                    }
+                    is SwitchPreference -> {
+                        addDefault(preference.default)
+                        addSummary(preference.summaryOn, SummaryType.ON)
+                        addSummary(preference.summaryOff, SummaryType.OFF)
+                    }
+                    is TextPreference -> {
+                        setAttribute("android:inputType", preference.inputType.type)
+                        addDefault(preference.default)
+                        addSummary(preference.summary)
+                    }
                 }
-                is SwitchPreference -> {
-                    preferenceElement.addDefault(preference.default)
-                    preferenceElement.addSummary(preference.summaryOn, SummaryType.ON)
-                    preferenceElement.addSummary(preference.summaryOff, SummaryType.OFF)
-                }
-                is TextPreference -> {
-                    preferenceElement.setAttribute("android:inputType", preference.inputType.type)
-                    preferenceElement.addDefault(preference.default)
-                    preferenceElement.addSummary(preference.summary)
-                }
+
+                this@addPreference.appendChild(this)
             }
-
-            appendChild(preferenceElement)
         }
 
         /**
@@ -260,12 +264,14 @@ class SettingsResourcePatch : ResourcePatch {
         // merge all strings, skip duplicates
         strings.forEach { stringResource ->
             stringsNode!!.appendChild(stringsNode!!.ownerDocument.createElement("string").also { stringElement ->
-                stringElement.setAttribute("name", stringResource.name)
+                with(stringElement) {
+                    setAttribute("name", stringResource.name)
 
-                // if the string is un-formatted, explicitly add the formatted attribute
-                if (!stringResource.formatted) stringElement.setAttribute("formatted", "false")
+                    // if the string is un-formatted, explicitly add the formatted attribute
+                    if (!stringResource.formatted) setAttribute("formatted", "false")
 
-                stringElement.textContent = stringResource.value
+                    textContent = stringResource.value
+                }
             })
         }
 
@@ -294,9 +300,6 @@ class SettingsResourcePatch : ResourcePatch {
             }
         }
 
-        revancedPreferencesEditor?.close()
-        preferencesEditor?.close()
-        stringsEditor?.close()
-        arraysEditor?.close()
+        arrayOf(revancedPreferencesEditor, preferencesEditor, stringsEditor, arraysEditor).forEach { it?.close() }
     }
 }

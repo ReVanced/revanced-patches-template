@@ -1,12 +1,11 @@
 package app.revanced.patches.youtube.misc.playercontrols.resource.patch
 
+import app.revanced.patcher.DomFileEditor
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.DomFileEditor
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
@@ -20,9 +19,9 @@ import app.revanced.patches.youtube.misc.playercontrols.annotation.PlayerControl
 class BottomControlsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         resourceContext = context
-        targetXmlEditor = context.xmlEditor[TARGET_RESOURCE]
+        targetXmlEditor = context.openEditor(TARGET_RESOURCE)
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     companion object {
@@ -36,16 +35,17 @@ class BottomControlsResourcePatch : ResourcePatch {
         private var lastLeftOf = "fullscreen_button"
 
 
-
         /**
          * Add new controls to the bottom of the YouTube player.
          * @param hostYouTubeControlsBottomUiResourceName The hosting resource name containing the elements.
          */
         internal fun addControls(hostYouTubeControlsBottomUiResourceName: String) {
             val sourceXmlEditor =
-                resourceContext.xmlEditor[this::class.java.classLoader.getResourceAsStream(
-                    hostYouTubeControlsBottomUiResourceName
-                )!!]
+                resourceContext.openEditor(
+                    this::class.java.classLoader.getResourceAsStream(
+                        hostYouTubeControlsBottomUiResourceName
+                    )!!
+                )
 
             val targetElement =
                 "android.support.constraint.ConstraintLayout"

@@ -1,11 +1,10 @@
 package app.revanced.patches.youtube.interaction.downloads.resource.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCompatibility
@@ -13,9 +12,9 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.Settings.mergeStrings
+import app.revanced.util.ResourceUtils.copyResources
 
 @Name("downloads-resource-patch")
 @DependsOn([BottomControlsResourcePatch::class, FixLocaleConfigErrorPatch::class, SettingsPatch::class])
@@ -41,7 +40,10 @@ class DownloadsResourcePatch : ResourcePatch {
                         StringResource("revanced_downloads_package_name_title", "Downloader package name"),
                         InputType.STRING,
                         "org.schabi.newpipe" /* NewPipe */,
-                        StringResource("revanced_downloads_package_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s")
+                        StringResource(
+                            "revanced_downloads_package_name_summary",
+                            "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s"
+                        )
                     )
                 ),
                 StringResource("revanced_downloads_summary", "Settings related to downloads")
@@ -67,6 +69,6 @@ class DownloadsResourcePatch : ResourcePatch {
 
         BottomControlsResourcePatch.addControls("downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

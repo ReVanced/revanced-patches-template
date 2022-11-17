@@ -1,11 +1,10 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
@@ -13,7 +12,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
+import app.revanced.util.ResourceUtils.Settings.mergeStrings
 
 @DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
 @Name("return-youtube-dislike-resource-patch")
@@ -37,6 +36,6 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
         // merge strings
         context.mergeStrings("returnyoutubedislike/host/values/strings.xml")
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

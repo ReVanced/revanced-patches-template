@@ -1,10 +1,13 @@
 package app.revanced.patches.spotify.layout.theme.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.OptionsContainer
+import app.revanced.patcher.patch.PatchOption
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.layout.theme.annotations.ThemeCompatibility
@@ -19,7 +22,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        context.xmlEditor["res/values/colors.xml"].use { editor ->
+        context.openEditor("res/values/colors.xml").use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
 
             for (i in 0 until resourcesNode.childNodes.length) {
@@ -34,7 +37,7 @@ class ThemePatch : ResourcePatch {
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

@@ -1,14 +1,13 @@
 package app.revanced.patches.youtube.interaction.seekbar.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.interaction.seekbar.annotation.SeekbarTappingCompatibility
@@ -83,7 +82,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
 
         // get the required register
         val instruction = implementation.instructions[insertIndex - 1]
-        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return PatchResultError("Could not find the correct register")
+        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return PatchResult.Error("Could not find the correct register")
         val register = (instruction as Instruction35c).registerC
 
         val elseLabel = implementation.newLabelForIndex(insertIndex)
@@ -105,6 +104,6 @@ class EnableSeekbarTappingPatch : BytecodePatch(
                 move-result v0
             """
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

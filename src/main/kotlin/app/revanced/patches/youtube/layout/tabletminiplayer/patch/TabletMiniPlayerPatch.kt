@@ -1,15 +1,14 @@
 package app.revanced.patches.youtube.layout.tabletminiplayer.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -57,7 +56,10 @@ class TabletMiniPlayerPatch : BytecodePatch(
         val (method, _, parameterRegister) = MiniPlayerOverrideNoContextFingerprint.addProxyCall()
         // - 1 means to insert before the return instruction
         val secondInsertIndex = method.implementation!!.instructions.size - 1
-        method.insertOverride(secondInsertIndex, parameterRegister /** same register used to return **/)
+        method.insertOverride(
+            secondInsertIndex, parameterRegister
+            /** same register used to return **/
+        )
 
         /*
          * method with context parameter
@@ -70,7 +72,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
          */
         val (_, _, _) = MiniPlayerResponseModelSizeCheckFingerprint.addProxyCall()
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     // helper methods

@@ -1,12 +1,15 @@
 package app.revanced.patches.youtube.misc.video.speed.custom.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.OptionsContainer
+import app.revanced.patcher.patch.PatchOption
+import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.misc.video.speed.custom.annotations.CustomPlaybackSpeedCompatibility
@@ -46,7 +49,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
         val sizeCallIndex = arrayGenMethodImpl.instructions
             .indexOfFirst { ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "size" }
 
-        if (sizeCallIndex == -1) return PatchResultError("Couldn't find call to size()")
+        if (sizeCallIndex == -1) return PatchResult.Error("Couldn't find call to size()")
 
         val sizeCallResultRegister =
             (arrayGenMethodImpl.instructions.elementAt(sizeCallIndex + 1) as OneRegisterInstruction).registerA
@@ -147,7 +150,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
             )
         )
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

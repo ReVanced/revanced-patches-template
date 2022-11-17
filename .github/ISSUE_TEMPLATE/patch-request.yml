@@ -1,7 +1,7 @@
 name: ⭐ Patch Request
 description: Create a detailed patch request.
 title: 'feat(patch): '
-labels: [patch-request]
+labels: [ patch-request ]
 body:
   - type: textarea
     attributes:

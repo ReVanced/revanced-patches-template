@@ -1,15 +1,14 @@
 package app.revanced.patches.youtube.layout.pivotbar.shortsbutton.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.pivotbar.fingerprints.PivotBarFingerprint
@@ -47,7 +46,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
          * Resolve fingerprints
          */
 
-        val pivotBarResult = PivotBarFingerprint.result ?: return PatchResultError("PivotBarFingerprint failed")
+        val pivotBarResult = PivotBarFingerprint.result ?: return PatchResult.Error("PivotBarFingerprint failed")
         val fingerprintResults = arrayOf(PivotBarEnumFingerprint, PivotBarShortsButtonViewFingerprint)
             .onEach {
                 val resolutionSucceeded = it.resolve(
@@ -56,7 +55,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
                     pivotBarResult.mutableClass
                 )
 
-                if (!resolutionSucceeded) return PatchResultError("${it.name} failed")
+                if (!resolutionSucceeded) return PatchResult.Error("${it.name} failed")
             }
             .map { it.result!!.scanResult.patternScanResult!! }
 
@@ -85,6 +84,6 @@ class ShortsButtonRemoverPatch : BytecodePatch(
             pivotBarResult.mutableMethod.injectHook(hook, insertIndex)
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

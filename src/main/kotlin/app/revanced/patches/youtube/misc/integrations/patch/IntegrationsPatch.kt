@@ -1,16 +1,14 @@
 package app.revanced.patches.youtube.misc.integrations.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patcher.util.smali.toInstructions
 import app.revanced.patches.youtube.misc.integrations.annotations.IntegrationsCompatibility
@@ -35,8 +33,8 @@ class IntegrationsPatch : BytecodePatch(
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
-        if (context.findClass(INTEGRATIONS_DESCRIPTOR) == null)
-            return PatchResultError("Integrations have not been merged yet. This patch can not succeed without merging the integrations.")
+        if (context.classes.findClassProxied(INTEGRATIONS_DESCRIPTOR) == null)
+            return PatchResult.Error("Integrations have not been merged yet. This patch can not succeed without merging the integrations.")
 
         arrayOf(InitFingerprint, StandalonePlayerFingerprint, ServiceFingerprint).map {
             it to (it.result ?: return PatchResultError("${it.name} failed to resolve"))
@@ -54,6 +52,6 @@ class IntegrationsPatch : BytecodePatch(
             }
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

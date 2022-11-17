@@ -1,12 +1,11 @@
 package app.revanced.patches.twitter.misc.monochrome.patch
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.monochrome.annotations.MonochromeIconCompatibility
@@ -20,10 +19,8 @@ import java.nio.file.Files
 @Version("0.0.1")
 class MonochromeIconPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context["res"]
-        if (!resDirectory.isDirectory) return PatchResultError("The res folder can not be found.")
+        val mipmapV33Directory = context.getFileOr("res/mipmap-anydpi-v33")
 
-        val mipmapV33Directory = resDirectory.resolve("mipmap-anydpi-v33")
         if (!mipmapV33Directory.isDirectory) Files.createDirectories(mipmapV33Directory.toPath())
 
         FileWriter(mipmapV33Directory.resolve("ic_launcher_twitter.xml")).use {
@@ -50,6 +47,6 @@ class MonochromeIconPatch : ResourcePatch {
             )
         }
 
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }

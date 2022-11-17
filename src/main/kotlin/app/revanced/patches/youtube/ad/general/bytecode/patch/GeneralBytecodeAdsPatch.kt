@@ -1,18 +1,17 @@
 package app.revanced.patches.youtube.ad.general.bytecode.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.softCompareTo
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
+
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
@@ -128,8 +127,14 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                 "revanced_adremover_community_guidelines",
                 StringResource("revanced_adremover_community_guidelines_enabled_title", "Remove community guidelines"),
                 true,
-                StringResource("revanced_adremover_community_guidelines_enabled_summary_on", "Community guidelines are hidden"),
-                StringResource("revanced_adremover_community_guidelines_enabled_summary_off", "Community guidelines are shown")
+                StringResource(
+                    "revanced_adremover_community_guidelines_enabled_summary_on",
+                    "Community guidelines are hidden"
+                ),
+                StringResource(
+                    "revanced_adremover_community_guidelines_enabled_summary_off",
+                    "Community guidelines are shown"
+                )
             ),
             SwitchPreference(
                 "revanced_adremover_emergency_box_removal",
@@ -234,7 +239,8 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     if (invokeInstruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
 
                                     // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
+                                    if (mutableClass == null) mutableClass =
+                                        context.classes.proxy(classDef).mutableClass
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
@@ -250,7 +256,8 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     if (iPutInstruction.opcode != Opcode.IPUT_OBJECT) return@forEachIndexed
 
                                     // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
+                                    if (mutableClass == null) mutableClass =
+                                        context.classes.proxy(classDef).mutableClass
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
@@ -267,7 +274,8 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                     if (stringInstruction.opcode == Opcode.CONST_STRING) return@forEachIndexed
 
                                     // create proxied method, make sure to not re-resolve() the current class
-                                    if (mutableClass == null) mutableClass = context.proxy(classDef).mutableClass
+                                    if (mutableClass == null) mutableClass =
+                                        context.classes.proxy(classDef).mutableClass
                                     if (mutableMethod == null) mutableMethod =
                                         mutableClass!!.findMutableMethodOf(method)
 
@@ -280,11 +288,11 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                                 }
 
                                 stringReferences[1] -> { // Litho ads
-                                    val proxy = context.proxy(classDef)
+                                    val proxy = context.classes.proxy(classDef)
                                     val proxiedClass = proxy.mutableClass
 
                                     val lithoMethod = getLithoMethod(proxiedClass)
-                                        ?: return PatchResultError("Could not find required Litho method to patch.")
+                                        ?: return PatchResult.Error("Could not find required Litho method to patch.")
 
                                     val instructionWithNeededDescriptor =
                                         lithoMethod.implementation!!.instructions.indexOfFirst {
@@ -339,7 +347,7 @@ class GeneralBytecodeAdsPatch : BytecodePatch() {
                 }
             }
         }
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 
     private fun getLithoMethod(mutableClass: MutableClass) = mutableClass.methods.firstOrNull {

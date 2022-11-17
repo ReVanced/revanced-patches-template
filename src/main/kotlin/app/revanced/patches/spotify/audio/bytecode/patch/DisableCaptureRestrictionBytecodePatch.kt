@@ -1,15 +1,13 @@
 package app.revanced.patches.spotify.audio.bytecode.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.audio.annotation.DisableCaptureRestrictionCompatibility
@@ -53,7 +51,7 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
         }
 
         if(invokePosition == null || invokeParamRegister == null)
-            return PatchResultError("Cannot find setAllowedCapturePolicy method call")
+            return PatchResult.Error("Cannot find setAllowedCapturePolicy method call")
 
         // Walk back to the const/4 instruction that sets the parameter register
         var matchFound = false
@@ -75,9 +73,9 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
         }
 
         return if (matchFound)
-            PatchResultSuccess()
+            PatchResult.Success
         else
-            PatchResultError("Const instruction not found")
+            PatchResult.Error("Const instruction not found")
     }
 
     private companion object {

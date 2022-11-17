@@ -1,4 +1,3 @@
-
 package app.revanced.patches.youtube.misc.video.quality.fingerprints
 
 import app.revanced.patcher.annotation.Name
@@ -16,7 +15,7 @@ import org.jf.dexlib2.Opcode
 object VideoUserQualityChangeFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
-    listOf("L","L","I","J"),
+    listOf("L", "L", "I", "J"),
     listOf(
         Opcode.MOVE,
         Opcode.MOVE_WIDE,

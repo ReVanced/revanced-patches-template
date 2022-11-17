@@ -13,5 +13,9 @@ import org.jf.dexlib2.util.MethodUtil
 @Version("0.0.1")
 object NextGenWatchLayoutFingerprint : MethodFingerprint(
     "V", // constructors return void, in favour of speed of matching, this fingerprint has been added
-    customFingerprint =  { methodDef -> MethodUtil.isConstructor(methodDef) && methodDef.parameterTypes.size == 3 && methodDef.definingClass.endsWith("NextGenWatchLayout;") }
+    customFingerprint = { methodDef ->
+        MethodUtil.isConstructor(methodDef) && methodDef.parameterTypes.size == 3 && methodDef.definingClass.endsWith(
+            "NextGenWatchLayout;"
+        )
+    }
 )

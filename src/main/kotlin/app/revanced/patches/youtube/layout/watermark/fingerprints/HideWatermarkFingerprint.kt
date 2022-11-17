@@ -10,6 +10,6 @@ import org.jf.dexlib2.AccessFlags
 @Name("hide-watermark-signature")
 @HideWatermarkCompatibility
 @Version("0.0.1")
-object HideWatermarkFingerprint : MethodFingerprint (
+object HideWatermarkFingerprint : MethodFingerprint(
     "V", AccessFlags.PUBLIC or AccessFlags.FINAL, listOf("L", "L")
 )

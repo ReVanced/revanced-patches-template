@@ -9,5 +9,5 @@ import app.revanced.patches.spotify.premium_navbar_tab.annotations.PremiumNavbar
 @Version("0.0.1")
 @PremiumNavbarTabCompatibility
 object AddPremiumNavbarTabParentFingerprint : MethodFingerprint(
-     strings = listOf("com.samsung.android.samsungaccount.action.REQUEST_AUTHCODE")
+    strings = listOf("com.samsung.android.samsungaccount.action.REQUEST_AUTHCODE")
 )

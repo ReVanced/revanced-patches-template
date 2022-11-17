@@ -1,17 +1,16 @@
 package app.revanced.patches.youtube.interaction.swipecontrols.patch.resource
 
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceUtils
+import app.revanced.util.ResourceUtils.copyResources
 
 @Name("swipe-controls-resource-patch")
 @DependsOn([SettingsPatch::class])
@@ -88,7 +87,7 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         )
                     )
                 ),
-                StringResource("revanced_swipe_controls_summary","Control volume and brightness")
+                StringResource("revanced_swipe_controls_summary", "Control volume and brightness")
             )
         )
 
@@ -102,6 +101,6 @@ class SwipeControlsResourcePatch : ResourcePatch {
                 "ic_sc_volume_normal.xml"
             )
         )
-        return PatchResultSuccess()
+        return PatchResult.Success
     }
 }
