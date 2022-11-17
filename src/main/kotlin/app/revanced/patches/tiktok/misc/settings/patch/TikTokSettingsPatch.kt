@@ -72,7 +72,7 @@ class TikTokSettingsPatch : BytecodePatch(
                 val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
 
                 replaceInstruction(
-                    targetIndex, "const-string v$overrideRegister, \"Revanced ResourceUtils.Settings\""
+                    targetIndex, "const-string v$overrideRegister, \"Revanced Settings\""
                 )
 
                 // Change onClick to start settings activity.
