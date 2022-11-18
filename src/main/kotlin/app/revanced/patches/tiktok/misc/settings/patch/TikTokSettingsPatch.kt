@@ -23,7 +23,6 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.iface.reference.TypeReference
 
@@ -41,95 +40,24 @@ class TikTokSettingsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        //Change onClick of About to start revanced settings
-        val aboutOnClickMethod = AboutOnClickMethodFingerprint.result!!.mutableMethod
-        aboutOnClickMethod.addInstructions(
-            0,
-            """
-                    invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                    return-void
-                """
-        )
-
-        // Replace string `Copyright Policy` to 'Revanced Settings` in TikTok settings.
+        //Patch Tiktok Settings UI to add 'Revanced Settings'.
+        val targetIndexes = findOptionsOnClickIndex()
         with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
             val instructions = implementation!!.instructions
-
-            for ((index, instruction) in instructions.withIndex()) {
-                if (instruction.opcode != Opcode.CONST_STRING) continue
-
-                val string = ((instruction as ReferenceInstruction).reference as StringReference).string
-                if (string != "copyright_policy") continue
-
-                val targetIndex = index - 6
-
-                val resultInstruction = instructions[targetIndex].also {
-                    if (it.opcode != Opcode.MOVE_RESULT_OBJECT)
-                        return PatchResultError("Hardcode offset changed.")
-                }
-
-
-                val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
-
-                replaceInstruction(
-                    targetIndex, "const-string v$overrideRegister, \"Revanced Settings\""
+            for (index in targetIndexes) {
+                if (
+                    instructions[index].opcode != Opcode.NEW_INSTANCE ||
+                    instructions[index - 4].opcode != Opcode.MOVE_RESULT_OBJECT
                 )
-
-                // Change onClick to start settings activity.
-                val clickInstruction = instruction(index - 1).also {
-                    if (it.opcode != Opcode.INVOKE_DIRECT)
-                        return PatchResultError("Hardcode offset changed.")
-                }
-
-                with(((clickInstruction as ReferenceInstruction).reference as MethodReference).definingClass) {
-                    context.findClass(this)!!
-                        .mutableClass
-                        .methods.first { it.name == "onClick" }.addInstructions(
-                            0,
-                            """
-                                    invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                                    return-void
-                                """
-                        )
-                }
-
-                break
+                    return PatchResultError("Hardcode offset changed.")
+                patchOptionNameAndOnClickEvent(index, context)
             }
-
-            //Replace string `About` to 'Revanced Settings` in TikTok settings.
-            for ((index, instruction) in instructions.withIndex()) {
-                if (instruction.opcode != Opcode.NEW_INSTANCE) continue
-
-                val onClickClass = ((instruction as Instruction21c).reference as TypeReference).type
-                if (onClickClass != aboutOnClickMethod.definingClass) continue
-
-                val targetIndex = index - 4
-
-                val resultInstruction = instructions[targetIndex].also {
-                    if (it.opcode != Opcode.MOVE_RESULT_OBJECT)
-                        return PatchResultError("Hardcode offset changed.")
-                }
-
-                val overrideRegister = (resultInstruction as OneRegisterInstruction).registerA
-                replaceInstruction(
-                    targetIndex,
-                    """
-                        const-string v$overrideRegister, "Revanced Settings"
-                    """
-                )
-                break
-            }
-
         }
-
-
         //Implement revanced settings screen in `AdPersonalizationActivity`
         with(AdPersonalizationActivityOnCreateFingerprint.result!!.mutableMethod) {
             for ((index, instruction) in implementation!!.instructions.withIndex()) {
                 if (instruction.opcode != Opcode.INVOKE_SUPER) continue
-
                 val thisRegister = (instruction as Instruction35c).registerC
-
                 addInstructions(
                     index + 1,
                     """
@@ -140,7 +68,63 @@ class TikTokSettingsPatch : BytecodePatch(
                 break
             }
         }
-
         return PatchResultSuccess()
+    }
+
+    private fun findOptionsOnClickIndex(): IntArray {
+        val results = IntArray(2)
+        var found = 0
+        with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
+            val instructions = implementation!!.instructions
+
+            for ((index, instruction) in instructions.withIndex()) {
+                //OldUI settings option to replace to 'Revanced Settings'
+                if (instruction.opcode == Opcode.CONST_STRING) {
+                    val string = ((instruction as ReferenceInstruction).reference as StringReference).string
+                    if (string == "copyright_policy") {
+                        results[0] = index - 2
+                        found++
+                    }
+                }
+                //NewUI settings option to replace to 'Revanced Settings'
+                if (instruction.opcode == Opcode.NEW_INSTANCE) {
+                    val onClickClass = ((instruction as Instruction21c).reference as TypeReference).type
+                    if (onClickClass == AboutOnClickMethodFingerprint.result!!.mutableMethod.definingClass) {
+                        results[1] = index
+                        found++
+                    }
+                }
+                if (found > 1) break
+            }
+        }
+        return results
+    }
+
+    private fun patchOptionNameAndOnClickEvent(index: Int, context: BytecodeContext) {
+        with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
+            val instructions = implementation!!.instructions
+            //Patch option name
+            val stringInstruction = instructions[index - 4]
+            val overrideRegister = (stringInstruction as OneRegisterInstruction).registerA
+            replaceInstruction(
+                index - 4,
+                """
+                        const-string v$overrideRegister, "Revanced Settings"
+                    """
+            )
+            //Patch option OnClick Event
+            val onClickInstruction = instruction(index)
+            with(((onClickInstruction as ReferenceInstruction).reference as TypeReference).type) {
+                context.findClass(this)!!
+                    .mutableClass
+                    .methods.first { it.name == "onClick" }.addInstructions(
+                        0,
+                        """
+                                    invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                                    return-void
+                                """
+                    )
+            }
+        }
     }
 }
