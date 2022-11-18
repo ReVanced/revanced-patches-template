@@ -72,7 +72,6 @@ class LithoFilterPatch : BytecodePatch(
                 ) { it }
             })${reference.returnType}"
 
-
             is FieldReference -> "${reference.definingClass}->${reference.name}:${reference.type}"
 
             else -> throw PatchResultError("Unsupported reference type")
