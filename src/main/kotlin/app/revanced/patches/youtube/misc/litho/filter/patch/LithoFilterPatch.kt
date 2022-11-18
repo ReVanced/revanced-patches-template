@@ -65,19 +65,17 @@ class LithoFilterPatch : BytecodePatch(
     }
 
     private companion object {
-        fun Instruction.toDescriptor() = when (val reference = (this as ReferenceInstruction).reference) {
-            MethodReference::class -> {
-                val methodReference = reference as MethodReference
-                "${methodReference.definingClass}->${methodReference.name}(${
-                    methodReference.parameterTypes.joinToString(
+        fun Instruction.toDescriptor() = when (val reference = (this as? ReferenceInstruction)?.reference) {
+            is MethodReference -> {
+                "${reference.definingClass}->${reference.name}(${
+                    reference.parameterTypes.joinToString(
                         ""
                     ) { it }
-                })${methodReference.returnType}"
+                })${reference.returnType}"
             }
 
-            FieldReference::class -> {
-                val fieldReference = reference as FieldReference
-                "${fieldReference.definingClass}->${fieldReference.name}:${fieldReference.type}"
+            is FieldReference -> {
+                "${reference.definingClass}->${reference.name}:${reference.type}"
             }
 
             else -> throw PatchResultError("Unsupported reference type")
