@@ -47,15 +47,15 @@ class LithoFilterPatch : BytecodePatch(
                 addInstructions(
                     insertHookIndex, // right after setting the component.pathBuilder field,
                     """
-                             invoke-static {v5, v2}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
-                             move-result v$clobberedRegister
-                             if-eqz v$clobberedRegister, :not_an_ad
-                             move-object/from16 v2, p1
-                             invoke-static {v2}, $builderMethodDescriptor
-                             move-result-object v0
-                             iget-object v0, v0, $emptyComponentFieldDescriptor
-                             return-object v0
-                         """,
+                        invoke-static {v5, v2}, Lapp/revanced/integrations/patches/LithoFilterPatch;->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
+                        move-result v$clobberedRegister
+                        if-eqz v$clobberedRegister, :not_an_ad
+                        move-object/from16 v2, p1
+                        invoke-static {v2}, $builderMethodDescriptor
+                        move-result-object v0
+                        iget-object v0, v0, $emptyComponentFieldDescriptor
+                        return-object v0
+                    """,
                     listOf(ExternalLabel("not_an_ad", instruction(insertHookIndex)))
                 )
             }
@@ -71,9 +71,7 @@ class LithoFilterPatch : BytecodePatch(
                     ""
                 ) { it }
             })${reference.returnType}"
-
             is FieldReference -> "${reference.definingClass}->${reference.name}:${reference.type}"
-
             else -> throw PatchResultError("Unsupported reference type")
         }
     }
