@@ -35,7 +35,7 @@ As an example the structure of [`VideoAdsPatch`](https://github.com/revanced/rev
 
 > **Note**: More ⭐ equals more importance
 
-- ⭐⭐ **`@Patch` should be named by what they accomplish**. Example: _To patch ads on videos, the patch should be called_VideoAdsPatch._
+- ⭐⭐ **`@Patch` should be named by what they accomplish**. Example: _To patch ads on videos, the patch should be called `HideVideoAdsPatch`._
 
 - ⭐⭐ **`@Description` should be written in third person and end with punctuation**. Example: _Removes ads in the video player._
 
