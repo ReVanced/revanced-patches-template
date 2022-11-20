@@ -40,20 +40,19 @@ class TikTokSettingsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        //Patch Tiktok Settings UI to add 'Revanced Settings'.
+        // Patch Settings UI to add 'Revanced Settings'.
         val targetIndexes = findOptionsOnClickIndex()
         with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
-            val instructions = implementation!!.instructions
             for (index in targetIndexes) {
                 if (
-                    instructions[index].opcode != Opcode.NEW_INSTANCE ||
-                    instructions[index - 4].opcode != Opcode.MOVE_RESULT_OBJECT
+                    instruction(index).opcode != Opcode.NEW_INSTANCE ||
+                    instruction(index - 4).opcode != Opcode.MOVE_RESULT_OBJECT
                 )
                     return PatchResultError("Hardcode offset changed.")
                 patchOptionNameAndOnClickEvent(index, context)
             }
         }
-        //Implement revanced settings screen in `AdPersonalizationActivity`
+        // Implement settings screen in `AdPersonalizationActivity`
         with(AdPersonalizationActivityOnCreateFingerprint.result!!.mutableMethod) {
             for ((index, instruction) in implementation!!.instructions.withIndex()) {
                 if (instruction.opcode != Opcode.INVOKE_SUPER) continue
@@ -75,10 +74,8 @@ class TikTokSettingsPatch : BytecodePatch(
         val results = IntArray(2)
         var found = 0
         with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
-            val instructions = implementation!!.instructions
-
-            for ((index, instruction) in instructions.withIndex()) {
-                //OldUI settings option to replace to 'Revanced Settings'
+            for ((index, instruction) in implementation!!.instructions.withIndex()) {
+                // Old UI settings option to replace to 'Revanced Settings'
                 if (instruction.opcode == Opcode.CONST_STRING) {
                     val string = ((instruction as ReferenceInstruction).reference as StringReference).string
                     if (string == "copyright_policy") {
@@ -86,7 +83,8 @@ class TikTokSettingsPatch : BytecodePatch(
                         found++
                     }
                 }
-                //NewUI settings option to replace to 'Revanced Settings'
+
+                // New UI settings option to replace to 'Revanced Settings'
                 if (instruction.opcode == Opcode.NEW_INSTANCE) {
                     val onClickClass = ((instruction as Instruction21c).reference as TypeReference).type
                     if (onClickClass == AboutOnClickMethodFingerprint.result!!.mutableMethod.definingClass) {
@@ -102,27 +100,24 @@ class TikTokSettingsPatch : BytecodePatch(
 
     private fun patchOptionNameAndOnClickEvent(index: Int, context: BytecodeContext) {
         with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
-            val instructions = implementation!!.instructions
-            //Patch option name
-            val stringInstruction = instructions[index - 4]
-            val overrideRegister = (stringInstruction as OneRegisterInstruction).registerA
+            // Patch option name
+            val overrideRegister = (instruction(index - 4) as OneRegisterInstruction).registerA
             replaceInstruction(
                 index - 4,
                 """
-                        const-string v$overrideRegister, "Revanced Settings"
-                    """
+                    const-string v$overrideRegister, "Revanced Settings"
+                """
             )
-            //Patch option OnClick Event
-            val onClickInstruction = instruction(index)
-            with(((onClickInstruction as ReferenceInstruction).reference as TypeReference).type) {
-                context.findClass(this)!!
-                    .mutableClass
-                    .methods.first { it.name == "onClick" }.addInstructions(
+
+            // Patch option OnClick Event
+            with(((instruction(index) as ReferenceInstruction).reference as TypeReference).type) {
+                context.findClass(this)!!.mutableClass.methods.first { it.name == "onClick" }
+                    .addInstructions(
                         0,
                         """
-                                    invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                                    return-void
-                                """
+                                 invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                                 return-void
+                             """
                     )
             }
         }
