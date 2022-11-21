@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.misc.settings.framework.components.impl
+package app.revanced.shared.components.settings.impl
 
-import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
+import app.revanced.shared.components.settings.BasePreference
 
 /**
  * Text preference.

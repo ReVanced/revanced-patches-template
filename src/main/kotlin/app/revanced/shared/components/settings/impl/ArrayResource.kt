@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.settings.framework.components.impl
+package app.revanced.shared.components.settings.impl
 
 /**
  *  Represents an array resource.

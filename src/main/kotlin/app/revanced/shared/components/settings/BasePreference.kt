@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.misc.settings.framework.components
+package app.revanced.shared.components.settings
 
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.shared.components.settings.impl.StringResource
 
 /**
  * Base preference class for all preferences.
