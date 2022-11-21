@@ -4,11 +4,11 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import org.jf.dexlib2.AccessFlags
 
 @Name("settings-menu-groups-onclick-fingerprint")
-@TwitchSettingsCompatibility
+@SettingsCompatibility
 @Version("0.0.1")
 object MenuGroupsOnClickFingerprint : MethodFingerprint(
     "V",

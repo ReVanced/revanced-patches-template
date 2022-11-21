@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.components.BasePreference
 import app.revanced.patches.twitch.misc.settings.components.impl.*
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
@@ -18,10 +18,10 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 @Name("twitch-settings-resource-patch")
-@TwitchSettingsCompatibility
+@SettingsCompatibility
 @DependsOn([FixLocaleConfigErrorPatch::class])
 @Version("0.0.1")
-class TwitchSettingsResourcePatch : ResourcePatch {
+class SettingsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         /* required for self-restart in settings */
         context.xmlEditor["AndroidManifest.xml"].use { editor ->

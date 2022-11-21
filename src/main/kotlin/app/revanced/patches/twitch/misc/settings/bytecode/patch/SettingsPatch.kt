@@ -13,25 +13,24 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.twitch.misc.integrations.patch.TwitchIntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.components.BasePreference
 import app.revanced.patches.twitch.misc.settings.components.impl.*
 import app.revanced.patches.twitch.misc.settings.components.impl.PreferenceScreen
 import app.revanced.patches.twitch.misc.settings.components.impl.StringResource
 import app.revanced.patches.twitch.misc.settings.fingerprints.*
-import app.revanced.patches.twitch.misc.settings.resource.patch.TwitchSettingsResourcePatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
 import java.io.Closeable
 
 @Patch
-@DependsOn([TwitchIntegrationsPatch::class, TwitchSettingsResourcePatch::class])
-@Name("twitch-settings")
+@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
+@Name("settings")
 @Description("Add settings menu to Twitch.")
-@TwitchSettingsCompatibility
+@SettingsCompatibility
 @Version("0.0.1")
-class TwitchSettingsPatch : BytecodePatch(
+class SettingsPatch : BytecodePatch(
     listOf(
         SettingsActivityOnCreateFingerprint,
         SettingsMenuItemEnumFingerprint,
@@ -104,13 +103,13 @@ class TwitchSettingsPatch : BytecodePatch(
 
     companion object {
        internal fun addString(identifier: String, value: String, formatted: Boolean = true) =
-            TwitchSettingsResourcePatch.addString(identifier, value, formatted)
+            SettingsResourcePatch.addString(identifier, value, formatted)
 
        internal fun addPreferenceScreens(vararg preferenceScreen: PreferenceScreen) =
-           TwitchSettingsResourcePatch.addPreferenceScreens(*preferenceScreen)
+           SettingsResourcePatch.addPreferenceScreens(*preferenceScreen)
 
        internal fun addRootPreferences(vararg preference: BasePreference) =
-           TwitchSettingsResourcePatch.addRootPreferences(*preference)
+           SettingsResourcePatch.addRootPreferences(*preference)
 
         /* Private members */
         private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
