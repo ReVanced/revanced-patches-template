@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCo
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
+import app.revanced.shared.components.settings.impl.*
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
 import app.revanced.util.resources.ResourceUtils.copyResources

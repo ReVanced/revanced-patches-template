@@ -11,8 +11,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.Preference
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
+import app.revanced.shared.components.settings.impl.Preference
+import app.revanced.shared.components.settings.impl.StringResource
 import app.revanced.util.resources.ResourceUtils.Settings.mergeStrings
 
 @DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class])

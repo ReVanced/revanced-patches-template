@@ -12,8 +12,8 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.shared.mapping.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.BasePreference
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
+import app.revanced.shared.components.settings.BasePreference
+import app.revanced.shared.components.settings.impl.*
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Element

@@ -13,8 +13,8 @@ import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.layout.buttons.annotations.HideArtistCardCompatibility
 import app.revanced.patches.shared.mapping.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
+import app.revanced.shared.components.settings.impl.StringResource
+import app.revanced.shared.components.settings.impl.SwitchPreference
 
 @Patch
 @DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class])

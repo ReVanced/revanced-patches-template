@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.*
+import app.revanced.shared.components.settings.impl.*
 
 @DependsOn(dependencies = [
     FixLocaleConfigErrorPatch::class,
