@@ -11,4 +11,4 @@ import app.revanced.patcher.annotation.Package
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class DisableForceLoginCompatibility
+internal annotation class DisableLoginRequirementCompatibility

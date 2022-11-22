@@ -9,16 +9,16 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.loginfallback.annotations.TikTokWebLoginCompatibility
+import app.revanced.patches.tiktok.misc.loginfallback.annotations.FixGoogleLoginCompatibility
 import app.revanced.patches.tiktok.misc.loginfallback.fingerprints.GoogleAuthAvailableFingerprint
 import app.revanced.patches.tiktok.misc.loginfallback.fingerprints.GoogleOneTapAuthAvailableFingerprint
 
 @Patch
-@Name("web-login")
+@Name("fix-google-login")
 @Description("Allows logging in with a Google account.")
-@TikTokWebLoginCompatibility
+@FixGoogleLoginCompatibility
 @Version("0.0.1")
-class TikTokLoginFallbackPatch : BytecodePatch(
+class FixGoogleLoginPatch : BytecodePatch(
     listOf(
         GoogleOneTapAuthAvailableFingerprint,
         GoogleAuthAvailableFingerprint

@@ -9,16 +9,16 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.forcelogin.annotations.DisableForceLoginCompatibility
+import app.revanced.patches.tiktok.misc.forcelogin.annotations.DisableLoginRequirementCompatibility
 import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint
 import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint2
 
 @Patch
-@Name("mandatory-login")
+@Name("disable-login-requirement")
 @Description("Do not force login.")
-@DisableForceLoginCompatibility
+@DisableLoginRequirementCompatibility
 @Version("0.0.1")
-class DisableForceLoginPatch : BytecodePatch(
+class DisableLoginRequirementPatch : BytecodePatch(
     listOf(
         MandatoryLoginServiceFingerprint,
         MandatoryLoginServiceFingerprint2
