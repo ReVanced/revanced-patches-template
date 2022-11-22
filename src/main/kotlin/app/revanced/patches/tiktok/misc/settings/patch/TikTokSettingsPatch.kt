@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([TikTokIntegrationsPatch::class])
-@Name("tiktok-settings")
+@Name("settings")
 @Description("Adds settings for ReVanced to TikTok.")
 @TikTokSettingsCompatibility
 @Version("0.0.1")

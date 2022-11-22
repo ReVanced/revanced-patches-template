@@ -17,8 +17,8 @@ import org.jf.dexlib2.builder.instruction.BuilderInstruction11n
 import org.jf.dexlib2.builder.instruction.BuilderInstruction22c
 
 @Patch
-@Name("tiktok-seekbar")
-@Description("Show progress bar for all video.")
+@Name("seekbar")
+@Description("Shows progress bar for all video.")
 @SeekbarCompatibility
 @Version("0.0.1")
 class TiktokSeekbarPatch : BytecodePatch(

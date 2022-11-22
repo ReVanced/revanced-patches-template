@@ -31,7 +31,7 @@ import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
 @DependsOn([TikTokIntegrationsPatch::class, TikTokSettingsPatch::class])
-@Name("tiktok-download")
+@Name("downloads")
 @Description("Removes download restrictions and changes the default path to download to.")
 @DownloadsCompatibility
 @Version("0.0.1")

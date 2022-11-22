@@ -16,7 +16,7 @@ import app.revanced.patches.tiktok.interaction.speed.fingerprints.SpeedControlPa
 import org.jf.dexlib2.Opcode
 
 @Patch
-@Name("tiktok-speed")
+@Name("playback-speed")
 @Description("Enables the playback speed option for all videos.")
 @SpeedCompatibility
 @Version("0.0.1")

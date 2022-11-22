@@ -14,7 +14,7 @@ import app.revanced.patches.tiktok.misc.loginfallback.fingerprints.GoogleAuthAva
 import app.revanced.patches.tiktok.misc.loginfallback.fingerprints.GoogleOneTapAuthAvailableFingerprint
 
 @Patch
-@Name("tiktok-web-login")
+@Name("web-login")
 @Description("Allows logging in with a Google account.")
 @TikTokWebLoginCompatibility
 @Version("0.0.1")

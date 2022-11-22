@@ -14,7 +14,7 @@ import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginSe
 import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint2
 
 @Patch
-@Name("tiktok-force-login")
+@Name("mandatory-login")
 @Description("Do not force login.")
 @DisableForceLoginCompatibility
 @Version("0.0.1")
