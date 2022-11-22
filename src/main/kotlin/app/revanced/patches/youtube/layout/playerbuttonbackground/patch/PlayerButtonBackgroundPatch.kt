@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.playerbuttonoverlay.patch
+package app.revanced.patches.youtube.layout.playerbuttonbackground.patch
 
 import app.revanced.extensions.doRecursively
 import app.revanced.patcher.annotation.Description
@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patches.youtube.layout.playerbuttonoverlay.annotations.PlayerButtonOverlayCompatibility
+import app.revanced.patches.youtube.layout.playerbuttonbackground.annotations.PlayerButtonBackgroundCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import org.w3c.dom.Element
 
@@ -18,9 +18,9 @@ import org.w3c.dom.Element
 @DependsOn([FixLocaleConfigErrorPatch::class])
 @Name("remove-player-button-background")
 @Description("Removes the background from the video player buttons.")
-@PlayerButtonOverlayCompatibility
+@PlayerButtonBackgroundCompatibility
 @Version("0.0.1")
-class PlayerButtonOverlayPatch : ResourcePatch {
+class PlayerButtonBackgroundPatch : ResourcePatch {
     private companion object {
         const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
         // the attributes to change the value of
