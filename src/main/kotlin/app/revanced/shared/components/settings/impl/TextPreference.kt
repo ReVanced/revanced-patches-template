@@ -1,6 +1,11 @@
 package app.revanced.shared.components.settings.impl
 
 import app.revanced.shared.components.settings.BasePreference
+import app.revanced.shared.components.settings.IResource
+import app.revanced.shared.components.settings.addDefault
+import app.revanced.shared.components.settings.addSummary
+import org.w3c.dom.Document
+import org.w3c.dom.Element
 
 /**
  * Text preference.
@@ -19,4 +24,12 @@ internal class TextPreference(
     var summary: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "EditTextPreference"
+
+    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
+        return super.serialize(ownerDocument, resourceCallback).apply {
+            setAttribute("android:inputType", inputType.type)
+            addDefault(default)
+            addSummary(summary?.also { resourceCallback?.invoke(it) })
+        }
+    }
 }

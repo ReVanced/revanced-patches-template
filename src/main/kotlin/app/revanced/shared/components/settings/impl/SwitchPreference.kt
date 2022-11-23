@@ -1,6 +1,12 @@
 package app.revanced.shared.components.settings.impl
 
+import app.revanced.shared.components.settings.*
 import app.revanced.shared.components.settings.BasePreference
+import app.revanced.shared.components.settings.IResource
+import app.revanced.shared.components.settings.addDefault
+import app.revanced.shared.components.settings.addSummary
+import org.w3c.dom.Document
+import org.w3c.dom.Element
 
 /**
  * Switch preference.
@@ -18,4 +24,12 @@ internal class SwitchPreference(
     var summaryOff: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
+
+    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
+        return super.serialize(ownerDocument, resourceCallback).apply {
+            addDefault(default)
+            addSummary(summaryOn?.also { resourceCallback?.invoke(it) }, SummaryType.ON)
+            addSummary(summaryOff?.also { resourceCallback?.invoke(it) }, SummaryType.OFF)
+        }
+    }
 }
