@@ -23,21 +23,15 @@ import org.w3c.dom.Element
 class PlayerButtonBackgroundPatch : ResourcePatch {
     private companion object {
         const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
-        // the attributes to change the value of
-        val replacements = arrayOf(
-            "color"
-        )
     }
     
     override fun execute(context: ResourceContext): PatchResult {
         context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
-            editor.file.doRecursively { node ->
-                replacements.forEach replacement@{ replacement ->
-                    if (node !is Element) return@replacement
+            editor.file.doRecursively node@{ node ->
+                if (node !is Element) return@node
 
-                    node.getAttributeNode("android:$replacement")?.let { attribute ->
-                        attribute.textContent = "@android:color/transparent"
-                    }
+                node.getAttributeNode("android:color")?.let { attribute ->
+                    attribute.textContent = "@android:color/transparent"
                 }
             }
         }
