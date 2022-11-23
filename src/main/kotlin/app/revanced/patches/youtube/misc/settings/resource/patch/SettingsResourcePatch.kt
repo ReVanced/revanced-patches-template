@@ -178,6 +178,7 @@ class SettingsResourcePatch : ResourcePatch {
                     strings.add(this)
                 }
                 is ArrayResource -> addArray(this)
+                else -> throw NotImplementedError("Unsupported resource type")
             }
         }
 
