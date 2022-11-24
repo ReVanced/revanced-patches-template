@@ -1,9 +1,9 @@
-package app.revanced.shared.components.settings.impl
+package app.revanced.patches.shared.settings.impl
 
-import app.revanced.shared.components.settings.BasePreference
-import app.revanced.shared.components.settings.IResource
-import app.revanced.shared.components.settings.addDefault
-import app.revanced.shared.components.settings.addSummary
+import app.revanced.patches.shared.settings.BasePreference
+import app.revanced.patches.shared.settings.IResource
+import app.revanced.patches.shared.settings.addDefault
+import app.revanced.patches.shared.settings.addSummary
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -20,8 +20,8 @@ internal class TextPreference(
     key: String,
     title: StringResource,
     var inputType: InputType = InputType.STRING,
-    var default: String? = null,
-    var summary: StringResource? = null
+    val default: String? = null,
+    val summary: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "EditTextPreference"
 

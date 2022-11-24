@@ -1,8 +1,8 @@
-package app.revanced.shared.components.settings.impl
+package app.revanced.patches.shared.settings.impl
 
-import app.revanced.shared.components.settings.BasePreference
-import app.revanced.shared.components.settings.IResource
-import app.revanced.shared.components.settings.addSummary
+import app.revanced.patches.shared.settings.BasePreference
+import app.revanced.patches.shared.settings.IResource
+import app.revanced.patches.shared.settings.addSummary
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -18,7 +18,7 @@ internal open class PreferenceScreen(
     key: String,
     title: StringResource,
     val preferences: List<BasePreference>,
-    var summary: StringResource? = null
+    val summary: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "PreferenceScreen"
 

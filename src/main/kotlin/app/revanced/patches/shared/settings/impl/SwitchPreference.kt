@@ -1,10 +1,10 @@
-package app.revanced.shared.components.settings.impl
+package app.revanced.patches.shared.settings.impl
 
-import app.revanced.shared.components.settings.*
-import app.revanced.shared.components.settings.BasePreference
-import app.revanced.shared.components.settings.IResource
-import app.revanced.shared.components.settings.addDefault
-import app.revanced.shared.components.settings.addSummary
+import app.revanced.patches.shared.settings.*
+import app.revanced.patches.shared.settings.BasePreference
+import app.revanced.patches.shared.settings.IResource
+import app.revanced.patches.shared.settings.addDefault
+import app.revanced.patches.shared.settings.addSummary
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -20,8 +20,8 @@ import org.w3c.dom.Element
 internal class SwitchPreference(
     key: String, title: StringResource,
     val default: Boolean = false,
-    var summaryOn: StringResource? = null,
-    var summaryOff: StringResource? = null
+    val summaryOn: StringResource? = null,
+    val summaryOff: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
 
