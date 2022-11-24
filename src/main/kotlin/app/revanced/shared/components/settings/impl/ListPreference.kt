@@ -3,6 +3,7 @@ package app.revanced.shared.components.settings.impl
 import app.revanced.shared.components.settings.BasePreference
 import app.revanced.shared.components.settings.IResource
 import app.revanced.shared.components.settings.addDefault
+import app.revanced.shared.components.settings.addSummary
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -14,13 +15,15 @@ import org.w3c.dom.Element
  * @param entries The human-readable entries of the list preference.
  * @param entryValues The entry values of the list preference.
  * @param default The default entry value of the list preference.
+ * @param summary The summary of the list preference.
  */
 internal class ListPreference(
     key: String,
     title: StringResource,
     var entries: ArrayResource,
     var entryValues: ArrayResource,
-    var default: String? = null
+    var default: String? = null,
+    var summary: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "ListPreference"
 
@@ -29,6 +32,7 @@ internal class ListPreference(
             setAttribute("android:entries", "@array/${entries.also { resourceCallback?.invoke(it) }.name}")
             setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback?.invoke(it) }.name}")
             addDefault(default)
+            addSummary(summary)
         }
     }
 }
