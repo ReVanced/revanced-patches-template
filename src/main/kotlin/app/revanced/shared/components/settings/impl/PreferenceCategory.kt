@@ -11,7 +11,6 @@ import org.w3c.dom.Element
  * @param key The key of the preference.
  * @param title The title of the preference.
  * @param preferences Child preferences of this category.
- * @param summary The summary of the text preference.
  */
 internal open class PreferenceCategory(
     key: String,
