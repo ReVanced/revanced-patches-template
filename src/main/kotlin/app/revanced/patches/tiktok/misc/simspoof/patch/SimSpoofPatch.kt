@@ -7,7 +7,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.extensions.softCompareTo
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -47,27 +46,29 @@ class SimSpoofPatch : BytecodePatch() {
         private fun MutableClass.findMutableMethodOf(
             method: Method
         ) = this.methods.first {
-            it.softCompareTo(
+            it.compareTo(
                 ImmutableMethodReference(
                     method.definingClass, method.name, method.parameters, method.returnType
                 )
-            )
+            ) == 0
         }
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
         //Find all api call to check sim information
         context.classes.forEach { classDef ->
-            classDef.methods.forEach br@{ method ->
+            classDef.methods.forEach { method ->
                 with(method.implementation) {
-                    this?.instructions?.forEach cont@{
-                        if (it.opcode != Opcode.INVOKE_VIRTUAL) return@cont
-                        val methodRef = (it as Instruction35c).reference as MethodReference
-                        if (methodRef.definingClass != "Landroid/telephony/TelephonyManager;") return@cont
-                        if (!PATCH_METHOD.containsKey(methodRef.name)) return@cont
-                        patchAPI(context, classDef, method)
-                        return@br
+                    val patchIndexes = ArrayDeque<Int>()
+                    this?.instructions?.forEachIndexed { index, instruction ->
+                        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
+                        val methodRef = (instruction as Instruction35c).reference as MethodReference
+                        if (methodRef.definingClass != "Landroid/telephony/TelephonyManager;") return@forEachIndexed
+                        if (!PATCH_METHOD.containsKey(methodRef.name)) return@forEachIndexed
+                        patchIndexes.addLast(index)
                     }
+                    while (!patchIndexes.isEmpty())
+                        patchAPI(context, classDef, method, patchIndexes.removeLast())
                 }
             }
         }
@@ -82,22 +83,17 @@ class SimSpoofPatch : BytecodePatch() {
     }
 
     //Patch android API and return fake sim information
-    private fun patchAPI(context: BytecodeContext, classDef: ClassDef, method: Method) {
+    private fun patchAPI(context: BytecodeContext, classDef: ClassDef, method: Method, index: Int) {
         with(context.proxy(classDef).mutableClass.findMutableMethodOf(method)) {
-            implementation?.instructions?.forEachIndexed { index, instruction ->
-                if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
-                val methodRef = (instruction as Instruction35c).reference as MethodReference
-                if (methodRef.definingClass != "Landroid/telephony/TelephonyManager;") return@forEachIndexed
-                if (!PATCH_METHOD.containsKey(methodRef.name)) return@forEachIndexed
-                val resultReg = (instruction(index + 1) as OneRegisterInstruction).registerA
-                addInstructions(
-                    index + 2,
-                    """
+            val methodRef = (instruction(index) as Instruction35c).reference as MethodReference
+            val resultReg = (instruction(index + 1) as OneRegisterInstruction).registerA
+            addInstructions(
+                index + 2,
+                """
                         invoke-static {v$resultReg}, Lapp/revanced/tiktok/simspoof/SimSpoof;->${PATCH_METHOD[methodRef.name]}(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$resultReg
                     """
-                )
-            }
+            )
         }
     }
 }
