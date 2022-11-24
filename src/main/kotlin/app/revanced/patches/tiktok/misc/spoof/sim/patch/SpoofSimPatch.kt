@@ -99,7 +99,7 @@ class SpoofSimPatch : BytecodePatch() {
         addInstructions(
             index + 2,
             """
-                     invoke-static {v$resultReg}, Lapp/revanced/tiktok/simspoof/SimSpoof;->$replacement(Ljava/lang/String;)Ljava/lang/String;
+                     invoke-static {v$resultReg}, Lapp/revanced/tiktok/spoof/sim/SpoofSimPatch;->$replacement(Ljava/lang/String;)Ljava/lang/String;
                      move-result-object v$resultReg
                  """
         )
