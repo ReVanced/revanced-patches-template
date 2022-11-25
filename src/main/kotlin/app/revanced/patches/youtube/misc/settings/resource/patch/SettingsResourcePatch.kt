@@ -1,27 +1,31 @@
 package app.revanced.patches.youtube.misc.settings.resource.patch
 
+import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
-@SettingsCompatibility
 @DependsOn([ResourceMappingPatch::class])
+@SettingsCompatibility
+@Description("Applies mandatory patches to implement ReVanced settings into the application.")
+@Version("0.0.1")
 class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "settings"

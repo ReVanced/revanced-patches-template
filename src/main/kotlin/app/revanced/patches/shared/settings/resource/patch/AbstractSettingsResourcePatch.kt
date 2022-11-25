@@ -1,18 +1,16 @@
 package app.revanced.patches.shared.settings.resource.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.*
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.IResource
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.addResource
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Node
@@ -23,9 +21,6 @@ import org.w3c.dom.Node
  * @param revancedPreferencesName Name of the settings preference xml file
  * @param revancedPreferencesSourceDir Source directory to copy the preference template from
  */
-@Description("Applies mandatory patches to implement ReVanced settings into the application.")
-@Version("0.0.1")
-@DependsOn([FixLocaleConfigErrorPatch::class])
 abstract class AbstractSettingsResourcePatch(
     private val revancedPreferencesName: String,
     private val revancedPreferencesSourceDir: String,
