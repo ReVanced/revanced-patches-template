@@ -13,11 +13,12 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.settings.BasePreference
+import app.revanced.patches.shared.settings.impl.PreferenceScreen
+import app.revanced.patches.shared.settings.impl.StringResource
+import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
-import app.revanced.patches.twitch.misc.settings.components.BasePreference
-import app.revanced.patches.twitch.misc.settings.components.impl.*
-import app.revanced.patches.twitch.misc.settings.components.impl.PreferenceScreen
-import app.revanced.patches.twitch.misc.settings.components.impl.StringResource
+import app.revanced.patches.twitch.misc.settings.components.CustomPreferenceCategory
 import app.revanced.patches.twitch.misc.settings.fingerprints.*
 import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
@@ -105,9 +106,6 @@ class SettingsPatch : BytecodePatch(
        internal fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
 
-       internal fun addPreferenceScreens(vararg preferenceScreen: PreferenceScreen) =
-           SettingsResourcePatch.addPreferenceScreens(*preferenceScreen)
-
        internal fun addRootPreferences(vararg preference: BasePreference) =
            SettingsResourcePatch.addRootPreferences(*preference)
 
@@ -184,7 +182,7 @@ class SettingsPatch : BytecodePatch(
         override fun close() {
             if (preferences.size == 0) return
 
-            val category = PreferenceCategory(
+            val category = CustomPreferenceCategory(
                 key,
                 StringResource("${key}_title", title),
                 preferences
@@ -193,7 +191,7 @@ class SettingsPatch : BytecodePatch(
             if(targetScreen == null)
                 addRootPreferences(category)
             else
-                targetScreen.preferences.add(category)
+                targetScreen.preferences += category
         }
 
         /**
