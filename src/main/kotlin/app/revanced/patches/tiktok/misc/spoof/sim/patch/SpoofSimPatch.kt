@@ -75,7 +75,10 @@ class SpoofSimPatch : BytecodePatch() {
             with(context.proxy(classDef).mutableClass) {
                 methods.forEach { (method, patches) ->
                     with(findMutableMethodOf(method)) {
-                        patches.reversed().forEach { (index, replacement) -> replaceReference(index, replacement) }
+                        while (!patches.isEmpty()) {
+                            val (index, replacement) = patches.removeLast()
+                            replaceReference(index, replacement)
+                        }
                     }
                 }
             }
