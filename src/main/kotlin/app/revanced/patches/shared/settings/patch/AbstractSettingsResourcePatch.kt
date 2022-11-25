@@ -27,8 +27,8 @@ import org.w3c.dom.Node
 @Version("0.0.1")
 @DependsOn([FixLocaleConfigErrorPatch::class])
 abstract class AbstractSettingsResourcePatch(
-    val revancedPreferencesName: String,
-    val revancedPreferencesSourceDir: String,
+    private val revancedPreferencesName: String,
+    private val revancedPreferencesSourceDir: String,
 ) : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         /* used for self-restart */
