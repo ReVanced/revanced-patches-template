@@ -26,15 +26,6 @@ abstract class AbstractSettingsResourcePatch(
     private val revancedPreferencesSourceDir: String,
 ) : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        /* used for self-restart */
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
-            editor.file.getElementsByTagName("manifest").item(0).also {
-                it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
-                    element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
-                })
-            }
-        }
-
         /* copy ReVanced preference template from source dir */
         context.copyResources(
             revancedPreferencesSourceDir,
