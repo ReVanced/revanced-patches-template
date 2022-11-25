@@ -50,7 +50,7 @@ class SpoofSimPatch : BytecodePatch() {
                         methods.forEach methods@{ method ->
                             with(method.implementation?.instructions ?: return@methods) {
                                 ArrayDeque<Pair<Int, String>>().also { patchIndices ->
-                                    this.reversed().forEachIndexed { index, instruction ->
+                                    this.forEachIndexed { index, instruction ->
                                         if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return@forEachIndexed
 
                                         val methodRef =
@@ -75,7 +75,7 @@ class SpoofSimPatch : BytecodePatch() {
             with(context.proxy(classDef).mutableClass) {
                 methods.forEach { (method, patches) ->
                     with(findMutableMethodOf(method)) {
-                        patches.forEach { (index, replacement) -> replaceReference(index, replacement) }
+                        patches.reversed().forEach { (index, replacement) -> replaceReference(index, replacement) }
                     }
                 }
             }
