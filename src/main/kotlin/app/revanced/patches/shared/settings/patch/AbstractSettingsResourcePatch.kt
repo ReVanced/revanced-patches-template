@@ -4,7 +4,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.BasePreference
