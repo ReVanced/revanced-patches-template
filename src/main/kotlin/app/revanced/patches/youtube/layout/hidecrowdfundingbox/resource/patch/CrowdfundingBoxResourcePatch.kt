@@ -23,7 +23,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_crowdfunding_box",
                 StringResource("revanced_hide_crowdfunding_box_title", "Hide the crowdfunding box"),

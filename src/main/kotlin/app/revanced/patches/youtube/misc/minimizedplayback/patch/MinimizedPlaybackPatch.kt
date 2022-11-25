@@ -36,7 +36,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreens.MISC.addPreferences(
             SwitchPreference(
                 "revanced_enable_minimized_playback",
                 StringResource("revanced_minimized_playback_enabled_title", "Enable minimized playback"),

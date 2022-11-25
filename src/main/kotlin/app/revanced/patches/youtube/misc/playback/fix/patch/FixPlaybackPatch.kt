@@ -28,7 +28,7 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 @Version("0.0.1")
 class FixPlaybackPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreens.MISC.addPreferences(
             SwitchPreference(
                 "revanced_fix_playback",
                 StringResource("revanced_fix_playback_title", "Fix video playback issues"),

@@ -33,7 +33,7 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_fullscreen_panels_enabled",
                 StringResource("revanced_fullscreen_panels_enabled_title", "Show fullscreen panels"),

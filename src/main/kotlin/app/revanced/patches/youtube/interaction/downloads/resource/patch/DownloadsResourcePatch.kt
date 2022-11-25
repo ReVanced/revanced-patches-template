@@ -28,7 +28,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @Version("0.0.1")
 class DownloadsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
+        SettingsPatch.PreferenceScreens.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_downloads",
                 StringResource("revanced_downloads_title", "Download settings"),

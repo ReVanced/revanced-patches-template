@@ -29,7 +29,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_player_popup_panels_enabled",
                 StringResource("revanced_player_popup_panels_title", "Disable player popup panels"),

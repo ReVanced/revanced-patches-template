@@ -30,7 +30,7 @@ class HDRBrightnessPatch : BytecodePatch(
     listOf(HDRBrightnessFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreens.MISC.addPreferences(
             SwitchPreference(
                 "revanced_pref_hdr_autobrightness",
                 StringResource("revanced_hdr_autobrightness_enabled_title", "Enable auto HDR brightness"),

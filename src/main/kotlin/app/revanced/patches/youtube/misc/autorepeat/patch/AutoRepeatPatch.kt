@@ -33,7 +33,7 @@ class AutoRepeatPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreens.MISC.addPreferences(
             SwitchPreference(
                 "revanced_pref_auto_repeat",
                 StringResource("revanced_auto_repeat_enabled_title", "Enable auto-repeat"),

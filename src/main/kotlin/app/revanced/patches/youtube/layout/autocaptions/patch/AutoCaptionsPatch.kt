@@ -31,7 +31,7 @@ class AutoCaptionsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_autocaptions_enabled",
                 StringResource("revanced_autocaptions_enabled_title", "Disable auto-captions"),

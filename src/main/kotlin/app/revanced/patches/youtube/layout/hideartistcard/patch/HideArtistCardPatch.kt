@@ -24,7 +24,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 @Version("0.0.1")
 class HideArtistCardPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_artist_card",
                 StringResource("revanced_hide_hide_artist_card_title", "Hide artist card"),

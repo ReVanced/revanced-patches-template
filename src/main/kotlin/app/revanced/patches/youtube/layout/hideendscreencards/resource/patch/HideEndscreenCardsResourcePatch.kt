@@ -25,7 +25,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_endscreen_cards",
                 StringResource("revanced_hide_endscreen_cards_title", "Hide end-screen cards"),

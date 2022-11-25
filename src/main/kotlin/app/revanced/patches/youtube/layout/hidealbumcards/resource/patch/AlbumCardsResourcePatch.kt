@@ -23,7 +23,7 @@ class AlbumCardsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_album_cards",
                 StringResource("revanced_hide_album_cards_title", "Hide the album cards"),

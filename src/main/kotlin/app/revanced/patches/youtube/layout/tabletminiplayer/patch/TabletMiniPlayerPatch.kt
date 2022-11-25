@@ -37,7 +37,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_miniplayer",
                 StringResource("revanced_tablet_miniplayer_title", "Enable the tablet Mini-player"),

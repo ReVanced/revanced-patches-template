@@ -30,7 +30,7 @@ class HideTimeAndSeekbarPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_time_and_seekbar",
                 StringResource("revanced_hide_time_and_seekbar_title", "Hide time and seekbar"),

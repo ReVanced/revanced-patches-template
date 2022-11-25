@@ -6,7 +6,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import java.io.Closeable
 
-internal abstract class AbstractPreferenceScreen(
+internal abstract class AbstractPreferenceScreens(
     private val root: MutableList<Screen> = mutableListOf()
 ) : Closeable {
 
@@ -44,8 +44,8 @@ internal abstract class AbstractPreferenceScreen(
 
         private fun ensureScreenInserted() {
             // Add to screens if not yet done
-            if(!this@AbstractPreferenceScreen.root.contains(this))
-                this@AbstractPreferenceScreen.root.add(this)
+            if(!this@AbstractPreferenceScreens.root.contains(this))
+                this@AbstractPreferenceScreens.root.add(this)
         }
 
         fun addPreferences(vararg preferences: BasePreference) {

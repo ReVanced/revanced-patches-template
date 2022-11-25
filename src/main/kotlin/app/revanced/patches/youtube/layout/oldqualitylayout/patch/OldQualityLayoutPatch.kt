@@ -28,7 +28,7 @@ class OldQualityLayoutPatch : BytecodePatch(
     listOf(QualityMenuViewInflateFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_use_old_style_quality_settings",
                 StringResource("revanced_old_style_quality_settings_enabled_title", "Use old quality layout"),

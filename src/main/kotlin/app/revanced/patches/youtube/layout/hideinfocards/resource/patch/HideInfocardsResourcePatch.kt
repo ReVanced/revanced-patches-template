@@ -21,7 +21,7 @@ class HideInfocardsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_infocards",
                 StringResource("revanced_hide_infocards_title", "Hide info-cards"),
