@@ -135,10 +135,10 @@ class SettingsPatch : BytecodePatch(
             SettingsResourcePatch.addString(identifier, value, formatted)
 
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.impl.PreferenceScreen) =
-            SettingsResourcePatch.addPreference(preferenceScreen)
+            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
         fun addPreference(preference: Preference) =
-            SettingsResourcePatch.addMainPreference(preference)
+            SettingsResourcePatch.addPreference(preference)
 
         fun renameIntentsTargetPackage(newPackage: String) {
             SettingsResourcePatch.overrideIntentsTargetPackage = newPackage

@@ -97,16 +97,15 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
                 preferencesNode = value.getNode("PreferenceScreen")
             }
 
+        /* Companion delegates */
+
         /**
          * Add a preference fragment to the main preferences.
          *
          * @param preference The preference to add.
          */
-        fun addMainPreference(preference: Preference) {
+        fun addPreference(preference: Preference) =
             preferencesNode!!.addPreference(preference) { it.include() }
-        }
-
-        /* Companion delegates */
 
         /**
          * Add a new string to the resources.
@@ -130,7 +129,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
          *
          * @param preferenceScreen The name of the preference screen.
          */
-        fun addPreference(preferenceScreen: PreferenceScreen) = AbstractSettingsResourcePatch.addPreference(preferenceScreen)
+        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
     }
 
     override fun close() {
