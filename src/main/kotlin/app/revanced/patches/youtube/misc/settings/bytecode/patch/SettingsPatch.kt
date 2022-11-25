@@ -132,7 +132,7 @@ class SettingsPatch : BytecodePatch(
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
 
-        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
+        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
         fun addPreference(preference: Preference) =
