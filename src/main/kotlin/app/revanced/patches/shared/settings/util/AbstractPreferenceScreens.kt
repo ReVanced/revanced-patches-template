@@ -35,7 +35,8 @@ internal abstract class AbstractPreferenceScreens(
             return PreferenceScreen(
                 key,
                 StringResource("${key}_title", title),
-                 preferences.sortedBy { it.title.value } + categories.map { it.transform() },
+                 preferences.sortedBy { it.title.value } +
+                         categories.sortedBy { it.title }.map { it.transform() },
                 summary?.let { summary ->
                     StringResource("${key}_summary", summary)
                 }
