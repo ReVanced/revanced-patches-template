@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.settings.patch
+package app.revanced.patches.shared.settings.resource.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
@@ -6,12 +6,12 @@ import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.settings.BasePreference
-import app.revanced.patches.shared.settings.IResource
-import app.revanced.patches.shared.settings.addPreference
-import app.revanced.patches.shared.settings.addResource
-import app.revanced.patches.shared.settings.impl.ArrayResource
-import app.revanced.patches.shared.settings.impl.StringResource
+import app.revanced.patches.shared.settings.preference.BasePreference
+import app.revanced.patches.shared.settings.preference.IResource
+import app.revanced.patches.shared.settings.preference.addPreference
+import app.revanced.patches.shared.settings.preference.addResource
+import app.revanced.patches.shared.settings.preference.impl.ArrayResource
+import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
