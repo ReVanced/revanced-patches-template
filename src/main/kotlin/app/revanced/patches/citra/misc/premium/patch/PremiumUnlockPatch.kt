@@ -16,7 +16,7 @@ import app.revanced.patches.citra.misc.premium.fingerprints.PremiumUnlockFingerp
 
 @Patch
 @Name("premium-unlock")
-@Description("Unlocks premium functions on the emulator.")
+@Description("Unlocks premium functions.")
 @PremiumUnlockCompatbility
 @Version("0.0.1")
 class PremiumUnlockPatch : BytecodePatch(
