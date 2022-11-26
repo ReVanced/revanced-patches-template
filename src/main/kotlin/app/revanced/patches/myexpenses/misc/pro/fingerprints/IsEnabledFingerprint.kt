@@ -4,6 +4,5 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
 object IsEnabledFingerprint : MethodFingerprint(
     "Z",
-    strings = listOf("feature", "feature.licenceStatus"),
-    customFingerprint = { methodDef -> methodDef.definingClass.endsWith("Liv/l;") }
+    strings = listOf("feature", "feature.licenceStatus")
 )
