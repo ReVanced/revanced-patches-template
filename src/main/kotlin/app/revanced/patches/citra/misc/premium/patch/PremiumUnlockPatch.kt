@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
@@ -22,7 +23,7 @@ class PremiumUnlockPatch : BytecodePatch(
     listOf(PremiumUnlockFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = PremiumUnlockFingerprint.result ?: return PatchResultError("PremiumUnlockFingerprint not found")
+        val result = PremiumUnlockFingerprint.result ?: return PatchResultError("${PremiumUnlockFingerprint.name} not found")
 
         result.mutableMethod.addInstructions(
             0,
