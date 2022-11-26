@@ -14,7 +14,7 @@ import app.revanced.patches.crunchyroll.downloads.fingerprints.DownloadsFingerpr
 
 @Patch
 @Name("enable-downloads")
-@Description("Enables downloads for Crunchyroll")
+@Description("Enables downloads for Crunchyroll.")
 @DownloadsCompatibility
 @Version("0.0.1")
 class DownloadsPatch : BytecodePatch(
