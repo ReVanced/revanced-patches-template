@@ -34,5 +34,4 @@ class PremiumUnlockPatch : BytecodePatch(
         )
         return PatchResultSuccess()
     }
-
 }
