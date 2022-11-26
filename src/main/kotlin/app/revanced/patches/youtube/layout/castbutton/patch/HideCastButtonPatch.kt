@@ -7,14 +7,15 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.castbutton.annotations.CastButtonCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.framework.components.impl.SwitchPreference
+import app.revanced.patches.shared.settings.impl.StringResource
+import app.revanced.patches.shared.settings.impl.SwitchPreference
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -34,19 +35,20 @@ class HideCastButtonPatch : BytecodePatch() {
             )
         )
 
-        context.classes.forEach { classDef ->
-            classDef.methods.forEach { method ->
-                if (classDef.type.endsWith("MediaRouteButton;") && method.name == "setVisibility") {
-                    val setVisibilityMethod =
-                        context.proxy(classDef).mutableClass.methods.first { it.name == "setVisibility" }
-
-                    setVisibilityMethod.addInstructions(
-                        0, """
+        with(
+            context.findClass("MediaRouteButton")
+                ?: return PatchResultError("MediaRouteButton class not found.")
+        ) {
+            with(
+                mutableClass.methods.find { it.name == "setVisibility" }
+                    ?: return PatchResultError("setVisibility method not found.")
+            ) {
+                addInstructions(
+                    0, """
                             invoke-static {p1}, Lapp/revanced/integrations/patches/HideCastButtonPatch;->getCastButtonOverrideV2(I)I
                             move-result p1
                         """
-                    )
-                }
+                )
             }
         }
 

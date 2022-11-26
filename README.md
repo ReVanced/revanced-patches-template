@@ -12,6 +12,14 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
+### 📦 `org.citra.citra_emu`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `premium-unlock` | Unlocks premium functions. | all |
+</details>
+
 ### 📦 `com.ss.android.ugc.trill`
 <details>
 
@@ -24,6 +32,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `tiktok-settings` | Adds settings for ReVanced to TikTok. | all |
 | `tiktok-force-login` | Do not force login. | all |
 | `tiktok-web-login` | Allows logging in with a Google account. | all |
+| `sim-spoof` | Spoofs the information which is retrieved from the sim-card. | all |
 | `tiktok-feed-filter` | Filters tiktok videos: removing ads, removing livestreams. | all |
 </details>
 
@@ -39,6 +48,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `tiktok-settings` | Adds settings for ReVanced to TikTok. | all |
 | `tiktok-force-login` | Do not force login. | all |
 | `tiktok-web-login` | Allows logging in with a Google account. | all |
+| `sim-spoof` | Spoofs the information which is retrieved from the sim-card. | all |
 | `tiktok-feed-filter` | Filters tiktok videos: removing ads, removing livestreams. | all |
 </details>
 
@@ -148,6 +158,22 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-themes` | Unlocks all themes. | all |
 </details>
 
+### 📦 `com.crunchyroll.crunchyroid`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `enable-downloads` | Enables downloads for Crunchyroll. | all |
+</details>
+
+### 📦 `org.totschnig.myexpenses`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | all |
+</details>
+
 ### 📦 `tv.twitch.android.app`
 <details>
 
@@ -157,6 +183,14 @@ The official Patch bundle provided by ReVanced and the community.
 | `block-audio-ads` | Blocks audio ads in streams and VODs. | all |
 | `block-video-ads` | Blocks video ads in streams and VODs. | all |
 | `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
+</details>
+
+### 📦 `co.windyapp.android`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### 📦 `com.garzotto.pflotsh.ecmwf_a`
