@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.util.AbstractPreferenceScreens
+import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
@@ -146,7 +146,7 @@ class SettingsPatch : BytecodePatch(
     /**
      * Preference screens patches should add their settings to.
      */
-    internal object PreferenceScreens : AbstractPreferenceScreens() {
+    internal object PreferenceScreens : AbstractPreferenceScreen() {
         val ADS = Screen("ads", "Ads", "Ad related settings")
         val INTERACTIONS = Screen("interactions", "Interaction", "Settings related to interactions")
         val LAYOUT = Screen("layout", "Layout", "Settings related to the layout")
