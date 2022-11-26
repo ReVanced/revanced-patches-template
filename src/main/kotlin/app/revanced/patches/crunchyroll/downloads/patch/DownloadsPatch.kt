@@ -26,9 +26,10 @@ class DownloadsPatch : BytecodePatch(
         with(DownloadsFingerprint.result!!.mutableMethod) {
             val index = implementation!!.instructions.lastIndex
             replaceInstruction(
-                index - 1, """
-               const/4 v0, 0x1 
-            """
+                index - 1,
+                """
+                   const/4 v0, 0x1 
+                """
             )
         }
         return PatchResultSuccess()
