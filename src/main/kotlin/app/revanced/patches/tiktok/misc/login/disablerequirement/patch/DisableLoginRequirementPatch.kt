@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.forcelogin.patch
+package app.revanced.patches.tiktok.misc.login.disablerequirement.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -9,9 +9,9 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.forcelogin.annotations.DisableLoginRequirementCompatibility
-import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint
-import app.revanced.patches.tiktok.misc.forcelogin.fingerprints.MandatoryLoginServiceFingerprint2
+import app.revanced.patches.tiktok.misc.login.disablerequirement.annotations.DisableLoginRequirementCompatibility
+import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint
+import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint2
 
 @Patch
 @Name("disable-login-requirement")

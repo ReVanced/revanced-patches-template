@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.forcelogin.annotations
+package app.revanced.patches.tiktok.misc.login.disablerequirement.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

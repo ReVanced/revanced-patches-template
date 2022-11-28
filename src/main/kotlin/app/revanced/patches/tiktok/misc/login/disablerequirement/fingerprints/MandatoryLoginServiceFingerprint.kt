@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.forcelogin.fingerprints
+package app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 object MandatoryLoginServiceFingerprint : MethodFingerprint(

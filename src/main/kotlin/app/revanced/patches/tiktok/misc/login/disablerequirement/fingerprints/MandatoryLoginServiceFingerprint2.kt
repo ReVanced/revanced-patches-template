@@ -1,9 +1,9 @@
-package app.revanced.patches.tiktok.misc.forcelogin.fingerprints
+package app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.tiktok.misc.forcelogin.annotations.DisableLoginRequirementCompatibility
+import app.revanced.patches.tiktok.misc.login.disablerequirement.annotations.DisableLoginRequirementCompatibility
 
 @Name("mandatory-login-service-fingerprint2")
 @DisableLoginRequirementCompatibility
