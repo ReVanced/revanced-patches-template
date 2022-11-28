@@ -1,8 +1,8 @@
 package app.revanced.patches.twitch.misc.settings.components
 
-import app.revanced.patches.shared.settings.BasePreference
-import app.revanced.patches.shared.settings.impl.PreferenceCategory
-import app.revanced.patches.shared.settings.impl.StringResource
+import app.revanced.patches.shared.settings.preference.BasePreference
+import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
+import app.revanced.patches.shared.settings.preference.impl.StringResource
 
 /**
  * Customized reference category for Twitch.

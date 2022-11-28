@@ -13,9 +13,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.settings.BasePreference
-import app.revanced.patches.shared.settings.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.impl.StringResource
+import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
+import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.components.CustomPreferenceCategory
@@ -23,12 +23,11 @@ import app.revanced.patches.twitch.misc.settings.fingerprints.*
 import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
-import java.io.Closeable
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
 @Name("settings")
-@Description("Add settings menu to Twitch.")
+@Description("Adds settings menu to Twitch.")
 @SettingsCompatibility
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
@@ -102,12 +101,12 @@ class SettingsPatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    companion object {
-       internal fun addString(identifier: String, value: String, formatted: Boolean = true) =
+    internal companion object {
+        fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
 
-       internal fun addRootPreferences(vararg preference: BasePreference) =
-           SettingsResourcePatch.addRootPreferences(*preference)
+        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
+            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
         /* Private members */
         private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
@@ -164,42 +163,33 @@ class SettingsPatch : BytecodePatch(
     /**
      * Preference screens patches should add their settings to.
      */
-    internal enum class PreferenceCategoryHelper(
-        private val key: String,
-        private val title: String,
-        private val preferences: MutableList<BasePreference> = mutableListOf()
-    ) : Closeable {
-        ADS("ads", "Ads"),
-        CHAT("chat", "Chat"),
-        MISC("misc", "Miscellaneous");
+    internal object PreferenceScreen : AbstractPreferenceScreen() {
+        val ADS = CustomScreen("ads", "Ads", "Ad blocking settings")
+        val CHAT = CustomScreen("chat", "Chat", "Chat settings")
+        val MISC = CustomScreen("misc", "Misc", "Miscellaneous patches")
 
-        /**
-         * Target PreferenceScreen to insert category.
-         * If null, it will be added to the root.
-         */
-        val targetScreen: PreferenceScreen? = null
+        internal class CustomScreen(key: String, title: String, summary: String) : Screen(key, title, summary) {
+            /* Categories */
+            val GENERAL = CustomCategory("general", "General settings")
+            val OTHER = CustomCategory("other", "Other settings")
+            val CLIENT_SIDE = CustomCategory("client_ads", "Client-side ads")
 
-        override fun close() {
-            if (preferences.size == 0) return
-
-            val category = CustomPreferenceCategory(
-                key,
-                StringResource("${key}_title", title),
-                preferences
-            )
-
-            if(targetScreen == null)
-                addRootPreferences(category)
-            else
-                targetScreen.preferences += category
+            internal inner class CustomCategory(key: String, title: String) : Screen.Category(key, title) {
+                /* For Twitch, we need to load our CustomPreferenceCategory class instead of the default one. */
+                override fun transform(): PreferenceCategory {
+                    return CustomPreferenceCategory(
+                        key,
+                        StringResource("${key}_title", title),
+                        preferences.sortedBy { it.title.value }
+                    )
+                }
+            }
         }
 
-        /**
-         * Add preferences to the preference screen.
-         */
-        fun addPreferences(vararg preferences: BasePreference) = this.preferences.addAll(preferences)
+        override fun commit(screen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) {
+            addPreferenceScreen(screen)
+        }
     }
 
-    override fun close() = PreferenceCategoryHelper.values().forEach(PreferenceCategoryHelper::close)
-
+    override fun close() = PreferenceScreen.close()
 }
