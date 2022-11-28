@@ -5,7 +5,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 
 /**
- * Customized reference category for Twitch.
+ * Customized preference category for Twitch.
  *
  * @param key The key of the preference.
  * @param title The title of the preference.
