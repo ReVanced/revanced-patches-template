@@ -22,7 +22,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreens.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_debug_enabled",
                 StringResource("revanced_debug_title", "Debugging"),

@@ -24,7 +24,7 @@ class CommentsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_comments",
                 StringResource("revanced_comments_title", "Comments"),

@@ -25,7 +25,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 @Version("0.0.1")
 class HideCastButtonPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_cast_button_enabled",
                 StringResource("revanced_cast_button_enabled_title", "Show cast button"),

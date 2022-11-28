@@ -36,7 +36,7 @@ class RememberVideoQualityPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_selection",
                 StringResource("revanced_remember_video_quality_selection_title", "Remember current video quality"),

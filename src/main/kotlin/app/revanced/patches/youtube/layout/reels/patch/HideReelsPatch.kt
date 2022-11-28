@@ -27,7 +27,7 @@ class HideReelsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_reel_button_enabled",
                 StringResource("revanced_reel_button_enabled_title", "Show reels button"),

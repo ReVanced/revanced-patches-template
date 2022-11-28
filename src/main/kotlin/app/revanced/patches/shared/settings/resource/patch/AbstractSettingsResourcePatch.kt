@@ -18,26 +18,26 @@ import org.w3c.dom.Node
 /**
  * Abstract settings resource patch
  *
- * @param revancedPreferencesName Name of the settings preference xml file
- * @param revancedPreferencesSourceDir Source directory to copy the preference template from
+ * @param preferenceFileName Name of the settings preference xml file
+ * @param sourceDirectory Source directory to copy the preference template from
  */
 abstract class AbstractSettingsResourcePatch(
-    private val revancedPreferencesName: String,
-    private val revancedPreferencesSourceDir: String,
+    private val preferenceFileName: String,
+    private val sourceDirectory: String,
 ) : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        /* copy ReVanced preference template from source dir */
+        /* copy preference template from source dir */
         context.copyResources(
-            revancedPreferencesSourceDir,
+            sourceDirectory,
             ResourceUtils.ResourceGroup(
-                "xml", "$revancedPreferencesName.xml"
+                "xml", "$preferenceFileName.xml"
             )
         )
 
         /* prepare xml editors */
         stringsEditor = context.xmlEditor["res/values/strings.xml"]
         arraysEditor = context.xmlEditor["res/values/arrays.xml"]
-        revancedPreferencesEditor = context.xmlEditor["res/xml/$revancedPreferencesName.xml"]
+        revancedPreferencesEditor = context.xmlEditor["res/xml/$preferenceFileName.xml"]
 
         return PatchResultSuccess()
     }
@@ -97,11 +97,12 @@ abstract class AbstractSettingsResourcePatch(
          * @throws IllegalArgumentException if the resource already exists.
          */
         internal fun IResource.include() {
-            when(this) {
+            when (this) {
                 is StringResource -> {
                     if (strings.any { it.name == name }) return
                     strings.add(this)
                 }
+
                 is ArrayResource -> addArray(this)
                 else -> throw NotImplementedError("Unsupported resource type")
             }

@@ -33,7 +33,7 @@ class HideWatermarkPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_branding_watermark_enabled",
                 StringResource("revanced_branding_watermark_enabled_title", "Show branding watermark"),

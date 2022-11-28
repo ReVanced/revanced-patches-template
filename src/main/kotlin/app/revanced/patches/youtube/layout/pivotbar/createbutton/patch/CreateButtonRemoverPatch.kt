@@ -35,7 +35,7 @@ class CreateButtonRemoverPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_create_button_enabled",
                 StringResource("revanced_create_button_enabled_title", "Show create button"),

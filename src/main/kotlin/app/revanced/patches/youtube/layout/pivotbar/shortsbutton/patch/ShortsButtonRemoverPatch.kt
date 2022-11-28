@@ -33,7 +33,7 @@ class ShortsButtonRemoverPatch : BytecodePatch(
     listOf(PivotBarFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_shorts_button_enabled",
                 StringResource("revanced_shorts_button_enabled_title", "Show shorts button"),

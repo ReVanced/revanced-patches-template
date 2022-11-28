@@ -25,7 +25,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 @Version("0.0.1")
 class HideButtonsPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons",
                 StringResource("revanced_hide_buttons_title", "Hide action buttons"),

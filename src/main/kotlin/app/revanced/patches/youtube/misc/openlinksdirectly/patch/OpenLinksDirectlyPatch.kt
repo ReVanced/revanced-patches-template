@@ -34,7 +34,7 @@ class OpenLinksDirectlyPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_uri_redirect",
                 StringResource("revanced_uri_redirect_title", "Open links directly"),

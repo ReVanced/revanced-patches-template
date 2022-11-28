@@ -28,7 +28,7 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
     SubtitleButtonControllerFingerprint,
 )) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_captions_button",
                 StringResource("revanced_hide_captions_button_title", "Hide captions button"),

@@ -12,7 +12,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.annotations.SettingsCompatibility
@@ -132,7 +131,7 @@ class SettingsPatch : BytecodePatch(
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
 
-        fun addPreferenceScreen(preferenceScreen: PreferenceScreen) =
+        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
         fun addPreference(preference: Preference) =
@@ -146,16 +145,16 @@ class SettingsPatch : BytecodePatch(
     /**
      * Preference screens patches should add their settings to.
      */
-    internal object PreferenceScreens : AbstractPreferenceScreen() {
+    internal object PreferenceScreen : AbstractPreferenceScreen() {
         val ADS = Screen("ads", "Ads", "Ad related settings")
         val INTERACTIONS = Screen("interactions", "Interaction", "Settings related to interactions")
         val LAYOUT = Screen("layout", "Layout", "Settings related to the layout")
         val MISC = Screen("misc", "Misc", "Miscellaneous patches")
 
-        override fun commit(screen: PreferenceScreen) {
+        override fun commit(screen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) {
             addPreferenceScreen(screen)
         }
     }
 
-    override fun close() = PreferenceScreens.close()
+    override fun close() = PreferenceScreen.close()
 }

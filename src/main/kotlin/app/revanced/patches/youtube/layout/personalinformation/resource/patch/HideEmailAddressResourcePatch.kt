@@ -23,7 +23,7 @@ class HideEmailAddressResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_email_address",
                 StringResource("revanced_hide_email_address_title", "Hide the email address"),

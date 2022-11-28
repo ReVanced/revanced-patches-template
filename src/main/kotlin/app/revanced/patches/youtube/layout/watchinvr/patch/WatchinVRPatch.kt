@@ -29,7 +29,7 @@ class WatchinVRPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_watch_in_vr",
                 StringResource("revanced_hide_watch_in_vr_title", "Hide Watch in VR option"),

@@ -36,7 +36,7 @@ class CustomVideoBufferPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreens.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_custom_video_buffer",
                 StringResource("revanced_custom_video_buffer_title", "Video buffer settings"),

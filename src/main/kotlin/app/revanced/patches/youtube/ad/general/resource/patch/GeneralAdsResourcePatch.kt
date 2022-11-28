@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibilit
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreens
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
 
 @DependsOn(dependencies = [
     FixLocaleConfigErrorPatch::class,
@@ -32,7 +32,7 @@ class GeneralAdsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        PreferenceScreens.ADS.addPreferences(
+        PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_adremover_ad_removal",
                 StringResource("revanced_adremover_ad_removal_enabled_title", "Hide general ads"),
