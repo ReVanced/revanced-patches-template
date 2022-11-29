@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.misc.video.quality.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -13,17 +14,12 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.shared.settings.preference.impl.ArrayResource
-import app.revanced.patches.shared.settings.preference.impl.ListPreference
-import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.video.quality.annotations.DefaultVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualityReferenceFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualitySetterFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoUserQualityChangeFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.video.quality.annotations.DefaultVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
@@ -31,7 +27,7 @@ import org.jf.dexlib2.iface.reference.FieldReference
 @Patch
 @DependsOn([IntegrationsPatch::class, VideoIdPatch::class, SettingsPatch::class])
 @Name("default-video-quality")
-@Description("Adds the ability to remember the video quality you chose in the revanced video quality settings.")
+@Description("Adds the ability to remember the video quality.")
 @DefaultVideoQualityCompatibility
 @Version("0.0.1")
 class DefaultVideoQualityPatch : BytecodePatch(
@@ -40,6 +36,25 @@ class DefaultVideoQualityPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
+        val (keys, values) = buildMap {
+            fun add(quality: String, entry: String, entryValue: String) {
+                fun String.withValue(value: String) = StringResource(this, value)
+
+                put(
+                    "revanced_video_quality_${quality}_entry".withValue(entry),
+                    "revanced_video_quality_${quality}_entryValue".withValue(entryValue)
+                )
+            }
+
+            add("auto", "Auto", "-2")
+
+            arrayOf("144", "240", "360", "480", "720", "1080", "1440", "2160").forEach {
+                add(it, "${it}p", it)
+            }
+        }.let { map ->
+            map.keys.toList() to map.values.toList()
+        }
+
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_default_video_quality",
@@ -47,74 +62,37 @@ class DefaultVideoQualityPatch : BytecodePatch(
                 listOf(
                     SwitchPreference(
                         "revanced_remember_video_quality_selection",
-                        StringResource("revanced_remember_video_quality_selection_title", "Remember current video quality"),
+                        StringResource(
+                            "revanced_remember_video_quality_selection_title",
+                            "Remember current video quality"
+                        ),
                         true,
-                        StringResource("revanced_remember_video_quality_selection_summary_on", "The current video quality will not change"),
-                        StringResource("revanced_remember_video_quality_selection_summary_off", "Video quality will be remembered until a new quality is chosen")
+                        StringResource(
+                            "revanced_remember_video_quality_selection_summary_on",
+                            "The current video quality will not change"
+                        ),
+                        StringResource(
+                            "revanced_remember_video_quality_selection_summary_off",
+                            "Video quality will be remembered until a new quality is chosen"
+                        )
                     ),
                     ListPreference(
                         "revanced_default_video_quality_wifi",
-                        StringResource("revanced_default_video_quality_wifi_title", "Default video quality on Wi-Fi network"),
-                        ArrayResource(
-                            "revanced_video_quality_wifi_entries",
-                            listOf(
-                                StringResource("revanced_video_quality_auto_entry", "Auto"),
-                                StringResource("revanced_video_quality_144_entry", "144p"),
-                                StringResource("revanced_video_quality_240_entry", "240p"),
-                                StringResource("revanced_video_quality_360_entry", "360p"),
-                                StringResource("revanced_video_quality_480_entry", "480p"),
-                                StringResource("revanced_video_quality_720_entry", "720p"),
-                                StringResource("revanced_video_quality_1080_entry", "1080p"),
-                                StringResource("revanced_video_quality_1440_entry", "1440p"),
-                                StringResource("revanced_video_quality_2160_entry", "2160p")
-                            )
+                        StringResource(
+                            "revanced_default_video_quality_wifi_title",
+                            "Change video quality on Wi-Fi network"
                         ),
-                        ArrayResource(
-                            "revanced_video_quality_wifi_entryValues",
-                            listOf(
-                                StringResource("revanced_video_quality_auto_entryValue", "-2"),
-                                StringResource("revanced_video_quality_144_entryValue", "144"),
-                                StringResource("revanced_video_quality_240_entryValue", "240"),
-                                StringResource("revanced_video_quality_360_entryValue", "360"),
-                                StringResource("revanced_video_quality_480_entryValue", "480"),
-                                StringResource("revanced_video_quality_720_entryValue", "720"),
-                                StringResource("revanced_video_quality_1080_entryValue", "1080"),
-                                StringResource("revanced_video_quality_1440_entryValue", "1440"),
-                                StringResource("revanced_video_quality_2160_entryValue", "2160")
-                            )
-                        )
+                        ArrayResource("revanced_video_quality_wifi_entries", keys),
+                        ArrayResource("revanced_video_quality_wifi_entryValues", values),
                     ),
                     ListPreference(
                         "revanced_default_video_quality_mobile",
-                        StringResource("revanced_default_video_quality_mobile_title", "Default video quality on Mobile network"),
-                        ArrayResource(
-                            "revanced_video_quality_mobile_entries",
-                            listOf(
-                                StringResource("revanced_video_quality_auto_entry", "Auto"),
-                                StringResource("revanced_video_quality_144_entry", "144p"),
-                                StringResource("revanced_video_quality_240_entry", "240p"),
-                                StringResource("revanced_video_quality_360_entry", "360p"),
-                                StringResource("revanced_video_quality_480_entry", "480p"),
-                                StringResource("revanced_video_quality_720_entry", "720p"),
-                                StringResource("revanced_video_quality_1080_entry", "1080p"),
-                                StringResource("revanced_video_quality_1440_entry", "1440p"),
-                                StringResource("revanced_video_quality_2160_entry", "2160p")
-                            )
+                        StringResource(
+                            "revanced_default_video_quality_mobile_title",
+                            "Change video quality on mobile network"
                         ),
-                        ArrayResource(
-                            "revanced_video_quality_mobile_entryValues",
-                            listOf(
-                                StringResource("revanced_video_quality_auto_entryValue", "-2"),
-                                StringResource("revanced_video_quality_144_entryValue", "144"),
-                                StringResource("revanced_video_quality_240_entryValue", "240"),
-                                StringResource("revanced_video_quality_360_entryValue", "360"),
-                                StringResource("revanced_video_quality_480_entryValue", "480"),
-                                StringResource("revanced_video_quality_720_entryValue", "720"),
-                                StringResource("revanced_video_quality_1080_entryValue", "1080"),
-                                StringResource("revanced_video_quality_1440_entryValue", "1440"),
-                                StringResource("revanced_video_quality_2160_entryValue", "2160")
-                            )
-                        )
+                        ArrayResource("revanced_video_quality_mobile_entries", keys),
+                        ArrayResource("revanced_video_quality_mobile_entryValues", values)
                     )
                 ),
                 StringResource("revanced_default_video_quality_summary", "Select default video quality")
@@ -122,12 +100,16 @@ class DefaultVideoQualityPatch : BytecodePatch(
         )
 
 
-        val setterMethod = VideoQualitySetterFingerprint.result!!
+        val setterMethod = VideoQualitySetterFingerprint.result ?: return VideoQualitySetterFingerprint.toErrorResult()
 
-        VideoUserQualityChangeFingerprint.resolve(context, setterMethod.classDef)
+        if (!VideoUserQualityChangeFingerprint.resolve(context, setterMethod.classDef))
+            return VideoUserQualityChangeFingerprint.toErrorResult()
+
         val userQualityMethod = VideoUserQualityChangeFingerprint.result!!
 
-        VideoQualityReferenceFingerprint.resolve(context, setterMethod.classDef)
+        if (!VideoQualityReferenceFingerprint.resolve(context, setterMethod.classDef))
+            return VideoQualityReferenceFingerprint.toErrorResult()
+
         val qualityFieldReference =
             VideoQualityReferenceFingerprint.result!!.method.let { method ->
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
