@@ -2,6 +2,7 @@ package app.revanced.patches.remini.misc.premium.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.replaceInstruction
@@ -17,6 +18,7 @@ import app.revanced.patches.remini.misc.premium.fingerprints.PremiumUnlockFinger
 @Name("premium-unlock")
 @Description("Unlocks premium-only functions.")
 @PremiumUnlockCompatibility
+@Version("0.0.1")
 class PremiumUnlockPatch : BytecodePatch(
     listOf(PremiumUnlockFingerprint)
 ) {
