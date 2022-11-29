@@ -5,6 +5,27 @@ import org.jf.dexlib2.Opcode
 
 object PremiumUnlockFingerprint : MethodFingerprint(
     opcodes = listOf(
+        Opcode.INVOKE_STATIC,
+        Opcode.IGET_OBJECT,
+        Opcode.IGET_OBJECT,
+        Opcode.CONST_4,
+        Opcode.IF_EQZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT,
+        Opcode.GOTO,
+        Opcode.IF_EQZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IGET_OBJECT,
+        Opcode.INVOKE_INTERFACE,
+        Opcode.MOVE_RESULT,
+        Opcode.XOR_INT_2ADDR,
+        Opcode.IF_NEZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IGET_BOOLEAN,
+        Opcode.IF_NEZ,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.IGET_BOOLEAN,
@@ -12,5 +33,5 @@ object PremiumUnlockFingerprint : MethodFingerprint(
         Opcode.GOTO,
         Opcode.CONST_4
     ),
-    customFingerprint = { it.definingClass == "Lna/k;" && it.name == "o" }
+    customFingerprint = { it.parameterTypes == listOf("Ljava/lang/Object;") && it.returnType == "Ljava/lang/Object;" }
 )
