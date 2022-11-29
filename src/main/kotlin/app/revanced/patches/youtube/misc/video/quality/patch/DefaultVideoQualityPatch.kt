@@ -133,7 +133,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
                 (method.implementation!!.instructions.elementAt(0) as ReferenceInstruction).reference as FieldReference
             }
 
-        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;->newVideoStarted(Ljava/lang/String;)V")
+        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/playback/quality/DefaultVideoQualityPatch;->newVideoStarted(Ljava/lang/String;)V")
 
         val qIndexMethodName =
             context.classes.single { it.type == qualityFieldReference.type }.methods.single { it.parameterTypes.first() == "I" }.name
@@ -143,14 +143,14 @@ class DefaultVideoQualityPatch : BytecodePatch(
             """
                 iget-object v0, p0, ${setterMethod.classDef.type}->${qualityFieldReference.name}:${qualityFieldReference.type}
                 const-string v1, "$qIndexMethodName"
-		        invoke-static {p1, p2, v0, v1}, Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;)I
+		        invoke-static {p1, p2, v0, v1}, Lapp/revanced/integrations/patches/playback/quality/DefaultVideoQualityPatch;->setVideoQuality([Ljava/lang/Object;ILjava/lang/Object;Ljava/lang/String;)I
    		        move-result p2
             """,
         )
 
         userQualityMethod.mutableMethod.addInstruction(
             0,
-            "invoke-static {p3}, Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;->userChangedQuality(I)V"
+            "invoke-static {p3}, Lapp/revanced/integrations/patches/playback/quality/DefaultVideoQualityPatch;->userChangedQuality(I)V"
         )
 
         return PatchResultSuccess()
