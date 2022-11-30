@@ -3,7 +3,7 @@ package app.revanced.patches.remini.misc.premium.fingerprints
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
 
-object UnlockPremiumPatch : MethodFingerprint(
+object UnlockPremiumFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.IGET_BOOLEAN,
         Opcode.IF_NEZ,

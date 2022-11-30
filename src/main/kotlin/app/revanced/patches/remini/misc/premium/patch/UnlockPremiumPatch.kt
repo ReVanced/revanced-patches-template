@@ -10,17 +10,19 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.remini.misc.premium.annotations.UnlockPremiumCompatibility
+import app.revanced.patches.remini.misc.premium.fingerprints.UnlockPremiumFingerprint
 
 @Patch
 @Name("unlock-premium")
 @Description("Unlocks premium-only functions.")
-@UnlockPremiumPatch
+@UnlockPremiumCompatibility
 @Version("0.0.1")
 class UnlockPremiumPatch : BytecodePatch(
-    listOf(UnlockPremiumPatch)
+    listOf(UnlockPremiumFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = UnlockPremiumPatch.result ?: return UnlockPremiumPatch.toErrorResult()
+        val result = UnlockPremiumFingerprint.result ?: return UnlockPremiumFingerprint.toErrorResult()
         val index = result.scanResult.patternScanResult!!.endIndex
 
         result.mutableMethod.replaceInstruction(
