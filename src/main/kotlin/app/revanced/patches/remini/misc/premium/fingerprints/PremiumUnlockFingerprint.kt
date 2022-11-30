@@ -14,5 +14,6 @@ object PremiumUnlockFingerprint : MethodFingerprint(
         Opcode.GOTO,
         Opcode.CONST_4
     ),
-    customFingerprint = { it.parameterTypes == listOf("Ljava/lang/Object;") && it.returnType == "Ljava/lang/Object;" }
+    customFingerprint = { it.parameterTypes[0] == "Ljava/lang/Object;" },
+    returnType = "Ljava/lang/Object;"
 )

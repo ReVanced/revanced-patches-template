@@ -16,7 +16,7 @@ import app.revanced.patches.remini.misc.premium.annotations.PremiumUnlockCompati
 import app.revanced.patches.remini.misc.premium.fingerprints.PremiumUnlockFingerprint
 
 @Patch
-@Name("premium-unlock")
+@Name("unlock-premium")
 @Description("Unlocks premium-only functions.")
 @PremiumUnlockCompatibility
 @Version("0.0.1")
