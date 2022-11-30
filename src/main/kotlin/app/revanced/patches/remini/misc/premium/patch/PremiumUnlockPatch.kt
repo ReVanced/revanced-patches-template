@@ -1,5 +1,6 @@
 package app.revanced.patches.remini.misc.premium.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -23,7 +24,7 @@ class PremiumUnlockPatch : BytecodePatch(
     listOf(PremiumUnlockFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = PremiumUnlockFingerprint.result ?: return PatchResultError("${PremiumUnlockFingerprint.name} not found")
+        val result = PremiumUnlockFingerprint.result ?: return PremiumUnlockFingerprint.toErrorResult()
         val index = result.scanResult.patternScanResult!!.endIndex
 
         result.mutableMethod.replaceInstruction(
