@@ -42,7 +42,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
 
                 put(
                     "revanced_video_quality_${quality}_entry".withValue(entry),
-                    "revanced_video_quality_${quality}_entryValue".withValue(entryValue)
+                    "revanced_video_quality_${quality}_entry_value".withValue(entryValue)
                 )
             }
 
@@ -83,7 +83,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
                             "Change video quality on Wi-Fi network"
                         ),
                         ArrayResource("revanced_video_quality_wifi_entries", keys),
-                        ArrayResource("revanced_video_quality_wifi_entryValues", values),
+                        ArrayResource("revanced_video_quality_wifi_entry_values", values),
                     ),
                     ListPreference(
                         "revanced_default_video_quality_mobile",
@@ -92,7 +92,7 @@ class DefaultVideoQualityPatch : BytecodePatch(
                             "Change video quality on mobile network"
                         ),
                         ArrayResource("revanced_video_quality_mobile_entries", keys),
-                        ArrayResource("revanced_video_quality_mobile_entryValues", values)
+                        ArrayResource("revanced_video_quality_mobile_entry_values", values)
                     )
                 ),
                 StringResource("revanced_default_video_quality_summary", "Select default video quality")
