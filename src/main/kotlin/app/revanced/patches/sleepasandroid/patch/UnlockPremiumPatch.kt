@@ -1,4 +1,4 @@
-package app.revanced.patches.urbandroid.sleep.patch
+package app.revanced.patches.sleepasandroid.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -8,8 +8,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.urbandroid.sleep.annotations.UnlockPremiumCompatibility
-import app.revanced.patches.urbandroid.sleep.fingerprints.IsTrialFingerprint
+import app.revanced.patches.sleepasandroid.annotations.UnlockPremiumCompatibility
+import app.revanced.patches.sleepasandroid.fingerprints.IsTrialFingerprint
 
 @Patch
 @Name("unlock-premium")

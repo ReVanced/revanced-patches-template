@@ -1,4 +1,4 @@
-package app.revanced.patches.urbandroid.sleep.annotations
+package app.revanced.patches.sleepasandroid.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
