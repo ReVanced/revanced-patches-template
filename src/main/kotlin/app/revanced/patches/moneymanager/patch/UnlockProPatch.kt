@@ -14,23 +14,21 @@ import app.revanced.patches.moneymanager.fingerprints.UnlockProFingerprint
 
 @Patch
 @Name("unlock-pro")
-@Description("Unlocks pro features of Money Manager.")
+@Description("Unlocks pro features.")
 @UnlockProCompatibility
 @Version("0.0.1")
 class UnlockProPatch : BytecodePatch(
     listOf(UnlockProFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        with(UnlockProFingerprint.result!!.mutableMethod) {
-            addInstructions(
-                0,
-                """
+       UnlockProFingerprint.result!!.mutableMethod.addInstructions(
+            0,
+            """
                    const/4 v0, 0x1
                    
                    return v0 
                 """
-            )
-        }
+        )
         return PatchResultSuccess()
     }
 }
