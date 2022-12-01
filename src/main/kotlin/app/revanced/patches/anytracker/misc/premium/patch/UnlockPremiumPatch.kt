@@ -28,10 +28,18 @@ class UnlockPremiumPatch : BytecodePatch(
         method.addInstructions(
             0,
             """
-                const/4 p1, 0x1
-                invoke-static {p1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-                move-result-object p1
-                invoke-static {p1}, Lkotlinx/coroutines/flow/FlowKt;->flowOf(Ljava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+            	const/4 v0, 0x1
+            	invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+            	move-result-object v0
+            	invoke-static {v0}, Lkotlinx/coroutines/flow/FlowKt;->flowOf(Ljava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+            	move-result-object v1
+            	const/4 v2, 0x0
+            	const-wide/16 v3, 0x0
+            	const/4 v5, 0x3
+            	const/4 v6, 0x0
+            	invoke-static/range {v1 .. v6}, Landroidx/lifecycle/FlowLiveDataConversions;->asLiveData${'$'}default(Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/CoroutineContext;JILjava/lang/Object;)Landroidx/lifecycle/LiveData;
+            	move-result-object v0
+            	return-object v0
             """
         )
 

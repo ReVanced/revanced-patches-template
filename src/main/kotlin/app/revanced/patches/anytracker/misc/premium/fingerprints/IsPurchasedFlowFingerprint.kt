@@ -6,15 +6,6 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 object IsPurchasedFlowFingerprint : MethodFingerprint(
-    access = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
-    customFingerprint = { methodDef ->
-        methodDef.definingClass.contains("BillingDataSource\$") &&
-                methodDef.parameterTypes.size == 1 &&
-                methodDef.parameterTypes.first().endsWith("Flow;")
-    },
-    opcodes = listOf(
-        Opcode.IPUT_OBJECT,
-        Opcode.INVOKE_DIRECT,
-        Opcode.RETURN_VOID
-    )
+    "Landroidx/lifecycle/LiveData"
+    strings = listOf("premium_user", "sku"),
 )
