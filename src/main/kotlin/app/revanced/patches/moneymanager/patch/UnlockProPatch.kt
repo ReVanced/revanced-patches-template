@@ -14,7 +14,7 @@ import app.revanced.patches.moneymanager.fingerprints.UnlockProFingerprint
 
 @Patch
 @Name("unlock-pro")
-@Description("Unlocks pro features of Money Manager.")
+@Description("Unlocks pro features.")
 @UnlockProCompatibility
 @Version("0.0.1")
 class UnlockProPatch : BytecodePatch(
