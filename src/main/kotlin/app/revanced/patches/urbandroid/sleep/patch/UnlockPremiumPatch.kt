@@ -12,7 +12,7 @@ import app.revanced.patches.urbandroid.sleep.annotations.UnlockPremiumCompatibil
 import app.revanced.patches.urbandroid.sleep.fingerprints.IsTrialFingerprint
 
 @Patch
-@Name("sleep-premium-unlock")
+@Name("unlock-premium")
 @Description("Unlocks all premium features.")
 @UnlockPremiumCompatibility
 class UnlockPremiumPatch : BytecodePatch(
