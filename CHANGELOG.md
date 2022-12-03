@@ -1,3 +1,56 @@
+# [2.136.0](https://github.com/revanced/revanced-patches/compare/v2.135.0...v2.136.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* syntax error in compatiblity annotation ([#1181](https://github.com/revanced/revanced-patches/issues/1181)) ([0830c7e](https://github.com/revanced/revanced-patches/commit/0830c7ed1064757cf6354b426549275ece55408e))
+
+
+### Features
+
+* **youtube:** drop support for compatibility of old versions ([7413aad](https://github.com/revanced/revanced-patches/commit/7413aad6d215f24a66ba9a33917c73dbdb0b7bc3))
+
+# [2.135.0](https://github.com/revanced/revanced-patches/compare/v2.134.1...v2.135.0) (2022-12-02)
+
+
+### Features
+
+* sort README patch table by amount of patches per package ([40cb14e](https://github.com/revanced/revanced-patches/commit/40cb14e1838aee5b49b60094cd134ed7e1726c3f))
+
+## [2.134.1](https://github.com/revanced/revanced-patches/compare/v2.134.0...v2.134.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* **youtube:** swipe gesture on home screen ([9294084](https://github.com/revanced/revanced-patches/commit/929408406b53d8b0db69f092c3e191791b9fa8ee)), closes [#610](https://github.com/revanced/revanced-patches/issues/610)
+
+# [2.134.0](https://github.com/revanced/revanced-patches/compare/v2.133.0...v2.134.0) (2022-12-02)
+
+
+### Bug Fixes
+
+* **anytracker:** syntax error in fingerprint ([#1165](https://github.com/revanced/revanced-patches/issues/1165)) ([46ad786](https://github.com/revanced/revanced-patches/commit/46ad786b1488814494080ca48cff27c361c47ca1))
+
+
+### Features
+
+* **anytracker:** `unlock-premium` patch ([#1165](https://github.com/revanced/revanced-patches/issues/1165)) ([e7ed324](https://github.com/revanced/revanced-patches/commit/e7ed324bb5216037be0646a698e7e808fbf03e4e))
+
+# [2.133.0](https://github.com/revanced/revanced-patches/compare/v2.132.0...v2.133.0) (2022-12-01)
+
+
+### Features
+
+* **moneymanager:** `unlock-premium` patch ([#1173](https://github.com/revanced/revanced-patches/issues/1173)) ([438c1bc](https://github.com/revanced/revanced-patches/commit/438c1bca684c7d47bd5a401b4dccbaddef604650))
+
+# [2.132.0](https://github.com/revanced/revanced-patches/compare/v2.131.0...v2.132.0) (2022-12-01)
+
+
+### Features
+
+* **sleepasandroid:** `unlock-premium` patch ([#1172](https://github.com/revanced/revanced-patches/issues/1172)) ([580ddcd](https://github.com/revanced/revanced-patches/commit/580ddcdf1f8ef4a525f772630b3c085b706e4dc7))
+* **twitch:** remove `block-embedded-ads` patch ([#1164](https://github.com/revanced/revanced-patches/issues/1164)) ([ecc1eae](https://github.com/revanced/revanced-patches/commit/ecc1eaef4daa7dfecb7913c378188b2b4685e610))
+
 # [2.131.0](https://github.com/revanced/revanced-patches/compare/v2.130.0...v2.131.0) (2022-11-30)
 
 
