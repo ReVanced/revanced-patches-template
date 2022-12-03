@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* syntax error in compatiblity annotation ([#1181](https://github.com/revanced/revanced-patches/issues/1181)) ([0830c7e](https://github.com/revanced/revanced-patches/commit/0830c7ed1064757cf6354b426549275ece55408e))
+* syntax error in compatibility annotation ([#1181](https://github.com/revanced/revanced-patches/issues/1181)) ([0830c7e](https://github.com/revanced/revanced-patches/commit/0830c7ed1064757cf6354b426549275ece55408e))
 
 
 ### Features
@@ -569,7 +569,7 @@
 
 ### Bug Fixes
 
-* **youtube/video-ads:** block earlier in call hirarchy ([#813](https://github.com/revanced/revanced-patches/issues/813)) ([f9517d2](https://github.com/revanced/revanced-patches/commit/f9517d2058c7561cf89b59ed36f690417dc076f7))
+* **youtube/video-ads:** block earlier in call hierarchy ([#813](https://github.com/revanced/revanced-patches/issues/813)) ([f9517d2](https://github.com/revanced/revanced-patches/commit/f9517d2058c7561cf89b59ed36f690417dc076f7))
 
 # [2.83.0](https://github.com/revanced/revanced-patches/compare/v2.82.1...v2.83.0) (2022-10-18)
 
@@ -1403,7 +1403,7 @@
 
 ### Bug Fixes
 
-* incorrect compatibilty attribute ([#296](https://github.com/revanced/revanced-patches/issues/296)) ([0ab3e97](https://github.com/revanced/revanced-patches/commit/0ab3e9724157c628555964273c6b65f9f48f9664))
+* incorrect compatibility attribute ([#296](https://github.com/revanced/revanced-patches/issues/296)) ([0ab3e97](https://github.com/revanced/revanced-patches/commit/0ab3e9724157c628555964273c6b65f9f48f9664))
 
 # [2.32.0](https://github.com/revanced/revanced-patches/compare/v2.31.0...v2.32.0) (2022-08-04)
 
@@ -1557,7 +1557,7 @@
 * `minimized-playback` patch for YouTube Kids videos ([#201](https://github.com/Canny1913/revanced-patches/issues/201)) ([31e3b42](https://github.com/Canny1913/revanced-patches/commit/31e3b42c6bbce0d00f049b8a69bafc94900bb3b4))
 * `old-quality-layout` patch ([2497425](https://github.com/Canny1913/revanced-patches/commit/2497425c9f11b8b14c861c2f0f34ff47bdbfac53))
 * `swipe-controls` with active engagement panel ([#177](https://github.com/Canny1913/revanced-patches/issues/177)) ([000ec6d](https://github.com/Canny1913/revanced-patches/commit/000ec6d8f6ecbb910a06ec852564ee9e5f03dcf8))
-* add v17.28.34 compatiblity for the `hide-shorts-button` patch ([#224](https://github.com/Canny1913/revanced-patches/issues/224)) ([76166bb](https://github.com/Canny1913/revanced-patches/commit/76166bb35f940ef661e2802f5bf93ed91f2e2913))
+* add v17.28.34 compatibility for the `hide-shorts-button` patch ([#224](https://github.com/Canny1913/revanced-patches/issues/224)) ([76166bb](https://github.com/Canny1913/revanced-patches/commit/76166bb35f940ef661e2802f5bf93ed91f2e2913))
 * autoplay not working. ([586eed5](https://github.com/Canny1913/revanced-patches/commit/586eed515fc7ff8e3b1b150b0d34610b39480bb5))
 * autoplay still enabled when using patch ([4f96129](https://github.com/Canny1913/revanced-patches/commit/4f961298f6cb6417ee3f3d6f8ac7ce96594ed03b))
 * bump youtube version for swipe-controls patch ([ff207a5](https://github.com/Canny1913/revanced-patches/commit/ff207a57af7d3c15a8127f4465e97da23878b0d6))
@@ -1620,7 +1620,7 @@
 
 ### Bug Fixes
 
-* add v17.28.34 compatiblity for the `hide-shorts-button` patch ([#224](https://github.com/revanced/revanced-patches/issues/224)) ([76166bb](https://github.com/revanced/revanced-patches/commit/76166bb35f940ef661e2802f5bf93ed91f2e2913))
+* add v17.28.34 compatibility for the `hide-shorts-button` patch ([#224](https://github.com/revanced/revanced-patches/issues/224)) ([76166bb](https://github.com/revanced/revanced-patches/commit/76166bb35f940ef661e2802f5bf93ed91f2e2913))
 
 # [2.21.0](https://github.com/revanced/revanced-patches/compare/v2.20.5...v2.21.0) (2022-07-23)
 
@@ -1907,7 +1907,7 @@
 
 ### Bug Fixes
 
-* Readd `swipe-controls` patch ([#123](https://github.com/revanced/revanced-patches/issues/123)) ([7f2a2b2](https://github.com/revanced/revanced-patches/commit/7f2a2b2ee4e6045d53aba4e7705431b643981107))
+* Re-add `swipe-controls` patch ([#123](https://github.com/revanced/revanced-patches/issues/123)) ([7f2a2b2](https://github.com/revanced/revanced-patches/commit/7f2a2b2ee4e6045d53aba4e7705431b643981107))
 
 ## [2.9.2](https://github.com/revanced/revanced-patches/compare/v2.9.1...v2.9.2) (2022-07-05)
 
