@@ -37,11 +37,11 @@ class ShortsButtonRemoverPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_shorts_button_enabled",
-                StringResource("revanced_shorts_button_enabled_title", "Show shorts button"),
+                "revanced_shorts_button_hidden",
+                StringResource("revanced_shorts_button_hidden_title", "Hide shorts button"),
                 false,
-                StringResource("revanced_shorts_button_summary_on", "Shorts button is shown"),
-                StringResource("revanced_shorts_button_summary_off", "Shorts button is hidden")
+                StringResource("revanced_shorts_button_hidden_summary_on", "Shorts button is hidden"),
+                StringResource("revanced_shorts_button_hidden_summary_off", "Shorts button is shown")
             )
         )
 
