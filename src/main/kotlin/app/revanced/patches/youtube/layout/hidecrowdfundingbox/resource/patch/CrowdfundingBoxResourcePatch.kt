@@ -29,7 +29,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
                 StringResource("revanced_hide_crowdfunding_box_title", "Hide crowdfunding box"),
                 false,
                 StringResource("revanced_hide_crowdfunding_box_summary_on", "Crowdfunding box is hidden"),
-                StringResource("revanced_hide_crowdfunding_box_summary_off", "Crowdfunding box is visible")
+                StringResource("revanced_hide_crowdfunding_box_summary_off", "Crowdfunding box is shown")
             )
         )
 
