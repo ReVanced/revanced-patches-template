@@ -40,7 +40,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_autoplay_button_hidden",
                 StringResource("revanced_autoplay_button_hidden_title", "Hide autoplay button"),
-                false,
+                true,
                 StringResource("revanced_autoplay_button_hidden_summary_on", "Autoplay button is hidden"),
                 StringResource("revanced_autoplay_button_hidden_summary_off", "Autoplay button is shown")
             )

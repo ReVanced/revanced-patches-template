@@ -39,7 +39,7 @@ class ShortsButtonRemoverPatch : BytecodePatch() {
             SwitchPreference(
                 "revanced_shorts_button_hidden",
                 StringResource("revanced_shorts_button_hidden_title", "Hide shorts button"),
-                false,
+                true,
                 StringResource("revanced_shorts_button_hidden_summary_on", "Shorts button is hidden"),
                 StringResource("revanced_shorts_button_hidden_summary_off", "Shorts button is shown")
             )

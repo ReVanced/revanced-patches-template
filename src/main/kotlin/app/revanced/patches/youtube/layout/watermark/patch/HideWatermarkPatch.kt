@@ -37,7 +37,7 @@ class HideWatermarkPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_branding_video_watermark_hidden",
                 StringResource("revanced_branding_video_watermark_hidden_title", "Hide video branding watermark"),
-                false,
+                true,
                 StringResource("revanced_branding_video_watermark_hidden_summary_on", "Video playback watermark is hidden"),
                 StringResource("revanced_branding_video_watermark_hidden_summary_off", "Video playback watermark is shown")
             )
