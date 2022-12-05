@@ -20,7 +20,14 @@ repositories {
 }
 
 dependencies {
-    implementation("app.revanced:revanced-patcher:6.3.0")
+//    implementation("app.revanced:revanced-patcher:6.3.0")
+    implementation("xpp3:xpp3:1.1.4c")
+    implementation("org.smali:smali:2.5.2")
+    implementation("app.revanced:multidexlib2:2.5.2.r2")
+    implementation("org.apktool:apktool-lib:2.8.1-SNAPSHOT")
+
+    implementation(kotlin("reflect"))
+    implementation(kotlin("test"))
     implementation("app.revanced:multidexlib2:2.5.2.r2")
     // Required for meta
     implementation("com.google.code.gson:gson:2.10")
