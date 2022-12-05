@@ -20,7 +20,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-watch-in-vr")
-@Description("Hides the Watch in VR option from the player settings flyout panel.")
+@Description("Hides the Watch in VR option in the player settings flyout panel.")
 @WatchinVRCompatibility
 @Version("0.0.1")
 class WatchinVRPatch : BytecodePatch(
