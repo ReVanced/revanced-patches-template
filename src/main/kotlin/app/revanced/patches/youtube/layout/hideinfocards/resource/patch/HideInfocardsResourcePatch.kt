@@ -26,8 +26,8 @@ class HideInfocardsResourcePatch : ResourcePatch {
                 "revanced_hide_infocards",
                 StringResource("revanced_hide_infocards_title", "Hide info-cards"),
                 true,
-                StringResource("revanced_hide_infocards_summary_on", "Info-cards are hidden"),
-                StringResource("revanced_hide_infocards_summary_off", "Info-cards are shown")
+                StringResource("revanced_hide_infocards_summary_on", "Video overlay info-cards are hidden"),
+                StringResource("revanced_hide_infocards_summary_off", "Video overlay info-cards are shown")
             )
         )
 

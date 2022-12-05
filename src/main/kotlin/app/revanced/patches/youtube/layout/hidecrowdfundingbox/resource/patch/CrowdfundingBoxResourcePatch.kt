@@ -26,7 +26,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_crowdfunding_box",
-                StringResource("revanced_hide_crowdfunding_box_title", "Hide the crowdfunding box"),
+                StringResource("revanced_hide_crowdfunding_box_title", "Hide crowdfunding box"),
                 false,
                 StringResource("revanced_hide_crowdfunding_box_summary_on", "Crowdfunding box is hidden"),
                 StringResource("revanced_hide_crowdfunding_box_summary_off", "Crowdfunding box is visible")
