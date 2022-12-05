@@ -26,10 +26,10 @@ class HideEmailAddressResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_email_address",
-                StringResource("revanced_hide_email_address_title", "Hide email address"),
+                StringResource("revanced_hide_email_address_title", "Hide email in account switcher"),
                 false,
-                StringResource("revanced_hide_email_address_summary_on", "Email is not shown in account switcher"),
-                StringResource("revanced_hide_email_address_summary_off", "Email is shown in account switcher")
+                StringResource("revanced_hide_email_address_summary_on", "Email address is not shown"),
+                StringResource("revanced_hide_email_address_summary_off", "Email address is shown")
             )
         )
 
