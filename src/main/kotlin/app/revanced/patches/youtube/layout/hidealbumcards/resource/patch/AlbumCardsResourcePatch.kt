@@ -29,7 +29,7 @@ class AlbumCardsResourcePatch : ResourcePatch {
                 StringResource("revanced_hide_album_cards_title", "Hide album cards"),
                 false,
                 StringResource("revanced_hide_album_cards_summary_on", "Music album cards are hidden"),
-                StringResource("revanced_hide_album_cards_summary_off", "Music album cards are visible")
+                StringResource("revanced_hide_album_cards_summary_off", "Music album cards are shown")
             )
         )
 

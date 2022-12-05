@@ -28,8 +28,8 @@ class HideEmailAddressResourcePatch : ResourcePatch {
                 "revanced_hide_email_address",
                 StringResource("revanced_hide_email_address_title", "Hide email address"),
                 false,
-                StringResource("revanced_hide_email_address_summary_on", "Email is not visible in account switcher"),
-                StringResource("revanced_hide_email_address_summary_off", "Email is visible in account switcher")
+                StringResource("revanced_hide_email_address_summary_on", "Email is not shown in account switcher"),
+                StringResource("revanced_hide_email_address_summary_off", "Email is shown in account switcher")
             )
         )
 
