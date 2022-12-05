@@ -35,11 +35,11 @@ class HideWatermarkPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_hide_branding_video_watermark",
-                StringResource("revanced_hide_branding_video_watermark_title", "Hide branding video watermark"),
+                "revanced_hide_video_watermark",
+                StringResource("revanced_hide_video_watermark_title", "Hide creator watermark on videos"),
                 true,
-                StringResource("revanced_hide_branding_video_watermark_summary_on", "Watermark is hidden"),
-                StringResource("revanced_hide_branding_video_watermark_summary_off", "Watermark is shown")
+                StringResource("revanced_hide_video_watermark_summary_on", "Watermark is hidden"),
+                StringResource("revanced_hide_video_watermark_summary_off", "Watermark is shown")
             )
         )
 
