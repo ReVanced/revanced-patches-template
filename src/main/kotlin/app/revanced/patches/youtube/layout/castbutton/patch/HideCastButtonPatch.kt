@@ -27,11 +27,11 @@ class HideCastButtonPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_cast_button_hidden",
-                StringResource("revanced_cast_button_hidden_title", "Hide cast button"),
+                "revanced_hide_cast_button",
+                StringResource("revanced_hide_cast_button_title", "Hide cast button"),
                 true,
-                StringResource("revanced_cast_button_hidden_summary_on", "Cast button is hidden"),
-                StringResource("revanced_cast_button_hidden_summary_off", "Cast button is shown")
+                StringResource("revanced_hide_cast_button_summary_on", "Cast button is hidden"),
+                StringResource("revanced_hide_cast_button_summary_off", "Cast button is shown")
             )
         )
 
