@@ -39,7 +39,7 @@ class RememberVideoQualityPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",
-                StringResource("revanced_remember_video_quality_last_selected_title", "Video quality changes remembered"),
+                StringResource("revanced_remember_video_quality_last_selected_title", "Remember video quality changes"),
                 true,
                 StringResource(
                     "revanced_remember_video_quality_last_selected_summary_on",

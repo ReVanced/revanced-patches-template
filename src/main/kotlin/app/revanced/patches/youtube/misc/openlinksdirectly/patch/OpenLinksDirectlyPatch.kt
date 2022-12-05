@@ -37,7 +37,7 @@ class OpenLinksDirectlyPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_uri_redirect",
-                StringResource("revanced_uri_redirect_title", "Open YouTube links inside the app"),
+                StringResource("revanced_uri_redirect_title", "Open YouTube links inside app"),
                 true,
                 StringResource("revanced_uri_redirect_summary_on", "Links opened inside YouTube ReVanced"),
                 StringResource("revanced_uri_redirect_summary_off", "Links opened in web browser")
