@@ -37,11 +37,11 @@ class CreateButtonRemoverPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_create_button_hidden",
-                StringResource("revanced_create_button_hidden_title", "Hide create button"),
+                "revanced_hide_create_button",
+                StringResource("revanced_hide_create_button_title", "Hide create button"),
                 true,
-                StringResource("revanced_create_button_hidden_summary_on", "Create button is hidden"),
-                StringResource("revanced_create_button_hidden_summary_off", "Create button is shown")
+                StringResource("revanced_hide_create_button_summary_on", "Create button is hidden"),
+                StringResource("revanced_hide_create_button_summary_off", "Create button is shown")
             )
         )
 
