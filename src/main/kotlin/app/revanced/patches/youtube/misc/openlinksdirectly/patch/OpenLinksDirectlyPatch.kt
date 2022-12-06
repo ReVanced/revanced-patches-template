@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("open-links-directly")
-@Description("Bypasses URL redirects and open links directly inside YouTube app.")
+@Description("Bypasses URL redirects and opens links directly inside YouTube app.")
 @OpenLinksDirectlyCompatibility
 @Version("0.0.1")
 class OpenLinksDirectlyPatch : BytecodePatch(

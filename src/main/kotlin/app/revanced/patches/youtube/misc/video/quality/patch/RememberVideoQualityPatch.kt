@@ -43,11 +43,11 @@ class RememberVideoQualityPatch : BytecodePatch(
                 true,
                 StringResource(
                     "revanced_remember_video_quality_last_selected_summary_on",
-                    "Quality changes apply to current and future playback"
+                    "Quality changes apply to all videos"
                 ),
                 StringResource(
                     "revanced_remember_video_quality_last_selected_summary_off",
-                    "Quality changes apply only to currently playing video"
+                    "Quality changes only apply to the current video and are reverted back to the last remembered quality for future playbacks"
                 )
             )
         )
