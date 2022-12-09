@@ -7,12 +7,12 @@ ReVanced follows a couple of conventions when creating patches which can be foun
 Each patch is structured the following way:
 
 ```text
-📦your.patches.app.categoriy.patch
+📦your.patches.app.category.patch
  ├ 📂annotations
  ├ └ ⚙️SomePatchCompatibility.kt
  ├ 📂fingerprints
  ├ ├ 🔍SomeFingerprintA.kt
- ├ └ 🔍SomeFingerprint.kt
+ ├ └ 🔍SomeFingerprintB.kt
  ├ 📂patch
  └ └ 🧩SomePatch.kt
 ```
