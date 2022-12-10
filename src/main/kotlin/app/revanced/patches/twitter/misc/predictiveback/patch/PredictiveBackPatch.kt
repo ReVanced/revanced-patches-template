@@ -11,8 +11,8 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.predictiveback.annotations.PredictiveBackCompatibility
 
 @Patch
-@Name("predictive-back")
-@Description("Enables the new predictive back feature")
+@Name("predictive-back-gesture")
+@Description("Enables the predictive back gesture introduced in Android 13.")
 @PredictiveBackCompatibility
 @Version("0.0.1")
 class PredictiveBackPatch : ResourcePatch {
