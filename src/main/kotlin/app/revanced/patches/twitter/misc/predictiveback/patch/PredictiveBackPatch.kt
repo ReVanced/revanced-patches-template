@@ -20,7 +20,6 @@ class PredictiveBackPatch : ResourcePatch {
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             val document = editor.file
             val application = document.getElementsByTagName("application").item(0)
-
             val attr = document.createAttribute("android:enableOnBackInvokedCallback")
             attr.value = "true"
             application.attributes.setNamedItem(attr)
