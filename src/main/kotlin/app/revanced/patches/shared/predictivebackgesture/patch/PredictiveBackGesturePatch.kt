@@ -8,12 +8,10 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.predictivebackgesture.annotations.PredictiveBackCompatibility
 
 @Patch
 @Name("predictive-back-gesture")
 @Description("Enables the predictive back gesture introduced in Android 13.")
-@PredictiveBackCompatibility
 @Version("0.0.1")
 class PredictiveBackGesturePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
