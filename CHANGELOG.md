@@ -1,3 +1,12 @@
+# [2.142.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.141.0...v2.142.0-dev.1) (2022-12-12)
+
+
+### Features
+
+* `predictive-back-gesture` patch ([#1236](https://github.com/revanced/revanced-patches/issues/1236)) ([11b59f7](https://github.com/revanced/revanced-patches/commit/11b59f767c94514d49a84593618ff9d2aace2636))
+* **sleepasandroid:** remove `unlock-premium` patch ([#1253](https://github.com/revanced/revanced-patches/issues/1253)) ([fbdfa3b](https://github.com/revanced/revanced-patches/commit/fbdfa3b5987501baf940389572242ab423b0608a))
+* **twitch/block-embedded-ads:** `block-embedded-ads` patch ([#1166](https://github.com/revanced/revanced-patches/issues/1166)) ([018606e](https://github.com/revanced/revanced-patches/commit/018606e9832c43836b6b8f4fbd623adb8876d162))
+
 # [2.141.0](https://github.com/revanced/revanced-patches/compare/v2.140.0...v2.141.0) (2022-12-09)
 
 
