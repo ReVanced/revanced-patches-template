@@ -19,7 +19,7 @@
     <string name="revanced_ryd_attribution_summary">Dislike data is provided by the Return YouTube Dislike API.  Tap here to learn more.</string>
 
 
-    <string name="revanced_ryd_statistics_category_title">ReturnYouTubeDislike API statistics of your device</string>
+    <string name="revanced_ryd_statistics_category_title">ReturnYouTubeDislike API statistics of this device</string>
 
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeAverage_title">API response time, average</string>
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeMin_title">API response time, minimum</string>
@@ -29,7 +29,7 @@
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeLast_timeout_summary">Network call timed out</string>
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Dislikes temporarily not available - Client API rate limit in effect</string>
 
-    <string name="revanced_ryd_statistics_getFetchCallCount_title">API fetch votes, number of network calls</string>
+    <string name="revanced_ryd_statistics_getFetchCallCount_title">API fetch votes, number of calls</string>
     <string name="revanced_ryd_statistics_getFetchCallCount_zero_summary">No network calls have been made</string>
     <string name="revanced_ryd_statistics_getFetchCallCount_non_zero_summary">%d network calls have been made</string>
 
