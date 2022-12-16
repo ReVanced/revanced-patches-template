@@ -1,6 +1,11 @@
 <resources>
-    <string name="revanced_ryd_connection_timeout_message">Dislikes temporarily not available (API timed out)</string>
-    <string name="revanced_ryd_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
+    <string name="revanced_ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
+
+    <string name="revanced_ryd_failure_register_user">ReturnYouTubeDislike failed to register as new user</string>
+    <string name="revanced_ryd_failure_confirm_user">ReturnYouTubeDislike failed to confirm new user</string>
+    <string name="revanced_ryd_failure_send_vote_failed">ReturnYouTubeDislike failed to send vote</string>
+    <string name="revanced_ryd_failure_confirm_vote_failed">ReturnYouTubeDislike failed to confirm vote</string>
 
     <string name="revanced_ryd_enable_title">Return YouTube Dislike</string>
     <string name="revanced_ryd_enable_summary_on">Dislikes are shown</string>
