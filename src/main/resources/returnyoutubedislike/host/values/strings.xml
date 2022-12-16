@@ -14,10 +14,10 @@
     <string name="revanced_ryd_attribution_summary">Dislike data is provided by the Return YouTube Dislike API.  Tap here to learn more.</string>
 
     <string name="revanced_ryd_connection_statistics_category_title">ReturnYouTubeDislike API statistics of your device</string>
-    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeAverage_title">RYD API response time average</string>
-    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeMin_title">RYD API response time minimum</string>
-    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeMax_title">RYD API response time maximum</string>
-    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeLast_title">RYD API response time last video</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeAverage_title">RYD API response time, average</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeMin_title">RYD API response time, minimum</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeMax_title">RYD API response time, maximum</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeLast_title">RYD API response time, last video</string>
     <string name="revanced_ryd_connection_statistics_getFetchCallCount_title">RYD API number of fetch vote calls made</string>
     <string name="revanced_ryd_connection_statistics_getFetchCallNumberOfFailedCalls_title">RYD API number of fetch vote timeouts</string>
     <string name="revanced_ryd_connection_statistics_fetchCallNumberOfFailedCalls_zero_summary">No API connections have timed out</string>
