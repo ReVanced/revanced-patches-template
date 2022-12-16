@@ -1,5 +1,5 @@
 <resources>
-    <string name="revanced_ryd_connection_timeout_message">Dislikes not unavailable (API timed out)</string>
+    <string name="revanced_ryd_connection_timeout_message">Dislikes temporarily not available (API timed out)</string>
     <string name="revanced_ryd_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
 
     <string name="revanced_ryd_enable_title">Return YouTube Dislike</string>
@@ -19,10 +19,12 @@
     <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeMax_title">API response time, maximum</string>
     <string name="revanced_ryd_connection_statistics_getFetchCallResponseTimeLast_title">API response time, last video</string>
     <string name="revanced_ryd_connection_statistics_getFetchCallCount_title">API number of fetch vote calls made</string>
-    <string name="revanced_ryd_connection_statistics_getFetchCallNumberOfFailedCalls_title">API number of fetch vote timeouts</string>
-    <string name="revanced_ryd_connection_statistics_fetchCallNumberOfFailedCalls_zero_summary">No API connections have timed out</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallNumberOfFailures_title">API number of fetch vote timeouts</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallNumberOfFailures_zero_summary">No API connections have timed out</string>
+    <string name="revanced_ryd_connection_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d API network calls timed out</string>
     <string name="revanced_ryd_connection_statistics_getNumberOfRateLimitRequestsEncountered_title">API client rate limits encountered</string>
     <string name="revanced_ryd_connection_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">No client rate limits have been encountered</string>
+    <string name="revanced_ryd_connection_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit was encountered %d times</string>
 
     <string name="revanced_ryd_connection_statistics_millisecond_text">milliseconds</string>
     <string name="revanced_ryd_connection_statistics_api_call_timeout_text">Connection timed out</string>
