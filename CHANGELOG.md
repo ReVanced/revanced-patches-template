@@ -1,3 +1,51 @@
+# [2.144.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.144.0-dev.1...v2.144.0-dev.2) (2022-12-15)
+
+
+### Features
+
+* link packages to Google PlayStore ([#1272](https://github.com/revanced/revanced-patches/issues/1272)) ([97892e0](https://github.com/revanced/revanced-patches/commit/97892e01044c74916375aeebcc094d3304e14f4e))
+
+# [2.144.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.143.0...v2.144.0-dev.1) (2022-12-15)
+
+
+### Features
+
+* **citra:** add compatibility for canary package ([#1256](https://github.com/revanced/revanced-patches/issues/1256)) ([42ec021](https://github.com/revanced/revanced-patches/commit/42ec0218d829ea15759f83562d24588ce97cb646))
+
+# [2.143.0](https://github.com/revanced/revanced-patches/compare/v2.142.0...v2.143.0) (2022-12-14)
+
+
+### Bug Fixes
+
+* **predictive-back-gesture:** create attribute, if it does not exist ([c00e771](https://github.com/revanced/revanced-patches/commit/c00e7717053f806e3b5b3f0bf0ca9c2da07c289b))
+
+
+### Features
+
+* **sleepasandroid:** remove `unlock-premium` patch ([#1253](https://github.com/revanced/revanced-patches/issues/1253)) ([414f503](https://github.com/revanced/revanced-patches/commit/414f503e493f2dc27edf134f5db723da77636d81))
+
+# [2.143.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.143.0-dev.1...v2.143.0-dev.2) (2022-12-14)
+
+
+### Bug Fixes
+
+* **predictive-back-gesture:** create attribute, if it does not exist ([c00e771](https://github.com/revanced/revanced-patches/commit/c00e7717053f806e3b5b3f0bf0ca9c2da07c289b))
+
+# [2.143.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.142.0...v2.143.0-dev.1) (2022-12-13)
+
+
+### Features
+
+* **sleepasandroid:** remove `unlock-premium` patch ([#1253](https://github.com/revanced/revanced-patches/issues/1253)) ([414f503](https://github.com/revanced/revanced-patches/commit/414f503e493f2dc27edf134f5db723da77636d81))
+
+# [2.142.0](https://github.com/revanced/revanced-patches/compare/v2.141.0...v2.142.0) (2022-12-11)
+
+
+### Features
+
+* `predictive-back-gesture` patch ([#1236](https://github.com/revanced/revanced-patches/issues/1236)) ([11b59f7](https://github.com/revanced/revanced-patches/commit/11b59f767c94514d49a84593618ff9d2aace2636))
+* **twitch/block-embedded-ads:** `block-embedded-ads` patch ([#1166](https://github.com/revanced/revanced-patches/issues/1166)) ([018606e](https://github.com/revanced/revanced-patches/commit/018606e9832c43836b6b8f4fbd623adb8876d162))
+
 # [2.141.0](https://github.com/revanced/revanced-patches/compare/v2.140.0...v2.141.0) (2022-12-09)
 
 

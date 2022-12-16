@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation("app.revanced:revanced-patcher:6.3.0")
+    implementation("app.revanced:revanced-patcher:6.3.1")
     implementation("app.revanced:multidexlib2:2.5.2.r2")
     // Required for meta
     implementation("com.google.code.gson:gson:2.10")
@@ -33,7 +33,7 @@ tasks {
 
         doLast {
             val androidHome = System.getenv("ANDROID_HOME") ?: throw GradleException("ANDROID_HOME not found")
-            val d8 = "${androidHome}/build-tools/32.0.0/d8"
+            val d8 = "${androidHome}/build-tools/33.0.1/d8"
             val input = configurations.archives.get().allArtifacts.files.files.first().absolutePath
             val work = File("${buildDir}/libs")
 
