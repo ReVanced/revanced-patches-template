@@ -26,7 +26,6 @@
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeMax_title">API response time, maximum</string>
 
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeLast_title">API response time, last video</string>
-    <string name="revanced_ryd_statistics_getFetchCallResponseTimeLast_timeout_summary">Network call timed out</string>
     <string name="revanced_ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Dislikes temporarily not available - Client API rate limit in effect</string>
 
     <string name="revanced_ryd_statistics_getFetchCallCount_title">API fetch votes, number of calls</string>
