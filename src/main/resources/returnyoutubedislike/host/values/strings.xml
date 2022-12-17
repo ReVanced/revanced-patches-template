@@ -41,5 +41,5 @@
     <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">No client rate limits have been encountered</string>
     <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit was encountered %d times</string>
 
-    <string name="revanced_ryd_statistics_millisecond_text">milliseconds</string>
+    <string name="revanced_ryd_statistics_millisecond_text">%d milliseconds</string>
 </resources>
