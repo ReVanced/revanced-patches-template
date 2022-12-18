@@ -36,7 +36,7 @@
     <string name="revanced_ryd_statistics_getFetchCallNumberOfFailures_zero_summary">No network calls have timed out</string>
     <string name="revanced_ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d network calls timed out</string>
 
-    <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API client rate limits encountered</string>
+    <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API client rate limits</string>
     <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">No client rate limits have been encountered</string>
     <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit was encountered %d times</string>
 
