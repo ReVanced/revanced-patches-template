@@ -159,7 +159,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
         val videoSpeedsGranularity by option(
             PatchOption.StringOption(
                 "granularity",
-                "16",
+                "32",
                 "Video speed granularity",
                 "The granularity of the video speeds. The higher the value, the more speeds will be available.",
                 true
