@@ -1,3 +1,23 @@
+# [2.145.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.145.0-dev.1...v2.145.0-dev.2) (2022-12-18)
+
+
+### Features
+
+* **twitter/timeline-ads:** add clarifying notice to description ([ed2f1f3](https://github.com/revanced/revanced-patches/commit/ed2f1f307fdad6128dc618815b9f8b24a5b99a66))
+
+# [2.145.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.144.0...v2.145.0-dev.1) (2022-12-18)
+
+
+### Bug Fixes
+
+* **tiktok/settings:** make compatible with newer versions ([c88740d](https://github.com/revanced/revanced-patches/commit/c88740dc2bf040747d9704d5bed52a7b533c22d6))
+
+
+### Features
+
+* **crunchyroll:** remove `enable-downloads` patch ([2ac1546](https://github.com/revanced/revanced-patches/commit/2ac15460f5734fc2c6d2d78d34083a8e6b2f7012))
+* **youtube-music:** bump compatibility to 5.36.51 ([c4a3099](https://github.com/revanced/revanced-patches/commit/c4a3099c1ca39431fba9beb94cc2b43e260561d9))
+
 # [2.144.0](https://github.com/revanced/revanced-patches/compare/v2.143.0...v2.144.0) (2022-12-15)
 
 
