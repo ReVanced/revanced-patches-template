@@ -45,9 +45,12 @@ class ThemePatch : ResourcePatch {
         }
 
         // copies the resource file to change the splash screen color
-        context.copyResources("theme",
-            ResourceUtils.ResourceGroup("values-night-v31", "styles.xml")
-        )
+        arrayOf(
+            ResourceUtils.ResourceGroup("values-night-v31", "styles.xml"),
+            ResourceUtils.ResourceGroup("drawable", "quantum_launchscreen_youtube.xml")
+        ).forEach { resourceGroup ->
+            context.copyResources("theme", resourceGroup)
+        }
 
         return PatchResultSuccess()
     }
