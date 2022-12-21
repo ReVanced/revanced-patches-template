@@ -9,11 +9,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Element
 
-@Patch(include = false)
+@Patch(include = true)
 @DependsOn([LithoThemePatch::class, FixLocaleConfigErrorPatch::class])
 @Name("theme")
 @Description("Applies a custom theme.")
@@ -45,11 +43,47 @@ class ThemePatch : ResourcePatch {
         }
 
         // copies the resource file to change the splash screen color
-        arrayOf(
-            ResourceUtils.ResourceGroup("values-night-v31", "styles.xml"),
-            ResourceUtils.ResourceGroup("drawable", "quantum_launchscreen_youtube.xml")
-        ).forEach { resourceGroup ->
-            context.copyResources("theme", resourceGroup)
+        context.xmlEditor["res/values/attrs.xml"].use { editor ->
+            with(editor.file) {
+                val resourcesNode = getElementsByTagName("resources").item(0) as Element
+
+                val newElement: Element = createElement("attr")
+                newElement.setAttribute("format", "reference")
+                newElement.setAttribute("name", "splashScreenColor")
+
+                resourcesNode.appendChild(newElement)
+            }
+        }
+        context.xmlEditor["res/values/styles.xml"].use { editor ->
+            with(editor.file) {
+                val resourcesNode = getElementsByTagName("resources").item(0) as Element
+
+                for (i in 0 until resourcesNode.childNodes.length) {
+                    val node = resourcesNode.childNodes.item(i) as? Element ?: continue
+
+                    val newElement: Element = createElement("item")
+                    newElement.setAttribute("name", "splashScreenColor")
+
+                    when (node.getAttribute("name")) {
+                        "Base.Theme.YouTube.Launcher.Dark" -> {
+                            newElement.appendChild(createTextNode(darkThemeBackgroundColor))
+
+                            node.appendChild(newElement)
+                        }
+                        "Base.Theme.YouTube.Launcher.Light" -> {
+                            newElement.appendChild(createTextNode(lightThemeBackgroundColor));
+
+                            node.appendChild(newElement)
+                        }
+                    }
+                }
+            }
+        }
+        context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use { editor ->
+            val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
+
+            if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
+                resourcesNode.setAttribute("android:drawable", "?attr/splashScreenColor")
         }
 
         return PatchResultSuccess()
