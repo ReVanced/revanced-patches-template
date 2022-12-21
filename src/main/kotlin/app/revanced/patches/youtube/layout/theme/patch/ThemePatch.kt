@@ -98,11 +98,12 @@ class ThemePatch : ResourcePatch {
             }
         }
         arrayOf("drawable", "drawable-sw600dp").forEach { drawablePath ->
-        context.xmlEditor["res/$drawablePath/quantum_launchscreen_youtube.xml"].use { editor ->
-            val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
+            context.xmlEditor["res/$drawablePath/quantum_launchscreen_youtube.xml"].use { editor ->
+                val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
 
-            if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
-                resourcesNode.setAttribute("android:drawable", "?attr/splashScreenColor")
+                if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
+                    resourcesNode.setAttribute("android:drawable", "?attr/splashScreenColor")
+            }
         }
 
         return PatchResultSuccess()
