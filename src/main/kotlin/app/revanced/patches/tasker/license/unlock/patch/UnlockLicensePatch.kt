@@ -18,7 +18,7 @@ import org.jf.dexlib2.immutable.instruction.ImmutableInstruction35c
 
 @Patch
 @Name("unlock-license")
-@Description("Unlocks the license.")
+@Description("Unlocks the trial version.")
 @UnlockLicenseCompatibility
 @Version("0.0.1")
 class UnlockLicensePatch : BytecodePatch(
