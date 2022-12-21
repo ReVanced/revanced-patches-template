@@ -97,7 +97,8 @@ class ThemePatch : ResourcePatch {
                 }
             }
         }
-        context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use { editor ->
+        arrayOf("drawable", "drawable-sw600dp").forEach { drawablePath ->
+        context.xmlEditor["res/$drawablePath/quantum_launchscreen_youtube.xml"].use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
 
             if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
