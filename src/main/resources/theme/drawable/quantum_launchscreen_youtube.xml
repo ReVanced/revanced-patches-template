@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list android:opacity="opaque"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="?android:attr/textColorPrimaryInverse" />
-    <item android:id="@id/launchscreens_product_logo" android:bottom="@dimen/launchscreens_product_logo_bottom">
-        <bitmap android:gravity="center" android:src="@drawable/product_logo_youtube_color_144" />
-    </item>
-</layer-list>
