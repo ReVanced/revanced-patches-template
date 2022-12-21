@@ -25,6 +25,7 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
+import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
@@ -39,6 +40,7 @@ import org.jf.dexlib2.iface.reference.StringReference
     dependencies = [
         VideoInformationPatch::class, // updates video information and adds method to seek in video
         PlayerControlsBytecodePatch::class,
+        PlayerTypeHookPatch::class, // Needed to set skip segment button position in fullscreen
         IntegrationsPatch::class,
         SponsorBlockResourcePatch::class,
         VideoIdPatch::class
