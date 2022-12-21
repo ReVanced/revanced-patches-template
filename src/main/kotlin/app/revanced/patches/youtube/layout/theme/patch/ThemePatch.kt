@@ -79,6 +79,24 @@ class ThemePatch : ResourcePatch {
                 }
             }
         }
+        context.xmlEditor["res/values-v31/styles.xml"].use { editor ->
+            with(editor.file) {
+                val resourcesNode = getElementsByTagName("resources").item(0) as Element
+
+                val newElement: Element = createElement("item")
+                newElement.setAttribute("name", "android:windowSplashScreenBackground")
+
+                for (i in 0 until resourcesNode.childNodes.length) {
+                    val node = resourcesNode.childNodes.item(i) as? Element ?: continue
+
+                    if (node.getAttribute("name") == "Base.Theme.YouTube.Launcher") {
+                        newElement.appendChild(createTextNode("?attr/splashScreenColor"))
+
+                        node.appendChild(newElement)
+                    }
+                }
+            }
+        }
         context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use { editor ->
             val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
 
