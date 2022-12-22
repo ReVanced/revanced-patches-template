@@ -8,9 +8,6 @@ import app.revanced.patches.music.layout.minimizedplayback.annotations.Minimized
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-@Name("feature-override-fingerprint")
-@MinimizedPlaybackCompatibility
-@Version("0.0.1")
 object FeatureOverrideFingerprint : MethodFingerprint(
     "Z",
     AccessFlags.PUBLIC or AccessFlags.FINAL,
