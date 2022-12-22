@@ -19,8 +19,8 @@ import org.jf.dexlib2.iface.reference.MethodReference
 
 
 @Patch
-@Name("feature-override")
-@Description("Overrides Feature Flags for Twitter")
+@Name("override-features")
+@Description("Overrides flags which control various features.")
 @FeatureOverrideCompatibility
 @Version("0.0.1")
 class FeatureOverridePatch : BytecodePatch(
