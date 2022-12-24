@@ -9,9 +9,10 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
+import org.w3c.dom.Document
 import org.w3c.dom.Element
 
-@Patch(include = false)
+@Patch(include = true)
 @DependsOn([LithoThemePatch::class, FixLocaleConfigErrorPatch::class])
 @Name("theme")
 @Description("Applies a custom theme.")
@@ -22,113 +23,177 @@ class ThemePatch : ResourcePatch {
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
 
-        context.xmlEditor["res/values/colors.xml"].use { editor ->
-            val childNodes = (editor.file.getElementsByTagName("resources").item(0) as Element).childNodes
+        val android11ValuesFolder = "values"
+        val android12ValuesFolder = "values-v31"
+        val drawableFolders: List<String> = listOf(
+            "drawable",
+            "drawable-anydpi",
+            "drawable-hdpi",
+            "drawable-ldrtl",
+            "drawable-ldrtl-night",
+            "drawable-ldrtl-xxhdpi",
+            "drawable-mdpi",
+            "drawable-night",
+            "drawable-nodpi",
+            "drawable-sw600dp",
+            "drawable-sw600dp-xhdpi",
+            "drawable-sw720dp-xhdpi",
+            "drawable-watch",
+            "drawable-xhdpi",
+            "drawable-xxhdpi",
+            "drawable-xxxhdpi"
+        )
+        val splashScreenColorAttributeName = "splashScreenColor"
 
-            for (i in 0 until childNodes.length) {
-                val node = childNodes.item(i) as? Element ?: continue
+        fun changeAppBackgroundColorValues(indexedNode: Element) {
+            /**
+             * Get all node elements with a specific value (example: "yt_white1" or "yt_black1")
+             * then change it with the content of field 'lightThemeBackgroundColor' or 'darkThemeBackgroundColor'
+             */
+            val nodeAttribute = indexedNode.getAttribute("name")
 
-                node.textContent = when (node.getAttribute("name")) {
-                    "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3",
-                    "yt_black4", "yt_status_bar_background_dark", "material_grey_850" -> darkThemeBackgroundColor
+            indexedNode.textContent = when (nodeAttribute) {
+                "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98",
+                "yt_black2", "yt_black3", "yt_black4", "yt_status_bar_background_dark",
+                "material_grey_850" -> darkThemeBackgroundColor
 
-                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3", "yt_white4"
-                    -> lightThemeBackgroundColor
+                "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2",
+                "yt_white3", "yt_white4" -> lightThemeBackgroundColor
 
-                    else -> continue
-                }
+                else -> nodeAttribute
             }
         }
+        fun addNewColorAttribute(rootNode: Element, file: Document) {
+            /**
+             * Create a new node element of type 'attr'
+             * with attributes: 'format' (and its value = 'reference') & 'name' (and its value = 'splashScreenColor').
+             */
+            val newColorAttribute: Element = file.createElement("attr").apply {
+                setAttribute("format", "reference")
+                setAttribute("name", splashScreenColorAttributeName)
+            }
 
-        // edit the resource files to change the splash screen color
-        val attrsPath = "res/values/attrs.xml";
-        val stylesPaths: List<String> = listOf(
-            "res/values/styles.xml", // Android 11 (and below)
-            "res/values-v31/styles.xml", // Android 12 (and above)
-        )
-        val quantumLaunchscreenPaths: List<String> = listOf(
-            "res/drawable/quantum_launchscreen_youtube.xml",
-            "res/drawable-anydpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-hdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-ldrtl/quantum_launchscreen_youtube.xml",
-            "res/drawable-ldrtl-night/quantum_launchscreen_youtube.xml",
-            "res/drawable-ldrtl-xxhdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-mdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-night/quantum_launchscreen_youtube.xml",
-            "res/drawable-nodpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-sw600dp/quantum_launchscreen_youtube.xml",
-            "res/drawable-sw600dp-xhdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-sw720dp-xhdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-watch/quantum_launchscreen_youtube.xml",
-            "res/drawable-xhdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-xxhdpi/quantum_launchscreen_youtube.xml",
-            "res/drawable-xxxhdpi/quantum_launchscreen_youtube.xml"
-        )
-
-        context.xmlEditor[attrsPath].use { editor ->
-            val file = editor.file
-
-            (file.getElementsByTagName("resources").item(0) as Element).appendChild(
-                file.createElement("attr").apply {
-                    setAttribute("format", "reference")
-                    setAttribute("name", "splashScreenColor")
-                }
-            )
+            /**
+             * Add created node element after 'rootNode', into xml file
+             */
+            rootNode.appendChild(newColorAttribute)
         }
-        stylesPaths.forEachIndexed { pathIndex, stylesPath ->
-            context.xmlEditor[stylesPath].use { editor ->
-                val file = editor.file
+        fun addColorAttributeInStyle(indexedNode: Element, file: Document, filePathIndex: Int) {
+            val nodeAttributeName = indexedNode.getAttribute("name")
 
-                val childNodes = (file.getElementsByTagName("resources").item(0) as Element).childNodes
+            /**
+             * Create a new node element of type 'item'
+             * with the attribute: 'name', and its value based on the field 'filePathIndex':
+             *
+             *      '/values/styles.xml' = 'splashScreenColor'
+             *      '/values-v31/styles.xml' = 'android:windowSplashScreenBackground'
+             *
+             * @field filePathIndex The current styles.xml path, indexed by the method 'forEachIndexed()'
+             */
+            file.createElement("item").apply {
+                setAttribute(
+                    "name",
+                    when (filePathIndex) {
+                        0 -> splashScreenColorAttributeName
+                        1 -> "android:windowSplashScreenBackground"
+                        else -> "null"
+                    }
+                )
 
-                for (i in 0 until childNodes.length) {
-                    val node = childNodes.item(i) as? Element ?: continue
-                    val nodeAttributeName = node.getAttribute("name")
-
-                    file.createElement("item").apply {
-                        setAttribute(
-                            "name",
-                            when (pathIndex) {
-                                0 -> "splashScreenColor"
-                                1 -> "android:windowSplashScreenBackground"
+                /**
+                 * Fill the value of created node element with the field 'lightThemeBackgroundColor' or 'darkThemeBackgroundColor'
+                 * only if the name of 'indexedNode' is equal to the field 'nodeAttributeName'
+                 */
+                appendChild(
+                    file.createTextNode(
+                        when (filePathIndex) {
+                            0 -> when (nodeAttributeName) {
+                                "Base.Theme.YouTube.Launcher.Dark" -> darkThemeBackgroundColor
+                                "Base.Theme.YouTube.Launcher.Light" -> lightThemeBackgroundColor
                                 else -> "null"
                             }
-                        )
+                            1 -> when (nodeAttributeName) {
+                                "Base.Theme.YouTube.Launcher" -> "?attr/$splashScreenColorAttributeName"
+                                else -> "null"
+                            }
+                            else -> "null"
+                        }
+                    )
+                )
 
-                        appendChild(
-                            file.createTextNode(
-                                when (pathIndex) {
-                                    0 -> when (nodeAttributeName) {
-                                        "Base.Theme.YouTube.Launcher.Dark" -> darkThemeBackgroundColor
-                                        "Base.Theme.YouTube.Launcher.Light" -> lightThemeBackgroundColor
-                                        else -> "null"
-                                    }
-                                    1 -> when (nodeAttributeName) {
-                                        "Base.Theme.YouTube.Launcher" -> "?attr/splashScreenColor"
-                                        else -> "null"
-                                    }
-                                    else -> "null"
-                                }
+                /**
+                 * Add the created node element after 'indexedNode', into xml file
+                 * only if the value of new node element is not equal to 'null'
+                 */
+                if (this.textContent != "null")
+                    indexedNode.appendChild(this)
+            }
+        }
+        fun changeSplashScreenBackgroundColor(rootNode: Element) {
+            /**
+             * Check if a node element with attribute 'android:drawable' exists
+             * then change its value to '?attr/splashScreenColor'
+             */
+            if (rootNode.attributes.getNamedItem("android:drawable") != null)
+                rootNode.setAttribute("android:drawable", "?attr/splashScreenColor")
+        }
 
+        fun editXMLFile(
+            filePath: String,
+            filePathIndex: Int,
+            elementsToSearchName: String,
+            patchIndex: Int
+        ) {
+            if (context[filePath].exists()) {
+                context.xmlEditor[filePath].use { editor ->
+                    val editorFile = editor.file
+                    val rootNode = editorFile.getElementsByTagName(elementsToSearchName).item(0) as Element
+                    val childNodes = rootNode.childNodes
 
-                            )
-                        )
+                    for (i in 0 until childNodes.length) {
+                        val indexedNode = childNodes.item(i) as? Element ?: continue
 
-                        if (this.textContent != "null")
-                            node.appendChild(this)
+                        when(patchIndex) {
+                            0 -> changeAppBackgroundColorValues(indexedNode)
+                            1 -> addNewColorAttribute(rootNode, editorFile)
+                            2 -> addColorAttributeInStyle(indexedNode, editorFile, filePathIndex)
+                            3 -> changeSplashScreenBackgroundColor(rootNode)
+                        }
                     }
                 }
             }
         }
-        quantumLaunchscreenPaths.forEach { quantumLaunchscreenPath ->
-            if (context[quantumLaunchscreenPath].exists()) {
-                context.xmlEditor[quantumLaunchscreenPath].use { editor ->
-                    val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
 
-                    if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
-                        resourcesNode.setAttribute("android:drawable", "?attr/splashScreenColor")
-                }
-            }
+        editXMLFile(
+            "res/$android11ValuesFolder/colors.xml",
+            0,
+            "resources",
+            0
+        )
+        editXMLFile(
+            "res/$android11ValuesFolder/attrs.xml",
+            0,
+            "resources",
+            1
+        )
+        arrayOf(
+            android11ValuesFolder,
+            android12ValuesFolder
+        ).forEachIndexed { filePathIndex, filePath ->
+            editXMLFile(
+                "res/$filePath/attrs.xml",
+                filePathIndex,
+                "resources",
+                2
+            )
+        }
+        drawableFolders.forEach { drawablePath ->
+            editXMLFile(
+                drawablePath,
+                0,
+                "item",
+                3
+            )
         }
 
         return PatchResultSuccess()
