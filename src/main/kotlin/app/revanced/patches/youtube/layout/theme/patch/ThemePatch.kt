@@ -41,15 +41,31 @@ class ThemePatch : ResourcePatch {
         }
 
         // edit the resource files to change the splash screen color
-        val paths: List<String> = listOf(
-            "res/values/attrs.xml", // resource attributes list for the app
-            "res/values/styles.xml", // styles attributes list for Android 11 (and below)
-            "res/values-v31/styles.xml", // styles attributes list for Android 12 (and above)
-            "res/drawable/quantum_launchscreen_youtube.xml", // Android 11 (and below) splash screen manager for Smartphones
-            "res/drawable-sw600dp/quantum_launchscreen_youtube.xml" // Android 11 (and below) splash screen manager for Tablet
+        val attrsPath = "res/values/attrs.xml";
+        val stylesPaths: List<String> = listOf(
+            "res/values/styles.xml", // Android 11 (and below)
+            "res/values-v31/styles.xml", // Android 12 (and above)
+        )
+        val quantumLaunchscreenPaths: List<String> = listOf(
+            "res/drawable/quantum_launchscreen_youtube.xml",
+            "res/drawable-anydpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-hdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-ldrtl/quantum_launchscreen_youtube.xml",
+            "res/drawable-ldrtl-night/quantum_launchscreen_youtube.xml",
+            "res/drawable-ldrtl-xxhdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-mdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-night/quantum_launchscreen_youtube.xml",
+            "res/drawable-nodpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-sw600dp/quantum_launchscreen_youtube.xml",
+            "res/drawable-sw600dp-xhdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-sw720dp-xhdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-watch/quantum_launchscreen_youtube.xml",
+            "res/drawable-xhdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-xxhdpi/quantum_launchscreen_youtube.xml",
+            "res/drawable-xxxhdpi/quantum_launchscreen_youtube.xml"
         )
 
-        context.xmlEditor[paths[0]].use { editor ->
+        context.xmlEditor[attrsPath].use { editor ->
             val file = editor.file
 
             (file.getElementsByTagName("resources").item(0) as Element).appendChild(
@@ -59,65 +75,58 @@ class ThemePatch : ResourcePatch {
                 }
             )
         }
-        context.xmlEditor[paths[1]].use { editor ->
-            val file = editor.file
+        stylesPaths.forEachIndexed { pathIndex, stylesPath ->
+            context.xmlEditor[stylesPath].use { editor ->
+                val file = editor.file
 
-            val childNodes = (file.getElementsByTagName("resources").item(0) as Element).childNodes
+                val childNodes = (file.getElementsByTagName("resources").item(0) as Element).childNodes
 
-            for (i in 0 until childNodes.length) {
-                val node = childNodes.item(i) as? Element ?: continue
+                for (i in 0 until childNodes.length) {
+                    val node = childNodes.item(i) as? Element ?: continue
+                    val nodeAttributeName = node.getAttribute("name")
 
-                file.createElement("item").apply {
-                    setAttribute("name", "splashScreenColor")
-
-                    appendChild(
-                        file.createTextNode(
-                            when (node.getAttribute("name")) {
-                                "Base.Theme.YouTube.Launcher.Dark" -> darkThemeBackgroundColor
-                                "Base.Theme.YouTube.Launcher.Light" -> lightThemeBackgroundColor
-                                else -> {"null"}
+                    file.createElement("item").apply {
+                        setAttribute(
+                            "name",
+                            when (pathIndex) {
+                                0 -> "splashScreenColor"
+                                1 -> "android:windowSplashScreenBackground"
+                                else -> "null"
                             }
                         )
-                    )
 
-                    if (this.textContent != "null")
-                        node.appendChild(this)
+                        appendChild(
+                            file.createTextNode(
+                                when (pathIndex) {
+                                    0 -> when (nodeAttributeName) {
+                                        "Base.Theme.YouTube.Launcher.Dark" -> darkThemeBackgroundColor
+                                        "Base.Theme.YouTube.Launcher.Light" -> lightThemeBackgroundColor
+                                        else -> "null"
+                                    }
+                                    1 -> when (nodeAttributeName) {
+                                        "Base.Theme.YouTube.Launcher" -> "?attr/splashScreenColor"
+                                        else -> "null"
+                                    }
+                                    else -> "null"
+                                }
+
+
+                            )
+                        )
+
+                        if (this.textContent != "null")
+                            node.appendChild(this)
+                    }
                 }
             }
         }
-        context.xmlEditor[paths[2]].use { editor ->
-            val file = editor.file
+        quantumLaunchscreenPaths.forEach { quantumLaunchscreenPath ->
+            if (context[quantumLaunchscreenPath].exists()) {
+                context.xmlEditor[quantumLaunchscreenPath].use { editor ->
+                    val resourcesNode = editor.file.getElementsByTagName("item").item(0) as Element
 
-            val childNodes = (file.getElementsByTagName("resources").item(0) as Element).childNodes
-
-            for (i in 0 until childNodes.length) {
-                val node = childNodes.item(i) as? Element ?: continue
-
-                file.createElement("item").apply {
-                    setAttribute("name", "android:windowSplashScreenBackground")
-
-                    appendChild(
-                        file.createTextNode(
-                            when (node.getAttribute("name")) {
-                                "Base.Theme.YouTube.Launcher" -> "?attr/splashScreenColor"
-                                else -> {"null"}
-                            }
-                        )
-                    )
-
-                    if (this.textContent != "null")
-                        node.appendChild(this)
-                }
-            }
-        }
-        arrayOf(
-            paths[3],
-            paths[4]
-        ).forEach { drawablePath ->
-            context.xmlEditor[drawablePath].use { editor ->
-                with (editor.file.getElementsByTagName("item").item(0) as Element) {
-                    if (attributes.getNamedItem("android:drawable") != null)
-                        setAttribute("android:drawable", "?attr/splashScreenColor")
+                    if (resourcesNode.attributes.getNamedItem("android:drawable") != null)
+                        resourcesNode.setAttribute("android:drawable", "?attr/splashScreenColor")
                 }
             }
         }
