@@ -105,7 +105,7 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_adremover_subscribers_community_guidelines_removal",
                 StringResource("revanced_adremover_subscribers_community_guidelines_enabled_title", "Hide subscribers community guidelines"),
-                false,
+                true,
                 StringResource("revanced_adremover_subscribers_community_guidelines_enabled_summary_on", "Subscribers community guidelines are hidden"),
                 StringResource("revanced_adremover_subscribers_community_guidelines_enabled_summary_off", "Subscribers community guidelines are shown")
             ),
