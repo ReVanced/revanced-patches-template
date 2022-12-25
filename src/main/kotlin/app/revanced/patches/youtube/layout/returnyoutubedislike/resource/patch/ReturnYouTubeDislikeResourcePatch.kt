@@ -13,6 +13,8 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class])
@@ -36,6 +38,11 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
         )
         // merge strings
         context.mergeStrings("returnyoutubedislike/host/values/strings.xml")
+
+        context.copyResources(
+            "returnyoutubedislike/host",
+            ResourceUtils.ResourceGroup("values-ldrtl", "strings.xml")
+        )
 
         return PatchResultSuccess()
     }
