@@ -39,11 +39,6 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
         // merge strings
         context.mergeStrings("returnyoutubedislike/host/values/strings.xml")
 
-        context.copyResources(
-            "returnyoutubedislike/host",
-            ResourceUtils.ResourceGroup("values-ldrtl", "strings.xml")
-        )
-
         return PatchResultSuccess()
     }
 }

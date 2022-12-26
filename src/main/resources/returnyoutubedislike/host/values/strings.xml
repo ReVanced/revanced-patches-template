@@ -43,8 +43,4 @@
     <string name="revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit was encountered %d times</string>
 
     <string name="revanced_ryd_statistics_millisecond_text">%d milliseconds</string>
-
-    <!-- Used to detect if app is using right to left text layout (arabic, hebrew, etc) -->
-    <!-- It would be better to use a boolean value, but currently revanced-integrations only supports loading resource strings -->
-    <string name="is_text_layout_right_to_left">false</string>
 </resources>

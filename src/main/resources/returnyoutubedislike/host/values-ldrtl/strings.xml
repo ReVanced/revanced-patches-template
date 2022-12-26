@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Used to detect if app is using right to left text layout (arabic, hebrew, etc) -->
-    <!-- It would be better to use a boolean value, but currently revanced-integrations only supports loading resource strings -->
-    <string name="is_text_layout_right_to_left">true</string>
-</resources>
