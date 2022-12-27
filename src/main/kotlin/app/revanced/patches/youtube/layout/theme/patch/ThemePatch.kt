@@ -27,21 +27,7 @@ class ThemePatch : ResourcePatch {
         val android12ValuesFolder = "values-v31"
         val drawableFolders: List<String> = listOf(
             "drawable",
-            "drawable-anydpi",
-            "drawable-hdpi",
-            "drawable-ldrtl",
-            "drawable-ldrtl-night",
-            "drawable-ldrtl-xxhdpi",
-            "drawable-mdpi",
-            "drawable-night",
-            "drawable-nodpi",
-            "drawable-sw600dp",
-            "drawable-sw600dp-xhdpi",
-            "drawable-sw720dp-xhdpi",
-            "drawable-watch",
-            "drawable-xhdpi",
-            "drawable-xxhdpi",
-            "drawable-xxxhdpi"
+            "drawable-sw600dp"
         )
         val splashScreenColorAttributeName = "splashScreenColor"
 
