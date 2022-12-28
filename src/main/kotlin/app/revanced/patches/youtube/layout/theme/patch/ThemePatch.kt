@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
-@Patch(include = true)
+@Patch
 @DependsOn([LithoThemePatch::class, FixLocaleConfigErrorPatch::class])
 @Name("theme")
 @Description("Applies a custom theme.")
