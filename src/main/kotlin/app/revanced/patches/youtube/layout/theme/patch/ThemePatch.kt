@@ -32,10 +32,7 @@ class ThemePatch : ResourcePatch {
         val splashScreenColorAttributeName = "splashScreenColor"
 
         fun changeAppBackgroundColorValues(indexedNode: Element) {
-            /**
-             * Get all node elements with a specific value (example: "yt_white1" or "yt_black1")
-             * then change it with the content of field 'lightThemeBackgroundColor' or 'darkThemeBackgroundColor'
-             */
+            // Replace the colors responsible for the background color with the specified new color.
             val nodeAttribute = indexedNode.getAttribute("name")
 
             indexedNode.textContent = when (nodeAttribute) {
