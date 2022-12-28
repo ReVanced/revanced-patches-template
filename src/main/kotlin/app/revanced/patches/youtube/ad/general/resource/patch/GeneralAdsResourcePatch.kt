@@ -110,6 +110,13 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_adremover_subscribers_community_guidelines_enabled_summary_off", "Subscribers community guidelines are shown")
             ),
             SwitchPreference(
+                "revanced_adremover_subscribers_channel_bar_removal",
+                StringResource("revanced_adremover_subscribers_channel_bar_enabled_title", "Hide subscribers channel bar"),
+                false,
+                StringResource("revanced_adremover_subscribers_channel_bar_enabled_summary_on", "Subscribers channel bar is hidden"),
+                StringResource("revanced_adremover_subscribers_channel_bar_enabled_summary_off", "Subscribers channel bar is shown")
+            ),
+            SwitchPreference(
                 "revanced_adremover_emergency_box_removal",
                 StringResource("revanced_adremover_emergency_box_enabled_title", "Hide emergency boxes"),
                 true,
