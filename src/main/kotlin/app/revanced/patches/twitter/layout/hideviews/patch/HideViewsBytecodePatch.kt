@@ -5,9 +5,11 @@ import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.InlineActionTypesFingerprint
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.TweetStatsContainerConstructorFingerprint
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.TweetStatsContainerWrapperConstructorFingerprint
@@ -26,13 +28,11 @@ class HideViewsBytecodePatch : BytecodePatch(
         removeViewsFromTimeline(context)
         removeTweetStatViewInitializer(context)
         removeTweetStatViewWrapperInitializer(context)
-        removeViewDelegateBinderSubscription(context)
+        removeViewDelegateBinderSubscription()
         return PatchResultSuccess()
     }
 
-    private fun removeViewsFromTimeline(context: BytecodeContext): PatchResult {
-        val result = InlineActionTypesFingerprint.result!!
-        val method = result.mutableMethod
+    private fun removeViewsFromTimeline(context: BytecodeContext) {
         val addViewsToActionBarMethodFingerprint = object : MethodFingerprint(
             opcodes = listOf(
                 Opcode.INVOKE_STATIC,
@@ -43,28 +43,29 @@ class HideViewsBytecodePatch : BytecodePatch(
                 Opcode.IF_EQZ,
             )
         ) {}
-        val addViewsToActionBarMethodLine = addViewsToActionBarMethodFingerprint.also {
-            it.resolve(context, method, result.classDef)
-        }.result!!.scanResult.patternScanResult!!.endIndex - 1
-        method.removeInstruction(addViewsToActionBarMethodLine)
-        return PatchResultSuccess()
+        transformMethodAtPattern(
+            context,
+            InlineActionTypesFingerprint,
+            addViewsToActionBarMethodFingerprint
+        ) { patternScanResult, method ->
+            method.removeInstruction(patternScanResult.endIndex - 1)
+        }
     }
 
     private fun removeTweetStatViewInitializer(context: BytecodeContext) {
-        val result = TweetStatsContainerConstructorFingerprint.result!!
-        val method = result.mutableMethod
         val returnFingerprint = object : MethodFingerprint(
             opcodes = listOf(Opcode.RETURN_VOID)
         ) {}
-        val addViewsToActionBarMethodLine = returnFingerprint.also {
-            it.resolve(context, method, result.classDef)
-        }.result!!.scanResult.patternScanResult!!.endIndex - 3
-        method.removeInstructions(addViewsToActionBarMethodLine, 2)
+        transformMethodAtPattern(
+            context,
+            TweetStatsContainerConstructorFingerprint,
+            returnFingerprint
+        ) { patternScanResult, method ->
+            method.removeInstructions(patternScanResult.endIndex - 3, 2)
+        }
     }
 
     private fun removeTweetStatViewWrapperInitializer(context: BytecodeContext) {
-        val wrapperResult = TweetStatsContainerWrapperConstructorFingerprint.result!!
-        val wrapperMethod = wrapperResult.mutableMethod
         val wrapperReturnFingerprint = object : MethodFingerprint(
             opcodes = listOf(
                 Opcode.IGET_OBJECT,
@@ -74,16 +75,40 @@ class HideViewsBytecodePatch : BytecodePatch(
                 Opcode.RETURN_VOID,
             )
         ) {}
-        val setupVariableLine = wrapperReturnFingerprint.also {
-            it.resolve(context, wrapperMethod, wrapperResult.classDef)
-        }.result!!.scanResult.patternScanResult!!.startIndex - 4
-        wrapperMethod.removeInstructions(setupVariableLine, 3)
+        transformMethodAtPattern(
+            context,
+            TweetStatsContainerWrapperConstructorFingerprint,
+            wrapperReturnFingerprint
+        ) { patternScanResult, method ->
+            method.removeInstructions(patternScanResult.startIndex - 4, 3)
+        }
     }
 
-    private fun removeViewDelegateBinderSubscription(context: BytecodeContext) {
-        val binderResult = TweetStatsViewDelegateBinderFingerprint.result!!
-        val binderMethod = binderResult.mutableMethod
-        val bindLine = binderResult.scanResult.patternScanResult!!.startIndex - 4
-        binderMethod.removeInstructions(bindLine, 9)
+    private fun removeViewDelegateBinderSubscription() {
+        transformMethod(TweetStatsViewDelegateBinderFingerprint) { result, method ->
+            method.removeInstructions(result.scanResult.patternScanResult!!.startIndex - 4, 9)
+        }
+    }
+
+    private fun transformMethodAtPattern(
+        context: BytecodeContext, methodFingerprint: MethodFingerprint,
+        patternFingerprint: MethodFingerprint, transformer: TransformerAtPattern
+    ) {
+        transformMethod(methodFingerprint) { result, method ->
+            val patternResult = patternFingerprint.also {
+                it.resolve(context, method, result.classDef)
+            }.result!!
+            transformer(patternResult.scanResult.patternScanResult!!, method)
+        }
+    }
+
+    private fun transformMethod(methodFingerprint: MethodFingerprint, transformer: Transformer) {
+        val result = methodFingerprint.result!!
+        val method = result.mutableMethod
+        transformer(result, method)
     }
 }
+
+private typealias Transformer = (MethodFingerprintResult, MutableMethod) -> Unit
+
+private typealias TransformerAtPattern = (MethodFingerprintResult.MethodFingerprintScanResult.PatternScanResult, MutableMethod) -> Unit

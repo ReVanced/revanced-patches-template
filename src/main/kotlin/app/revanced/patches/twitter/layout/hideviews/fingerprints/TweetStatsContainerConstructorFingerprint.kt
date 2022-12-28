@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 object TweetStatsContainerConstructorFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
-    parameters = listOf("Landroid/view/View;"),
+    parameters = listOf("L"),
     opcodes = listOf(
         Opcode.INVOKE_DIRECT,
         Opcode.IPUT_OBJECT,
