@@ -1,3 +1,10 @@
+# [2.142.0-dev.1](https://github.com/tathaha/revanced-patches/compare/v2.141.0...v2.142.0-dev.1) (2022-12-30)
+
+
+### Features
+
+* **twitch/block-embedded-ads:** `block-embedded-ads` patch ([#1166](https://github.com/tathaha/revanced-patches/issues/1166)) ([e396f59](https://github.com/tathaha/revanced-patches/commit/e396f593f6cace5a686af4d40c33df37ebb62017))
+
 # [2.142.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.141.0...v2.142.0-dev.1) (2022-12-09)
 
 

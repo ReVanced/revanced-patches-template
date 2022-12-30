@@ -205,14 +205,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-premium` | Unlocks all premium features. | all |
 </details>
 
-### 📦 `com.awedea.nyx`
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
 ### 📦 `co.windyapp.android`
 <details>
 
@@ -227,6 +219,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all professional features. | all |
+</details>
+
+### 📦 `com.awedea.nyx`
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### 📦 `com.ithebk.expensemanager`
