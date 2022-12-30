@@ -1,3 +1,66 @@
+# [2.149.0](https://github.com/revanced/revanced-patches/compare/v2.148.0...v2.149.0) (2022-12-30)
+
+
+### Bug Fixes
+
+* **tasker/unlock-license:** resolve fingerprint correctly ([92d7857](https://github.com/revanced/revanced-patches/commit/92d78576f033dd7155c80cb08d5911048b06c36c))
+
+
+### Features
+
+* **youtube/general-ads-patch:** hide channel member shelf ([#1380](https://github.com/revanced/revanced-patches/issues/1380)) ([ce2b104](https://github.com/revanced/revanced-patches/commit/ce2b104f508f1581ec531446d60bd3d41dafbd2c))
+
+# [2.149.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.148.0...v2.149.0-dev.1) (2022-12-30)
+
+
+### Bug Fixes
+
+* **tasker/unlock-license:** resolve fingerprint correctly ([92d7857](https://github.com/revanced/revanced-patches/commit/92d78576f033dd7155c80cb08d5911048b06c36c))
+
+
+### Features
+
+* **youtube/general-ads-patch:** hide channel member shelf ([#1380](https://github.com/revanced/revanced-patches/issues/1380)) ([ce2b104](https://github.com/revanced/revanced-patches/commit/ce2b104f508f1581ec531446d60bd3d41dafbd2c))
+
+# [2.148.0](https://github.com/revanced/revanced-patches/compare/v2.147.0...v2.148.0) (2022-12-29)
+
+
+### Bug Fixes
+
+* **youtube/general-ads:** don't early return when not necessary ([#1353](https://github.com/revanced/revanced-patches/issues/1353)) ([003a400](https://github.com/revanced/revanced-patches/commit/003a400ce41ff543fb5484c576f5ec2df0a87273))
+
+
+### Features
+
+* **tasker:** `unlock-license` patch ([#1339](https://github.com/revanced/revanced-patches/issues/1339)) ([78a43b8](https://github.com/revanced/revanced-patches/commit/78a43b8abd972172eab99519dfa636ce77d9e64f))
+* **twitter:** `hide-views-stats` patch ([#1371](https://github.com/revanced/revanced-patches/issues/1371)) ([2f04a06](https://github.com/revanced/revanced-patches/commit/2f04a06e3b782931870d973fd0937f8731062f12))
+* **youtube/general-ads-patch:** hide guidelines for subscriber ([#1352](https://github.com/revanced/revanced-patches/issues/1352)) ([2d10932](https://github.com/revanced/revanced-patches/commit/2d1093251d5d50b476ca44f76acb9a8597b37aea))
+* **youtube/theme:** add option to color the seekbar ([53b91fe](https://github.com/revanced/revanced-patches/commit/53b91fe2b5a41f1a63deec8d919f2a1bc1cae12a))
+* **youtube/theme:** include the patch by default ([c363997](https://github.com/revanced/revanced-patches/commit/c3639975683fb0ca0e271e8fc3ef7fbf79f33414))
+* **youtube:** `hide-breaking-news-shelf` patch ([#1381](https://github.com/revanced/revanced-patches/issues/1381)) ([38a9877](https://github.com/revanced/revanced-patches/commit/38a987744fbb49c2b7d5d0e69297e95f5ee405c4))
+
+# [2.148.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.148.0-dev.5...v2.148.0-dev.6) (2022-12-29)
+
+
+### Features
+
+* **youtube/theme:** add option to color the seekbar ([53b91fe](https://github.com/revanced/revanced-patches/commit/53b91fe2b5a41f1a63deec8d919f2a1bc1cae12a))
+* **youtube/theme:** include the patch by default ([c363997](https://github.com/revanced/revanced-patches/commit/c3639975683fb0ca0e271e8fc3ef7fbf79f33414))
+
+# [2.148.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.148.0-dev.4...v2.148.0-dev.5) (2022-12-29)
+
+
+### Features
+
+* **youtube:** `hide-breaking-news-shelf` patch ([#1381](https://github.com/revanced/revanced-patches/issues/1381)) ([38a9877](https://github.com/revanced/revanced-patches/commit/38a987744fbb49c2b7d5d0e69297e95f5ee405c4))
+
+# [2.148.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.148.0-dev.3...v2.148.0-dev.4) (2022-12-29)
+
+
+### Features
+
+* **twitter:** `hide-views-stats` patch ([#1371](https://github.com/revanced/revanced-patches/issues/1371)) ([2f04a06](https://github.com/revanced/revanced-patches/commit/2f04a06e3b782931870d973fd0937f8731062f12))
+
 # [2.148.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.148.0-dev.2...v2.148.0-dev.3) (2022-12-26)
 
 
