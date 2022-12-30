@@ -30,6 +30,38 @@
 * **youtube:** `hide-breaking-news-shelf` patch ([#1381](https://github.com/tathaha/revanced-patches/issues/1381)) ([38a9877](https://github.com/tathaha/revanced-patches/commit/38a987744fbb49c2b7d5d0e69297e95f5ee405c4))
 * **youtube:** bump patches compatibility to v17.49.37 ([83ebc73](https://github.com/tathaha/revanced-patches/commit/83ebc731130d3d216ac4b815382d8f13548cf665))
 
+# [2.142.0](https://github.com/tathaha/revanced-patches/compare/v2.141.0...v2.142.0) (2022-12-30)
+
+
+### Bug Fixes
+
+* **predictive-back-gesture:** create attribute, if it does not exist ([c00e771](https://github.com/tathaha/revanced-patches/commit/c00e7717053f806e3b5b3f0bf0ca9c2da07c289b))
+* **tasker/unlock-license:** resolve fingerprint correctly ([92d7857](https://github.com/tathaha/revanced-patches/commit/92d78576f033dd7155c80cb08d5911048b06c36c))
+* **tiktok/settings:** make compatible with newer versions ([c88740d](https://github.com/tathaha/revanced-patches/commit/c88740dc2bf040747d9704d5bed52a7b533c22d6))
+* **youtube/general-ads:** don't early return when not necessary ([#1353](https://github.com/tathaha/revanced-patches/issues/1353)) ([003a400](https://github.com/tathaha/revanced-patches/commit/003a400ce41ff543fb5484c576f5ec2df0a87273))
+
+
+### Features
+
+* `predictive-back-gesture` patch ([#1236](https://github.com/tathaha/revanced-patches/issues/1236)) ([11b59f7](https://github.com/tathaha/revanced-patches/commit/11b59f767c94514d49a84593618ff9d2aace2636))
+* **citra:** add compatibility for canary package ([#1256](https://github.com/tathaha/revanced-patches/issues/1256)) ([42ec021](https://github.com/tathaha/revanced-patches/commit/42ec0218d829ea15759f83562d24588ce97cb646))
+* **crunchyroll:** remove `enable-downloads` patch ([2ac1546](https://github.com/tathaha/revanced-patches/commit/2ac15460f5734fc2c6d2d78d34083a8e6b2f7012))
+* link packages to Google PlayStore ([#1272](https://github.com/tathaha/revanced-patches/issues/1272)) ([97892e0](https://github.com/tathaha/revanced-patches/commit/97892e01044c74916375aeebcc094d3304e14f4e))
+* **predictive-back-gesture:** exclude by default ([176d34b](https://github.com/tathaha/revanced-patches/commit/176d34b2ff92d0eb627dad86ad87f559df3db815))
+* **sleepasandroid:** remove `unlock-premium` patch ([#1253](https://github.com/tathaha/revanced-patches/issues/1253)) ([414f503](https://github.com/tathaha/revanced-patches/commit/414f503e493f2dc27edf134f5db723da77636d81))
+* **tasker:** `unlock-license` patch ([#1339](https://github.com/tathaha/revanced-patches/issues/1339)) ([78a43b8](https://github.com/tathaha/revanced-patches/commit/78a43b8abd972172eab99519dfa636ce77d9e64f))
+* **twitch/block-embedded-ads:** `block-embedded-ads` patch ([#1166](https://github.com/tathaha/revanced-patches/issues/1166)) ([018606e](https://github.com/tathaha/revanced-patches/commit/018606e9832c43836b6b8f4fbd623adb8876d162))
+* **twitter/timeline-ads:** add clarifying notice to description ([0eca2af](https://github.com/tathaha/revanced-patches/commit/0eca2af1a4a688903c61ff6469ffea90c60f06a6))
+* **twitter:** `hide-views-stats` patch ([#1371](https://github.com/tathaha/revanced-patches/issues/1371)) ([2f04a06](https://github.com/tathaha/revanced-patches/commit/2f04a06e3b782931870d973fd0937f8731062f12))
+* **youtube-music:** bump compatibility to 5.36.51 ([c4a3099](https://github.com/tathaha/revanced-patches/commit/c4a3099c1ca39431fba9beb94cc2b43e260561d9))
+* **youtube/general-ads-patch:** hide channel member shelf ([#1380](https://github.com/tathaha/revanced-patches/issues/1380)) ([ce2b104](https://github.com/tathaha/revanced-patches/commit/ce2b104f508f1581ec531446d60bd3d41dafbd2c))
+* **youtube/general-ads-patch:** hide guidelines for subscriber ([#1352](https://github.com/tathaha/revanced-patches/issues/1352)) ([2d10932](https://github.com/tathaha/revanced-patches/commit/2d1093251d5d50b476ca44f76acb9a8597b37aea))
+* **youtube/return-youtube-dislike:** debug connection statistics, toast on error, high priority background threads ([#1320](https://github.com/tathaha/revanced-patches/issues/1320)) ([30273a9](https://github.com/tathaha/revanced-patches/commit/30273a9bbdd40453baeb09f26ac9d218569a3e71))
+* **youtube/theme:** add option to color the seekbar ([53b91fe](https://github.com/tathaha/revanced-patches/commit/53b91fe2b5a41f1a63deec8d919f2a1bc1cae12a))
+* **youtube/theme:** include the patch by default ([c363997](https://github.com/tathaha/revanced-patches/commit/c3639975683fb0ca0e271e8fc3ef7fbf79f33414))
+* **youtube:** `hide-breaking-news-shelf` patch ([#1381](https://github.com/tathaha/revanced-patches/issues/1381)) ([38a9877](https://github.com/tathaha/revanced-patches/commit/38a987744fbb49c2b7d5d0e69297e95f5ee405c4))
+* **youtube:** bump patches compatibility to v17.49.37 ([83ebc73](https://github.com/tathaha/revanced-patches/commit/83ebc731130d3d216ac4b815382d8f13548cf665))
+
 # [2.149.0](https://github.com/revanced/revanced-patches/compare/v2.148.0...v2.149.0) (2022-12-30)
 
 
