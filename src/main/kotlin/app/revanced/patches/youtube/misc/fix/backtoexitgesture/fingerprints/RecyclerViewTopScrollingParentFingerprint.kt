@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.fix.backtoexit.fingerprints
+package app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
