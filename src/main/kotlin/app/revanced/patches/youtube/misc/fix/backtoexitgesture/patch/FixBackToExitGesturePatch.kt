@@ -34,7 +34,6 @@ class FixBackToExitGesturePatch : BytecodePatch(
         RecyclerViewTopScrollingFingerprint.resolve(context, RecyclerViewTopScrollingParentFingerprint.result!!.classDef)
 
         val recyclerViewTopScrollingFingerprint = RecyclerViewTopScrollingFingerprint.result!!
-        println(recyclerViewTopScrollingFingerprint)
         recyclerViewTopScrollingFingerprint.mutableMethod.addInstruction(
             recyclerViewTopScrollingFingerprint.scanResult.patternScanResult!!.endIndex + 1,
             injectCall("", "onStopScrollView", "")
