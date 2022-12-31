@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
@@ -8,12 +9,13 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.annotation.FixBackToExitGestureCompatibility
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewScrollingFingerprint
-import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingParentFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingFingerprint
+import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingParentFingerprint
 
 @Description("Closes the app by tapping the back button from the home feed.")
 @FixBackToExitGestureCompatibility
@@ -26,49 +28,57 @@ class FixBackToExitGesturePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        MethodPatch(
-            RecyclerViewScrollingFingerprint,
-            "",
-            "onScrollingViews",
-            ""
-        ).injectCall()
+        RecyclerViewTopScrollingFingerprint.apply {
+            resolve(
+                context,
+                RecyclerViewTopScrollingParentFingerprint.result?.classDef
+                    ?: return RecyclerViewTopScrollingParentFingerprint.toErrorResult()
+            )
+        }
 
-        RecyclerViewTopScrollingFingerprint.resolve(context, RecyclerViewTopScrollingParentFingerprint.result!!.classDef)
-
-        MethodPatch(
-            RecyclerViewTopScrollingFingerprint,
-            "",
-            "onTopView",
-            ""
-        ).injectCall()
-
-        MethodPatch(
-            RecyclerViewScrollingFingerprint,
-            "p0",
-            "onBackPressed",
-            "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
-        ).injectCall()
+        mapOf(
+            RecyclerViewTopScrollingFingerprint to IntegrationsMethod(
+                methodName = "onTopView"
+            ), RecyclerViewScrollingFingerprint to IntegrationsMethod(
+                methodName = "onScrollingViews"
+            ), RecyclerViewScrollingFingerprint to IntegrationsMethod(
+                "p0", "onBackPressed", "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
+            )
+        ).forEach { (fingerprint, target) ->
+            try {
+                fingerprint.injectCall(target)
+            } catch (error: PatchResultError) {
+                return error
+            }
+        }
 
         return PatchResultSuccess()
     }
 
     private companion object {
-        data class MethodPatch(
-            val fingerprint: MethodFingerprint,
-            val register: String,
-            val methodName: String,
-            val methodParams: String
+        /**
+         * A reference to a method from the integrations for [FixBackToExitGesturePatch].
+         *
+         * @param register The method registers.
+         * @param methodName The method name.
+         * @param parameterTypes The parameters of the method.
+         */
+        data class IntegrationsMethod(
+            val register: String = "", val methodName: String, val parameterTypes: String = ""
         ) {
-            val fingerprintResult = fingerprint.result!!
-            val fingerprintMethod = fingerprintResult.mutableMethod
-            val patchLineIndex = fingerprintResult.scanResult.patternScanResult!!.endIndex
-
-            fun injectCall() {
-                fingerprintMethod.addInstruction(
-                    patchLineIndex,
-                    "invoke-static {$register}, Lapp/revanced/integrations/patches/FixBackToExitGesturePatch;->$methodName($methodParams)V"
-                )
-            }
+            override fun toString() =
+                "invoke-static {$register}, Lapp/revanced/integrations/patches/FixBackToExitGesturePatch;->$methodName($parameterTypes)V"
         }
+
+        /**
+         * Inject a call to a method from the integrations.
+         *
+         * @param targetMethod The target method to call.
+         */
+        fun MethodFingerprint.injectCall(targetMethod: IntegrationsMethod) = result?.apply {
+            mutableMethod.addInstruction(
+                scanResult.patternScanResult!!.endIndex, targetMethod.toString()
+            )
+        } ?: throw this.toErrorResult()
     }
 }
