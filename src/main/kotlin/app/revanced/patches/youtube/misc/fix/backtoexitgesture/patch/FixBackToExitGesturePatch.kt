@@ -4,6 +4,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -25,35 +26,49 @@ class FixBackToExitGesturePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val recyclerViewScrollingFingerprint = RecyclerViewScrollingFingerprint.result!!
-        recyclerViewScrollingFingerprint.mutableMethod.addInstruction(
-            recyclerViewScrollingFingerprint.scanResult.patternScanResult!!.endIndex,
-            injectCall("", "onStartScrollView", "")
-        )
+        MethodPatch(
+            RecyclerViewScrollingFingerprint,
+            "",
+            "onScrollingViews",
+            ""
+        ).injectCall()
 
         RecyclerViewTopScrollingFingerprint.resolve(context, RecyclerViewTopScrollingParentFingerprint.result!!.classDef)
 
-        val recyclerViewTopScrollingFingerprint = RecyclerViewTopScrollingFingerprint.result!!
-        recyclerViewTopScrollingFingerprint.mutableMethod.addInstruction(
-            recyclerViewTopScrollingFingerprint.scanResult.patternScanResult!!.endIndex + 1,
-            injectCall("", "onStopScrollView", "")
-        )
+        MethodPatch(
+            RecyclerViewTopScrollingFingerprint,
+            "",
+            "onTopView",
+            ""
+        ).injectCall()
 
-        val onBackPressedFingerprint = RecyclerViewScrollingFingerprint.result!!
-        onBackPressedFingerprint.mutableMethod.addInstruction(
-            onBackPressedFingerprint.scanResult.patternScanResult!!.endIndex,
-            injectCall("p0", "exitOnBackPressed", "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;")
-        )
+        MethodPatch(
+            RecyclerViewScrollingFingerprint,
+            "p0",
+            "onBackPressed",
+            "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
+        ).injectCall()
 
         return PatchResultSuccess()
     }
 
     private companion object {
-        fun injectCall(
-            register: String,
-            methodName: String,
-            methodParams: String
-        ) =
-            "invoke-static {$register}, Lapp/revanced/integrations/patches/BackToExitPatch;->$methodName($methodParams)V"
+        data class MethodPatch(
+            val fingerprint: MethodFingerprint,
+            val register: String,
+            val methodName: String,
+            val methodParams: String
+        ) {
+            val fingerprintResult = fingerprint.result!!
+            val fingerprintMethod = fingerprintResult.mutableMethod
+            val patchLineIndex = fingerprintResult.scanResult.patternScanResult!!.endIndex
+
+            fun injectCall() {
+                fingerprintMethod.addInstruction(
+                    patchLineIndex,
+                    "invoke-static {$register}, Lapp/revanced/integrations/patches/FixBackToExitGesturePatch;->$methodName($methodParams)V"
+                )
+            }
+        }
     }
 }
