@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.Recy
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingParentFingerprint
 
-@Description("Closes the app by tapping the back button from the home feed.")
+@Description("Fixes the broken 'Tap on Back to Exit' feature on the Homepage.")
 @FixBackToExitGestureCompatibility
 @Version("0.0.1")
 class FixBackToExitGesturePatch : BytecodePatch(
