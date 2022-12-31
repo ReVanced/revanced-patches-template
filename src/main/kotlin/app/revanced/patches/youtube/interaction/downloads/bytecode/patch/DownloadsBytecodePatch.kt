@@ -29,7 +29,7 @@ class DownloadsBytecodePatch : BytecodePatch() {
         initialize the control
          */
 
-        val initializeDownloadsDescriptor = "$classDescriptor->initializeDownloadButton(Ljava/lang/Object;)V"
+        val initializeDownloadsDescriptor = "$classDescriptor->initializeButton(Ljava/lang/Object;)V"
         PlayerControlsBytecodePatch.initializeControl(initializeDownloadsDescriptor)
 
         /*
