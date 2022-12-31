@@ -39,12 +39,10 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
 
     override fun execute(context: BytecodeContext): PatchResult {
         // Hook video time
-        with(VideoInformationPatch) {
-            videoTimeHook(
-                INTEGRATIONS_PATCH_UTILS_DESCRIPTOR,
-                "setVideoTime"
-            )
-        }
+        VideoInformationPatch.videoTimeHook(
+            INTEGRATIONS_PATCH_UTILS_DESCRIPTOR,
+            "setVideoTime"
+        )
 
         // Inject call for video id
         VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_UTILS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
