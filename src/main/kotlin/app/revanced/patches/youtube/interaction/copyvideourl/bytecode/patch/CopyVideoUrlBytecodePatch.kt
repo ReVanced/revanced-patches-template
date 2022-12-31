@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.interaction.copyvideourl.annotation.CopyVide
 import app.revanced.patches.youtube.interaction.copyvideourl.resource.patch.CopyVideoUrlResourcePatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
 @Name("copy-video-url")
@@ -21,7 +20,6 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 @DependsOn([
     CopyVideoUrlResourcePatch::class,
     PlayerControlsBytecodePatch::class,
-    VideoIdPatch::class,
     VideoInformationPatch::class
 ])
 @CopyVideoUrlCompatibility
@@ -43,9 +41,6 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
             INTEGRATIONS_PATCH_UTILS_DESCRIPTOR,
             "setVideoTime"
         )
-
-        // Inject call for video id
-        VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_UTILS_DESCRIPTOR->setVideoId(Ljava/lang/String;)V")
 
         // Initialize buttons and inject visibility control
         BUTTONS_DESCRIPTORS.forEach { descriptor ->
