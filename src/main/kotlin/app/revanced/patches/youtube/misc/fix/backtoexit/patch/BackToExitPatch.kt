@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.misc.fix.backtoexit.fingerprints.RecyclerVie
 import app.revanced.patches.youtube.misc.fix.backtoexit.fingerprints.RecyclerViewTopScrollingParentFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexit.fingerprints.RecyclerViewTopScrollingFingerprint
 
-@Description("Close the app by tapping the back button from the home feed.")
+@Description("Closes the app by tapping the back button from the home feed.")
 @BackToExitCompatibility
 @Version("0.0.1")
 class BackToExitPatch : BytecodePatch(
