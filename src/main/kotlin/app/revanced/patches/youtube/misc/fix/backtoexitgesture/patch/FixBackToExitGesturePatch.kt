@@ -22,9 +22,9 @@ import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.Recy
 @Version("0.0.1")
 class FixBackToExitGesturePatch : BytecodePatch(
     listOf(
-        OnBackPressedFingerprint,
-        RecyclerViewScrollingFingerprint,
         RecyclerViewTopScrollingParentFingerprint,
+        RecyclerViewScrollingFingerprint,
+        OnBackPressedFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -39,9 +39,11 @@ class FixBackToExitGesturePatch : BytecodePatch(
         mapOf(
             RecyclerViewTopScrollingFingerprint to IntegrationsMethod(
                 methodName = "onTopView"
-            ), RecyclerViewScrollingFingerprint to IntegrationsMethod(
+            ),
+            RecyclerViewScrollingFingerprint to IntegrationsMethod(
                 methodName = "onScrollingViews"
-            ), RecyclerViewScrollingFingerprint to IntegrationsMethod(
+            ),
+            OnBackPressedFingerprint to IntegrationsMethod(
                 "p0", "onBackPressed", "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
             )
         ).forEach { (fingerprint, target) ->
