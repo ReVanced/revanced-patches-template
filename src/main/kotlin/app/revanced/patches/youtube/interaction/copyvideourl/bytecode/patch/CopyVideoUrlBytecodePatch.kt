@@ -28,7 +28,6 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
     private companion object {
         const val INTEGRATIONS_PACKAGE = "Lapp/revanced/integrations"
         const val INTEGRATIONS_PLAYER_PACKAGE = "$INTEGRATIONS_PACKAGE/videoplayer"
-        const val INTEGRATIONS_PATCH_UTILS_DESCRIPTOR = "$INTEGRATIONS_PACKAGE/patches/CopyVideoUrlPatch;"
         val BUTTONS_DESCRIPTORS = listOf(
             "$INTEGRATIONS_PLAYER_PACKAGE/CopyVideoUrlButton;",
             "$INTEGRATIONS_PLAYER_PACKAGE/CopyVideoUrlTimestampButton;"
@@ -36,11 +35,6 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
-        // Hook video time
-        VideoInformationPatch.videoTimeHook(
-            INTEGRATIONS_PATCH_UTILS_DESCRIPTOR,
-            "setVideoTime"
-        )
 
         // Initialize buttons and inject visibility control
         BUTTONS_DESCRIPTORS.forEach { descriptor ->
