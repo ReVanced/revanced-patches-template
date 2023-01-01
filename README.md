@@ -12,6 +12,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `always-autorepeat` | Always repeats the playing video again. | 17.49.37 |
 | `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
 | `comments` | Hides components related to comments. | 17.49.37 |
+| `copy-video-url` | Adds buttons in player to copy video links. | 17.49.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 17.49.37 |
 | `custom-video-speed` | Adds more video speed options. | 17.49.37 |
@@ -28,6 +29,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-album-cards` | Hides the album cards below the artist description. | 17.49.37 |
 | `hide-artist-card` | Hides the artist card below the searchbar. | 17.49.37 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 17.49.37 |
+| `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 17.49.37 |
 | `hide-captions-button` | Hides the captions button on video player. | 17.49.37 |
 | `hide-cast-button` | Hides the cast button in the video player. | all |
 | `hide-create-button` | Hides the create button in the navigation bar. | 17.49.37 |
@@ -120,6 +122,17 @@ The official Patch bundle provided by ReVanced and the community.
 | `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
 </details>
 
+### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `dynamic-color` | Replaces the default Twitter Blue with the users Material You palette. | all |
+| `hide-views-stats` | Hides the view stats under tweets. | all |
+| `monochrome-icon` | Adds a monochrome icon. | all |
+| `timeline-ads` | Removes ads from the Twitter timeline. Might require clearing app data to remove already cached ads. | all |
+</details>
+
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
 <details>
 
@@ -128,16 +141,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `disable-capture-restriction` | Allows capturing Spotify's audio output while screen sharing or screen recording. | all |
 | `hide-premium-navbar` | Removes the premium tab from the navbar. | all |
 | `spotify-theme` | Applies a custom theme. | all |
-</details>
-
-### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `dynamic-color` | Replaces the default Twitter Blue with the users Material You palette. | all |
-| `monochrome-icon` | Adds a monochrome icon. | all |
-| `timeline-ads` | Removes ads from the Twitter timeline. Might require clearing app data to remove already cached ads. | all |
 </details>
 
 ### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
@@ -197,14 +200,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `promo-code-unlock` | Disables the validation of promo code. Any code will work to unlock all features. | all |
 </details>
 
-### [📦 `net.dinglisch.android.taskerm`](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-license` | Unlocks the trial version. | all |
-</details>
-
 ### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
@@ -251,6 +246,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-themes` | Unlocks all themes. | all |
+</details>
+
+### [📦 `net.dinglisch.android.taskerm`](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-trial` | Unlocks the trial version. | all |
 </details>
 
 
