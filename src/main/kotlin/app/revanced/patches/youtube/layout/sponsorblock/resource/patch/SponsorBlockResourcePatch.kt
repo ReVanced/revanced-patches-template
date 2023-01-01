@@ -35,7 +35,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 Preference.Intent(
                     youtubePackage,
                     "sponsorblock_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                    "com.google.android.apps.youtube.app.settings.videoquality.VideoQualitySettingsActivity"
                 ),
                 StringResource("revanced_sponsorblock_settings_summary", "SponsorBlock related settings"),
             )
