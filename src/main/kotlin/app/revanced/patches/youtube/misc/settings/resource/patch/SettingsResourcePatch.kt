@@ -73,7 +73,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             Preference(
                 StringResource("revanced_settings", "ReVanced"),
                 Preference.Intent(
-                    youtubePackage, "revanced_settings", "com.google.android.libraries.social.licenses.LicenseActivity"
+                    youtubePackage, "revanced_settings", "com.google.android.apps.youtube.app.settings.videoquality.VideoQualitySettingsActivity"
                 ),
                 StringResource("revanced_settings_summary", "ReVanced specific settings"),
             )

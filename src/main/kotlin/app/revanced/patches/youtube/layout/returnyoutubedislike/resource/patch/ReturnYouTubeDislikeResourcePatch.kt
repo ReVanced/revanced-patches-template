@@ -29,7 +29,7 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
                 Preference.Intent(
                     youtubePackage,
                     "ryd_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                    "com.google.android.apps.youtube.app.settings.videoquality.VideoQualitySettingsActivity"
                 ),
                 StringResource("revanced_ryd_settings_summary", "Settings for Return YouTube Dislike"),
             )
