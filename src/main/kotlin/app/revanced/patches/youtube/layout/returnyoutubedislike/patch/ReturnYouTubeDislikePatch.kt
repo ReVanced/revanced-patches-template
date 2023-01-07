@@ -59,7 +59,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
             val conversionContextParam = 5
             val textRefParam = createComponentMethod.parameters.size - 2
-            val insertIndex = scanResult.stringsScanResult!!.matches.first().index - 2
+            val insertIndex = 0;
 
             createComponentMethod.addInstructions(
                 insertIndex,
