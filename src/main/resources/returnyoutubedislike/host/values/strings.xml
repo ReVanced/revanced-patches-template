@@ -18,7 +18,7 @@
 
     <string name="revanced_ryd_compact_layout_title">Compact like button</string>
     <string name="revanced_ryd_compact_layout_summary_on">Likes and Dislikes styled minimally</string>
-    <string name="revanced_ryd_compact_layout_summary_off">Likes and Dislikes styled fully</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Likes and Dislikes styled symmetrically</string>
 
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
     <string name="revanced_ryd_attribution_summary">Dislike data is provided by the Return YouTube Dislike API.  Tap here to learn more.</string>
