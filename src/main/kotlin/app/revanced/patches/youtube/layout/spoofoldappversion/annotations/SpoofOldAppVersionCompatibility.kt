@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.forceolduilayout.annotations
+package app.revanced.patches.youtube.layout.spoofoldappversion.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,4 +10,5 @@ import app.revanced.patcher.annotation.Package
 )
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-internal annotation class ForceOldUILayoutCompatibility
+internal annotation class SpoofOldAppVersionCompatibility
+

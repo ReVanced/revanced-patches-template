@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.layout.forceolduilayout.bytecode.fingerprints
+package app.revanced.patches.youtube.layout.spoofoldappversion.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object OverrideBuildVersionFingerprint : MethodFingerprint(
+object SpoofOldAppVersionFingerprint : MethodFingerprint(
     "L", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L"), listOf(
         Opcode.IGET_OBJECT,
         Opcode.GOTO,
