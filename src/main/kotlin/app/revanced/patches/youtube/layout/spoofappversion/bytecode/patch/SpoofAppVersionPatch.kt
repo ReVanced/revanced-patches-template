@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.spoofoldappversion.bytecode.patch
+package app.revanced.patches.youtube.layout.spoofappversion.bytecode.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -13,8 +13,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.spoofoldappversion.annotations.SpoofOldAppVersionCompatibility
-import app.revanced.patches.youtube.layout.spoofoldappversion.bytecode.fingerprints.SpoofOldAppVersionFingerprint
+import app.revanced.patches.youtube.layout.spoofappversion.annotations.SpoofAppVersionCompatibility
+import app.revanced.patches.youtube.layout.spoofappversion.bytecode.fingerprints.SpoofAppVersionFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -23,29 +23,29 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("spoof-old-app-version")
 @Description("Experimental patch that makes YouTube.com think the Android app is an older version. This brings back the old UI layout, but may also cause unknown effects.")
-@SpoofOldAppVersionCompatibility
+@SpoofAppVersionCompatibility
 @Version("0.0.1")
-class SpoofOldAppVersionPatch : BytecodePatch(
+class SpoofAppVersionPatch : BytecodePatch(
     listOf(
-        SpoofOldAppVersionFingerprint
+        SpoofAppVersionFingerprint
     )
 ) {
     companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofOldAppVersionPatch;"
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch;"
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_spoof_old_youtube_version",
-                StringResource("revanced_spoof_old_youtube_version_title", "Spoof old version of YouTube (experimental)"),
+                "revanced_spoof_youtube_version",
+                StringResource("revanced_spoof_youtube_version_title", "Spoof old version of YouTube (experimental)"),
                 false,
-                StringResource("revanced_spoof_old_youtube_version_summary_on", "YouTube Version spoofed to 17.30.34"),
-                StringResource("revanced_spoof_old_youtube_version__summary_off", "YouTube Version not spoofed")
+                StringResource("revanced_spoof_youtube_version_summary_on", "YouTube Version spoofed to 17.30.34"),
+                StringResource("revanced_spoof_youtube_version__summary_off", "YouTube Version not spoofed")
             )
         )
 
-        SpoofOldAppVersionFingerprint.result?.apply {
+        SpoofAppVersionFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.startIndex + 1
             val buildOverrideNameRegister =
                 (mutableMethod.implementation!!.instructions[insertIndex - 1] as OneRegisterInstruction).registerA
@@ -57,7 +57,7 @@ class SpoofOldAppVersionPatch : BytecodePatch(
                         move-result-object v$buildOverrideNameRegister
                          """
             )
-        } ?: return SpoofOldAppVersionFingerprint.toErrorResult()
+        } ?: return SpoofAppVersionFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
