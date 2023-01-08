@@ -7,7 +7,7 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 
-@FuzzyPatternScanMethod(3) // FIXME: Test this threshold and find the best value.
+@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 object CodecsLockFingerprint : MethodFingerprint(
     "L", AccessFlags.PUBLIC or AccessFlags.STATIC, opcodes = listOf(
         Opcode.INVOKE_DIRECT,
@@ -22,7 +22,7 @@ object CodecsLockFingerprint : MethodFingerprint(
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.INVOKE_INTERFACE,
-        Opcode.INVOKE_DIRECT,
+        Opcode.INVOKE_VIRTUAL,
         Opcode.RETURN_OBJECT
     ),
     strings = listOf("eac3_supported")
