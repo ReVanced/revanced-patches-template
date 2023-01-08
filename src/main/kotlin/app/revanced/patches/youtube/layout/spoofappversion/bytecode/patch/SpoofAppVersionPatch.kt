@@ -40,7 +40,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                 "revanced_spoof_app_version",
                 StringResource("revanced_spoof_app_version_title", "Spoof app version (show old UI)"),
                 false,
-                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34.  If this is switched off, the old UI layout may persist until user logs out or the app data is cleared"),
+                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34.  If switched off, the old UI layout may remain until user logs out or the app data is cleared"),
                 StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed")
             )
         )
