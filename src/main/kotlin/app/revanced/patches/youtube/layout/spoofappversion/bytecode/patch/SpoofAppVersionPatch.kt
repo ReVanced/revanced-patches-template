@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("spoof-app-version")
-@Description("Experimental patch that makes YouTube.com think the Android app is an older version. This brings back the old UI layout, but may also cause unknown effects.")
+@Description("Experimental patch that makes YouTube.com think the Android app is an older version. This brings back the old UI layout, but may cause unknown side effects.")
 @SpoofAppVersionCompatibility
 @Version("0.0.1")
 class SpoofAppVersionPatch : BytecodePatch(
