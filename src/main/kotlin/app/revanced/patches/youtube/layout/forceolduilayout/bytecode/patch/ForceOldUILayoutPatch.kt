@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("force-old-ui-layout")
-@Description("Spoof the YouTube client version to force the old UI layout (experimental).")
+@Description("Spoofs the YouTube client version to force the old UI layout (experimental).")
 @ForceOldUILayoutCompatibility
 @Version("0.0.1")
 class ForceOldUILayoutPatch : BytecodePatch(
