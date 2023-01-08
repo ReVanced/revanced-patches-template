@@ -49,10 +49,8 @@ class RemoveScreenshotRestrictionPatch : BytecodePatch() {
         }
 
         companion object {
-            fun fromMethodReference(methodReference: MethodReference): MethodCall? {
-                return values().firstOrNull { search ->
-                    search.definedClassName == methodReference.definingClass && search.methodName == methodReference.name
-                }
+            fun fromMethodReference(methodReference: MethodReference) = values().firstOrNull { search ->
+                search.definedClassName == methodReference.definingClass && search.methodName == methodReference.name
             }
         }
     }
