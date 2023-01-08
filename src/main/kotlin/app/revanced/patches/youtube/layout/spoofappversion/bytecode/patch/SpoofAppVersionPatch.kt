@@ -37,11 +37,11 @@ class SpoofAppVersionPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_spoof_youtube_version",
-                StringResource("revanced_spoof_youtube_version_title", "Spoof app version (show old UI)"),
+                "revanced_spoof_app_version",
+                StringResource("revanced_spoof_app_version_title", "Spoof app version (show old UI)"),
                 false,
-                StringResource("revanced_spoof_youtube_version_summary_on", "Version spoofed to 17.30.34.  If this is switched off, the old UI layout may persist until user logs out or the app data is cleared"),
-                StringResource("revanced_spoof_youtube_version_summary_off", "Version not spoofed")
+                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34.  If this is switched off, the old UI layout may persist until user logs out or the app data is cleared"),
+                StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed")
             )
         )
 
