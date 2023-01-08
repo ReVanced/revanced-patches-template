@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.forceolduilayout.bytecode.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -12,8 +13,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.forceolduilayout.bytecode.fingerprints.ForceOldUILayoutFingerprint
-import app.revanced.patches.youtube.layout.homepage.breakingnews.annotations.ForceOldUILayoutCompatibility
+import app.revanced.patches.youtube.layout.forceolduilayout.annotations.ForceOldUILayoutCompatibility
+import app.revanced.patches.youtube.layout.forceolduilayout.bytecode.fingerprints.OverrideBuildVersionFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -26,22 +27,14 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class ForceOldUILayoutPatch : BytecodePatch(
     listOf(
-        ForceOldUILayoutFingerprint
+        OverrideBuildVersionFingerprint
     )
 ) {
+    companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/ForceOldUILayoutPatch;"
+    }
+
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = ForceOldUILayoutFingerprint.result!!
-        val method = result.mutableMethod
-        val index = result.scanResult.patternScanResult!!.startIndex
-        val register = (method.implementation!!.instructions[index] as OneRegisterInstruction).registerA
-
-        method.addInstructions(
-            index + 1, """
-            invoke-static {v$register}, Lapp/revanced/integrations/patches/ForceOldUILayoutPatch;->getYouTubeVersionOverride(Ljava/lang/String;)Ljava/lang/String;
-            move-result-object v$register
-        """
-        )
-
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_force_old_ui_layout",
@@ -51,6 +44,20 @@ class ForceOldUILayoutPatch : BytecodePatch(
                 StringResource("revanced_force_old_ui_layout_summary_off", "Old UI layout not forced")
             )
         )
+
+        OverrideBuildVersionFingerprint.result?.apply {
+            val insertIndex = scanResult.patternScanResult!!.startIndex + 1
+            val buildOverrideNameRegister =
+                (mutableMethod.implementation!!.instructions[insertIndex - 1] as OneRegisterInstruction).registerA
+
+            mutableMethod.addInstructions(
+                insertIndex,
+                """
+                        invoke-static {v$buildOverrideNameRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR;->getYouTubeVersionOverride(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object v$buildOverrideNameRegister
+                         """
+            )
+        } ?: return OverrideBuildVersionFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

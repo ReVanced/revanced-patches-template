@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.homepage.breakingnews.annotations
+package app.revanced.patches.youtube.layout.forceolduilayout.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

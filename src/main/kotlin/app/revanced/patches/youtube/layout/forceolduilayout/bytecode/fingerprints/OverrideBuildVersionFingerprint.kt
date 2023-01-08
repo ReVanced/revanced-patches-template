@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object ForceOldUILayoutFingerprint : MethodFingerprint(
+object OverrideBuildVersionFingerprint : MethodFingerprint(
     "L", AccessFlags.PUBLIC or AccessFlags.STATIC, listOf("L"), listOf(
         Opcode.IGET_OBJECT,
         Opcode.GOTO,
