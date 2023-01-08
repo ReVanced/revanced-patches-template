@@ -31,7 +31,7 @@ class SpoofAppVersionPatch : BytecodePatch(
     )
 ) {
     companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch;"
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch"
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
