@@ -7,7 +7,7 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 
-@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
+@FuzzyPatternScanMethod(3) // FIXME: Test this threshold and find the best value.
 object CodecsLockFingerprint : MethodFingerprint(
     "L", AccessFlags.PUBLIC or AccessFlags.STATIC, opcodes = listOf(
         Opcode.INVOKE_DIRECT,
