@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.nova.prime.annotations.UnlockPrimeCompatibility
 import app.revanced.patches.nova.prime.fingerprints.UnlockPrimeFingerprint
-import app.revanced.patches.tann.dice.unlock.fingerprints.UnlockFullFingerprint
 
 @Patch
 @Name("unlock-prime")
@@ -24,7 +23,7 @@ class UnlockPrimePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val method = UnlockFullFingerprint.result!!.mutableMethod
+        val method = UnlockPrimeFingerprint.result!!.mutableMethod
 
         method.addInstruction(
             8,
