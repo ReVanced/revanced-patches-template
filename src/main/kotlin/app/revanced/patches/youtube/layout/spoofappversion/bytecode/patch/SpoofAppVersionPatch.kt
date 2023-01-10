@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("spoof-app-version")
-@Description("Experimental patch that makes YouTube.com think the Android app is an older version. This gives the old app UI layout, but may cause unknown side effects.")
+@Description("Makes YouTube think the app is an older version.  This gives the old UI layout, but may cause unknown side effects.")
 @SpoofAppVersionCompatibility
 @Version("0.0.1")
 class SpoofAppVersionPatch : BytecodePatch(
@@ -38,7 +38,7 @@ class SpoofAppVersionPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",
-                StringResource("revanced_spoof_app_version_title", "Spoof app version (show old UI)"),
+                StringResource("revanced_spoof_app_version_title", "Spoof app version (Show old UI)"),
                 false,
                 StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34.  If switched off, the old UI layout may remain until user logs out or the app data is cleared"),
                 StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed")
