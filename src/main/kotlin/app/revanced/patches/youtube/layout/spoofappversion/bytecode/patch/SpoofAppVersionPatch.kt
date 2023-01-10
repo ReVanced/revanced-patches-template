@@ -38,9 +38,9 @@ class SpoofAppVersionPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",
-                StringResource("revanced_spoof_app_version_title", "Spoof app version (Show old UI)"),
+                StringResource("revanced_spoof_app_version_title", "Spoof app version"),
                 false,
-                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34.  If switched off, the old UI layout may remain until user logs out or the app data is cleared"),
+                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34. If switched off, the old UI layout may remain until logging out or clearing app data"),
                 StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed")
             )
         )
