@@ -1,0 +1,87 @@
+[
+  {
+    "name": "remember-video-quality",
+    "description": "Adds the ability to remember the video quality you chose in the video quality flyout.",
+    "version": "0.0.1",
+    "excluded": false,
+    "options": [],
+    "dependencies": [
+      "integrations",
+      "video-id-hook"
+    ],
+    "compatiblePackages": [
+      {
+        "name": "com.google.android.youtube",
+        "versions": [
+          "17.22.36",
+          "17.24.35",
+          "17.26.35",
+          "17.27.39",
+          "17.28.34",
+          "17.29.34",
+          "17.32.35",
+          "17.33.42"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "theme",
+    "description": "Enables a custom theme.",
+    "version": "0.0.1",
+    "excluded": false,
+    "deprecated": false,
+    "options": [
+      {
+        "key": "theme",
+        "title": "Theme",
+        "description": "Select a theme.",
+        "required": true,
+        "choices": [
+          "Amoled"
+        ]
+      }
+    ],
+    "dependencies": [
+      "locale-config-fix"
+    ],
+    "compatiblePackages": [
+      {
+        "name": "com.google.android.youtube",
+        "versions": []
+      }
+    ]
+  },
+  {
+    "name": "custom-branding",
+    "description": "Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).",
+    "version": "0.0.1",
+    "excluded": false,
+    "deprecated": false,
+    "options": [
+      {
+        "key": "appName",
+        "title": "Application Name",
+        "description": "The name of the application it will show on your home screen.",
+        "required": true,
+        "choices": null
+      },
+      {
+        "key": "appIconPath",
+        "title": "Application Icon Path",
+        "description": "A path to the icon of the application.",
+        "required": false,
+        "choices": null
+      }
+    ],
+    "dependencies": [
+      "locale-config-fix"
+    ],
+    "compatiblePackages": [
+      {
+        "name": "com.google.android.youtube",
+        "versions": []
+      }
+    ]
+  }
+]
