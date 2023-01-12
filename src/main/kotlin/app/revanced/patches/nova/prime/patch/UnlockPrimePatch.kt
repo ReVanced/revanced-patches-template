@@ -14,6 +14,10 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction11x
 import org.jf.dexlib2.builder.instruction.BuilderInstruction21s
 
+
+//The magic value to insert for unlocking. See comments and "NOTE" below.
+const val premiumSharedPreferenceValue: Int = 512
+
 @Patch
 @Name("unlock-prime")
 @Description("Unlocks Nova Prime and all functions of the app.")
@@ -25,20 +29,27 @@ class UnlockPrimePatch : BytecodePatch(
     )
 ) {
 
-    //Insert the hex value 0x512 right after the pattern which checks the version of the app (paid or free).
-    //Free version is '0', paid version is '0x512'.
+    // This patch works by overwriting a SharedPreferences return value in the code to always return us "512",
+    // which makes the app to include all its functionalities. The default value here is "0" which restricts
+    // the app to the free version.
+
+    // NOTE: It seems any value would work here which is not "0" to patch the app, because the code checks
+    // only for the default "0" value during startup. The number "512" is needed for a weird protection mechanism
+    // which would reset the preferences if the value on disk had changed after a restart.
+
 
     override fun execute(context: BytecodeContext): PatchResult {
         val result = UnlockPrimeFingerprint.result!!
         val methodImplementation = result.mutableMethod.implementation
-        val startIndex = result.scanResult.patternScanResult?.startIndex!!
+        val endIndex = result.scanResult.patternScanResult?.endIndex!!
 
-        val replaceIndex = startIndex + 5
+        //Add instruction right after endIndex
+        val addIndex = endIndex + 1
 
         methodImplementation!!.addInstruction(
-            replaceIndex,
+            addIndex,
             BuilderInstruction21s(
-                Opcode.CONST_16, (methodImplementation.instructions[replaceIndex - 1] as BuilderInstruction11x).registerA, 1298)    // 0x512
+                Opcode.CONST_16, (methodImplementation.instructions[endIndex] as BuilderInstruction11x).registerA, premiumSharedPreferenceValue)
         )
 
         return PatchResultSuccess()
