@@ -15,7 +15,7 @@ import org.w3c.dom.Element
 @Name("hide-views-stats")
 @Description("Hides the view stats under tweets.")
 @HideViewsCompatibility
-@Version("0.0.1")
+@Version("0.0.2")
 class HideViewsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         arrayOf(

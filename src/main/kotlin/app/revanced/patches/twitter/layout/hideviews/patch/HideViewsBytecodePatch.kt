@@ -1,6 +1,7 @@
 package app.revanced.patches.twitter.layout.hideviews.patch
 
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -86,7 +87,15 @@ class HideViewsBytecodePatch : BytecodePatch(
 
     private fun removeViewDelegateBinderSubscription() {
         transformMethod(TweetStatsViewDelegateBinderFingerprint) { result, method ->
-            method.removeInstructions(result.scanResult.patternScanResult!!.startIndex - 4, 9)
+            var idx = result.scanResult.patternScanResult!!.startIndex
+            var end = -1
+            var n = 0
+            while (n < 2) {
+                if (method.instruction(idx--).opcode == Opcode.IGET_OBJECT && n++ == 0) {
+                    end = idx
+                }
+            }
+            method.removeInstructions(++idx, end - idx)
         }
     }
 
