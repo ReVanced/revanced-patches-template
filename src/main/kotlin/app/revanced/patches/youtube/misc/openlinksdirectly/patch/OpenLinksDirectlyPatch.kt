@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("open-links-directly")
-@Description("Bypasses URL redirects inside YouTube app.")
+@Description("Bypasses https://youtube.com/redirect URLs.")
 @OpenLinksDirectlyCompatibility
 @Version("0.0.1")
 class OpenLinksDirectlyPatch : BytecodePatch(
@@ -37,10 +37,10 @@ class OpenLinksDirectlyPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_uri_redirect",
-                StringResource("revanced_uri_redirect_title", "Bypass URL redirect"),
+                StringResource("revanced_uri_redirect_title", "Bypass URL redirects"),
                 true,
-                StringResource("revanced_uri_redirect_summary_on", "Links will bypass youtube.com/redirect"),
-                StringResource("revanced_uri_redirect_summary_off", "Links will follow default redirect policy")
+                StringResource("revanced_uri_redirect_summary_on", "Bypassing URL redirects"),
+                StringResource("revanced_uri_redirect_summary_off", "Following default redirect policy")
             )
         )
 
