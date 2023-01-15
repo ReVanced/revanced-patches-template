@@ -14,9 +14,8 @@ import app.revanced.patches.youtube.layout.hidesubtitlespopup.annotation.HideSub
 import app.revanced.patches.youtube.layout.hidesubtitlespopup.fingerprint.HideSubtitlesPopupFingerprint
 
 @Patch
-@DependsOn()
 @Name("hide-subtitles-popup")
-@Description("Hides subtitles popup.")
+@Description("Hides the toast notification when toggling subtitles.")
 @HideSubtitlesPopupPatchCompatibility
 @Version("0.0.1")
 class HideSubtitlesPopupPatch : BytecodePatch(
@@ -25,10 +24,8 @@ class HideSubtitlesPopupPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-
         val subtitlePopupMethod = HideSubtitlesPopupFingerprint.result!!.mutableMethod
 
-        // add a return instruction at the start of the void method
         subtitlePopupMethod.replaceInstructions(
             0,
             "return-void"
