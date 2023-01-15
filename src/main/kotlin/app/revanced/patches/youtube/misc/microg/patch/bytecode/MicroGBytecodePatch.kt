@@ -77,7 +77,7 @@ class MicroGBytecodePatch : BytecodePatch(
                 key = "packageName",
                 default = REVANCED_PACKAGE_NAME,
                 title = "Package name",
-                description = "The package name of MicroG compatible app."
+                description = "The name of the package."
             )
         )
     }

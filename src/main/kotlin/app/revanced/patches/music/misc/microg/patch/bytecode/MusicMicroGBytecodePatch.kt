@@ -13,7 +13,6 @@ import app.revanced.patches.music.misc.microg.fingerprints.*
 import app.revanced.patches.music.misc.microg.patch.resource.MusicMicroGResourcePatch
 import app.revanced.patches.music.misc.microg.shared.Constants.MUSIC_PACKAGE_NAME
 import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
-import app.revanced.patches.youtube.misc.microg.patch.bytecode.MicroGBytecodePatch.Companion.packageName
 import app.revanced.patches.youtube.misc.microg.shared.Constants
 import app.revanced.util.microg.MicroGBytecodeHelper
 
@@ -47,7 +46,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
             arrayOf(
                 MicroGBytecodeHelper.packageNameTransform(
                     Constants.PACKAGE_NAME,
-                    packageName!!
+                    Constants.REVANCED_PACKAGE_NAME
                 )
             ),
             MicroGBytecodeHelper.PrimeMethodTransformationData(
