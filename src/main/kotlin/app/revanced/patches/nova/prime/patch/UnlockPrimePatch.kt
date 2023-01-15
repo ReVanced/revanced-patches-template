@@ -32,7 +32,7 @@ class UnlockPrimePatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext): PatchResult {
         UnlockPrimeFingerprint.result?.apply {
-            val insertIndex = scanResult.patternScanResult?.endIndex!! + 1
+            val insertIndex = scanResult.patternScanResult!!.endIndex + 1
 
             val primeStatusRegister =
                 (mutableMethod.implementation!!.instructions[insertIndex - 1] as BuilderInstruction11x).registerA
