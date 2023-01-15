@@ -12,12 +12,12 @@ import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatc
 import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibility
 import app.revanced.patches.youtube.misc.microg.shared.Constants.PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NAME
-import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_SIGNATURE
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.patches.youtube.misc.microg.patch.bytecode.MicroGBytecodePatch.Companion.packageName
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
@@ -37,13 +37,13 @@ class MicroGResourcePatch : ResourcePatch {
                 StringResource("microg_settings_summary", "Settings for MicroG"),
             )
         )
-        SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
+        SettingsPatch.renameIntentsTargetPackage(packageName!!)
 
         // update manifest
         MicroGResourceHelper.patchManifest(
             context,
             PACKAGE_NAME,
-            REVANCED_PACKAGE_NAME,
+            packageName!!,
             REVANCED_APP_NAME
         )
 

@@ -4,9 +4,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
@@ -49,13 +47,13 @@ class MicroGBytecodePatch : BytecodePatch(
             context, arrayOf(
                 MicroGBytecodeHelper.packageNameTransform(
                     PACKAGE_NAME,
-                    REVANCED_PACKAGE_NAME
+                    packageName!!
                 )
             ),
             MicroGBytecodeHelper.PrimeMethodTransformationData(
                 PrimeFingerprint,
                 PACKAGE_NAME,
-                REVANCED_PACKAGE_NAME
+                packageName!!
             ),
             listOf(
                 IntegrityCheckFingerprint,
@@ -71,5 +69,16 @@ class MicroGBytecodePatch : BytecodePatch(
         MicroGBytecodeHelper.injectNotice(WatchWhileActivityFingerprint)
 
         return PatchResultSuccess()
+    }
+
+    companion object : OptionsContainer() {
+        var packageName: String? by option(
+            PatchOption.StringOption(
+                key = "packageName",
+                default = REVANCED_PACKAGE_NAME,
+                title = "Package name",
+                description = "The package name of MicroG compatible app."
+            )
+        )
     }
 }
