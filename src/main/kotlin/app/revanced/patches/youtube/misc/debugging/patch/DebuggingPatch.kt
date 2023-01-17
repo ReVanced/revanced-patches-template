@@ -44,6 +44,16 @@ class DebuggingPatch : ResourcePatch {
                         StringResource("revanced_debug_stacktrace_summary_on", "Enabled printing stack traces"),
                         StringResource("revanced_debug_stacktrace_summary_off", "Disabled printing stack traces")
                     ),
+                    SwitchPreference(
+                        "revanced_debug_toast_enabled",
+                        StringResource(
+                            "revanced_debug_toast_enabled_title",
+                            "Show toast on exception"
+                        ),
+                        false,
+                        StringResource("revanced_debug_toast_summary_on", "Toast shown if exception occurs"),
+                        StringResource("revanced_debug_toast_summary_off", "Toast not shown if exception occurs")
+                    ),
                 ),
                 StringResource("revanced_debug_summary", "Enable or disable debugging options")
             )
