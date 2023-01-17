@@ -1,15 +1,15 @@
 package app.revanced.patches.youtube.layout.hidesubtitlespopup.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.replaceInstructions
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hidesubtitlespopup.annotation.HideSubtitlesPopupPatchCompatibility
 import app.revanced.patches.youtube.layout.hidesubtitlespopup.fingerprint.HideSubtitlesPopupFingerprint
 
@@ -19,17 +19,11 @@ import app.revanced.patches.youtube.layout.hidesubtitlespopup.fingerprint.HideSu
 @HideSubtitlesPopupPatchCompatibility
 @Version("0.0.1")
 class HideSubtitlesPopupPatch : BytecodePatch(
-    listOf(
-        HideSubtitlesPopupFingerprint
-    )
+    listOf(HideSubtitlesPopupFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val subtitlePopupMethod = HideSubtitlesPopupFingerprint.result!!.mutableMethod
-
-        subtitlePopupMethod.replaceInstructions(
-            0,
-            "return-void"
-        )
+        HideSubtitlesPopupFingerprint.result?.mutableMethod?.replaceInstructions(0, "return-void")
+            ?: return HideSubtitlesPopupFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
