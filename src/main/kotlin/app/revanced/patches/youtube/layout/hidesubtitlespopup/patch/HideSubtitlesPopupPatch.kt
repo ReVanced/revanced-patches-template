@@ -33,5 +33,4 @@ class HideSubtitlesPopupPatch : BytecodePatch(
 
         return PatchResultSuccess()
     }
-
 }
