@@ -11,17 +11,17 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.finanzonline.detection.bootloader.fingerprints.BootloaderDetection2Fingerprint
+import app.revanced.patches.finanzonline.detection.bootloader.fingerprints.BootStateFingerprint
 import app.revanced.patches.finanzonline.detection.bootloader.fingerprints.BootloaderDetectionFingerprint
 
 
 @Patch
-@Name("remove-unlocked-bootloader-detection")
+@Name("remove-bootloader-detection")
 @Description("Removes the check for an unlocked bootloader")
 @Compatibility([Package("at.gv.bmf.bmf2go", arrayOf("2.2.0"))])
 @Version("0.0.1")
 class BootloaderDetectionPatch : BytecodePatch(
-    listOf(BootloaderDetectionFingerprint, BootloaderDetection2Fingerprint)
+    listOf(BootloaderDetectionFingerprint, BootStateFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val returnTrue = """
@@ -30,7 +30,7 @@ class BootloaderDetectionPatch : BytecodePatch(
         """
 
         BootloaderDetectionFingerprint.result!!.mutableMethod.addInstructions(0, returnTrue)
-        BootloaderDetection2Fingerprint.result!!.mutableMethod.addInstructions(0, returnTrue)
+        BootStateFingerprint.result!!.mutableMethod.addInstructions(0, returnTrue)
 
         return PatchResultSuccess()
     }
