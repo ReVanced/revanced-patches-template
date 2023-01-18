@@ -45,14 +45,14 @@ class DebuggingPatch : ResourcePatch {
                         StringResource("revanced_debug_stacktrace_summary_off", "Debug logs do not include stack trace")
                     ),
                     SwitchPreference(
-                        "revanced_debug_toast_on_exception_enabled",
+                        "revanced_debug_toast_on_error_enabled",
                         StringResource(
-                            "revanced_debug_toast_on_exception_enabled_title",
-                            "Show toast on ReVanced exception"
+                            "revanced_debug_toast_on_error_enabled_title",
+                            "Show toast on ReVanced error"
                         ),
                         true,
-                        StringResource("revanced_debug_toast_on_exception_summary_on", "Toast shown if exception occurs"),
-                        StringResource("revanced_debug_toast_on_exception_summary_off", "Toast not shown if exception occurs")
+                        StringResource("revanced_debug_toast_on_error_summary_on", "Toast shown if error occurs"),
+                        StringResource("revanced_debug_toast_on_error_summary_off", "Toast not shown if error occurs")
                     ),
                 ),
                 StringResource("revanced_debug_summary", "Enable or disable debugging options")
