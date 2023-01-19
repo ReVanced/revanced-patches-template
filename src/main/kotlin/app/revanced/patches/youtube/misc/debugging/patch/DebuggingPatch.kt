@@ -38,7 +38,7 @@ class DebuggingPatch : ResourcePatch {
                         "revanced_debug_stacktrace_enabled",
                         StringResource(
                             "revanced_debug_stacktrace_enabled_title",
-                            "Debug log stack trace"
+                            "Log stack traces"
                         ),
                         false,
                         StringResource("revanced_debug_stacktrace_summary_on", "Debug logs include stack trace"),
