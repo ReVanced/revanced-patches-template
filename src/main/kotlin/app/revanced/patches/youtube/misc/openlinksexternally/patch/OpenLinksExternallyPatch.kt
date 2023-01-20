@@ -36,7 +36,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
                 StringResource("revanced_enable_external_browser_title", "Open links in external browser"),
                 true,
                 StringResource("revanced_enable_external_browser_summary_on", "Opening links externally"),
-                StringResource("revanced_enable_external_browser_summary_off", "Opening links in YouTube Revanced")
+                StringResource("revanced_enable_external_browser_summary_off", "Opening links in app")
             )
         )
 
