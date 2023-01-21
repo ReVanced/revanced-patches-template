@@ -24,9 +24,9 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 @Version("0.0.1")
 class OpenLinksExternallyPatch : BytecodePatch(
     listOf(
-        OpenLinksExternallyPrimaryFingerprint,
-        OpenLinksExternallySecondaryFingerprint,
-        OpenLinksExternallyTertiaryFingerprint
+        GetCustomTabPackageNameFingerprint,
+        BindSessionServiceFingerprint,
+        InitializeCustomTabSupportFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -41,9 +41,9 @@ class OpenLinksExternallyPatch : BytecodePatch(
         )
 
         arrayOf(
-            OpenLinksExternallyPrimaryFingerprint,
-            OpenLinksExternallySecondaryFingerprint,
-            OpenLinksExternallyTertiaryFingerprint
+            GetCustomTabPackageNameFingerprint,
+            BindSessionServiceFingerprint,
+            InitializeCustomTabSupportFingerprint
         ).forEach {
             val result = it.result ?: return it.toErrorResult()
             val endIndex = result.scanResult.patternScanResult!!.endIndex
