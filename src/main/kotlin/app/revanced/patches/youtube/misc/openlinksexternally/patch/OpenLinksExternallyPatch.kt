@@ -19,7 +19,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
 @Name("open-links-externally")
-@Description("Use an external browser to open the links.")
+@Description("Open links outside of the app directly in your browser.")
 @OpenLinksExternallyCompatibility
 @Version("0.0.1")
 class OpenLinksExternallyPatch : BytecodePatch(
@@ -33,10 +33,10 @@ class OpenLinksExternallyPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_enable_external_browser",
-                StringResource("revanced_enable_external_browser_title", "Open links in external browser"),
+                StringResource("revanced_enable_external_browser_title", "Open links in browser"),
                 true,
                 StringResource("revanced_enable_external_browser_summary_on", "Opening links externally"),
-                StringResource("revanced_enable_external_browser_summary_off", "Opening links in YouTube Revanced")
+                StringResource("revanced_enable_external_browser_summary_off", "Opening links in app")
             )
         )
 
@@ -46,11 +46,11 @@ class OpenLinksExternallyPatch : BytecodePatch(
             InitializeCustomTabSupportFingerprint
         ).forEach {
             val result = it.result ?: return it.toErrorResult()
-            val endIndex = result.scanResult.patternScanResult!!.endIndex
+            val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
             with(result.mutableMethod) {
-                val register = (implementation!!.instructions[endIndex] as Instruction21c).registerA
+                val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA
                 addInstructions(
-                    endIndex + 1, """
+                    insertIndex, """
                         invoke-static {v$register}, Lapp/revanced/integrations/patches/OpenLinksExternallyPatch;->enableExternalBrowser(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$register
                     """
