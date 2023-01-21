@@ -4,6 +4,9 @@
     <string name="revanced_ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out)</string>
     <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
 
+    <!-- corner case situation, where user enables RYD while video is playing and then tries to vote for the video -->
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Reload video to vote using ReturnYouTubeDislike</string>
+
     <string name="revanced_ryd_enable_title">Return YouTube Dislike</string>
     <string name="revanced_ryd_enable_summary_on">Dislikes are shown</string>
     <string name="revanced_ryd_enable_summary_off">Dislikes are not shown</string>
