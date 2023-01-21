@@ -46,11 +46,11 @@ class OpenLinksExternallyPatch : BytecodePatch(
             OpenLinksExternallyTertiaryFingerprint
         ).forEach {
             val result = it.result ?: return it.toErrorResult()
-            val endIndex = result.scanResult.patternScanResult!!.endIndex
+            val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
             with(result.mutableMethod) {
-                val register = (implementation!!.instructions[endIndex] as Instruction21c).registerA
+                val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA
                 addInstructions(
-                    endIndex + 1, """
+                    insertIndex, """
                         invoke-static {v$register}, Lapp/revanced/integrations/patches/OpenLinksExternallyPatch;->enableExternalBrowser(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$register
                     """
