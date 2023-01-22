@@ -18,20 +18,29 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
-import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ShortsPlayerConstructorFingerprint
-import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.ShortsPlaybackDetection
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.shorts.bytecode.patch.ShortsDetectionPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, VideoIdPatch::class, ReturnYouTubeDislikeResourcePatch::class, ShortsPlaybackDetection::class])
+@DependsOn(
+    [
+        IntegrationsPatch::class,
+        VideoIdPatch::class,
+        ReturnYouTubeDislikeResourcePatch::class,
+        ShortsDetectionPatch::class
+    ]
+)
 @Name("return-youtube-dislike")
 @Description("Shows the dislike count of videos using the Return YouTube Dislike API.")
 @ReturnYouTubeDislikeCompatibility
 @Version("0.0.1")
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
-        TextComponentSpecParentFingerprint, LikeFingerprint, DislikeFingerprint, RemoveLikeFingerprint, ShortsPlayerConstructorFingerprint
+        TextComponentSpecParentFingerprint,
+        LikeFingerprint,
+        DislikeFingerprint,
+        RemoveLikeFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -53,15 +62,10 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->newVideoLoaded(Ljava/lang/String;)V")
 
-        // Cludge fix, because VideoIdPatch does not support shorts
-        // must add this hook to detect when shorts are opened
-        // to suppress sending votes to RYD API since the video id is not known.  This is not ideal.
-        val shortsPlayerConstructorMethod = ShortsPlayerConstructorFingerprint.result!!.mutableMethod
-        shortsPlayerConstructorMethod.addInstructions(
-            0, """
-            invoke-static {}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->shortsOpened()V
-        """
-        )
+        // Required check to suppress sending votes
+        // to RYD API since the video id is not known.
+        // This is not ideal.
+        ShortsDetectionPatch.hookShortsOpened("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->shortsOpened()V")
 
         with(TextComponentFingerprint
             .apply { resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }

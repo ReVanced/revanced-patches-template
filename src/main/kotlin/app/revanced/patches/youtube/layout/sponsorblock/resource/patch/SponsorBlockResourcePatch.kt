@@ -20,7 +20,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Name("sponsorblock-resource-patch")
 @SponsorBlockCompatibility
-@DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class, ResourceMappingPatch::class, ShortsPlaybackDetection::class])
+@DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class, ResourceMappingPatch::class])
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch {
 

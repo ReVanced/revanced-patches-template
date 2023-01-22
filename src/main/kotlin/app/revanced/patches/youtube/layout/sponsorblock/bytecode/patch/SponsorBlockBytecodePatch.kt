@@ -20,10 +20,10 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
-import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.ShortsPlaybackDetection
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
+import app.revanced.patches.youtube.misc.shorts.bytecode.patch.ShortsDetectionPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
@@ -38,7 +38,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
         PlayerControlsBytecodePatch::class,
         IntegrationsPatch::class,
         SponsorBlockResourcePatch::class,
-        ShortsPlaybackDetection::class,
+        ShortsDetectionPatch::class,
         VideoIdPatch::class
     ]
 )
@@ -52,7 +52,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
-        ShortsPlayerConstructorFingerprint,
         StartVideoInformerFingerprint
     )
 ) {
@@ -242,13 +241,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         """
         )
 
-        val shortsPlayerConstructorMethod = ShortsPlayerConstructorFingerprint.result!!.mutableMethod
-
-        shortsPlayerConstructorMethod.addInstructions(
-            0, """
-            const/4 v0, 0x1
-            sput-boolean v0, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->shorts_playing:Z
-        """
+        ShortsDetectionPatch.hookShortsOpened(
+            "$INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->shortsOpened()V"
         )
 
         // TODO: isSBChannelWhitelisting implementation
