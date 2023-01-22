@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.openlinksexternally.annotations
+package app.revanced.patches.youtube.misc.links.open.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

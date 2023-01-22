@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.openlinksexternally.patch
+package app.revanced.patches.youtube.misc.links.open.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -12,8 +12,10 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.openlinksexternally.annotations.OpenLinksExternallyCompatibility
-import app.revanced.patches.youtube.misc.openlinksexternally.fingerprints.*
+import app.revanced.patches.youtube.misc.links.open.annotations.OpenLinksExternallyCompatibility
+import app.revanced.patches.youtube.misc.links.open.fingerprints.BindSessionServiceFingerprint
+import app.revanced.patches.youtube.misc.links.open.fingerprints.GetCustomTabPackageNameFingerprint
+import app.revanced.patches.youtube.misc.links.open.fingerprints.InitializeCustomTabSupportFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
