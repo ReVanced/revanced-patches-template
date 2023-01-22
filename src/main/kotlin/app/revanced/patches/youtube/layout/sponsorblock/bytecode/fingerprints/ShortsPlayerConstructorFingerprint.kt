@@ -3,11 +3,10 @@ package app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
+import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.ShortsPlaybackDetection
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
-
 
 @FuzzyPatternScanMethod(3)
 object ShortsPlayerConstructorFingerprint : MethodFingerprint(
@@ -35,7 +34,7 @@ object ShortsPlayerConstructorFingerprint : MethodFingerprint(
     customFingerprint = { methodDef ->
         methodDef.implementation?.instructions?.any { instruction ->
             instruction.opcode.ordinal == Opcode.CONST.ordinal &&
-            (instruction as? WideLiteralInstruction)?.wideLiteral == SponsorBlockResourcePatch.reelButtonGroupResourceId
+            (instruction as? WideLiteralInstruction)?.wideLiteral == ShortsPlaybackDetection.reelButtonGroupResourceId
         } == true
     }
 )

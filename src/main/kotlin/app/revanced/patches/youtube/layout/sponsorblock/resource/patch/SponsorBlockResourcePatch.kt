@@ -20,12 +20,9 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Name("sponsorblock-resource-patch")
 @SponsorBlockCompatibility
-@DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([FixLocaleConfigErrorPatch::class, SettingsPatch::class, ResourceMappingPatch::class, ShortsPlaybackDetection::class])
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch {
-    companion object {
-        internal var reelButtonGroupResourceId: Long = 0
-    }
 
     override fun execute(context: ResourceContext): PatchResult {
         val youtubePackage = "com.google.android.youtube"
@@ -106,10 +103,6 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 break
             }
         }.close() // close afterwards
-
-        reelButtonGroupResourceId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "id" && it.name == "reel_persistent_edu_button_group"
-        }.id
 
         return PatchResultSuccess()
     }

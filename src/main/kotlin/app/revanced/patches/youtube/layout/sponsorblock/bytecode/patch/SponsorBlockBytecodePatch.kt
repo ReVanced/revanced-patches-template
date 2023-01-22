@@ -20,6 +20,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
+import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.ShortsPlaybackDetection
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
@@ -37,6 +38,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
         PlayerControlsBytecodePatch::class,
         IntegrationsPatch::class,
         SponsorBlockResourcePatch::class,
+        ShortsPlaybackDetection::class,
         VideoIdPatch::class
     ]
 )
