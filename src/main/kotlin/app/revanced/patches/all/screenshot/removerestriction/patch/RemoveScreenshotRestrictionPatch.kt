@@ -3,10 +3,11 @@ package app.revanced.patches.all.screenshot.removerestriction.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
+import app.revanced.util.patch.IMethodCall
+import app.revanced.util.patch.fromMethodReference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
@@ -29,32 +30,17 @@ class RemoveScreenshotRestrictionPatch : AbstractTransformInstructionsPatch<Inst
 
     // Information about method calls we want to replace
     enum class MethodCall(
-        val definedClassName: String,
-        val methodName: String,
-        private val replacementMethodDefinition: String
-    ) {
+        override val definedClassName: String,
+        override val methodName: String,
+        override val methodParams: Array<String>,
+        override val returnType: String
+    ): IMethodCall {
         SetFlags(
             "Landroid/view/Window;",
             "setFlags",
-            "setFlags(Landroid/view/Window;II)V",
+            arrayOf("I", "I"),
+            "V",
         );
-
-        fun replaceInstruction(method: MutableMethod, instruction: Instruction35c, instructionIndex: Int) {
-            when (this) {
-                SetFlags -> {
-                    method.replaceInstruction(
-                        instructionIndex,
-                        "invoke-static { v${instruction.registerC}, v${instruction.registerD}, v${instruction.registerE} }, ${INTEGRATIONS_CLASS_DESCRIPTOR}->${replacementMethodDefinition}"
-                    )
-                }
-            }
-        }
-
-        companion object {
-            fun fromMethodReference(methodReference: MethodReference) = values().firstOrNull { search ->
-                search.definedClassName == methodReference.definingClass && search.methodName == methodReference.name
-            }
-        }
     }
 
     override fun filterMap(
@@ -74,13 +60,13 @@ class RemoveScreenshotRestrictionPatch : AbstractTransformInstructionsPatch<Inst
 
         val invokeInstruction = instruction as Instruction35c
         val methodRef = invokeInstruction.reference as MethodReference
-        val methodCall = MethodCall.fromMethodReference(methodRef) ?: return null
+        val methodCall = fromMethodReference<MethodCall>(methodRef) ?: return null
 
         return InstructionInfo(methodCall, invokeInstruction, instructionIndex)
     }
 
     override fun transform(mutableMethod: MutableMethod, entry: InstructionInfo) {
         val (methodType, instruction, instructionIndex) = entry
-        methodType.replaceInstruction(mutableMethod, instruction, instructionIndex)
+        methodType.replaceInvokeVirtualWithIntegrations(INTEGRATIONS_CLASS_DESCRIPTOR, mutableMethod, instruction, instructionIndex)
     }
 }

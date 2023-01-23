@@ -3,10 +3,11 @@ package app.revanced.patches.all.connectivity.wifi.spoof.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
+import app.revanced.util.patch.IMethodCall
+import app.revanced.util.patch.fromMethodReference
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
@@ -29,11 +30,11 @@ class SpoofWifiPatch : AbstractTransformInstructionsPatch<InstructionInfo>() {
 
     // Information about method calls we want to replace
     enum class MethodCall(
-        val definedClassName: String,
-        val methodName: String,
-        val methodParams: Array<String>,
-        val returnType: String,
-    ) {
+        override val definedClassName: String,
+        override val methodName: String,
+        override val methodParams: Array<String>,
+        override val returnType: String,
+    ): IMethodCall {
         GetSystemService1(
             "Landroid/content/Context;",
             "getSystemService",
@@ -178,29 +179,6 @@ class SpoofWifiPatch : AbstractTransformInstructionsPatch<InstructionInfo>() {
             arrayOf("Landroid/net/NetworkRequest;", "Landroid/net/ConnectivityManager\$NetworkCallback;", "Landroid/os/Handler;", "I"),
             "V",
         );
-
-        fun replaceInstruction(method: MutableMethod, instruction: Instruction35c, instructionIndex: Int) {
-            val registers = arrayOf(instruction.registerC, instruction.registerD, instruction.registerE, instruction.registerF, instruction.registerG)
-            val argsNum = this.methodParams.size + 1 // + 1 for instance of definedClassName
-            if (argsNum > registers.size) {
-                // should never happen, but just to be sure (also for the future) a safety check
-                throw RuntimeException("not enough registers for ${this.definedClassName}#${this.methodName}: required $argsNum registers, but only got ${registers.size}")
-            }
-            val args = registers.take(argsNum).joinToString(separator = ", ") { reg -> "v${reg}" }
-            val replacementMethodDefinition = "${this.methodName}(${this.definedClassName}${this.methodParams.joinToString(separator = "")})${this.returnType}"
-            method.replaceInstruction(
-                instructionIndex,
-                "invoke-static { $args }, $INTEGRATIONS_CLASS_DESCRIPTOR->${replacementMethodDefinition}"
-            )
-        }
-
-        companion object {
-            fun fromMethodReference(methodReference: MethodReference) = values().firstOrNull { search ->
-                search.definedClassName == methodReference.definingClass
-                        && search.methodName == methodReference.name
-                        && methodReference.parameterTypes.toTypedArray().contentEquals(search.methodParams)
-            }
-        }
     }
 
     override fun filterMap(
@@ -220,13 +198,13 @@ class SpoofWifiPatch : AbstractTransformInstructionsPatch<InstructionInfo>() {
 
         val invokeInstruction = instruction as Instruction35c
         val methodRef = invokeInstruction.reference as MethodReference
-        val methodCall = MethodCall.fromMethodReference(methodRef) ?: return null
+        val methodCall = fromMethodReference<MethodCall>(methodRef) ?: return null
 
         return InstructionInfo(methodCall, invokeInstruction, instructionIndex)
     }
 
     override fun transform(mutableMethod: MutableMethod, entry: InstructionInfo) {
         val (methodType, instruction, instructionIndex) = entry
-        methodType.replaceInstruction(mutableMethod, instruction, instructionIndex)
+        methodType.replaceInvokeVirtualWithIntegrations(INTEGRATIONS_CLASS_DESCRIPTOR, mutableMethod, instruction, instructionIndex)
     }
 }
