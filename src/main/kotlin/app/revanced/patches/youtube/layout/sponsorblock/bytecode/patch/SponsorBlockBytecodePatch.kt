@@ -263,7 +263,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         "replaceMeWithsetSponsorBarRect" ->
                             method.replaceStringInstruction(index, it, rectangleFieldName)
 
-                        "replaceMeWithsetMillisecondMethod" ->
+                        "replaceMeWithsetMillisecondMethod" -> // Edit: Where in integrations is this method used?  This might be dead code
                             method.replaceStringInstruction(index, it, "seekHelper")
                     }
                 }
