@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.Retu
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.shorts.bytecode.patch.ShortsDetectionPatch
+import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
@@ -28,7 +28,7 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
         IntegrationsPatch::class,
         VideoIdPatch::class,
         ReturnYouTubeDislikeResourcePatch::class,
-        ShortsDetectionPatch::class
+        PlayerTypeHookPatch::class,
     ]
 )
 @Name("return-youtube-dislike")
@@ -61,11 +61,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         }
 
         VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->newVideoLoaded(Ljava/lang/String;)V")
-
-        // Required check to suppress sending votes
-        // to RYD API since the video id is not known.
-        // This is not ideal.
-        ShortsDetectionPatch.hookShortsOpened("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->shortsOpened()V")
 
         with(TextComponentFingerprint
             .apply { resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
