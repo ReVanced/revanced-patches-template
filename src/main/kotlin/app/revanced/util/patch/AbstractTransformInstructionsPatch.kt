@@ -10,7 +10,7 @@ import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
 
-abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
+internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
 
     abstract fun filterMap(
         classDef: ClassDef,

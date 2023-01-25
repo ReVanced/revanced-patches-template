@@ -2,10 +2,15 @@ package app.revanced.util.patch
 
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.ClassDef
+import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.MethodReference
 
-interface IMethodCall {
+internal typealias Instruction35cInfo = Triple<IMethodCall, Instruction35c, Int>
+
+internal interface IMethodCall {
     val definedClassName: String
     val methodName: String
     val methodParams: Array<String>
@@ -40,9 +45,31 @@ interface IMethodCall {
     }
 }
 
-inline fun <reified E> fromMethodReference(methodReference: MethodReference)
+internal inline fun <reified E> fromMethodReference(methodReference: MethodReference)
         where E: Enum<E>, E: IMethodCall = enumValues<E>().firstOrNull { search ->
     search.definedClassName == methodReference.definingClass
             && search.methodName == methodReference.name
             && methodReference.parameterTypes.toTypedArray().contentEquals(search.methodParams)
+}
+
+internal inline fun <reified E> filterMapInstruction35c(
+    integrationsClassDescriptorStart: String,
+    classDef: ClassDef,
+    instruction: Instruction,
+    instructionIndex: Int
+): Instruction35cInfo? where E: Enum<E>, E: IMethodCall {
+    if (classDef.type.startsWith(integrationsClassDescriptorStart)) {
+        // avoid infinite recursion
+        return null
+    }
+
+    if (instruction.opcode != Opcode.INVOKE_VIRTUAL) {
+        return null
+    }
+
+    val invokeInstruction = instruction as Instruction35c
+    val methodRef = invokeInstruction.reference as MethodReference
+    val methodCall = fromMethodReference<E>(methodRef) ?: return null
+
+    return Instruction35cInfo(methodCall, invokeInstruction, instructionIndex)
 }
