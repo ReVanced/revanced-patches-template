@@ -27,7 +27,7 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
-                "revanced_copy_video_url",
+                "revanced_copy_video_url_settings",
                 StringResource("revanced_copy_video_url_title", "Copy video URL settings"),
                 listOf(
                     SwitchPreference(

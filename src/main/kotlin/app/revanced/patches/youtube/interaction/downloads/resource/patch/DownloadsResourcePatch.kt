@@ -26,7 +26,7 @@ class DownloadsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
-                "revanced_downloads",
+                "revanced_downloads_settings",
                 StringResource("revanced_downloads_title", "Download settings"),
                 listOf(
                     SwitchPreference(
