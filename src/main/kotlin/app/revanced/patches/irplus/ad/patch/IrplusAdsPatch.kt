@@ -25,15 +25,9 @@ class IrplusAdsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         val method = IrplusAdsFingerprint.result!!.mutableMethod
 
-        // By overwriting the second parameter of the method
-        // the app removes the view which holds the advertisement
-
-        method.addInstruction(
-            0,
-            """
-                const/4 p2, 0x0
-            """
-        )
+        // By overwriting the second parameter of the method,
+        // the view which holds the advertisement is removed.
+        method.addInstruction(0, "const/4 p2, 0x0")
 
         return PatchResultSuccess()
     }
