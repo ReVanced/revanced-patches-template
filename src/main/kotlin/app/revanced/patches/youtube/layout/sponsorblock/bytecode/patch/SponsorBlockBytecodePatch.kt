@@ -7,11 +7,9 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -25,20 +23,20 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
+import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.*
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
-import org.jf.dexlib2.iface.reference.StringReference
 
 @Patch
 @DependsOn(
     dependencies = [
         VideoInformationPatch::class, // updates video information and adds method to seek in video
         PlayerControlsBytecodePatch::class,
+        PlayerTypeHookPatch::class,
         IntegrationsPatch::class,
         SponsorBlockResourcePatch::class,
         VideoIdPatch::class
@@ -54,7 +52,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
-        ShortsPlayerConstructorFingerprint,
         StartVideoInformerFingerprint
     )
 ) {
@@ -234,56 +231,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         PlayerOverlaysLayoutInitFingerprint.result!!.mutableMethod.addInstruction(
             6, // after inflating the view
             "invoke-static {p0}, Lapp/revanced/integrations/sponsorblock/player/ui/SponsorBlockView;->initialize(Ljava/lang/Object;)V"
-        )
-
-        // get rectangle field name
-        RectangleFieldInvalidatorFingerprint.resolve(context, seekbarSignatureResult.classDef)
-        val rectangleFieldInvalidatorInstructions =
-            RectangleFieldInvalidatorFingerprint.result!!.method.implementation!!.instructions
-        val rectangleFieldName =
-            ((rectangleFieldInvalidatorInstructions.elementAt(rectangleFieldInvalidatorInstructions.count() - 3) as ReferenceInstruction).reference as FieldReference).name
-
-        // replace the "replaceMeWith*" strings
-        context
-            .proxy(context.classes.first { it.type.endsWith("PlayerController;") })
-            .mutableClass
-            .methods
-            .find { it.name == "setSponsorBarRect" }
-            ?.let { method ->
-                fun MutableMethod.replaceStringInstruction(index: Int, instruction: Instruction, with: String) {
-                    val register = (instruction as OneRegisterInstruction).registerA
-                    this.replaceInstruction(
-                        index, "const-string v$register, \"$with\""
-                    )
-                }
-                for ((index, it) in method.implementation!!.instructions.withIndex()) {
-                    if (it.opcode.ordinal != Opcode.CONST_STRING.ordinal) continue
-
-                    when (((it as ReferenceInstruction).reference as StringReference).string) {
-                        "replaceMeWithsetSponsorBarRect" ->
-                            method.replaceStringInstruction(index, it, rectangleFieldName)
-
-                        "replaceMeWithsetMillisecondMethod" -> // Edit: Where in integrations is this method used?  This might be dead code
-                            method.replaceStringInstruction(index, it, "seekHelper")
-                    }
-                }
-            } ?: return PatchResultError("Could not find the method which contains the replaceMeWith* strings")
-
-        val startVideoInformerMethod = StartVideoInformerFingerprint.result!!.mutableMethod
-        startVideoInformerMethod.addInstructions(
-            0, """
-            const/4 v0, 0x0
-            sput-boolean v0, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->shorts_playing:Z
-        """
-        )
-
-        val shortsPlayerConstructorMethod = ShortsPlayerConstructorFingerprint.result!!.mutableMethod
-
-        shortsPlayerConstructorMethod.addInstructions(
-            0, """
-            const/4 v0, 0x1
-            sput-boolean v0, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->shorts_playing:Z
-        """
         )
 
         // TODO: isSBChannelWhitelisting implementation
