@@ -14,7 +14,7 @@ import app.revanced.patches.spotify.lite.ondemand.fingerprints.OnDemandFingerpri
 
 @Patch
 @Name("enable-ondemand")
-@Description("Enables On-Demand to play any song from any artist.")
+@Description("Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations.")
 @OnDemandCompatibility
 @Version("0.0.1")
 class OnDemandPatch : BytecodePatch(
