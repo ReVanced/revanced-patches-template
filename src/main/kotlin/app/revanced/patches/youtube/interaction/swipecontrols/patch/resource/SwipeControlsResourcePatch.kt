@@ -25,7 +25,7 @@ class SwipeControlsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
-                "revanced_swipe_controls_settings", StringResource("revanced_swipe_controls_title", "Swipe controls"), listOf(
+                "revanced_swipe_controls", StringResource("revanced_swipe_controls_title", "Swipe controls"), listOf(
                     SwitchPreference(
                         "revanced_enable_swipe_brightness",
                         StringResource("revanced_swipe_brightness_enabled_title", "Enable brightness gesture"),
