@@ -18,7 +18,6 @@ import app.revanced.patches.irplus.ad.fingerprints.IrplusAdsFingerprint
 @Description("Removes all ads from the app.")
 @IrplusAdsCompatibility
 @Version("0.0.1")
-
 class IrplusAdsPatch : BytecodePatch(
     listOf(IrplusAdsFingerprint)
 ) {
