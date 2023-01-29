@@ -1,5 +1,6 @@
 package app.revanced.patches.spotify.lite.ondemand.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -13,8 +14,8 @@ import app.revanced.patches.spotify.lite.ondemand.annotations.OnDemandCompatibil
 import app.revanced.patches.spotify.lite.ondemand.fingerprints.OnDemandFingerprint
 
 @Patch
-@Name("enable-ondemand")
-@Description("Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations.")
+@Name("enable-on-demand")
+@Description("Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. Does not disable ads.")
 @OnDemandCompatibility
 @Version("0.0.1")
 class OnDemandPatch : BytecodePatch(
@@ -27,7 +28,7 @@ class OnDemandPatch : BytecodePatch(
             val insertIndex = scanResult.patternScanResult!!.endIndex - 1
             // Force the UI to behave like with a Premium account
             mutableMethod.addInstruction(insertIndex,"const/4 v0, 0x2")
-        }
+        } ?: return OnDemandFingerprint.toErrorResult()
         return PatchResultSuccess()
     }
 }
