@@ -17,7 +17,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch(false)
 @Name("remove-screenshot-restriction")
-@Description("Removes the restriction of making screenshots.")
+@Description("Removes the restriction of making screenshots in some apps that prevent it due to security/piracy reasons. This patch is universal patch, meaning that you can apply it on every apps.")
 @Version("0.0.1")
 class RemoveScreenshotRestrictionPatch : BytecodePatch() {
 
