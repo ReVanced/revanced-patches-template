@@ -26,8 +26,8 @@ class OnDemandPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         OnDemandFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.endIndex - 1
-            // Force the UI to behave like with a Premium account
-            mutableMethod.addInstruction(insertIndex,"const/4 v0, 0x2")
+            // Spoof a premium account
+            mutableMethod.addInstruction(insertIndex, "const/4 v0, 0x2")
         } ?: return OnDemandFingerprint.toErrorResult()
         return PatchResultSuccess()
     }
