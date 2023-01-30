@@ -3,6 +3,14 @@
 
 ### Features
 
+* **music:** bump patches compatibility to v5.41.50 ([#1551](https://github.com/revanced/revanced-patches/issues/1551)) ([c456e45](https://github.com/revanced/revanced-patches/commit/c456e459dfa430863d9b471f6391af7fc6563feb))
+* **spotify-lite:** enable on-demand patch ([9f0de4f](https://github.com/revanced/revanced-patches/commit/9f0de4f5678e9f57baaf6ec788821641d75defdc))
+
+# [2.159.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.158.0...v2.159.0-dev.1) (2023-01-30)
+
+
+### Features
+
 * **spotify-lite:** `enable-on-demand` patch ([#1556](https://github.com/revanced/revanced-patches/issues/1556)) ([f510024](https://github.com/revanced/revanced-patches/commit/f5100240e7cb797a6cb74f449360e00fb6e48f02))
 * **spotify-lite:** enable on-demand patch ([fe814cc](https://github.com/revanced/revanced-patches/commit/fe814cc9895f8a36d0e1c12f59f40f74b7f5cdaf))
 
