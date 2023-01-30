@@ -221,7 +221,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         appendTimeFingerprintResult.mutableMethod.addInstructions(
             appendTimePatternScanStartIndex + 2, """
-                    invoke-static {v$targetRegister}, Lapp/revanced/integrations/sponsorblock/SponsorBlockUtils;->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
+                    invoke-static {v$targetRegister}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
                     move-result-object v$targetRegister
             """
         )
