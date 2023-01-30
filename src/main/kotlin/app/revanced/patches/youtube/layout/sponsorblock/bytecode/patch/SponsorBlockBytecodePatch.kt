@@ -72,10 +72,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                 INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR,
                 "setVideoTime"
             )
-            highPrecisionTimeHook(
-                INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR,
-                "setHighPrecisionVideoTime"
-            )
         }
 
         /*
