@@ -176,6 +176,18 @@ internal class SpoofWifiPatch : AbstractTransformInstructionsPatch<Instruction35
             "requestNetwork",
             arrayOf("Landroid/net/NetworkRequest;", "Landroid/net/ConnectivityManager\$NetworkCallback;", "Landroid/os/Handler;", "I"),
             "V",
+        ),
+        UnregisterNetworkCallback1(
+            "Landroid/net/ConnectivityManager;",
+            "unregisterNetworkCallback",
+            arrayOf("Landroid/net/ConnectivityManager\$NetworkCallback;"),
+            "V",
+        ),
+        UnregisterNetworkCallback2(
+            "Landroid/net/ConnectivityManager;",
+            "unregisterNetworkCallback",
+            arrayOf("Landroid/app/PendingIntent;"),
+            "V",
         );
     }
 
