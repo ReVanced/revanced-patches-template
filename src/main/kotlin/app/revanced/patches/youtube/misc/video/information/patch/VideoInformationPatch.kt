@@ -167,6 +167,7 @@ class VideoInformationPatch : BytecodePatch(
         /**
          * Hook the high precision video time.
          * The hooks is called extremely often (10 to 15 times a seconds), so use with caution.
+         * Note: the hook is usually called _off_ the main thread
          *
          * @param targetMethodClass The descriptor for the static method to invoke when the player controller is created.
          * @param targetMethodName The name of the static method to invoke when the player controller is created.
