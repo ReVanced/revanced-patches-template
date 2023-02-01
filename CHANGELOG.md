@@ -1,6 +1,19 @@
 # [2.159.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.158.0...v2.159.0-dev.1) (2023-01-31)
 
 
+### Bug Fixes
+
+* **youtube/custom-branding:** use high resolution adaptive icons ([#1576](https://github.com/revanced/revanced-patches/issues/1576)) ([c3ae750](https://github.com/revanced/revanced-patches/commit/c3ae7504617a69cd00019cb20d4bc5317d0c270b))
+
+
+### Features
+
+* **music:** bump patches compatibility to v5.41.50 ([#1551](https://github.com/revanced/revanced-patches/issues/1551)) ([c456e45](https://github.com/revanced/revanced-patches/commit/c456e459dfa430863d9b471f6391af7fc6563feb))
+* **spotify-lite:** enable on-demand patch ([9f0de4f](https://github.com/revanced/revanced-patches/commit/9f0de4f5678e9f57baaf6ec788821641d75defdc))
+
+# [2.159.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.158.0...v2.159.0-dev.1) (2023-01-31)
+
+
 ### Features
 
 * **music:** bump patches compatibility to v5.41.50 ([#1551](https://github.com/revanced/revanced-patches/issues/1551)) ([c456e45](https://github.com/revanced/revanced-patches/commit/c456e459dfa430863d9b471f6391af7fc6563feb))
