@@ -29,36 +29,53 @@ internal interface IMethodCall {
      *
      * replacement method: Integrations#setFlags(Window, int, int)
      */
-    fun replaceInvokeVirtualWithIntegrations(integrationsClassDescriptor: String, method: MutableMethod, instruction: Instruction35c, instructionIndex: Int) {
-        val registers = arrayOf(instruction.registerC, instruction.registerD, instruction.registerE, instruction.registerF, instruction.registerG)
+    fun replaceInvokeVirtualWithIntegrations(
+        definingClassDescriptor: String,
+        method: MutableMethod,
+        instruction: Instruction35c,
+        instructionIndex: Int
+    ) {
+        val registers = arrayOf(
+            instruction.registerC,
+            instruction.registerD,
+            instruction.registerE,
+            instruction.registerF,
+            instruction.registerG
+        )
         val argsNum = methodParams.size + 1 // + 1 for instance of definedClassName
         if (argsNum > registers.size) {
             // should never happen, but just to be sure (also for the future) a safety check
-            throw RuntimeException("not enough registers for ${definedClassName}#${methodName}: required $argsNum registers, but only got ${registers.size}")
+            throw RuntimeException(
+                "Not enough registers for ${definedClassName}#${methodName}: " +
+                        "Required $argsNum registers, but only got ${registers.size}."
+            )
         }
+
         val args = registers.take(argsNum).joinToString(separator = ", ") { reg -> "v${reg}" }
-        val replacementMethodDefinition = "${methodName}(${definedClassName}${methodParams.joinToString(separator = "")})${returnType}"
+        val replacementMethodDefinition =
+            "${methodName}(${definedClassName}${methodParams.joinToString(separator = "")})${returnType}"
+
         method.replaceInstruction(
             instructionIndex,
-            "invoke-static { $args }, ${integrationsClassDescriptor}->${replacementMethodDefinition}"
+            "invoke-static { $args }, ${definingClassDescriptor}->${replacementMethodDefinition}"
         )
     }
 }
 
 internal inline fun <reified E> fromMethodReference(methodReference: MethodReference)
-        where E: Enum<E>, E: IMethodCall = enumValues<E>().firstOrNull { search ->
+        where E : Enum<E>, E : IMethodCall = enumValues<E>().firstOrNull { search ->
     search.definedClassName == methodReference.definingClass
             && search.methodName == methodReference.name
             && methodReference.parameterTypes.toTypedArray().contentEquals(search.methodParams)
 }
 
 internal inline fun <reified E> filterMapInstruction35c(
-    integrationsClassDescriptorStart: String,
+    integrationsClassDescriptorPrefix: String,
     classDef: ClassDef,
     instruction: Instruction,
     instructionIndex: Int
-): Instruction35cInfo? where E: Enum<E>, E: IMethodCall {
-    if (classDef.type.startsWith(integrationsClassDescriptorStart)) {
+): Instruction35cInfo? where E : Enum<E>, E : IMethodCall {
+    if (classDef.type.startsWith(integrationsClassDescriptorPrefix)) {
         // avoid infinite recursion
         return null
     }
