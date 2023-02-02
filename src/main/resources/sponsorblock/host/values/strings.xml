@@ -2,16 +2,16 @@
 <resources>
     <string name="enable_sb">Enable SponsorBlock</string>
     <string name="enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts in YouTube videos</string>
-    <string name="enable_segmadding">Enable new segment adding</string>
-    <string name="enable_segmadding_sum">Switch this on to enable experimental segment adding (has button visibility issues)</string>
+    <string name="enable_segmadding">Show add new segment button</string>
+    <string name="enable_segmadding_sum">Switch this on to allow adding new video segments</string>
     <string name="diff_segments">What to do with different segments</string>
     <string name="general">General</string>
     <string name="general_skiptoast">Show a toast when skipping segment automatically</string>
     <string name="general_skiptoast_sum">Tap here to see an example toast</string>
-    <string name="general_skipcount">Skip count tracking</string>
-    <string name="general_skipcount_sum">This lets SponsorBlock leaderboard system know how much time people have saved. The extension sends a message to the server each time you skip a segment</string>
-    <string name="general_adjusting">Adjusting new segment step</string>
-    <string name="general_adjusting_sum">This is the number of milliseconds you can move when you use the time adjustment buttons while adding new segment</string>
+    <string name="general_skipcount">Enable skip count tracking</string>
+    <string name="general_skipcount_sum">Lets the SponsorBlock leaderboard know how much time is saved. If enabled, a message is sent to the leaderboard each time a segment is skipped</string>
+    <string name="general_adjusting">Adjust new segment step</string>
+    <string name="general_adjusting_sum">Number of milliseconds the time adjustment buttons move when adding new segments</string>
     <string name="general_min_duration">Minimum segment duration</string>
     <string name="general_min_duration_sum">Segments shorter than the set value (in seconds) will not be skipped or shown in the player</string>
     <string name="general_uuid">Your private user id</string>
@@ -30,9 +30,9 @@
     <string name="segments_endcards">Endcards/Credits</string>
     <string name="segments_endcards_sum">Credits or when the YouTube endcards appear. Not for spoken conclusions</string>
     <string name="segments_subscribe">Interaction Reminder (Subscribe)</string>
-    <string name="segments_subscribe_sum">When there is a short reminder to like, subscribe, follow or interact with them on any free or paid platform</string>
+    <string name="segments_subscribe_sum">A short reminder to like, subscribe, follow or interact with them on any free or paid platform</string>
     <string name="segments_selfpromo">Unpaid/Self Promotion</string>
-    <string name="segments_selfpromo_sum">When there is unpaid or self promotion. This includes specific sections about merchandise, donations, or information about who they collaborated with</string>
+    <string name="segments_selfpromo_sum">An unpaid or self promotion. This includes specific sections about merchandise, donations, or information about who they collaborated with</string>
     <string name="segments_nomusic">Music: Non-Music Section</string>
     <string name="segments_nomusic_sum">Only for use in music videos. Skips parts of the video not in official mixes</string>
     <string name="segments_filler">Filler Tangent/Jokes</string>
@@ -53,8 +53,8 @@
     <string name="skip_ignore">Don\'t do anything</string>
     <string name="skip_sponsor">Skip segment</string>
     <string name="about">About</string>
-    <string name="about_api">This app uses the API from SponsorBlock</string>
-    <string name="about_api_sum">Tap to learn more, and see downloads for other platforms at: sponsor.ajay.app</string>
+    <string name="about_api">Sponsor.Ajay.app</string>
+    <string name="about_api_sum">Data is provided by the SponsorBlock API. Tap to learn more and see downloads for other platforms</string>
     <string name="about_madeby">Integration made by JakubWeg, recoded by oSumAtrIX</string>
     <string name="tap_skip">Tap to skip</string>
 
@@ -78,8 +78,8 @@
     <string name="vote_downvote">Downvote</string>
     <string name="vote_category">Change category</string>
     <string name="vote_no_segments">There are no segments to vote for</string>
-    <string name="enable_voting">Enable voting</string>
-    <string name="enable_voting_sum">Switch this on to enable voting.</string>
+    <string name="enable_voting">Show segment voting button</string>
+    <string name="enable_voting_sum">Switch this on to enable voting for segments</string>
 
     <string name="new_segment_choose_category">Choose the segment category</string>
     <string name="new_segment_disabled_category">You\'ve disabled this category in the settings, enable it to be able to submit</string>
@@ -107,8 +107,8 @@
     <string name="sb_guidelines_popup_already_read">Already read</string>
     <string name="sb_guidelines_popup_open">Show me</string>
 
-    <string name="general_time_without_sb">Show time without segments</string>
-    <string name="general_time_without_sb_sum">This time appears in brackets next to the current time. This shows the total video duration minus any segments.</string>
+    <string name="general_time_without_sb">Show video length without segments</string>
+    <string name="general_time_without_sb_sum">Shows the total video duration minus any segments, in brackets next to the video length</string>
     <string name="segments_preview">Preview/Recap</string>
     <string name="segments_preview_sum">Recap of previous episodes, or a preview of what\'s coming up later in the current video or future videos in the same series. Clips should not provide additional information.</string>
     <string name="stats">Stats</string>
