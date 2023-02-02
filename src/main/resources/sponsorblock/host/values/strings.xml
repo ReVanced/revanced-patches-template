@@ -122,7 +122,7 @@
     <string name="stats_saved">You\'ve saved people from &lt;b&gt;%s&lt;/b&gt; segments</string>
     <string name="stats_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt; of their lives. Tap here to see the leaderboard</string>
     <string name="stats_self_saved">You\'ve skipped &lt;b&gt;%s&lt;/b&gt; segments</string>
-    <string name="stats_self_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt;.</string>
+    <string name="stats_self_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt;</string>
     <string name="minutes">minutes</string>
     <string name="color_change">Are you looking for changing colors?</string>
     <string name="color_change_sum">You can now change a category\'s color by tapping on it above</string>
