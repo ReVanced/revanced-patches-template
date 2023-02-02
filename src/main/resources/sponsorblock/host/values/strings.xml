@@ -108,7 +108,7 @@
     <string name="sb_guidelines_popup_open">Show me</string>
 
     <string name="general_time_without_sb">Show video length without segments</string>
-    <string name="general_time_without_sb_sum">Shows the total video duration minus any segments, in brackets next to the video length</string>
+    <string name="general_time_without_sb_sum">Show the total video duration minus any segments, in parentheses next to the video length</string>
     <string name="segments_preview">Preview/Recap</string>
     <string name="segments_preview_sum">Recap of previous episodes, or a preview of what\'s coming up later in the current video or future videos in the same series. Clips should not provide additional information</string>
     <string name="stats">Stats</string>
