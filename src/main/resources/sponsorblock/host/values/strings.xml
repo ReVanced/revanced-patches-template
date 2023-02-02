@@ -23,9 +23,6 @@
     <string name="settings_import_successful">Settings were successfully imported</string>
     <string name="settings_import_failed">Failed to import settings</string>
     <string name="settings_export_failed">Failed to export settings</string>
-    <string name="general_cache">Cache segments locally</string>
-    <string name="general_cache_sum">Frequently watched videos (eg. music videos) may store segments in app cache to make skipping segments faster</string>
-    <string name="general_cache_clear">Clear SponsorBlock segments cache</string>
     <string name="segments_sponsor">Sponsor</string>
     <string name="segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements</string>
     <string name="segments_intermission">Intermission/Intro Animation</string>
@@ -135,9 +132,6 @@
     <string name="color_invalid">Invalid hex code</string>
     <string name="change">Change</string>
     <string name="reset">Reset</string>
-
-    <string name="action_segments">Segments</string>
-    <string name="action_browser">SB Browser</string>
 
     <string name="api_url_changed">API URL changed</string>
     <string name="api_url_reset">API URL reset</string>
