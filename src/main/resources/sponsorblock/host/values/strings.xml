@@ -130,7 +130,6 @@
     <string name="color_changed">Color changed</string>
     <string name="color_reset">Color reset</string>
     <string name="color_invalid">Invalid hex code</string>
-    <string name="change">Change</string>
     <string name="reset">Reset</string>
 
     <string name="api_url_changed">API URL changed</string>
