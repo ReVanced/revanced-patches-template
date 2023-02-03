@@ -18,9 +18,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class RemoveBroadcastsRestrictionPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        // create an xml editor instance
         context.xmlEditor["AndroidManifest.xml"].use { dom ->
-            // get the application node
             val applicationNode = dom
                 .file
                 .getElementsByTagName("application")
