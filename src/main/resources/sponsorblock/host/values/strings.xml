@@ -80,7 +80,7 @@
     <string name="enable_voting_sum">Switch this on to enable voting for segments</string>
 
     <string name="new_segment_choose_category">Choose the segment category</string>
-    <string name="new_segment_disabled_category">You\'ve disabled this category in the settings, enable it to be able to submit</string>
+    <string name="new_segment_disabled_category">Category is disabled in settings. Enable category to submit.</string>
     <string name="new_segment_title">New SponsorBlock segment</string>
     <string name="new_segment_mark_time_as_question" formatted="false">Set %02d:%02d:%04d as the start or end of a new segment?</string>
     <string name="new_segment_mark_start">start</string>
