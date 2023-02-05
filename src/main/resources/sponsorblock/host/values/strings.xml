@@ -58,18 +58,19 @@
     <string name="about_madeby">Integration made by JakubWeg,\nrecoded by oSumAtrIX</string>
 
     <string name="submit_failed_invalid">Can\'t submit the segment: %s</string>
-    <string name="submit_failed_timeout" formatted="false">Unable to submit segments: %s</string>
-    <string name="submit_failed_unknown_error" formatted="false">Unable to submit segments: Status: %d %s</string>
-    <string name="submit_failed_rate_limit">Can\'t submit the segment.\nRate Limited (Too many from the same user or IP)</string>
-    <string name="submit_failed_forbidden" formatted="false">Can\'t submit the segment.\n\n%s</string>
+    <string name="submit_failed_timeout" formatted="false">Unable to submit segments (API timed out)</string>
+    <string name="submit_failed_unknown_error" formatted="false">Unable to submit segments (status: %d %s)</string>
+    <string name="submit_failed_rate_limit">Can\'t submit the segment.\nRate Limited (too many from the same user or IP)</string>
+    <string name="submit_failed_forbidden" formatted="false">Can\'t submit the segment: %s</string>
     <string name="submit_failed_duplicate">Can\'t submit the segment.\nAlready exists</string>
     <string name="submit_succeeded">Segment submitted successfully</string>
 
-    <string name="sponsorblock_connection_timeout">SponsorBlock temporarily not available (API timed out)</string>
+    <string name="sponsorblock_connection_failure_generic">SponsorBlock temporarily not available (status %d)</string>
+    <string name="sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out)</string>
 
-    <string name="vote_failed_timeout" formatted="false">Unable to vote for segments: %s</string>
-    <string name="vote_failed_unknown_error" formatted="false">Unable to vote for segment: Status: %d %s</string>
-    <string name="vote_failed_forbidden" formatted="false">Can\'t vote for segment.\n\n%s</string>
+    <string name="vote_failed_timeout" formatted="false">Unable to vote for segment (API timed out)</string>
+    <string name="vote_failed_unknown_error" formatted="false">Unable to vote for segment (status: %d %s)</string>
+    <string name="vote_failed_forbidden" formatted="false">Unable to vote for segment: %s</string>
     <string name="vote_upvote">Upvote</string>
     <string name="vote_downvote">Downvote</string>
     <string name="vote_category">Change category</string>
