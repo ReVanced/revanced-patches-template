@@ -37,7 +37,6 @@
     <string name="segments_nomusic_sum">Only for use in music videos. Skips parts of the video not in official mixes</string>
     <string name="segments_filler">Filler Tangent/Jokes</string>
     <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. This should not include context or background details</string>
-    <string name="skipped_segment">Skipped a sponsor segment</string>
     <string name="skipped_sponsor">Skipped sponsor</string>
     <string name="skipped_intermission">Skipped intro</string>
     <string name="skipped_endcard">Skipped outro</string>
@@ -57,7 +56,6 @@
     <string name="about_api">Sponsor.Ajay.app</string>
     <string name="about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms</string>
     <string name="about_madeby">Integration made by JakubWeg,\nrecoded by oSumAtrIX</string>
-    <string name="tap_skip">Tap to skip</string>
 
     <string name="submit_failed_invalid">Can\'t submit the segment: %s</string>
     <string name="submit_failed_timeout" formatted="false">Unable to submit segments: %s</string>
