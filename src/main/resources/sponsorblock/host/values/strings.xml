@@ -108,6 +108,7 @@
     <string name="segments_preview">Preview/Recap</string>
     <string name="segments_preview_sum">Recap of previous episodes, or a preview of what\'s coming up later in the current video or future videos in the same series. Clips should not provide additional information</string>
     <string name="stats">Stats</string>
+    <string name="stats_connection_failure">Stats temporarily not available (API is down)</string>
     <string name="stats_loading">Loading...</string>
     <string name="stats_sb_disabled">SponsorBlock is disabled</string>
     <string name="stats_username" formatted="false">Your username: &lt;b&gt;%s&lt;/b&gt;</string>
