@@ -65,7 +65,8 @@
     <string name="submit_failed_duplicate">Can\'t submit the segment.\nAlready exists</string>
     <string name="submit_succeeded">Segment submitted successfully</string>
 
-    <string name="sponsorblock_connection_failure_generic">SponsorBlock temporarily not available (status %d)</string>
+    <string name="sponsorblock_connection_failure_generic">SponsorBlock temporarily not available</string>
+    <string name="sponsorblock_connection_failure_status">SponsorBlock temporarily not available (status %d)</string>
     <string name="sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out)</string>
 
     <string name="vote_failed_timeout" formatted="false">Unable to vote for segment (API timed out)</string>
