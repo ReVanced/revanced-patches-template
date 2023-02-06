@@ -120,7 +120,7 @@ class VideoInformationPatch : BytecodePatch(
         /*
         Hook the methods which set the time
          */
-        highPrecisionTimeHook(INTEGRATIONS_CLASS_DESCRIPTOR, "setVideoTime")
+        highPrecisionTimeHook(INTEGRATIONS_CLASS_DESCRIPTOR, "setVideoTimeHighPrecision")
 
         return PatchResultSuccess()
     }
