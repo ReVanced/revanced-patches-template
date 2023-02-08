@@ -3,7 +3,7 @@
     <string name="enable_sb">Enable SponsorBlock</string>
     <string name="enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts in YouTube videos</string>
     <string name="enable_segmadding">Show add new segment button</string>
-    <string name="enable_segmadding_sum">Switch this on to allow adding new video segments</string>
+    <string name="enable_segmadding_sum">Turn this on to allow adding new video segments</string>
     <string name="diff_segments">What to do with different segments</string>
     <string name="general">General</string>
     <string name="general_skiptoast">Show a toast when skipping segment automatically</string>
@@ -93,7 +93,7 @@
     <string name="vote_category">Change category</string>
     <string name="vote_no_segments">There are no segments to vote for</string>
     <string name="enable_voting">Show segment voting button</string>
-    <string name="enable_voting_sum">Switch this on to enable voting for segments</string>
+    <string name="enable_voting_sum">Turn this on to enable voting for segments</string>
 
     <string name="new_segment_choose_category">Choose the segment category</string>
     <string name="new_segment_disabled_category">Category is disabled in settings. Enable category to submit.</string>
@@ -124,7 +124,7 @@
     <string name="general_time_without_sb">Show video length without segments</string>
     <string name="general_time_without_sb_sum">Show the total video duration minus any segments, in parentheses next to the video length</string>
     <string name="general_compact_skip_button">Use compact skip button</string>
-    <string name="general_compact_skip_button_sum">Switch this on to use a smaller compact skip button</string>
+    <string name="general_compact_skip_button_sum">Turn this on to use a smaller skip button</string>
     <string name="stats">Stats</string>
     <string name="stats_connection_failure">Stats temporarily not available (API is down)</string>
     <string name="stats_loading">Loading...</string>
