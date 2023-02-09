@@ -47,6 +47,12 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         RemoveLikeFingerprint,
     )
 ) {
+
+    private companion object {
+        const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
+    }
+
     override fun execute(context: BytecodeContext): PatchResult {
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
@@ -58,7 +64,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     0,
                     """
                     const/4 v0, ${vote.value}
-                    invoke-static {v0}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->sendVote(I)V
+                    invoke-static {v0}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->sendVote(I)V
                     """
                 )
             }
@@ -76,7 +82,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
                 addInstructions(
                     insertIndex, """
-                        invoke-static {v$insertRegister}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                        invoke-static {v$insertRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
                         move-result-object v$insertRegister
                     """
                 )
@@ -84,7 +90,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
-        VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->newVideoLoaded(Ljava/lang/String;)V")
+        VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
         with(TextComponentFingerprint
             .apply { resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
@@ -103,7 +109,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 """
                     move-object/from16 v7, p$conversionContextParam
                     move-object/from16 v8, p$textRefParam
-                    invoke-static {v7, v8}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
+                    invoke-static {v7, v8}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
                 """
             )
         }
