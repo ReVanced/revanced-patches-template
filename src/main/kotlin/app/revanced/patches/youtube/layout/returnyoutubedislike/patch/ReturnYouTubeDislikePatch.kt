@@ -5,6 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -15,12 +16,14 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn(
@@ -38,6 +41,7 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentSpecParentFingerprint,
+        ShortsTextComponentParentFingerprint,
         LikeFingerprint,
         DislikeFingerprint,
         RemoveLikeFingerprint,
@@ -59,6 +63,26 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             }
         }
+
+        ShortsTextComponentParentFingerprint.result?.let {
+            with(context
+                .toMethodWalker(it.method)
+                .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
+                .getMethod() as MutableMethod
+            ) {
+                val insertInstructions = this.implementation!!.instructions
+                val insertIndex = insertInstructions.size - 1
+                val insertRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
+
+                addInstructions(
+                    insertIndex, """
+                        invoke-static {v$insertRegister}, Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                        move-result-object v$insertRegister
+                    """
+                )
+            }
+
+        } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
         VideoIdPatch.injectCall("Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;->newVideoLoaded(Ljava/lang/String;)V")
 
