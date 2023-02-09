@@ -1,11 +1,11 @@
 package app.revanced.patches.youtube.misc.video.videoid.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -26,17 +26,6 @@ class VideoIdPatch : BytecodePatch(
         VideoIdFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
-        with(VideoIdFingerprint.result!!) {
-            insertMethod = mutableMethod
-            insertIndex = scanResult.patternScanResult!!.endIndex + 2
-
-            videoIdRegister = (insertMethod.instruction(insertIndex - 1) as OneRegisterInstruction).registerA
-        }
-
-        return PatchResultSuccess()
-    }
-
     companion object {
         private var videoIdRegister = 0
         private var insertIndex = 0
@@ -49,10 +38,26 @@ class VideoIdPatch : BytecodePatch(
          */
         fun injectCall(
             methodDescriptor: String
-        ) = insertMethod.addInstructions(
-            insertIndex, // move-result-object offset
-            "invoke-static {v$videoIdRegister}, $methodDescriptor"
-        )
+        ) {
+            insertMethod.addInstructions(
+                insertIndex++, // keep injection callbacks in the order they were added
+                "invoke-static {v$videoIdRegister}, $methodDescriptor"
+            )
+        }
+    }
+
+    override fun execute(context: BytecodeContext): PatchResult {
+        VideoIdFingerprint.result?.let {
+            var videoIdRegisterInstructionIndex = it.scanResult.patternScanResult!!.endIndex;
+
+            with (it.mutableMethod) {
+                insertMethod = this
+                videoIdRegister = (implementation!!.instructions[videoIdRegisterInstructionIndex] as OneRegisterInstruction).registerA
+                insertIndex = videoIdRegisterInstructionIndex + 1;
+            }
+        } ?: return VideoIdFingerprint.toErrorResult()
+
+        return PatchResultSuccess()
     }
 }
 

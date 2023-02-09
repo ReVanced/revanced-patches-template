@@ -6,11 +6,24 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 object VideoIdFingerprint : MethodFingerprint(
-    "V",
-    AccessFlags.DECLARED_SYNCHRONIZED or AccessFlags.FINAL or AccessFlags.PUBLIC,
-    listOf("L"),
-    listOf(Opcode.INVOKE_INTERFACE),
-    customFingerprint = {
-        it.definingClass.endsWith("PlaybackLifecycleMonitor;")
-    }
+    returnType = "V",
+    access = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    parameters = listOf("L"),
+    opcodes = listOf(
+        Opcode.IF_EQZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_INTERFACE,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IF_EQZ,
+        Opcode.IGET_OBJECT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_INTERFACE,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_INTERFACE,
+        Opcode.MOVE_RESULT_OBJECT
+    ),
+    null,
+    { it.definingClass.endsWith("SubtitlesOverlayPresenter;") }
 )
