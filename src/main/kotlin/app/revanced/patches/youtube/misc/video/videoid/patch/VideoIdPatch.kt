@@ -40,7 +40,9 @@ class VideoIdPatch : BytecodePatch(
             methodDescriptor: String
         ) {
             insertMethod.addInstructions(
-                insertIndex++, // keep injection callbacks in the order they were added
+                // Keep injection calls in the order they're added:
+                // Increment index. So if additional injection calls are added, those calls run after this injection call.
+                insertIndex++,
                 "invoke-static {v$videoIdRegister}, $methodDescriptor"
             )
         }
