@@ -23,6 +23,7 @@ import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.R
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
+import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -76,9 +77,22 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
                 .getMethod() as MutableMethod
             ) {
+                // after walking, verify the found method is what's expected
+                if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1) {
+                    return PatchResultError(
+                        "method signature did not match: $this $parameterTypes"
+                    )
+                }
+
                 val insertInstructions = this.implementation!!.instructions
                 val insertIndex = insertInstructions.size - 1
                 val insertRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
+                val existingInstructionReference = (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
+                if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
+                    return PatchResultError(
+                        "method signature parameter did not match: $existingInstructionReference"
+                    )
+                }
 
                 addInstructions(
                     insertIndex, """
