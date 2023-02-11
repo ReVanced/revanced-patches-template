@@ -111,7 +111,6 @@
     <string name="new_segment_mark_locations_first">Mark two locations on the time bar first</string>
     <string name="new_segment_edit_by_hand_title">Edit timing of segment manually</string>
     <string name="new_segment_edit_by_hand_content">Do you want to edit the timing for the start or end of the segment?</string>
-    <string name="new_segment_edit_by_hand_saved">Done</string>
     <string name="new_segment_edit_by_hand_parse_error">Invalid time given</string>
 
     <string name="sb_guidelines_preference_title">View guidelines</string>
