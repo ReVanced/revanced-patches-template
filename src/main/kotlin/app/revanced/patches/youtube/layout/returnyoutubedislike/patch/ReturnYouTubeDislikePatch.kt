@@ -86,7 +86,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
                 val insertInstructions = implementation!!.instructions
                 val insertIndex = insertInstructions.size - 1
-                val insertRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
+                val spannedParameterRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
                 val existingInstructionReference = (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
                 if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
                     return PatchResultError(
@@ -96,8 +96,8 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
                 addInstructions(
                     insertIndex, """
-                        invoke-static {v$insertRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
-                        move-result-object v$insertRegister
+                        invoke-static {v$spannedParameterRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                        move-result-object v$spannedParameterRegister
                     """
                 )
             }
