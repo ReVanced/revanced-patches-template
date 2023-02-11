@@ -77,20 +77,20 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
                 .getMethod() as MutableMethod
             ) {
-                // after walking, verify the found method is what's expected
+                // After walking, verify the found method is what's expected.
                 if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1) {
                     return PatchResultError(
-                        "method signature did not match: $this $parameterTypes"
+                        "Method signature did not match: $this $parameterTypes"
                     )
                 }
 
-                val insertInstructions = this.implementation!!.instructions
+                val insertInstructions = implementation!!.instructions
                 val insertIndex = insertInstructions.size - 1
                 val insertRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
                 val existingInstructionReference = (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
                 if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
                     return PatchResultError(
-                        "method signature parameter did not match: $existingInstructionReference"
+                        "Method signature parameter did not match: $existingInstructionReference"
                     )
                 }
 
@@ -114,7 +114,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
             val conversionContextParam = 5
             val textRefParam = createComponentMethod.parameters.size - 2
-            // insert index must be 0, otherwise UI does not updated correctly in some situations
+            // Insert index must be 0, otherwise UI does not updated correctly in some situations
             // such as switching from full screen or when using previous/next overlay buttons.
             val insertIndex = 0
 
