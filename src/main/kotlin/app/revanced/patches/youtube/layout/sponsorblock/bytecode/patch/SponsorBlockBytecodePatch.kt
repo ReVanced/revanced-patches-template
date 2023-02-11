@@ -54,7 +54,6 @@ import org.jf.dexlib2.iface.reference.StringReference
 class SponsorBlockBytecodePatch : BytecodePatch(
     listOf(
         SeekbarFingerprint,
-        NextGenWatchLayoutFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
     )
@@ -203,13 +202,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         // change visibility of the buttons
         PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/ShieldButton;->changeVisibility(Z)V")
         PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/VotingButton;->changeVisibility(Z)V")
-
-        // set SegmentHelperLayout.context to the player layout instance
-        val instanceRegister = 0
-        NextGenWatchLayoutFingerprint.result!!.mutableMethod.addInstruction(
-            3, // after super call
-            "invoke-static/range {p$instanceRegister}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->addSkipSponsorView15(Landroid/view/View;)V"
-        )
 
         // append the new time to the player layout
         val appendTimeFingerprintResult = AppendTimeFingerprint.result!!
