@@ -16,7 +16,7 @@ import app.revanced.patches.yuka.misc.unlockpremium.fingerprints.YukaUserConstru
 
 @Patch
 @Name("unlock-premium")
-@Description("Unlock Yuka Premium Features")
+@Description("Unlocks premium features.")
 @UnlockPremiumCompatibility
 @Version("0.0.1")
 class UnlockPremiunPatch : BytecodePatch(
@@ -37,6 +37,5 @@ class UnlockPremiunPatch : BytecodePatch(
         )
         return PatchResultSuccess()
     }
-
 
 }
