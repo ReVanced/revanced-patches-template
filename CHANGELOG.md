@@ -1,3 +1,43 @@
+# [2.162.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.161.1...v2.162.0-dev.1) (2023-02-11)
+
+
+### Features
+
+* **yuka:** `unlock-premium` patch ([#1608](https://github.com/revanced/revanced-patches/issues/1608)) ([71e1594](https://github.com/revanced/revanced-patches/commit/71e15945c1b4019eaa2ff214b4efbfc6b1a67376))
+
+## [2.161.1](https://github.com/revanced/revanced-patches/compare/v2.161.0...v2.161.1) (2023-02-11)
+
+
+### Bug Fixes
+
+* **youtube/minimized-playback:** disable when playing shorts ([cd48030](https://github.com/revanced/revanced-patches/commit/cd48030cada3666d0159ad25711c20045a8a70c7))
+
+## [2.161.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.161.0...v2.161.1-dev.1) (2023-02-11)
+
+
+### Bug Fixes
+
+* **youtube/minimized-playback:** disable when playing shorts ([cd48030](https://github.com/revanced/revanced-patches/commit/cd48030cada3666d0159ad25711c20045a8a70c7))
+
+# [2.161.0](https://github.com/revanced/revanced-patches/compare/v2.160.0...v2.161.0) (2023-02-10)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** fix compatibility with newer versions ([3d4646a](https://github.com/revanced/revanced-patches/commit/3d4646ae7efe13f9f7e47cf5ba7613aac4d04d66))
+
+
+### Features
+
+* **youtube/general-ads:** hide pill to view products ([7b1bc1a](https://github.com/revanced/revanced-patches/commit/7b1bc1ad50f2b38277b0c19aad735ea65f8333d3))
+
+# [2.161.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.161.0-dev.1...v2.161.0-dev.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** fix compatibility with newer versions ([3d4646a](https://github.com/revanced/revanced-patches/commit/3d4646ae7efe13f9f7e47cf5ba7613aac4d04d66))
+
 # [2.161.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.160.0...v2.161.0-dev.1) (2023-02-10)
 
 
