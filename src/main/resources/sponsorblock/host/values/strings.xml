@@ -73,8 +73,8 @@
     <string name="about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms</string>
     <string name="about_madeby">Integration made by JakubWeg,\nrecoded by oSumAtrIX</string>
 
-    <string name="submit_failed_invalid">Can\'t submit the segment: %s</string>
-    <string name="submit_failed_timeout" formatted="false">Unable to submit segments (API timed out)</string>
+    <string name="submit_failed_invalid" formatted="false">Can\'t submit the segment: %s</string>
+    <string name="submit_failed_timeout">Unable to submit segments (API timed out)</string>
     <string name="submit_failed_unknown_error" formatted="false">Unable to submit segments (status: %d %s)</string>
     <string name="submit_failed_rate_limit">Can\'t submit the segment.\nRate Limited (too many from the same user or IP)</string>
     <string name="submit_failed_forbidden" formatted="false">Can\'t submit the segment: %s</string>
@@ -82,10 +82,10 @@
     <string name="submit_succeeded">Segment submitted successfully</string>
 
     <string name="sponsorblock_connection_failure_generic">SponsorBlock temporarily not available</string>
-    <string name="sponsorblock_connection_failure_status">SponsorBlock temporarily not available (status %d)</string>
+    <string name="sponsorblock_connection_failure_status" formatted="false">SponsorBlock temporarily not available (status %d)</string>
     <string name="sponsorblock_connection_failure_timeout">SponsorBlock temporarily not available (API timed out)</string>
 
-    <string name="vote_failed_timeout" formatted="false">Unable to vote for segment (API timed out)</string>
+    <string name="vote_failed_timeout">Unable to vote for segment (API timed out)</string>
     <string name="vote_failed_unknown_error" formatted="false">Unable to vote for segment (status: %d %s)</string>
     <string name="vote_failed_forbidden" formatted="false">Unable to vote for segment: %s</string>
     <string name="vote_upvote">Upvote</string>
@@ -127,17 +127,17 @@
     <string name="stats_connection_failure">Stats temporarily not available (API is down)</string>
     <string name="stats_loading">Loading...</string>
     <string name="stats_sb_disabled">SponsorBlock is disabled</string>
-    <string name="stats_username" formatted="false">Your username: &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="stats_username" formatted="false">Your username: &lt;b>%s&lt;/b></string>
     <string name="stats_username_change">Tap here to change your username</string>
     <string name="stats_username_change_unknown_error" formatted="false">Unable to change username: Status: %d %s</string>
     <string name="stats_username_changed">Username successfully changed</string>
-    <string name="stats_submissions">You\'ve created &lt;b&gt;%s&lt;/b&gt; segments</string>
+    <string name="stats_submissions" formatted="false">You\'ve created &lt;b>%s&lt;/b> segments</string>
     <string name="stats_saved_zero">SponsorBlock leaderboard</string>
-    <string name="stats_saved">You\'ve saved people from &lt;b&gt;%s&lt;/b&gt; segments</string>
+    <string name="stats_saved" formatted="false">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
     <string name="stats_saved_sum_zero">Tap here to see the global stats and top contributors</string>
-    <string name="stats_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt; of their lives. Tap here to see the leaderboard</string>
-    <string name="stats_self_saved">You\'ve skipped &lt;b&gt;%s&lt;/b&gt; segments</string>
-    <string name="stats_self_saved_sum">That\'s &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives. Tap here to see the leaderboard</string>
+    <string name="stats_self_saved" formatted="false">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
+    <string name="stats_self_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b></string>
     <string name="stats_self_saved_reset_title">Reset skipped segments counter?</string>
     <string name="minutes">minutes</string>
     <string name="color_change">Looking to change the colors?</string>
