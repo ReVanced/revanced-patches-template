@@ -10,13 +10,11 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
 
 @DependsOn(
     dependencies = [
-        FixLocaleConfigErrorPatch::class,
         LithoFilterPatch::class,
         SettingsPatch::class,
         ResourceMappingPatch::class
@@ -88,6 +86,13 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 true,
                 StringResource("revanced_adremover_compact_banner_enabled_summary_on", "Compact banners are hidden"),
                 StringResource("revanced_adremover_compact_banner_enabled_summary_off", "Compact banners are shown")
+            ),
+            SwitchPreference(
+                "revanced_adremover_view_products",
+                StringResource("revanced_adremover_view_products_title", "Hide pill to view products"),
+                true,
+                StringResource("revanced_adremover_view_products_summary_on", "Pill is hidden"),
+                StringResource("revanced_adremover_view_products_summary_off", "Pill is shown")
             ),
             SwitchPreference(
                 "revanced_adremover_movie",
@@ -196,13 +201,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 true,
                 StringResource("revanced_adremover_paid_content_enabled_summary_on", "Paid content is hidden"),
                 StringResource("revanced_adremover_paid_content_enabled_summary_off", "Paid content is shown")
-            ),
-            SwitchPreference(
-                "revanced_adremover_hide_suggestions",
-                StringResource("revanced_adremover_hide_suggestions_enabled_title", "Hide suggestions"),
-                true,
-                StringResource("revanced_adremover_hide_suggestions_enabled_summary_on", "Suggestions are hidden"),
-                StringResource("revanced_adremover_hide_suggestions_enabled_summary_off", "Suggestions are shown")
             ),
             SwitchPreference(
                 "revanced_adremover_hide_latest_posts",

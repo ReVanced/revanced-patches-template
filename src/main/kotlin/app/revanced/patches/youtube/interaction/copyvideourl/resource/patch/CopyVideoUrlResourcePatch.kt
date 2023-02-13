@@ -12,7 +12,6 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.interaction.copyvideourl.annotation.CopyVideoUrlCompatibility
-import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
@@ -20,7 +19,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 
 @Name("copy-video-url-resource")
 @Description("Makes necessary changes to resources for copy video link buttons.")
-@DependsOn([BottomControlsResourcePatch::class, FixLocaleConfigErrorPatch::class, SettingsPatch::class])
+@DependsOn([BottomControlsResourcePatch::class, SettingsPatch::class])
 @CopyVideoUrlCompatibility
 @Version("0.0.1")
 class CopyVideoUrlResourcePatch : ResourcePatch {
@@ -31,14 +30,14 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
                 StringResource("revanced_copy_video_url_title", "Copy video URL settings"),
                 listOf(
                     SwitchPreference(
-                        "revanced_copy_video_url",
+                        "revanced_copy_video_url_enabled",
                         StringResource("revanced_copy_video_url_enabled_title", "Show copy video URL button"),
                         true,
                         StringResource("revanced_copy_video_url_enabled_summary_on", "Button is shown, click to copy video URL without timestamp"),
                         StringResource("revanced_copy_video_url_enabled_summary_off", "Button is not shown")
                     ),
                     SwitchPreference(
-                        "revanced_copy_video_url_timestamp",
+                        "revanced_copy_video_url_timestamp_enabled",
                         StringResource("revanced_copy_video_url_timestamp_enabled_title", "Show copy timestamp URL button"),
                         true,
                         StringResource("revanced_copy_video_url_timestamp_enabled_summary_on", "Button is shown, click to copy video URL with timestamp"),

@@ -1,3 +1,231 @@
+## [2.161.1](https://github.com/revanced/revanced-patches/compare/v2.161.0...v2.161.1) (2023-02-11)
+
+
+### Bug Fixes
+
+* **youtube/minimized-playback:** disable when playing shorts ([cd48030](https://github.com/revanced/revanced-patches/commit/cd48030cada3666d0159ad25711c20045a8a70c7))
+
+## [2.161.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.161.0...v2.161.1-dev.1) (2023-02-11)
+
+
+### Bug Fixes
+
+* **youtube/minimized-playback:** disable when playing shorts ([cd48030](https://github.com/revanced/revanced-patches/commit/cd48030cada3666d0159ad25711c20045a8a70c7))
+
+# [2.161.0](https://github.com/revanced/revanced-patches/compare/v2.160.0...v2.161.0) (2023-02-10)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** fix compatibility with newer versions ([3d4646a](https://github.com/revanced/revanced-patches/commit/3d4646ae7efe13f9f7e47cf5ba7613aac4d04d66))
+
+
+### Features
+
+* **youtube/general-ads:** hide pill to view products ([7b1bc1a](https://github.com/revanced/revanced-patches/commit/7b1bc1ad50f2b38277b0c19aad735ea65f8333d3))
+
+# [2.161.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.161.0-dev.1...v2.161.0-dev.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** fix compatibility with newer versions ([3d4646a](https://github.com/revanced/revanced-patches/commit/3d4646ae7efe13f9f7e47cf5ba7613aac4d04d66))
+
+# [2.161.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.160.0...v2.161.0-dev.1) (2023-02-10)
+
+
+### Features
+
+* **youtube/general-ads:** hide pill to view products ([7b1bc1a](https://github.com/revanced/revanced-patches/commit/7b1bc1ad50f2b38277b0c19aad735ea65f8333d3))
+
+# [2.160.0](https://github.com/revanced/revanced-patches/compare/v2.159.0...v2.160.0) (2023-02-10)
+
+
+### Features
+
+* **instagram:** `hide-timeline-ads` patch ([61668e6](https://github.com/revanced/revanced-patches/commit/61668e67083b74a08f8015308f4afe548e16a9ad))
+* **reddit:** `hide-subreddit-banner` patch ([13a1381](https://github.com/revanced/revanced-patches/commit/13a138122875b30e82df68a680e413f6ad7ba382))
+* **reddit:** bump patches compatibility to `v2023.05.0` ([0a72fa1](https://github.com/revanced/revanced-patches/commit/0a72fa10bf009192157e04e0788daf5462324a0e))
+
+# [2.160.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.160.0-dev.1...v2.160.0-dev.2) (2023-02-10)
+
+
+### Features
+
+* **reddit:** `hide-subreddit-banner` patch ([13a1381](https://github.com/revanced/revanced-patches/commit/13a138122875b30e82df68a680e413f6ad7ba382))
+* **reddit:** bump patches compatibility to `v2023.05.0` ([0a72fa1](https://github.com/revanced/revanced-patches/commit/0a72fa10bf009192157e04e0788daf5462324a0e))
+
+# [2.160.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.159.0...v2.160.0-dev.1) (2023-02-10)
+
+
+### Features
+
+* **instagram:** `hide-timeline-ads` patch ([61668e6](https://github.com/revanced/revanced-patches/commit/61668e67083b74a08f8015308f4afe548e16a9ad))
+
+# [2.159.0](https://github.com/revanced/revanced-patches/compare/v2.158.0...v2.159.0) (2023-02-03)
+
+
+### Bug Fixes
+
+* **youtube/custom-branding:** correct scaling, margin and images ([#1580](https://github.com/revanced/revanced-patches/issues/1580)) ([491c413](https://github.com/revanced/revanced-patches/commit/491c4138f0185664a9c5d3db9ebdf026ff4594e8))
+
+
+### Features
+
+* `spoof-wifi-connection` patch ([#1527](https://github.com/revanced/revanced-patches/issues/1527)) ([adce206](https://github.com/revanced/revanced-patches/commit/adce206d66e1f7017328fe68a5818d424f70e588))
+* **music:** bump patches compatibility to v5.41.50 ([#1551](https://github.com/revanced/revanced-patches/issues/1551)) ([0b1024a](https://github.com/revanced/revanced-patches/commit/0b1024ab754a3e2ce798a54cccda6f41f97069a5))
+* **netguard:** `remove-broadcasts-restriction` patch ([#1581](https://github.com/revanced/revanced-patches/issues/1581)) ([73132e3](https://github.com/revanced/revanced-patches/commit/73132e37cf83f4c1f05cf6a184dfd8e454f7456e))
+* **spotify-lite:** enable on-demand patch ([9f0de4f](https://github.com/revanced/revanced-patches/commit/9f0de4f5678e9f57baaf6ec788821641d75defdc))
+* **youtube:** `hide-player-buttons` patch ([3469d37](https://github.com/revanced/revanced-patches/commit/3469d37bcedfd2dfbe46231b17cd098b591810c1))
+
+# [2.159.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.159.0-dev.3...v2.159.0-dev.4) (2023-02-03)
+
+
+### Features
+
+* **netguard:** `remove-broadcasts-restriction` patch ([#1581](https://github.com/revanced/revanced-patches/issues/1581)) ([73132e3](https://github.com/revanced/revanced-patches/commit/73132e37cf83f4c1f05cf6a184dfd8e454f7456e))
+
+# [2.159.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.159.0-dev.2...v2.159.0-dev.3) (2023-02-03)
+
+
+### Features
+
+* **youtube:** `hide-player-buttons` patch ([3469d37](https://github.com/revanced/revanced-patches/commit/3469d37bcedfd2dfbe46231b17cd098b591810c1))
+
+# [2.159.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.159.0-dev.1...v2.159.0-dev.2) (2023-02-01)
+
+
+### Features
+
+* `spoof-wifi-connection` patch ([#1527](https://github.com/revanced/revanced-patches/issues/1527)) ([adce206](https://github.com/revanced/revanced-patches/commit/adce206d66e1f7017328fe68a5818d424f70e588))
+
+# [2.159.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.158.0...v2.159.0-dev.1) (2023-02-01)
+
+
+### Bug Fixes
+
+* **youtube/custom-branding:** correct scaling, margin and images ([#1580](https://github.com/revanced/revanced-patches/issues/1580)) ([491c413](https://github.com/revanced/revanced-patches/commit/491c4138f0185664a9c5d3db9ebdf026ff4594e8))
+
+
+### Features
+
+* **music:** bump patches compatibility to v5.41.50 ([#1551](https://github.com/revanced/revanced-patches/issues/1551)) ([0b1024a](https://github.com/revanced/revanced-patches/commit/0b1024ab754a3e2ce798a54cccda6f41f97069a5))
+* **spotify-lite:** enable on-demand patch ([9f0de4f](https://github.com/revanced/revanced-patches/commit/9f0de4f5678e9f57baaf6ec788821641d75defdc))
+
+# [2.158.0](https://github.com/revanced/revanced-patches/compare/v2.157.0...v2.158.0) (2023-01-29)
+
+
+### Bug Fixes
+
+* **youtube/microg-support:** replace new permission ([3d1cce5](https://github.com/revanced/revanced-patches/commit/3d1cce5b4ca54c622b863f24febeb03a6060033c))
+* **youtube:** resolve duplicate preference keys ([#1550](https://github.com/revanced/revanced-patches/issues/1550)) ([aafdb89](https://github.com/revanced/revanced-patches/commit/aafdb891b2f0f243cb2d997a38ab3e6a7b46aba8))
+
+
+### Features
+
+* **irplus:** `remove-ads` patch ([#1554](https://github.com/revanced/revanced-patches/issues/1554)) ([9943a52](https://github.com/revanced/revanced-patches/commit/9943a520d29ee89598b4aa6aba69ff83cb4768ce))
+
+# [2.158.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.157.1-dev.2...v2.158.0-dev.1) (2023-01-28)
+
+
+### Features
+
+* **irplus:** `remove-ads` patch ([#1554](https://github.com/revanced/revanced-patches/issues/1554)) ([9943a52](https://github.com/revanced/revanced-patches/commit/9943a520d29ee89598b4aa6aba69ff83cb4768ce))
+
+## [2.157.1-dev.2](https://github.com/revanced/revanced-patches/compare/v2.157.1-dev.1...v2.157.1-dev.2) (2023-01-28)
+
+
+### Bug Fixes
+
+* **youtube:** resolve duplicate preference keys ([#1550](https://github.com/revanced/revanced-patches/issues/1550)) ([aafdb89](https://github.com/revanced/revanced-patches/commit/aafdb891b2f0f243cb2d997a38ab3e6a7b46aba8))
+
+## [2.157.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.157.0...v2.157.1-dev.1) (2023-01-28)
+
+
+### Bug Fixes
+
+* **youtube/microg-support:** replace new permission ([3d1cce5](https://github.com/revanced/revanced-patches/commit/3d1cce5b4ca54c622b863f24febeb03a6060033c))
+
+# [2.157.0](https://github.com/revanced/revanced-patches/compare/v2.156.0...v2.157.0) (2023-01-28)
+
+
+### Bug Fixes
+
+* parse any kind of patch version ([66cd88f](https://github.com/revanced/revanced-patches/commit/66cd88f4d8a9161a4c51b70f2384dcee92fe2aea))
+* **twitter/hide-views-stats:** constrain to last working version ([#1522](https://github.com/revanced/revanced-patches/issues/1522)) ([bf45817](https://github.com/revanced/revanced-patches/commit/bf45817677fd058f9b255dbef5c1ca9aaec95531))
+* **youtube/return-youtube-dislike:** do not fetch voting stats when watching shorts ([#1532](https://github.com/revanced/revanced-patches/issues/1532)) ([f46fcad](https://github.com/revanced/revanced-patches/commit/f46fcadd855a13d9f8916f21980abcf5564e97d7))
+* **youtube/settings:** resolve fingerprints robustly ([8e98605](https://github.com/revanced/revanced-patches/commit/8e98605a7491d69e99c6b1aeb2de3db9396faa20))
+* **youtube/sponsorblock:** replace missing strings ([7b8f0db](https://github.com/revanced/revanced-patches/commit/7b8f0db2c17da6488db1ec2c21a21a14ff8466aa))
+* **youtube:** reliably resolve fingerprints ([1598306](https://github.com/revanced/revanced-patches/commit/1598306eb58ae8f8dc38b472628b237e55ec0f1b))
+
+
+### Features
+
+* **finanzonline:** `remove-bootloader-detection` patch ([3952138](https://github.com/revanced/revanced-patches/commit/39521386c2296f46479e31c39ab245c2778ebd65))
+* **finanzonline:** `remove-root-detection` patch ([1d46d63](https://github.com/revanced/revanced-patches/commit/1d46d63fdcf3cbce53a7719f4490225368c4d5ae))
+* **music:** update patches compatibility to v5.40.51 ([#1541](https://github.com/revanced/revanced-patches/issues/1541)) ([13143cb](https://github.com/revanced/revanced-patches/commit/13143cb5260f8793d246633a6a506bdc9f3a3ce7))
+* **youtube/general-ads:** remove hiding video shelf ([c4c9e5b](https://github.com/revanced/revanced-patches/commit/c4c9e5bb3765d08d6653864d33546c25ba367292))
+* **youtube/microg-support:** check if Vanced MicroG is running in the background ([#1531](https://github.com/revanced/revanced-patches/issues/1531)) ([81934ef](https://github.com/revanced/revanced-patches/commit/81934efb39b8ed9b0a523ffd7c4d841227ac141f))
+* **youtube:** `open-links-externally` patch ([#1524](https://github.com/revanced/revanced-patches/issues/1524)) ([caf3d70](https://github.com/revanced/revanced-patches/commit/caf3d70c30bc440923c0e76e7331010905f6e729))
+* **youtube:** show toasts along exceptions ([#1511](https://github.com/revanced/revanced-patches/issues/1511)) ([5817e4d](https://github.com/revanced/revanced-patches/commit/5817e4d27fab692c0e95ab4aa2fa8f13005cb780))
+
+# [2.157.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.157.0-dev.5...v2.157.0-dev.6) (2023-01-28)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** replace missing strings ([7b8f0db](https://github.com/revanced/revanced-patches/commit/7b8f0db2c17da6488db1ec2c21a21a14ff8466aa))
+
+# [2.157.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.157.0-dev.4...v2.157.0-dev.5) (2023-01-28)
+
+
+### Features
+
+* **youtube:** show toasts along exceptions ([#1511](https://github.com/revanced/revanced-patches/issues/1511)) ([5817e4d](https://github.com/revanced/revanced-patches/commit/5817e4d27fab692c0e95ab4aa2fa8f13005cb780))
+
+# [2.157.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.157.0-dev.3...v2.157.0-dev.4) (2023-01-28)
+
+
+### Bug Fixes
+
+* **youtube/return-youtube-dislike:** do not fetch voting stats when watching shorts ([#1532](https://github.com/revanced/revanced-patches/issues/1532)) ([f46fcad](https://github.com/revanced/revanced-patches/commit/f46fcadd855a13d9f8916f21980abcf5564e97d7))
+
+# [2.157.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.157.0-dev.2...v2.157.0-dev.3) (2023-01-28)
+
+
+### Bug Fixes
+
+* **youtube/settings:** resolve fingerprints robustly ([8e98605](https://github.com/revanced/revanced-patches/commit/8e98605a7491d69e99c6b1aeb2de3db9396faa20))
+* **youtube:** reliably resolve fingerprints ([1598306](https://github.com/revanced/revanced-patches/commit/1598306eb58ae8f8dc38b472628b237e55ec0f1b))
+
+
+### Features
+
+* **youtube/general-ads:** remove hiding video shelf ([c4c9e5b](https://github.com/revanced/revanced-patches/commit/c4c9e5bb3765d08d6653864d33546c25ba367292))
+
+# [2.157.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.157.0-dev.1...v2.157.0-dev.2) (2023-01-24)
+
+
+### Features
+
+* **music:** update patches compatibility to v5.40.51 ([#1541](https://github.com/revanced/revanced-patches/issues/1541)) ([13143cb](https://github.com/revanced/revanced-patches/commit/13143cb5260f8793d246633a6a506bdc9f3a3ce7))
+
+# [2.157.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.156.0...v2.157.0-dev.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* parse any kind of patch version ([66cd88f](https://github.com/revanced/revanced-patches/commit/66cd88f4d8a9161a4c51b70f2384dcee92fe2aea))
+* **twitter/hide-views-stats:** constrain to last working version ([#1522](https://github.com/revanced/revanced-patches/issues/1522)) ([bf45817](https://github.com/revanced/revanced-patches/commit/bf45817677fd058f9b255dbef5c1ca9aaec95531))
+
+
+### Features
+
+* **finanzonline:** `remove-bootloader-detection` patch ([3952138](https://github.com/revanced/revanced-patches/commit/39521386c2296f46479e31c39ab245c2778ebd65))
+* **finanzonline:** `remove-root-detection` patch ([1d46d63](https://github.com/revanced/revanced-patches/commit/1d46d63fdcf3cbce53a7719f4490225368c4d5ae))
+* **youtube/microg-support:** check if Vanced MicroG is running in the background ([#1531](https://github.com/revanced/revanced-patches/issues/1531)) ([81934ef](https://github.com/revanced/revanced-patches/commit/81934efb39b8ed9b0a523ffd7c4d841227ac141f))
+* **youtube:** `open-links-externally` patch ([#1524](https://github.com/revanced/revanced-patches/issues/1524)) ([caf3d70](https://github.com/revanced/revanced-patches/commit/caf3d70c30bc440923c0e76e7331010905f6e729))
+
 # [2.156.0](https://github.com/revanced/revanced-patches/compare/v2.155.0...v2.156.0) (2023-01-17)
 
 

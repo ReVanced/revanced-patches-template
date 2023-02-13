@@ -1,5 +1,6 @@
 package app.revanced.patches.finanzonline.detection.root.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -14,20 +15,20 @@ import app.revanced.patches.finanzonline.detection.shared.annotations.DetectionC
 
 @Patch
 @Name("remove-root-detection")
-@Description("Removes the check for root permissions")
+@Description("Removes the check for root permissions.")
 @DetectionCompatibility
 @Version("0.0.1")
 class RootDetectionPatch : BytecodePatch(
     listOf(RootDetectionFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        RootDetectionFingerprint.result!!.mutableMethod.addInstructions(
+        RootDetectionFingerprint.result?.mutableMethod?.addInstructions(
             0,
             """
                 sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
                 return-object v0
             """
-        )
+        ) ?: return RootDetectionFingerprint.toErrorResult()
         return PatchResultSuccess()
     }
 }

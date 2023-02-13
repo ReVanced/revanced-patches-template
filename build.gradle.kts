@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation("app.revanced:revanced-patcher:6.4.2")
+    implementation("app.revanced:revanced-patcher:6.4.3")
     implementation("app.revanced:multidexlib2:2.5.3-a3836654")
     // Required for meta
     implementation("com.google.code.gson:gson:2.10.1")
@@ -53,7 +53,7 @@ tasks {
         dependsOn(build)
 
         classpath = sourceSets["main"].runtimeClasspath
-        mainClass.set("app.revanced.meta.Meta")
+        mainClass.set("app.revanced.meta.PatchesFileGenerator")
     }
     // Dummy task to fix the Gradle semantic-release plugin.
     // Remove this if you forked it to support building only.
