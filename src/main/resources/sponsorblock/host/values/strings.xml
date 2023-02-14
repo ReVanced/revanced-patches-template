@@ -45,7 +45,7 @@
     <string name="skip_button_text_sponsor">Skip sponsor</string>
     <string name="skip_button_text_intermission">Skip intro</string>
     <string name="skip_button_text_endcard">Skip outro</string>
-    <string name="skip_button_text_subscribe">Skip reminder</string>
+    <string name="skip_button_text_subscribe">Skip interact</string>
     <string name="skip_button_text_selfpromo">Skip promo</string>
     <string name="skip_button_text_nomusic">Skip non-music</string>
     <string name="skip_button_text_preview">Skip preview</string>
