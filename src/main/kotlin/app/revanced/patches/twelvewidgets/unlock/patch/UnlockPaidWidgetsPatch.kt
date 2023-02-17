@@ -42,11 +42,11 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
             val mutableMethod = fingerprint.result!!.mutableMethod
 
             mutableMethod.removeInstructions(4, 2)
-            mutableMethod.addInstructions(mutableMethod.implementation?.instructions?.size?.minus(1)!!,
+            mutableMethod.addInstructions(mutableMethod.implementation?.instructions?.size!!,
                 """
-                    check-cast v0, Landroid/widget/Button;
                     const/4 v1, 0x0
                     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+                    return-object v0
                 """
             )
         }
