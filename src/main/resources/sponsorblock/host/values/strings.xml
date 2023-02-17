@@ -74,7 +74,7 @@
     <string name="skip_automatically">Skip automatically</string>
     <string name="skip_automatically_once">Skip automatically once</string>
     <string name="skip_showbutton">Show a skip button</string>
-    <string name="skip_ignore">Don\'t do anything</string>
+    <string name="skip_ignore">Disable</string>
 
     <string name="about">About</string>
     <string name="about_api">Sponsor.Ajay.app</string>
