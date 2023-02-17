@@ -35,7 +35,7 @@
     <string name="segments_endcards">Endcards / Credits</string>
     <string name="segments_endcards_sum">Credits or when the YouTube endcards appear. Not for conclusions with information</string>
     <string name="segments_preview">Preview / Recap</string>
-    <string name="segments_preview_sum">Collection of clips that show what is coming up in in this video or other videos in a series where all information is repeated later in the video</string>
+    <string name="segments_preview_sum">Collection of clips that show what is coming up or what happened in the video or in other videos of a series, where all information is repeated elsewhere in the video</string>
     <string name="segments_filler">Filler Tangent / Jokes</string>
     <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. Does not include segments providing context or background details</string>
     <string name="segments_nomusic">Music: Non-Music Section</string>
