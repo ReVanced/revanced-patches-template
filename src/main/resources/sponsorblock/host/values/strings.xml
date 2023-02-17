@@ -41,20 +41,20 @@
     <string name="segments_nomusic">Music: Non-Music Section</string>
     <string name="segments_nomusic_sum">Only for use in music videos. Skips parts of the video not in official mixes</string>
 
-    <string name="skip_button_text_compact">Skip</string>
-    <string name="skip_button_text_sponsor">Skip sponsor</string>
-    <string name="skip_button_text_selfpromo">Skip promo</string>
-    <string name="skip_button_text_interaction">Skip interact</string>
-    <string name="skip_button_text_intro_beginning">Skip intro</string>
-    <string name="skip_button_text_intro_middle">Skip intermission</string>
-    <string name="skip_button_text_intro_end">Skip intermission</string>
-    <string name="skip_button_text_endcard">Skip outro</string>
-    <string name="skip_button_text_preview_beginning">Skip preview</string>
-    <string name="skip_button_text_preview_middle">Skip preview</string>
-    <string name="skip_button_text_preview_end">Skip recap</string>
-    <string name="skip_button_text_filler">Skip filler</string>
-    <string name="skip_button_text_nomusic">Skip non-music</string>
-    <string name="skip_button_text_unsubmitted">Skip segment</string>
+    <string name="skip_button_compact">Skip</string>
+    <string name="skip_button_sponsor">Skip sponsor</string>
+    <string name="skip_button_selfpromo">Skip promo</string>
+    <string name="skip_button_interaction">Skip interact</string>
+    <string name="skip_button_intro_beginning">Skip intro</string>
+    <string name="skip_button_intro_middle">Skip intermission</string>
+    <string name="skip_button_intro_end">Skip intermission</string>
+    <string name="skip_button_endcard">Skip outro</string>
+    <string name="skip_button_preview_beginning">Skip preview</string>
+    <string name="skip_button_preview_middle">Skip preview</string>
+    <string name="skip_button_preview_end">Skip recap</string>
+    <string name="skip_button_filler">Skip filler</string>
+    <string name="skip_button_nomusic">Skip non-music</string>
+    <string name="skip_button_unsubmitted">Skip segment</string>
 
     <string name="skipped_sponsor">Skipped sponsor</string>
     <string name="skipped_selfpromo">Skipped self promotion</string>
