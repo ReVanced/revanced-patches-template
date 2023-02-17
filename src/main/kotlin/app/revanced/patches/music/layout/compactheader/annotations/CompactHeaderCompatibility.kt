@@ -26,7 +26,8 @@ import app.revanced.patcher.annotation.Package
             "5.42.50",
             "5.42.51",
             "5.43.55",
-            "5.43.56"
+            "5.43.56",
+            "5.44.52"
         )
     )]
 )
