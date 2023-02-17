@@ -2,9 +2,9 @@ package app.revanced.patches.twelvewidgets.unlock.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
-object WeatherWidgetConfigureActivity : MethodFingerprint(
+object ScreentimeSmallWidgetUnlockFingerprint : MethodFingerprint(
     "L",
     customFingerprint = { methodDef ->
-        methodDef.definingClass.endsWith("/WeatherWidgetConfigureActivity;") && methodDef.name == "getAddButton"
+        methodDef.definingClass.endsWith("/ScreentimeSmallWidgetConfigureActivity;") && methodDef.name == "getAddButton"
     }
 )

@@ -23,18 +23,20 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
     listOf(
         AgendaDaysWidgetUnlockFingerprint,
         CalendarBigWidgetUnlockFingerprint,
-        CalendarWideTimelineWidgetConfigureActivity,
-        ScreentimeSmallWidgetConfigureActivity,
-        WeatherWidgetConfigureActivity
+        CalendarWideDayEventsWidgetUnlockFingerprint,
+        CalendarWideTimelineWidgetUnlockFingerprint,
+        ScreentimeSmallWidgetUnlockFingerprint,
+        WeatherWidgetUnlockFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         listOf(
             AgendaDaysWidgetUnlockFingerprint,
             CalendarBigWidgetUnlockFingerprint,
-            CalendarWideTimelineWidgetConfigureActivity,
-            ScreentimeSmallWidgetConfigureActivity,
-            WeatherWidgetConfigureActivity
+            CalendarWideDayEventsWidgetUnlockFingerprint,
+            CalendarWideTimelineWidgetUnlockFingerprint,
+            ScreentimeSmallWidgetUnlockFingerprint,
+            WeatherWidgetUnlockFingerprint
         ).forEach { fingerprint ->
             if (fingerprint.result == null) return PatchResultError("Couldn't find method to patch")
             val mutableMethod = fingerprint.result!!.mutableMethod
