@@ -1,17 +1,14 @@
 package app.revanced.patches.twelvewidgets.unlock.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.extensions.toErrorResult
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.twelvewidgets.unlock.annotations.DetectionCompatibility
 import app.revanced.patches.twelvewidgets.unlock.fingerprints.*
 
 @Patch
@@ -37,18 +34,19 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
             CalendarWideTimelineWidgetUnlockFingerprint,
             ScreentimeSmallWidgetUnlockFingerprint,
             WeatherWidgetUnlockFingerprint
-        ).forEach { fingerprint ->
-            if (fingerprint.result == null) return PatchResultError("Couldn't find method to patch")
-            val mutableMethod = fingerprint.result!!.mutableMethod
-
-            mutableMethod.removeInstructions(4, 2)
-            mutableMethod.addInstructions(mutableMethod.implementation?.instructions?.size!!,
-                """
+        ).map { fingerprint ->
+            fingerprint.result?.mutableMethod ?: return fingerprint.toErrorResult()
+        }.forEach { method ->
+            method.apply {
+                removeInstructions(4, 2)
+                addInstructions(
+                    implementation?.instructions?.size!!, """
                     const/4 v1, 0x0
                     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
                     return-object v0
                 """
-            )
+                )
+            }
         }
 
         return PatchResultSuccess()
