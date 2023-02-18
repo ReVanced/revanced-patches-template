@@ -39,7 +39,7 @@
     <string name="segments_filler">Filler Tangent / Jokes</string>
     <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. Does not include segments providing context or background details</string>
     <string name="segments_nomusic">Music: Non-Music Section</string>
-    <string name="segments_nomusic_sum">Only for use in music videos. Should only be used for sections of music videos that aren\'t already covered by another category</string>
+    <string name="segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category</string>
 
     <string name="skip_button_compact">Skip</string>
     <string name="skip_button_sponsor">Skip sponsor</string>
