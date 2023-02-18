@@ -26,17 +26,17 @@
 
     <string name="segments_sponsor">Sponsor</string>
     <string name="segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shout-outs to causes/creators/websites/products they like</string>
-    <string name="segments_selfpromo">Unpaid / Self Promotion</string>
+    <string name="segments_selfpromo">Unpaid/Self Promotion</string>
     <string name="segments_selfpromo_sum">Similar to \'Sponsor\' except for unpaid or self promotion. Includes sections about merchandise, donations, or information about who they collaborated with</string>
     <string name="segments_interaction">Interaction Reminder (Subscribe)</string>
     <string name="segments_interaction_sum">A short reminder to like, subscribe or follow them in the middle of content. If it is long or about something specific, it should instead be under self promotion</string>
-    <string name="segments_intro">Intermission / Intro Animation</string>
+    <string name="segments_intro">Intermission/Intro Animation</string>
     <string name="segments_intro_sum">An interval without actual content. Could be a pause, static frame, or repeating animation. Does not include transitions containing information</string>
-    <string name="segments_endcards">Endcards / Credits</string>
+    <string name="segments_endcards">Endcards/Credits</string>
     <string name="segments_endcards_sum">Credits or when the YouTube endcards appear. Not for conclusions with information</string>
-    <string name="segments_preview">Preview / Recap</string>
+    <string name="segments_preview">Preview/Recap</string>
     <string name="segments_preview_sum">Collection of clips that show what is coming up or what happened in the video or in other videos of a series, where all information is repeated elsewhere in the video</string>
-    <string name="segments_filler">Filler Tangent / Jokes</string>
+    <string name="segments_filler">Filler Tangent/Jokes</string>
     <string name="segments_filler_sum">Tangential scenes added only for filler or humor that are not required to understand the main content of the video. Does not include segments providing context or background details</string>
     <string name="segments_nomusic">Music: Non-Music Section</string>
     <string name="segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category</string>
