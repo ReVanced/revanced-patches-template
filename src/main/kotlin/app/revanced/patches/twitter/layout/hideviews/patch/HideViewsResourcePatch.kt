@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.layout.hideviews.annotations.HideViewsCompatibility
 import org.w3c.dom.Element
 
-@Patch(false)
+@Patch
 @DependsOn([HideViewsBytecodePatch::class])
 @Name("hide-views-stats")
 @Description("Hides the view stats under tweets.")
