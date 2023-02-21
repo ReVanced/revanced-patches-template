@@ -24,7 +24,7 @@ class SignatureDetectionPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val onCreateMethod = MainOnCreateFingerprint.result?.mutableMethod
+        val onCreateMethod = MainOnCreateFingerprint.result!!
         val checkSignatureFingerprint = object : MethodFingerprint(
             strings = listOf(
                 "currentSignature"
@@ -40,15 +40,26 @@ class SignatureDetectionPatch : BytecodePatch(
                 Opcode.INVOKE_STATIC,
             )
         ) {}
-        val patternResult = checkSignatureFingerprint.also {
-            it.resolve(context,onCreateMethod!!,MainOnCreateFingerprint.result?.classDef!!)
-        }.result!!.scanResult.patternScanResult
 
-        with(onCreateMethod?.implementation) {
-            val signCheckResultInstr = this?.instructions?.get(patternResult?.endIndex!! + 1)
-            if (signCheckResultInstr?.opcode!=Opcode.MOVE_RESULT) return PatchResultError("Can't find result of signature check")
-            this?.replaceInstruction(signCheckResultInstr.location.index,
-                BuilderInstruction11n(Opcode.CONST_4,(signCheckResultInstr as OneRegisterInstruction).registerA,1))
+        val patternResult = checkSignatureFingerprint.also {
+            it.resolve(
+                context,
+                onCreateMethod.method,
+                onCreateMethod.classDef,
+            )
+        }.result!!.scanResult.patternScanResult!!
+
+        with(onCreateMethod.mutableMethod.implementation!!) {
+            val signCheckResultInstr = this.instructions[patternResult.endIndex + 1]!!
+            if (signCheckResultInstr.opcode!=Opcode.MOVE_RESULT) return PatchResultError("Can't find result of signature check")
+            this.replaceInstruction(
+                signCheckResultInstr.location.index,
+                BuilderInstruction11n(
+                    Opcode.CONST_4,
+                    (signCheckResultInstr as OneRegisterInstruction).registerA,
+                    1
+                )
+            )
         }
 
         return PatchResultSuccess()
