@@ -1,7 +1,6 @@
 package app.revanced.patches.photomath.detection.signature.patch
 
 import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -10,15 +9,12 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.photomath.detection.signature.annotations.DisableSignatureDetectionCompatibilty
 import app.revanced.patches.photomath.detection.signature.fingerprints.MainOnCreateFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction11n
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@Name("disable-signature-detection")
 @Description("Disables detection of incorrect signature.")
 @DisableSignatureDetectionCompatibilty
 @Version("0.0.1")
