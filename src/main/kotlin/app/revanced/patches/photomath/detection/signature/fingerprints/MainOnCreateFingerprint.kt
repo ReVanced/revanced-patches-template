@@ -8,6 +8,6 @@ object MainOnCreateFingerprint : MethodFingerprint(
     returnType = "V",
     access = AccessFlags.PUBLIC or AccessFlags.FINAL,
     customFingerprint = { methodDef ->
-        methodDef.definingClass.equals("Lcom/microblink/photomath/PhotoMath;") && methodDef.name == "onCreate"
+        methodDef.definingClass == "Lcom/microblink/photomath/PhotoMath;" && methodDef.name == "onCreate"
     }
 )

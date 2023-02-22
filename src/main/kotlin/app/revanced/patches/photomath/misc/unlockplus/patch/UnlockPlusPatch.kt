@@ -25,17 +25,18 @@ class UnlockPlusPatch : BytecodePatch(
     listOf(
         IsPlusUnlockedFingerprint
     )
-){
+) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val plusUnlockedMethod = IsPlusUnlockedFingerprint.result?.mutableMethod
-            ?: return IsPlusUnlockedFingerprint.toErrorResult()
-        plusUnlockedMethod.addInstructions(
-            0,
-            """
+        IsPlusUnlockedFingerprint.result?.mutableMethod?.apply {
+            addInstructions(
+                0,
+                """
                 const/4 v0, 0x1
                 return v0
             """
-        )
+            )
+        } ?: return IsPlusUnlockedFingerprint.toErrorResult()
+
         return PatchResultSuccess()
     }
 
