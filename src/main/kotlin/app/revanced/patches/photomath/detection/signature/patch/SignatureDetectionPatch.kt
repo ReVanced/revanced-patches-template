@@ -29,7 +29,7 @@ class SignatureDetectionPatch : BytecodePatch(
             it.resolve(context, mainOnCreate.method, mainOnCreate.classDef)
         }.result!!.scanResult.patternScanResult!!
 
-        with(mainOnCreate.mutableMethod) {
+        mainOnCreate.mutableMethod.apply {
             val signatureCheckInstruction = instruction(patternResult.endIndex)
             val checkRegister = (signatureCheckInstruction as OneRegisterInstruction).registerA
 
