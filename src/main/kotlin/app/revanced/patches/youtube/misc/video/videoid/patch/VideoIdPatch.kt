@@ -25,6 +25,20 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class VideoIdPatch : BytecodePatch(
     listOf(VideoIdFingerprint)
 ) {
+    override fun execute(context: BytecodeContext): PatchResult {
+        VideoIdFingerprint.result?.let {
+            val videoIdRegisterInstructionIndex = it.scanResult.patternScanResult!!.endIndex
+
+            with(it.mutableMethod) {
+                insertMethod = this
+                videoIdRegister = (instruction(videoIdRegisterInstructionIndex) as OneRegisterInstruction).registerA
+                insertIndex = videoIdRegisterInstructionIndex + 1
+            }
+        } ?: return VideoIdFingerprint.toErrorResult()
+
+        return PatchResultSuccess()
+    }
+
     companion object {
         private var videoIdRegister = 0
         private var insertIndex = 0
@@ -46,20 +60,6 @@ class VideoIdPatch : BytecodePatch(
                 "invoke-static {v$videoIdRegister}, $methodDescriptor"
             )
         }
-    }
-
-    override fun execute(context: BytecodeContext): PatchResult {
-        VideoIdFingerprint.result?.let {
-            val videoIdRegisterInstructionIndex = it.scanResult.patternScanResult!!.endIndex
-
-            with(it.mutableMethod) {
-                insertMethod = this
-                videoIdRegister = (instruction(videoIdRegisterInstructionIndex) as OneRegisterInstruction).registerA
-                insertIndex = videoIdRegisterInstructionIndex + 1
-            }
-        } ?: return VideoIdFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
     }
 }
 

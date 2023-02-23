@@ -48,12 +48,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         RemoveLikeFingerprint,
     )
 ) {
-
-    private companion object {
-        const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
-    }
-
     override fun execute(context: BytecodeContext): PatchResult {
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
@@ -130,7 +124,12 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
+    private companion object {
+        const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
+
+        private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
+    }
 
     private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
 
