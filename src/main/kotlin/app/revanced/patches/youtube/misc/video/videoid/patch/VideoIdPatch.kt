@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -22,9 +23,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 @DependsOn([IntegrationsPatch::class])
 class VideoIdPatch : BytecodePatch(
-    listOf(
-        VideoIdFingerprint
-    )
+    listOf(VideoIdFingerprint)
 ) {
     companion object {
         private var videoIdRegister = 0
@@ -51,12 +50,12 @@ class VideoIdPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext): PatchResult {
         VideoIdFingerprint.result?.let {
-            var videoIdRegisterInstructionIndex = it.scanResult.patternScanResult!!.endIndex;
+            val videoIdRegisterInstructionIndex = it.scanResult.patternScanResult!!.endIndex
 
-            with (it.mutableMethod) {
+            with(it.mutableMethod) {
                 insertMethod = this
-                videoIdRegister = (implementation!!.instructions[videoIdRegisterInstructionIndex] as OneRegisterInstruction).registerA
-                insertIndex = videoIdRegisterInstructionIndex + 1;
+                videoIdRegister = (instruction(videoIdRegisterInstructionIndex) as OneRegisterInstruction).registerA
+                insertIndex = videoIdRegisterInstructionIndex + 1
             }
         } ?: return VideoIdFingerprint.toErrorResult()
 
