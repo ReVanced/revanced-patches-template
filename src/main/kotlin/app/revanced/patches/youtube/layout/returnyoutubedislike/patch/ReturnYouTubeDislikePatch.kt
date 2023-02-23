@@ -66,10 +66,11 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         }
 
         ShortsTextComponentParentFingerprint.result?.let {
-            with(context
-                .toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
-                .getMethod() as MutableMethod
+            with(
+                context
+                    .toMethodWalker(it.method)
+                    .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
+                    .getMethod() as MutableMethod
             ) {
                 // After walking, verify the found method is what's expected.
                 if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1) {
@@ -80,8 +81,10 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
                 val insertInstructions = implementation!!.instructions
                 val insertIndex = insertInstructions.size - 1
-                val spannedParameterRegister = (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
-                val existingInstructionReference = (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
+                val spannedParameterRegister =
+                    (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
+                val existingInstructionReference =
+                    (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
                 if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
                     return PatchResultError(
                         "Method signature parameter did not match: $existingInstructionReference"
