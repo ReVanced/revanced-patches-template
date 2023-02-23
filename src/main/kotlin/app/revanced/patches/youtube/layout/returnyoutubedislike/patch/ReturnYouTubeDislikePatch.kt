@@ -55,73 +55,70 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             DislikeFingerprint.toPatch(Vote.DISLIKE),
             RemoveLikeFingerprint.toPatch(Vote.REMOVE_LIKE)
         ).forEach { (fingerprint, vote) ->
-            with(fingerprint.result ?: return PatchResultError("Failed to find ${fingerprint.name} method.")) {
-                mutableMethod.addInstructions(
+            fingerprint.result?.mutableMethod?.apply {
+                addInstructions(
                     0,
                     """
                     const/4 v0, ${vote.value}
                     invoke-static {v0}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->sendVote(I)V
                     """
                 )
-            }
+            } ?: return PatchResultError("Failed to find ${fingerprint.name} method.")
         }
 
         ShortsTextComponentParentFingerprint.result?.let {
-            with(
-                context
-                    .toMethodWalker(it.method)
-                    .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
-                    .getMethod() as MutableMethod
-            ) {
-                // After walking, verify the found method is what's expected.
-                if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1) {
-                    return PatchResultError(
-                        "Method signature did not match: $this $parameterTypes"
-                    )
+            context
+                .toMethodWalker(it.method)
+                .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
+                .getMethod().let { method ->
+                    with(method as MutableMethod) {
+                        // After walking, verify the found method is what's expected.
+                        if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1)
+                            return PatchResultError("Method signature did not match: $this $parameterTypes")
+
+                        val insertIndex = implementation!!.instructions.size - 1
+
+                        val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
+                        val parameter = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
+
+                        if (!parameter.toString().endsWith("Landroid/text/Spanned;"))
+                            return PatchResultError("Method signature parameter did not match: $parameter")
+
+                        addInstructions(
+                            insertIndex,
+                            """
+                                invoke-static {v$spannedParameterRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                                move-result-object v$spannedParameterRegister
+                            """
+                        )
+                    }
                 }
-
-                val insertIndex = implementation!!.instructions.size - 1
-                val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
-                val existingInstructionReference = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
-                if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
-                    return PatchResultError(
-                        "Method signature parameter did not match: $existingInstructionReference"
-                    )
-                }
-
-                addInstructions(
-                    insertIndex, """
-                        invoke-static {v$spannedParameterRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
-                        move-result-object v$spannedParameterRegister
-                    """
-                )
-            }
-
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
         VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
-        with(TextComponentFingerprint
-            .apply { resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
-            .result ?: return TextComponentFingerprint.toErrorResult()
-        ) {
-            val createComponentMethod = mutableMethod
+        TextComponentFingerprint.also { it.resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
+            .result?.let {
+                with(it.mutableMethod) {
+                    val createComponentMethod = this
 
-            val conversionContextParam = 5
-            val textRefParam = createComponentMethod.parameters.size - 2
-            // Insert index must be 0, otherwise UI does not updated correctly in some situations
-            // such as switching from full screen or when using previous/next overlay buttons.
-            val insertIndex = 0
+                    val conversionContextParam = 5
+                    val textRefParam = createComponentMethod.parameters.size - 2
+                    // Insert index must be 0, otherwise UI does not updated correctly in some situations
+                    // such as switching from full screen or when using previous/next overlay buttons.
+                    val insertIndex = 0
 
-            createComponentMethod.addInstructions(
-                insertIndex,
-                """
-                    move-object/from16 v7, p$conversionContextParam
-                    move-object/from16 v8, p$textRefParam
-                    invoke-static {v7, v8}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
-                """
-            )
-        }
+                    createComponentMethod.addInstructions(
+                        insertIndex,
+                        """
+                            move-object/from16 v7, p$conversionContextParam
+                            move-object/from16 v8, p$textRefParam
+                            invoke-static {v7, v8}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
+                        """
+                    )
+                }
+            } ?: return TextComponentFingerprint.toErrorResult()
+
         return PatchResultSuccess()
     }
 
