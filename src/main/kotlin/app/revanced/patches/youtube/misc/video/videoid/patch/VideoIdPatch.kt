@@ -40,6 +40,7 @@ class VideoIdPatch : BytecodePatch(
             methodDescriptor: String
         ) {
             insertMethod.addInstructions(
+                // TODO: The order has been proven to not be required, so remove the logic for keeping order.
                 // Keep injection calls in the order they're added:
                 // Increment index. So if additional injection calls are added, those calls run after this injection call.
                 insertIndex++,
