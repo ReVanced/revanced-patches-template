@@ -8,6 +8,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -79,12 +80,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     )
                 }
 
-                val insertInstructions = implementation!!.instructions
-                val insertIndex = insertInstructions.size - 1
-                val spannedParameterRegister =
-                    (insertInstructions.elementAt(insertIndex) as OneRegisterInstruction).registerA
-                val existingInstructionReference =
-                    (insertInstructions.elementAt(insertIndex - 2) as BuilderInstruction35c).reference
+                val insertIndex = implementation!!.instructions.size - 1
+                val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
+                val existingInstructionReference = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
                 if (!existingInstructionReference.toString().endsWith("Landroid/text/Spanned;")) {
                     return PatchResultError(
                         "Method signature parameter did not match: $existingInstructionReference"
