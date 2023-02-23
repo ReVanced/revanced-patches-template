@@ -50,6 +50,14 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
+        // region Inject newVideoLoaded event handler
+
+        VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
+
+        // endregion
+
+        // region Hook interaction
+
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
             DislikeFingerprint.toPatch(Vote.DISLIKE),
@@ -65,6 +73,32 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             } ?: return PatchResultError("Failed to find ${fingerprint.name} method.")
         }
+
+        // endregion
+
+        // region Hook components
+
+        TextComponentFingerprint.also { it.resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
+            .result?.let {
+                with(it.mutableMethod) {
+                    val createComponentMethod = this
+
+                    val conversionContextParam = 5
+                    val textRefParam = createComponentMethod.parameters.size - 2
+                    // Insert index must be 0, otherwise UI does not updated correctly in some situations
+                    // such as switching from full screen or when using previous/next overlay buttons.
+                    val insertIndex = 0
+
+                    createComponentMethod.addInstructions(
+                        insertIndex,
+                        """
+                            move-object/from16 v7, p$conversionContextParam
+                            move-object/from16 v8, p$textRefParam
+                            invoke-static {v7, v8}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
+                        """
+                    )
+                }
+            } ?: return TextComponentFingerprint.toErrorResult()
 
         ShortsTextComponentParentFingerprint.result?.let {
             context
@@ -95,29 +129,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 }
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
-        VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
-
-        TextComponentFingerprint.also { it.resolve(context, TextComponentSpecParentFingerprint.result!!.classDef) }
-            .result?.let {
-                with(it.mutableMethod) {
-                    val createComponentMethod = this
-
-                    val conversionContextParam = 5
-                    val textRefParam = createComponentMethod.parameters.size - 2
-                    // Insert index must be 0, otherwise UI does not updated correctly in some situations
-                    // such as switching from full screen or when using previous/next overlay buttons.
-                    val insertIndex = 0
-
-                    createComponentMethod.addInstructions(
-                        insertIndex,
-                        """
-                            move-object/from16 v7, p$conversionContextParam
-                            move-object/from16 v8, p$textRefParam
-                            invoke-static {v7, v8}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V
-                        """
-                    )
-                }
-            } ?: return TextComponentFingerprint.toErrorResult()
+        // endregion
 
         return PatchResultSuccess()
     }
