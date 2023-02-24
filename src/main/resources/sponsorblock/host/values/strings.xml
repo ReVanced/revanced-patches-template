@@ -144,11 +144,13 @@
     <string name="stats_saved_zero">SponsorBlock leaderboard</string>
     <string name="stats_saved" formatted="false">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
     <string name="stats_saved_sum_zero">Tap here to see the global stats and top contributors</string>
-    <string name="stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives. Tap here to see the leaderboard</string>
+    <string name="stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard</string>
     <string name="stats_self_saved" formatted="false">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
     <string name="stats_self_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b></string>
     <string name="stats_self_saved_reset_title">Reset skipped segments counter?</string>
-    <string name="minutes">minutes</string>
+    <string name="stats_saved_hour_format" formatted="false">%d hours %d minutes</string>
+    <string name="stats_saved_minute_format" formatted="false">%d minutes %d seconds</string>
+    <string name="stats_saved_second_format" formatted="false">%d seconds</string>
     <string name="color_change">Looking to change the colors?</string>
     <string name="color_change_sum">Tap on a category above and edit the color value</string>
     <string name="color_choose_category">Choose the category</string>
