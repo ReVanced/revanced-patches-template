@@ -38,6 +38,13 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_adremover_separator_summary_off", "Gray separators are shown")
             ),
             SwitchPreference(
+                "revanced_horizontal_video_shelf",
+                StringResource("revanced_horizontal_video_shelf_title", "Hide horizontal video shelf"),
+                true,
+                StringResource("revanced_horizontal_video_shelf_summary_on", "Shelf is hidden"),
+                StringResource("revanced_horizontal_video_shelf_summary_off", "Shelf is shown")
+            ),
+            SwitchPreference(
                 "revanced_adremover_hide_channel_guidelines",
                 StringResource("revanced_adremover_hide_channel_guidelines_enabled_title", "Hide channel guidelines"),
                 true,
@@ -184,6 +191,41 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 true,
                 StringResource("revanced_adremover_medical_panel_enabled_summary_on", "Medical panels are hidden"),
                 StringResource("revanced_adremover_medical_panel_enabled_summary_off", "Medical panels are shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_channel_bar",
+                StringResource("revanced_hide_channel_bar_title", "Hide channel bar"),
+                false,
+                StringResource("revanced_hide_channel_bar_summary_on", "Channel bar is hidden"),
+                StringResource("revanced_hide_channel_bar_summary_off", "Channel bar is shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_quick_actions",
+                StringResource("revanced_hide_quick_actions_title", "Hide quick actions in fullscreen"),
+                false,
+                StringResource("revanced_hide_quick_actions_summary_on", "Quick actions are hidden"),
+                StringResource("revanced_hide_quick_actions_summary_off", "Quick actions are shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_related_videos",
+                StringResource("revanced_hide_related_videos_title", "Hide related videos in quick actions"),
+                false,
+                StringResource("revanced_hide_related_videos_summary_on", "Related videos are hidden"),
+                StringResource("revanced_hide_related_videos_summary_off", "Related videos are shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_channel_bar",
+                StringResource("revanced_hide_channel_bar_title", "Hide channel bar"),
+                false,
+                StringResource("revanced_hide_channel_bar_summary_on", "Channel bar is hidden"),
+                StringResource("revanced_hide_channel_bar_summary_off", "Channel bar is shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_image_shelf",
+                StringResource("revanced_hide_image_shelf", "Hide image shelf in search results"),
+                true,
+                StringResource("revanced_hide_image_shelf_summary_on", "Image shelf is hidden"),
+                StringResource("revanced_hide_image_shelf_summary_off", "Image shelf is shown")
             ),
         )
 
