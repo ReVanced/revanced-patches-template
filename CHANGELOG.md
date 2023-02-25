@@ -1,3 +1,31 @@
+# [2.165.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.4...v2.165.0-dev.5) (2023-02-24)
+
+
+### Features
+
+* **youtube/general-ads:** do not hide components in library tab ([a8b597a](https://github.com/revanced/revanced-patches/commit/a8b597a1ba2fa6f6e37d3792e85296c1f07da630))
+
+# [2.165.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.3...v2.165.0-dev.4) (2023-02-24)
+
+
+### Features
+
+* **youtube/disable-player-popup-panels:** use better patch description ([eda4ed3](https://github.com/revanced/revanced-patches/commit/eda4ed3a3e83b5a0e97740547494708f4e6536c2))
+
+# [2.165.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.2...v2.165.0-dev.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** fix compatibility with newer versions ([#1672](https://github.com/revanced/revanced-patches/issues/1672)) ([9a295a9](https://github.com/revanced/revanced-patches/commit/9a295a9aa1ca40e2afde22ea199805e8fbe93832))
+
+# [2.165.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.1...v2.165.0-dev.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* **youtube/general-ads:** remove duplicate preference ([cd7a728](https://github.com/revanced/revanced-patches/commit/cd7a728f52cd29c76a24b37c07c0e4d4c5485b07))
+
 # [2.165.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.164.0...v2.165.0-dev.1) (2023-02-24)
 
 
