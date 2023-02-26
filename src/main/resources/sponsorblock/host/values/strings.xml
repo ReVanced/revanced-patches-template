@@ -16,6 +16,7 @@
     <string name="sb_general_skipcount_sum">Lets the SponsorBlock leaderboard know how much time is saved. If enabled, a message is sent to the leaderboard each time a segment is skipped</string>
     <string name="sb_general_adjusting">Adjust new segment step</string>
     <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when adding new segments</string>
+    <string name="sb_general_adjusting_invalid">Value must be a positive number</string>
     <string name="sb_general_min_duration">Minimum segment duration</string>
     <string name="sb_general_min_duration_sum">Segments shorter than the set value (in seconds) will not be skipped or shown in the player</string>
     <string name="sb_general_uuid">Your private user id</string>
