@@ -61,7 +61,13 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/PlayerController;"
+            "Lapp/revanced/integrations/sponsorblock/SegmentPlaybackController;"
+        const val INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/ShieldButtonController;"
+        const val INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/VotingButtonController;"
+        const val INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/SponsorBlockViewController;"
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
@@ -178,8 +184,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         method.addInstructions(
                             moveResultInstructionIndex + 1, // insert right after moving the view to the register and use that register
                             """
-                                invoke-static {v$inflatedViewRegister}, Lapp/revanced/integrations/sponsorblock/ShieldButton;->initialize(Ljava/lang/Object;)V
-                                invoke-static {v$inflatedViewRegister}, Lapp/revanced/integrations/sponsorblock/VotingButton;->initialize(Ljava/lang/Object;)V
+                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
+                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
                             """
                         )
                     }
@@ -190,8 +196,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         // change visibility of the buttons
                         invertVisibilityMethod.addInstructions(
                             0, """
-                                invoke-static {p1}, Lapp/revanced/integrations/sponsorblock/ShieldButton;->changeVisibilityNegatedImmediate(Z)V
-                                invoke-static {p1}, Lapp/revanced/integrations/sponsorblock/VotingButton;->changeVisibilityNegatedImmediate(Z)V
+                                invoke-static {p1}, $INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate(Z)V
+                                invoke-static {p1}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate(Z)V
                             """.trimIndent()
                         )
                     }
@@ -200,8 +206,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         }
 
         // change visibility of the buttons
-        PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/ShieldButton;->changeVisibility(Z)V")
-        PlayerControlsBytecodePatch.injectVisibilityCheckCall("Lapp/revanced/integrations/sponsorblock/VotingButton;->changeVisibility(Z)V")
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall("$INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibility(Z)V")
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall("$INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibility(Z)V")
 
         // append the new time to the player layout
         val appendTimeFingerprintResult = AppendTimeFingerprint.result!!
@@ -222,7 +228,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         // initialize the sponsorblock view
         PlayerOverlaysLayoutInitFingerprint.result!!.mutableMethod.addInstruction(
             6, // after inflating the view
-            "invoke-static {p0}, Lapp/revanced/integrations/sponsorblock/player/ui/SponsorBlockView;->initialize(Ljava/lang/Object;)V"
+            "invoke-static {p0}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V"
         )
 
         // get rectangle field name
@@ -234,7 +240,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // replace the "replaceMeWith*" strings
         context
-            .proxy(context.classes.first { it.type.endsWith("PlayerController;") })
+            .proxy(context.classes.first { it.type.endsWith("SegmentPlaybackController;") })
             .mutableClass
             .methods
             .find { it.name == "setSponsorBarRect" }
