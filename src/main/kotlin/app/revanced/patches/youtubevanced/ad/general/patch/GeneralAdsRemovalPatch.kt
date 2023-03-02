@@ -51,7 +51,6 @@ class GeneralAdsRemovalPatch : BytecodePatch(
                         insertIndex,
                         """
                            const-string v$register, "$component"
-
                            invoke-interface {v0, v$register}, Ljava/util/List;->add(Ljava/lang/Object;)Z
                         """
                     )
