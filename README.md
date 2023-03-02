@@ -153,8 +153,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.05.0 |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.05.0 |
+| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.08.0 |
+| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.08.0 |
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
 
@@ -174,15 +174,6 @@ The official Patch bundle provided by ReVanced and the community.
 |:--------:|:--------------:|:-----------------:|
 | `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.5.2 |
 | `spoof-signature` | Spoofs the signature of the app. | 2.5.2 |
-</details>
-
-### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all professional features. | all |
-| `unlock-pro` | Unlocks pro features. | 3.4.9 |
 </details>
 
 ### [📦 `com.vanced.android.youtube`](https://play.google.com/store/apps/details?id=com.vanced.android.youtube)
@@ -319,6 +310,22 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
+</details>
+
+### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
