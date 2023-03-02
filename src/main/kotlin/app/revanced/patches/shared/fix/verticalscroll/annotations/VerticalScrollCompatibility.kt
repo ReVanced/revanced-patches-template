@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.fix.verticalscroll.annotations
+package app.revanced.patches.shared.fix.verticalscroll.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
