@@ -85,7 +85,7 @@
     <string name="sb_about">About</string>
     <string name="sb_about_api">Sponsor.Ajay.app</string>
     <string name="sb_about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms</string>
-    <string name="sb_about_madeby">Integration made by JakubWeg,\nrecoded by oSumAtrIX</string>
+    <string name="sb_about_made_by">ReVanced integration by JakubWeg,\nrecoded by oSumAtrIX</string>
 
     <string name="sb_submit_failed_invalid" formatted="false">Can\'t submit the segment: %s</string>
     <string name="sb_submit_failed_timeout">Unable to submit segments (API timed out)</string>
@@ -153,12 +153,11 @@
     <string name="sb_stats_saved_hour_format" formatted="false">%d hours %d minutes</string>
     <string name="sb_stats_saved_minute_format" formatted="false">%d minutes %d seconds</string>
     <string name="sb_stats_saved_second_format" formatted="false">%d seconds</string>
-    <string name="sb_color_change">Looking to change the colors?</string>
-    <string name="sb_color_change_sum">Tap on a category above and edit the color value</string>
+    <string name="sb_color_dot_label">Color:</string>
     <string name="sb_color_changed">Color changed</string>
     <string name="sb_color_reset">Color reset</string>
     <string name="sb_color_invalid">Invalid hex code</string>
-    <string name="sb_reset">Reset</string>
+    <string name="sb_reset_color">Reset color</string>
 
     <string name="sb_api_url_reset">API URL reset</string>
     <string name="sb_api_url_invalid">Provided API URL is invalid</string>
