@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.fix.verticalscroll.patch.VerticalScrollPatch
+import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
 import app.revanced.patches.youtubevanced.ad.general.annotations.GeneralAdsCompatibility
 import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFingerprintPrimary
 import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFingerprintSecondary
