@@ -29,6 +29,7 @@
     <string name="sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped</string>
     <string name="sb_general_uuid">Your private user id</string>
     <string name="sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
+    <string name="sb_general_uuid_invalid">User id cannot be empty</string>
     <string name="sb_settings_ie">Import/Export settings</string>
     <string name="sb_settings_ie_sum">Your SponsorBlock JSON configuration that can be imported/exported to ReVanced and other SponsorBlock platforms. This includes your private user id. Be sure to share this wisely</string>
     <string name="sb_general_api_url">Change API URL</string>
