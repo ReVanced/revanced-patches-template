@@ -156,7 +156,7 @@
     <string name="sb_color_dot_label">Color:</string>
     <string name="sb_color_changed">Color changed</string>
     <string name="sb_color_reset">Color reset</string>
-    <string name="sb_color_invalid">Invalid hex code</string>
+    <string name="sb_color_invalid">Invalid color code</string>
     <string name="sb_reset_color">Reset color</string>
 
     <string name="sb_api_url_reset">API URL reset</string>
