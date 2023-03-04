@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="sb_enable_sb">Enable SponsorBlock</string>
-    <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts in YouTube videos</string>
-    <string name="sb_enable_voting">Show segment voting button</string>
-    <string name="sb_enable_voting_sum">Turn this on to enable voting for segments</string>
-    <string name="sb_enable_add_segment">Show add new segment button</string>
-    <string name="sb_enable_add_segment_sum">Turn this on to allow adding new video segments</string>
+    <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos</string>
+    <string name="sb_enable_voting">Show voting button</string>
+    <string name="sb_enable_voting_sum_on">Segment voting button is shown</string>
+    <string name="sb_enable_voting_sum_off">Segment voting button is not shown</string>
+    <string name="sb_enable_create_segment">Show create new segment button</string>
+    <string name="sb_enable_create_segment_sum_on">Create new segment button is shown</string>
+    <string name="sb_enable_create_segment_sum_off">Create new segment button is not shown</string>
     <string name="sb_enable_compact_skip_button">Use compact skip button</string>
-    <string name="sb_enable_compact_skip_button_sum">Turn this on to use a smaller skip button</string>
+    <string name="sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width</string>
+    <string name="sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance</string>
     <string name="sb_diff_segments">What to do with different segments</string>
     <string name="sb_general">General</string>
     <string name="sb_general_skiptoast">Show a toast when skipping segment automatically</string>
-    <string name="sb_general_skiptoast_sum">Tap here to see an example toast</string>
+    <string name="sb_general_skiptoast_sum_on">Toast shown when a segment is automatically skipped. Tap here to see an example</string>
+    <string name="sb_general_skiptoast_sum_off">Toast not shown. Tap here to see an example</string>
     <string name="sb_general_skipcount">Enable skip count tracking</string>
-    <string name="sb_general_skipcount_sum">Lets the SponsorBlock leaderboard know how much time is saved. If enabled, a message is sent to the leaderboard each time a segment is skipped</string>
+    <string name="sb_general_skipcount_sum_on">Lets the SponsorBlock leaderboard know how much time is saved. A message is sent to the leaderboard each time a segment is skipped</string>
+    <string name="sb_general_skipcount_sum_off">Skip count tracking is not enabled</string>
+    <string name="sb_general_time_without">Show video length without segments</string>
+    <string name="sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length</string>
+    <string name="sb_general_time_without_sum_off">Full video length shown</string>
     <string name="sb_general_adjusting">Adjust new segment step</string>
-    <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when adding new segments</string>
+    <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when creating new segments</string>
     <string name="sb_general_adjusting_invalid">Value must be a positive number</string>
     <string name="sb_general_min_duration">Minimum segment duration</string>
-    <string name="sb_general_min_duration_sum">Segments shorter than the set value (in seconds) will not be skipped or shown in the player</string>
+    <string name="sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped</string>
     <string name="sb_general_uuid">Your private user id</string>
     <string name="sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
     <string name="sb_settings_ie">Import/Export settings</string>
-    <string name="sb_settings_ie_sum">This is your entire configuration that is applicable in the desktop extension in JSON. This includes your Private userID, so be sure to share this wisely</string>
+    <string name="sb_settings_ie_sum">Your SponsorBlock JSON configuration that can be imported/exported to ReVanced and other SponsorBlock platforms. This includes your private user id. Be sure to share this wisely</string>
     <string name="sb_general_api_url">Change API URL</string>
     <string name="sb_general_api_url_sum">The address SponsorBlock uses to make calls to the server. &lt;b>Don\'t change this unless you know what you\'re doing&lt;/b></string>
-    <string name="sb_settings_import_successful">Settings were successfully imported</string>
-    <string name="sb_settings_import_failed">Failed to import settings</string>
+    <string name="sb_settings_import_successful">Settings imported successfully</string>
+    <string name="sb_settings_import_failed">Failed to import: %s</string>
     <string name="sb_settings_export_failed">Failed to export settings (try clearing app data)</string>
 
     <string name="sb_segments_sponsor">Sponsor</string>
@@ -125,14 +133,12 @@
     <string name="sb_new_segment_edit_by_hand_parse_error">Invalid time given</string>
 
     <string name="sb_guidelines_preference_title">View guidelines</string>
-    <string name="sb_guidelines_preference_sum">Guidelines contain tips and rules about submitting segments</string>
-    <string name="sb_guidelines_popup_title">There are guidelines</string>
-    <string name="sb_guidelines_popup_content">It\'s recommended to read the SponsorBlock guidelines before submitting any segment</string>
+    <string name="sb_guidelines_preference_sum">Guidelines contain rules and tips for creating new segments</string>
+    <string name="sb_guidelines_popup_title">Follow the guidelines</string>
+    <string name="sb_guidelines_popup_content">Read the SponsorBlock guidelines before creating new segments</string>
     <string name="sb_guidelines_popup_already_read">Already read</string>
     <string name="sb_guidelines_popup_open">Show me</string>
 
-    <string name="sb_general_time_without">Show video length without segments</string>
-    <string name="sb_general_time_without_sum">Show the total video duration minus any segments, in parentheses next to the video length</string>
     <string name="sb_stats">Stats</string>
     <string name="sb_stats_connection_failure">Stats temporarily not available (API is down)</string>
     <string name="sb_stats_loading">Loading...</string>
@@ -159,6 +165,7 @@
     <string name="sb_color_invalid">Invalid color code</string>
     <string name="sb_reset_color">Reset color</string>
 
+    <string name="sb_reset">Reset</string>
     <string name="sb_api_url_reset">API URL reset</string>
     <string name="sb_api_url_invalid">Provided API URL is invalid</string>
     <string name="sb_api_url_changed">API URL changed</string>
