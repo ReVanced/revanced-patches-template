@@ -27,7 +27,7 @@
     <string name="sb_general_api_url_sum">The address SponsorBlock uses to make calls to the server. &lt;b>Don\'t change this unless you know what you\'re doing&lt;/b></string>
     <string name="sb_settings_import_successful">Settings were successfully imported</string>
     <string name="sb_settings_import_failed">Failed to import settings</string>
-    <string name="sb_settings_export_failed">Failed to export settings</string>
+    <string name="sb_settings_export_failed">Failed to export settings (try clearing app data)</string>
 
     <string name="sb_segments_sponsor">Sponsor</string>
     <string name="sb_segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shout-outs to causes/creators/websites/products they like</string>
