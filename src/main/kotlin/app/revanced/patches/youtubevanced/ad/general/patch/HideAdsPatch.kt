@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
-import app.revanced.patches.youtubevanced.ad.general.annotations.GeneralAdsCompatibility
+import app.revanced.patches.youtubevanced.ad.general.annotations.HideAdsCompatibility
 import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFingerprintPrimary
 import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFingerprintSecondary
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
@@ -22,9 +22,9 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 @Name("hide-ads")
 @Description("Removes ads from YouTube Vanced.")
 @DependsOn([VerticalScrollPatch::class])
-@GeneralAdsCompatibility
+@HideAdsCompatibility
 @Version("0.0.1")
-class GeneralAdsRemovalPatch : BytecodePatch(
+class HideAdsPatch : BytecodePatch(
     listOf(
         ContainsAdFingerprintPrimary,
         ContainsAdFingerprintSecondary

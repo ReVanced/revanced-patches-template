@@ -5,4 +5,4 @@ import app.revanced.patcher.annotation.Package
 
 @Compatibility([Package("com.vanced.android.youtube")])
 @Target(AnnotationTarget.CLASS)
-internal annotation class GeneralAdsCompatibility
+internal annotation class HideAdsCompatibility
