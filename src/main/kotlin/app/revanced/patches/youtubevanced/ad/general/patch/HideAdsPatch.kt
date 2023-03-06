@@ -48,11 +48,6 @@ class HideAdsPatch : BytecodePatch(
                 )
             }
         }
-        listOf(
-            ContainsAdFingerprint
-        ).map { it.result ?: return it.toErrorResult() }.forEach{
-
-        }
 
         return PatchResultSuccess()
     }
