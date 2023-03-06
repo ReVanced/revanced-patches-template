@@ -34,12 +34,10 @@ class HideAdsPatch : BytecodePatch(
         with(result.mutableMethod){
             val register = (instruction(insertIndex - 2) as Instruction21c).registerA
             listOf(
-                "video_display_full_layout", "active_view_display_container", "|ad_", "|ads_",
-                "ads_video_with_context", "legal_disclosure_cell", "primetime_promo",
-                "brand_video_shelf", "hero_promo_image", "statement_banner",
-                "square_image_layout", "watch_metadata_app_promo", "_ad_with",
-                "landscape_image_wide_button_layout", "cell_divider", "carousel_ad",
-                "video_display_full_buttoned_layout"
+                "video_display_full_buttoned_layout", "full_width_square_image_layout", "_ad_with",
+                "landscape_image_wide_button_layout", "banner_text_icon", "cell_divider",
+                "square_image_layout", "watch_metadata_app_promo", "video_display_full_layout",
+                "hero_promo_image", "statement_banner", "primetime_promo",
             ).forEach { component ->
                 this.addInstructions(
                     insertIndex,
