@@ -19,8 +19,8 @@ import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFing
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
-@Name("general-ad-removal")
-@Description("Removes general ads from YouTube Vanced.")
+@Name("hide-ads")
+@Description("Removes ads from YouTube Vanced.")
 @DependsOn([VerticalScrollPatch::class])
 @GeneralAdsCompatibility
 @Version("0.0.1")
