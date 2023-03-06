@@ -1,5 +1,6 @@
 package app.revanced.patches.tiktok.feedfilter.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -15,7 +16,6 @@ import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFing
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
-import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -31,21 +31,24 @@ class FeedFilterPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val method = FeedApiServiceLIZFingerprint.result!!.mutableMethod
-        for ((index, instruction) in method.implementation!!.instructions.withIndex()) {
-            if (instruction.opcode != Opcode.RETURN_OBJECT) continue
-            val feedItemsRegister = (instruction as OneRegisterInstruction).registerA
-            method.addInstruction(
-                index,
-                "invoke-static {v$feedItemsRegister}, Lapp/revanced/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
-            )
-            break
-        }
-        val method2 = SettingsStatusLoadFingerprint.result!!.mutableMethod
-        method2.addInstruction(
+
+        FeedApiServiceLIZFingerprint.result?.let {
+            val index = it.scanResult.patternScanResult!!.startIndex
+
+            with (it.mutableMethod) {
+                val register = (this.implementation!!.instructions[index] as OneRegisterInstruction).registerA
+                addInstruction(
+                    index,
+                    "invoke-static {v$register}, Lapp/revanced/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
+                )
+            }
+        } ?: return FeedApiServiceLIZFingerprint.toErrorResult()
+
+        SettingsStatusLoadFingerprint.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableFeedFilter()V"
-        )
+        ) ?: return SettingsStatusLoadFingerprint.toErrorResult()
+
         return PatchResultSuccess()
     }
 }
