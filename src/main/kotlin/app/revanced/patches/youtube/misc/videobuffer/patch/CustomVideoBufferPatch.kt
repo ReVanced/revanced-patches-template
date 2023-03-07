@@ -31,7 +31,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 // TODO: either delete or hide this patch (remove @Patch annotation)
 @Patch(include = false)
 @Name("custom-video-buffer")
-@Description("(deprecated) Lets you change the buffers of videos.")
+@Description("Lets you change the buffers of videos.")
 @DependsOn([SettingsPatch::class])
 @CustomVideoBufferCompatibility
 @Version("0.0.1")
