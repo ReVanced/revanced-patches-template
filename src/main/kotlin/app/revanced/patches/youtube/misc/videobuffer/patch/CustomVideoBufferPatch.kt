@@ -28,9 +28,10 @@ import app.revanced.patches.youtube.misc.videobuffer.fingerprints.PlaybackBuffer
 import app.revanced.patches.youtube.misc.videobuffer.fingerprints.ReBufferFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
+// TODO: either delete or hide this patch (remove @Patch annotation)
+@Patch(include = false)
 @Name("custom-video-buffer")
-@Description("Lets you change the buffers of videos.")
+@Description("(deprecated) Lets you change the buffers of videos.")
 @DependsOn([SettingsPatch::class])
 @CustomVideoBufferCompatibility
 @Version("0.0.1")
@@ -45,7 +46,7 @@ class CustomVideoBufferPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_custom_video_buffer",
-                StringResource("revanced_custom_video_buffer_title", "Video buffer settings"),
+                StringResource("revanced_custom_video_buffer_title", "Notice: custom buffer will soon be removed"),
                 listOf(
                     TextPreference(
                         "revanced_pref_max_buffer_ms",
@@ -81,7 +82,9 @@ class CustomVideoBufferPatch : BytecodePatch(
                         )
                     )
                 ),
-                StringResource("revanced_custom_video_buffer_summary", "Custom settings for video buffer")
+                StringResource("revanced_custom_video_buffer_summary",
+                    "Due to recent changes by YouTube, this patch no longer functions correctly" +
+                            " and this patch will be removed in a future ReVanced release.")
             )
         )
         BufferType.values().forEach { type ->
