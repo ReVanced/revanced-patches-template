@@ -27,6 +27,7 @@ abstract class AbstractSettingsResourcePatch(
     override fun execute(context: ResourceContext): PatchResult {
         /*
          * used for self-restart
+         * TODO: do this only, when necessary
          */
         context.openEditor("AndroidManifest.xml").use { editor ->
             editor.file.getElementsByTagName("manifest").item(0).also {
