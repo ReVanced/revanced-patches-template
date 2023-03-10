@@ -153,8 +153,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.08.0 |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.08.0 |
+| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.09.1 |
+| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.09.1 |
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
 
@@ -296,6 +296,14 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
+### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
+</details>
+
 ### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
 <details>
 
@@ -318,14 +326,6 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all professional features. | 3.4.9 |
-</details>
-
-### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
