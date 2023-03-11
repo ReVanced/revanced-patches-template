@@ -1,3 +1,18 @@
+# [2.165.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.7...v2.165.0-dev.8) (2023-03-10)
+
+
+### Bug Fixes
+
+* **youtube/return-youtube-dislike:** add missing strings ([a8c88e3](https://github.com/revanced/revanced-patches/commit/a8c88e3b5a4079b684150962a50c9afe14de8156))
+
+
+### Features
+
+* **myexpenses/unlock-pro:** constrain to last working version ([21fa036](https://github.com/revanced/revanced-patches/commit/21fa03681f6cf20d22cc794b49d373eef0a9ecd4))
+* **reddit:** add more compatibility constraints ([6a53e1a](https://github.com/revanced/revanced-patches/commit/6a53e1a2db25fc5f99cbd489b00347b237143d69))
+* **reddit:** bump compatibility to `2023.09.1` ([#1729](https://github.com/revanced/revanced-patches/issues/1729)) ([40a01fa](https://github.com/revanced/revanced-patches/commit/40a01fa927635a0060f73987b44c8da4dee9736c))
+* **youtube:** bump compatibility to `18.05.40` ([#1704](https://github.com/revanced/revanced-patches/issues/1704)) ([3dc6f37](https://github.com/revanced/revanced-patches/commit/3dc6f3705c8dd266fde5dc7a9eb46cc138829762))
+
 # [2.165.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.165.0-dev.7...v2.165.0-dev.8) (2023-03-05)
 
 
