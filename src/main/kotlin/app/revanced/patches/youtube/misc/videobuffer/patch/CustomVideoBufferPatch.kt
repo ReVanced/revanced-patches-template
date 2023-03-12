@@ -26,8 +26,7 @@ class CustomVideoBufferPatch : BytecodePatch() {
             NonInteractivePreference(
                 StringResource("revanced_custom_video_buffer_disclaimer_title", "Custom video buffer"),
                 StringResource("revanced_custom_video_buffer_disclaimer_title_summary",
-                    "Notice: Due to recent changes by YouTube, custom video buffer no longer functions"
-                            + " and the patch was removed"),
+                    "These settings have been removed, because they were not functional for the duration of their existence"),
             )
         )
 
