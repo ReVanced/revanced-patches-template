@@ -19,7 +19,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
 @Name("hide-ads")
-@Description("Removes ads from YouTube Vanced.")
+@Description("Removes general ads.")
 @DependsOn([VerticalScrollPatch::class])
 @HideAdsCompatibility
 @Version("0.0.1")
@@ -29,25 +29,34 @@ class HideAdsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = ContainsAdFingerprint.result ?: return ContainsAdFingerprint.toErrorResult()
-        val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
-        with(result.mutableMethod){
-            val register = (instruction(insertIndex - 2) as Instruction21c).registerA
-            listOf(
-                "video_display_full_buttoned_layout", "full_width_square_image_layout", "_ad_with",
-                "landscape_image_wide_button_layout", "banner_text_icon", "cell_divider",
-                "square_image_layout", "watch_metadata_app_promo", "video_display_full_layout",
-                "hero_promo_image", "statement_banner", "primetime_promo",
-            ).forEach { component ->
-                this.addInstructions(
-                    insertIndex,
-                    """
-                           const-string v$register, "$component"
-                           invoke-interface {v0, v$register}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+        ContainsAdFingerprint.result?.let { result ->
+            result.mutableMethod.apply {
+                val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
+                val adsListRegister = (instruction(insertIndex - 2) as Instruction21c).registerA
+
+                listOf(
+                    "video_display_full_buttoned_layout",
+                    "full_width_square_image_layout",
+                    "_ad_with",
+                    "landscape_image_wide_button_layout",
+                    "banner_text_icon",
+                    "cell_divider",
+                    "square_image_layout",
+                    "watch_metadata_app_promo",
+                    "video_display_full_layout",
+                    "hero_promo_image",
+                    "statement_banner",
+                    "primetime_promo"
+                ).forEach { component ->
+                    addInstructions(
+                        insertIndex, """
+                           const-string v$adsListRegister, "$component"
+                           invoke-interface {v0, v$adsListRegister}, Ljava/util/List;->add(Ljava/lang/Object;)Z
                         """
-                )
+                    )
+                }
             }
-        }
+        } ?: return ContainsAdFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
