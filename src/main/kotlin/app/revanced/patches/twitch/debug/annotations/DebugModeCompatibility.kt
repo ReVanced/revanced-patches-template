@@ -3,20 +3,7 @@ package app.revanced.patches.twitch.debug.annotations
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
 
-@Compatibility(
-    [
-        Package(
-            "tv.twitch.android.app", arrayOf(
-                "14.3.3",
-                "14.4.0",
-                "14.5.0", 
-                "14.5.2",
-                "14.6.0",
-                "14.6.1"
-            )
-        )
-    ]
-)
+mpatibility([Package("tv.twitch.android.app")])
 @Target(AnnotationTarget.CLASS)
 internal annotation class DebugModeCompatibility
 
