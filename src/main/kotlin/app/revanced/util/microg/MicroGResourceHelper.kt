@@ -33,10 +33,11 @@ internal object MicroGResourceHelper {
         toName: String
     ) {
         fun Apk.transform() {
-            with(context.getFile("AndroidManifest.xml", this) ?: return) {
+            (context.openFile("AndroidManifest.xml", this) ?: return).use { file ->
+                val txt = file.readText()
                 if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed
-                    this.readText().replace(
+                    txt.replace(
                         "android:label=\"@string/app_name",
                         "android:label=\"$toName"
                     ).replace(
@@ -59,11 +60,13 @@ internal object MicroGResourceHelper {
                         "<package android:name=\"${Constants.MICROG_VENDOR}.android.gms\"/></queries>"
                     )
                 } else {
-                    this.readText()
+                    txt
                 }.replace(
                     "package=\"$fromPackageName",
                     "package=\"$toPackageName"
-                ).let(this::writeText)
+                ).let {
+                    file.replaceContents(it.toByteArray())
+                }
             }
         }
 

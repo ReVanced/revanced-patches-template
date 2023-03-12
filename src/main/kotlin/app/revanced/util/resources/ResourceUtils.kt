@@ -36,15 +36,13 @@ internal object ResourceUtils {
      */
     internal fun ResourceContext.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
         val classLoader = ResourceUtils.javaClass.classLoader
-        val targetResourceDirectory = this.getFile("res", this.apkBundle.base)!!
 
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
-                Files.copy(
-                    classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!,
-                    targetResourceDirectory.resolve(resourceFile).toPath(), StandardCopyOption.REPLACE_EXISTING
-                )
+                this.openFile("res/$resourceFile")!!.use {
+                    classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it.outputStream())
+                }
             }
         }
     }
