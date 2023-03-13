@@ -30,7 +30,7 @@ import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
-@Name("tiktok-settings")
+@Name("settings")
 @Description("Adds ReVanced settings to TikTok.")
 @SettingsCompatibility
 @Version("0.0.1")
@@ -46,9 +46,7 @@ class SettingsPatch : BytecodePatch(
         AboutPageFingerprint.result?.let {
             val startIndex = it.scanResult.patternScanResult!!.startIndex
 
-            with(it.mutableMethod.implementation!!.instructions) {
-                copyrightPolicyLabelId = (this[startIndex] as WideLiteralInstruction).wideLiteral
-            }
+            copyrightPolicyLabelId = (it.mutableMethod.instruction(startIndex) as WideLiteralInstruction).wideLiteral
 
         } ?: return AboutPageFingerprint.toErrorResult()
 
