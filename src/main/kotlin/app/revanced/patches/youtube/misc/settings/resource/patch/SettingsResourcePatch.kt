@@ -38,11 +38,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         }!!.id
 
         /*
-         * create missing directory for the resources
-         */
-        context.getFile("res")!!.resolve("drawable-ldrtl-xxxhdpi").mkdirs()
-
-        /*
          * copy layout resources
          */
         arrayOf(

@@ -40,7 +40,8 @@ internal object ResourceUtils {
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
-                this.openFile("res/$resourceFile")!!.use {
+                // idk which one to use HELP...
+                apkBundle.base.openFile("res/$resourceFile")!!.use {
                     classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it.outputStream())
                 }
             }
