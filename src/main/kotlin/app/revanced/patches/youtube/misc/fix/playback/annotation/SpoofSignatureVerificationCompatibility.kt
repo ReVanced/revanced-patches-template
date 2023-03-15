@@ -18,4 +18,4 @@ import app.revanced.patcher.annotation.Package
     )]
 )
 @Target(AnnotationTarget.CLASS)
-internal annotation class ProtobufSpoofCompatibility
+internal annotation class SpoofSignatureVerificationCompatibility

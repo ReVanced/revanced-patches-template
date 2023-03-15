@@ -12,19 +12,19 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.misc.fix.playback.annotation.ProtobufSpoofCompatibility
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParameterBuilderFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.annotation.SpoofSignatureVerificationCompatibility
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.SpoofSignatureVerificationFingerprint
 
 @Patch
 @Name("spoof-signature-verification")
 @Description("Spoofs the client to prevent playback issues.")
-@ProtobufSpoofCompatibility
+@SpoofSignatureVerificationCompatibility
 @Version("0.0.1")
 class SpoofSignatureVerificationPatch : BytecodePatch(
-    listOf(ProtobufParameterBuilderFingerprint)
+    listOf(SpoofSignatureVerificationFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        ProtobufParameterBuilderFingerprint.result?.let {
+        SpoofSignatureVerificationFingerprint.result?.let {
             val setParamMethod = context
                 .toMethodWalker(it.method)
                     .nextMethod(it.scanResult.patternScanResult!!.startIndex, true).getMethod() as MutableMethod
@@ -40,7 +40,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return ProtobufParameterBuilderFingerprint.toErrorResult()
+        } ?: return SpoofSignatureVerificationFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
