@@ -17,7 +17,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.annotation.ProtobufSpoofCompatibility
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ConnectionResultFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.OpenCronetDataSourceFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParameterBuilderFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -33,42 +33,10 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class SpoofSignatureVerificationPatch : BytecodePatch(
     listOf(
         ProtobufParameterBuilderFingerprint,
-        ConnectionResultFingerprint,
+        OpenCronetDataSourceFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        ProtobufParameterBuilderFingerprint.result?.let {
-            val setParamMethod = context
-                .toMethodWalker(it.method)
-                    .nextMethod(it.scanResult.patternScanResult!!.startIndex, true).getMethod() as MutableMethod
-
-            setParamMethod.apply {
-                val protobufParameterRegister = 3
-
-                addInstructions(
-                    0,
-                    """
-                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->getProtoBufParameterOverride(Ljava/lang/String;)Ljava/lang/String;
-                        move-result-object p$protobufParameterRegister
-                    """
-                )
-            }
-        } ?: return ProtobufParameterBuilderFingerprint.toErrorResult()
-
-        ConnectionResultFingerprint.result?.let {
-            val method = it.mutableMethod
-            val endIndex = it.scanResult.patternScanResult!!.endIndex
-            val statusCodeRegister = (method.instruction(endIndex - 2) as OneRegisterInstruction).registerA
-            val urlHeadersRegister = (method.instruction(endIndex) as OneRegisterInstruction).registerA
-
-            method.addInstructions(
-                endIndex + 1,
-                """
-                    invoke-static {v$statusCodeRegister, v$urlHeadersRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->connectionCompleted(ILjava/util/Map;)V
-                """
-            )
-        } ?: return ConnectionResultFingerprint.toErrorResult()
-
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_signature_verification",
@@ -78,6 +46,42 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed")
             )
         )
+
+        // hook parameter
+        ProtobufParameterBuilderFingerprint.result?.let {
+            val setParamMethod = context
+                .toMethodWalker(it.method)
+                .nextMethod(it.scanResult.patternScanResult!!.startIndex, true).getMethod() as MutableMethod
+
+            setParamMethod.apply {
+                val protobufParameterRegister = 3
+
+                addInstructions(
+                    0,
+                    """
+                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->getProtobufParameterOverride(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object p$protobufParameterRegister
+                    """
+                )
+            }
+        } ?: return ProtobufParameterBuilderFingerprint.toErrorResult()
+
+        // hook video playback result
+        OpenCronetDataSourceFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val getHeadersInstructionIndex = it.scanResult.patternScanResult!!.endIndex
+                val responseCodeRegister =
+                    (instruction(getHeadersInstructionIndex - 2) as OneRegisterInstruction).registerA
+
+                addInstructions(
+                    getHeadersInstructionIndex + 1,
+                    """
+                        invoke-static {v$responseCodeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onResponse(I)V
+                    """
+                )
+            }
+
+        } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
