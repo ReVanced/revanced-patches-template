@@ -17,25 +17,12 @@ object ConnectionResultFingerprint : MethodFingerprint(
         "Content-Length"
     ),
     opcodes = listOf(
-//        Opcode.CONST_STRING,
-//        Opcode.INVOKE_VIRTUAL,
-//        Opcode.MOVE_RESULT,
-//        Opcode.IF_EQZ,
-//        Opcode.NEW_INSTANCE,
-//        Opcode.INVOKE_DIRECT,
-//        Opcode.THROW,
-//        Opcode.NEW_INSTANCE,
-//        Opcode.INVOKE_STATIC,
-//        Opcode.MOVE_RESULT,
-//        Opcode.INVOKE_DIRECT,
-//        Opcode.THROW,
-//        // try, catch
         Opcode.IF_EQZ,
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_STATIC,
         Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
+        Opcode.MOVE_RESULT,         // http status code
         Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.MOVE_RESULT_OBJECT,  // url headers
     )
 )
