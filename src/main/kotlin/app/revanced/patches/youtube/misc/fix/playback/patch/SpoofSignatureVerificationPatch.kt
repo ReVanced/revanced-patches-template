@@ -71,11 +71,11 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
 
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_force_signature_spoofing",
-                StringResource("revanced_force_signature_spoofing_title", "Force app signature spoofing"),
+                "revanced_spoof_signature_verification",
+                StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
                 false,
-                StringResource("revanced_force_signature_spoofing_summary_on", "Signature always spoofed"),
-                StringResource("revanced_force_signature_spoofing_summary_off", "Signature automatically spoofed when needed")
+                StringResource("revanced_spoof_signature_verification_summary_on", "App signature spoofed"),
+                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed")
             )
         )
 
