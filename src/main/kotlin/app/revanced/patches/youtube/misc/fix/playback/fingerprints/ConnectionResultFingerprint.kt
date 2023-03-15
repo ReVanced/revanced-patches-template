@@ -23,6 +23,6 @@ object ConnectionResultFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT,         // http status code
         Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,  // url headers
+        Opcode.MOVE_RESULT_OBJECT,  // http headers
     )
 )
