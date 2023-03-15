@@ -59,7 +59,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 addInstructions(
                     0,
                     """
-                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->getProtobufParameterOverride(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideProtobufParameter(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object p$protobufParameterRegister
                     """
                 )
@@ -72,11 +72,14 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 val getHeadersInstructionIndex = it.scanResult.patternScanResult!!.endIndex
                 val responseCodeRegister =
                     (instruction(getHeadersInstructionIndex - 2) as OneRegisterInstruction).registerA
+                val urlStringRegister = responseCodeRegister + 1; // can be any available register
 
                 addInstructions(
                     getHeadersInstructionIndex + 1,
                     """
-                        invoke-static {v$responseCodeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onResponse(I)V
+                        invoke-virtual {v0}, Lorg/chromium/net/UrlResponseInfo;->getUrl()Ljava/lang/String;
+                        move-result-object v$urlStringRegister
+                        invoke-static {v$responseCodeRegister, v$urlStringRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onResponse(ILjava/lang/String;)V
                     """
                 )
             }
