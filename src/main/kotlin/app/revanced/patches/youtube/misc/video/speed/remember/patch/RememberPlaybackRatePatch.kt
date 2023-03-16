@@ -22,6 +22,7 @@ import app.revanced.patches.youtube.misc.video.speed.remember.annotation.Remembe
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.ChangePlaybackRateFragmentStateFingerprint
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackRateValuesFingerprint
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.OnPlaybackRateItemClickFingerprint
+import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
@@ -29,7 +30,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 @Patch
 @Name("remember-playback-rate")
 @Description("Adds the ability to remember the playback rate you chose in the video playback rate flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class,])
 @RememberPlaybackRateCompatibility
 @Version("0.0.1")
 class RememberPlaybackRatePatch : BytecodePatch(
@@ -75,6 +76,8 @@ class RememberPlaybackRatePatch : BytecodePatch(
 
         context.resolveFingerprints()
 
+        VideoIdPatch.injectCall("${INTEGRATIONS_CLASS_DESCRIPTOR}->newVideoLoaded(Ljava/lang/String;)V")
+
         // Set the remembered playback rate.
         InitializePlaybackRateValuesFingerprint.result!!.apply {
             // Infer everything necessary for setPlaybackRate()
@@ -99,17 +102,14 @@ class RememberPlaybackRatePatch : BytecodePatch(
             mutableMethod.addInstructions(
                 0,
                 """
-                    invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getRememberedPlaybackRate()F
+                    invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getCurrentPlaybackSpeed()F
                     move-result v0
-                    
-                    # check if the playback rate is below 0 (when a playback rate was never remembered)
-                    
-                    const/4 v1, 0x0
+                    # check if the playback rate is not 1.0x
+                    const/high16 v1, 0x3f800000  # 1.0f
                     cmpg-float v1, v0, v1
-                    if-lez v1, :do_not_override
+                    if-eqz v1, :do_not_override
 
                     # invoke setPlaybackRate
-                    
                     iget-object v1, p0, $playbackHandlerWrapperFieldReference 
                     check-cast v1, $playbackHandlerWrapperImplementorClassReference
                     iget-object v2, v1, $playbackHandlerFieldReference
