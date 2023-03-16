@@ -46,7 +46,9 @@ class VideoIdPatch : BytecodePatch(
         private lateinit var insertMethod: MutableMethod
 
         /**
-         * Adds an invoke-static instruction, called with the new id when the video changes
+         * Adds an invoke-static instruction, called with the new id when the video changes.
+         * Be aware, this can be called multiple times for the same video id.
+         *
          * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
          */
         fun injectCall(
