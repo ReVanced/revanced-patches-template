@@ -109,7 +109,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
             mutableMethod.addInstruction(
                 setPlaybackSpeedIndex,
-                "invoke-static { v$selectedPlaybackSpeedRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->rememberPlaybackSpeed(F)V"
+                "invoke-static { v$selectedPlaybackSpeedRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->setPlaybackSpeed(F)V"
             )
         }
 
