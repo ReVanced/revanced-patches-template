@@ -18,27 +18,27 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackRateCompatibility
-import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.ChangePlaybackRateFragmentStateFingerprint
-import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackRateValuesFingerprint
-import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.OnPlaybackRateItemClickFingerprint
+import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
+import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.ChangePlaybackSpeedFragmentStateFingerprint
+import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
+import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.OnPlaybackSpeedItemClickFingerprint
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch
-@Name("remember-playback-rate")
-@Description("Adds the ability to remember the playback rate you chose in the video playback rate flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class,])
-@RememberPlaybackRateCompatibility
+@Name("remember-playback-speed")
+@Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class])
+@RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
-class RememberPlaybackRatePatch : BytecodePatch(
-    listOf(ChangePlaybackRateFragmentStateFingerprint)
+class RememberPlaybackSpeedPatch : BytecodePatch(
+    listOf(ChangePlaybackSpeedFragmentStateFingerprint)
 ) {
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackRatePatch;"
+            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
 
         fun MethodFingerprint.getReference(offsetFromPatternScanResultStartIndex: Int = 0) = this.result!!.let {
             val referenceInstruction = it.mutableMethod
@@ -47,29 +47,32 @@ class RememberPlaybackRatePatch : BytecodePatch(
         }
 
         fun BytecodeContext.resolveFingerprints() {
-            ChangePlaybackRateFragmentStateFingerprint.result?.also {
+            ChangePlaybackSpeedFragmentStateFingerprint.result?.also {
                 fun MethodFingerprint.resolve() = resolve(this@resolveFingerprints, it.classDef)
 
-                OnPlaybackRateItemClickFingerprint.resolve()
-                InitializePlaybackRateValuesFingerprint.resolve()
+                OnPlaybackSpeedItemClickFingerprint.resolve()
+                InitializePlaybackSpeedValuesFingerprint.resolve()
 
-            } ?: throw ChangePlaybackRateFragmentStateFingerprint.toErrorResult()
+            } ?: throw ChangePlaybackSpeedFragmentStateFingerprint.toErrorResult()
         }
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_remember_playback_rate_last_selected",
-                StringResource("revanced_remember_playback_rate_last_selected_title", "Remember playback rate changes"),
+                "revanced_remember_playback_speed_last_selected",
+                StringResource(
+                    "revanced_remember_playback_speed_last_selected_title",
+                    "Remember playback speed changes"
+                ),
                 true,
                 StringResource(
-                    "revanced_remember_playback_rate_last_selected_summary_on",
-                    "Playback rate changes apply to all videos"
+                    "revanced_remember_playback_speed_last_selected_summary_on",
+                    "Playback speed changes apply to all videos"
                 ),
                 StringResource(
-                    "revanced_remember_playback_rate_last_selected_summary_off",
-                    "Playback rate changes only apply to the current video"
+                    "revanced_remember_playback_speed_last_selected_summary_off",
+                    "Playback speed changes only apply to the current video"
                 )
             )
         )
@@ -78,13 +81,13 @@ class RememberPlaybackRatePatch : BytecodePatch(
 
         VideoIdPatch.injectCall("${INTEGRATIONS_CLASS_DESCRIPTOR}->newVideoLoaded(Ljava/lang/String;)V")
 
-        // Set the remembered playback rate.
-        InitializePlaybackRateValuesFingerprint.result!!.apply {
-            // Infer everything necessary for setPlaybackRate()
+        // Set the remembered playback speed.
+        InitializePlaybackSpeedValuesFingerprint.result!!.apply {
+            // Infer everything necessary for setPlaybackSate()
 
             val playbackHandlerWrapperFieldReference =
                 (object : MethodFingerprint(opcodes = listOf(Opcode.IF_EQZ)) {}).apply {
-                    OnPlaybackRateItemClickFingerprint.result!!.apply {
+                    OnPlaybackSpeedItemClickFingerprint.result!!.apply {
                         resolve(
                             context,
                             method,
@@ -92,11 +95,11 @@ class RememberPlaybackRatePatch : BytecodePatch(
                         )
                     }
                 }.getReference(-1)
-            val playbackHandlerWrapperImplementorClassReference = OnPlaybackRateItemClickFingerprint
+            val playbackHandlerWrapperImplementorClassReference = OnPlaybackSpeedItemClickFingerprint
                 .getReference(-1)
-            val playbackHandlerFieldReference = OnPlaybackRateItemClickFingerprint
+            val playbackHandlerFieldReference = OnPlaybackSpeedItemClickFingerprint
                 .getReference()
-            val setPlaybackRateMethodReference = OnPlaybackRateItemClickFingerprint
+            val setPlaybackSpeedMethodReference = OnPlaybackSpeedItemClickFingerprint
                 .getReference(1)
 
             mutableMethod.addInstructions(
@@ -104,30 +107,30 @@ class RememberPlaybackRatePatch : BytecodePatch(
                 """
                     invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getCurrentPlaybackSpeed()F
                     move-result v0
-                    # check if the playback rate is not 1.0x
+                    # check if the playback speed is not 1.0x
                     const/high16 v1, 0x3f800000  # 1.0f
                     cmpg-float v1, v0, v1
                     if-eqz v1, :do_not_override
 
-                    # invoke setPlaybackRate
+                    # invoke setPlaybackSpeed
                     iget-object v1, p0, $playbackHandlerWrapperFieldReference 
                     check-cast v1, $playbackHandlerWrapperImplementorClassReference
                     iget-object v2, v1, $playbackHandlerFieldReference
-                    invoke-virtual {v2, v0}, $setPlaybackRateMethodReference
+                    invoke-virtual {v2, v0}, $setPlaybackSpeedMethodReference
                 """.trimIndent(),
                 listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
             )
         }
 
-        // Remember the selected playback rate.
-        OnPlaybackRateItemClickFingerprint.result!!.apply {
-            val setPlaybackRateIndex = scanResult.patternScanResult!!.endIndex
-            val selectedPlaybackRateRegister =
-                (mutableMethod.instruction(setPlaybackRateIndex) as FiveRegisterInstruction).registerD
+        // Remember the selected playback speed.
+        OnPlaybackSpeedItemClickFingerprint.result!!.apply {
+            val setPlaybackSpeedIndex = scanResult.patternScanResult!!.endIndex
+            val selectedPlaybackSpeedRegister =
+                (mutableMethod.instruction(setPlaybackSpeedIndex) as FiveRegisterInstruction).registerD
 
             mutableMethod.addInstruction(
-                setPlaybackRateIndex,
-                "invoke-static { v$selectedPlaybackRateRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->rememberPlaybackRate(F)V"
+                setPlaybackSpeedIndex,
+                "invoke-static { v$selectedPlaybackSpeedRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->rememberPlaybackSpeed(F)V"
             )
         }
 
