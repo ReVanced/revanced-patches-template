@@ -53,15 +53,13 @@ class VideoIdPatch : BytecodePatch(
          */
         fun injectCall(
             methodDescriptor: String
-        ) {
-            insertMethod.addInstructions(
-                // Keep injection calls in the order they're added.
-                // this is so VideoInformation is always the first hook to be called, and all others are called after
-                // this ensures VideoInformation is always the most up to date
-                insertIndex++,
-                "invoke-static {v$videoIdRegister}, $methodDescriptor"
-            )
-        }
+        ) = insertMethod.addInstructions(
+            // Keep injection calls in the order they're added.
+            // Order has been proven to be important for the same reason that order of patch execution is important
+            // such as for the VideoInformation patch.
+            insertIndex++,
+            "invoke-static {v$videoIdRegister}, $methodDescriptor"
+        )
     }
 }
 
