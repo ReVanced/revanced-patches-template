@@ -36,27 +36,6 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(ChangePlaybackSpeedFragmentStateFingerprint)
 ) {
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
-
-        fun MethodFingerprint.getReference(offsetFromPatternScanResultStartIndex: Int = 0) = this.result!!.let {
-            val referenceInstruction = it.mutableMethod
-                .instruction(it.scanResult.patternScanResult!!.startIndex + offsetFromPatternScanResultStartIndex) as ReferenceInstruction
-            referenceInstruction.reference.toString()
-        }
-
-        fun BytecodeContext.resolveFingerprints() {
-            ChangePlaybackSpeedFragmentStateFingerprint.result?.also {
-                fun MethodFingerprint.resolve() = resolve(this@resolveFingerprints, it.classDef)
-
-                OnPlaybackSpeedItemClickFingerprint.resolve()
-                InitializePlaybackSpeedValuesFingerprint.resolve()
-
-            } ?: throw ChangePlaybackSpeedFragmentStateFingerprint.toErrorResult()
-        }
-    }
-
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
@@ -136,5 +115,26 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
 
         return PatchResultSuccess()
+    }
+
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
+
+        fun MethodFingerprint.getReference(offsetFromPatternScanResultStartIndex: Int = 0) = this.result!!.let {
+            val referenceInstruction = it.mutableMethod
+                .instruction(it.scanResult.patternScanResult!!.startIndex + offsetFromPatternScanResultStartIndex) as ReferenceInstruction
+            referenceInstruction.reference.toString()
+        }
+
+        fun BytecodeContext.resolveFingerprints() {
+            ChangePlaybackSpeedFragmentStateFingerprint.result?.also {
+                fun MethodFingerprint.resolve() = resolve(this@resolveFingerprints, it.classDef)
+
+                OnPlaybackSpeedItemClickFingerprint.resolve()
+                InitializePlaybackSpeedValuesFingerprint.resolve()
+
+            } ?: throw ChangePlaybackSpeedFragmentStateFingerprint.toErrorResult()
+        }
     }
 }
