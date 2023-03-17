@@ -15,6 +15,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.video.videoid.annotation.VideoIdCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.fingerprint.VideoIdFingerprint
+import app.revanced.patches.youtube.misc.video.videoid.fingerprint.VideoIdFingerprintBackgroundPlay
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Name("video-id-hook")
@@ -23,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 @DependsOn([IntegrationsPatch::class])
 class VideoIdPatch : BytecodePatch(
-    listOf(VideoIdFingerprint)
+    listOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         VideoIdFingerprint.result?.let {
@@ -36,6 +37,16 @@ class VideoIdPatch : BytecodePatch(
             }
         } ?: return VideoIdFingerprint.toErrorResult()
 
+        VideoIdFingerprintBackgroundPlay.result?.let {
+            val endIndex = it.scanResult.patternScanResult!!.endIndex
+
+            with(it.mutableMethod) {
+                backgroundPlayInsertMethod = this
+                backgroundPlayVideoIdRegister = (instruction(endIndex + 1) as OneRegisterInstruction).registerA
+                backgroundPlayInsertIndex = endIndex + 2
+            }
+        } ?: return VideoIdFingerprintBackgroundPlay.toErrorResult()
+
         return PatchResultSuccess()
     }
 
@@ -46,7 +57,12 @@ class VideoIdPatch : BytecodePatch(
         private lateinit var insertMethod: MutableMethod
 
         /**
-         * Adds an invoke-static instruction, called with the new id when the video changes.
+         * Adds an invoke-static instruction, called with the new id when the video changes
+         *
+         * Supports all videos (regular videos, Shorts and Stories)
+         *
+         * _Does not function if playing in the background with no video visible_
+         *
          * Be aware, this can be called multiple times for the same video id.
          *
          * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
@@ -54,12 +70,33 @@ class VideoIdPatch : BytecodePatch(
         fun injectCall(
             methodDescriptor: String
         ) = insertMethod.addInstructions(
-            // Keep injection calls in the order they're added.
-            // Order has been proven to be important for the same reason that order of patch execution is important
-            // such as for the VideoInformation patch.
-            insertIndex++,
-            "invoke-static {v$videoIdRegister}, $methodDescriptor"
-        )
+                // TODO: The order has been proven to not be required, so remove the logic for keeping order.
+                // Keep injection calls in the order they're added:
+                // Increment index. So if additional injection calls are added, those calls run after this injection call.
+                insertIndex++,
+                "invoke-static {v$videoIdRegister}, $methodDescriptor"
+            )
+
+        private var backgroundPlayVideoIdRegister = 0
+        private var backgroundPlayInsertIndex = 0
+        private lateinit var backgroundPlayInsertMethod: MutableMethod
+
+        /**
+         * Alternate hook that supports only regular videos, but hook supports changing to new video
+         * during background play when no video is visible
+         *
+         * _Does not support Shorts or Stories_
+         *
+         * Be aware, the hook can be called multiple times for the same video id.
+         *
+         * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
+         */
+        fun injectCallBackgroundPlay(
+            methodDescriptor: String
+        ) = backgroundPlayInsertMethod.addInstructions(
+                backgroundPlayInsertIndex++, // move-result-object offset
+                "invoke-static {v$backgroundPlayVideoIdRegister}, $methodDescriptor"
+            )
     }
 }
 
