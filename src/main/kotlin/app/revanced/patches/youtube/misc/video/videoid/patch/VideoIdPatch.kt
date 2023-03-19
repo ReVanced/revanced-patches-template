@@ -55,8 +55,11 @@ class VideoIdPatch : BytecodePatch(
     companion object {
         private var videoIdRegister = 0
         private var insertIndex = 0
-
         private lateinit var insertMethod: MutableMethod
+
+        private var backgroundPlaybackVideoIdRegister = 0
+        private var backgroundPlaybackInsertIndex = 0
+        private lateinit var backgroundPlaybackMethod: MutableMethod
 
         /**
          * Adds an invoke-static instruction, called with the new id when the video changes.
@@ -72,15 +75,11 @@ class VideoIdPatch : BytecodePatch(
         fun injectCall(
             methodDescriptor: String
         ) = insertMethod.addInstructions(
-                // Keep injection calls in the order they're added:
-                // Increment index. So if additional injection calls are added, those calls run after this injection call.
-                insertIndex++,
-                "invoke-static {v$videoIdRegister}, $methodDescriptor"
-            )
-
-        private var backgroundPlaybackVideoIdRegister = 0
-        private var backgroundPlaybackInsertIndex = 0
-        private lateinit var backgroundPlaybackMethod: MutableMethod
+            // Keep injection calls in the order they're added:
+            // Increment index. So if additional injection calls are added, those calls run after this injection call.
+            insertIndex++,
+            "invoke-static {v$videoIdRegister}, $methodDescriptor"
+        )
 
         /**
          * Alternate hook that supports only regular videos, but hook supports changing to new video
