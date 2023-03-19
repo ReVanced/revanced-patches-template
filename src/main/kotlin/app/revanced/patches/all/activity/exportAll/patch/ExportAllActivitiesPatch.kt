@@ -20,17 +20,18 @@ class ExportAllActivitiesPatch : ResourcePatch {
             val activities = document.getElementsByTagName("activity")
 
             for(i in 0..activities.length) {
-                activities.item(i)?.let {
-                    val exportedAttribute = it.attributes.getNamedItem(EXPORTED_FLAG)
-                    if (exportedAttribute != null) {
-                        if(exportedAttribute.nodeValue != "true")
-                            exportedAttribute.nodeValue = "true"
-                        return@let
-                    }
+                activities.item(i)?.apply {
+                    val exportedAttribute = attributes.getNamedItem(EXPORTED_FLAG)
 
-                    document.createAttribute(EXPORTED_FLAG)
+                    if (exportedAttribute != null) {
+                        if (exportedAttribute.nodeValue != "true")
+                            exportedAttribute.nodeValue = "true"
+                    }
+                    // Reason why the attribute is added in the case it does not exist:
+                    // https://github.com/revanced/revanced-patches/pull/1751/files#r1141481604
+                    else document.createAttribute(EXPORTED_FLAG)
                         .apply { value = "true" }
-                        .let(it.attributes::setNamedItem)
+                        .let(attributes::setNamedItem)
                 }
             }
         }
