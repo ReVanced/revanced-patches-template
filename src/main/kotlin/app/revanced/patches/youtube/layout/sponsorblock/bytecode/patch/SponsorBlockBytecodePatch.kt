@@ -26,7 +26,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.misc.video.speed.remember.patch.RememberPlaybackRatePatch
+import app.revanced.patches.youtube.misc.video.speed.remember.patch.RememberPlaybackSpeedPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.*
@@ -42,7 +42,7 @@ import org.jf.dexlib2.iface.reference.StringReference
         VideoIdPatch::class,
         PlayerControlsBytecodePatch::class,
         PlayerTypeHookPatch::class,
-        RememberPlaybackRatePatch::class,
+        RememberPlaybackSpeedPatch::class,
         IntegrationsPatch::class,
         SponsorBlockResourcePatch::class,
     ]
