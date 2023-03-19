@@ -11,9 +11,9 @@ import app.revanced.patcher.patch.annotations.Patch
 
 @Patch(false)
 @Name("export-all-activities")
-@Description("Makes an app export all of it's activites.")
+@Description("Makes all app activities exportable.")
 @Version("0.0.1")
-class ExportAllPatch : ResourcePatch {
+class ExportAllActivitiesPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             val document = editor.file
@@ -21,14 +21,14 @@ class ExportAllPatch : ResourcePatch {
 
             for(i in 0..activities.length) {
                 activities.item(i)?.let {
-                    if (it.attributes.getNamedItem(FLAG) != null) {
-                        if(it.attributes.getNamedItem(FLAG).nodeValue != "true") {
-                            it.attributes.getNamedItem(FLAG).nodeValue = "true"
-                        }
+                    val exportedAttribute = it.attributes.getNamedItem(EXPORTED_FLAG)
+                    if (exportedAttribute != null) {
+                        if(exportedAttribute.nodeValue != "true")
+                            exportedAttribute.nodeValue = "true"
                         return@let
                     }
 
-                    document.createAttribute(FLAG)
+                    document.createAttribute(EXPORTED_FLAG)
                         .apply { value = "true" }
                         .let(it.attributes::setNamedItem)
                 }
@@ -39,6 +39,6 @@ class ExportAllPatch : ResourcePatch {
     }
 
     private companion object {
-        const val FLAG = "android:exported"
+        const val EXPORTED_FLAG = "android:exported"
     }
 }
