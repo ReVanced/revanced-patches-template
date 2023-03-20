@@ -120,3 +120,9 @@ Example:
   }
 ]
 ```
+
+<div align="right">
+<table><td>
+<a href="#start-of-content">👆 Scroll to top</a>
+</td></table>
+</div>
