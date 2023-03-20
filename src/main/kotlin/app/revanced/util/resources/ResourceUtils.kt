@@ -5,8 +5,6 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import org.w3c.dom.Node
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
 
 internal object ResourceUtils {
 
@@ -40,9 +38,10 @@ internal object ResourceUtils {
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
-                // idk which one to use HELP...
-                apkBundle.base.openFile("res/$resourceFile")!!.use {
-                    classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it.outputStream())
+                apkBundle.base.openFile("res/$resourceFile").use { file ->
+                    file.outputStream().use {
+                        classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it)
+                    }
                 }
             }
         }

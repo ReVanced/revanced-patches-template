@@ -65,7 +65,7 @@ internal object MicroGResourceHelper {
                     "package=\"$fromPackageName",
                     "package=\"$toPackageName"
                 ).let {
-                    file.replaceContents(it.toByteArray())
+                    file.contents = it.toByteArray()
                 }
             }
         }
