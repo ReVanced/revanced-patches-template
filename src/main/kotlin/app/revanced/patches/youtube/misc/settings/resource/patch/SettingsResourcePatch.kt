@@ -6,8 +6,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.Preference
@@ -20,7 +18,6 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
-@DependsOn([ResourceMappingPatch::class])
 @Description("Applies mandatory patches to implement ReVanced settings into the application.")
 @Version("0.0.1")
 class SettingsResourcePatch : AbstractSettingsResourcePatch(
@@ -33,9 +30,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         /*
          * used by a fingerprint of SettingsPatch
          */
-        appearanceStringId = ResourceMappingPatch.resourceMappings.find {
-            it.type == "string" && it.name == "app_theme_appearance_dark"
-        }!!.id
+        appearanceStringId = context.mapper.find("string", "app_theme_appearance_dark")
 
         /*
          * copy layout resources

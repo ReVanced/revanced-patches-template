@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.personalinformation.annotations.HideEmailAddressCompatibility
@@ -14,7 +13,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("hide-email-address-resource-patch")
 @HideEmailAddressCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class HideEmailAddressResourcePatch : ResourcePatch {
     companion object {
@@ -32,9 +31,7 @@ class HideEmailAddressResourcePatch : ResourcePatch {
             )
         )
 
-        accountSwitcherAccessibilityLabelId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "string" && it.name == "account_switcher_accessibility_label"
-        }.id
+        accountSwitcherAccessibilityLabelId = context.mapper.find("string", "account_switcher_accessibility_label")
 
         return PatchResult.Success
     }

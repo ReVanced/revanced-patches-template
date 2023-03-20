@@ -8,9 +8,7 @@ import app.revanced.patcher.extensions.removeInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.spotify.premium_navbar_tab.annotations.PremiumNavbarTabCompatibility
 import app.revanced.patches.spotify.premium_navbar_tab.fingerprints.AddPremiumNavbarTabFingerprint
 import app.revanced.patches.spotify.premium_navbar_tab.fingerprints.AddPremiumNavbarTabParentFingerprint
@@ -22,7 +20,6 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @Description("Removes the premium tab from the navbar.")
 @PremiumNavbarTabCompatibility
 @Version("0.0.1")
-@DependsOn([ResourceMappingPatch::class])
 class PremiumNavbarTabPatch : BytecodePatch(
     listOf(
         AddPremiumNavbarTabParentFingerprint
@@ -38,8 +35,7 @@ class PremiumNavbarTabPatch : BytecodePatch(
         val methodInstructions = method.implementation!!.instructions
         val lastInstructionIdx = methodInstructions.size - 1
 
-        val premiumTabId =
-            ResourceMappingPatch.resourceMappings.single { it.type == "id" && it.name == "premium_tab" }.id
+        val premiumTabId = context.mapper.find("id", "premium_tab")
 
         var removeAmount = 2
         // 2nd const remove method

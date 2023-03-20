@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
@@ -15,7 +14,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("comments-resource-patch")
 @CommentsCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class CommentsResourcePatch : ResourcePatch {
     companion object {
@@ -54,9 +53,7 @@ class CommentsResourcePatch : ResourcePatch {
             )
         )
 
-        shortsCommentsButtonId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "drawable" && it.name == "ic_right_comment_32c"
-        }.id
+        shortsCommentsButtonId = context.mapper.find("drawable", "ic_right_comment_32c")
 
         return PatchResult.Success
     }

@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.crowdfundingbox.annotations.CrowdfundingBoxCompatibility
@@ -14,7 +13,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("crowdfunding-box-resource-patch")
 @CrowdfundingBoxCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class CrowdfundingBoxResourcePatch : ResourcePatch {
     companion object {
@@ -32,9 +31,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
             )
         )
 
-        crowdfundingBoxId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "layout" && it.name == "donation_companion"
-        }.id
+        crowdfundingBoxId = context.mapper.find("layout", "donation_companion")
 
         return PatchResult.Success
     }

@@ -5,14 +5,13 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.infocards.annotations.HideInfocardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @HideInfocardsCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class HideInfocardsResourcePatch : ResourcePatch {
     internal companion object {
@@ -30,9 +29,7 @@ class HideInfocardsResourcePatch : ResourcePatch {
             )
         )
 
-        drawerResourceId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "id" && it.name == "info_cards_drawer_header"
-        }.id
+        drawerResourceId = context.mapper.find("id", "info_cards_drawer_header")
 
         return PatchResult.Success
     }

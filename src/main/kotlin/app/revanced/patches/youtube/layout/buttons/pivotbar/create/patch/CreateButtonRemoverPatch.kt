@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.pivotbar.create.fingerprints.PivotBarCreateButtonViewFingerprint
@@ -24,7 +23,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.Opcode
 
 @Patch
-@DependsOn([IntegrationsPatch::class, ResourceMappingPatch::class, SettingsPatch::class, ResolvePivotBarFingerprintsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResolvePivotBarFingerprintsPatch::class])
 @Name("hide-create-button")
 @Description("Hides the create button in the navigation bar.")
 @PivotBarCompatibility

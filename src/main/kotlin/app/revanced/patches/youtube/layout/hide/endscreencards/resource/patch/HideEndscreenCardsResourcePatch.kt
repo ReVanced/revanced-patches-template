@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.endscreencards.annotations.HideEndscreenCardsCompatibility
@@ -14,7 +13,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("hide-endscreen-cards-resource-patch")
 @HideEndscreenCardsCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class HideEndscreenCardsResourcePatch : ResourcePatch {
     internal companion object {
@@ -34,9 +33,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
             ),
         )
 
-        fun findEndscreenResourceId(name: String) = ResourceMappingPatch.resourceMappings.single {
-            it.type == "layout" && it.name == "endscreen_element_layout_$name"
-        }.id
+        fun findEndscreenResourceId(name: String) = context.mapper.find("layout", "endscreen_element_layout_$name")
 
         layoutCircle = findEndscreenResourceId("circle")
         layoutIcon = findEndscreenResourceId("icon")

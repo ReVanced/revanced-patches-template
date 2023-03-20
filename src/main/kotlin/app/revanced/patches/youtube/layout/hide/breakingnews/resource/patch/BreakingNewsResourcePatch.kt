@@ -6,13 +6,12 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("breaking-news-shelf-resource-patch")
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @Version("0.0.1")
 class BreakingNewsResourcePatch : ResourcePatch {
     companion object {
@@ -30,9 +29,7 @@ class BreakingNewsResourcePatch : ResourcePatch {
             )
         )
 
-        horizontalCardListId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "layout" && it.name == "horizontal_card_list"
-        }.id
+        horizontalCardListId = context.mapper.find("layout", "horizontal_card_list")
 
         return PatchResult.Success
     }

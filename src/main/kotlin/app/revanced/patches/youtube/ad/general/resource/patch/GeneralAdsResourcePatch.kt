@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
@@ -16,7 +15,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.P
     dependencies = [
         LithoFilterPatch::class,
         SettingsPatch::class,
-        ResourceMappingPatch::class
     ]
 )
 @GeneralAdsCompatibility
@@ -284,11 +282,8 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 )
             )
         )
-
-        fun String.getId() = ResourceMappingPatch.resourceMappings.single { it.name == this }.id
-
-        adAttributionId = "ad_attribution".getId()
-        reelMultipleItemShelfId = "reel_multiple_items_shelf".getId()
+        adAttributionId = context.mapper.find("id", "ad_attribution")
+        reelMultipleItemShelfId = context.mapper.find("layout", "reel_multiple_items_shelf")
 
         return PatchResult.Success
     }

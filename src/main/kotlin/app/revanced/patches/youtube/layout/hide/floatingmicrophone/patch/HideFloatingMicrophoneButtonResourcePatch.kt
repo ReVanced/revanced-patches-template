@@ -5,13 +5,12 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.floatingmicrophone.annotations.HideFloatingMicrophoneButtonCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class])
 @HideFloatingMicrophoneButtonCompatibility
 @Version("0.0.1")
 class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
@@ -29,8 +28,7 @@ class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
             )
         )
 
-        fabButtonId = ResourceMappingPatch.resourceMappings.find { it.type == "id" && it.name == "fab" }?.id
-            ?: return PatchResult.Error("Can not find required fab button resource id")
+        fabButtonId = context.mapper.find("id", "fab")
         return PatchResult.Success
     }
 
