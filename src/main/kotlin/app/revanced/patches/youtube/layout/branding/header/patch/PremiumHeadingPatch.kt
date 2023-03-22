@@ -8,9 +8,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHeadingCompatibility
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
-import kotlin.io.path.exists
 
 @Patch
 @Name("premium-heading")
@@ -19,27 +16,18 @@ import kotlin.io.path.exists
 @Version("0.0.1")
 class PremiumHeadingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context.getFile("res/drawable-hdpi")?.parentFile
-            ?: return PatchResult.Error("Could not find drawable resource directory.")
-
-        if (!resDirectory.isDirectory) return PatchResult.Error("The res folder can not be found.")
-
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
+        val target = context.apkBundle.split?.asset ?: context.apkBundle.base
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
-            val headingDirectory = resDirectory.resolve("drawable-$size")
+            val headingDirectory = "res/drawable-$size"
             modes.forEach { mode ->
-                val fromPath = headingDirectory.resolve("${original}_$mode.png").toPath()
-                val toPath = headingDirectory.resolve("${replacement}_$mode.png").toPath()
+                val from = context.openFile("$headingDirectory/${original}_$mode.png") ?: return@dpi
 
-                if (!fromPath.exists()) return@dpi
-
-                Files.copy(
-                    fromPath,
-                    toPath,
-                    StandardCopyOption.REPLACE_EXISTING
-                )
+                target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
+                    to.contents = from.contents
+                }
             }
         }
 
