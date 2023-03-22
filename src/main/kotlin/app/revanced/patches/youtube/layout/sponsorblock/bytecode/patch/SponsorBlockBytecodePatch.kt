@@ -60,7 +60,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 ) {
 
     private companion object {
-        const val INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR =
+        const val INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/sponsorblock/SegmentPlaybackController;"
         const val INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/sponsorblock/ui/ShieldButtonController;"
@@ -76,7 +76,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
          */
         with(VideoInformationPatch) {
             videoTimeHook(
-                INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR,
+                INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR,
                 "setVideoTime"
             )
         }
@@ -84,7 +84,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         /*
          Set current video id
          */
-        VideoIdPatch.injectCallBackgroundPlay("$INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
+        VideoIdPatch.injectCallBackgroundPlay("$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
 
         /*
          Seekbar drawing
@@ -102,7 +102,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             if (instruction.opcode != Opcode.MOVE_OBJECT_FROM16) continue
             seekbarMethod.addInstruction(
                 index + 1,
-                "invoke-static/range {p0 .. p0}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarRect(Ljava/lang/Object;)V"
+                "invoke-static/range {p0 .. p0}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarRect(Ljava/lang/Object;)V"
             )
             break
         }
@@ -118,7 +118,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             // set the thickness of the segment
             seekbarMethod.addInstruction(
                 insertIndex,
-                "invoke-static {v${invokeInstruction.registerC}}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarThickness(I)V"
+                "invoke-static {v${invokeInstruction.registerC}}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarThickness(I)V"
             )
             break
         }
@@ -139,11 +139,11 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         // the reason for that is that we get the index, add instructions and then the offset would be wrong
         seekbarMethod.addInstruction(
             indexLeft + 1,
-            "invoke-static {v$rectangleLeftRegister}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteLeft(Landroid/graphics/Rect;)V"
+            "invoke-static {v$rectangleLeftRegister}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteLeft(Landroid/graphics/Rect;)V"
         )
         seekbarMethod.addInstruction(
             indexRight + 1,
-            "invoke-static {v$rectangleRightRegister}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteRight(Landroid/graphics/Rect;)V"
+            "invoke-static {v$rectangleRightRegister}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteRight(Landroid/graphics/Rect;)V"
         )
 
         /*
@@ -155,7 +155,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         }
         seekbarMethod.addInstruction(
             drawSegmentInstructionInsertIndex,
-            "invoke-static {v$canvasInstance, v$centerY}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
+            "invoke-static {v$canvasInstance, v$centerY}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->drawSponsorTimeBars(Landroid/graphics/Canvas;F)V"
         )
 
         /*
@@ -217,13 +217,13 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         appendTimeFingerprintResult.mutableMethod.addInstructions(
             appendTimePatternScanStartIndex + 2, """
-                    invoke-static {v$targetRegister}, $INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
+                    invoke-static {v$targetRegister}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->appendTimeWithoutSegments(Ljava/lang/String;)Ljava/lang/String;
                     move-result-object v$targetRegister
             """
         )
 
         // initialize the player controller
-        VideoInformationPatch.onCreateHook(INTEGRATIONS_PLAYER_CONTROLLER_CLASS_DESCRIPTOR, "initialize")
+        VideoInformationPatch.onCreateHook(INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR, "initialize")
 
         // initialize the sponsorblock view
         PlayerOverlaysLayoutInitFingerprint.result!!.mutableMethod.addInstruction(
