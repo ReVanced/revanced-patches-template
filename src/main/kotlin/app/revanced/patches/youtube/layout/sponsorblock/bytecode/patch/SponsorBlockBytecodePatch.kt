@@ -275,7 +275,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
         }.result?.mutableMethod?.addInstruction(
             0,
-            "invoke-static {}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
+            "invoke-static {}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
         ) ?: return AutoRepeatFingerprint.toErrorResult()
 
         // TODO: isSBChannelWhitelisting implementation
