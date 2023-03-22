@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -22,6 +23,8 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
+import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
+import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
@@ -56,6 +59,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         SeekbarFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
+        AutoRepeatParentFingerprint,
     )
 ) {
 
@@ -263,6 +267,16 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                     }
                 }
             } ?: return PatchResultError("Could not find the method which contains the replaceMeWith* strings")
+
+
+        // detect end of the video has been reached
+        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.toErrorResult()
+        AutoRepeatFingerprint.also {
+            it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
+        }.result?.mutableMethod?.addInstruction(
+            0,
+            "invoke-static {}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
+        ) ?: return AutoRepeatFingerprint.toErrorResult()
 
         // TODO: isSBChannelWhitelisting implementation
 
