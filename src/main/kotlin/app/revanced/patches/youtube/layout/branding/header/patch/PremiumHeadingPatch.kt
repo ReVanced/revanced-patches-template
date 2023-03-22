@@ -23,10 +23,10 @@ class PremiumHeadingPatch : ResourcePatch {
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
             val headingDirectory = "res/drawable-$size"
             modes.forEach { mode ->
-                val from = context.openFile("$headingDirectory/${original}_$mode.png") ?: return@dpi
-
-                target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
-                    to.contents = from.contents
+                (context.openFile("$headingDirectory/${original}_$mode.png") ?: return@dpi).use { from ->
+                    target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
+                        to.contents = from.contents
+                    }
                 }
             }
         }

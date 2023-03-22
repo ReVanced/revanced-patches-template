@@ -10,7 +10,6 @@ import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrand
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import java.io.File
-import java.nio.file.Files
 
 @Patch
 @Name("custom-branding")
@@ -22,17 +21,16 @@ class CustomBrandingPatch : ResourcePatch {
         fun copyResources(resourceGroups: List<ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)
-                val resourceDirectory = context.getFile("res", context.apkBundle.base)!!
+                val target = context.apkBundle.split?.asset ?: context.apkBundle.base
 
                 resourceGroups.forEach { group ->
                     val fromDirectory = iconPath.resolve(group.resourceDirectoryName)
-                    val toDirectory = resourceDirectory.resolve(group.resourceDirectoryName)
+                    val toDirectory = "res/${group.resourceDirectoryName}"
 
                     group.resources.forEach { iconFileName ->
-                        Files.write(
-                            toDirectory.resolve(iconFileName).toPath(),
-                            fromDirectory.resolve(iconFileName).readBytes()
-                        )
+                        target.openFile("$toDirectory/$iconFileName").use {
+                            it.contents = fromDirectory.resolve(iconFileName).readBytes()
+                        }
                     }
                 }
             } ?: resourceGroups.forEach { context.copyResources("branding", it) }
@@ -56,16 +54,16 @@ class CustomBrandingPatch : ResourcePatch {
             .let(::copyResources)
 
         // change the name of the app
-        val manifest = context.getFile("AndroidManifest.xml", context.apkBundle.base)
-            ?: return PatchResult.Error("Could not find AndroidManifest.xml")
-
-        manifest.writeText(
-            manifest.readText()
-                .replace(
-                    "android:label=\"@string/application_name",
-                    "android:label=\"$appName"
-                )
-        )
+        (context.openFile("AndroidManifest.xml", context.apkBundle.base)
+            ?: return PatchResult.Error("Could not find AndroidManifest.xml")).use { manifest ->
+            manifest.writeText(
+                manifest.readText()
+                    .replace(
+                        "android:label=\"@string/application_name",
+                        "android:label=\"$appName"
+                    )
+            )
+        }
 
         return PatchResult.Success
     }

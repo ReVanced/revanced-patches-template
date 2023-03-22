@@ -18,21 +18,11 @@ import java.nio.file.Files
 @Version("0.0.1")
 class DynamicColorPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val resDirectory = context.getFile("res", context.apkBundle.base)!!
-        if (!resDirectory.isDirectory) return PatchResult.Error("The res folder can not be found.")
-
-        val valuesV31Directory = resDirectory.resolve("values-v31")
-        if (!valuesV31Directory.isDirectory) Files.createDirectories(valuesV31Directory.toPath())
-
-        val valuesNightV31Directory = resDirectory.resolve("values-night-v31")
-        if (!valuesNightV31Directory.isDirectory) Files.createDirectories(valuesNightV31Directory.toPath())
-
-        listOf(valuesV31Directory, valuesNightV31Directory).forEach { it ->
-            val colorsXml = it.resolve("colors.xml")
-
-            if(!colorsXml.exists()) {
-                FileWriter(colorsXml).use {
-                    it.write("<?xml version=\"1.0\" encoding=\"utf-8\"?><resources></resources>")
+        listOf("values-v31", "values-night-v31").forEach {
+            val colorsXml = "res/$it/colors.xml"
+            context.apkBundle.base.openFile(colorsXml).use { file ->
+                if (!file.exists) {
+                    file.writeText("<?xml version=\"1.0\" encoding=\"utf-8\"?><resources></resources>")
                 }
             }
         }
