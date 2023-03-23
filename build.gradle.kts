@@ -42,7 +42,7 @@ tasks {
 
             exec {
                 workingDir = work
-                commandLine = listOf(d8, input)
+                commandLine = listOf(d8, "--min-api", "26", input)
             }
 
             exec {
