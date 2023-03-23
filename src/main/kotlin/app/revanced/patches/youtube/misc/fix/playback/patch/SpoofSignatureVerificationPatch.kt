@@ -82,6 +82,9 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
 
         } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
 
+        SettingsPatch.addString("revanced_user_notice_message_signature_spoofing",
+            "Signature spoofing can fix playback issues, but may causes side effects.")
+
         return PatchResultSuccess()
     }
 
