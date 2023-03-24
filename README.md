@@ -347,6 +347,15 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 
+### [📦 `org.telegram.menssenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-premium` | unlocks premiun features. | all |
+</details>
+
+
 
 ## 📝 JSON Format
 
