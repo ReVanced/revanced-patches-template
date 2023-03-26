@@ -43,7 +43,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 false,
                 StringResource("revanced_spoof_signature_verification_summary_on", "App signature spoofed"),
                 StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
-                StringResource("revanced_spoof_signature_verification_user_dialog_notice",
+                StringResource("revanced_spoof_signature_verification_user_dialog_message",
                     "Signature spoofing can fix playback issues, but may causes side effects.")
             )
         )
