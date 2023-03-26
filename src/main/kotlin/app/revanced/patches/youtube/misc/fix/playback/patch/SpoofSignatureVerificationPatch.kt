@@ -42,7 +42,9 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
                 false,
                 StringResource("revanced_spoof_signature_verification_summary_on", "App signature spoofed"),
-                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed")
+                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
+                StringResource("revanced_user_notice_message_signature_spoofing",
+                    "Signature spoofing can fix playback issues, but may causes side effects.")
             )
         )
 
@@ -81,9 +83,6 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
             }
 
         } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
-
-        SettingsPatch.addString("revanced_user_notice_message_signature_spoofing",
-            "Signature spoofing can fix playback issues, but may causes side effects.")
 
         return PatchResultSuccess()
     }

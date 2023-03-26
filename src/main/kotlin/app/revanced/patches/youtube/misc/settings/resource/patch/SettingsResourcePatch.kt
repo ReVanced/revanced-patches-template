@@ -77,8 +77,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        SettingsPatch.addString("revanced_enable_setting_user_notice_message_title_text",
-            "Do you wish to proceed?")
+        addString("revanced_settings_confirm_user_dialog_title",
+            "Do you wish to proceed?", false)
 
         return PatchResultSuccess()
     }

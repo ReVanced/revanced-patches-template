@@ -1,10 +1,7 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.IResource
-import app.revanced.patches.shared.settings.preference.addDefault
-import app.revanced.patches.shared.settings.preference.addSummary
-import app.revanced.patches.shared.settings.preference.SummaryType
+import app.revanced.patches.shared.settings.preference.*
+import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -16,14 +13,20 @@ import org.w3c.dom.Element
  * @param default The default value of the switch.
  * @param summaryOn The summary to show when the preference is enabled.
  * @param summaryOff The summary to show when the preference is disabled.
+ * @param userDialogMessage dialog message to show, if the user changes setting from the default value.
  */
 internal class SwitchPreference(
     key: String, title: StringResource,
     val default: Boolean = false,
     val summaryOn: StringResource? = null,
-    val summaryOff: StringResource? = null
+    val summaryOff: StringResource? = null,
+    userDialogMessage: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
+
+    init {
+        userDialogMessage?.include()
+    }
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {

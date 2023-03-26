@@ -41,7 +41,10 @@ class SpoofAppVersionPatch : BytecodePatch(
                 StringResource("revanced_spoof_app_version_title", "Spoof app version"),
                 false,
                 StringResource("revanced_spoof_app_version_summary_on", "Version spoofed to 17.30.34"),
-                StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed")
+                StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed"),
+                StringResource("revanced_user_notice_message_app_version_spoofing",
+                "App version will be spoofed to 17.30.34. This will give the old UI layout, but unknown side effects may occur."
+                        + " If later turned off, the old UI layout may remain until you log out or clear the app data.")
             )
         )
 
@@ -58,10 +61,6 @@ class SpoofAppVersionPatch : BytecodePatch(
                          """
             )
         } ?: return SpoofAppVersionFingerprint.toErrorResult()
-
-        SettingsPatch.addString("revanced_user_notice_message_app_version_spoofing",
-            "App version will be spoofed to 17.30.34. This will give the old UI layout, but unknown side effects may occur."
-                    + " If later turned off, the old UI layout may remain until you log out or clear the app data.")
 
         return PatchResultSuccess()
     }
