@@ -18,6 +18,7 @@ import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResou
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.resources.ResourceUtils.mergeStrings
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
@@ -77,8 +78,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        addString("revanced_settings_confirm_user_dialog_title",
-            "Do you wish to proceed?", false)
+        context.mergeStrings("settings/host/values/strings.xml")
 
         return PatchResultSuccess()
     }

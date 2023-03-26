@@ -20,15 +20,12 @@ internal class SwitchPreference(
     val default: Boolean = false,
     val summaryOn: StringResource? = null,
     val summaryOff: StringResource? = null,
-    userDialogMessage: StringResource? = null
+    val userDialogMessage: StringResource? = null
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
 
-    init {
-        userDialogMessage?.include()
-    }
-
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
+        userDialogMessage?.include()
         return super.serialize(ownerDocument, resourceCallback).apply {
             addDefault(default)
             addSummary(summaryOn?.also { resourceCallback?.invoke(it) }, SummaryType.ON)
