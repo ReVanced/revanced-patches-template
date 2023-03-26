@@ -25,7 +25,9 @@ internal class SwitchPreference(
     override val tag: String = "SwitchPreference"
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
+        // dialog message is stored as a regular string and later referenced by SettingsEnum
         userDialogMessage?.include()
+
         return super.serialize(ownerDocument, resourceCallback).apply {
             addDefault(default)
             addSummary(summaryOn?.also { resourceCallback?.invoke(it) }, SummaryType.ON)
