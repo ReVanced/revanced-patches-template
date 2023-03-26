@@ -13,7 +13,7 @@ import org.w3c.dom.Element
  * @param default The default value of the switch.
  * @param summaryOn The summary to show when the preference is enabled.
  * @param summaryOff The summary to show when the preference is disabled.
- * @param userDialogMessage dialog message to show, if the user changes setting from the default value.
+ * @param userDialogMessage The message to show in a dialog when the user toggles the preference.
  */
 internal class SwitchPreference(
     key: String, title: StringResource,
