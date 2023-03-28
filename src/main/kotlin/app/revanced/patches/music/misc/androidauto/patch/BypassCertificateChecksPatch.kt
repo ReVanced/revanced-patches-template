@@ -10,28 +10,28 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.misc.androidauto.annotations.MusicAndroidAutoCompatibility
-import app.revanced.patches.music.misc.androidauto.fingerprints.SHACertificateCheckFingerprint
+import app.revanced.patches.music.misc.androidauto.annotations.BypassCertificateChecksCompatibility
+import app.revanced.patches.music.misc.androidauto.fingerprints.BypassCertificateChecksFingerprint
 
 @Patch
-@Name("android-auto-cert-patch")
-@Description("Enable youtube music in android auto in case of non-root version")
-@MusicAndroidAutoCompatibility
+@Name("bypass-certificate-checks")
+@Description("Bypasses certificate checks which prevent YouTube Music from working on Android Auto.")
+@BypassCertificateChecksCompatibility
 @Version("0.0.1")
-class AndroidAutoCertPatch : BytecodePatch(
+class BypassCertificateChecksPatch : BytecodePatch(
     listOf(
-        SHACertificateCheckFingerprint
+        BypassCertificateChecksFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         var fixIndex = 0
-        val result = SHACertificateCheckFingerprint.result!!
+        val result = BypassCertificateChecksFingerprint.result!!
         result.scanResult.stringsScanResult?.matches?.forEach{
             if (it.string.contains("No match")){
                 fixIndex = it.index
             }
         }
-        val method = SHACertificateCheckFingerprint.result!!.mutableMethod
+        val method = BypassCertificateChecksFingerprint.result!!.mutableMethod
 
         method.replaceInstruction(fixIndex+2, "const/4 p1, 0x1")
 

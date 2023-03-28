@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 
 
-object SHACertificateCheckFingerprint: MethodFingerprint("Z", AccessFlags.PUBLIC or AccessFlags.FINAL,
+object BypassCertificateChecksFingerprint: MethodFingerprint("Z", AccessFlags.PUBLIC or AccessFlags.FINAL,
     strings = listOf(
         "AllowlistManager.java",
         "com/google/android/apps/youtube/music/mediabrowser/AllowlistManager",
