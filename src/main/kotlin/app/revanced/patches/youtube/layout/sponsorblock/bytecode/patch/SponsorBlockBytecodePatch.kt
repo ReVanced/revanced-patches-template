@@ -66,8 +66,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
     private companion object {
         const val INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/sponsorblock/SegmentPlaybackController;"
-        const val INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/ui/ShieldButtonController;"
+        const val INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/CreateSegmentButtonController;"
         const val INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/sponsorblock/ui/VotingButtonController;"
         const val INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR =
@@ -188,7 +188,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         method.addInstructions(
                             moveResultInstructionIndex + 1, // insert right after moving the view to the register and use that register
                             """
-                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
+                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
                                 invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
                             """
                         )
@@ -200,7 +200,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         // change visibility of the buttons
                         invertVisibilityMethod.addInstructions(
                             0, """
-                                invoke-static {p1}, $INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate(Z)V
+                                invoke-static {p1}, $INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate(Z)V
                                 invoke-static {p1}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibilityNegatedImmediate(Z)V
                             """.trimIndent()
                         )
@@ -210,7 +210,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         }
 
         // change visibility of the buttons
-        PlayerControlsBytecodePatch.injectVisibilityCheckCall("$INTEGRATIONS_SHIELD_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibility(Z)V")
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall("$INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibility(Z)V")
         PlayerControlsBytecodePatch.injectVisibilityCheckCall("$INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->changeVisibility(Z)V")
 
         // append the new time to the player layout
