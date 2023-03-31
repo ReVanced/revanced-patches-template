@@ -1,3 +1,10 @@
+# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0-dev.1) (2023-03-31)
+
+
+### Features
+
+* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([563295e](https://github.com/revanced/revanced-patches/commit/563295e78b194a83908c2e1405ba4312def520af))
+
 # [2.167.0](https://github.com/revanced/revanced-patches/compare/v2.166.0...v2.167.0) (2023-03-29)
 
 
