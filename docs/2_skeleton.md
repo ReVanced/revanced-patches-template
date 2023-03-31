@@ -74,6 +74,8 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
      > Currently, this annotation does not serve any purpose, but is added to patches by convention, in case a use case has been found.
 
+   - The `@RequiresIntegrations` annotation marks patches which depend on integrations. The patcher will merge integrations before patching starts if any patches with the annotation are used.
+
 2. 🏗️ Patch class
 
    ```kt
