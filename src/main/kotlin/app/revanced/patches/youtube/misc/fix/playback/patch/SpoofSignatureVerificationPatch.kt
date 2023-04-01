@@ -19,7 +19,9 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.annotation.ProtobufSpoofCompatibility
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.OpenCronetDataSourceFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParameterBuilderFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.SubtitleWindowSettingsConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -27,12 +29,13 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Name("spoof-signature-verification")
 @Description("Spoofs the client to prevent playback issues.")
 @ProtobufSpoofCompatibility
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, PlayerTypeHookPatch::class])
 @Version("0.0.1")
 class SpoofSignatureVerificationPatch : BytecodePatch(
     listOf(
         ProtobufParameterBuilderFingerprint,
         OpenCronetDataSourceFingerprint,
+        SubtitleWindowSettingsConstructorFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -81,6 +84,25 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
             }
 
         } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
+
+        // hook override subtitles
+        SubtitleWindowSettingsConstructorFingerprint.result?.let {
+            it.mutableMethod.apply {
+                addInstructions(
+                    0,
+                    """
+                        invoke-static {p1, p2, p3, p4, p5}, $INTEGRATIONS_CLASS_DESCRIPTOR->getSubtitleWindowSettingsOverride(IIIZZ)[I
+                        move-result-object v0
+                        const/4 v1, 0x0
+                        aget p1, v0, v1     # ap, anchor configuration
+                        const/4 v1, 0x1
+                        aget p2, v0, v1     # ah, horizontal anchor
+                        const/4 v1, 0x2
+                        aget p3, v0, v1     # av, vertical anchor
+                    """
+                )
+            }
+        } ?: return SubtitleWindowSettingsConstructorFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

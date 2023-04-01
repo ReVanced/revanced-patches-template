@@ -71,6 +71,7 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
@@ -136,7 +137,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-ads` | Hides ads. | all |
 | `hide-recommended-users` | Hides recommended users. | all |
 | `hide-views-stats` | Hides the view stats under tweets. | 9.71.0-release.0 |
-| `monochrome-icon` | Adds a monochrome icon. | all |
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
@@ -182,8 +182,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.5.2 |
-| `spoof-signature` | Spoofs the signature of the app. | 2.5.2 |
+| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.6.0 |
+| `spoof-signature` | Spoofs the signature of the app. | 2.6.0 |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
