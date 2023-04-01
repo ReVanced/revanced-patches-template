@@ -94,11 +94,11 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                         invoke-static {p1, p2, p3, p4, p5}, $INTEGRATIONS_CLASS_DESCRIPTOR->getSubtitleWindowSettingsOverride(IIIZZ)[I
                         move-result-object v0
                         const/4 v1, 0x0
-                        aget p1, v0, v1
+                        aget p1, v0, v1     # ap, anchor configuration
                         const/4 v1, 0x1
-                        aget p2, v0, v1
+                        aget p2, v0, v1     # ah, horizontal anchor
                         const/4 v1, 0x2
-                        aget p3, v0, v1
+                        aget p3, v0, v1     # av, vertical anchor
                     """
                 )
             }
