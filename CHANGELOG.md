@@ -1,3 +1,10 @@
+# [2.168.0](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0) (2023-04-01)
+
+
+### Features
+
+* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([02ece35](https://github.com/revanced/revanced-patches/commit/02ece35fadd1288c36adea502363a7284552e6f6))
+
 # [2.167.0](https://github.com/revanced/revanced-patches/compare/v2.166.0...v2.167.0) (2023-03-29)
 
 
