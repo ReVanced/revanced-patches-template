@@ -1,3 +1,10 @@
+# [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-01)
+
+
+### Features
+
+* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([d65bd24](https://github.com/revanced/revanced-patches/commit/d65bd2455605d864e660f2e269b7e985abd82fc7))
+
 # [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0-dev.1) (2023-03-31)
 
 
