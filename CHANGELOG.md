@@ -1,3 +1,10 @@
+# [2.168.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.2...v2.168.0-dev.3) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([a6aa0f8](https://github.com/revanced/revanced-patches/commit/a6aa0f844c38f54749fd1f09443bc18f22aa9266))
+
 # [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-01)
 
 
