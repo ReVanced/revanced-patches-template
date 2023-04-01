@@ -1,3 +1,10 @@
+# [2.168.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.3...v2.168.0-dev.4) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtube/spoof-signature-verification:** fixed subtitles in wrong location ([#1833](https://github.com/revanced/revanced-patches/issues/1833)) ([c014cd1](https://github.com/revanced/revanced-patches/commit/c014cd1fc41b8231932413171c6d7c33f69e7739))
+
 # [2.168.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.2...v2.168.0-dev.3) (2023-04-01)
 
 
