@@ -74,7 +74,9 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
      > Currently, this annotation does not serve any purpose, but is added to patches by convention, in case a use case has been found.
 
-   - The `@RequiresIntegrations` annotation marks patches which depend on integrations. The patcher will merge integrations before patching starts if any patches with the annotation are used.
+   - Annotate a patch with `@RequiresIntegrations` if it depends on additional integrations to be merged by [ReVanced Patcher](https://github.com/revanced/revanced-patcher).
+   
+     > Integrations are precompiled classes which are useful to off-load and useful for developing complex patches. Details of integrations and what exactly integrations are will be introduced properly on another page.
 
 2. 🏗️ Patch class
 
