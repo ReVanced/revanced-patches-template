@@ -71,6 +71,7 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
@@ -181,8 +182,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.5.2 |
-| `spoof-signature` | Spoofs the signature of the app. | 2.5.2 |
+| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.6.0 |
+| `spoof-signature` | Spoofs the signature of the app. | 2.6.0 |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
@@ -199,6 +200,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `enable-on-demand` | Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. This does not remove ads. | all |
+</details>
+
+### [📦 `com.nis.app`](https://play.google.com/store/apps/details?id=com.nis.app)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-ads` | Removes ads from Inshorts. | all |
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)

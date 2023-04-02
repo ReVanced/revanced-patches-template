@@ -1,3 +1,56 @@
+# [2.168.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.4...v2.168.0-dev.5) (2023-04-02)
+
+
+### Features
+
+* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([035a41e](https://github.com/revanced/revanced-patches/commit/035a41ef0859a47d9aa735fd2645516f527b64f2))
+
+# [2.168.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.3...v2.168.0-dev.4) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtube/spoof-signature-verification:** fixed subtitles in wrong location ([#1833](https://github.com/revanced/revanced-patches/issues/1833)) ([c014cd1](https://github.com/revanced/revanced-patches/commit/c014cd1fc41b8231932413171c6d7c33f69e7739))
+
+# [2.168.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.2...v2.168.0-dev.3) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([a6aa0f8](https://github.com/revanced/revanced-patches/commit/a6aa0f844c38f54749fd1f09443bc18f22aa9266))
+
+# [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-01)
+
+
+### Features
+
+* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([d65bd24](https://github.com/revanced/revanced-patches/commit/d65bd2455605d864e660f2e269b7e985abd82fc7))
+
+# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0-dev.1) (2023-03-31)
+
+
+### Features
+
+* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([563295e](https://github.com/revanced/revanced-patches/commit/563295e78b194a83908c2e1405ba4312def520af))
+
+# [2.167.0](https://github.com/revanced/revanced-patches/compare/v2.166.0...v2.167.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* **youtube/remember-playback-speed:**  allow to not remember playback speed ([#1762](https://github.com/revanced/revanced-patches/issues/1762)) ([49ec3e8](https://github.com/revanced/revanced-patches/commit/49ec3e83f18ec4eb180d220c5a7015f8e4feb3a7))
+* **youtube/sponsorblock:** fix segments not skipping during background play ([#1765](https://github.com/revanced/revanced-patches/issues/1765)) ([7620ea1](https://github.com/revanced/revanced-patches/commit/7620ea1752406d703deb15aa0267d4572b1b171a))
+* **youtube/spoof-signature-verification:** fix audio during home feed video playback ([#1754](https://github.com/revanced/revanced-patches/issues/1754)) ([7dd067b](https://github.com/revanced/revanced-patches/commit/7dd067b0e96679fe653c9796bef31d743287b2d0))
+
+
+### Features
+
+* `export-all-activities` patch ([#1751](https://github.com/revanced/revanced-patches/issues/1751)) ([aad6e05](https://github.com/revanced/revanced-patches/commit/aad6e055380f91462d94fc96c4ec17a27e283c64))
+* **reddit:** bump compatibility to `2023.10.0` ([#1772](https://github.com/revanced/revanced-patches/issues/1772)) ([f95ab6e](https://github.com/revanced/revanced-patches/commit/f95ab6e13e70667fdffe479b7292112244e6bb9e))
+* **twitter:** remove `monochrome-icon` patch ([#1786](https://github.com/revanced/revanced-patches/issues/1786)) ([b8bf804](https://github.com/revanced/revanced-patches/commit/b8bf804835e75c9f2c8453c8ce22cfd8d17318ce))
+* **youtube/microg-support:** do not depend on `spoof-signature-verification` patch ([af4e765](https://github.com/revanced/revanced-patches/commit/af4e765ca87c6c979e95bc274b32c764a0a32a88))
+* **youtube/spoof-signature-verification:** automatic signature spoofing ([f1395f4](https://github.com/revanced/revanced-patches/commit/f1395f49fae1c0a00de074d58fa7d81f562d3009))
+
 # [2.167.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.167.0-dev.5...v2.167.0-dev.6) (2023-03-22)
 
 
