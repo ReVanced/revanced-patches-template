@@ -1,3 +1,10 @@
+# [2.168.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.4...v2.168.0-dev.5) (2023-04-02)
+
+
+### Features
+
+* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([035a41e](https://github.com/revanced/revanced-patches/commit/035a41ef0859a47d9aa735fd2645516f527b64f2))
+
 # [2.168.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.3...v2.168.0-dev.4) (2023-04-01)
 
 
