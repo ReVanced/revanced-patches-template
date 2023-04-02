@@ -1,3 +1,10 @@
+# [2.168.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.5...v2.168.0-dev.6) (2023-04-02)
+
+
+### Features
+
+* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([7e91a3f](https://github.com/revanced/revanced-patches/commit/7e91a3f3e65bb4602332b05db5df38b4aa478ece))
+
 # [2.168.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.4...v2.168.0-dev.5) (2023-04-02)
 
 
