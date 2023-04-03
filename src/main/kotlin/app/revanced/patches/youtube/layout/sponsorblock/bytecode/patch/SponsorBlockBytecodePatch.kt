@@ -42,9 +42,9 @@ import org.jf.dexlib2.iface.reference.StringReference
     dependencies = [
         IntegrationsPatch::class,
         VideoIdPatch::class,
-        // uses video seek to skip segments, and playback speed to schedule upcoming skips
+        // Required to skip segments on time.
         VideoInformationPatch::class,
-        // to check for and ignore Shorts (SponsorBlock does not support Shorts)
+        // Used to prevent SponsorBlock from running on Shorts because SponsorBlock does not yet support Shorts.
         PlayerTypeHookPatch::class,
         PlayerControlsBytecodePatch::class,
         SponsorBlockResourcePatch::class,
