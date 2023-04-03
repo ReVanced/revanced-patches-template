@@ -142,7 +142,6 @@ class VideoInformationPatch : BytecodePatch(
             speedSelectionValueRegister =
                 (mutableMethod.instruction(speedSelectionInsertIndex) as FiveRegisterInstruction).registerD
 
-
             val speedSelectionMethodInstructions = mutableMethod.implementation!!.instructions
             setPlaybackSpeedContainerClassFieldReference =
                 getReference(speedSelectionMethodInstructions, -1, Opcode.IF_EQZ)
