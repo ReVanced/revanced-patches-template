@@ -1,28 +1,19 @@
 package app.revanced.patches.youtube.misc.video.speed.remember.patch
 
-import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.video.speed.current.fingerprint.OnPlaybackSpeedItemClickFingerprint
 import app.revanced.patches.youtube.misc.video.speed.current.patch.CurrentPlaybackSpeedPatch
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
-import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.Instruction
-import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch
 @Name("remember-playback-speed")
@@ -30,12 +21,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, CurrentPlaybackSpeedPatch::class])
 @RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
-class RememberPlaybackSpeedPatch : BytecodePatch(
-    listOf(
-        OnPlaybackSpeedItemClickFingerprint,
-        InitializePlaybackSpeedValuesFingerprint
-    )
-) {
+class RememberPlaybackSpeedPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
@@ -61,53 +47,8 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
         CurrentPlaybackSpeedPatch.injectVideoSpeedSelectedByUser(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->userSelectedPlaybackSpeed(F)V")
 
-        /*
-         * Hook the code that is called when the playback speeds are initialized, and sets the playback speed
-         */
-        InitializePlaybackSpeedValuesFingerprint.result?.apply {
-            // Infer everything necessary for calling the method setPlaybackSpeed().
-            val instructions = OnPlaybackSpeedItemClickFingerprint.result!!.mutableMethod.implementation!!.instructions
-            fun getReference(offset: Int = 0, opcode: Opcode) =
-                instructions[instructions.indexOfFirst { it.opcode == opcode } + offset].reference
-
-            val setPlaybackSpeedContainerClassFieldReference =
-                getReference(-1, Opcode.IF_EQZ)
-
-            val setPlaybackSpeedClassFieldReference =
-                getReference(1, Opcode.IGET)
-
-            val setPlaybackSpeedMethodReference =
-                getReference(2, Opcode.IGET)
-
-            val onItemClickListenerClassFieldReference = mutableMethod.instruction(0).reference
-
-            // Registers are not used at index 0, so they can be freely used.
-            mutableMethod.addInstructions(
-                0,
-                """
-                    invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoSpeedOverride()F
-                    move-result v0
-                    
-                    # Check if the playback speed is not 1.0x.
-                    const/high16 v1, 0x3f800000  # 1.0f
-                    cmpg-float v1, v0, v1
-                    if-eqz v1, :do_not_override
-    
-                    # Get the instance of the class which has the container class field below.
-                    iget-object v1, p0, $onItemClickListenerClassFieldReference
-
-                    # Get the container class field.
-                    iget-object v1, v1, $setPlaybackSpeedContainerClassFieldReference 
-                    
-                    # Get the field from its class.
-                    iget-object v2, v1, $setPlaybackSpeedClassFieldReference
-                    
-                    # Invoke setPlaybackSpeed on that class.
-                    invoke-virtual {v2, v0}, $setPlaybackSpeedMethodReference
-                """.trimIndent(),
-                listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
-            )
-        } ?: return InitializePlaybackSpeedValuesFingerprint.toErrorResult()
+        CurrentPlaybackSpeedPatch.injectVideoSpeedOverride(
+            "$INTEGRATIONS_CLASS_DESCRIPTOR->getVideoSpeedOverride()F")
 
         return PatchResultSuccess()
     }
@@ -115,7 +56,5 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
-
-        val Instruction.reference get() = (this as ReferenceInstruction).reference.toString()
     }
 }
