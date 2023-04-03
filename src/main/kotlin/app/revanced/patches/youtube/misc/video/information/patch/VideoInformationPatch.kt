@@ -151,7 +151,7 @@ class VideoInformationPatch : BytecodePatch(
                 getReference(speedSelectionMethodInstructions, 2, Opcode.IGET)
         } ?: return OnPlaybackSpeedItemClickFingerprint.toErrorResult()
 
-        userSelectedVideoSpeedHook(INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
+        userSelectedPlaybackSpeedHook(INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 
         return PatchResultSuccess()
     }
@@ -227,7 +227,7 @@ class VideoInformationPatch : BytecodePatch(
         /**
          * Hook the video speed selected by the user.
          */
-        internal fun userSelectedVideoSpeedHook(targetMethodClass: String, targetMethodName: String) =
+        internal fun userSelectedPlaybackSpeedHook(targetMethodClass: String, targetMethodName: String) =
             speedSelectionInsertMethod.addInstruction(
             speedSelectionInsertIndex++,
             "invoke-static {v$speedSelectionValueRegister}, $targetMethodClass->$targetMethodName(F)V"

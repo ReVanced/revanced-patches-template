@@ -54,7 +54,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
         VideoIdPatch.injectCall("${INTEGRATIONS_CLASS_DESCRIPTOR}->newVideoLoaded(Ljava/lang/String;)V")
 
-        VideoInformationPatch.userSelectedVideoSpeedHook(
+        VideoInformationPatch.userSelectedPlaybackSpeedHook(
             INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 
         /*
@@ -68,7 +68,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
             mutableMethod.addInstructions(
                 0,
                 """
-                    invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoSpeedOverride()F
+                    invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getPlaybackSpeedOverride()F
                     move-result v0
                     
                     # Check if the playback speed is not 1.0x.
