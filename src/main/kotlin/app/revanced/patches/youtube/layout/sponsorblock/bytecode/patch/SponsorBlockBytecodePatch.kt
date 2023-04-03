@@ -59,7 +59,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         SeekbarFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
-        AutoRepeatParentFingerprint, // used for more robust end of video detection
+        AutoRepeatParentFingerprint, // used for more robust end of video detection (see comments below)
     )
 ) {
 
@@ -269,8 +269,9 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             } ?: return PatchResultError("Could not find the method which contains the replaceMeWith* strings")
 
 
-        // more robust detection that the end of the video has been reached
-        // this change is somewhat optional
+        // The vote and create segment buttons automatically change their visibility when appropriate,
+        // but if buttons are showing when the end of the video is reached then they will not automatically hide.
+        // Add a hook to forcefully hide when the end of the video is reached.
         AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.toErrorResult()
         AutoRepeatFingerprint.also {
             it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
