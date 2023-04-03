@@ -1,11 +1,12 @@
 package app.revanced.patches.youtube.layout.buttons.autoplay.patch
 
 import app.revanced.extensions.toErrorResult
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -18,6 +19,7 @@ import app.revanced.patches.youtube.layout.buttons.autoplay.fingerprints.LayoutC
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.Instruction
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
@@ -47,7 +49,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
 
             // resolve the offsets such as ...
             val autoNavPreviewStubId = context.mapper.find("id", "autonav_preview_stub")
-
+            
             // where to insert the branch instructions and ...
             val insertIndex = layoutGenMethodInstructions.indexOfFirst {
                 (it as? WideLiteralInstruction)?.wideLiteral == autoNavPreviewStubId
@@ -62,12 +64,15 @@ class HideAutoplayButtonPatch : BytecodePatch(
 
             val jumpInstruction = layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
 
+            // can be clobbered because this register is overwritten after the injected code
+            val clobberRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
+
             addInstructions(
                 insertIndex,
                 """
                 invoke-static {}, Lapp/revanced/integrations/patches/HideAutoplayButtonPatch;->isButtonShown()Z
-                move-result v11
-                if-eqz v11, :hidden
+                move-result v$clobberRegister
+                if-eqz v$clobberRegister, :hidden
             """, listOf(ExternalLabel("hidden", jumpInstruction))
             )
         } ?: return LayoutConstructorFingerprint.toErrorResult()

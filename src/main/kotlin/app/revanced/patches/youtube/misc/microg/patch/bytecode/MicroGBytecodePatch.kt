@@ -9,8 +9,9 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
+import app.revanced.patches.shared.misc.fix.spoof.patch.ClientSpoofPatch
 import app.revanced.patches.youtube.layout.buttons.cast.patch.HideCastButtonPatch
-import app.revanced.patches.youtube.misc.fix.spoof.patch.ClientSpoofPatch
+import app.revanced.patches.youtube.misc.fix.playback.patch.SpoofSignatureVerificationPatch
 import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibility
 import app.revanced.patches.youtube.misc.microg.fingerprints.*
 import app.revanced.patches.youtube.misc.microg.patch.resource.MicroGResourcePatch
@@ -32,7 +33,6 @@ import app.revanced.util.microg.MicroGBytecodeHelper
 @Version("0.0.1")
 class MicroGBytecodePatch : BytecodePatch(
     listOf(
-        IntegrityCheckFingerprint,
         ServiceCheckFingerprint,
         GooglePlayUtilityFingerprint,
         CastDynamiteModuleFingerprint,
@@ -57,7 +57,6 @@ class MicroGBytecodePatch : BytecodePatch(
                 REVANCED_PACKAGE_NAME
             ),
             listOf(
-                IntegrityCheckFingerprint,
                 ServiceCheckFingerprint,
                 GooglePlayUtilityFingerprint,
                 CastDynamiteModuleFingerprint,

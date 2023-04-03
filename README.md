@@ -9,59 +9,60 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `always-autorepeat` | Always repeats the playing video again. | 18.03.36 |
+| `always-autorepeat` | Always repeats the playing video again. | 18.08.37 |
 | `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
-| `comments` | Hides components related to comments. | 18.03.36 |
-| `copy-video-url` | Adds buttons in player to copy video links. | 18.03.36 |
+| `comments` | Hides components related to comments. | 18.08.37 |
+| `copy-video-url` | Adds buttons in player to copy video links. | 18.08.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
-| `custom-video-buffer` | Lets you change the buffers of videos. | 18.03.36 |
-| `custom-video-speed` | Adds more video speed options. | 18.03.36 |
+| `custom-video-buffer` | Lets you change the buffers of videos. | 18.08.37 |
+| `custom-video-speed` | Adds more video speed options. | 18.08.37 |
 | `debugging` | Adds debugging options. | all |
-| `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.03.36 |
-| `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.03.36 |
-| `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.03.36 |
-| `disable-shorts-on-startup` | Disables playing YouTube Shorts when launching YouTube. | 18.03.36 |
+| `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.08.37 |
+| `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.08.37 |
+| `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.08.37 |
+| `disable-shorts-on-startup` | Disables playing YouTube Shorts when launching YouTube. | 18.08.37 |
 | `disable-zoom-haptics` | Disables haptics when zooming. | all |
-| `downloads` | Enables downloading music and videos from YouTube. | 18.03.36 |
-| `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.03.36 |
-| `general-ads` | Removes general ads. | 18.03.36 |
-| `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.03.36 |
-| `hide-album-cards` | Hides the album cards below the artist description. | 18.03.36 |
-| `hide-artist-card` | Hides the artist card below the searchbar. | 18.03.36 |
-| `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.03.36 |
-| `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.03.36 |
-| `hide-captions-button` | Hides the captions button on video player. | 18.03.36 |
+| `downloads` | Enables downloading music and videos from YouTube. | 18.08.37 |
+| `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.08.37 |
+| `general-ads` | Removes general ads. | 18.08.37 |
+| `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.08.37 |
+| `hide-album-cards` | Hides the album cards below the artist description. | 18.08.37 |
+| `hide-artist-card` | Hides the artist card below the searchbar. | 18.08.37 |
+| `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.08.37 |
+| `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.08.37 |
+| `hide-captions-button` | Hides the captions button on video player. | 18.08.37 |
 | `hide-cast-button` | Hides the cast button in the video player. | all |
-| `hide-create-button` | Hides the create button in the navigation bar. | 18.03.36 |
-| `hide-crowdfunding-box` | Hides the crowdfunding box between the player and video description. | 18.03.36 |
-| `hide-email-address` | Hides the email address in the account switcher. | 18.03.36 |
-| `hide-endscreen-cards` | Hides the suggested video cards at the end of a video in fullscreen. | 18.03.36 |
-| `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.03.36 |
-| `hide-info-cards` | Hides info cards in videos. | 18.03.36 |
-| `hide-my-mix` | Hides mix playlists. | 18.03.36 |
+| `hide-create-button` | Hides the create button in the navigation bar. | 18.08.37 |
+| `hide-crowdfunding-box` | Hides the crowdfunding box between the player and video description. | 18.08.37 |
+| `hide-email-address` | Hides the email address in the account switcher. | 18.08.37 |
+| `hide-endscreen-cards` | Hides the suggested video cards at the end of a video in fullscreen. | 18.08.37 |
+| `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.08.37 |
+| `hide-info-cards` | Hides info cards in videos. | 18.08.37 |
+| `hide-my-mix` | Hides mix playlists. | 18.08.37 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | all |
-| `hide-seekbar` | Hides the seekbar. | 18.03.36 |
-| `hide-shorts-button` | Hides the shorts button on the navigation bar. | 18.03.36 |
-| `hide-timestamp` | Hides timestamp in video player. | 18.03.36 |
-| `hide-video-action-buttons` | Adds the options to hide action buttons under a video. | 18.03.36 |
-| `hide-watch-in-vr` | Hides the option to watch in VR from the player settings flyout panel. | 18.03.36 |
-| `hide-watermark` | Hides creator's watermarks on videos. | 18.03.36 |
-| `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.03.36 |
-| `minimized-playback` | Enables minimized and background playback. | 18.03.36 |
-| `old-quality-layout` | Enables the original video quality flyout in the video player settings | 18.03.36 |
-| `open-links-externally` | Open links outside of the app directly in your browser. | 18.03.36 |
+| `hide-seekbar` | Hides the seekbar. | 18.08.37 |
+| `hide-shorts-button` | Hides the shorts button on the navigation bar. | 18.08.37 |
+| `hide-timestamp` | Hides timestamp in video player. | 18.08.37 |
+| `hide-video-action-buttons` | Adds the options to hide action buttons under a video. | 18.08.37 |
+| `hide-watch-in-vr` | Hides the option to watch in VR from the player settings flyout panel. | 18.08.37 |
+| `hide-watermark` | Hides creator's watermarks on videos. | 18.08.37 |
+| `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.08.37 |
+| `minimized-playback` | Enables minimized and background playback. | 18.08.37 |
+| `old-quality-layout` | Enables the original video quality flyout in the video player settings | 18.08.37 |
+| `open-links-externally` | Open links outside of the app directly in your browser. | 18.08.37 |
 | `premium-heading` | Shows premium branding on the home screen. | all |
-| `remember-playback-rate` | Adds the ability to remember the playback rate you chose in the video playback rate flyout. | 18.03.36 |
-| `remember-video-quality` | Adds the ability to remember the video quality you chose in the video quality flyout. | 18.03.36 |
-| `remove-player-button-background` | Removes the background from the video player buttons. | 18.03.36 |
-| `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 18.03.36 |
-| `seekbar-tapping` | Enables tap-to-seek on the seekbar of the video player. | 18.03.36 |
-| `sponsorblock` | Integrates SponsorBlock which allows skipping video segments such as sponsored content. | 18.03.36 |
-| `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.03.36 |
-| `swipe-controls` | Adds volume and brightness swipe controls. | 18.03.36 |
-| `tablet-mini-player` | Enables the tablet mini player layout. | 18.03.36 |
+| `remember-playback-speed` | Adds the ability to remember the playback speed you chose in the video playback speed flyout. | 18.08.37 |
+| `remember-video-quality` | Adds the ability to remember the video quality you chose in the video quality flyout. | 18.08.37 |
+| `remove-player-button-background` | Removes the background from the video player buttons. | 18.08.37 |
+| `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 18.08.37 |
+| `seekbar-tapping` | Enables tap-to-seek on the seekbar of the video player. | 18.08.37 |
+| `sponsorblock` | Integrates SponsorBlock which allows skipping video segments such as sponsored content. | 18.08.37 |
+| `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.08.37 |
+| `spoof-signature-verification` | Spoofs the client to prevent playback issues. | 18.08.37 |
+| `swipe-controls` | Adds volume and brightness swipe controls. | 18.08.37 |
+| `tablet-mini-player` | Enables the tablet mini player layout. | 18.08.37 |
 | `theme` | Applies a custom theme. | all |
-| `video-ads` | Removes ads in the video player. | 18.03.36 |
+| `video-ads` | Removes ads in the video player. | 18.08.37 |
 </details>
 
 ### [📦 `com.google.android.apps.youtube.music`](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
@@ -70,6 +71,7 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
@@ -118,9 +120,9 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `block-audio-ads` | Blocks audio ads in streams and VODs. | all |
-| `block-embedded-ads` | Blocks embedded steam ads using services like TTV.lol or PurpleAdBlocker. | all |
-| `block-video-ads` | Blocks video ads in streams and VODs. | all |
+| `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
+| `block-embedded-ads` | Blocks embedded steam ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
+| `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
 | `debug-mode` | Enables Twitch's internal debugging mode. | all |
 | `settings` | Adds settings menu to Twitch. | all |
 | `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
@@ -135,7 +137,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-ads` | Hides ads. | all |
 | `hide-recommended-users` | Hides recommended users. | all |
 | `hide-views-stats` | Hides the view stats under tweets. | 9.71.0-release.0 |
-| `monochrome-icon` | Adds a monochrome icon. | all |
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
@@ -153,9 +154,18 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.08.0 |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.08.0 |
+| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.10.0 |
+| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.10.0 |
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
+</details>
+
+### [📦 `com.vanced.android.youtube`](https://play.google.com/store/apps/details?id=com.vanced.android.youtube)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
+| `hide-ads` | Removes general ads. | all |
 </details>
 
 ### [📦 `at.gv.bmf.bmf2go`](https://play.google.com/store/apps/details?id=at.gv.bmf.bmf2go)
@@ -172,16 +182,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.5.2 |
-| `spoof-signature` | Spoofs the signature of the app. | 2.5.2 |
-</details>
-
-### [📦 `com.vanced.android.youtube`](https://play.google.com/store/apps/details?id=com.vanced.android.youtube)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
+| `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | 2.6.0 |
+| `spoof-signature` | Spoofs the signature of the app. | 2.6.0 |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
@@ -198,6 +200,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `enable-on-demand` | Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. This does not remove ads. | all |
+</details>
+
+### [📦 `com.nis.app`](https://play.google.com/store/apps/details?id=com.nis.app)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-ads` | Removes ads from Inshorts. | all |
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
@@ -288,6 +298,22 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
+### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
+</details>
+
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
 ### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
@@ -304,22 +330,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
-</details>
-
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
 <details>
 
@@ -333,7 +343,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `unlock-themes` | Unlocks all themes. | all |
+| `unlock-themes` | Unlocks all themes that are inaccessible until a certain level is reached. | all |
 </details>
 
 ### [📦 `net.dinglisch.android.taskerm`](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm)
