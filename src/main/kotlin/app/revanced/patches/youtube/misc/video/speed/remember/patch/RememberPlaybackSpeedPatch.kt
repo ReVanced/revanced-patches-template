@@ -15,16 +15,16 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
+import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
 import app.revanced.patches.youtube.misc.video.speed.current.fingerprint.InitializePlaybackSpeedValuesFingerprint
-import app.revanced.patches.youtube.misc.video.speed.current.patch.CurrentPlaybackSpeedPatch
-import app.revanced.patches.youtube.misc.video.speed.current.patch.CurrentPlaybackSpeedPatch.Companion.reference
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, CurrentPlaybackSpeedPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
 @RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
@@ -54,8 +54,8 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
         VideoIdPatch.injectCall("${INTEGRATIONS_CLASS_DESCRIPTOR}->newVideoLoaded(Ljava/lang/String;)V")
 
-        CurrentPlaybackSpeedPatch.injectVideoSpeedSelectedByUser(
-            "$INTEGRATIONS_CLASS_DESCRIPTOR->userSelectedPlaybackSpeed(F)V")
+        VideoInformationPatch.userSelectedVideoSpeedHook(
+            INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 
         /*
          * Hook the code that is called when the playback speeds are initialized, and sets the playback speed
@@ -80,13 +80,13 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     iget-object v1, p0, $onItemClickListenerClassFieldReference
 
                     # Get the container class field.
-                    iget-object v1, v1, ${CurrentPlaybackSpeedPatch.setPlaybackSpeedContainerClassFieldReference}  
+                    iget-object v1, v1, ${VideoInformationPatch.setPlaybackSpeedContainerClassFieldReference}  
                     
                     # Get the field from its class.
-                    iget-object v2, v1, ${CurrentPlaybackSpeedPatch.setPlaybackSpeedClassFieldReference}
+                    iget-object v2, v1, ${VideoInformationPatch.setPlaybackSpeedClassFieldReference}
                     
                     # Invoke setPlaybackSpeed on that class.
-                    invoke-virtual {v2, v0}, ${CurrentPlaybackSpeedPatch.setPlaybackSpeedMethodReference}
+                    invoke-virtual {v2, v0}, ${VideoInformationPatch.setPlaybackSpeedMethodReference}
                 """.trimIndent(),
                 listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
             )

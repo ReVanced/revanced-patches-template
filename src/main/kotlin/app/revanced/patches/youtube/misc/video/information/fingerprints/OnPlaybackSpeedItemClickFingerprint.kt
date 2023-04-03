@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.video.speed.current.fingerprint
+package app.revanced.patches.youtube.misc.video.information.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
