@@ -49,7 +49,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
 
             // resolve the offsets such as ...
             val autoNavPreviewStubId = context.mapper.find("id", "autonav_preview_stub")
-            
+
             // where to insert the branch instructions and ...
             val insertIndex = layoutGenMethodInstructions.indexOfFirst {
                 (it as? WideLiteralInstruction)?.wideLiteral == autoNavPreviewStubId
