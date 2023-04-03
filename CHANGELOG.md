@@ -1,3 +1,10 @@
+# [2.168.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.6...v2.168.0-dev.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([e736ab6](https://github.com/revanced/revanced-patches/commit/e736ab6208b0afedbc3481eec081da4e365e0067))
+
 # [2.168.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.5...v2.168.0-dev.6) (2023-04-02)
 
 
