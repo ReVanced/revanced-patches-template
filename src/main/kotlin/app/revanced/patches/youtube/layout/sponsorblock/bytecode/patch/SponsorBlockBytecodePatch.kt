@@ -59,7 +59,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         SeekbarFingerprint,
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
-        AutoRepeatParentFingerprint, // used for more robust end of video detection (see comments below)
+        AutoRepeatParentFingerprint,
     )
 ) {
 
