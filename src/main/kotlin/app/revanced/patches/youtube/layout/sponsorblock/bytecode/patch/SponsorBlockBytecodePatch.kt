@@ -43,7 +43,7 @@ import org.jf.dexlib2.iface.reference.StringReference
         IntegrationsPatch::class,
         VideoIdPatch::class,
         VideoInformationPatch::class,   // video seek, get current playback speed
-        PlayerTypeHookPatch::class,     // checks if current video is a short
+        PlayerTypeHookPatch::class,     // checks if the current video is a short
         PlayerControlsBytecodePatch::class,
         SponsorBlockResourcePatch::class,
     ]
