@@ -23,7 +23,7 @@ class ResolvePivotBarFingerprintsPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext): PatchResult {
         // imageOnlyTabResourceId is used in InitializeButtonsFingerprint fingerprint
-        imageOnlyTabResourceId = context.mapper.find("layout", "image_only_tab")
+        imageOnlyTabResourceId = context.resourceIdOf("layout", "image_only_tab")
 
         PivotBarConstructorFingerprint.result?.let {
             // Resolve InitializeButtonsFingerprint on the class of the method

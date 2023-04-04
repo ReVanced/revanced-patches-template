@@ -30,7 +30,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         /*
          * used by a fingerprint of SettingsPatch
          */
-        appearanceStringId = context.mapper.find("string", "app_theme_appearance_dark")
+        appearanceStringId = context.resourceIdOf("string", "app_theme_appearance_dark")
 
         /*
          * copy layout resources

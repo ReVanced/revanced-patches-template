@@ -28,7 +28,7 @@ class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
             )
         )
 
-        fabButtonId = context.mapper.find("id", "fab")
+        fabButtonId = context.resourceIdOf("id", "fab")
         return PatchResult.Success
     }
 

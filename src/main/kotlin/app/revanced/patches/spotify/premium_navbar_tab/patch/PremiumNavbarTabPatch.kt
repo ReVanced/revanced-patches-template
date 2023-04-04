@@ -35,7 +35,7 @@ class PremiumNavbarTabPatch : BytecodePatch(
         val methodInstructions = method.implementation!!.instructions
         val lastInstructionIdx = methodInstructions.size - 1
 
-        val premiumTabId = context.mapper.find("id", "premium_tab")
+        val premiumTabId = context.resourceIdOf("id", "premium_tab")
 
         var removeAmount = 2
         // 2nd const remove method

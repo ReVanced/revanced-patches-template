@@ -282,8 +282,8 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 )
             )
         )
-        adAttributionId = context.mapper.find("id", "ad_attribution")
-        reelMultipleItemShelfId = context.mapper.find("layout", "reel_multiple_items_shelf")
+        adAttributionId = context.resourceIdOf("id", "ad_attribution")
+        reelMultipleItemShelfId = context.resourceIdOf("layout", "reel_multiple_items_shelf")
 
         return PatchResult.Success
     }

@@ -24,7 +24,7 @@ class PlayerControlsBytecodePatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         showPlayerControlsFingerprintResult = PlayerControlsVisibilityFingerprint.result!!
 
-        bottomUiContainerResourceId = context.mapper.find("id", "bottom_ui_container_stub")
+        bottomUiContainerResourceId = context.resourceIdOf("id", "bottom_ui_container_stub")
 
         // TODO: another solution is required, this is hacky
         listOf(BottomControlsInflateFingerprint).resolve(context, context.classes)

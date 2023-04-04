@@ -53,7 +53,7 @@ class CommentsResourcePatch : ResourcePatch {
             )
         )
 
-        shortsCommentsButtonId = context.mapper.find("drawable", "ic_right_comment_32c")
+        shortsCommentsButtonId = context.resourceIdOf("drawable", "ic_right_comment_32c")
 
         return PatchResult.Success
     }

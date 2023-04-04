@@ -31,7 +31,7 @@ class HideEmailAddressResourcePatch : ResourcePatch {
             )
         )
 
-        accountSwitcherAccessibilityLabelId = context.mapper.find("string", "account_switcher_accessibility_label")
+        accountSwitcherAccessibilityLabelId = context.resourceIdOf("string", "account_switcher_accessibility_label")
 
         return PatchResult.Success
     }

@@ -33,7 +33,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
             ),
         )
 
-        fun findEndscreenResourceId(name: String) = context.mapper.find("layout", "endscreen_element_layout_$name")
+        fun findEndscreenResourceId(name: String) = context.resourceIdOf("layout", "endscreen_element_layout_$name")
 
         layoutCircle = findEndscreenResourceId("circle")
         layoutIcon = findEndscreenResourceId("icon")

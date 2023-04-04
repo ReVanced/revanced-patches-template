@@ -31,7 +31,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
             )
         )
 
-        crowdfundingBoxId = context.mapper.find("layout", "donation_companion")
+        crowdfundingBoxId = context.resourceIdOf("layout", "donation_companion")
 
         return PatchResult.Success
     }

@@ -29,7 +29,7 @@ class BreakingNewsResourcePatch : ResourcePatch {
             )
         )
 
-        horizontalCardListId = context.mapper.find("layout", "horizontal_card_list")
+        horizontalCardListId = context.resourceIdOf("layout", "horizontal_card_list")
 
         return PatchResult.Success
     }

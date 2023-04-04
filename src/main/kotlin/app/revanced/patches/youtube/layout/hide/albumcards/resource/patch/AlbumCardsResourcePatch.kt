@@ -31,7 +31,7 @@ class AlbumCardsResourcePatch : ResourcePatch {
             )
         )
 
-        albumCardId = context.mapper.find("layout", "album_card")
+        albumCardId = context.resourceIdOf("layout", "album_card")
 
         return PatchResult.Success
     }
