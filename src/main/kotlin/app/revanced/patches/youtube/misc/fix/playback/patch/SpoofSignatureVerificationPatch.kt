@@ -109,7 +109,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    companion object {
+    private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
     }
 }

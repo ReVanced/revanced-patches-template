@@ -1,3 +1,19 @@
+# [2.168.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.7...v2.168.0-dev.8) (2023-04-03)
+
+
+### Features
+
+* **youtube:** bump compatibility to `18.08.37` ([4d4365d](https://github.com/revanced/revanced-patches/commit/4d4365d3b413da6f0c21138fa5507696d37ffe42))
+* **youtube:** constrain compatibility to `18.08.37` ([514b360](https://github.com/revanced/revanced-patches/commit/514b360443e05d5367faa205c6bd8c7bf262ec7b))
+* **youtube:** support version `18.08.37` ([da2ca97](https://github.com/revanced/revanced-patches/commit/da2ca97200739c85bdcfb86c4e777c787011bdfc))
+
+# [2.168.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.6...v2.168.0-dev.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([e736ab6](https://github.com/revanced/revanced-patches/commit/e736ab6208b0afedbc3481eec081da4e365e0067))
+
 # [2.168.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.5...v2.168.0-dev.6) (2023-04-02)
 
 

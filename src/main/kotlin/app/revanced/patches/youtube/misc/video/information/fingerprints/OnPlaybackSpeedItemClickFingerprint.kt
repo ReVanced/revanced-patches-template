@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.video.speed.remember.fingerprint
+package app.revanced.patches.youtube.misc.video.information.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
@@ -6,7 +6,9 @@ import org.jf.dexlib2.Opcode
 object OnPlaybackSpeedItemClickFingerprint : MethodFingerprint(
     customFingerprint = { it.name == "onItemClick" },
     opcodes = listOf(
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_VIRTUAL
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.RETURN_VOID
     )
 )
