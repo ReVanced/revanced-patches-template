@@ -1,9 +1,67 @@
-# [2.168.0](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0) (2023-04-01)
+# [2.168.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.8...v2.168.0-dev.9) (2023-04-05)
 
 
 ### Features
 
-* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([02ece35](https://github.com/revanced/revanced-patches/commit/02ece35fadd1288c36adea502363a7284552e6f6))
+* **youtube/settings:** disable preference control if the feature is turned off.  show a dialog explaining side effects of some patches ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([8f29bf3](https://github.com/revanced/revanced-patches/commit/8f29bf3a9228032bd5096a623a8cc2a60530c67f))
+
+# [2.168.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.7...v2.168.0-dev.8) (2023-04-03)
+
+
+### Features
+
+* **youtube:** bump compatibility to `18.08.37` ([4d4365d](https://github.com/revanced/revanced-patches/commit/4d4365d3b413da6f0c21138fa5507696d37ffe42))
+* **youtube:** constrain compatibility to `18.08.37` ([514b360](https://github.com/revanced/revanced-patches/commit/514b360443e05d5367faa205c6bd8c7bf262ec7b))
+* **youtube:** support version `18.08.37` ([da2ca97](https://github.com/revanced/revanced-patches/commit/da2ca97200739c85bdcfb86c4e777c787011bdfc))
+
+# [2.168.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.6...v2.168.0-dev.7) (2023-04-03)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([e736ab6](https://github.com/revanced/revanced-patches/commit/e736ab6208b0afedbc3481eec081da4e365e0067))
+
+# [2.168.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.5...v2.168.0-dev.6) (2023-04-02)
+
+
+### Features
+
+* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([7e91a3f](https://github.com/revanced/revanced-patches/commit/7e91a3f3e65bb4602332b05db5df38b4aa478ece))
+
+# [2.168.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.4...v2.168.0-dev.5) (2023-04-02)
+
+
+### Features
+
+* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([035a41e](https://github.com/revanced/revanced-patches/commit/035a41ef0859a47d9aa735fd2645516f527b64f2))
+
+# [2.168.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.3...v2.168.0-dev.4) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtube/spoof-signature-verification:** fixed subtitles in wrong location ([#1833](https://github.com/revanced/revanced-patches/issues/1833)) ([c014cd1](https://github.com/revanced/revanced-patches/commit/c014cd1fc41b8231932413171c6d7c33f69e7739))
+
+# [2.168.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.2...v2.168.0-dev.3) (2023-04-01)
+
+
+### Bug Fixes
+
+* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([a6aa0f8](https://github.com/revanced/revanced-patches/commit/a6aa0f844c38f54749fd1f09443bc18f22aa9266))
+
+# [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-01)
+
+
+### Features
+
+* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([d65bd24](https://github.com/revanced/revanced-patches/commit/d65bd2455605d864e660f2e269b7e985abd82fc7))
+
+# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.168.0-dev.1) (2023-03-31)
+
+
+### Features
+
+* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([563295e](https://github.com/revanced/revanced-patches/commit/563295e78b194a83908c2e1405ba4312def520af))
 
 # [2.167.0](https://github.com/revanced/revanced-patches/compare/v2.166.0...v2.167.0) (2023-03-29)
 
