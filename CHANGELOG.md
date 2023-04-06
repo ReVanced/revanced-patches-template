@@ -1,3 +1,11 @@
+# [2.168.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.8...v2.168.0-dev.9) (2023-04-06)
+
+
+### Features
+
+* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([a2e1f6f](https://github.com/revanced/revanced-patches/commit/a2e1f6f4b518a21bb4c4963c59ee5fdea1974112))
+* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([e3733c9](https://github.com/revanced/revanced-patches/commit/e3733c91cba53504518c8fd30d370da221312de1))
+
 # [2.168.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.7...v2.168.0-dev.8) (2023-04-03)
 
 
