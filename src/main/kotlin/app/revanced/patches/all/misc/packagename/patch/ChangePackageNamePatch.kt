@@ -14,18 +14,23 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class ChangePackageNamePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        var originalPackageName = ""
         packageName?.let { packageName ->
             val packageNameRegex = Regex("^[a-z]\\w*(\\.[a-z]\\w*)+\$")
-            if (!packageName.matches(packageNameRegex)) return PatchResultError("Invalid package name")
+            if (!packageName.matches(packageNameRegex))
+                return PatchResultError("Invalid package name")
 
+            var originalPackageName = ""
             context.xmlEditor["AndroidManifest.xml"].use { editor ->
                 val manifest = editor.file.getElementsByTagName("manifest").item(0) as Element
                 originalPackageName = manifest.getAttribute("package")
             }
 
-            if (!originalPackageName.matches(packageNameRegex)) return PatchResultError("Failed to get the original package name")
-            context["AndroidManifest.xml"].writeText(context["AndroidManifest.xml"].readText().replace(originalPackageName, packageName))
+            if (!originalPackageName.matches(packageNameRegex))
+                return PatchResultError("Failed to get the original package name")
+
+            context["AndroidManifest.xml"].apply {
+                readText().replace(originalPackageName, packageName).let(::writeText)
+            }
 
         } ?: return PatchResultError("No package name provided")
 
