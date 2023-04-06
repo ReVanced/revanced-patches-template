@@ -1,3 +1,10 @@
+# [2.168.0-dev.10](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.9...v2.168.0-dev.10) (2023-04-06)
+
+
+### Features
+
+* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([be01d9d](https://github.com/revanced/revanced-patches/commit/be01d9d4fd56da6688d87ccd70ecfb8ce609bc01))
+
 # [2.168.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.8...v2.168.0-dev.9) (2023-04-06)
 
 
