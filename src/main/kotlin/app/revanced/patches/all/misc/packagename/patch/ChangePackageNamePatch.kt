@@ -23,6 +23,7 @@ class ChangePackageNamePatch : ResourcePatch {
                 val manifest = editor.file.getElementsByTagName("manifest").item(0) as Element
                 originalPackageName = manifest.getAttribute("package")
             }
+
             if (!originalPackageName.matches(packageNameRegex)) return PatchResultError("Failed to get the original package name")
             context["AndroidManifest.xml"].writeText(context["AndroidManifest.xml"].readText().replace(originalPackageName, packageName))
 
