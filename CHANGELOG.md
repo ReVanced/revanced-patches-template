@@ -1,3 +1,10 @@
+# [2.168.0-dev.11](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.10...v2.168.0-dev.11) (2023-04-07)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([96cd128](https://github.com/revanced/revanced-patches/commit/96cd12817fa81806588b120e36ba49c75f177308))
+
 # [2.168.0-dev.10](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.9...v2.168.0-dev.10) (2023-04-06)
 
 
