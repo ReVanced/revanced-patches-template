@@ -106,6 +106,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         } ?: return TextReferenceFingerprint.toErrorResult()
 
 
+        // additional hook, called after span is already created (such as scrolling span off/on screen)
         TextComponentSpecExtensionFingerprint.result?.let {
             with (it.mutableMethod) {
                 val targetIndex = it.scanResult.patternScanResult!!.startIndex + 1
