@@ -58,6 +58,7 @@
     <string name="sb_segments_nomusic_sum">Only for use in music videos. Sections of music videos without music, that aren\'t already covered by another category</string>
 
     <string name="sb_skip_button_compact">Skip</string>
+    <string name="sb_skip_button_compact_highlight">Highlight</string>
     <string name="sb_skip_button_sponsor">Skip sponsor</string>
     <string name="sb_skip_button_selfpromo">Skip promo</string>
     <string name="sb_skip_button_interaction">Skip interact</string>
