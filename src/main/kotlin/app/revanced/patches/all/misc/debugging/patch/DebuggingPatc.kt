@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import org.w3c.dom.Element
 
 @Patch
-@Name("debugging")
+@Name("enable-android-debugging")
 @Description("Makes the app debuggable.")
 @Version("0.0.1")
 class SharedDebuggingPatch : ResourcePatch {

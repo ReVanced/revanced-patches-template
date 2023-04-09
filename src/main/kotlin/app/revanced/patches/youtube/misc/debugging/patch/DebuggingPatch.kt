@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
 
 @Patch
-@Name("debugging-extra")
+@Name("enable-debugging")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, SharedDebuggingPatch::class])
 @Description("Adds extra debugging options.")
 @DebuggingCompatibility
