@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.video.speed.remember.patch
+package app.revanced.patches.youtube.misc.video.speed.userdefault.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -11,23 +11,25 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.settings.preference.impl.ArrayResource
+import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
-import app.revanced.patches.youtube.misc.video.speed.current.fingerprint.InitializePlaybackSpeedValuesFingerprint
-import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
+import app.revanced.patches.youtube.misc.video.speed.userdefault.fingerprint.InitializePlaybackSpeedValuesFingerprint
+import app.revanced.patches.youtube.misc.video.speed.userdefault.annotation.DefaultPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
-@Name("remember-playback-speed")
-@Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
+@Name("default-playback-speed")
+@Description("Adds the option to set a default video playback speed.")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
-@RememberPlaybackSpeedCompatibility
+@DefaultPlaybackSpeedCompatibility
 @Version("0.0.1")
-class RememberPlaybackSpeedPatch : BytecodePatch(
+class DefaultPlaybackSpeedPatch : BytecodePatch(
     listOf(
         InitializePlaybackSpeedValuesFingerprint
     )
@@ -49,6 +51,45 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     "revanced_remember_playback_speed_last_selected_summary_off",
                     "Playback speed changes only apply to the current video"
                 )
+            )
+        )
+
+        val entries = listOf(
+            StringResource("revanced_default_playback_speed_entry_01", "0.25x"),
+            StringResource("revanced_default_playback_speed_entry_02", "0.5x"),
+            StringResource("revanced_default_playback_speed_entry_03", "0.75x"),
+            StringResource("revanced_default_playback_speed_entry_04", "1.0x"),
+            StringResource("revanced_default_playback_speed_entry_05", "1.25x"),
+            StringResource("revanced_default_playback_speed_entry_06", "1.5x"),
+            StringResource("revanced_default_playback_speed_entry_07", "1.75x"),
+            StringResource("revanced_default_playback_speed_entry_08", "2.0x"),
+            StringResource("revanced_default_playback_speed_entry_09", "3.0x"),
+            StringResource("revanced_default_playback_speed_entry_10", "4.0x"),
+            StringResource("revanced_default_playback_speed_entry_11", "5.0x"),
+        )
+        val entryValues = listOf(
+            StringResource("revanced_default_playback_speed_entry_value_01", "0.25"),
+            StringResource("revanced_default_playback_speed_entry_value_02", "0.5"),
+            StringResource("revanced_default_playback_speed_entry_value_03", "0.75"),
+            StringResource("revanced_default_playback_speed_entry_value_04", "1.0"),
+            StringResource("revanced_default_playback_speed_entry_value_05", "1.25"),
+            StringResource("revanced_default_playback_speed_entry_value_06", "1.5"),
+            StringResource("revanced_default_playback_speed_entry_value_07", "1.75"),
+            StringResource("revanced_default_playback_speed_entry_value_08", "2.0"),
+            StringResource("revanced_default_playback_speed_entry_value_09", "3.0"),
+            StringResource("revanced_default_playback_speed_entry_value_10", "4.0"),
+            StringResource("revanced_default_playback_speed_entry_value_11", "5.0"),
+        )
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+            ListPreference(
+                "revanced_default_playback_speed",
+                StringResource(
+                    "revanced_default_playback_speed_title",
+                    "Default playback speed"
+                ),
+                ArrayResource("revanced_default_playback_speed_entries", entries),
+                ArrayResource("revanced_default_playback_speed_entry_values", entryValues)
+                // default value and summary are set by integrations after loading
             )
         )
 
@@ -98,6 +139,6 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
+            "Lapp/revanced/integrations/patches/playback/speed/DefaultPlaybackSpeedPatch;"
     }
 }

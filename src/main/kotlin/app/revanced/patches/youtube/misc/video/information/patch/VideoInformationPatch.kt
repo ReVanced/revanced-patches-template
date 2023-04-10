@@ -21,7 +21,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMu
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.video.information.annotation.VideoInformationCompatibility
 import app.revanced.patches.youtube.misc.video.information.fingerprints.*
-import app.revanced.patches.youtube.misc.video.speed.remember.patch.RememberPlaybackSpeedPatch
+import app.revanced.patches.youtube.misc.video.speed.userdefault.patch.DefaultPlaybackSpeedPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
@@ -234,7 +234,7 @@ class VideoInformationPatch : BytecodePatch(
         )
         
         /**
-         * Used by [RememberPlaybackSpeedPatch]
+         * Used by [DefaultPlaybackSpeedPatch]
          */
         internal lateinit var setPlaybackSpeedContainerClassFieldReference: String
         internal lateinit var setPlaybackSpeedClassFieldReference: String

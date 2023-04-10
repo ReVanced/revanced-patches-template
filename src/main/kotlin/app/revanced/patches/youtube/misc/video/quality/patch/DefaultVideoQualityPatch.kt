@@ -14,11 +14,13 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.shared.settings.preference.impl.ArrayResource
+import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.video.quality.annotations.RememberVideoQualityCompatibility
+import app.revanced.patches.youtube.misc.video.quality.annotations.DefaultVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.SetQualityByIndexMethodClassFieldReferenceFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualityItemOnClickParentFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualitySetterFingerprint
@@ -28,11 +30,11 @@ import org.jf.dexlib2.iface.reference.FieldReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class, VideoIdPatch::class, SettingsPatch::class])
-@Name("remember-video-quality")
-@Description("Adds the ability to remember the video quality you chose in the video quality flyout.")
-@RememberVideoQualityCompatibility
+@Name("default-video-quality")
+@Description("Adds the option to set a default video quality.")
+@DefaultVideoQualityCompatibility
 @Version("0.0.1")
-class RememberVideoQualityPatch : BytecodePatch(
+class DefaultVideoQualityPatch : BytecodePatch(
     listOf(
         VideoQualitySetterFingerprint,
         VideoQualityItemOnClickParentFingerprint
@@ -55,6 +57,51 @@ class RememberVideoQualityPatch : BytecodePatch(
                     "revanced_remember_video_quality_last_selected_summary_off",
                     "Quality changes only apply to the current video"
                 )
+            )
+        )
+
+        // This is bloated and needs a better way to add a single key that holds an array of values.
+        val entries = listOf(
+            StringResource("revanced_default_quality_entry_1", "Automatic quality"),
+            StringResource("revanced_default_quality_entry_2", "144"),
+            StringResource("revanced_default_quality_entry_3", "280"),
+            StringResource("revanced_default_quality_entry_4", "360"),
+            StringResource("revanced_default_quality_entry_5", "480"),
+            StringResource("revanced_default_quality_entry_6", "720"),
+            StringResource("revanced_default_quality_entry_7", "1080"),
+            StringResource("revanced_default_quality_entry_8", "1440"),
+            StringResource("revanced_default_quality_entry_9", "2160"),
+        )
+        val entryValues = listOf(
+            StringResource("revanced_default_quality_entry_value_1", "-2"),
+            StringResource("revanced_default_quality_entry_value_2", "144"),
+            StringResource("revanced_default_quality_entry_value_3", "280"),
+            StringResource("revanced_default_quality_entry_value_4", "360"),
+            StringResource("revanced_default_quality_entry_value_5", "480"),
+            StringResource("revanced_default_quality_entry_value_6", "720"),
+            StringResource("revanced_default_quality_entry_value_7", "1080"),
+            StringResource("revanced_default_quality_entry_value_8", "1440"),
+            StringResource("revanced_default_quality_entry_value_9", "2160"),
+        )
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+            ListPreference(
+                "revanced_default_video_quality_wifi",
+                StringResource(
+                    "revanced_default_video_quality_wifi_title",
+                    "Default video quality on Wi-Fi network"
+                ),
+                ArrayResource("revanced_video_quality_wifi_entry", entries),
+                ArrayResource("revanced_video_quality_wifi_entry_values", entryValues)
+                // default value and summary are set by integrations after loading
+            ),
+            ListPreference(
+                "revanced_default_video_quality_mobile",
+                StringResource(
+                    "revanced_default_video_quality_mobile_title",
+                    "Default video quality on Mobile network"
+                ),
+                ArrayResource("revanced_video_quality_mobile_entries", entries),
+                ArrayResource("revanced_video_quality_mobile_entry_values", entryValues)
             )
         )
 
@@ -132,6 +179,6 @@ class RememberVideoQualityPatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
+            "Lapp/revanced/integrations/patches/playback/quality/DefaultVideoQualityPatch;"
     }
 }
