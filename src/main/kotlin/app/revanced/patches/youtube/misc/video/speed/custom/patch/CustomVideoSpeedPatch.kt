@@ -120,21 +120,26 @@ class CustomVideoSpeedPatch : BytecodePatch(
             .div(stepsGranularity)// round to nearest multiple of stepsGranularity
             .coerceAtLeast(1 / stepsGranularity) // ensure steps are at least 1/8th of the step granularity
 
-        val videoSpeedsArray = buildList<Number> {
+        videoSpeedsAvailable = buildList {
             DoubleStream
                 .iterate(speedLimitMin.toDouble()) { it + step } // create a stream of speeds
                 .let { speedStream ->
                     for (speed in speedStream) {
                         if (speed > speedLimitMax) break
-                        add(speed.toFloat().toRawBits())
+                        add(speed)
                     }
                 }
+        }
+
+        val videoSpeedsAvailableRawBits = ArrayList<Number>(videoSpeedsAvailable.size)
+        videoSpeedsAvailable.forEach { speed ->
+            videoSpeedsAvailableRawBits.add(speed.toFloat().toRawBits())
         }
 
         // adjust the new array of speeds size
         constructor.replaceInstruction(
             0,
-            "const/16 v0, ${videoSpeedsArray.size}"
+            "const/16 v0, ${videoSpeedsAvailableRawBits.size}"
         )
 
         // create the payload with the new speeds
@@ -143,7 +148,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
             arrayPayloadIndex,
             BuilderArrayPayload(
                 4,
-                videoSpeedsArray
+                videoSpeedsAvailableRawBits
             )
         )
 
@@ -151,6 +156,8 @@ class CustomVideoSpeedPatch : BytecodePatch(
     }
 
     companion object : OptionsContainer() {
+        lateinit var videoSpeedsAvailable : List<Double>
+
         private fun String?.validate(max: Int? = null) = this?.toFloatOrNull() != null &&
                 toFloat().let { float ->
                     float > 0 && max?.let { max -> float <= max } ?: true
