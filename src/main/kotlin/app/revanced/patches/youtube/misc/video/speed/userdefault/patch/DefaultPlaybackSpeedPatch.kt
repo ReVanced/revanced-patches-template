@@ -54,32 +54,6 @@ class DefaultPlaybackSpeedPatch : BytecodePatch(
             )
         )
 
-        val entries = listOf(
-            StringResource("revanced_default_playback_speed_entry_01", "0.25x"),
-            StringResource("revanced_default_playback_speed_entry_02", "0.5x"),
-            StringResource("revanced_default_playback_speed_entry_03", "0.75x"),
-            StringResource("revanced_default_playback_speed_entry_04", "1.0x"),
-            StringResource("revanced_default_playback_speed_entry_05", "1.25x"),
-            StringResource("revanced_default_playback_speed_entry_06", "1.5x"),
-            StringResource("revanced_default_playback_speed_entry_07", "1.75x"),
-            StringResource("revanced_default_playback_speed_entry_08", "2.0x"),
-            StringResource("revanced_default_playback_speed_entry_09", "3.0x"),
-            StringResource("revanced_default_playback_speed_entry_10", "4.0x"),
-            StringResource("revanced_default_playback_speed_entry_11", "5.0x"),
-        )
-        val entryValues = listOf(
-            StringResource("revanced_default_playback_speed_entry_value_01", "0.25"),
-            StringResource("revanced_default_playback_speed_entry_value_02", "0.5"),
-            StringResource("revanced_default_playback_speed_entry_value_03", "0.75"),
-            StringResource("revanced_default_playback_speed_entry_value_04", "1.0"),
-            StringResource("revanced_default_playback_speed_entry_value_05", "1.25"),
-            StringResource("revanced_default_playback_speed_entry_value_06", "1.5"),
-            StringResource("revanced_default_playback_speed_entry_value_07", "1.75"),
-            StringResource("revanced_default_playback_speed_entry_value_08", "2.0"),
-            StringResource("revanced_default_playback_speed_entry_value_09", "3.0"),
-            StringResource("revanced_default_playback_speed_entry_value_10", "4.0"),
-            StringResource("revanced_default_playback_speed_entry_value_11", "5.0"),
-        )
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             ListPreference(
                 "revanced_default_playback_speed",
@@ -87,9 +61,17 @@ class DefaultPlaybackSpeedPatch : BytecodePatch(
                     "revanced_default_playback_speed_title",
                     "Default playback speed"
                 ),
-                ArrayResource("revanced_default_playback_speed_entries", entries),
-                ArrayResource("revanced_default_playback_speed_entry_values", entryValues)
-                // default value and summary are set by integrations after loading
+                // Dummy data:
+                // Entries and values are set by Integrations code based on the actual speeds available,
+                // and the values set here are ignored and do nothing.
+                ArrayResource(
+                    "revanced_default_playback_speed_entries",
+                    listOf(StringResource("revanced_default_playback_speed_entry", "1.0x"))
+                ),
+                ArrayResource(
+                    "revanced_default_playback_speed_entry_values",
+                    listOf(StringResource("revanced_default_playback_speed_entry_value", "1.0"))
+                )
             )
         )
 
@@ -132,7 +114,6 @@ class DefaultPlaybackSpeedPatch : BytecodePatch(
                 listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
             )
         } ?: return InitializePlaybackSpeedValuesFingerprint.toErrorResult()
-
 
         return PatchResultSuccess()
     }
