@@ -12,6 +12,16 @@
         android:visibility="gone" />
 
     <app.revanced.integrations.sponsorblock.ui.SkipSponsorButton
+        android:id="@+id/sb_skip_highlight_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/inline_controls_bottom_bar_height"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <app.revanced.integrations.sponsorblock.ui.SkipSponsorButton
         android:id="@+id/sb_skip_sponsor_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
