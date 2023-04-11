@@ -19,23 +19,14 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
-import app.revanced.patches.youtube.misc.video.speed.custom.patch.CustomVideoSpeedPatch
-import app.revanced.patches.youtube.misc.video.speed.userdefault.annotation.DefaultPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.speed.userdefault.fingerprint.InitializePlaybackSpeedValuesFingerprint
+import app.revanced.patches.youtube.misc.video.speed.userdefault.annotation.DefaultPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
 @Name("default-playback-speed")
 @Description("Adds the option to set a default video playback speed.")
-@DependsOn(
-    [
-        IntegrationsPatch::class,
-        SettingsPatch::class,
-        VideoIdPatch::class,
-        VideoInformationPatch::class,
-        CustomVideoSpeedPatch::class
-    ]
-)
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
 @DefaultPlaybackSpeedCompatibility
 @Version("0.0.1")
 class DefaultPlaybackSpeedPatch : BytecodePatch(
@@ -63,17 +54,32 @@ class DefaultPlaybackSpeedPatch : BytecodePatch(
             )
         )
 
-        // use same entry and values as custom video speed
-        val videoSpeedsAvailable = CustomVideoSpeedPatch.videoSpeedsAvailable
-        val entries = ArrayList<StringResource>(videoSpeedsAvailable.size)
-        val entryValues = ArrayList<StringResource>(videoSpeedsAvailable.size)
-        var index = 0
-        videoSpeedsAvailable.forEach { number ->
-            val numberString = number.toString()
-            entries.add(StringResource("revanced_default_playback_speed_entry_$index", numberString + "x"))
-            entryValues.add(StringResource("revanced_default_playback_speed_entry_value_$index", numberString))
-            index++
-        }
+        val entries = listOf(
+            StringResource("revanced_default_playback_speed_entry_01", "0.25x"),
+            StringResource("revanced_default_playback_speed_entry_02", "0.5x"),
+            StringResource("revanced_default_playback_speed_entry_03", "0.75x"),
+            StringResource("revanced_default_playback_speed_entry_04", "1.0x"),
+            StringResource("revanced_default_playback_speed_entry_05", "1.25x"),
+            StringResource("revanced_default_playback_speed_entry_06", "1.5x"),
+            StringResource("revanced_default_playback_speed_entry_07", "1.75x"),
+            StringResource("revanced_default_playback_speed_entry_08", "2.0x"),
+            StringResource("revanced_default_playback_speed_entry_09", "3.0x"),
+            StringResource("revanced_default_playback_speed_entry_10", "4.0x"),
+            StringResource("revanced_default_playback_speed_entry_11", "5.0x"),
+        )
+        val entryValues = listOf(
+            StringResource("revanced_default_playback_speed_entry_value_01", "0.25"),
+            StringResource("revanced_default_playback_speed_entry_value_02", "0.5"),
+            StringResource("revanced_default_playback_speed_entry_value_03", "0.75"),
+            StringResource("revanced_default_playback_speed_entry_value_04", "1.0"),
+            StringResource("revanced_default_playback_speed_entry_value_05", "1.25"),
+            StringResource("revanced_default_playback_speed_entry_value_06", "1.5"),
+            StringResource("revanced_default_playback_speed_entry_value_07", "1.75"),
+            StringResource("revanced_default_playback_speed_entry_value_08", "2.0"),
+            StringResource("revanced_default_playback_speed_entry_value_09", "3.0"),
+            StringResource("revanced_default_playback_speed_entry_value_10", "4.0"),
+            StringResource("revanced_default_playback_speed_entry_value_11", "5.0"),
+        )
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             ListPreference(
                 "revanced_default_playback_speed",
