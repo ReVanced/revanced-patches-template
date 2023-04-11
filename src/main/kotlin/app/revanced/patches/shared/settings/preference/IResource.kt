@@ -1,5 +1,7 @@
 package app.revanced.patches.shared.settings.preference
 
+import app.revanced.patcher.arsc.Resource
+
 /**
  * Resource
  */
@@ -9,8 +11,14 @@ internal interface IResource {
      */
     val name: String
 
+
     /**
-     * Tag name of the resource.
+     * Type of the resource
      */
-    val tag: String
+    val type: String
+
+    /**
+     * Value of the resource
+     */
+    val patcherValue: Resource
 }

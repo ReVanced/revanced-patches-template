@@ -5,16 +5,6 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 /**
- * Add a resource node child
- *
- * @param resource The resource to add.
- * @param resourceCallback Called when a resource has been processed.
- */
-internal fun Node.addResource(resource: BaseResource, resourceCallback: ((IResource) -> Unit)? = null) {
-    appendChild(resource.serialize(ownerDocument, resourceCallback))
-}
-
-/**
  * Add a preference node child to the settings.
  *
  * @param preference The preference to add.

@@ -1,9 +1,7 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.BaseResource
+import app.revanced.patcher.arsc.Array
 import app.revanced.patches.shared.settings.preference.IResource
-import org.w3c.dom.Document
-import org.w3c.dom.Element
 
 /**
  *  Represents an array resource.
@@ -14,20 +12,7 @@ import org.w3c.dom.Element
 internal data class ArrayResource(
     override val name: String,
     val items: List<StringResource>
-) : BaseResource(name) {
-    override val tag = "string-array"
-
-    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
-        return super.serialize(ownerDocument, resourceCallback).apply {
-            setAttribute("name", name)
-
-            items.forEach { item ->
-                resourceCallback?.invoke(item)
-
-                this.appendChild(ownerDocument.createElement("item").also { itemNode ->
-                    itemNode.textContent = "@string/${item.name}"
-                })
-            }
-        }
-    }
+) : IResource {
+    override val patcherValue = Array(items.map { app.revanced.patcher.arsc.StringResource(it.value) })
+    override val type = "string"
 }

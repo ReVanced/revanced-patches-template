@@ -2,12 +2,12 @@ package app.revanced.patches.shared.settings.resource.patch
 
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
+import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.IResource
 import app.revanced.patches.shared.settings.preference.addPreference
-import app.revanced.patches.shared.settings.preference.addResource
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.util.resources.ResourceUtils
@@ -36,6 +36,7 @@ abstract class AbstractSettingsResourcePatch(
                 })
             }
         }
+        base = context.apkBundle.base
 
         /* copy preference template from source dir */
         context.copyResources(
@@ -46,8 +47,6 @@ abstract class AbstractSettingsResourcePatch(
         )
 
         /* prepare xml editors */
-        stringsEditor = context.openEditor("res/values/strings.xml")
-        arraysEditor = context.openEditor("res/values/arrays.xml")
         revancedPreferencesEditor = context.openEditor("res/xml/$preferenceFileName.xml")
 
         return PatchResult.Success
@@ -55,25 +54,13 @@ abstract class AbstractSettingsResourcePatch(
 
     internal companion object {
         private var revancedPreferenceNode: Node? = null
-        private var stringsNode: Node? = null
-        private var arraysNode: Node? = null
-
-        private var strings = mutableListOf<StringResource>()
+        private var base: Apk? = null
+        private var resources = mutableListOf<IResource>()
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
                 field = value
                 revancedPreferenceNode = value.getNode("PreferenceScreen")
-            }
-        private var stringsEditor: DomFileEditor? = null
-            set(value) {
-                field = value
-                stringsNode = value.getNode("resources")
-            }
-        private var arraysEditor: DomFileEditor? = null
-            set(value) {
-                field = value
-                arraysNode = value.getNode("resources")
             }
 
         /**
@@ -83,16 +70,15 @@ abstract class AbstractSettingsResourcePatch(
          * @param value The value of the string.
          * @throws IllegalArgumentException if the string already exists.
          */
-        fun addString(identifier: String, value: String, formatted: Boolean) =
-            StringResource(identifier, value, formatted).include()
+        fun addString(identifier: String, value: String) =
+            StringResource(identifier, value).include()
 
         /**
          * Add an array to the resources.
          *
          * @param arrayResource The array resource to add.
          */
-        fun addArray(arrayResource: ArrayResource) =
-            arraysNode!!.addResource(arrayResource) { it.include() }
+        fun addArray(arrayResource: ArrayResource) = arrayResource.include()
 
         /**
          * Add a preference to the settings.
@@ -108,15 +94,7 @@ abstract class AbstractSettingsResourcePatch(
          * @throws IllegalArgumentException if the resource already exists.
          */
         internal fun IResource.include() {
-            when (this) {
-                is StringResource -> {
-                    if (strings.any { it.name == name }) return
-                    strings.add(this)
-                }
-
-                is ArrayResource -> addArray(this)
-                else -> throw NotImplementedError("Unsupported resource type")
-            }
+            resources.add(this)
         }
 
         internal fun DomFileEditor?.getNode(tagName: String) = this!!.file.getElementsByTagName(tagName).item(0)
@@ -124,12 +102,14 @@ abstract class AbstractSettingsResourcePatch(
 
     override fun close() {
         // merge all strings, skip duplicates
+        /*
         strings.forEach {
             stringsNode!!.addResource(it)
         }
+         */
+        resources.forEach { base!!.setResource(it.type, it.name, it.patcherValue) }
+        resources.clear()
 
         revancedPreferencesEditor?.close()
-        stringsEditor?.close()
-        arraysEditor?.close()
     }
 }

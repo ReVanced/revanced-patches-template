@@ -97,17 +97,17 @@ class SettingsPatch : BytecodePatch(
             )
         }
 
-        addString("revanced_settings", "ReVanced Settings", false)
-        addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?", false)
-        addString("revanced_reboot", "Restart", false)
-        addString("revanced_cancel", "Cancel", false)
+        addString("revanced_settings", "ReVanced Settings")
+        addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?")
+        addString("revanced_reboot", "Restart")
+        addString("revanced_cancel", "Cancel")
 
         return PatchResult.Success
     }
 
     internal companion object {
-        fun addString(identifier: String, value: String, formatted: Boolean = true) =
-            SettingsResourcePatch.addString(identifier, value, formatted)
+        fun addString(identifier: String, value: String) =
+            SettingsResourcePatch.addString(identifier, value)
 
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)

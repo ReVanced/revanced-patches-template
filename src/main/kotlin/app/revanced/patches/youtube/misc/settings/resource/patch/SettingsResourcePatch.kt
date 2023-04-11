@@ -105,8 +105,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
          * @param value The value of the string.
          * @throws IllegalArgumentException if the string already exists.
          */
-        fun addString(identifier: String, value: String, formatted: Boolean) =
-            AbstractSettingsResourcePatch.addString(identifier, value, formatted)
+        fun addString(identifier: String, value: String) =
+            AbstractSettingsResourcePatch.addString(identifier, value)
 
         /**
          * Add an array to the resources.

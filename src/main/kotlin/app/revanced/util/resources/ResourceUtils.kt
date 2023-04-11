@@ -21,9 +21,7 @@ internal object ResourceUtils {
             val key = attributes.getNamedItem("name")!!.nodeValue!!
             val value = it.textContent!!
 
-            val formatted = attributes.getNamedItem("formatted") == null
-
-            SettingsPatch.addString(key, value, formatted)
+            SettingsPatch.addString(key, value)
         }
     }
 
