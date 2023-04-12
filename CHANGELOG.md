@@ -1,3 +1,10 @@
+# [2.168.0-dev.13](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.12...v2.168.0-dev.13) (2023-04-12)
+
+
+### Features
+
+* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([9faa97c](https://github.com/revanced/revanced-patches/commit/9faa97caf641eac5d114c70e2471cd39e9d45fa8))
+
 # [2.168.0-dev.12](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.11...v2.168.0-dev.12) (2023-04-11)
 
 
