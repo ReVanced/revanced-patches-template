@@ -15,7 +15,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Description("Disables detection of incorrect signature.")
 @DisableSignatureDetectionCompatibility
-@Version("0.0.1")
+@Version("0.0.2")
 class SignatureDetectionPatch : BytecodePatch(
     listOf(
         CheckSignatureFingerprint
