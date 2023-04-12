@@ -60,7 +60,8 @@ class RememberVideoQualityPatch : BytecodePatch(
             )
         )
 
-        // This is bloated and needs a better way to add a single key that holds an array of values.
+        // This is bloated as each value has it's own String key/value
+        // ideally the entries would be raw values (and not a key to a String resource)
         val entries = listOf(
             StringResource("revanced_default_quality_entry_1", "Automatic quality"),
             StringResource("revanced_default_quality_entry_2", "2160p"),
