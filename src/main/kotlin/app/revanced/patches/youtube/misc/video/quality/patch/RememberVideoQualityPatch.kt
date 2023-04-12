@@ -20,7 +20,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.video.quality.annotations.DefaultVideoQualityCompatibility
+import app.revanced.patches.youtube.misc.video.quality.annotations.RememberVideoQualityCompatibility
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.SetQualityByIndexMethodClassFieldReferenceFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualityItemOnClickParentFingerprint
 import app.revanced.patches.youtube.misc.video.quality.fingerprints.VideoQualitySetterFingerprint
@@ -30,11 +30,11 @@ import org.jf.dexlib2.iface.reference.FieldReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class, VideoIdPatch::class, SettingsPatch::class])
-@Name("default-video-quality")
-@Description("Adds the option to set a default video quality.")
-@DefaultVideoQualityCompatibility
+@Name("remember-video-quality")
+@Description("Adds the ability to remember the video quality you chose in the video quality flyout.")
+@RememberVideoQualityCompatibility
 @Version("0.0.1")
-class DefaultVideoQualityPatch : BytecodePatch(
+class RememberVideoQualityPatch : BytecodePatch(
     listOf(
         VideoQualitySetterFingerprint,
         VideoQualityItemOnClickParentFingerprint
@@ -179,6 +179,6 @@ class DefaultVideoQualityPatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/quality/DefaultVideoQualityPatch;"
+            "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
     }
 }

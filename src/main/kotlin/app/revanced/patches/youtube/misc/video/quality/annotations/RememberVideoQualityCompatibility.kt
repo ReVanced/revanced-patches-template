@@ -7,4 +7,4 @@ import app.revanced.patcher.annotation.Package
     [Package("com.google.android.youtube", arrayOf("18.08.37"))]
 )
 @Target(AnnotationTarget.CLASS)
-internal annotation class DefaultVideoQualityCompatibility
+internal annotation class RememberVideoQualityCompatibility

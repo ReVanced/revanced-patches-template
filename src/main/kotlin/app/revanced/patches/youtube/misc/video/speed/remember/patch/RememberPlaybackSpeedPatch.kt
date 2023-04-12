@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.video.speed.userdefault.patch
+package app.revanced.patches.youtube.misc.video.speed.remember.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -19,17 +19,17 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
-import app.revanced.patches.youtube.misc.video.speed.userdefault.fingerprint.InitializePlaybackSpeedValuesFingerprint
-import app.revanced.patches.youtube.misc.video.speed.userdefault.annotation.DefaultPlaybackSpeedCompatibility
+import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
+import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
-@Name("default-playback-speed")
-@Description("Adds the option to set a default video playback speed.")
+@Name("remember-playback-speed")
+@Description("Adds the ability to remember the playback rate you chose in the video playback rate flyout.")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
-@DefaultPlaybackSpeedCompatibility
+@RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
-class DefaultPlaybackSpeedPatch : BytecodePatch(
+class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
         InitializePlaybackSpeedValuesFingerprint
     )
@@ -120,6 +120,6 @@ class DefaultPlaybackSpeedPatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/DefaultPlaybackSpeedPatch;"
+            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
     }
 }
