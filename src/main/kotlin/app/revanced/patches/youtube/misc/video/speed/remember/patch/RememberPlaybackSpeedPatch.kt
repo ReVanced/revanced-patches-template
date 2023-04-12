@@ -25,7 +25,7 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
 @Name("remember-playback-speed")
-@Description("Adds the ability to remember the playback rate you chose in the video playback rate flyout.")
+@Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
 @RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
