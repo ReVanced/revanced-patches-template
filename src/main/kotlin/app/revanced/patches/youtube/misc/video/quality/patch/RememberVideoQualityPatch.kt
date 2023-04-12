@@ -98,7 +98,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                 "revanced_default_video_quality_mobile",
                 StringResource(
                     "revanced_default_video_quality_mobile_title",
-                    "Default video quality on Mobile network"
+                    "Default video quality on mobile network"
                 ),
                 ArrayResource("revanced_video_quality_mobile_entries", entries),
                 ArrayResource("revanced_video_quality_mobile_entry_values", entryValues)
