@@ -63,25 +63,25 @@ class RememberVideoQualityPatch : BytecodePatch(
         // This is bloated and needs a better way to add a single key that holds an array of values.
         val entries = listOf(
             StringResource("revanced_default_quality_entry_1", "Automatic quality"),
-            StringResource("revanced_default_quality_entry_2", "144p"),
-            StringResource("revanced_default_quality_entry_3", "280p"),
-            StringResource("revanced_default_quality_entry_4", "360p"),
-            StringResource("revanced_default_quality_entry_5", "480p"),
-            StringResource("revanced_default_quality_entry_6", "720p"),
-            StringResource("revanced_default_quality_entry_7", "1080p"),
-            StringResource("revanced_default_quality_entry_8", "1440p"),
-            StringResource("revanced_default_quality_entry_9", "2160p"),
+            StringResource("revanced_default_quality_entry_2", "2160p"),
+            StringResource("revanced_default_quality_entry_3", "1440p"),
+            StringResource("revanced_default_quality_entry_4", "1080p"),
+            StringResource("revanced_default_quality_entry_5", "720p"),
+            StringResource("revanced_default_quality_entry_6", "480p"),
+            StringResource("revanced_default_quality_entry_7", "360p"),
+            StringResource("revanced_default_quality_entry_8", "280p"),
+            StringResource("revanced_default_quality_entry_9", "144p"),
         )
         val entryValues = listOf(
             StringResource("revanced_default_quality_entry_value_1", "-2"),
-            StringResource("revanced_default_quality_entry_value_2", "144"),
-            StringResource("revanced_default_quality_entry_value_3", "280"),
-            StringResource("revanced_default_quality_entry_value_4", "360"),
-            StringResource("revanced_default_quality_entry_value_5", "480"),
-            StringResource("revanced_default_quality_entry_value_6", "720"),
-            StringResource("revanced_default_quality_entry_value_7", "1080"),
-            StringResource("revanced_default_quality_entry_value_8", "1440"),
-            StringResource("revanced_default_quality_entry_value_9", "2160"),
+            StringResource("revanced_default_quality_entry_value_2", "2160"),
+            StringResource("revanced_default_quality_entry_value_3", "1440"),
+            StringResource("revanced_default_quality_entry_value_4", "1080"),
+            StringResource("revanced_default_quality_entry_value_5", "720"),
+            StringResource("revanced_default_quality_entry_value_6", "480"),
+            StringResource("revanced_default_quality_entry_value_7", "360"),
+            StringResource("revanced_default_quality_entry_value_8", "280"),
+            StringResource("revanced_default_quality_entry_value_9", "144"),
         )
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             ListPreference(
