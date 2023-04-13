@@ -13,7 +13,7 @@ import org.w3c.dom.Element
 @Name("enable-android-debugging")
 @Description("Makes the app debuggable.")
 @Version("0.0.1")
-class SharedDebuggingPatch : ResourcePatch {
+class EnableAndroidDebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         if (debuggable == true) {
             context.xmlEditor["AndroidManifest.xml"].use { dom ->
