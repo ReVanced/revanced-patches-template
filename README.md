@@ -210,6 +210,14 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-ads` | Removes ads from Inshorts. | all |
 </details>
 
+### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-inbox-ads` | Hides ads in inbox. | all |
+</details>
+
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
 <details>
 
