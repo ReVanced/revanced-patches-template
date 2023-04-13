@@ -19,8 +19,8 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
-import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
+import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
