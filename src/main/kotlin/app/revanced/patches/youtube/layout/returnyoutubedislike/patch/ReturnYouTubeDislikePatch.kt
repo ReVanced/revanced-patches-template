@@ -34,8 +34,8 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
     [
         IntegrationsPatch::class,
         VideoIdPatch::class,
-        PlayerTypeHookPatch::class, // used to prevent loading RYD during home feed playback
         ReturnYouTubeDislikeResourcePatch::class,
+        PlayerTypeHookPatch::class,
     ]
 )
 @Name("return-youtube-dislike")
@@ -53,8 +53,13 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
+        // region Inject newVideoLoaded event handler
+
         VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
+        // endregion
+
+        // region Hook interaction
 
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
@@ -72,6 +77,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             } ?: return PatchResultError("Failed to find ${fingerprint.name} method.")
         }
 
+        // endregion
+
+        // region Hook components
 
         TextReferenceFingerprint.also {
             it.resolve(
@@ -99,7 +107,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                         # required instruction, otherwise register might be out of range
                         move-object/from16 v$clobberRegister, v$textRefParam
-                        invoke-static {v$clobberRegister, v$conversionContextParam}, ${"$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"}
+                        invoke-static {v$clobberRegister, v$conversionContextParam}, $ON_COMPONENT_CREATED_DESCRIPTOR
                     """
                 )
             }
@@ -155,13 +163,17 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 }
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
+        // endregion
 
         return PatchResultSuccess()
     }
 
     private companion object {
         const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/returnyoutubedislike/ReturnYouTubeDislike;"
+            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
+
+        const val ON_COMPONENT_CREATED_DESCRIPTOR =
+            "$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
 
         private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
     }
