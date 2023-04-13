@@ -124,7 +124,7 @@
     <string name="sb_new_segment_choose_category">Choose the segment category</string>
     <string name="sb_new_segment_disabled_category">Category is disabled in settings. Enable category to submit.</string>
     <string name="sb_new_segment_title">New SponsorBlock segment</string>
-    <string name="sb_new_segment_mark_time_as_question" formatted="false">Set %02d:%02d:%04d as the start or end of a new segment?</string>
+    <string name="sb_new_segment_mark_time_as_question" formatted="false">Set %02d:%02d:%03d as the start or end of a new segment?</string>
     <string name="sb_new_segment_mark_start">start</string>
     <string name="sb_new_segment_mark_end">end</string>
     <string name="sb_new_segment_now">now</string>
@@ -132,6 +132,7 @@
     <string name="sb_new_segment_time_end">Time the segment ends at</string>
     <string name="sb_new_segment_confirm_title">Are the times correct?</string>
     <string name="sb_new_segment_confirm_content" formatted="false">The segment lasts from %02d:%02d to %02d:%02d (%d minutes %02d seconds)\nIs it ready to submit?</string>
+    <string name="sb_new_segment_start_is_before_end">Start must be before the end</string>
     <string name="sb_new_segment_mark_locations_first">Mark two locations on the time bar first</string>
     <string name="sb_new_segment_preview_segment_first">Preview the segment, and ensure it skips smoothly</string>
     <string name="sb_new_segment_edit_by_hand_title">Edit timing of segment manually</string>
