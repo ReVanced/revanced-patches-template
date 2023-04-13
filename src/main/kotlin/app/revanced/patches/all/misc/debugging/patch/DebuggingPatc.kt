@@ -11,7 +11,7 @@ import org.w3c.dom.Element
 
 @Patch
 @Name("enable-android-debugging")
-@Description("Makes the app debuggable.")
+@Description("Enables Android debugging capabilities.")
 @Version("0.0.1")
 class EnableAndroidDebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
