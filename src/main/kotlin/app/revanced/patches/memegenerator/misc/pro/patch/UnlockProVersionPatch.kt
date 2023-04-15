@@ -17,7 +17,7 @@ import app.revanced.patches.memegenerator.misc.pro.annotations.UnlockProCompatib
 import app.revanced.patches.memegenerator.misc.pro.fingerprint.IsFreeVersionFingerprint
 
 @Patch
-@Name("memegenerator-unlock-pro")
+@Name("unlock-pro")
 @Description("Unlocks pro features.")
 @DependsOn([
     SignatureVerificationPatch::class,
