@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.memegenerator.detection.signature.annotations.DisableSignatureDetectionCompatibility
 import app.revanced.patches.memegenerator.detection.signature.fingerprint.VerifySignatureFingerprint
 
-@Description("Disables detection of incorrect signature in meme generator.")
+@Description("Disables detection of incorrect signature.")
 @DisableSignatureDetectionCompatibility
 @Version("0.0.1")
 class SignatureVerificationPatch : BytecodePatch(

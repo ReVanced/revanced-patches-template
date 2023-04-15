@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.memegenerator.detection.license.annotations.DisableLicenseValidationCompatibility
 import app.revanced.patches.memegenerator.detection.license.fingerprint.LicenseValidationFingerprint
 
-@Description("Disable FireBase license validation in meme generator.")
+@Description("Disable FireBase license validation.")
 @DisableLicenseValidationCompatibility
 @Version("0.0.1")
 class LicenseValidationPatch : BytecodePatch(
