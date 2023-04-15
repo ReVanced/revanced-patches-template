@@ -4,17 +4,15 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.arsc.ReferenceResource
 import app.revanced.patcher.arsc.Style
-import app.revanced.patcher.arsc.color
 import app.revanced.patcher.arsc.integer
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
-import org.w3c.dom.Element
+import app.revanced.util.resources.ResourceUtils.setMultiple
+import app.revanced.util.resources.ResourceUtils.toColorResource
+import app.revanced.util.resources.ResourceUtils.toReference
 
 @Patch
 @DependsOn([LithoThemePatch::class])
@@ -24,50 +22,31 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val apk = context.apkBundle.base
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
         val darkThemeSeekbarColor = darkThemeSeekbarColor!!
 
-        /*
-        context.openEditor("res/values/colors.xml", context.apkBundle.base).use { editor ->
-            val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
+        context.apkBundle.base.apply {
+            setMultiple("color", dark.toList(), darkThemeBackgroundColor.toColorResource())
+            setMultiple("color", light.toList(), lightThemeBackgroundColor.toColorResource())
+            setResource(
+                "color",
+                "inline_time_bar_colorized_bar_played_color_dark",
+                darkThemeSeekbarColor.toColorResource()
+            )
 
-            for (i in 0 until resourcesNode.childNodes.length) {
-                val node = resourcesNode.childNodes.item(i) as? Element ?: continue
-
-                node.textContent = when (node.getAttribute("name")) {
-                    "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3", "yt_black4", "yt_status_bar_background_dark", "material_grey_850" -> darkThemeBackgroundColor
-
-                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98", "yt_white2", "yt_white3", "yt_white4",
-                    -> lightThemeBackgroundColor
-
-                    "inline_time_bar_colorized_bar_played_color_dark" -> darkThemeSeekbarColor
-                    else -> continue
-                }
-            }
+            // change the splash screen color
+            setResource(
+                "style", "Base.Theme.YouTube.Launcher", Style(
+                    mapOf(
+                        "android:windowSplashScreenBackground" to "@android:color/black".toReference(),
+                        "android:windowSplashScreenAnimatedIcon" to "@drawable/avd_anim".toReference(),
+                        "android:windowSplashScreenAnimationDuration" to integer(1000),
+                    ),
+                    parent = "@style/Theme.AppCompat.NoActionBar"
+                ), configuration = "-night-v31"
+            )
         }
-         */
-
-        fun Array<String>.setAllTo(ref: String) =
-            forEach { apk.setResource("color", it, ReferenceResource(ref)) }
-
-        dark.setAllTo(darkThemeBackgroundColor)
-        light.setAllTo(lightThemeBackgroundColor)
-        apk.setResource("color", "inline_time_bar_colorized_bar_played_color_dark", color(darkThemeSeekbarColor))
-
-        // change the splash screen color
-        apk.setResource(
-            "style", "Base.Theme.YouTube.Launcher", Style(
-                mapOf(
-                    "android:windowSplashScreenBackground" to ReferenceResource("@android:color/black"),
-                    "android:windowSplashScreenAnimatedIcon" to ReferenceResource("@drawable/avd_anim"),
-                    "android:windowSplashScreenAnimationDuration" to integer(1000),
-                ),
-                parent = "@style/Theme.AppCompat.NoActionBar"
-            ), configuration = "-night-v31"
-        )
-
 
         return PatchResult.Success
     }

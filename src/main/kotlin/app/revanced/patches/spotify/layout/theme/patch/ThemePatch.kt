@@ -7,7 +7,8 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.layout.theme.annotations.ThemeCompatibility
-import org.w3c.dom.Element
+import app.revanced.util.resources.ResourceUtils.setMultiple
+import app.revanced.util.resources.ResourceUtils.toColorResource
 
 @Patch
 @Name("spotify-theme")
@@ -16,20 +17,15 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        context.openEditor("res/values/colors.xml").use { editor ->
-            val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
+        val apk = context.apkBundle.base
 
-            for (i in 0 until resourcesNode.childNodes.length) {
-                val node = resourcesNode.childNodes.item(i) as? Element ?: continue
-
-                node.textContent = when (node.getAttribute("name")) {
-                    "gray_7" -> backgroundColor!!
-                    "dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light" -> accentColor!!
-                    "dark_brightaccent_background_press" -> accentPressedColor!!
-                    else -> continue
-                }
-            }
-        }
+        apk.setResources(
+            "color", mapOf(
+                "gray_7" to backgroundColor!!.toColorResource(),
+                "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource()
+            )
+        )
+        apk.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource())
 
         return PatchResult.Success
     }

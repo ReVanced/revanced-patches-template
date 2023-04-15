@@ -101,12 +101,7 @@ abstract class AbstractSettingsResourcePatch(
     }
 
     override fun close() {
-        // merge all strings, skip duplicates
-        /*
-        strings.forEach {
-            stringsNode!!.addResource(it)
-        }
-         */
+        // merge all strings
         resources.forEach { base!!.setResource(it.type, it.name, it.patcherValue) }
         resources.clear()
 
