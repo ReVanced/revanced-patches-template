@@ -27,6 +27,8 @@
     <string name="sb_general_adjusting_invalid">Value must be a positive number</string>
     <string name="sb_general_min_duration">Minimum segment duration</string>
     <string name="sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped</string>
+    <string name="sb_general_max_playback_delay">Delay playback until segments are loaded</string>
+    <string name="sb_general_max_playback_delay_sum">Maximum time to wait for SponsorBlock to load before playback starts (in seconds).  A value of zero means the video will immediately start playing, even if any SB segments have not yet loaded.</string>
     <string name="sb_general_uuid">Your private user id</string>
     <string name="sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
     <string name="sb_general_uuid_invalid">User id cannot be blank</string>
