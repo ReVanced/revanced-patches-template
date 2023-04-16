@@ -53,7 +53,10 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
+        // region Inject newVideoLoaded event handler
+
         VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
+
 
         listOf(
             LikeFingerprint.toPatch(Vote.LIKE),
@@ -70,6 +73,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             } ?: return PatchResultError("Failed to find ${fingerprint.name} method.")
         }
+
 
         TextReferenceFingerprint.also {
             it.resolve(
@@ -153,7 +157,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 }
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
-        // endregion
 
         return PatchResultSuccess()
     }
