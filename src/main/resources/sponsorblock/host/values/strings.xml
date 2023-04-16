@@ -22,8 +22,8 @@
     <string name="sb_general_time_without">Show video length without segments</string>
     <string name="sb_general_time_without_sum_on">Video length minus all segments, shown in parentheses next to the full video length</string>
     <string name="sb_general_time_without_sum_off">Full video length shown</string>
-    <string name="sb_general_wait_for_segments_before_starting_playback">Delay playback until segments load</string>
-    <string name="sb_general_wait_for_segments_before_starting_playback_sum_on">Wait up to to 3 seconds for SponsorBlock segments to load before video starts playback.  This can be useful if segments are set to autoskip</string>
+    <string name="sb_general_wait_for_segments_before_starting_playback">Wait for segments to load</string>
+    <string name="sb_general_wait_for_segments_before_starting_playback_sum_on">Wait up to 3 seconds for SponsorBlock segments to load before starting video playback.  This can be useful if segments are set to skip automatically</string>
     <string name="sb_general_wait_for_segments_before_starting_playback_sum_off">Videos start playing immediately, even if SponsorBlock is still loading</string>
     <string name="sb_general_adjusting">Adjust new segment step</string>
     <string name="sb_general_adjusting_sum">Number of milliseconds the time adjustment buttons move when creating new segments</string>
