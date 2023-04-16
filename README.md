@@ -16,13 +16,13 @@ The official Patch bundle provided by ReVanced and the community.
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 18.08.37 |
 | `custom-video-speed` | Adds more video speed options. | 18.08.37 |
-| `debugging` | Adds debugging options. | all |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.08.37 |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.08.37 |
 | `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.08.37 |
 | `disable-shorts-on-startup` | Disables playing YouTube Shorts when launching YouTube. | 18.08.37 |
 | `disable-zoom-haptics` | Disables haptics when zooming. | all |
 | `downloads` | Enables downloading music and videos from YouTube. | 18.08.37 |
+| `enable-debugging` | Adds debugging options. | all |
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.08.37 |
 | `general-ads` | Removes general ads. | 18.08.37 |
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.08.37 |
@@ -208,6 +208,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `hide-ads` | Removes ads from Inshorts. | all |
+</details>
+
+### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-inbox-ads` | Hides ads in inbox. | all |
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
