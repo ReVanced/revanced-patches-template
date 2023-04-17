@@ -132,7 +132,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 replaceInstructions(returnSpanIndex, "move-object/from16 v$contextTempRegister, p0")
                 addInstructions(
                     returnSpanIndex + 1, """
-                        invoke-static {v$contextTempRegister, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Landroid/text/SpannableString;)Landroid/text/SpannableString;
+                        invoke-static {v$contextTempRegister, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$spannedStringRegister
                         return-object v$spannedStringRegister
                     """
@@ -181,7 +181,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
     private companion object {
         const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/returnyoutubedislike/ReturnYouTubeDislike;"
+            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
 
         private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
         private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
