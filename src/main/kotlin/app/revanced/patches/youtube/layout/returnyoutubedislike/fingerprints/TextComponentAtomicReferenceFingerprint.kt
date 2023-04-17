@@ -32,6 +32,6 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
         Opcode.INVOKE_DIRECT_RANGE,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.IGET_OBJECT,
-        Opcode.MOVE_OBJECT_FROM16, // Spanned atomic reference
+        Opcode.MOVE_OBJECT_FROM16, // CharSequence atomic reference
     )
 )

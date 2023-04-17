@@ -121,20 +121,20 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         TextComponentSpecFingerprint.result?.let {
             with(it.mutableMethod) {
-                val returnSpanIndex = it.scanResult.patternScanResult!!.endIndex
-                val spannedStringRegister = (instruction(returnSpanIndex) as OneRegisterInstruction).registerA
-                // Store the context in any free register, which is any register except the register already used by the return value.
-                val contextTempRegister = if (spannedStringRegister != 0) 0 else 1
+                val returnInstructionIndex = it.scanResult.patternScanResult!!.endIndex
+                val charSequenceRegister = (instruction(returnInstructionIndex) as OneRegisterInstruction).registerA
+                // Store the context in any free register, which is any register except the one used by the return value.
+                val contextTempRegister = if (charSequenceRegister != 0) 0 else 1
 
                 // Must replace the return instruction (and not insert before), as it has a label attached to it.
                 // Replacing the last instruction with multiple instructions throws an array index out of bounds,
                 // So replace one line and insert the remaining instructions.
-                replaceInstructions(returnSpanIndex, "move-object/from16 v$contextTempRegister, p0")
+                replaceInstructions(returnInstructionIndex, "move-object/from16 v$contextTempRegister, p0")
                 addInstructions(
-                    returnSpanIndex + 1, """
-                        invoke-static {v$contextTempRegister, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
-                        move-result-object v$spannedStringRegister
-                        return-object v$spannedStringRegister
+                    returnInstructionIndex + 1, """
+                        invoke-static {v$contextTempRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        move-result-object v$charSequenceRegister
+                        return-object v$charSequenceRegister
                     """
                 )
             }
