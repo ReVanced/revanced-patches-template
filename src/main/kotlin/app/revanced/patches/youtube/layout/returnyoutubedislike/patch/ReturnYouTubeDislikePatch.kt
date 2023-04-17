@@ -123,8 +123,8 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             with(it.mutableMethod) {
                 val returnSpanIndex = it.scanResult.patternScanResult!!.endIndex
                 val spannedStringRegister = (instruction(returnSpanIndex) as OneRegisterInstruction).registerA
-                // Store the context in any free register, which is any register except the one already used by the return value
-                val contextTempRegister = spannedStringRegister.xor(1)
+                // Store the context in any free register, which is any register except the register already used by the return value.
+                val contextTempRegister = if (spannedStringRegister != 0) 0 else 1
 
                 // Must replace the return instruction (and not insert before), as it has a label attached to it.
                 // Replacing the last instruction with multiple instructions throws an array index out of bounds,
