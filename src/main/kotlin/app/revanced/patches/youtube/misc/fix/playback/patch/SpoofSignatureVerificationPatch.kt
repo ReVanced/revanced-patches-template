@@ -43,9 +43,11 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_spoof_signature_verification",
                 StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
-                false,
+                true,
                 StringResource("revanced_spoof_signature_verification_summary_on", "App signature spoofed"),
-                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed")
+                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
+                StringResource("revanced_spoof_signature_verification_user_dialog_message",
+                    "Signature spoofing can fix playback issues, but may causes side effects.")
             )
         )
 
@@ -107,7 +109,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    companion object {
+    private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
     }
 }
