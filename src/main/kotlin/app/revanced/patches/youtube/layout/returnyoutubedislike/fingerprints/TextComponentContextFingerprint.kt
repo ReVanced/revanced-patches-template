@@ -17,16 +17,9 @@ object TextComponentContextFingerprint : MethodFingerprint(
         Opcode.IGET,
         Opcode.IGET,
         Opcode.IGET,
-//        Opcode.IGET_OBJECT,
-//        Opcode.IGET_BOOLEAN,
-//        Opcode.IGET_BOOLEAN,
-//        Opcode.IGET_OBJECT,
-//        Opcode.MOVE_OBJECT_FROM16,
-//        Opcode.INVOKE_DIRECT_RANGE,
-//        Opcode.MOVE_RESULT_OBJECT,
-//        Opcode.IGET_OBJECT,
-//        Opcode.INVOKE_DIRECT_RANGE,
-//        Opcode.MOVE_RESULT_OBJECT,
+
+        // here lies a bunch of opcodes of no interest
+
 //        Opcode.IGET_OBJECT,
 //        Opcode.MOVE_FROM16,
 //        Opcode.INVOKE_DIRECT_RANGE,
