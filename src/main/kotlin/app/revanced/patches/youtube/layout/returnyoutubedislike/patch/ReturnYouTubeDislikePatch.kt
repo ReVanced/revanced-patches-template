@@ -75,27 +75,31 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // This hook does not correctly handle scrolling off/on screen,
         // but it does correctly handle when the user dislikes a video.
-        TextComponentFingerprint.also {
+        TextComponentContextFingerprint.also {
             it.resolve(
                 context,
                 TextComponentConstructorFingerprint.result!!.classDef
             )
         }.result?.let { result ->
+            // match two locations in the same method
+            val conversionContextIndex = result.scanResult.patternScanResult!!.startIndex
+
+            val spanReferenceEndIndex = TextComponentAtomicReferenceFingerprint.also {
+                if (!TextComponentAtomicReferenceFingerprint.resolve(context, result.method, result.classDef))
+                    return TextComponentAtomicReferenceFingerprint.toErrorResult()
+            }.result!!.scanResult.patternScanResult!!.endIndex
+
             result.mutableMethod.apply {
-                val startIndex = result.scanResult.patternScanResult!!.startIndex
-                val endIndex = result.scanResult.patternScanResult!!.endIndex
-
                 val conversionContextRegister =
-                    (instruction(startIndex) as TwoRegisterInstruction).registerA
+                    (instruction(conversionContextIndex) as TwoRegisterInstruction).registerA
                 val atomicReferenceRegister =
-                    (instruction(endIndex) as TwoRegisterInstruction).registerB
-
+                    (instruction(spanReferenceEndIndex) as TwoRegisterInstruction).registerB
                 addInstruction(
-                    endIndex + 1,
+                    spanReferenceEndIndex + 1,
                     "invoke-static {v$conversionContextRegister, v$atomicReferenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
                 )
             }
-        } ?: return TextComponentFingerprint.toErrorResult()
+        } ?: return TextComponentContextFingerprint.toErrorResult()
 
 
         // Handles all cases, except when a user dislikes a video
@@ -104,13 +108,14 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 val endIndex = it.scanResult.patternScanResult!!.endIndex
                 val returnInstruction = (instruction(endIndex) as OneRegisterInstruction)
                 val spannedStringRegister = returnInstruction.registerA
+                val contextTempRegister = if (spannedStringRegister == 0) 1 else 0
 
                 // Must replace the return instruction (and not insert before), as it has a label attached to it.
                 // Replacing the last instruction with multiple instructions throws an array index out of bounds,
                 // So replace one line and insert the remaining instructions.
-                replaceInstructions(endIndex, "move-object/from16 v0, p0")
+                replaceInstructions(endIndex, "move-object/from16 v$contextTempRegister, p0")
                 addInstructions(endIndex + 1, """
-                        invoke-static {v0, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Landroid/text/SpannableString;)Landroid/text/SpannableString;
+                        invoke-static {v$contextTempRegister, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Landroid/text/SpannableString;)Landroid/text/SpannableString;
                         move-result-object v$spannedStringRegister
                         return-object v$spannedStringRegister
                     """
