@@ -6,9 +6,8 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
+import app.revanced.patcher.extensions.*
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -25,7 +24,6 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
-import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -45,7 +43,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentConstructorFingerprint,
-        TextComponentSpecExtensionFingerprint,
+        TextComponentSpecFingerprint,
         ShortsTextComponentParentFingerprint,
         LikeFingerprint,
         DislikeFingerprint,
@@ -75,57 +73,50 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         }
 
 
-        TextReferenceFingerprint.also {
+        // This hook does not correctly handle scrolling off/on screen,
+        // but it does correctly handle when the user dislikes a video.
+        TextComponentFingerprint.also {
             it.resolve(
                 context,
                 TextComponentConstructorFingerprint.result!!.classDef
             )
         }.result?.let { result ->
-            val moveTextRefParamInstructionIndex = TextReferenceParamFingerprint.also {
-                if (!TextReferenceParamFingerprint.resolve(context, result.method, result.classDef))
-                    return TextReferenceParamFingerprint.toErrorResult()
-            }.result!!.scanResult.patternScanResult!!.endIndex
-
             result.mutableMethod.apply {
-                val insertIndex = result.scanResult.patternScanResult!!.endIndex
+                val startIndex = result.scanResult.patternScanResult!!.startIndex
+                val endIndex = result.scanResult.patternScanResult!!.endIndex
 
-                val atomicReferenceInstruction = (instruction(insertIndex - 1) as FiveRegisterInstruction)
-                val conversionContextParam = atomicReferenceInstruction.registerC
-                val textRefParam = (instruction(moveTextRefParamInstructionIndex) as TwoRegisterInstruction).registerA
+                val conversionContextRegister =
+                    (instruction(startIndex) as TwoRegisterInstruction).registerA
+                val atomicReferenceRegister =
+                    (instruction(endIndex) as TwoRegisterInstruction).registerB
 
-                // Overwritten after injected code, which is why it can be used.
-                val clobberRegister = atomicReferenceInstruction.registerD
+                addInstruction(
+                    endIndex + 1,
+                    "invoke-static {v$conversionContextRegister, v$atomicReferenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
+                )
+            }
+        } ?: return TextComponentFingerprint.toErrorResult()
 
-                addInstructions(
-                    insertIndex,
-                    """
-                        # required instruction, otherwise register might be out of range
-                        move-object/from16 v$clobberRegister, v$textRefParam
-                        invoke-static {v$clobberRegister, v$conversionContextParam}, $ON_COMPONENT_CREATED_DESCRIPTOR
+
+        // Handles all cases, except when a user dislikes a video
+        TextComponentSpecFingerprint.result?.let {
+            with(it.mutableMethod) {
+                val endIndex = it.scanResult.patternScanResult!!.endIndex
+                val returnInstruction = (instruction(endIndex) as OneRegisterInstruction)
+                val spannedStringRegister = returnInstruction.registerA
+
+                // Must replace the return instruction (and not insert before), as it has a label attached to it.
+                // Replacing the last instruction with multiple instructions throws an array index out of bounds,
+                // So replace one line and insert the remaining instructions.
+                replaceInstructions(endIndex, "move-object/from16 v0, p0")
+                addInstructions(endIndex + 1, """
+                        invoke-static {v0, v$spannedStringRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Landroid/text/SpannableString;)Landroid/text/SpannableString;
+                        move-result-object v$spannedStringRegister
+                        return-object v$spannedStringRegister
                     """
                 )
             }
-        } ?: return TextReferenceFingerprint.toErrorResult()
-
-
-        // additional hook, called after span is already created (such as scrolling span off/on screen)
-        TextComponentSpecExtensionFingerprint.result?.let {
-            with (it.mutableMethod) {
-                val targetIndex = it.scanResult.patternScanResult!!.startIndex + 1
-                val targetRegister =
-                    (instruction(targetIndex) as OneRegisterInstruction).registerA
-                val dummyRegister =
-                    (instruction(targetIndex + 1) as OneRegisterInstruction).registerA
-
-                addInstructions(
-                    targetIndex + 1, """
-                        move-object/from16 v$dummyRegister, p0
-                        invoke-static {v$dummyRegister, v$targetRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->overrideLikeDislikeSpan(Ljava/lang/Object;Landroid/text/SpannableString;)Landroid/text/SpannableString;
-                        move-result-object v$targetRegister
-                        """
-                )
-            }
-        } ?: return TextComponentSpecExtensionFingerprint.toErrorResult()
+        } ?: return TextComponentSpecFingerprint.toErrorResult()
 
 
         ShortsTextComponentParentFingerprint.result?.let {
@@ -139,22 +130,23 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                             return PatchResultError("Method signature did not match: $this $parameterTypes")
 
                         val insertIndex = implementation!!.instructions.size - 1
-
                         val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
                         val parameter = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
 
                         if (!parameter.toString().endsWith("Landroid/text/Spanned;"))
                             return PatchResultError("Method signature parameter did not match: $parameter")
 
-                        addInstructions(
-                            insertIndex,
-                            """
-                                invoke-static {v$spannedParameterRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
-                                move-result-object v$spannedParameterRegister
-                            """
-                        )
+                        insertShorts(insertIndex, spannedParameterRegister)
                     }
                 }
+
+            // Additional hook, called after user dislikes.
+            with (it.mutableMethod) {
+                val insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
+                val insertRegister = (implementation!!.instructions.elementAt(insertIndex - 1)
+                        as OneRegisterInstruction).registerA
+                insertShorts(insertIndex, insertRegister)
+            }
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
 
@@ -165,10 +157,15 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/returnyoutubedislike/ReturnYouTubeDislike;"
 
-        const val ON_COMPONENT_CREATED_DESCRIPTOR =
-            "$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
-
         private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
+    }
+
+    private fun MutableMethod.insertShorts(index: Int, register: Int) {
+        addInstructions(index, """
+                invoke-static {v$register}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                move-result-object v$register
+            """
+        )
     }
 
     private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
