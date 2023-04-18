@@ -1,108 +1,45 @@
-# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0-dev.1) (2023-04-14)
-
-
-### Bug Fixes
-
-* add missing annotation to patches ([#1882](https://github.com/revanced/revanced-patches/issues/1882)) ([1b3fe57](https://github.com/revanced/revanced-patches/commit/1b3fe5715b31b637c0a866cb4f1b93a494467f92))
-* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([5fa25cb](https://github.com/revanced/revanced-patches/commit/5fa25cb34f17dcf0d4a8fb1099a6fab54c0da9af))
-* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([111ecb1](https://github.com/revanced/revanced-patches/commit/111ecb1df81455919f983072f96874870a5dc3ff))
-* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([556ca14](https://github.com/revanced/revanced-patches/commit/556ca1492fabe2f529921211a772708088f145d0))
+# [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-16)
 
 
 ### Features
 
-* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([70401d5](https://github.com/revanced/revanced-patches/commit/70401d59586ef7123f0b8063ab73cf814fe57e5b))
-* `enable-android-debugging` patch ([#1876](https://github.com/revanced/revanced-patches/issues/1876)) ([b885d34](https://github.com/revanced/revanced-patches/commit/b885d3473afcfd88f551e1d9553403c60a23cd6e))
-* **facebook:** `hide-inbox-ads` patch ([#1893](https://github.com/revanced/revanced-patches/issues/1893)) ([f3a6085](https://github.com/revanced/revanced-patches/commit/f3a6085a64cd98e90e3fb546d5c30ccd4a81c6f2))
-* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([a7d0489](https://github.com/revanced/revanced-patches/commit/a7d04894345ccff606ec2fea1861718c3984fb9f))
-* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([aa24ccf](https://github.com/revanced/revanced-patches/commit/aa24ccf10b2e91196176866f5d7f1a8732f97d90))
-* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([e143745](https://github.com/revanced/revanced-patches/commit/e143745387502e749f41eccfc111cb93e25c1863))
-* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([ed450b1](https://github.com/revanced/revanced-patches/commit/ed450b1d01fba9c212b0f16144c77733634ad9a2))
-* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([55d050f](https://github.com/revanced/revanced-patches/commit/55d050f9f1a399aaea718d6a5a3066c2c36a93b7))
-* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([f416952](https://github.com/revanced/revanced-patches/commit/f416952b4b318e7d7d4696b8e8d21cd38ba97b37))
-* **youtube:** bump compatibility to `18.08.37` ([7ffcd25](https://github.com/revanced/revanced-patches/commit/7ffcd253299221c13a1bab2db5b19cfa4f6970c5))
-* **youtube:** change default video speed and quality inside the settings menu ([#1880](https://github.com/revanced/revanced-patches/issues/1880)) ([e784ce6](https://github.com/revanced/revanced-patches/commit/e784ce64321b18909791fd980541a7f202d60cc1))
-* **youtube:** constrain compatibility to `18.08.37` ([2f7eedf](https://github.com/revanced/revanced-patches/commit/2f7eedff1a61b3d5b704ce1bd84cce5936cb4754))
-* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([316a40d](https://github.com/revanced/revanced-patches/commit/316a40d00cc443942c076876a7abf52cbee81c3f))
-* **youtube:** support version `18.08.37` ([932194c](https://github.com/revanced/revanced-patches/commit/932194c3574b173612f0c65b640ef53b99d25ca0))
+* **youtube/sponsorblock:** skip to video highlight ([#1874](https://github.com/revanced/revanced-patches/issues/1874)) ([ed335fb](https://github.com/revanced/revanced-patches/commit/ed335fb9a0009d74078564dcbbeabc99d2323bb4))
 
-# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0-dev.1) (2023-04-13)
+# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0-dev.1) (2023-04-16)
 
 
 ### Bug Fixes
 
-* add missing annotation to patches ([#1882](https://github.com/revanced/revanced-patches/issues/1882)) ([1b3fe57](https://github.com/revanced/revanced-patches/commit/1b3fe5715b31b637c0a866cb4f1b93a494467f92))
-* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([5fa25cb](https://github.com/revanced/revanced-patches/commit/5fa25cb34f17dcf0d4a8fb1099a6fab54c0da9af))
-* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([111ecb1](https://github.com/revanced/revanced-patches/commit/111ecb1df81455919f983072f96874870a5dc3ff))
-* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([556ca14](https://github.com/revanced/revanced-patches/commit/556ca1492fabe2f529921211a772708088f145d0))
+* add missing annotation to patches ([#1882](https://github.com/revanced/revanced-patches/issues/1882)) ([d86b6a4](https://github.com/revanced/revanced-patches/commit/d86b6a4a659172c3f1db8eb883f28dfee4e83e4c))
+* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([b0834fa](https://github.com/revanced/revanced-patches/commit/b0834faa69755a94f70ae5075a10cf15e8a6b857))
+* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([5e148d9](https://github.com/revanced/revanced-patches/commit/5e148d9384e8f9f1bc8f5daa7e68a05574810329))
+* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([47ff447](https://github.com/revanced/revanced-patches/commit/47ff447f8ec0e5bbc174f34bd7d61b3031276641))
 
 
 ### Features
 
-* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([70401d5](https://github.com/revanced/revanced-patches/commit/70401d59586ef7123f0b8063ab73cf814fe57e5b))
-* `enable-android-debugging` patch ([#1876](https://github.com/revanced/revanced-patches/issues/1876)) ([b885d34](https://github.com/revanced/revanced-patches/commit/b885d3473afcfd88f551e1d9553403c60a23cd6e))
-* **facebook:** `hide-inbox-ads` patch ([#1893](https://github.com/revanced/revanced-patches/issues/1893)) ([f3a6085](https://github.com/revanced/revanced-patches/commit/f3a6085a64cd98e90e3fb546d5c30ccd4a81c6f2))
-* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([a7d0489](https://github.com/revanced/revanced-patches/commit/a7d04894345ccff606ec2fea1861718c3984fb9f))
-* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([aa24ccf](https://github.com/revanced/revanced-patches/commit/aa24ccf10b2e91196176866f5d7f1a8732f97d90))
-* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([e143745](https://github.com/revanced/revanced-patches/commit/e143745387502e749f41eccfc111cb93e25c1863))
-* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([ed450b1](https://github.com/revanced/revanced-patches/commit/ed450b1d01fba9c212b0f16144c77733634ad9a2))
-* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([55d050f](https://github.com/revanced/revanced-patches/commit/55d050f9f1a399aaea718d6a5a3066c2c36a93b7))
-* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([f416952](https://github.com/revanced/revanced-patches/commit/f416952b4b318e7d7d4696b8e8d21cd38ba97b37))
-* **youtube:** bump compatibility to `18.08.37` ([7ffcd25](https://github.com/revanced/revanced-patches/commit/7ffcd253299221c13a1bab2db5b19cfa4f6970c5))
-* **youtube:** constrain compatibility to `18.08.37` ([2f7eedf](https://github.com/revanced/revanced-patches/commit/2f7eedff1a61b3d5b704ce1bd84cce5936cb4754))
-* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([316a40d](https://github.com/revanced/revanced-patches/commit/316a40d00cc443942c076876a7abf52cbee81c3f))
-* **youtube:** support version `18.08.37` ([932194c](https://github.com/revanced/revanced-patches/commit/932194c3574b173612f0c65b640ef53b99d25ca0))
+* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([f9a6672](https://github.com/revanced/revanced-patches/commit/f9a6672122eb28fe06c9f5e137906ad868a491d6))
+* `enable-android-debugging` patch ([#1876](https://github.com/revanced/revanced-patches/issues/1876)) ([bd224d9](https://github.com/revanced/revanced-patches/commit/bd224d90deb838ee3e7bd0c16860023ebf113e96))
+* **facebook:** `hide-inbox-ads` patch ([#1893](https://github.com/revanced/revanced-patches/issues/1893)) ([2cfc982](https://github.com/revanced/revanced-patches/commit/2cfc9829e119884ca566d6ad90fd0542317891d7))
+* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([f48e794](https://github.com/revanced/revanced-patches/commit/f48e794eebf9ea44008c4c8a3967ad039d19180a))
+* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([04a2acc](https://github.com/revanced/revanced-patches/commit/04a2accfe9f9254af9074ad0a309d485cedb01cb))
+* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([43464fd](https://github.com/revanced/revanced-patches/commit/43464fd6ffe6f097c574156146aeb23f8f026840))
+* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([e3666e6](https://github.com/revanced/revanced-patches/commit/e3666e68ed4816c85fbb110cb098f53fddf135f1))
+* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([ef8f26f](https://github.com/revanced/revanced-patches/commit/ef8f26fb976c3044039f9bff0496088763ab66cd))
+* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([05023ba](https://github.com/revanced/revanced-patches/commit/05023bab1d94e04553ac274468bdba7a19ad9180))
+* **youtube/spoof-signature-verification:** enable by default ([#1896](https://github.com/revanced/revanced-patches/issues/1896)) ([23eb096](https://github.com/revanced/revanced-patches/commit/23eb096e54f0ccea56f343700c9978b8f8455e75))
+* **youtube:** bump compatibility to `18.08.37` ([29561ec](https://github.com/revanced/revanced-patches/commit/29561eca10e18e11f2d4a7f9bab2f12303490b6f))
+* **youtube:** change default video speed and quality inside the settings menu ([#1880](https://github.com/revanced/revanced-patches/issues/1880)) ([fbb1763](https://github.com/revanced/revanced-patches/commit/fbb17636d8ab9f2a43ead896451804b04464527c))
+* **youtube:** constrain compatibility to `18.08.37` ([7403fc8](https://github.com/revanced/revanced-patches/commit/7403fc86ae7b7d756a2939fa0a507f237aaf6edf))
+* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([b5d712a](https://github.com/revanced/revanced-patches/commit/b5d712a3326d1e8cdb8d8642aa7bd1bee6e30ac1))
+* **youtube:** support version `18.08.37` ([4f4ceab](https://github.com/revanced/revanced-patches/commit/4f4ceab2cc32a38dd3967fd4e81f690330c08f5c))
 
-# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0-dev.1) (2023-04-13)
-
-
-### Bug Fixes
-
-* add missing annotation to patches ([#1882](https://github.com/revanced/revanced-patches/issues/1882)) ([1b3fe57](https://github.com/revanced/revanced-patches/commit/1b3fe5715b31b637c0a866cb4f1b93a494467f92))
-* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([5fa25cb](https://github.com/revanced/revanced-patches/commit/5fa25cb34f17dcf0d4a8fb1099a6fab54c0da9af))
-* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([111ecb1](https://github.com/revanced/revanced-patches/commit/111ecb1df81455919f983072f96874870a5dc3ff))
-* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([556ca14](https://github.com/revanced/revanced-patches/commit/556ca1492fabe2f529921211a772708088f145d0))
+# [2.168.0](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0) (2023-04-13)
 
 
 ### Features
 
-* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([70401d5](https://github.com/revanced/revanced-patches/commit/70401d59586ef7123f0b8063ab73cf814fe57e5b))
-* **facebook:** `hide-inbox-ads` patch ([#1893](https://github.com/revanced/revanced-patches/issues/1893)) ([f3a6085](https://github.com/revanced/revanced-patches/commit/f3a6085a64cd98e90e3fb546d5c30ccd4a81c6f2))
-* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([a7d0489](https://github.com/revanced/revanced-patches/commit/a7d04894345ccff606ec2fea1861718c3984fb9f))
-* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([aa24ccf](https://github.com/revanced/revanced-patches/commit/aa24ccf10b2e91196176866f5d7f1a8732f97d90))
-* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([e143745](https://github.com/revanced/revanced-patches/commit/e143745387502e749f41eccfc111cb93e25c1863))
-* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([ed450b1](https://github.com/revanced/revanced-patches/commit/ed450b1d01fba9c212b0f16144c77733634ad9a2))
-* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([55d050f](https://github.com/revanced/revanced-patches/commit/55d050f9f1a399aaea718d6a5a3066c2c36a93b7))
-* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([f416952](https://github.com/revanced/revanced-patches/commit/f416952b4b318e7d7d4696b8e8d21cd38ba97b37))
-* **youtube:** bump compatibility to `18.08.37` ([7ffcd25](https://github.com/revanced/revanced-patches/commit/7ffcd253299221c13a1bab2db5b19cfa4f6970c5))
-* **youtube:** constrain compatibility to `18.08.37` ([2f7eedf](https://github.com/revanced/revanced-patches/commit/2f7eedff1a61b3d5b704ce1bd84cce5936cb4754))
-* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([316a40d](https://github.com/revanced/revanced-patches/commit/316a40d00cc443942c076876a7abf52cbee81c3f))
-* **youtube:** support version `18.08.37` ([932194c](https://github.com/revanced/revanced-patches/commit/932194c3574b173612f0c65b640ef53b99d25ca0))
-
-# [2.168.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.167.1...v2.168.0-dev.1) (2023-04-13)
-
-
-### Bug Fixes
-
-* add missing annotation to patches ([#1882](https://github.com/revanced/revanced-patches/issues/1882)) ([1b3fe57](https://github.com/revanced/revanced-patches/commit/1b3fe5715b31b637c0a866cb4f1b93a494467f92))
-* **youtube/sponsorblock:** do not depend on `remember-playback-speed` patch ([5fa25cb](https://github.com/revanced/revanced-patches/commit/5fa25cb34f17dcf0d4a8fb1099a6fab54c0da9af))
-* **youtube/sponsorblock:** fix autorepeat button layout ([#1868](https://github.com/revanced/revanced-patches/issues/1868)) ([111ecb1](https://github.com/revanced/revanced-patches/commit/111ecb1df81455919f983072f96874870a5dc3ff))
-* **youtubevanced/hide-ads:** hide more types of ads ([#1781](https://github.com/revanced/revanced-patches/issues/1781)) ([556ca14](https://github.com/revanced/revanced-patches/commit/556ca1492fabe2f529921211a772708088f145d0))
-
-
-### Features
-
-* `change-package-name` patch ([#1864](https://github.com/revanced/revanced-patches/issues/1864)) ([70401d5](https://github.com/revanced/revanced-patches/commit/70401d59586ef7123f0b8063ab73cf814fe57e5b))
-* **id-austria:** bump compatibility to `2.6.0` ([#1827](https://github.com/revanced/revanced-patches/issues/1827)) ([a7d0489](https://github.com/revanced/revanced-patches/commit/a7d04894345ccff606ec2fea1861718c3984fb9f))
-* **inshorts:** `hide-ads` patch ([#1828](https://github.com/revanced/revanced-patches/issues/1828)) ([aa24ccf](https://github.com/revanced/revanced-patches/commit/aa24ccf10b2e91196176866f5d7f1a8732f97d90))
-* **photomath:** bump compatibility up to `8.21.0` ([#1886](https://github.com/revanced/revanced-patches/issues/1886)) ([e143745](https://github.com/revanced/revanced-patches/commit/e143745387502e749f41eccfc111cb93e25c1863))
-* **reddit:** bump compatibility to `2023.12.0` ([#1825](https://github.com/revanced/revanced-patches/issues/1825)) ([ed450b1](https://github.com/revanced/revanced-patches/commit/ed450b1d01fba9c212b0f16144c77733634ad9a2))
-* **youtube-music:** `bypass-certificate-checks` patch ([#1810](https://github.com/revanced/revanced-patches/issues/1810)) ([55d050f](https://github.com/revanced/revanced-patches/commit/55d050f9f1a399aaea718d6a5a3066c2c36a93b7))
-* **youtube/settings:** disable preferences and add dialog messages to preferences ([#1801](https://github.com/revanced/revanced-patches/issues/1801)) ([f416952](https://github.com/revanced/revanced-patches/commit/f416952b4b318e7d7d4696b8e8d21cd38ba97b37))
-* **youtube:** bump compatibility to `18.08.37` ([7ffcd25](https://github.com/revanced/revanced-patches/commit/7ffcd253299221c13a1bab2db5b19cfa4f6970c5))
-* **youtube:** constrain compatibility to `18.08.37` ([2f7eedf](https://github.com/revanced/revanced-patches/commit/2f7eedff1a61b3d5b704ce1bd84cce5936cb4754))
-* **youtube:** sponsorblock improvements ([#1557](https://github.com/revanced/revanced-patches/issues/1557)) ([316a40d](https://github.com/revanced/revanced-patches/commit/316a40d00cc443942c076876a7abf52cbee81c3f))
-* **youtube:** support version `18.08.37` ([932194c](https://github.com/revanced/revanced-patches/commit/932194c3574b173612f0c65b640ef53b99d25ca0))
+* **youtube/spoof-signature-verification:** enable by default ([#1896](https://github.com/revanced/revanced-patches/issues/1896)) ([774e45e](https://github.com/revanced/revanced-patches/commit/774e45ed50bb15adb2b55d103ff7bfae38570056))
 
 ## [2.167.1](https://github.com/revanced/revanced-patches/compare/v2.167.0...v2.167.1) (2023-04-13)
 

@@ -25,7 +25,6 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.OpenCronetDataSourceFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
@@ -61,7 +60,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         AppendTimeFingerprint,
         PlayerOverlaysLayoutInitFingerprint,
         AutoRepeatParentFingerprint,
-        OpenCronetDataSourceFingerprint,
     )
 ) {
 
@@ -281,21 +279,6 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             0,
             "invoke-static {}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
         ) ?: return AutoRepeatFingerprint.toErrorResult()
-
-
-        // Add a hook to optionally delay video playback until after SB has loaded it's segments.
-        // The hook is after the video data is loaded, but before playback starts.
-        OpenCronetDataSourceFingerprint.result?.let {
-            it.mutableMethod.apply {
-                addInstructions(
-                    it.scanResult.patternScanResult!!.endIndex + 1,
-                    """
-                        invoke-static {}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->videoDataLoaded()V
-                    """
-                )
-            }
-
-        } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
 
         // TODO: isSBChannelWhitelisting implementation
 
