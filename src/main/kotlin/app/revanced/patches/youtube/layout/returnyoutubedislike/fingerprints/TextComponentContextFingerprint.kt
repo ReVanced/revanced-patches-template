@@ -17,14 +17,5 @@ object TextComponentContextFingerprint : MethodFingerprint(
         Opcode.IGET,
         Opcode.IGET,
         Opcode.IGET,
-
-        // here lies a bunch of opcodes of no interest
-
-//        Opcode.IGET_OBJECT,
-//        Opcode.MOVE_FROM16,
-//        Opcode.INVOKE_DIRECT_RANGE,
-//        Opcode.MOVE_RESULT_OBJECT,
-//        Opcode.IGET_OBJECT,
-//        Opcode.MOVE_OBJECT_FROM16, // CharSequence atomic reference
     )
 )

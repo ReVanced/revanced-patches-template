@@ -10,21 +10,23 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
     access = AccessFlags.PROTECTED or AccessFlags.FINAL,
     parameters = listOf("L"),
     opcodes = listOf(
-//        Opcode.IGET_OBJECT, // conversion context
-//        Opcode.IGET_OBJECT,
-//        Opcode.IGET_OBJECT,
-//        Opcode.IGET_BOOLEAN,
-//        Opcode.IGET,
-//        Opcode.IGET,
-//        Opcode.IGET,
-
-        // here lies a bunch of opcodes of no interest
-
-        Opcode.IGET_OBJECT,
+        Opcode.MOVE_OBJECT, // available unused register
+        Opcode.MOVE_OBJECT_FROM16,
+        Opcode.MOVE_OBJECT_FROM16,
         Opcode.MOVE_FROM16,
-        Opcode.INVOKE_DIRECT_RANGE,
+        Opcode.INVOKE_VIRTUAL, // CharSequence atomic reference
         Opcode.MOVE_RESULT_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.MOVE_OBJECT_FROM16, // CharSequence atomic reference
+        Opcode.CHECK_CAST,
+        Opcode.MOVE_OBJECT, // CharSequence reference, and control flow label
+        // insert code here
+        Opcode.INVOKE_VIRTUAL_RANGE,
+        Opcode.MOVE_RESULT,
+        Opcode.IF_EQZ,
+        Opcode.INVOKE_VIRTUAL_RANGE,
+        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.GOTO,
+        Opcode.CONST_4,
+        Opcode.INVOKE_VIRTUAL_RANGE,
+        Opcode.MOVE_RESULT_OBJECT,
     )
 )

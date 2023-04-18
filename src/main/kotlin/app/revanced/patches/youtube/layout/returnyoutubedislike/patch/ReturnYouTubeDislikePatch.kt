@@ -7,10 +7,9 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
-import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.extensions.replaceInstructions
+import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -28,6 +27,7 @@ import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch
@@ -46,7 +46,6 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentConstructorFingerprint,
-        TextComponentSpecFingerprint,
         ShortsTextComponentParentFingerprint,
         LikeFingerprint,
         DislikeFingerprint,
@@ -80,13 +79,12 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        // region Hook when video is disliked.
+        // region Hook creation of Spans and the cached lookup of them.
 
-        // Hook onto the cache lookup, and override the cached Span. This is required when user dislikes,
-        // as the original span does not have dislikes and thus Litho believes the Span is up to date
-        // since the underlying 'likes only' text did not change.
-        // Note: It might be possible to adjust this hook, and both pass the atomic reference and return the Span.
-        // Then this single hook would work for both initial creation and the cache lookup.
+        // Alternatively the hook can be the creation of Spans in TextComponentSpec,
+        // And it works in all situations except it fails to update the Span when the user dislikes,
+        // since the underlying (likes only) text did not change.
+        // This hook handles all situations, as it's where the Spans are looked up and stored.
         TextComponentContextFingerprint.also {
             it.resolve(
                 context,
@@ -99,51 +97,35 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             // Get the instruction indices of the conversion context and the span reference.
             val conversionContextIndex = textComponentContextFingerprintResult
                 .scanResult.patternScanResult!!.startIndex
-            val spanReferenceEndIndex = TextComponentAtomicReferenceFingerprint.result!!
-                .scanResult.patternScanResult!!.endIndex
+            val atomicReferenceStartIndex = TextComponentAtomicReferenceFingerprint.result!!
+                .scanResult.patternScanResult!!.startIndex
 
             textComponentContextFingerprintResult.mutableMethod.apply {
-                // Get the registers of the conversion context and the span reference.
-                val conversionContextRegister =
-                    (instruction(conversionContextIndex) as TwoRegisterInstruction).registerA
+                // Get the conversion context field name, and registers of the atomic reference and CharSequence
+                val conversionContextFieldName =
+                    (instruction(conversionContextIndex) as ReferenceInstruction).reference.toString()
+                val contextRegister = // any free register
+                    (instruction(atomicReferenceStartIndex) as TwoRegisterInstruction).registerB
                 val atomicReferenceRegister =
-                    (instruction(spanReferenceEndIndex) as TwoRegisterInstruction).registerB
+                    (instruction(atomicReferenceStartIndex + 4) as BuilderInstruction35c).registerC
 
-                // Insert the call to onComponentCreated after the span reference is created to change the dislike count.
-                val insertIndex = spanReferenceEndIndex + 1
-                addInstruction(
-                    insertIndex,
-                    "invoke-static {v$conversionContextRegister, v$atomicReferenceRegister}, " +
-                            "$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->" +
-                            "onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
-                )
-            }
-        } ?: return TextComponentContextFingerprint.toErrorResult()
+                val insertIndex = atomicReferenceStartIndex + 7
+                val moveCharSequenceInstruction = instruction(insertIndex) as TwoRegisterInstruction
+                val charSequenceRegister = moveCharSequenceInstruction.registerB
 
-        // endregion
-
-        // region Hook all cases, except when a video is disliked
-
-        TextComponentSpecFingerprint.result?.let {
-            with(it.mutableMethod) {
-                val returnInstructionIndex = it.scanResult.patternScanResult!!.endIndex
-                val charSequenceRegister = (instruction(returnInstructionIndex) as OneRegisterInstruction).registerA
-                // Store the context in any free register, which is any register except the one used by the return value.
-                val contextTempRegister = if (charSequenceRegister != 0) 0 else 1
-
-                // Must replace the return instruction (and not insert before), as it has a label attached to it.
-                // Replacing the last instruction with multiple instructions throws an array index out of bounds,
-                // So replace one line and insert the remaining instructions.
-                replaceInstructions(returnInstructionIndex, "move-object/from16 v$contextTempRegister, p0")
+                // Insert as first instructions at the control flow label.
+                // Must replace the existing instruction to preserve the label, and then insert the remaining instructions.
+                replaceInstruction(insertIndex, "move-object/from16 v$contextRegister, p0")
                 addInstructions(
-                    returnInstructionIndex + 1, """
-                        invoke-static {v$contextTempRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onLithoTextCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                    insertIndex + 1, """
+                        iget-object v$contextRegister, v$contextRegister, $conversionContextFieldName  # copy obfuscated context field into free register
+                        invoke-static {v$contextRegister, v$atomicReferenceRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$charSequenceRegister
-                        return-object v$charSequenceRegister
+                        move-object v${moveCharSequenceInstruction.registerA}, v${moveCharSequenceInstruction.registerB}  # original instruction at the insertion point
                     """
                 )
             }
-        } ?: return TextComponentSpecFingerprint.toErrorResult()
+        } ?: return TextComponentContextFingerprint.toErrorResult()
 
         // endregion
 
