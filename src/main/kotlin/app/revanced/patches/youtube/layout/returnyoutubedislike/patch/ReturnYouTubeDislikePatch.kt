@@ -81,10 +81,10 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // region Hook creation of Spans and the cached lookup of them.
 
-        // Alternatively the hook can be the creation of Spans in TextComponentSpec,
+        // Alternatively the hook can be made at the creation of Spans in TextComponentSpec,
         // And it works in all situations except it fails to update the Span when the user dislikes,
         // since the underlying (likes only) text did not change.
-        // This hook handles all situations, as it's where the Spans are looked up and stored.
+        // This hook handles all situations, as it's where the created Spans are stored and later reused.
         TextComponentContextFingerprint.also {
             it.resolve(
                 context,
@@ -94,14 +94,13 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             if (!TextComponentAtomicReferenceFingerprint.resolve(context, result.method, result.classDef))
                 throw TextComponentAtomicReferenceFingerprint.toErrorResult()
         }?.let { textComponentContextFingerprintResult ->
-            // Get the instruction indices of the conversion context and the span reference.
             val conversionContextIndex = textComponentContextFingerprintResult
                 .scanResult.patternScanResult!!.startIndex
             val atomicReferenceStartIndex = TextComponentAtomicReferenceFingerprint.result!!
                 .scanResult.patternScanResult!!.startIndex
 
             textComponentContextFingerprintResult.mutableMethod.apply {
-                // Get the conversion context field name, and registers of the atomic reference and CharSequence
+                // Get the conversion context obfuscated field name, and the registers for the AtomicReference and CharSequence
                 val conversionContextFieldName =
                     (instruction(conversionContextIndex) as ReferenceInstruction).reference.toString()
                 val contextRegister = // any free register

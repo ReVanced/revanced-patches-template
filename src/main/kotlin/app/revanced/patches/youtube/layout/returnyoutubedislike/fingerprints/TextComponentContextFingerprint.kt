@@ -10,7 +10,7 @@ object TextComponentContextFingerprint : MethodFingerprint(
     access = AccessFlags.PROTECTED or AccessFlags.FINAL,
     parameters = listOf("L"),
     opcodes = listOf(
-        Opcode.IGET_OBJECT, // conversion context
+        Opcode.IGET_OBJECT, // conversion context field name
         Opcode.IGET_OBJECT,
         Opcode.IGET_OBJECT,
         Opcode.IGET_BOOLEAN,
