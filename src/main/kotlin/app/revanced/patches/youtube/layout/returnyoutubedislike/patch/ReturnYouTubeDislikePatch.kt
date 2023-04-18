@@ -82,6 +82,11 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // region Hook when video is disliked.
 
+        // Hook onto the cache lookup, and override the cached Span. This is required when user dislikes,
+        // as the original span does not have dislikes and thus Litho believes the Span is up to date
+        // since the underlying 'likes only' text did not change.
+        // Note: It might be possible to adjust this hook, and both pass the atomic reference and return the Span.
+        // Then this single hook would work for both initial creation and the cache lookup.
         TextComponentContextFingerprint.also {
             it.resolve(
                 context,
@@ -110,7 +115,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     insertIndex,
                     "invoke-static {v$conversionContextRegister, v$atomicReferenceRegister}, " +
                             "$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->" +
-                            "onComponentCreated(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
+                            "onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;)V"
                 )
             }
         } ?: return TextComponentContextFingerprint.toErrorResult()
@@ -132,7 +137,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 replaceInstructions(returnInstructionIndex, "move-object/from16 v$contextTempRegister, p0")
                 addInstructions(
                     returnInstructionIndex + 1, """
-                        invoke-static {v$contextTempRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onComponentCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        invoke-static {v$contextTempRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onLithoTextCreated(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$charSequenceRegister
                         return-object v$charSequenceRegister
                     """
