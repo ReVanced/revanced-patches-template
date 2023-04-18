@@ -32,10 +32,12 @@ class UnlockProVersionPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         IsFreeVersionFingerprint.result?.apply {
-            mutableMethod.replaceInstructions(0, """
-                sget-object p0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
-                return-object p0
-            """.trimIndent())
+            mutableMethod.replaceInstructions(0,
+                """
+                    sget-object p0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+                    return-object p0
+                """
+            )
         } ?: throw IsFreeVersionFingerprint.toErrorResult()
 
         return PatchResultSuccess()
