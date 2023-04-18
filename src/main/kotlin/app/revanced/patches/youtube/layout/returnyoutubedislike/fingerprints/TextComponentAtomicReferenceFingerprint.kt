@@ -5,6 +5,9 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
+/**
+ * Matches to the same method as [TextComponentContextFingerprint].
+ */
 object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
     returnType = "L",
     access = AccessFlags.PROTECTED or AccessFlags.FINAL,
