@@ -20,8 +20,7 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL, // CharSequence atomic reference
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
-        Opcode.MOVE_OBJECT, // CharSequence reference, and control flow label
-        // insert code here
+        Opcode.MOVE_OBJECT, // CharSequence reference, and control flow label.  Insert code here.
         Opcode.INVOKE_VIRTUAL_RANGE,
         Opcode.MOVE_RESULT,
         Opcode.IF_EQZ,
