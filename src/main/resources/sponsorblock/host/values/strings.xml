@@ -29,6 +29,7 @@
     <string name="sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped</string>
     <string name="sb_general_wait_for_segments_before_starting_playback">Wait for segments to load</string>
     <string name="sb_general_wait_for_segments_before_starting_playback_sum_on">Wait up to 3 seconds for SponsorBlock segments to load before starting video playback.  This can be useful if segments are set to skip automatically</string>
+    <string name="sb_general_wait_for_segments_before_starting_playback_sum_off">Videos start playing immediately, even if SponsorBlock is still loading</string>
     <string name="sb_general_uuid">Your private user id</string>
     <string name="sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
     <string name="sb_general_uuid_invalid">User id cannot be blank</string>
