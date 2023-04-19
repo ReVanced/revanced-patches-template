@@ -6,7 +6,7 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 /**
- * Matches to the same method as [TextComponentAtomicReferenceFingerprint].
+ * Resolves against the same method that [TextComponentContextFingerprint] resolves to.
  */
 object TextComponentContextFingerprint : MethodFingerprint(
     returnType = "L",

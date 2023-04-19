@@ -6,7 +6,7 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
 /**
- * Matches to the same method as [TextComponentContextFingerprint].
+ * Resolves against the same method that [TextComponentContextFingerprint] resolves to.
  */
 object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
     returnType = "L",
@@ -20,7 +20,7 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL, // CharSequence atomic reference
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
-        Opcode.MOVE_OBJECT, // CharSequence reference, and control flow label.  Insert code here.
+        Opcode.MOVE_OBJECT, // CharSequence reference, and control flow label. Insert code here.
         Opcode.INVOKE_VIRTUAL_RANGE,
         Opcode.MOVE_RESULT,
         Opcode.IF_EQZ,

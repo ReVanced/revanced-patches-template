@@ -154,9 +154,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             // Additional hook, called after user dislikes.
             with(it.mutableMethod) {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
-                val insertRegister = (implementation!!.instructions.elementAt(insertIndex - 1)
+                val overwriteRegister = (implementation!!.instructions.elementAt(insertIndex - 1)
                         as OneRegisterInstruction).registerA
-                insertShorts(insertIndex, insertRegister)
+                insertShorts(insertIndex, overwriteRegister)
             }
         } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
 
