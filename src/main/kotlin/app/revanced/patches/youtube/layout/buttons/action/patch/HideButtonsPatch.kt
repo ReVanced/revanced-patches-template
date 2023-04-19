@@ -64,13 +64,6 @@ class HideButtonsPatch : ResourcePatch {
                         false,
                         StringResource("revanced_hide_action_button_summary_on", "Buttons are hidden"),
                         StringResource("revanced_hide_action_button_summary_off", "Buttons are shown")
-                    ),
-                    SwitchPreference(
-                        "revanced_hide_share_button",
-                        StringResource("revanced_hide_share_button_title", "Hide share button"),
-                        false,
-                        StringResource("revanced_hide_share_button_summary_on", "Share button is hidden"),
-                        StringResource("revanced_hide_share_button_summaryoff", "Share button is shown")
                     )
                 ),
                 StringResource("revanced_hide_buttons_summary", "Hide or show buttons under videos")
