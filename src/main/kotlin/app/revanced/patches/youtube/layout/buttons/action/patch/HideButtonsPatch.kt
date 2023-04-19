@@ -34,7 +34,7 @@ class HideButtonsPatch : ResourcePatch {
                         "revanced_hide_like_dislike_button",
                         StringResource("revanced_hide_like_dislike_button_title", "Hide like and dislike buttons"),
                         false,
-                        StringResource("revanced_hide_like_dislke_button_summary_on", "Like and dislike buttons are hidden"),
+                        StringResource("revanced_hide_like_dislike_button_summary_on", "Like and dislike buttons are hidden"),
                         StringResource("revanced_hide_like_dislike_button_summary_off", "Like and dislike buttons are shown")
                     ),
                     SwitchPreference(
