@@ -31,18 +31,11 @@ class HideButtonsPatch : ResourcePatch {
                 StringResource("revanced_hide_buttons_title", "Hide action buttons"),
                 listOf(
                     SwitchPreference(
-                        "revanced_hide_like_button",
-                        StringResource("revanced_hide_like_button_title", "Hide like button"),
+                        "revanced_hide_like_dislike_button",
+                        StringResource("revanced_hide_like_dislike_button_title", "Hide like and dislike buttons"),
                         false,
-                        StringResource("revanced_hide_like_button_summary_on", "Like button is hidden"),
-                        StringResource("revanced_hide_like_button_summary_off", "Like button is shown")
-                    ),
-                    SwitchPreference(
-                        "revanced_hide_dislike_button",
-                        StringResource("revanced_hide_dislike_button_title", "Hide dislike button"),
-                        false,
-                        StringResource("revanced_hide_dislike_button_summary_on", "Dislike button is hidden"),
-                        StringResource("revanced_hide_dislike_button_summary_off", "Dislike button is shown")
+                        StringResource("revanced_hide_like_dislke_button_summary_on", "Like and dislike buttons are hidden"),
+                        StringResource("revanced_hide_like_dislike_button_summary_off", "Like and dislike buttons are shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_download_button",
