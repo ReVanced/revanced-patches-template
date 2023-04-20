@@ -1,3 +1,29 @@
+# [2.168.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.4...v2.168.0-dev.5) (2023-04-19)
+
+
+### Bug Fixes
+
+* **youtube/hide-video-action-buttons:** change 'Hide create, clip and thanks buttons' to default off ([#1923](https://github.com/revanced/revanced-patches/issues/1923)) ([734e328](https://github.com/revanced/revanced-patches/commit/734e328767c017d535a0359f8ba5e5816f4b17b8))
+
+# [2.168.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.3...v2.168.0-dev.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* **youtube/return-youtube-dislike:** render dislikes when scrolling into the screen ([#1873](https://github.com/revanced/revanced-patches/issues/1873)) ([6f851e4](https://github.com/revanced/revanced-patches/commit/6f851e425337ff78437330624a3cd7167cc4f920))
+
+# [2.168.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.2...v2.168.0-dev.3) (2023-04-18)
+
+
+### Bug Fixes
+
+* **youtubevanced/hide-ads:** remove broken ad filter ([#1881](https://github.com/revanced/revanced-patches/issues/1881)) ([2be5194](https://github.com/revanced/revanced-patches/commit/2be5194797e310a7a6cf2693fedd422405ae580c))
+
+
+### Features
+
+* **memegenerator:** `unlock-pro` patch ([#1902](https://github.com/revanced/revanced-patches/issues/1902)) ([3daf875](https://github.com/revanced/revanced-patches/commit/3daf875a2e64a5a32bcdffb5a9b15ee2a66d2741))
+
 # [2.168.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.168.0-dev.1...v2.168.0-dev.2) (2023-04-16)
 
 
