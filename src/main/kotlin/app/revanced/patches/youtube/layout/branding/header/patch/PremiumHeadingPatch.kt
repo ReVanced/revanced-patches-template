@@ -24,8 +24,8 @@ class PremiumHeadingPatch : ResourcePatch {
             val target = context.apkBundle.resources.query(size)
             modes.forEach { mode ->
                 TODO("take if exists")
-                (target.file("$headingDirectory/${original}_$mode.png") ?: return@dpi).use { from ->
-                    target.file("$headingDirectory/${replacement}_$mode.png").use { to ->
+                (target.openFile("$headingDirectory/${original}_$mode.png") ?: return@dpi).use { from ->
+                    target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
                         to.contents = from.contents
                     }
                 }

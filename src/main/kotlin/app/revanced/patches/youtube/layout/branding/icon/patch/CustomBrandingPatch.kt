@@ -4,6 +4,7 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
@@ -28,7 +29,7 @@ class CustomBrandingPatch : ResourcePatch {
                     val toDirectory = "res/${group.resourceDirectoryName}"
 
                     group.resources.forEach { iconFileName ->
-                        context.base.resources.file("$toDirectory/$iconFileName").use {
+                        context.base.openFile("$toDirectory/$iconFileName").use {
                             it.contents = fromDirectory.resolve(iconFileName).readBytes()
                         }
                     }
@@ -54,7 +55,7 @@ class CustomBrandingPatch : ResourcePatch {
             .let(::copyResources)
 
         // change the name of the app
-        context.base.openManifest().use { manifest ->
+        context.base.openFile(Apk.manifest).use { manifest ->
             manifest.writeText(
                 manifest.readText()
                     .replace(

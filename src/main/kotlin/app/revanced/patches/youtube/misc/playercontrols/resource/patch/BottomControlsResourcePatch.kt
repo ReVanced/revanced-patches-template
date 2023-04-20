@@ -9,8 +9,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.youtube.misc.playercontrols.annotation.PlayerControlsCompatibility
 import app.revanced.util.resources.ResourceUtils.base
-import app.revanced.util.resources.ResourceUtils.openEditor
-
 @Name("bottom-controls-resource-patch")
 @Description("Manages the resources for the bottom controls of the YouTube player.")
 @PlayerControlsCompatibility
@@ -18,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.openEditor
 class BottomControlsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         resourceContext = context
-        targetXmlEditor = context.base.resources.openEditor(TARGET_RESOURCE)
+        targetXmlEditor = context.base.openEditor(TARGET_RESOURCE)
 
         return PatchResult.Success
     }

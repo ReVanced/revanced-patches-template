@@ -14,7 +14,6 @@ import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.manifestEditor
-import app.revanced.util.resources.ResourceUtils.openEditor
 import org.w3c.dom.Node
 
 /**
@@ -50,7 +49,7 @@ abstract class AbstractSettingsResourcePatch(
         )
 
         /* prepare xml editors */
-        revancedPreferencesEditor = context.base.resources.openEditor("res/xml/$preferenceFileName.xml")
+        revancedPreferencesEditor = context.base.openEditor("res/xml/$preferenceFileName.xml")
 
         return PatchResult.Success
     }

@@ -54,11 +54,9 @@ internal object ResourceUtils {
         }
     }
 
-    internal val ResourceContext.base get() = apkBundle.base
+    internal val ResourceContext.base get() = apkBundle.base.resources
 
-    internal fun ResourceContext.manifestEditor() = base.openManifest().xmlEditor()
-
-    internal fun Apk.Resources.openEditor(path: String) = file(path).xmlEditor()
+    internal fun ResourceContext.manifestEditor() = base.openEditor(Apk.manifest)
 
     /**
      * Resource names mapped to their corresponding resource data.

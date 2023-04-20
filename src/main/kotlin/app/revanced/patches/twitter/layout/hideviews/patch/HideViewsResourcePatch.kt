@@ -9,7 +9,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.layout.hideviews.annotations.HideViewsCompatibility
 import app.revanced.util.resources.ResourceUtils.base
-import app.revanced.util.resources.ResourceUtils.openEditor
 import org.w3c.dom.Element
 
 @Patch
@@ -24,7 +23,7 @@ class HideViewsResourcePatch : ResourcePatch {
             "res/layout/condensed_tweet_stats.xml",
             "res/layout/focal_tweet_stats.xml"
         ).forEach { file ->
-            context.base.resources.openEditor(file).use { editor ->
+            context.base.openEditor(file).use { editor ->
                 val tags = editor.file.getElementsByTagName("com.twitter.ui.tweet.TweetStatView")
                 List(tags.length) { tags.item(it) as Element }
                     .filter { it.getAttribute("android:id").contains("views_stat") }

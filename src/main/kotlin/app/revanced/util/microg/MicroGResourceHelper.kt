@@ -33,7 +33,7 @@ internal object MicroGResourceHelper {
         toName: String
     ) {
         fun Apk.transform() {
-            openManifest().use { file ->
+            resources.openFile(Apk.manifest).use { file ->
                 val txt = file.readText()
                 if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed

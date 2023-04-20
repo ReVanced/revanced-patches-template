@@ -16,7 +16,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.openEditor
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
@@ -54,7 +53,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             context.copyResources("settings", resourceGroup)
         }
 
-        preferencesEditor = context.base.resources.openEditor("res/xml/settings_fragment.xml")
+        preferencesEditor = context.base.openEditor("res/xml/settings_fragment.xml")
 
         // Add the ReVanced settings to the YouTube settings
         val youtubePackage = "com.google.android.youtube"
