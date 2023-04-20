@@ -18,13 +18,14 @@ class PremiumHeadingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
-        val target = context.apkBundle.split?.asset ?: context.apkBundle.base
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
             val headingDirectory = "res/drawable-$size"
+            val target = context.apkBundle.resources.query(size)
             modes.forEach { mode ->
-                (context.openFile("$headingDirectory/${original}_$mode.png") ?: return@dpi).use { from ->
-                    target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
+                TODO("take if exists")
+                (target.file("$headingDirectory/${original}_$mode.png") ?: return@dpi).use { from ->
+                    target.file("$headingDirectory/${replacement}_$mode.png").use { to ->
                         to.contents = from.contents
                     }
                 }

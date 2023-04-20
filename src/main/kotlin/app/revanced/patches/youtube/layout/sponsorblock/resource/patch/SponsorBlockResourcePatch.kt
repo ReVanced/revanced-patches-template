@@ -11,9 +11,11 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.openEditor
 
 @Name("sponsorblock-resource-patch")
 @SponsorBlockCompatibility
@@ -78,7 +80,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
         val hostingResourceStream =
             classLoader.getResourceAsStream("sponsorblock/host/layout/youtube_controls_layout.xml")!!
 
-        val targetXmlEditor = context.openEditor("res/layout/youtube_controls_layout.xml", context.apkBundle.base)
+        val targetXmlEditor = context.base.resources.openEditor("res/layout/youtube_controls_layout.xml")
         "RelativeLayout".copyXmlNode(
             context.openEditor(hostingResourceStream),
             targetXmlEditor

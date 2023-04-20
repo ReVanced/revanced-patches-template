@@ -9,6 +9,8 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.dom.DomUtil.doRecursively
 import app.revanced.patches.youtube.layout.buttons.player.background.annotations.PlayerButtonBackgroundCompatibility
+import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.openEditor
 import org.w3c.dom.Element
 
 @Patch
@@ -22,7 +24,7 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
     }
     
     override fun execute(context: ResourceContext): PatchResult {
-        context.openEditor(RESOURCE_FILE_PATH).use { editor ->
+        context.base.resources.openEditor(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
                 if (node !is Element) return@node
 

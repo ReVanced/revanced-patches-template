@@ -8,6 +8,8 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.reddit.ad.banner.annotations.HideBannerCompatibility
+import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.openEditor
 
 @Patch
 @Name("hide-subreddit-banner")
@@ -17,7 +19,7 @@ import app.revanced.patches.reddit.ad.banner.annotations.HideBannerCompatibility
 class HideBannerPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
 
-        context.openEditor(RESOURCE_FILE_PATH).use {
+        context.base.resources.openEditor(RESOURCE_FILE_PATH).use {
             it.file.getElementsByTagName("merge").item(0).childNodes.apply {
                 val attributes = arrayOf("height", "width")
 

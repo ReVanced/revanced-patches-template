@@ -54,6 +54,12 @@ internal object ResourceUtils {
         }
     }
 
+    internal val ResourceContext.base get() = apkBundle.base
+
+    internal fun ResourceContext.manifestEditor() = base.openManifest().xmlEditor()
+
+    internal fun Apk.Resources.openEditor(path: String) = file(path).xmlEditor()
+
     /**
      * Resource names mapped to their corresponding resource data.
      * @param resourceDirectoryName The name of the directory of the resource.

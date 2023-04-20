@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
 import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import java.io.File
 
@@ -21,14 +22,13 @@ class CustomBrandingPatch : ResourcePatch {
         fun copyResources(resourceGroups: List<ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)
-                val target = context.apkBundle.split?.asset ?: context.apkBundle.base
 
                 resourceGroups.forEach { group ->
                     val fromDirectory = iconPath.resolve(group.resourceDirectoryName)
                     val toDirectory = "res/${group.resourceDirectoryName}"
 
                     group.resources.forEach { iconFileName ->
-                        target.openFile("$toDirectory/$iconFileName").use {
+                        context.base.resources.file("$toDirectory/$iconFileName").use {
                             it.contents = fromDirectory.resolve(iconFileName).readBytes()
                         }
                     }
@@ -54,8 +54,7 @@ class CustomBrandingPatch : ResourcePatch {
             .let(::copyResources)
 
         // change the name of the app
-        (context.openFile("AndroidManifest.xml", context.apkBundle.base)
-            ?: return PatchResult.Error("Could not find AndroidManifest.xml")).use { manifest ->
+        context.base.openManifest().use { manifest ->
             manifest.writeText(
                 manifest.readText()
                     .replace(

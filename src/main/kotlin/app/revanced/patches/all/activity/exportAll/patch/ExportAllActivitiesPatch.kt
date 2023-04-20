@@ -7,6 +7,8 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 
 @Patch(false)
 @Name("export-all-activities")
@@ -14,7 +16,7 @@ import app.revanced.patcher.patch.annotations.Patch
 @Version("0.0.1")
 class ExportAllActivitiesPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        context.openEditor("AndroidManifest.xml").use { editor ->
+        context.manifestEditor().use { editor ->
             val document = editor.file
             val activities = document.getElementsByTagName("activity")
 

@@ -33,7 +33,7 @@ internal object MicroGResourceHelper {
         toName: String
     ) {
         fun Apk.transform() {
-            (context.openFile("AndroidManifest.xml", this) ?: return).use { file ->
+            openManifest().use { file ->
                 val txt = file.readText()
                 if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed
@@ -68,9 +68,6 @@ internal object MicroGResourceHelper {
             }
         }
 
-        with(context.apkBundle) {
-            base.transform()
-            split?.all?.forEach(Apk::transform)
-        }
+        context.apkBundle.all.forEach(Apk::transform)
     }
 }

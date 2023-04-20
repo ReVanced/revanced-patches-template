@@ -7,6 +7,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 
 @Patch(false)
 @Name("predictive-back-gesture")
@@ -14,7 +15,7 @@ import app.revanced.patcher.patch.annotations.Patch
 @Version("0.0.1")
 class PredictiveBackGesturePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        context.openEditor("AndroidManifest.xml").use { editor ->
+        context.manifestEditor().use { editor ->
             val document = editor.file
 
             with(document.getElementsByTagName("application").item(0)) {

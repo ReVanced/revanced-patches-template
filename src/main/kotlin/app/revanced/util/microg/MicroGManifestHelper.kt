@@ -5,6 +5,8 @@ import app.revanced.util.microg.Constants.META_GMS_PACKAGE_NAME
 import app.revanced.util.microg.Constants.META_SPOOFED_PACKAGE_NAME
 import app.revanced.util.microg.Constants.META_SPOOFED_PACKAGE_SIGNATURE
 import app.revanced.util.microg.Constants.MICROG_VENDOR
+import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -26,7 +28,7 @@ internal object MicroGManifestHelper {
         spoofedPackage: String,
         spoofedSignature: String
     ) {
-        context.openEditor("AndroidManifest.xml").use {
+        context.manifestEditor().use {
             val applicationNode = it
                 .file
                 .getElementsByTagName("application")

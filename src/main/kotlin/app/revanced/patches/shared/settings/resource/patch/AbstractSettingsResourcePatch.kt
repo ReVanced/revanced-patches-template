@@ -11,7 +11,10 @@ import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.resources.ResourceUtils.manifestEditor
+import app.revanced.util.resources.ResourceUtils.openEditor
 import org.w3c.dom.Node
 
 /**
@@ -29,7 +32,7 @@ abstract class AbstractSettingsResourcePatch(
          * used for self-restart
          * TODO: do this only, when necessary
          */
-        context.openEditor("AndroidManifest.xml").use { editor ->
+        context.manifestEditor().use { editor ->
             editor.file.getElementsByTagName("manifest").item(0).also {
                 it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
                     element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
@@ -47,7 +50,7 @@ abstract class AbstractSettingsResourcePatch(
         )
 
         /* prepare xml editors */
-        revancedPreferencesEditor = context.openEditor("res/xml/$preferenceFileName.xml")
+        revancedPreferencesEditor = context.base.resources.openEditor("res/xml/$preferenceFileName.xml")
 
         return PatchResult.Success
     }

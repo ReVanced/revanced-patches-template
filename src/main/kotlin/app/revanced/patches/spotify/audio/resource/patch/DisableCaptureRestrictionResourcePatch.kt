@@ -7,6 +7,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.spotify.audio.annotation.DisableCaptureRestrictionCompatibility
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Name("disable-capture-restriction-resource-patch")
@@ -16,7 +17,7 @@ import org.w3c.dom.Element
 class DisableCaptureRestrictionResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         // create an xml editor instance
-        context.openEditor("AndroidManifest.xml").use { dom ->
+        context.manifestEditor().use { dom ->
             // get the application node
             val applicationNode = dom
                 .file

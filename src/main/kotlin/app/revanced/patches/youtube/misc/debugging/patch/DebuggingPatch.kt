@@ -12,6 +12,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.debugging.annotations.DebuggingCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Patch
@@ -60,7 +61,7 @@ class DebuggingPatch : ResourcePatch {
         )
 
         if (debuggable == true) {
-            context.openEditor("AndroidManifest.xml").use { dom ->
+            context.manifestEditor().use { dom ->
                 val applicationNode = dom
                     .file
                     .getElementsByTagName("application")

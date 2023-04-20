@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.netguard.broadcasts.removerestriction.resource.annotations.RemoveBroadcastsRestrictionCompatibility
+import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Patch(false)
@@ -17,7 +18,7 @@ import org.w3c.dom.Element
 @Version("0.0.1")
 class RemoveBroadcastsRestrictionPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        context.openEditor("AndroidManifest.xml").use { dom ->
+        context.manifestEditor().use { dom ->
             val applicationNode = dom
                 .file
                 .getElementsByTagName("application")
