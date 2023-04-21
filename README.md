@@ -167,7 +167,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
 
-### [📦 `com.vanced.android.youtube`](https://play.google.com/store/apps/details?id=com.vanced.android.youtube)
+### [📦 `com.vanced.android.youtube`](https://github.com/TeamVanced/Vanced)
 
 <details>
 
