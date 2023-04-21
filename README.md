@@ -1,10 +1,11 @@
-## 🧩 Patches
+# 🧩 Patches
 
 The official Patch bundle provided by ReVanced and the community.
 
 > Looking for the JSON variant of this? [Click here](patches.json).
 
 ### [📦 `com.google.android.youtube`](https://play.google.com/store/apps/details?id=com.google.android.youtube)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -66,6 +67,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.google.android.apps.youtube.music`](https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -84,6 +86,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.ss.android.ugc.trill`](https://play.google.com/store/apps/details?id=com.ss.android.ugc.trill)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -100,6 +103,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.zhiliaoapp.musically`](https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -116,6 +120,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `tv.twitch.android.app`](https://play.google.com/store/apps/details?id=tv.twitch.android.app)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -129,6 +134,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -140,6 +146,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -150,6 +157,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -160,6 +168,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.vanced.android.youtube`](https://play.google.com/store/apps/details?id=com.vanced.android.youtube)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -169,6 +178,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `at.gv.bmf.bmf2go`](https://play.google.com/store/apps/details?id=at.gv.bmf.bmf2go)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -178,6 +188,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `at.gv.oe.app`](https://play.google.com/store/apps/details?id=at.gv.oe.app)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -187,6 +198,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -195,6 +207,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.spotify.lite`](https://play.google.com/store/apps/details?id=com.spotify.lite)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -203,6 +216,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.nis.app`](https://play.google.com/store/apps/details?id=com.nis.app)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -211,6 +225,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -219,6 +234,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -227,6 +243,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `org.citra.citra_emu`](https://play.google.com/store/apps/details?id=org.citra.citra_emu)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -235,6 +252,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `org.citra.citra_emu.canary`](https://play.google.com/store/apps/details?id=org.citra.citra_emu.canary)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -243,6 +261,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.backdrops.wallpapers`](https://play.google.com/store/apps/details?id=com.backdrops.wallpapers)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -251,6 +270,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `de.dwd.warnapp`](https://play.google.com/store/apps/details?id=de.dwd.warnapp)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -259,6 +279,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `net.binarymode.android.irplus`](https://play.google.com/store/apps/details?id=net.binarymode.android.irplus)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -267,6 +288,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `eu.faircode.netguard`](https://play.google.com/store/apps/details?id=eu.faircode.netguard)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -275,6 +297,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.dci.dev.androidtwelvewidgets`](https://play.google.com/store/apps/details?id=com.dci.dev.androidtwelvewidgets)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -283,6 +306,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.microblink.photomath`](https://play.google.com/store/apps/details?id=com.microblink.photomath)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -291,6 +315,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `io.yuka.android`](https://play.google.com/store/apps/details?id=io.yuka.android)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -299,6 +324,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.teslacoilsw.launcher`](https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -307,6 +333,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -315,6 +342,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -323,6 +351,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -331,6 +360,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -339,6 +369,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -347,6 +378,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -355,6 +387,7 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -363,14 +396,13 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 ### [📦 `net.dinglisch.android.taskerm`](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm)
+
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-trial` | Unlocks the trial version. | all |
 </details>
-
-
 
 ## 📝 JSON Format
 
