@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
 import app.revanced.util.resources.ResourceUtils.toReference
@@ -26,17 +27,17 @@ class ThemePatch : ResourcePatch {
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
         val darkThemeSeekbarColor = darkThemeSeekbarColor!!
 
-        context.apkBundle.base.apply {
+        context.base.apply {
             setMultiple("color", dark.toList(), darkThemeBackgroundColor.toColorResource())
             setMultiple("color", light.toList(), lightThemeBackgroundColor.toColorResource())
-            setResource(
+            set(
                 "color",
                 "inline_time_bar_colorized_bar_played_color_dark",
                 darkThemeSeekbarColor.toColorResource()
             )
 
             // change the splash screen color
-            setResource(
+            set(
                 "style", "Base.Theme.YouTube.Launcher", Style(
                     mapOf(
                         "android:windowSplashScreenBackground" to "@android:color/black".toReference(),

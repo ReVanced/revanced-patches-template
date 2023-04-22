@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.dynamiccolor.annotations.DynamicColorCompatibility
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
 @Patch
@@ -18,10 +19,10 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @Version("0.0.1")
 class DynamicColorPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        fun Apk.setColors(configuration: String, resources: Map<String, String>) =
-            setResources("color", resources.mapValues { it.value.toColorResource() }, configuration)
+        fun Apk.Resources.setColors(configuration: String, resources: Map<String, String>) =
+            setGroup("color", resources.mapValues { it.value.toColorResource() }, configuration)
 
-        context.apkBundle.base.apply {
+        context.base.apply {
             setColors(
                 "-v31", mapOf(
                     "ps__twitter_blue" to "@color/twitter_blue",

@@ -7,6 +7,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.layout.theme.annotations.ThemeCompatibility
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
@@ -17,15 +18,15 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        val apk = context.apkBundle.base
+        val resources = context.base
 
-        apk.setResources(
+        resources.setGroup(
             "color", mapOf(
                 "gray_7" to backgroundColor!!.toColorResource(),
                 "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource()
             )
         )
-        apk.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource())
+        resources.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource())
 
         return PatchResult.Success
     }

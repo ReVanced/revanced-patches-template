@@ -3,11 +3,13 @@ package app.revanced.util.resources
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
+import app.revanced.patcher.apk.File
 import app.revanced.patcher.arsc.ReferenceResource
 import app.revanced.patcher.arsc.Resource
 import app.revanced.patcher.arsc.color
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.util.resources.ResourceUtils.base
 import org.w3c.dom.Node
 
 internal object ResourceUtils {
@@ -32,7 +34,13 @@ internal object ResourceUtils {
 
     internal fun String.toColorResource() = if (startsWith('@')) toReference() else color(this)
     internal fun String.toReference() = ReferenceResource(this)
-    internal fun Apk.setMultiple(type: String, names: List<String>, value: Resource, configuration: String? = null) = names.forEach { setResource(type, it, value, configuration) }
+    internal fun Apk.Resources.setMultiple(
+        type: String,
+        names: List<String>,
+        value: Resource,
+        configuration: String? = null
+    ) = setGroup(type,
+        names.associateWith { value }, configuration)
 
     /**
      * Copy resources from the current class loader to the resource directory.
@@ -45,7 +53,7 @@ internal object ResourceUtils {
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
-                apkBundle.base.openFile("res/$resourceFile").use { file ->
+                base.openFile("res/$resourceFile").use { file ->
                     file.outputStream().use {
                         classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it)
                     }
@@ -53,6 +61,11 @@ internal object ResourceUtils {
             }
         }
     }
+
+    internal fun File.takeIfExists() = if (!exists) {
+        close()
+        null
+    } else this
 
     internal val ResourceContext.base get() = apkBundle.base.resources
 

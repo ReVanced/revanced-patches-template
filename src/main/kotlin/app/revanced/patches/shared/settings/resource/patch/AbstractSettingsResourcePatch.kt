@@ -38,7 +38,7 @@ abstract class AbstractSettingsResourcePatch(
                 })
             }
         }
-        base = context.apkBundle.base
+        base = context.base
 
         /* copy preference template from source dir */
         context.copyResources(
@@ -56,7 +56,7 @@ abstract class AbstractSettingsResourcePatch(
 
     internal companion object {
         private var revancedPreferenceNode: Node? = null
-        private var base: Apk? = null
+        private var base: Apk.Resources? = null
         private var resources = mutableListOf<IResource>()
 
         private var revancedPreferencesEditor: DomFileEditor? = null
@@ -104,9 +104,10 @@ abstract class AbstractSettingsResourcePatch(
 
     override fun close() {
         // merge all strings
-        resources.forEach { base!!.setResource(it.type, it.name, it.patcherValue) }
+        resources.forEach { base!!.set(it.type, it.name, it.patcherValue) }
         resources.clear()
-
+        
         revancedPreferencesEditor?.close()
+        base = null
     }
 }
