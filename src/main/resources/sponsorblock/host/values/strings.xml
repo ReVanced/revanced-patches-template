@@ -12,8 +12,8 @@
     <string name="sb_enable_compact_skip_button_sum_on">Skip button styled for minimum width</string>
     <string name="sb_enable_compact_skip_button_sum_off">Skip button styled for best appearance</string>
     <string name="sb_enable_auto_hide_skip_segment_button">Automatically hide skip button</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hidden after a few seconds</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed entire segment</string>
+    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">Skip button hides after a few seconds</string>
+    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">Skip button displayed for entire segment</string>
     <string name="sb_diff_segments">What to do with different segments</string>
     <string name="sb_general">General</string>
     <string name="sb_general_skiptoast">Show a toast when skipping segment automatically</string>
