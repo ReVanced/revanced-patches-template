@@ -52,11 +52,18 @@ class HideButtonsPatch : ResourcePatch {
                         StringResource("revanced_hide_playlist_button_summary_off", "Playlist button is shown")
                     ),
                     SwitchPreference(
+                        "revanced_hide_clip_button",
+                        StringResource("revanced_hide_clip_button_title", "Hide clip button"),
+                        true,
+                        StringResource("revanced_hide_clip_button_summary_on", "Clip button is hidden"),
+                        StringResource("revanced_hide_clip_button_summary_off", "Clip button is shown")
+                    ),
+                    SwitchPreference(
                         "revanced_hide_action_buttons",
                         StringResource("revanced_hide_action_buttons_title", "Hide all other action buttons"),
                         false,
-                        StringResource("revanced_hide_action_buttons_summary_on", "Share, remix, clip, thanks, shop, live chat buttons are hidden"),
-                        StringResource("revanced_hide_action_buttons_summary_off", "Share, remix, clip, thanks, shop, live chat buttons are shown")
+                        StringResource("revanced_hide_action_buttons_summary_on", "Share, remix, thanks, shop, live chat buttons are hidden"),
+                        StringResource("revanced_hide_action_buttons_summary_off", "Share, remix, thanks, shop, live chat buttons are shown")
                     )
                 ),
                 StringResource("revanced_hide_buttons_summary", "Hide or show buttons under videos")
