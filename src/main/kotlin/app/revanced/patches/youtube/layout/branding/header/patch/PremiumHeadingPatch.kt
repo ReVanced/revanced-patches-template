@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHeadingCompatibility
-import app.revanced.util.resources.ResourceUtils.takeIfExists
 
 @Patch
 @Name("premium-heading")
@@ -21,14 +20,10 @@ class PremiumHeadingPatch : ResourcePatch {
         val modes = arrayOf("light", "dark")
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
-            val headingDirectory = "res/drawable-$size"
             val target = context.apkBundle.resources.query(size)
             modes.forEach { mode ->
-                // TODO: alias using resources instead of copying the contents.
-                target.openFile("$headingDirectory/${original}_$mode.png").takeIfExists()?.use { from ->
-                    target.openFile("$headingDirectory/${replacement}_$mode.png").use { to ->
-                        to.contents = from.contents
-                    }
+                target.get("drawable", "${original}_$mode", size)?.let {
+                    target.set("drawable", "${replacement}_$mode", it, size)
                 }
             }
         }
