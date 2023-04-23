@@ -57,7 +57,6 @@ abstract class AbstractSettingsResourcePatch(
     internal companion object {
         private var revancedPreferenceNode: Node? = null
         private var base: Apk.Resources? = null
-        private var resources = mutableListOf<IResource>()
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
@@ -96,17 +95,13 @@ abstract class AbstractSettingsResourcePatch(
          * @throws IllegalArgumentException if the resource already exists.
          */
         internal fun IResource.include() {
-            resources.add(this)
+            base!!.set(type, name, patcherValue)
         }
 
         internal fun DomFileEditor?.getNode(tagName: String) = this!!.file.getElementsByTagName(tagName).item(0)
     }
 
     override fun close() {
-        // merge all strings
-        resources.forEach { base!!.set(it.type, it.name, it.patcherValue) }
-        resources.clear()
-        
         revancedPreferencesEditor?.close()
         base = null
     }

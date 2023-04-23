@@ -15,5 +15,5 @@ internal data class ArrayResource(
     val items: List<StringResource>
 ) : IResource {
     override val patcherValue = Array(items.map { app.revanced.patcher.arsc.StringResource(it.value) })
-    override val type = "string"
+    override val type = "array"
 }
