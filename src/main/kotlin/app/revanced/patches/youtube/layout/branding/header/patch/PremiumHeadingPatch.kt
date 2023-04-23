@@ -19,7 +19,7 @@ class PremiumHeadingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
-        
+
         modes.forEach { mode ->
             val resource = reference(context.resourceIdOf("drawable", "${original}_$mode").toInt())
             arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
