@@ -4,6 +4,7 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.arsc.reference
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
@@ -19,12 +20,16 @@ class PremiumHeadingPatch : ResourcePatch {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
 
-        arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
-            val target = context.apkBundle.resources.query(size)
-            modes.forEach { mode ->
-                target.get("drawable", "${original}_$mode", size)?.let {
-                    target.set("drawable", "${replacement}_$mode", it, size)
-                }
+        /*
+target.get("drawable", "${original}_$mode", size)?.let {
+    target.set("drawable", "${replacement}_$mode", it, size)
+}
+ */
+        modes.forEach { mode ->
+            val resource = reference(context.resourceIdOf("drawable", "${original}_$mode").toInt())
+            arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
+                val target = context.apkBundle.resources.query(size)
+                target.set("drawable", "${replacement}_$mode", resource, size)
             }
         }
 
