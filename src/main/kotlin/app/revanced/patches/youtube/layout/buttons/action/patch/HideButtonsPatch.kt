@@ -54,9 +54,11 @@ class HideButtonsPatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_hide_clip_button",
                         StringResource("revanced_hide_clip_button_title", "Hide clip button"),
-                        true,
-                        StringResource("revanced_hide_clip_button_summary_on", "Clip button is hidden (this only works for some users)"),
-                        StringResource("revanced_hide_clip_button_summary_off", "Clip button is shown")
+                        false,
+                        StringResource("revanced_hide_clip_button_summary_on", "Clip button is hidden"),
+                        StringResource("revanced_hide_clip_button_summary_off", "Clip button is shown"),
+                        StringResource("revanced_hide_clip_button_user_dialog_message",
+                            "Hide clip button only works for some users and some devices.  If the clip button is still visible, then it can only be hidden by enabling \\'Hide all other action buttons\\'")
                     ),
                     SwitchPreference(
                         "revanced_hide_action_buttons",
