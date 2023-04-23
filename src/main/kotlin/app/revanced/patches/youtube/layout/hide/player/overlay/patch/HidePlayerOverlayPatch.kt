@@ -27,8 +27,7 @@ class HidePlayerOverlayPatch : ResourcePatch {
                         view.attributes.getNamedItem("android:id").nodeValue.endsWith("scrim_overlay")
                     ) {
                         attributes.forEach { attribute ->
-                            view.attributes.getNamedItem("android:layout_$attribute").nodeValue =
-                                "0.0dip"
+                            view.attributes.getNamedItem("android:layout_$attribute").nodeValue = "0.0dip"
                         }
                     }
                     break
