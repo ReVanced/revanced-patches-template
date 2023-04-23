@@ -9,6 +9,7 @@ import app.revanced.patches.shared.settings.preference.IResource
  *  @param name The name of the array resource.
  *  @param items The items of the array resource.
  */
+// TODO: allow specifying an array resource file instead of using a list of StringResources
 internal data class ArrayResource(
     override val name: String,
     val items: List<StringResource>

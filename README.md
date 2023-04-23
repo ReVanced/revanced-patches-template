@@ -10,19 +10,19 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `always-autorepeat` | Always repeats the playing video again. | 18.08.37 |
-| `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
+| `client-spoof` | Spoofs a patched client to allow playback. | all |
 | `comments` | Hides components related to comments. | 18.08.37 |
 | `copy-video-url` | Adds buttons in player to copy video links. | 18.08.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 18.08.37 |
 | `custom-video-speed` | Adds more video speed options. | 18.08.37 |
-| `debugging` | Adds debugging options. | all |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.08.37 |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.08.37 |
 | `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.08.37 |
 | `disable-shorts-on-startup` | Disables playing YouTube Shorts when launching YouTube. | 18.08.37 |
 | `disable-zoom-haptics` | Disables haptics when zooming. | all |
 | `downloads` | Enables downloading music and videos from YouTube. | 18.08.37 |
+| `enable-debugging` | Adds debugging options. | all |
 | `enable-wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.08.37 |
 | `general-ads` | Removes general ads. | 18.08.37 |
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.08.37 |
@@ -46,7 +46,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-video-action-buttons` | Adds the options to hide action buttons under a video. | 18.08.37 |
 | `hide-watch-in-vr` | Hides the option to watch in VR from the player settings flyout panel. | 18.08.37 |
 | `hide-watermark` | Hides creator's watermarks on videos. | 18.08.37 |
-| `microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.08.37 |
 | `minimized-playback` | Enables minimized and background playback. | 18.08.37 |
 | `old-quality-layout` | Enables the original video quality flyout in the video player settings | 18.08.37 |
 | `open-links-externally` | Open links outside of the app directly in your browser. | 18.08.37 |
@@ -58,10 +57,11 @@ The official Patch bundle provided by ReVanced and the community.
 | `seekbar-tapping` | Enables tap-to-seek on the seekbar of the video player. | 18.08.37 |
 | `sponsorblock` | Integrates SponsorBlock which allows skipping video segments such as sponsored content. | 18.08.37 |
 | `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.08.37 |
-| `spoof-signature-verification` | Spoofs the client to prevent playback issues. | 18.08.37 |
+| `spoof-signature-verification` | Spoofs a patched client to prevent playback issues. | 18.08.37 |
 | `swipe-controls` | Adds volume and brightness swipe controls. | 18.08.37 |
 | `tablet-mini-player` | Enables the tablet mini player layout. | 18.08.37 |
 | `theme` | Applies a custom theme. | all |
+| `vanced-microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.08.37 |
 | `video-ads` | Removes ads in the video player. | 18.08.37 |
 </details>
 
@@ -121,7 +121,7 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
-| `block-embedded-ads` | Blocks embedded steam ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
+| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
 | `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
 | `debug-mode` | Enables Twitch's internal debugging mode. | all |
 | `settings` | Adds settings menu to Twitch. | all |
@@ -154,8 +154,8 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.10.0 |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.10.0 |
+| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.12.0 |
+| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.12.0 |
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
 
@@ -164,7 +164,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `client-spoof` | Spoofs the YouTube or Vanced client to prevent playback issues. | all |
+| `client-spoof` | Spoofs a patched client to allow playback. | all |
 | `hide-ads` | Removes general ads. | all |
 </details>
 
@@ -208,6 +208,14 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `hide-ads` | Removes ads from Inshorts. | all |
+</details>
+
+### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-inbox-ads` | Hides ads in inbox. | all |
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
@@ -279,7 +287,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `unlock-plus` | Unlocks plus features. | all |
+| `unlock-plus` | Unlocks plus features. | 8.9.0 |
 </details>
 
 ### [📦 `io.yuka.android`](https://play.google.com/store/apps/details?id=io.yuka.android)
@@ -298,15 +306,7 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
-### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
-</details>
-
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -322,20 +322,36 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
-### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks pro features. | all |
+</details>
+
+### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
+</details>
+
+### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | 4.6364 |
+</details>
+
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)

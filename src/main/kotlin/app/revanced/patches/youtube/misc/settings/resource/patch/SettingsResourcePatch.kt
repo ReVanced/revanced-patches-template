@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.resources.ResourceUtils.mergeStrings
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
@@ -66,6 +67,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
                 StringResource("revanced_settings_summary", "ReVanced specific settings"),
             )
         )
+
+        context.mergeStrings("settings/host/values/strings.xml")
 
         return PatchResult.Success
     }
