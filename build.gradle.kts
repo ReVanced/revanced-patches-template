@@ -17,9 +17,6 @@ repositories {
             password = githubPassword
         }
     }
-    flatDir {
-        dirs("libs")
-    }
 }
 
 dependencies {
