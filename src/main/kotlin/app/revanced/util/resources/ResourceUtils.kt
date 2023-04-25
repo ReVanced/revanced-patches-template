@@ -4,9 +4,9 @@ import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.apk.ResourceFile
-import app.revanced.patcher.arsc.ReferenceResource
 import app.revanced.patcher.arsc.Resource
 import app.revanced.patcher.arsc.color
+import app.revanced.patcher.arsc.reference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import org.w3c.dom.Node
@@ -30,9 +30,7 @@ internal object ResourceUtils {
         }
     }
 
-
-    internal fun String.toColorResource() = if (startsWith('@')) toReference() else color(this)
-    internal fun String.toReference() = ReferenceResource(this)
+    internal fun String.toColorResource(resources: Apk.Resources) = if (startsWith('@')) reference(resources, this) else color(this)
     internal fun Apk.Resources.setMultiple(
         type: String,
         names: List<String>,

@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.arsc.Style
 import app.revanced.patcher.arsc.integer
+import app.revanced.patcher.arsc.reference
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -13,7 +14,6 @@ import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
-import app.revanced.util.resources.ResourceUtils.toReference
 
 @Patch
 @DependsOn([LithoThemePatch::class])
@@ -28,20 +28,20 @@ class ThemePatch : ResourcePatch {
         val darkThemeSeekbarColor = darkThemeSeekbarColor!!
 
         context.base.apply {
-            setMultiple("color", dark.toList(), darkThemeBackgroundColor.toColorResource())
-            setMultiple("color", light.toList(), lightThemeBackgroundColor.toColorResource())
+            setMultiple("color", dark.toList(), darkThemeBackgroundColor.toColorResource(this))
+            setMultiple("color", light.toList(), lightThemeBackgroundColor.toColorResource(this))
             set(
                 "color",
                 "inline_time_bar_colorized_bar_played_color_dark",
-                darkThemeSeekbarColor.toColorResource()
+                darkThemeSeekbarColor.toColorResource(this)
             )
 
             // change the splash screen color
             set(
                 "style", "Base.Theme.YouTube.Launcher", Style(
                     mapOf(
-                        "android:windowSplashScreenBackground" to "@android:color/black".toReference(),
-                        "android:windowSplashScreenAnimatedIcon" to "@drawable/avd_anim".toReference(),
+                        "android:windowSplashScreenBackground" to reference(this, "@android:color/black"),
+                        "android:windowSplashScreenAnimatedIcon" to reference(this, "@drawable/avd_anim"),
                         "android:windowSplashScreenAnimationDuration" to integer(1000),
                     ),
                     parent = "@style/Theme.AppCompat.NoActionBar"

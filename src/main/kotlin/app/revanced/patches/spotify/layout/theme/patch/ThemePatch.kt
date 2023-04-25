@@ -22,11 +22,11 @@ class ThemePatch : ResourcePatch {
 
         resources.setGroup(
             "color", mapOf(
-                "gray_7" to backgroundColor!!.toColorResource(),
-                "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource()
+                "gray_7" to backgroundColor!!.toColorResource(resources),
+                "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource(resources)
             )
         )
-        resources.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource())
+        resources.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource(resources))
 
         return PatchResult.Success
     }
