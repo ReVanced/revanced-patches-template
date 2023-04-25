@@ -12,25 +12,27 @@ import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HideP
 
 @Patch
 @Name("hide-player-overlay")
-@Description("Hides dark player overlay when player controls are visible.")
+@Description("Hides the dark player overlay when player controls are visible.")
 @HidePlayerOverlayPatchCompatibility
 @Version("0.0.1")
 class HidePlayerOverlayPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
+        val attributes = arrayOf("height", "width")
+
         context.xmlEditor[RESOURCE_FILE_PATH].use { editor ->
             editor.file.getElementsByTagName("FrameLayout").item(0).childNodes.apply {
-                val attributes = arrayOf("height", "width")
                 for (i in 1 until length) {
                     val view = item(i)
                     if (
-                        view.hasAttributes() &&
-                        view.attributes.getNamedItem("android:id").nodeValue.endsWith("scrim_overlay")
+                        view.attributes.getNamedItem("android:id")
+                            ?.nodeValue
+                            ?.endsWith("scrim_overlay") == true
                     ) {
-                        attributes.forEach { attribute ->
-                            view.attributes.getNamedItem("android:layout_$attribute").nodeValue = "0.0dip"
+                        attributes.forEach {
+                            view.attributes.getNamedItem("android:layout_$it").nodeValue = "0.0dip"
                         }
+                        break
                     }
-                    break
                 }
             }
         }
