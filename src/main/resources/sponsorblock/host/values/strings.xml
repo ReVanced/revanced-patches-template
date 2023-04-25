@@ -54,7 +54,7 @@
     <string name="sb_settings_import_failed">Failed to import: %s</string>
     <string name="sb_settings_export_failed">Failed to export settings (try clearing app data)</string>
 
-    <string name="sb_diff_segments">Edit segment categories</string>
+    <string name="sb_diff_segments">Change segment behavior</string>
     <string name="sb_segments_sponsor">Sponsor</string>
     <string name="sb_segments_sponsor_sum">Paid promotion, paid referrals and direct advertisements. Not for self-promotion or free shout-outs to causes/creators/websites/products they like</string>
     <string name="sb_segments_selfpromo">Unpaid/Self Promotion</string>
