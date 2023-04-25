@@ -17,6 +17,7 @@ import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")

@@ -64,6 +64,8 @@ internal object ResourceUtils {
         null
     } else this
 
+    internal fun ResourceContext.resourceIdOf(type: String, name: String) = apkBundle.resources.resolve(type, name).toLong()
+
     internal val ResourceContext.base get() = apkBundle.base.resources
 
     internal fun ResourceContext.manifestEditor() = base.openEditor(Apk.manifest)

@@ -11,6 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.comments.annotations.CommentsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
 @Name("comments-resource-patch")
 @CommentsCompatibility

@@ -9,6 +9,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.infocards.annotations.HideInfocardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
 @HideInfocardsCompatibility
 @DependsOn([SettingsPatch::class])

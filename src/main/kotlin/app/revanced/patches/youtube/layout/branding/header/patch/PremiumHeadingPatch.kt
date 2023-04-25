@@ -21,7 +21,7 @@ class PremiumHeadingPatch : ResourcePatch {
         val modes = arrayOf("light", "dark")
 
         modes.forEach { mode ->
-            val resource = reference(context.resourceIdOf("drawable", "${original}_$mode").toInt())
+            val resource = reference(context.apkBundle.resources.resolve("drawable", "${original}_$mode"))
             arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
                 val target = context.apkBundle.resources.query(size)
                 target.set("drawable", "${replacement}_$mode", resource, size)
