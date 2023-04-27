@@ -22,6 +22,7 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.SubtitleWindo
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -32,7 +33,8 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
     IntegrationsPatch::class,
     SettingsPatch::class,
     PlayerTypeHookPatch::class,
-    ClientSpoofPatch::class
+    ClientSpoofPatch::class,
+    VideoIdPatch::class
 ])
 @Version("0.0.1")
 class SpoofSignatureVerificationPatch : BytecodePatch(
@@ -54,6 +56,9 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     "Signature spoofing can fix playback issues, but may causes side effects.")
             )
         )
+
+        // Hook video id, required for subtitle fix.
+        VideoIdPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
 
         // hook parameter
         ProtobufParameterBuilderFingerprint.result?.let {
@@ -100,7 +105,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                         invoke-static {p1, p2, p3, p4, p5}, $INTEGRATIONS_CLASS_DESCRIPTOR->getSubtitleWindowSettingsOverride(IIIZZ)[I
                         move-result-object v0
                         const/4 v1, 0x0
-                        aget p1, v0, v1     # ap, anchor configuration
+                        aget p1, v0, v1     # ap, anchor position
                         const/4 v1, 0x1
                         aget p2, v0, v1     # ah, horizontal anchor
                         const/4 v1, 0x2
