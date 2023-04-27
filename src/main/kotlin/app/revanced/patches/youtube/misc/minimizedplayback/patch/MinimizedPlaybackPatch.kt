@@ -7,7 +7,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -21,11 +20,9 @@ import app.revanced.patches.youtube.misc.minimizedplayback.annotations.Minimized
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
-import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.PipControllerFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
-import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 
@@ -39,8 +36,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         KidsMinimizedPlaybackPolicyControllerFingerprint,
         MinimizedPlaybackManagerFingerprint,
-        MinimizedPlaybackSettingsFingerprint,
-        PipControllerFingerprint
+        MinimizedPlaybackSettingsFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -57,7 +53,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
         MinimizedPlaybackManagerFingerprint.result?.apply {
             mutableMethod.addInstructions(
                 0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabled()Z
+                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabledAndPlaybackIsNotShort()Z
                 move-result v0
                 return v0
                 """
@@ -93,19 +89,6 @@ class MinimizedPlaybackPatch : BytecodePatch(
             )
         } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.toErrorResult()
 
-        PipControllerFingerprint.result?.apply {
-            val insertIndex = scanResult.patternScanResult!!.endIndex + 1
-            val pipEnabledRegister = (mutableMethod.instruction(insertIndex - 1) as TwoRegisterInstruction).registerA
-
-            mutableMethod.addInstructions(
-                insertIndex,
-                """
-                    invoke-static {v$pipEnabledRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->isNotPlayingShorts(Z)Z
-                    move-result v$pipEnabledRegister
-                """
-            )
-
-        } ?: return PipControllerFingerprint.toErrorResult()
         return PatchResultSuccess()
     }
 
