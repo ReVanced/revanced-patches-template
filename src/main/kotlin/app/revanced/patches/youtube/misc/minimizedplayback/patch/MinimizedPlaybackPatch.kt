@@ -57,21 +57,22 @@ class MinimizedPlaybackPatch : BytecodePatch(
             )
         } ?: return MinimizedPlaybackManagerFingerprint.toErrorResult()
 
-        val method = MinimizedPlaybackSettingsFingerprint.result!!.mutableMethod
-        val booleanCalls = method.implementation!!.instructions.withIndex()
-            .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }
+        MinimizedPlaybackSettingsFingerprint.result?.apply {
+            val booleanCalls = method.implementation!!.instructions.withIndex()
+                .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }
 
-        val settingsBooleanIndex = booleanCalls.elementAt(1).index
-        val settingsBooleanMethod =
-            context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
+            val settingsBooleanIndex = booleanCalls.elementAt(1).index
+            val settingsBooleanMethod =
+                context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
 
-        settingsBooleanMethod.addInstructions(
-            0, """
+            settingsBooleanMethod.addInstructions(
+                0, """
                 invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabled()Z
                 move-result v0
                 return v0
                 """
-        )
+            )
+        } ?: return MinimizedPlaybackSettingsFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
