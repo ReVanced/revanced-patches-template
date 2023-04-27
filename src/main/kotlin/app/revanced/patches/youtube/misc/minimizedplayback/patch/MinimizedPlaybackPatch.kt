@@ -17,14 +17,12 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.minimizedplayback.annotations.MinimizedPlaybackCompatibility
-import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
-
 
 @Patch
 @Name("minimized-playback")
@@ -34,7 +32,6 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Version("0.0.1")
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
-        KidsMinimizedPlaybackPolicyControllerFingerprint,
         MinimizedPlaybackManagerFingerprint,
         MinimizedPlaybackSettingsFingerprint
     )
@@ -75,19 +72,6 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 return v0
                 """
         )
-
-        KidsMinimizedPlaybackPolicyControllerFingerprint.result?.apply {
-            mutableMethod.addInstructions(
-                0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabled()Z
-                move-result v0
-                if-eqz v0, :enable
-                return-void
-                :enable
-                nop
-                """
-            )
-        } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
