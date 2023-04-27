@@ -13,8 +13,8 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.settings.preference.impl.NonInteractivePreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.minimizedplayback.annotations.MinimizedPlaybackCompatibility
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
@@ -37,26 +37,25 @@ class MinimizedPlaybackPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
+        // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
-            SwitchPreference(
-                "revanced_enable_minimized_playback",
-                StringResource("revanced_minimized_playback_enabled_title", "Enable minimized playback"),
-                true,
-                StringResource("revanced_minimized_playback_summary_on", "Minimized playback is enabled"),
-                StringResource("revanced_minimized_playback_summary_off", "Minimized playback is disabled")
+            NonInteractivePreference(
+                StringResource("revanced_minimized_playback_enabled_title", "Minimized playback"),
+                StringResource("revanced_minimized_playback_summary_on", "To change minimized playback, change the \\'Picture-in-picture\\' setting found in Settings -> General")
             )
         )
 
         MinimizedPlaybackManagerFingerprint.result?.apply {
             mutableMethod.addInstructions(
                 0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabledAndPlaybackIsNotShort()Z
+                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->playbackIsNotShort()Z
                 move-result v0
                 return v0
                 """
             )
         } ?: return MinimizedPlaybackManagerFingerprint.toErrorResult()
 
+        // Enable minimized playback option in YouTube settings
         MinimizedPlaybackSettingsFingerprint.result?.apply {
             val booleanCalls = method.implementation!!.instructions.withIndex()
                 .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }
@@ -67,7 +66,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
 
             settingsBooleanMethod.addInstructions(
                 0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isMinimizedPlaybackEnabled()Z
+                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideMinimizedPlaybackAvailable()Z
                 move-result v0
                 return v0
                 """
