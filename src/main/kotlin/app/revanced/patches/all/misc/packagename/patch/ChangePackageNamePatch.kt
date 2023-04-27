@@ -30,8 +30,10 @@ class ChangePackageNamePatch : ResourcePatch {
             if (!originalPackageName.matches(packageNameRegex))
                 return PatchResult.Error("Failed to get the original package name")
 
-            context.base.openFile(Apk.manifest).apply {
-                readText().replace(originalPackageName, packageName).let(::writeText)
+            context.base.openFile(Apk.manifest).use {
+                it.readText().replace(originalPackageName, packageName).let { modified ->
+                    it.writeText(modified)
+                }
             }
 
         } ?: return PatchResult.Error("No package name provided")
