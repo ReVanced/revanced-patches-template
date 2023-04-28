@@ -52,10 +52,15 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 "revanced_spoof_signature_verification",
                 StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
                 true,
-                StringResource("revanced_spoof_signature_verification_summary_on", "App signature spoofed"),
+                StringResource("revanced_spoof_signature_verification_summary_on",
+                    "App signature spoofed.\\n\\n"
+                        + "Some side effects include:\\n"
+                        + "• End screen cards are always hidden\\n"
+                        + "• Download button is hidden in old UI\\n"
+                        + "• Cannot pinch to zoom video"),
                 StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
                 StringResource("revanced_spoof_signature_verification_user_dialog_message",
-                    "Signature spoofing can fix playback issues, but may causes side effects.")
+                    "Turning off spoofing removes side effects, but videos may not play correctly.")
             )
         )
 
