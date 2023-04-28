@@ -53,7 +53,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
                 true,
                 StringResource("revanced_spoof_signature_verification_summary_on",
-                    "App signature spoofed.\\n\\n"
+                    "App signature spoofed\\n\\n"
                         + "Some side effects include:\\n"
                         + "• End screen cards are always hidden\\n"
                         + "• Download button is hidden in old UI\\n"
