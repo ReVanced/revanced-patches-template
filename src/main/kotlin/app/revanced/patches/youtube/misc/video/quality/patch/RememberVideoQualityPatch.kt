@@ -16,6 +16,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
+import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -41,25 +42,6 @@ class RememberVideoQualityPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
-            SwitchPreference(
-                "revanced_remember_video_quality_last_selected",
-                StringResource(
-                    "revanced_remember_video_quality_last_selected_title",
-                    "Remember video quality changes"
-                ),
-                true,
-                StringResource(
-                    "revanced_remember_video_quality_last_selected_summary_on",
-                    "Quality changes apply to all videos"
-                ),
-                StringResource(
-                    "revanced_remember_video_quality_last_selected_summary_off",
-                    "Quality changes only apply to the current video"
-                )
-            )
-        )
-
         // This is bloated as each value has it's own String key/value
         // ideally the entries would be raw values (and not a key to a String resource)
         val entries = listOf(
@@ -84,25 +66,49 @@ class RememberVideoQualityPatch : BytecodePatch(
             StringResource("revanced_default_quality_entry_value_8", "280"),
             StringResource("revanced_default_quality_entry_value_9", "144"),
         )
+
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
-            ListPreference(
-                "revanced_default_video_quality_wifi",
-                StringResource(
-                    "revanced_default_video_quality_wifi_title",
-                    "Default video quality on Wi-Fi network"
+            PreferenceScreen(
+                "revanced_video_quality",
+                StringResource("revanced_video_quality_title", "Video quality settings"),
+                listOf(
+                    SwitchPreference(
+                        "revanced_remember_video_quality_last_selected",
+                        StringResource(
+                            "revanced_remember_video_quality_last_selected_title",
+                            "Remember video quality changes"
+                        ),
+                        false,
+                        StringResource(
+                            "revanced_remember_video_quality_last_selected_summary_on",
+                            "Quality changes apply to all videos"
+                        ),
+                        StringResource(
+                            "revanced_remember_video_quality_last_selected_summary_off",
+                            "Quality changes only apply to the current video"
+                        )
+                    ),
+                    ListPreference(
+                        "revanced_default_video_quality_wifi",
+                        StringResource(
+                            "revanced_default_video_quality_wifi_title",
+                            "Default video quality on Wi-Fi network"
+                        ),
+                        ArrayResource("revanced_video_quality_wifi_entry", entries),
+                        ArrayResource("revanced_video_quality_wifi_entry_values", entryValues)
+                        // default value and summary are set by integrations after loading
+                    ),
+                    ListPreference(
+                        "revanced_default_video_quality_mobile",
+                        StringResource(
+                            "revanced_default_video_quality_mobile_title",
+                            "Default video quality on mobile network"
+                        ),
+                        ArrayResource("revanced_video_quality_mobile_entries", entries),
+                        ArrayResource("revanced_video_quality_mobile_entry_values", entryValues)
+                    )
                 ),
-                ArrayResource("revanced_video_quality_wifi_entry", entries),
-                ArrayResource("revanced_video_quality_wifi_entry_values", entryValues)
-                // default value and summary are set by integrations after loading
-            ),
-            ListPreference(
-                "revanced_default_video_quality_mobile",
-                StringResource(
-                    "revanced_default_video_quality_mobile_title",
-                    "Default video quality on mobile network"
-                ),
-                ArrayResource("revanced_video_quality_mobile_entries", entries),
-                ArrayResource("revanced_video_quality_mobile_entry_values", entryValues)
+                StringResource("revanced_video_quality_summary", "Adjust video quality settings")
             )
         )
 
