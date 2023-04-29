@@ -14,9 +14,7 @@ import app.revanced.patches.youtube.layout.hide.getpremium.annotations.HideGetPr
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Name("hide-get-premium-resource-patch")
-@HideGetPremiumVideoAdvertisementCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-@Version("0.0.1")
+@DependsOn([SettingsPatch::class])
 class HideGetPremiumVideoAdvertisementResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
