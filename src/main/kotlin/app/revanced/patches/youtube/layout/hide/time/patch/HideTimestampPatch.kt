@@ -29,7 +29,7 @@ class HideTimestampPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_timestamp",
                 StringResource("revanced_hide_timestamp_title", "Hide video timestamp"),
