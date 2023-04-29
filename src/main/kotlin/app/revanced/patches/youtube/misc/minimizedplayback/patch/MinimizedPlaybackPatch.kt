@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -78,10 +79,9 @@ class MinimizedPlaybackPatch : BytecodePatch(
         // Force allowing background play for videos labeled for kids.
         // Some regions and YouTube accounts do not require this patch.
         KidsMinimizedPlaybackPolicyControllerFingerprint.result?.apply {
-            mutableMethod.addInstructions(
-                0, """
-                return-void
-                """
+            mutableMethod.addInstruction(
+                0,
+                "return-void"
             )
         } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.toErrorResult()
 
