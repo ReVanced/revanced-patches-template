@@ -21,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @Patch
 @DependsOn([IntegrationsPatch::class, HideGetPremiumVideoAdvertisementResourcePatch::class])
 @Name("hide-get-premium")
-@Description("Hides advertisements for youtube premium in the video player.")
+@Description("Hides the advertisement for YouTube Premium under the video player.")
 @HideGetPremiumVideoAdvertisementCompatibility
 @Version("0.0.1")
 class HideGetPremiumVideoAdvertisementPatch : BytecodePatch(
