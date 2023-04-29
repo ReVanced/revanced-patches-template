@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @Description("Hides the advertisement for YouTube Premium under the video player.")
 @HideGetPremiumVideoAdvertisementCompatibility
 @Version("0.0.1")
-class HideGetPremiumVideoAdvertisementPatch : BytecodePatch(
+class HideGetPremiumPatch : BytecodePatch(
     listOf(
         GetPremiumVideoAdvertisementViewFingerprint,
     )
