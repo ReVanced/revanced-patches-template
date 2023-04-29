@@ -17,6 +17,7 @@ import app.revanced.patches.shared.settings.preference.impl.NonInteractivePrefer
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.minimizedplayback.annotations.MinimizedPlaybackCompatibility
+import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
@@ -33,7 +34,8 @@ import org.jf.dexlib2.iface.reference.MethodReference
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         MinimizedPlaybackManagerFingerprint,
-        MinimizedPlaybackSettingsFingerprint
+        MinimizedPlaybackSettingsFingerprint,
+        KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -72,6 +74,16 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 """
             )
         } ?: return MinimizedPlaybackSettingsFingerprint.toErrorResult()
+
+        // Force allowing background play for videos labeled for kids.
+        // Some regions and YouTube accounts do not require this patch.
+        KidsMinimizedPlaybackPolicyControllerFingerprint.result?.apply {
+            mutableMethod.addInstructions(
+                0, """
+                return-void
+                """
+            )
+        } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
