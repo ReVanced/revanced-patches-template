@@ -12,6 +12,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.autoplay.annotations.AutoplayButtonCompatibility
@@ -25,7 +26,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, ResourceMappingPatch::class])
 @Name("hide-autoplay-button")
 @Description("Hides the autoplay button in the video player.")
 @AutoplayButtonCompatibility
@@ -48,7 +49,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
             val layoutGenMethodInstructions = implementation!!.instructions
 
             // resolve the offsets such as ...
-            val autoNavPreviewStubId = context.resourceIdOf("id", "autonav_preview_stub")
+            val autoNavPreviewStubId = ResourceMappingPatch.resourceIdOf("id", "autonav_preview_stub")
 
             // where to insert the branch instructions and ...
             val insertIndex = layoutGenMethodInstructions.indexOfFirst {

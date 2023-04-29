@@ -9,6 +9,8 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.playercontrols.annotation.PlayerControlsCompatibility
 import app.revanced.patches.youtube.misc.playercontrols.fingerprints.BottomControlsInflateFingerprint
 import app.revanced.patches.youtube.misc.playercontrols.fingerprints.PlayerControlsVisibilityFingerprint
@@ -16,6 +18,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Name("player-controls-bytecode-patch")
 @Description("Manages the code for the player controls of the YouTube player.")
+@DependsOn([ResourceMappingPatch::class])
 @PlayerControlsCompatibility
 @Version("0.0.1")
 class PlayerControlsBytecodePatch : BytecodePatch(
@@ -24,7 +27,7 @@ class PlayerControlsBytecodePatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         showPlayerControlsFingerprintResult = PlayerControlsVisibilityFingerprint.result!!
 
-        bottomUiContainerResourceId = context.resourceIdOf("id", "bottom_ui_container_stub")
+        bottomUiContainerResourceId = ResourceMappingPatch.resourceIdOf("id", "bottom_ui_container_stub")
 
         // TODO: another solution is required, this is hacky
         listOf(BottomControlsInflateFingerprint).resolve(context, context.classes)

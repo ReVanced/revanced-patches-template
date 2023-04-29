@@ -16,6 +16,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.AppendTimeFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.PlayerOverlaysLayoutInitFingerprint
@@ -46,6 +47,7 @@ import org.jf.dexlib2.iface.reference.StringReference
         PlayerTypeHookPatch::class,
         PlayerControlsBytecodePatch::class,
         SponsorBlockResourcePatch::class,
+        ResourceMappingPatch::class,
     ]
 )
 @Name("sponsorblock")
@@ -173,8 +175,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
          */
         val controlsMethodResult = PlayerControlsBytecodePatch.showPlayerControlsFingerprintResult
 
-        val controlsLayoutStubResourceId = context.resourceIdOf("id", "controls_layout_stub")
-        val zoomOverlayResourceId = context.resourceIdOf("id", "video_zoom_overlay_stub")
+        val controlsLayoutStubResourceId = ResourceMappingPatch.resourceIdOf("id", "controls_layout_stub")
+        val zoomOverlayResourceId = ResourceMappingPatch.resourceIdOf("id", "video_zoom_overlay_stub")
 
         methods@ for (method in controlsMethodResult.mutableClass.methods) {
             val instructions = method.implementation?.instructions!!
