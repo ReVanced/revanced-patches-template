@@ -12,11 +12,12 @@ object DislikesOldLayoutTextViewFingerprint : MethodFingerprint(
     parameters = listOf("L"),
     access = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
-        Opcode.IGET_OBJECT, // Container view with resource identifier
-        Opcode.CONST,
+        Opcode.CONST, // resource identifier register
         Opcode.INVOKE_VIRTUAL,
         Opcode.INVOKE_VIRTUAL,
-        Opcode.IGET_OBJECT, // TextView
+        Opcode.IGET_OBJECT,
+        Opcode.IF_NEZ, // textview register
+        Opcode.GOTO,
     ),
     customFingerprint = { methodDef ->
         methodDef.implementation?.instructions?.any { instruction ->
