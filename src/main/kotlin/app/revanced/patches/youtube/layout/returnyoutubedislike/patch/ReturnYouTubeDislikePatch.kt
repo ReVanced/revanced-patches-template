@@ -7,7 +7,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
-import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
@@ -171,10 +170,18 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         DislikesOldLayoutTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
-                val resourceIdentifierRegister = (instruction(startIndex) as OneRegisterInstruction).registerA
-                val textViewRegister = (instruction(startIndex + 4) as OneRegisterInstruction).registerA
-                addInstruction(startIndex + 4,
-                    "invoke-static {v$resourceIdentifierRegister, v$textViewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setOldUILayoutDislikes(ILandroid/widget/TextView;)V"
+                val viewFieldName = (instruction(startIndex) as ReferenceInstruction).reference
+                val textViewFieldName = (instruction(startIndex + 4) as ReferenceInstruction).reference
+
+                val insertIndex = implementation!!.instructions.size
+                // Add instructions at last instruction in method, but need to preserve a control flow label.
+                replaceInstruction(insertIndex - 1,
+                    "iget-object v0, p0, $viewFieldName  # copy view container reference into free register")
+                addInstructions(insertIndex, """
+                        iget-object v1, p0, $textViewFieldName  # copy text view reference into free register 
+                        invoke-static {v0, v1}, $INTEGRATIONS_CLASS_DESCRIPTOR->setOldUILayoutDislikes(Landroid/view/View;Landroid/widget/TextView;)V
+                        return-void     # original replaced instruction
+                    """
                 )
             }
         } ?: return DislikesOldLayoutTextViewFingerprint.toErrorResult()
