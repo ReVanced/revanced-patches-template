@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HidePlayerOverlayPatchCompatibility
 import app.revanced.util.resources.ResourceUtils.base
 
-@Patch
+@Patch(false)
 @Name("hide-player-overlay")
 @Description("Hides the dark player overlay when player controls are visible.")
 @HidePlayerOverlayPatchCompatibility
