@@ -1,3 +1,17 @@
+# [2.172.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.3...v2.172.0-dev.4) (2023-04-30)
+
+
+### Features
+
+* **youtube/hide-player-overlay:** exclude by default ([1c6fb94](https://github.com/revanced/revanced-patches/commit/1c6fb941f59599e2fe4a7d6f96babb6b0edac054))
+
+# [2.172.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.2...v2.172.0-dev.3) (2023-04-29)
+
+
+### Features
+
+* **youtube/spoof-signature-verification:** list known spoofing side effects in revanced settings ([#2011](https://github.com/revanced/revanced-patches/issues/2011)) ([dc6e9b2](https://github.com/revanced/revanced-patches/commit/dc6e9b2268efe8a1bb72b80e5285d7002f448f4d))
+
 # [2.172.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.1...v2.172.0-dev.2) (2023-04-29)
 
 
