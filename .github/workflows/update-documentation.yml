@@ -9,6 +9,7 @@ jobs:
   trigger:
     runs-on: ubuntu-latest
     name: Dispatch event to documentation repository
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: peter-evans/repository-dispatch@v2
         with:
