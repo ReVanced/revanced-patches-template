@@ -14,8 +14,8 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.getpremium.annotations.HideGetPremiumVideoAdvertisementCompatibility
-import app.revanced.patches.youtube.layout.hide.getpremium.bytecode.fingerprints.GetPremiumVideoAdvertisementViewFingerprint
+import app.revanced.patches.youtube.layout.hide.getpremium.annotations.HideGetPremiumCompatibility
+import app.revanced.patches.youtube.layout.hide.getpremium.bytecode.fingerprints.GetPremiumViewFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -24,11 +24,11 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("hide-get-premium")
 @Description("Hides advertisement for YouTube Premium under the video player.")
-@HideGetPremiumVideoAdvertisementCompatibility
+@HideGetPremiumCompatibility
 @Version("0.0.1")
 class HideGetPremiumPatch : BytecodePatch(
     listOf(
-        GetPremiumVideoAdvertisementViewFingerprint,
+        GetPremiumViewFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -42,7 +42,7 @@ class HideGetPremiumPatch : BytecodePatch(
             )
         )
 
-        GetPremiumVideoAdvertisementViewFingerprint.result?.let {
+        GetPremiumViewFingerprint.result?.let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
                 val measuredWidthRegister = (instruction(startIndex) as TwoRegisterInstruction).registerA
@@ -65,7 +65,7 @@ class HideGetPremiumPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return GetPremiumVideoAdvertisementViewFingerprint.toErrorResult()
+        } ?: return GetPremiumViewFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

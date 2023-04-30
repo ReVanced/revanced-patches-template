@@ -3,7 +3,7 @@ package app.revanced.patches.youtube.layout.hide.getpremium.bytecode.fingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
 
-object GetPremiumVideoAdvertisementViewFingerprint : MethodFingerprint(
+object GetPremiumViewFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.ADD_INT_2ADDR,
         Opcode.ADD_INT_2ADDR,
