@@ -23,7 +23,7 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
     }
     
     override fun execute(context: ResourceContext): PatchResult {
-        context.base.openEditor(RESOURCE_FILE_PATH).use { editor ->
+        context.base.editXmlFile(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
                 if (node !is Element) return@node
 

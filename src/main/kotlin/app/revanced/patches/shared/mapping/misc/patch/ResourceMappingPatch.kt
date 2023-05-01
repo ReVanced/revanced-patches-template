@@ -4,16 +4,16 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.apk.ApkBundle
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.ResourcePatch
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
 @Name("resource-mapping")
 @Description("Creates a map of public resources.")
 @Version("0.0.1")
 class ResourceMappingPatch : ResourcePatch {
     companion object {
-        private var resources: ApkBundle.GlobalResources? = null
+        private var resourceContext: ResourceContext? = null
 
         /**
          * Resolve a resource id for the specified resource.
@@ -22,11 +22,11 @@ class ResourceMappingPatch : ResourcePatch {
          * @param name The name of the resource.
          * @return The id of the resource.
          */
-        fun resourceIdOf(type: String, name: String) = resources!!.resolve(type, name).toLong()
+        fun resourceIdOf(type: String, name: String) = resourceContext!!.resourceIdOf(type, name)
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        resources = context.apkBundle.resources
+        resourceContext = context
 
         return PatchResult.Success
     }

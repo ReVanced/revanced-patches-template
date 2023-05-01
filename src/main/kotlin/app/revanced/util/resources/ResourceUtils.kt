@@ -68,7 +68,7 @@ internal object ResourceUtils {
 
     internal val ResourceContext.base get() = apkBundle.base.resources
 
-    internal fun ResourceContext.manifestEditor() = base.openEditor(Apk.manifest)
+    internal fun ResourceContext.manifestEditor() = base.editXmlFile(Apk.manifest)
 
     /**
      * Resource names mapped to their corresponding resource data.
@@ -88,7 +88,7 @@ internal object ResourceUtils {
         targetTag: String,
         callback: (node: Node) -> Unit
     ) =
-        openEditor(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
+        xmlEditor(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
             val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
             for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
         }

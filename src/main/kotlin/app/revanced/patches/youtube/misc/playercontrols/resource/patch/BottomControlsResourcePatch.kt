@@ -16,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.base
 class BottomControlsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         resourceContext = context
-        targetXmlEditor = context.base.openEditor(TARGET_RESOURCE)
+        targetXmlEditor = context.base.editXmlFile(TARGET_RESOURCE)
 
         return PatchResult.Success
     }
@@ -39,7 +39,7 @@ class BottomControlsResourcePatch : ResourcePatch {
          */
         internal fun addControls(hostYouTubeControlsBottomUiResourceName: String) {
             val sourceXmlEditor =
-                resourceContext.openEditor(
+                resourceContext.xmlEditor(
                     this::class.java.classLoader.getResourceAsStream(
                         hostYouTubeControlsBottomUiResourceName
                     )!!

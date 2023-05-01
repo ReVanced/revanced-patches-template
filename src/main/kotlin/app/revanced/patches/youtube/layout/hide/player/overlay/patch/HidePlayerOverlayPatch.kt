@@ -19,7 +19,7 @@ class HidePlayerOverlayPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         val attributes = arrayOf("height", "width")
 
-        context.base.openEditor(RESOURCE_FILE_PATH).use { editor ->
+        context.base.editXmlFile(RESOURCE_FILE_PATH).use { editor ->
             editor.file.getElementsByTagName("FrameLayout").item(0).childNodes.apply {
                 for (i in 1 until length) {
                     val view = item(i)
