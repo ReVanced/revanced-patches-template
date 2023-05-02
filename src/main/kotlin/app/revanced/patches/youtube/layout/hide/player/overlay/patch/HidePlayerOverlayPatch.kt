@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction31i
 @Name("hide-player-overlay")
 @Description("Hides the dark player overlay when player controls are visible.")
 @HidePlayerOverlayPatchCompatibility
-@Version("0.0.1")
+@Version("0.0.2")
 class HidePlayerOverlayPatch : BytecodePatch() {
     private companion object {
         val resourceId = arrayOf("scrim_overlay").map { name ->
