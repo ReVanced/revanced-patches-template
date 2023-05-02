@@ -16,7 +16,7 @@ internal interface PatchesFileGenerator {
             File("build/libs/").listFiles()!!.first {
                 it.name.startsWith("revanced-patches-") && it.name.endsWith(".jar")
             }.absolutePath
-        ).loadPatches().also {
+        ).readPatches().also {
             if (it.isEmpty()) throw IllegalStateException("No patches found")
         }.let { bundle ->
             arrayOf(JsonGenerator(), ReadmeGenerator()).forEach { it.generate(bundle) }
