@@ -26,9 +26,9 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction31i
 @Version("0.0.2")
 class HidePlayerOverlayPatch : BytecodePatch() {
     private companion object {
-        val resourceId = arrayOf("scrim_overlay").map { name ->
-            ResourceMappingPatch.resourceMappings.single { it.name == name }.id
-        }
+        val scrimOverlayId = ResourceMappingPatch.resourceMappings.single {
+            it.name == "scrim_overlay"
+        }.id
         const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/HidePlayerOverlayPatch;"
     }
 
@@ -50,7 +50,7 @@ class HidePlayerOverlayPatch : BytecodePatch() {
                         when (instruction.opcode) {
                             Opcode.CONST -> {
                                 when ((instruction as Instruction31i).wideLiteral) {
-                                    resourceId[0] -> { // player overlay filter
+                                    scrimOverlayId -> { // player overlay filter
                                         val insertIndex = index + 3
                                         val invokeInstruction = instructions.elementAt(insertIndex)
                                         if (invokeInstruction.opcode != Opcode.CHECK_CAST) return@forEachIndexed
