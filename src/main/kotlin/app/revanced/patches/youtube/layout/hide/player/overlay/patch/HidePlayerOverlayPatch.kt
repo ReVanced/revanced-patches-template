@@ -19,7 +19,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 import org.jf.dexlib2.iface.instruction.formats.Instruction31i
 
-@Patch(false)
+@Patch
 @Name("hide-player-overlay")
 @Description("Hides the dark player overlay when player controls are visible.")
 @HidePlayerOverlayPatchCompatibility
