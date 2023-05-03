@@ -50,7 +50,7 @@ class CreateButtonRemoverPatch : BytecodePatch() {
 
         InitializeButtonsFingerprint.result!!.let {
             if (!PivotBarCreateButtonViewFingerprint.resolve(context, it.mutableMethod, it.mutableClass))
-                return PivotBarCreateButtonViewFingerprint.error()
+                PivotBarCreateButtonViewFingerprint.error()
         }
 
         PivotBarCreateButtonViewFingerprint.result!!.apply {

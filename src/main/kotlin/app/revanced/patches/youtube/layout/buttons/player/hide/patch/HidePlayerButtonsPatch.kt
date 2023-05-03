@@ -67,6 +67,6 @@ class HidePlayerButtonsPatch : BytecodePatch(
                     xor-int/lit8 v$hasNextParameterRegister, v$hasNextParameterRegister, 1
                 """
             )
-        } ?: return PlayerControlsVisibilityModelFingerprint.error()
+        } ?: PlayerControlsVisibilityModelFingerprint.error()
     }
 }

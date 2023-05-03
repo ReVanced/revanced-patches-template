@@ -59,7 +59,7 @@ class ShortsButtonRemoverPatch : BytecodePatch() {
                             initializeButtonsResult.mutableClass
                         )
                     )
-                        return it.error()
+                        it.error()
                 }
                 .map { it.result!!.scanResult.patternScanResult!! }
 

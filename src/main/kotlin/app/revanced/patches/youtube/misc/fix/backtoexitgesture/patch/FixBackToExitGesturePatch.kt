@@ -30,7 +30,7 @@ class FixBackToExitGesturePatch : BytecodePatch(
             resolve(
                 context,
                 RecyclerViewTopScrollingParentFingerprint.result?.classDef
-                    ?: return RecyclerViewTopScrollingParentFingerprint.error()
+                    ?: RecyclerViewTopScrollingParentFingerprint.error()
             )
         }
 

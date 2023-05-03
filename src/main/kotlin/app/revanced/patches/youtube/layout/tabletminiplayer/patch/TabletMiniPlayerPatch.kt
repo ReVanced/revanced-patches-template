@@ -69,7 +69,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
                 throw MiniPlayerOverrideFingerprint.error()
 
             MiniPlayerOverrideFingerprint.addProxyCall()
-        } ?: return MiniPlayerOverrideParentFingerprint.error()
+        } ?: MiniPlayerOverrideParentFingerprint.error()
 
         /*
          * Size check return value override.

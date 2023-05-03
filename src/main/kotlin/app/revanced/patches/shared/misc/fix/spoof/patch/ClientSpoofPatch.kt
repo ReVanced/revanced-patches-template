@@ -30,7 +30,7 @@ class ClientSpoofPatch : BytecodePatch(
                addInstruction(insertIndex, "const-string v$packageNameRegister, \"$ORIGINAL_PACKAGE_NAME\"")
            }
 
-        } ?: return UserAgentHeaderBuilderFingerprint.error()
+        } ?: UserAgentHeaderBuilderFingerprint.error()
 
     }
 

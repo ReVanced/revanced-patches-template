@@ -34,7 +34,7 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
             ScreentimeSmallWidgetUnlockFingerprint,
             WeatherWidgetUnlockFingerprint
         ).map { fingerprint ->
-            fingerprint.result?.mutableMethod ?: return fingerprint.error()
+            fingerprint.result?.mutableMethod ?: fingerprint.error()
         }.forEach { method ->
             method.apply {
                 removeInstructions(4, 2)

@@ -123,7 +123,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return TextComponentContextFingerprint.error()
+        } ?: TextComponentContextFingerprint.error()
 
         // endregion
 
@@ -157,7 +157,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                         as OneRegisterInstruction).registerA
                 insertShorts(insertIndex, overwriteRegister)
             }
-        } ?: return ShortsTextComponentParentFingerprint.error()
+        } ?: ShortsTextComponentParentFingerprint.error()
 
         // endregion
 

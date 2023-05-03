@@ -36,7 +36,7 @@ class CrowdfundingBoxPatch : BytecodePatch(
 
                 addInstruction(insertIndex, "invoke-static {v$objectRegister}, $INTEGRATIONS_METHOD_DESCRIPTOR")
             }
-        } ?: return CrowdfundingBoxFingerprint.error()
+        } ?: CrowdfundingBoxFingerprint.error()
 
     }
 

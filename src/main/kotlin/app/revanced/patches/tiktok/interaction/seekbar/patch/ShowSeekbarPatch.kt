@@ -43,7 +43,7 @@ class ShowSeekbarPatch : BytecodePatch(
                     BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["draftProgressBar"]!!)
                 )
             )
-        } ?: return AwemeGetVideoControlFingerprint.error()
+        } ?: AwemeGetVideoControlFingerprint.error()
     }
 
 }

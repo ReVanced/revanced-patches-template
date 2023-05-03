@@ -56,7 +56,7 @@ class HideAdsPatch : BytecodePatch(
                     )
                 }
             }
-        } ?: return ContainsAdFingerprint.error()
+        } ?: ContainsAdFingerprint.error()
 
     }
 }

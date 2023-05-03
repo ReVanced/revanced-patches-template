@@ -19,7 +19,7 @@ class VerticalScrollPatch : BytecodePatch(
     listOf(CanScrollVerticallyFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        val result = CanScrollVerticallyFingerprint.result ?: return CanScrollVerticallyFingerprint.error()
+        val result = CanScrollVerticallyFingerprint.result ?: CanScrollVerticallyFingerprint.error()
 
         with(result) {
             val method = mutableMethod

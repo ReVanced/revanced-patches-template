@@ -46,7 +46,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
             BindSessionServiceFingerprint,
             InitializeCustomTabSupportFingerprint
         ).forEach {
-            val result = it.result ?: return it.error()
+            val result = it.result ?: it.error()
             val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
             with(result.mutableMethod) {
                 val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA

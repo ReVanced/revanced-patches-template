@@ -35,16 +35,16 @@ class HideTimelineAdsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
         // region Resolve required methods to check for ads.
 
-        ShowAdFingerprint.result ?: return ShowAdFingerprint.error()
+        ShowAdFingerprint.result ?: ShowAdFingerprint.error()
 
-        PaidPartnershipAdFingerprint.result ?: return PaidPartnershipAdFingerprint.error()
+        PaidPartnershipAdFingerprint.result ?: PaidPartnershipAdFingerprint.error()
 
         MediaFingerprint.result?.let {
             GenericMediaAdFingerprint.resolve(context, it.classDef)
             ShoppingAdFingerprint.resolve(context, it.classDef)
 
             return@let
-        } ?: return MediaFingerprint.error()
+        } ?: MediaFingerprint.error()
 
         // endregion
 

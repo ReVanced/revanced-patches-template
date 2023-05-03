@@ -30,7 +30,7 @@ class HideAdsPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return InshortsAdsFingerprint.error()
+        } ?: InshortsAdsFingerprint.error()
 
     }
 }

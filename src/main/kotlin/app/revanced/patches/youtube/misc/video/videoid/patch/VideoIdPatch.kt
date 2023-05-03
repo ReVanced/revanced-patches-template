@@ -35,7 +35,7 @@ class VideoIdPatch : BytecodePatch(
                 videoIdRegister = (instruction(videoIdRegisterInstructionIndex) as OneRegisterInstruction).registerA
                 insertIndex = videoIdRegisterInstructionIndex + 1
             }
-        } ?: return VideoIdFingerprint.error()
+        } ?: VideoIdFingerprint.error()
 
         VideoIdFingerprintBackgroundPlay.result?.let { result ->
             val endIndex = result.scanResult.patternScanResult!!.endIndex
@@ -46,7 +46,7 @@ class VideoIdPatch : BytecodePatch(
                 backgroundPlaybackVideoIdRegister = (instruction(endIndex + 1) as OneRegisterInstruction).registerA
                 backgroundPlaybackInsertIndex = endIndex + 2
             }
-        } ?: return VideoIdFingerprintBackgroundPlay.error()
+        } ?: VideoIdFingerprintBackgroundPlay.error()
 
     }
 

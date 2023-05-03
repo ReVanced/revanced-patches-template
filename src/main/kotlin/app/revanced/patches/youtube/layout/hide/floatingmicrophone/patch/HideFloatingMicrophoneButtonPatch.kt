@@ -38,7 +38,7 @@ class HideFloatingMicrophoneButtonPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: return ShowFloatingMicrophoneButtonFingerprint.error()
+        } ?: ShowFloatingMicrophoneButtonFingerprint.error()
 
     }
 

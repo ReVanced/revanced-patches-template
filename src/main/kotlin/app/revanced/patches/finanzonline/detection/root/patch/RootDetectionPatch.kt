@@ -27,6 +27,6 @@ class RootDetectionPatch : BytecodePatch(
                 sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
                 return-object v0
             """
-        ) ?: return RootDetectionFingerprint.error()
+        ) ?: RootDetectionFingerprint.error()
     }
 }

@@ -75,7 +75,7 @@ class SettingsPatch : BytecodePatch(
                     implementation!!.instructions.size - 2, buildInstructionsString(0)
                 )
             }
-        } ?: return ThemeSetterAppFingerprint.error()
+        } ?: ThemeSetterAppFingerprint.error()
 
         // set the theme based on the preference of the device
         LicenseActivityFingerprint.result!!.apply licenseActivity@{

@@ -82,7 +82,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                         move-result-object v$buildOverrideNameRegister
                          """
             )
-        } ?: return SpoofAppVersionFingerprint.error()
+        } ?: SpoofAppVersionFingerprint.error()
 
     }
 

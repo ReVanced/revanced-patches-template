@@ -53,7 +53,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 return v0
                 """
             )
-        } ?: return MinimizedPlaybackManagerFingerprint.error()
+        } ?: MinimizedPlaybackManagerFingerprint.error()
 
         // Enable minimized playback option in YouTube settings
         MinimizedPlaybackSettingsFingerprint.result?.apply {
@@ -71,7 +71,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 return v0
                 """
             )
-        } ?: return MinimizedPlaybackSettingsFingerprint.error()
+        } ?: MinimizedPlaybackSettingsFingerprint.error()
 
         // Force allowing background play for videos labeled for kids.
         // Some regions and YouTube accounts do not require this patch.
@@ -80,7 +80,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 0,
                 "return-void"
             )
-        } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.error()
+        } ?: KidsMinimizedPlaybackPolicyControllerFingerprint.error()
 
     }
 

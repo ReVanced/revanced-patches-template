@@ -34,7 +34,7 @@ class UnlockPlusPatch : BytecodePatch(
                 return v0
             """
             )
-        } ?: return IsPlusUnlockedFingerprint.error()
+        } ?: IsPlusUnlockedFingerprint.error()
 
     }
 

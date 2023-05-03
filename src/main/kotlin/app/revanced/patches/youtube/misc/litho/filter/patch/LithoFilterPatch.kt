@@ -33,7 +33,7 @@ class LithoFilterPatch : BytecodePatch(
         ComponentContextParserFingerprint.result?.also {
             arrayOf(EmptyComponentBuilderFingerprint, ReadComponentIdentifierFingerprint).forEach { fingerprint ->
                 if (!fingerprint.resolve(context, it.mutableMethod, it.mutableClass))
-                    return fingerprint.error()
+                    fingerprint.error()
             }
         }?.let { result ->
             val builderMethodIndex = EmptyComponentBuilderFingerprint.patternScanEndIndex
@@ -68,7 +68,7 @@ class LithoFilterPatch : BytecodePatch(
                     listOf(ExternalLabel("not_an_ad", instruction(insertHookIndex)))
                 )
             }
-        } ?: return ComponentContextParserFingerprint.error()
+        } ?: ComponentContextParserFingerprint.error()
 
     }
 

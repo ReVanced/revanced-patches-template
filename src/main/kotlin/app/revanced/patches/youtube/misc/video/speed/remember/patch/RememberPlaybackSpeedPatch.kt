@@ -112,7 +112,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 """.trimIndent(),
                 listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
             )
-        } ?: return InitializePlaybackSpeedValuesFingerprint.error()
+        } ?: InitializePlaybackSpeedValuesFingerprint.error()
 
     }
 

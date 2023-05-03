@@ -158,7 +158,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                     move-result p2
                 """,
             )
-        } ?: return VideoQualitySetterFingerprint.error()
+        } ?: VideoQualitySetterFingerprint.error()
 
         // Inject a call to remember the selected quality.
         VideoQualityItemOnClickParentFingerprint.result?.let {
@@ -172,7 +172,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                     "invoke-static {p$listItemIndexParameter}, $INTEGRATIONS_CLASS_DESCRIPTOR->userChangedQuality(I)V"
                 )
             } ?: throw PatchException("Failed to find onItemClick method")
-        } ?: return VideoQualityItemOnClickParentFingerprint.error()
+        } ?: VideoQualityItemOnClickParentFingerprint.error()
     }
 
     private companion object {

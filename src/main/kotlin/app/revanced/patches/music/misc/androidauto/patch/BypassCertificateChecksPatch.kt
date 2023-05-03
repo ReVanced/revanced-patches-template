@@ -33,7 +33,7 @@ class BypassCertificateChecksPatch : BytecodePatch(
                 replaceInstruction(isPartnerIndex, "const/4 p1, 0x1")
                 addInstruction(isPartnerIndex + 1, "return p1")
             }
-        } ?: return CheckCertificateFingerprint.error()
+        } ?: CheckCertificateFingerprint.error()
 
     }
 }

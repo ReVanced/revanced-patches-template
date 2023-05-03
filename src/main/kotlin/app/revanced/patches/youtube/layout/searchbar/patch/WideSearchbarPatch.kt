@@ -42,7 +42,7 @@ class WideSearchbarPatch : BytecodePatch(
             )
         )
 
-        val result = CreateSearchSuggestionsFingerprint.result ?: return CreateSearchSuggestionsFingerprint.error()
+        val result = CreateSearchSuggestionsFingerprint.result ?: CreateSearchSuggestionsFingerprint.error()
 
         // patch methods
         mapOf(

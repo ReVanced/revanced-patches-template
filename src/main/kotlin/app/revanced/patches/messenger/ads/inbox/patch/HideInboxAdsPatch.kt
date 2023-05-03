@@ -20,7 +20,7 @@ class HideInboxAdsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
         LoadInboxAdsFingerprint.result?.mutableMethod?.apply {
             this.replaceInstruction(0, "return-void")
-        } ?: return LoadInboxAdsFingerprint.error()
+        } ?: LoadInboxAdsFingerprint.error()
 
     }
 }

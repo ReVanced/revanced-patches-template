@@ -40,7 +40,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         )
 
         val engagementPanelControllerMethod = EngagementPanelControllerFingerprint
-            .result?.mutableMethod ?: return EngagementPanelControllerFingerprint.error()
+            .result?.mutableMethod ?: EngagementPanelControllerFingerprint.error()
 
         engagementPanelControllerMethod.addInstructions(
             0, """

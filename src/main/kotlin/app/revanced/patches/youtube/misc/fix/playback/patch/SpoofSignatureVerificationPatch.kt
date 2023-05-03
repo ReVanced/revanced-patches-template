@@ -81,7 +81,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return ProtobufParameterBuilderFingerprint.error()
+        } ?: ProtobufParameterBuilderFingerprint.error()
 
         // hook video playback result
         OpenCronetDataSourceFingerprint.result?.let {
@@ -98,7 +98,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 )
             }
 
-        } ?: return OpenCronetDataSourceFingerprint.error()
+        } ?: OpenCronetDataSourceFingerprint.error()
 
         // hook override subtitles
         SubtitleWindowSettingsConstructorFingerprint.result?.let {
@@ -117,7 +117,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return SubtitleWindowSettingsConstructorFingerprint.error()
+        } ?: SubtitleWindowSettingsConstructorFingerprint.error()
 
     }
 

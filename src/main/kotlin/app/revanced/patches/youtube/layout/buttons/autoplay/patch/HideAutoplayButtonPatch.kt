@@ -76,7 +76,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
                 if-eqz v$clobberRegister, :hidden
             """, listOf(ExternalLabel("hidden", jumpInstruction))
             )
-        } ?: return LayoutConstructorFingerprint.error()
+        } ?: LayoutConstructorFingerprint.error()
 
     }
 }

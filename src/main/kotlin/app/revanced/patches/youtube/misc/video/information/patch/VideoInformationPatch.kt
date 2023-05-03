@@ -147,7 +147,7 @@ class VideoInformationPatch : BytecodePatch(
                 getReference(speedSelectionMethodInstructions, 1, Opcode.IGET)
             setPlaybackSpeedMethodReference =
                 getReference(speedSelectionMethodInstructions, 2, Opcode.IGET)
-        } ?: return OnPlaybackSpeedItemClickFingerprint.error()
+        } ?: OnPlaybackSpeedItemClickFingerprint.error()
 
         userSelectedPlaybackSpeedHook(INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 

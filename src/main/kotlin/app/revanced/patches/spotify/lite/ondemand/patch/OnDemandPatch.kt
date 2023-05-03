@@ -27,6 +27,6 @@ class OnDemandPatch : BytecodePatch(
             val insertIndex = scanResult.patternScanResult!!.endIndex - 1
             // Spoof a premium account
             mutableMethod.addInstruction(insertIndex, "const/4 v0, 0x2")
-        } ?: return OnDemandFingerprint.error()
+        } ?: OnDemandFingerprint.error()
     }
 }

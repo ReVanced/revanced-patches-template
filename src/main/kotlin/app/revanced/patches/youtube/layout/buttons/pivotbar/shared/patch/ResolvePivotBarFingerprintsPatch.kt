@@ -35,7 +35,7 @@ class ResolvePivotBarFingerprintsPatch : BytecodePatch(
                     context,
                     it.classDef
                 )
-            ) return InitializeButtonsFingerprint.error()
-        } ?: return PivotBarConstructorFingerprint.error()
+            ) InitializeButtonsFingerprint.error()
+        } ?: PivotBarConstructorFingerprint.error()
     }
 }
