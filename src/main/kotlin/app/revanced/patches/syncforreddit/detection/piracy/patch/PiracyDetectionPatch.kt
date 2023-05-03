@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.syncforreddit.detection.piracy.fingerprints.PiracyDetectionFingerprint
 
-@Description("Disables detection of unofficial versions.")
+@Description("Disables detection of modified versions.")
 @Version("0.0.1")
 class PiracyDetectionPatch : BytecodePatch(
     listOf(
