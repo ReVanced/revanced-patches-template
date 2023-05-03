@@ -3,7 +3,6 @@ package app.revanced.util.patch
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method

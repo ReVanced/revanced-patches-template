@@ -1,12 +1,11 @@
 package app.revanced.patches.memegenerator.detection.license.patch
 
 import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.memegenerator.detection.license.fingerprint.LicenseValidationFingerprint
 
 @Description("Disables Firebase license validation.")

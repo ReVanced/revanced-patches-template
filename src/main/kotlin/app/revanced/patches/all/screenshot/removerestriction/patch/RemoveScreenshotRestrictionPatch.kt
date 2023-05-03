@@ -6,11 +6,13 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.util.patch.*
+import app.revanced.util.patch.AbstractTransformInstructionsPatch
+import app.revanced.util.patch.IMethodCall
+import app.revanced.util.patch.Instruction35cInfo
+import app.revanced.util.patch.filterMapInstruction35c
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
-import java.util.*
 
 @Patch(false)
 @Name("remove-screenshot-restriction")

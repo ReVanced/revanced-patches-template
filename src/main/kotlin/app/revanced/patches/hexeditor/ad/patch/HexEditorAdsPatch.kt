@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.hexeditor.ad.annotations.HexEditorAdsCompatibility
 import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
