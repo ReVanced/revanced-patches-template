@@ -21,6 +21,6 @@ object PiracyDetectionFingerprint : MethodFingerprint(
         method.implementation?.instructions?.any {
             it.opcode == Opcode.NEW_INSTANCE &&
                     ((it as ReferenceInstruction).reference as TypeReference).type=="Lcom/github/javiersantos/piracychecker/PiracyChecker;"
-        }?: false
+        } ?: false
     }
 )
