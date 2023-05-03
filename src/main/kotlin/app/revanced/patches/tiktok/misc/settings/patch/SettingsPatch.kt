@@ -49,7 +49,7 @@ class SettingsPatch : BytecodePatch(
                     instruction(index).opcode != Opcode.NEW_INSTANCE ||
                     instruction(index - 4).opcode != Opcode.MOVE_RESULT_OBJECT
                 )
-                    return PatchResult.Error("Hardcode offset changed.")
+                    throw PatchException("Hardcode offset changed.")
                 patchOptionNameAndOnClickEvent(index, context)
             }
         }

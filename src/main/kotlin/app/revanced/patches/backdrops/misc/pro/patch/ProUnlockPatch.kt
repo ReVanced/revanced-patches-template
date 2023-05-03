@@ -23,7 +23,7 @@ class ProUnlockPatch : BytecodePatch(
     listOf(ProUnlockFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = ProUnlockFingerprint.result ?: return PatchResult.Error("${ProUnlockFingerprint.name} not found")
+        val result = ProUnlockFingerprint.result ?: throw PatchException("${ProUnlockFingerprint.name} not found")
 
         val moveRegisterInstruction =
             result.mutableMethod.instruction(result.scanResult.patternScanResult!!.endIndex - 1)

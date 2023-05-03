@@ -29,7 +29,7 @@ class ShowSeekbarPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         //Get VideoControl FieldReference
         val videoControl = context.classes.findClassProxied { it.type.endsWith("/VideoControl;") }
-            ?: return PatchResult.Error("Can not find target class")
+            ?: throw PatchException("Can not find target class")
         val fieldList = videoControl.immutableClass.fields.associateBy { field -> field.name }
 
         AwemeGetVideoControlFingerprint.result?.mutableMethod?.implementation?.apply {

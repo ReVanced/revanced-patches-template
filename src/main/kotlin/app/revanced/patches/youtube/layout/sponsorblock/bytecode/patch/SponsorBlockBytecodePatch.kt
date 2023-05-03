@@ -273,7 +273,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         )
                     }
                 }
-            } ?: return PatchResult.Error("Could not find the method which contains the replaceMeWith* strings")
+            } ?: throw PatchException("Could not find the method which contains the replaceMeWith* strings")
 
 
         // detect end of the video has been reached

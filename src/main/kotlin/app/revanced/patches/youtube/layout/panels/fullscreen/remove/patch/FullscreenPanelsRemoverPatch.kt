@@ -44,7 +44,7 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
         val parentResult = FullscreenViewAdderParentFingerprint.result!!
         FullscreenViewAdderFingerprint.resolve(context, parentResult.method, parentResult.classDef)
         val result = FullscreenViewAdderParentFingerprint.result
-            ?: return PatchResult.Error("Fingerprint not resolved!")
+            ?: throw PatchException("Fingerprint not resolved!")
 
         val method = result.mutableMethod
 

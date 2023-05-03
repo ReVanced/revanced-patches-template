@@ -43,7 +43,7 @@ class AutoRepeatPatch : BytecodePatch(
 
         //Get Result from the ParentFingerprint which is the playMethod we need to get.
         val parentResult = AutoRepeatParentFingerprint.result
-            ?: return PatchResult.Error("ParentFingerprint did not resolve.")
+            ?: throw PatchException("ParentFingerprint did not resolve.")
 
         //this one needs to be called when app/revanced/integrations/patches/AutoRepeatPatch;->shouldAutoRepeat() returns true
         val playMethod = parentResult.mutableMethod
@@ -53,7 +53,7 @@ class AutoRepeatPatch : BytecodePatch(
 
         //This is the method we search for
         val result = AutoRepeatFingerprint.result
-            ?: return PatchResult.Error("FingerPrint did not resolve.")
+            ?: throw PatchException("FingerPrint did not resolve.")
         val method = result.mutableMethod
 
         //Instructions to add to the smali code
@@ -68,7 +68,7 @@ class AutoRepeatPatch : BytecodePatch(
 
         //Get the implementation so we can do a check for null and get instructions size.
         val implementation = method.implementation
-            ?: return PatchResult.Error("No Method Implementation found!")
+            ?: throw PatchException("No Method Implementation found!")
 
         //Since addInstructions needs an index which starts counting at 0 and size starts counting at 1,
         //we have to remove 1 to get the latest instruction

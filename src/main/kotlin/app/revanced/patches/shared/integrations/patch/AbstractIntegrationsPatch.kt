@@ -36,7 +36,7 @@ abstract class AbstractIntegrationsPatch(
                     "sput-object v$contextRegister, " +
                             "$integrationsDescriptor->context:Landroid/content/Context;"
                 )
-            } ?: return PatchResult.Error("Could not find hook target fingerprint.")
+            } ?: throw PatchException("Could not find hook target fingerprint.")
 
             return PatchResult.Success
         }

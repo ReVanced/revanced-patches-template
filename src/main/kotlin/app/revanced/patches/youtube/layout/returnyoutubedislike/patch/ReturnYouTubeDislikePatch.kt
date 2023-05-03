@@ -72,7 +72,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     invoke-static {v0}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->sendVote(I)V
                     """
                 )
-            } ?: return PatchResult.Error("Failed to find ${fingerprint.name} method.")
+            } ?: throw PatchException("Failed to find ${fingerprint.name} method.")
         }
 
         // endregion
@@ -137,14 +137,14 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     with(method as MutableMethod) {
                         // After walking, verify the found method is what's expected.
                         if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1)
-                            return PatchResult.Error("Method signature did not match: $this $parameterTypes")
+                            throw PatchException("Method signature did not match: $this $parameterTypes")
 
                         val insertIndex = implementation!!.instructions.size - 1
                         val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
                         val parameter = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
 
                         if (!parameter.toString().endsWith("Landroid/text/Spanned;"))
-                            return PatchResult.Error("Method signature parameter did not match: $parameter")
+                            throw PatchException("Method signature parameter did not match: $parameter")
 
                         insertShorts(insertIndex, spannedParameterRegister)
                     }

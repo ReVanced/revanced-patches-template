@@ -46,7 +46,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
         val sizeCallIndex = arrayGenMethodImpl.instructions
             .indexOfFirst { ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "size" }
 
-        if (sizeCallIndex == -1) return PatchResult.Error("Couldn't find call to size()")
+        if (sizeCallIndex == -1) throw PatchException("Couldn't find call to size()")
 
         val sizeCallResultRegister =
             (arrayGenMethodImpl.instructions.elementAt(sizeCallIndex + 1) as OneRegisterInstruction).registerA

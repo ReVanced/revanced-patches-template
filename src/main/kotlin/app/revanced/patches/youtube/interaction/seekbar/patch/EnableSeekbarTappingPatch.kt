@@ -81,7 +81,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
 
         // get the required register
         val instruction = implementation.instructions[insertIndex - 1]
-        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return PatchResult.Error("Could not find the correct register")
+        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) throw PatchException("Could not find the correct register")
         val register = (instruction as Instruction35c).registerC
 
         val elseLabel = implementation.newLabelForIndex(insertIndex)

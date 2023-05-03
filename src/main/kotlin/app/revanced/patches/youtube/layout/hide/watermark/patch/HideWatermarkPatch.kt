@@ -43,7 +43,7 @@ class HideWatermarkPatch : BytecodePatch(
 
         HideWatermarkFingerprint.resolve(context, HideWatermarkParentFingerprint.result!!.classDef)
         val result = HideWatermarkFingerprint.result
-            ?: return PatchResult.Error("Required parent method could not be found.")
+            ?: throw PatchException("Required parent method could not be found.")
 
         val method = result.mutableMethod
         val line = method.implementation!!.instructions.size - 5

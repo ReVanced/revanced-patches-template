@@ -51,7 +51,7 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
         }
 
         if(invokePosition == null || invokeParamRegister == null)
-            return PatchResult.Error("Cannot find setAllowedCapturePolicy method call")
+            throw PatchException("Cannot find setAllowedCapturePolicy method call")
 
         // Walk back to the const/4 instruction that sets the parameter register
         var matchFound = false

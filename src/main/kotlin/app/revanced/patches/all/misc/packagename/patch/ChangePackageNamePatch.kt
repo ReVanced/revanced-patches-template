@@ -20,7 +20,7 @@ class ChangePackageNamePatch : ResourcePatch {
         packageName?.let { packageName ->
             val packageNameRegex = Regex("^[a-z]\\w*(\\.[a-z]\\w*)+\$")
             if (!packageName.matches(packageNameRegex))
-                return PatchResult.Error("Invalid package name")
+                throw PatchException("Invalid package name")
 
             val originalPackageName = context.manifestEditor().use { editor ->
                 val manifest = editor.file.getElementsByTagName("manifest").item(0) as Element
@@ -28,7 +28,7 @@ class ChangePackageNamePatch : ResourcePatch {
             }
 
             if (!originalPackageName.matches(packageNameRegex))
-                return PatchResult.Error("Failed to get the original package name")
+                throw PatchException("Failed to get the original package name")
 
             context.base.openFile(Apk.manifest).use {
                 it.readText().replace(originalPackageName, packageName).let { modified ->
@@ -36,7 +36,7 @@ class ChangePackageNamePatch : ResourcePatch {
                 }
             }
 
-        } ?: return PatchResult.Error("No package name provided")
+        } ?: throw PatchException("No package name provided")
 
         return PatchResult.Success
     }

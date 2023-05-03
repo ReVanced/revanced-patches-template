@@ -87,7 +87,7 @@ class DownloadsPatch : BytecodePatch(
             targetOffset = index + 1
             break
         }
-        if (targetOffset == -1) return PatchResult.Error("Can not find download path uri method.")
+        if (targetOffset == -1) throw PatchException("Can not find download path uri method.")
         //Change videos' download path.
         val downloadUriMethod = context
             .toMethodWalker(DownloadPathParentFingerprint.result!!.method)

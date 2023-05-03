@@ -71,7 +71,7 @@ class GeneralAdsPatch : BytecodePatch(
 
         with(
             ReelConstructorFingerprint.result
-                ?: return PatchResult.Error("Could not resolve fingerprint")
+                ?: throw PatchException("Could not resolve fingerprint")
         ) {
             // iput-object v$viewRegister, ...
             val insertIndex = this.scanResult.patternScanResult!!.startIndex + 2

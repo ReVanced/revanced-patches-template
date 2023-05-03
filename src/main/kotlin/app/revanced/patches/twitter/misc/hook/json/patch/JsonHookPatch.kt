@@ -24,12 +24,12 @@ class JsonHookPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         // Make sure the integrations are present.
         val jsonHookPatch = context.classes.findClassProxied { it.type == JSON_HOOK_PATCH_CLASS_DESCRIPTOR }
-            ?: return PatchResult.Error("Could not find integrations.")
+            ?: throw PatchException("Could not find integrations.")
 
         // Allow patch to inject hooks into the patches integrations.
         jsonHookPatchFingerprintResult = JsonHookPatchFingerprint.also {
             it.resolve(context, jsonHookPatch.immutableClass)
-        }.result ?: return PatchResult.Error("Unexpected integrations.")
+        }.result ?: throw PatchException("Unexpected integrations.")
 
         // Conveniently find the type to hook a method in, via a named field.
         val jsonFactory = LoganSquareFingerprint.result
@@ -39,7 +39,7 @@ class JsonHookPatch : BytecodePatch(
             ?.type
             .let { type ->
                 context.classes.findClassProxied { it.type == type }?.mutableClass
-            } ?: return PatchResult.Error("Could not find required class.")
+            } ?: throw PatchException("Could not find required class.")
 
         // Hook the methods first parameter.
         JsonInputStreamFingerprint
@@ -52,7 +52,7 @@ class JsonHookPatch : BytecodePatch(
                     invoke-static { p1 }, $JSON_HOOK_PATCH_CLASS_DESCRIPTOR->parseJsonHook(Ljava/io/InputStream;)Ljava/io/InputStream;
                     move-result-object p1
                 """
-            ) ?: return PatchResult.Error("Could not find method to hook.")
+            ) ?: throw PatchException("Could not find method to hook.")
 
         return PatchResult.Success
     }

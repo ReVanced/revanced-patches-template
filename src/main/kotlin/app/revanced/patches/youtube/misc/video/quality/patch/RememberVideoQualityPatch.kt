@@ -117,7 +117,7 @@ class RememberVideoQualityPatch : BytecodePatch(
         // Inject a call to set the remembered quality once a video loads.
         VideoQualitySetterFingerprint.result?.also {
             if (!SetQualityByIndexMethodClassFieldReferenceFingerprint.resolve(context, it.classDef))
-                return PatchResult.Error("Could not resolve fingerprint to find setQualityByIndex method")
+                throw PatchException("Could not resolve fingerprint to find setQualityByIndex method")
         }?.let {
             // This instruction refers to the field with the type that contains the setQualityByIndex method.
             val instructions = SetQualityByIndexMethodClassFieldReferenceFingerprint.result!!
@@ -137,7 +137,7 @@ class RememberVideoQualityPatch : BytecodePatch(
             // Get the name of the setQualityByIndex method.
             val setQualityByIndexMethod = setQualityByIndexMethodClass.methods
                 .find { method -> method.parameterTypes.first() == "I" }
-                ?: return PatchResult.Error("Could not find setQualityByIndex method")
+                ?: throw PatchException("Could not find setQualityByIndex method")
 
             it.mutableMethod.addInstructions(
                 0,
@@ -171,7 +171,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                     0,
                     "invoke-static {p$listItemIndexParameter}, $INTEGRATIONS_CLASS_DESCRIPTOR->userChangedQuality(I)V"
                 )
-            } ?: return PatchResult.Error("Failed to find onItemClick method")
+            } ?: throw PatchException("Failed to find onItemClick method")
         } ?: return VideoQualityItemOnClickParentFingerprint.toErrorResult()
         return PatchResult.Success
     }

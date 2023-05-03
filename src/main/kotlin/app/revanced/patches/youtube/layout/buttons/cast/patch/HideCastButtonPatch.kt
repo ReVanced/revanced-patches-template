@@ -35,11 +35,11 @@ class HideCastButtonPatch : BytecodePatch() {
 
         with(
             context.classes.findClassProxied("MediaRouteButton")
-                ?: return PatchResult.Error("MediaRouteButton class not found.")
+                ?: throw PatchException("MediaRouteButton class not found.")
         ) {
             with(
                 mutableClass.methods.find { it.name == "setVisibility" }
-                    ?: return PatchResult.Error("setVisibility method not found.")
+                    ?: throw PatchException("setVisibility method not found.")
             ) {
                 addInstructions(
                     0, """

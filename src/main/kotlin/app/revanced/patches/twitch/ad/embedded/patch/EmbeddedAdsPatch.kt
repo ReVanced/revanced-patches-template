@@ -30,7 +30,7 @@ class EmbeddedAdsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val result = CreateUsherClientFingerprint.result
-            ?: return PatchResult.Error("${CreateUsherClientFingerprint.name} not found")
+            ?: throw PatchException("${CreateUsherClientFingerprint.name} not found")
 
         // Inject OkHttp3 application interceptor
         result.mutableMethod.addInstructions(

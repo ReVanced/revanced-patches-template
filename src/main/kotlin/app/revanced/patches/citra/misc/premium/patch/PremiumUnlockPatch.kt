@@ -21,7 +21,7 @@ class PremiumUnlockPatch : BytecodePatch(
     listOf(PremiumUnlockFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = PremiumUnlockFingerprint.result ?: return PatchResult.Error("${PremiumUnlockFingerprint.name} not found")
+        val result = PremiumUnlockFingerprint.result ?: throw PatchException("${PremiumUnlockFingerprint.name} not found")
 
         result.mutableMethod.addInstructions(
             0,
