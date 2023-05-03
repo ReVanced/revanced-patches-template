@@ -6,12 +6,23 @@ import app.revanced.patcher.extensions.PatchExtensions.description
 import app.revanced.patcher.extensions.PatchExtensions.patchName
 import app.revanced.patcher.patch.Patch
 import java.io.File
+import java.lang.module.ModuleDescriptor.Version
 
 internal class ReadmeGenerator : PatchesFileGenerator {
     private companion object {
         private const val TABLE_HEADER =
             "| \uD83D\uDC8A Patch | \uD83D\uDCDC Description | \uD83C\uDFF9 Target Version |\n" +
                     "|:--------:|:--------------:|:-----------------:|"
+
+        // First try to parse the version string as ModuleDescriptor.Version and use it for comparison. This prevents
+        // the issue with the lexicographical ordering, where version 8.9 is considered newer than 8.10.
+        // If the parsing fails, use the string as-is (fallback to alphabetical order).
+        private fun List<Map.Entry<String, Int>>.getRecommendedVersion(): String =
+                try {
+                    this.maxBy { Version.parse(it.key) }
+                } catch (e: IllegalArgumentException) {
+                    this.maxBy { it.key }
+                }.key
     }
 
     override fun generate(bundle: PatchBundlePatches) {
@@ -37,9 +48,7 @@ internal class ReadmeGenerator : PatchesFileGenerator {
                     }
                 }.let { commonMap ->
                     commonMap.maxByOrNull { it.value }?.value?.let {
-                        // This is not foolproof, because for example v1.0.0-dev.0 will be returned instead of v1.0.0-release.
-                        // Unfortunately this can not be solved easily because versioning can be complex.
-                        commonMap.entries.filter { mostCommon -> mostCommon.value == it }.maxBy { it.key }.key
+                        commonMap.entries.filter { mostCommon -> mostCommon.value == it }.getRecommendedVersion()
                     } ?: "all"
                 }
 
