@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.hide.infocards.resource.patch
 
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.StringResource

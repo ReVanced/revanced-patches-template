@@ -8,7 +8,7 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.music.layout.premium.annotations.HideGetPremiumCompatibility
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumFingerprint

@@ -7,7 +7,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.shared.misc.fix.verticalscroll.annotations.VerticalScrollCompatibility
 import app.revanced.patches.shared.misc.fix.verticalscroll.fingerprints.CanScrollVerticallyFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction

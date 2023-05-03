@@ -4,7 +4,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.idaustria.detection.root.fingerprints.RootDetectionFingerprint
 import app.revanced.patches.idaustria.detection.shared.annotations.DetectionCompatibility

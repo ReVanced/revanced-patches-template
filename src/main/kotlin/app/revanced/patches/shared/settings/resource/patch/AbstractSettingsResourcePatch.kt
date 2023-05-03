@@ -3,7 +3,7 @@ package app.revanced.patches.shared.settings.resource.patch
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.IResource

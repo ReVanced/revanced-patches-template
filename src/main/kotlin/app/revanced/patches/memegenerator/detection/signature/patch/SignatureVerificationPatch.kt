@@ -6,7 +6,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.memegenerator.detection.signature.fingerprint.VerifySignatureFingerprint
 
 @Description("Disables detection of incorrect signature.")

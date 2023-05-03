@@ -7,7 +7,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.InlineActionTypesFingerprint
 import app.revanced.patches.twitter.layout.hideviews.fingerprints.TweetStatsContainerConstructorFingerprint
