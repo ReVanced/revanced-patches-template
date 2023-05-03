@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.hide.floatingmicrophone.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -38,7 +38,7 @@ class HideFloatingMicrophoneButtonPatch : BytecodePatch(
                         """
                 )
             }
-        } ?: return ShowFloatingMicrophoneButtonFingerprint.toErrorResult()
+        } ?: return ShowFloatingMicrophoneButtonFingerprint.error()
 
         return PatchResult.Success
     }

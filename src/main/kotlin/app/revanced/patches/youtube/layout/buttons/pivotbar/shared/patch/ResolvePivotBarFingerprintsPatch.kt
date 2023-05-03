@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.pivotbar.shared.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
@@ -35,8 +35,8 @@ class ResolvePivotBarFingerprintsPatch : BytecodePatch(
                     context,
                     it.classDef
                 )
-            ) return InitializeButtonsFingerprint.toErrorResult()
-        } ?: return PivotBarConstructorFingerprint.toErrorResult()
+            ) return InitializeButtonsFingerprint.error()
+        } ?: return PivotBarConstructorFingerprint.error()
         return PatchResult.Success
     }
 }

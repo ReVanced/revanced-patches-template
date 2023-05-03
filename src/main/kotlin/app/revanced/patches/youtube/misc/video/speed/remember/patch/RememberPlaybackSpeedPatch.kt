@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.video.speed.remember.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -112,7 +112,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 """.trimIndent(),
                 listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
             )
-        } ?: return InitializePlaybackSpeedValuesFingerprint.toErrorResult()
+        } ?: return InitializePlaybackSpeedValuesFingerprint.error()
 
         return PatchResult.Success
     }

@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.pivotbar.shorts.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -59,7 +59,7 @@ class ShortsButtonRemoverPatch : BytecodePatch() {
                             initializeButtonsResult.mutableClass
                         )
                     )
-                        return it.toErrorResult()
+                        return it.error()
                 }
                 .map { it.result!!.scanResult.patternScanResult!! }
 

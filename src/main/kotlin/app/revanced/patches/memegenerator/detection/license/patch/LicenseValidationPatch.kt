@@ -1,6 +1,6 @@
 package app.revanced.patches.memegenerator.detection.license.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
@@ -23,7 +23,7 @@ class LicenseValidationPatch : BytecodePatch(
                     return  p0
                 """
             )
-        } ?: throw LicenseValidationFingerprint.toErrorResult()
+        } ?: throw LicenseValidationFingerprint.error()
 
         return PatchResult.Success
     }

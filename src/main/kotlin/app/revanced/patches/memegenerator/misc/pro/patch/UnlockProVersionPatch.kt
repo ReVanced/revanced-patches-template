@@ -1,6 +1,6 @@
 package app.revanced.patches.memegenerator.misc.pro.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -37,7 +37,7 @@ class UnlockProVersionPatch : BytecodePatch(
                     return-object p0
                 """
             )
-        } ?: throw IsFreeVersionFingerprint.toErrorResult()
+        } ?: throw IsFreeVersionFingerprint.error()
 
         return PatchResult.Success
     }

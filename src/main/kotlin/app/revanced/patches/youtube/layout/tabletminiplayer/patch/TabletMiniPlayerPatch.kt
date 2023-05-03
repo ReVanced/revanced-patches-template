@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.tabletminiplayer.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -66,10 +66,10 @@ class TabletMiniPlayerPatch : BytecodePatch(
          */
         MiniPlayerOverrideParentFingerprint.result?.let {
             if (!MiniPlayerOverrideFingerprint.resolve(context, it.classDef))
-                throw MiniPlayerOverrideFingerprint.toErrorResult()
+                throw MiniPlayerOverrideFingerprint.error()
 
             MiniPlayerOverrideFingerprint.addProxyCall()
-        } ?: return MiniPlayerOverrideParentFingerprint.toErrorResult()
+        } ?: return MiniPlayerOverrideParentFingerprint.error()
 
         /*
          * Size check return value override.

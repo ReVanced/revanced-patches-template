@@ -1,6 +1,6 @@
 package app.revanced.patches.finanzonline.detection.root.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -27,7 +27,7 @@ class RootDetectionPatch : BytecodePatch(
                 sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
                 return-object v0
             """
-        ) ?: return RootDetectionFingerprint.toErrorResult()
+        ) ?: return RootDetectionFingerprint.error()
         return PatchResult.Success
     }
 }

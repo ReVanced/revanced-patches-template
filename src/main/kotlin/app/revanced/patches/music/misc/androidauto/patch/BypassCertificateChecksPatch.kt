@@ -1,6 +1,6 @@
 package app.revanced.patches.music.misc.androidauto.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -33,7 +33,7 @@ class BypassCertificateChecksPatch : BytecodePatch(
                 replaceInstruction(isPartnerIndex, "const/4 p1, 0x1")
                 addInstruction(isPartnerIndex + 1, "return p1")
             }
-        } ?: return CheckCertificateFingerprint.toErrorResult()
+        } ?: return CheckCertificateFingerprint.error()
 
         return PatchResult.Success
     }

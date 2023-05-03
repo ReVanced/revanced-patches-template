@@ -1,6 +1,6 @@
 package app.revanced.patches.nova.prime.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -42,7 +42,7 @@ class UnlockPrimePatch : BytecodePatch(
                     const/16 v$primeStatusRegister, $PRIME_STATUS
                 """
             )
-        } ?: UnlockPrimeFingerprint.toErrorResult()
+        } ?: UnlockPrimeFingerprint.error()
 
         return PatchResult.Success
     }

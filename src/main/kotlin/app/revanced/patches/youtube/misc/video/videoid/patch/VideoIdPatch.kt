@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.video.videoid.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -35,7 +35,7 @@ class VideoIdPatch : BytecodePatch(
                 videoIdRegister = (instruction(videoIdRegisterInstructionIndex) as OneRegisterInstruction).registerA
                 insertIndex = videoIdRegisterInstructionIndex + 1
             }
-        } ?: return VideoIdFingerprint.toErrorResult()
+        } ?: return VideoIdFingerprint.error()
 
         VideoIdFingerprintBackgroundPlay.result?.let { result ->
             val endIndex = result.scanResult.patternScanResult!!.endIndex
@@ -46,7 +46,7 @@ class VideoIdPatch : BytecodePatch(
                 backgroundPlaybackVideoIdRegister = (instruction(endIndex + 1) as OneRegisterInstruction).registerA
                 backgroundPlaybackInsertIndex = endIndex + 2
             }
-        } ?: return VideoIdFingerprintBackgroundPlay.toErrorResult()
+        } ?: return VideoIdFingerprintBackgroundPlay.error()
 
         return PatchResult.Success
     }

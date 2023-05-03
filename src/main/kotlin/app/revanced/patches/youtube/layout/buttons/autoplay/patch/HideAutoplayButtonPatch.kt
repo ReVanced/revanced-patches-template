@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.autoplay.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -76,7 +76,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
                 if-eqz v$clobberRegister, :hidden
             """, listOf(ExternalLabel("hidden", jumpInstruction))
             )
-        } ?: return LayoutConstructorFingerprint.toErrorResult()
+        } ?: return LayoutConstructorFingerprint.error()
 
         return PatchResult.Success
     }

@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.litho.filter.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstructions
@@ -33,7 +33,7 @@ class LithoFilterPatch : BytecodePatch(
         ComponentContextParserFingerprint.result?.also {
             arrayOf(EmptyComponentBuilderFingerprint, ReadComponentIdentifierFingerprint).forEach { fingerprint ->
                 if (!fingerprint.resolve(context, it.mutableMethod, it.mutableClass))
-                    return fingerprint.toErrorResult()
+                    return fingerprint.error()
             }
         }?.let { result ->
             val builderMethodIndex = EmptyComponentBuilderFingerprint.patternScanEndIndex
@@ -68,7 +68,7 @@ class LithoFilterPatch : BytecodePatch(
                     listOf(ExternalLabel("not_an_ad", instruction(insertHookIndex)))
                 )
             }
-        } ?: return ComponentContextParserFingerprint.toErrorResult()
+        } ?: return ComponentContextParserFingerprint.error()
 
         return PatchResult.Success
     }

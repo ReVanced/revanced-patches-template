@@ -1,6 +1,6 @@
 package app.revanced.patches.memegenerator.detection.signature.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
@@ -23,7 +23,7 @@ class SignatureVerificationPatch : BytecodePatch(
                     return  p0
                 """
             )
-        } ?: throw VerifySignatureFingerprint.toErrorResult()
+        } ?: throw VerifySignatureFingerprint.error()
 
         return PatchResult.Success
     }

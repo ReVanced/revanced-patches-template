@@ -1,7 +1,7 @@
 package app.revanced.patches.tiktok.misc.settings.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -87,7 +87,7 @@ class SettingsPatch : BytecodePatch(
 
             // New UI settings option to replace to 'Revanced Settings'
             results[1] = AboutViewFingerprint.result!!.scanResult.patternScanResult!!.startIndex
-        } ?: throw SettingsOnViewCreatedFingerprint.toErrorResult()
+        } ?: throw SettingsOnViewCreatedFingerprint.error()
         return results
     }
 

@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.spoofappversion.bytecode.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -82,7 +82,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                         move-result-object v$buildOverrideNameRegister
                          """
             )
-        } ?: return SpoofAppVersionFingerprint.toErrorResult()
+        } ?: return SpoofAppVersionFingerprint.error()
 
         return PatchResult.Success
     }

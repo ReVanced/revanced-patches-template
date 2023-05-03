@@ -1,6 +1,6 @@
 package app.revanced.patches.finanzonline.detection.bootloader.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -30,7 +30,7 @@ class BootloaderDetectionPatch : BytecodePatch(
                         const/4 v0, 0x1
                         return v0
                 """
-            ) ?: return fingerprint.toErrorResult()
+            ) ?: return fingerprint.error()
         }
         return PatchResult.Success
     }

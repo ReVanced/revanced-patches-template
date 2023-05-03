@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.searchbar.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -42,7 +42,7 @@ class WideSearchbarPatch : BytecodePatch(
             )
         )
 
-        val result = CreateSearchSuggestionsFingerprint.result ?: return CreateSearchSuggestionsFingerprint.toErrorResult()
+        val result = CreateSearchSuggestionsFingerprint.result ?: return CreateSearchSuggestionsFingerprint.error()
 
         // patch methods
         mapOf(
@@ -66,7 +66,7 @@ class WideSearchbarPatch : BytecodePatch(
         fun BytecodeContext.walkMutable(index: Int, fromFingerprint: MethodFingerprint) =
             fromFingerprint.result?.let {
                 toMethodWalker(it.method).nextMethod(index, true).getMethod() as MutableMethod
-            } ?: throw fromFingerprint.toErrorResult()
+            } ?: throw fromFingerprint.error()
 
 
         /**

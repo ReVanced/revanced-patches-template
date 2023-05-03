@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.settings.bytecode.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -75,7 +75,7 @@ class SettingsPatch : BytecodePatch(
                     implementation!!.instructions.size - 2, buildInstructionsString(0)
                 )
             }
-        } ?: return ThemeSetterAppFingerprint.toErrorResult()
+        } ?: return ThemeSetterAppFingerprint.error()
 
         // set the theme based on the preference of the device
         LicenseActivityFingerprint.result!!.apply licenseActivity@{

@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.video.quality.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -158,7 +158,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                     move-result p2
                 """,
             )
-        } ?: return VideoQualitySetterFingerprint.toErrorResult()
+        } ?: return VideoQualitySetterFingerprint.error()
 
         // Inject a call to remember the selected quality.
         VideoQualityItemOnClickParentFingerprint.result?.let {
@@ -172,7 +172,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                     "invoke-static {p$listItemIndexParameter}, $INTEGRATIONS_CLASS_DESCRIPTOR->userChangedQuality(I)V"
                 )
             } ?: throw PatchException("Failed to find onItemClick method")
-        } ?: return VideoQualityItemOnClickParentFingerprint.toErrorResult()
+        } ?: return VideoQualityItemOnClickParentFingerprint.error()
         return PatchResult.Success
     }
 

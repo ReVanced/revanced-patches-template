@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
@@ -30,7 +30,7 @@ class FixBackToExitGesturePatch : BytecodePatch(
             resolve(
                 context,
                 RecyclerViewTopScrollingParentFingerprint.result?.classDef
-                    ?: return RecyclerViewTopScrollingParentFingerprint.toErrorResult()
+                    ?: return RecyclerViewTopScrollingParentFingerprint.error()
             )
         }
 
@@ -79,6 +79,6 @@ class FixBackToExitGesturePatch : BytecodePatch(
             mutableMethod.addInstruction(
                 scanResult.patternScanResult!!.endIndex, targetMethod.toString()
             )
-        } ?: throw this.toErrorResult()
+        } ?: throw this.error()
     }
 }

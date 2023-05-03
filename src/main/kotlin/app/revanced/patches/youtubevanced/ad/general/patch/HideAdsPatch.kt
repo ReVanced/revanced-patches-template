@@ -1,6 +1,6 @@
 package app.revanced.patches.youtubevanced.ad.general.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -56,7 +56,7 @@ class HideAdsPatch : BytecodePatch(
                     )
                 }
             }
-        } ?: return ContainsAdFingerprint.toErrorResult()
+        } ?: return ContainsAdFingerprint.error()
 
         return PatchResult.Success
     }

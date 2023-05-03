@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.links.open.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -46,7 +46,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
             BindSessionServiceFingerprint,
             InitializeCustomTabSupportFingerprint
         ).forEach {
-            val result = it.result ?: return it.toErrorResult()
+            val result = it.result ?: return it.error()
             val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
             with(result.mutableMethod) {
                 val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA

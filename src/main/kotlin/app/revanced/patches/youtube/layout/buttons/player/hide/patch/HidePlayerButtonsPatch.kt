@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.player.hide.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -67,7 +67,7 @@ class HidePlayerButtonsPatch : BytecodePatch(
                     xor-int/lit8 v$hasNextParameterRegister, v$hasNextParameterRegister, 1
                 """
             )
-        } ?: return PlayerControlsVisibilityModelFingerprint.toErrorResult()
+        } ?: return PlayerControlsVisibilityModelFingerprint.error()
         return PatchResult.Success
     }
 }

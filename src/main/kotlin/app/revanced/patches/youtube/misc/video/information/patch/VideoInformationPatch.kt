@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.video.information.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -147,7 +147,7 @@ class VideoInformationPatch : BytecodePatch(
                 getReference(speedSelectionMethodInstructions, 1, Opcode.IGET)
             setPlaybackSpeedMethodReference =
                 getReference(speedSelectionMethodInstructions, 2, Opcode.IGET)
-        } ?: return OnPlaybackSpeedItemClickFingerprint.toErrorResult()
+        } ?: return OnPlaybackSpeedItemClickFingerprint.error()
 
         userSelectedPlaybackSpeedHook(INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 

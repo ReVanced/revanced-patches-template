@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -277,25 +277,25 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
 
         // detect end of the video has been reached
-        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.toErrorResult()
+        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.error()
         AutoRepeatFingerprint.also {
             it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
         }.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
-        ) ?: return AutoRepeatFingerprint.toErrorResult()
+        ) ?: return AutoRepeatFingerprint.error()
 
 
         // The vote and create segment buttons automatically change their visibility when appropriate,
         // but if buttons are showing when the end of the video is reached then they will not automatically hide.
         // Add a hook to forcefully hide when the end of the video is reached.
-        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.toErrorResult()
+        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.error()
         AutoRepeatFingerprint.also {
             it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
         }.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
-        ) ?: return AutoRepeatFingerprint.toErrorResult()
+        ) ?: return AutoRepeatFingerprint.error()
 
         // TODO: isSBChannelWhitelisting implementation
 

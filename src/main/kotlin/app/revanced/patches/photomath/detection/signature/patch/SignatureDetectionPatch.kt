@@ -1,7 +1,7 @@
 package app.revanced.patches.photomath.detection.signature.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.instruction
@@ -24,7 +24,7 @@ class SignatureDetectionPatch : BytecodePatch(
             val checkRegister = (signatureCheckInstruction as OneRegisterInstruction).registerA
 
             mutableMethod.replaceInstruction(signatureCheckInstruction.location.index, "const/4 v$checkRegister, 0x1")
-        } ?: throw CheckSignatureFingerprint.toErrorResult()
+        } ?: throw CheckSignatureFingerprint.error()
 
         return PatchResult.Success
     }

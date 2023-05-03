@@ -1,6 +1,6 @@
 package app.revanced.patches.twelvewidgets.unlock.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
@@ -34,7 +34,7 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
             ScreentimeSmallWidgetUnlockFingerprint,
             WeatherWidgetUnlockFingerprint
         ).map { fingerprint ->
-            fingerprint.result?.mutableMethod ?: return fingerprint.toErrorResult()
+            fingerprint.result?.mutableMethod ?: return fingerprint.error()
         }.forEach { method ->
             method.apply {
                 removeInstructions(4, 2)

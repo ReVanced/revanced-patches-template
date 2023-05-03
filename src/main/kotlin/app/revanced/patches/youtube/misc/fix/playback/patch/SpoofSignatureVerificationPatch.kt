@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.fix.playback.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -81,7 +81,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return ProtobufParameterBuilderFingerprint.toErrorResult()
+        } ?: return ProtobufParameterBuilderFingerprint.error()
 
         // hook video playback result
         OpenCronetDataSourceFingerprint.result?.let {
@@ -98,7 +98,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 )
             }
 
-        } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
+        } ?: return OpenCronetDataSourceFingerprint.error()
 
         // hook override subtitles
         SubtitleWindowSettingsConstructorFingerprint.result?.let {
@@ -117,7 +117,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return SubtitleWindowSettingsConstructorFingerprint.toErrorResult()
+        } ?: return SubtitleWindowSettingsConstructorFingerprint.error()
 
         return PatchResult.Success
     }

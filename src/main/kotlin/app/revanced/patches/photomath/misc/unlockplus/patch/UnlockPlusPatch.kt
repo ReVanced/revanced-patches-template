@@ -1,6 +1,6 @@
 package app.revanced.patches.photomath.misc.unlockplus.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -34,7 +34,7 @@ class UnlockPlusPatch : BytecodePatch(
                 return v0
             """
             )
-        } ?: return IsPlusUnlockedFingerprint.toErrorResult()
+        } ?: return IsPlusUnlockedFingerprint.error()
 
         return PatchResult.Success
     }

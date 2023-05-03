@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.pivotbar.create.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -50,7 +50,7 @@ class CreateButtonRemoverPatch : BytecodePatch() {
 
         InitializeButtonsFingerprint.result!!.let {
             if (!PivotBarCreateButtonViewFingerprint.resolve(context, it.mutableMethod, it.mutableClass))
-                return PivotBarCreateButtonViewFingerprint.toErrorResult()
+                return PivotBarCreateButtonViewFingerprint.error()
         }
 
         PivotBarCreateButtonViewFingerprint.result!!.apply {

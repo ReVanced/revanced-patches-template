@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.misc.fix.verticalscroll.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
@@ -19,7 +19,7 @@ class VerticalScrollPatch : BytecodePatch(
     listOf(CanScrollVerticallyFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = CanScrollVerticallyFingerprint.result ?: return CanScrollVerticallyFingerprint.toErrorResult()
+        val result = CanScrollVerticallyFingerprint.result ?: return CanScrollVerticallyFingerprint.error()
 
         with(result) {
             val method = mutableMethod

@@ -1,7 +1,7 @@
 package app.revanced.patches.shared.misc.fix.spoof.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -30,7 +30,7 @@ class ClientSpoofPatch : BytecodePatch(
                addInstruction(insertIndex, "const-string v$packageNameRegister, \"$ORIGINAL_PACKAGE_NAME\"")
            }
 
-        } ?: return UserAgentHeaderBuilderFingerprint.toErrorResult()
+        } ?: return UserAgentHeaderBuilderFingerprint.error()
 
         return PatchResult.Success
     }

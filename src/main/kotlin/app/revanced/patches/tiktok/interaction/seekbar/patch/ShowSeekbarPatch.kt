@@ -1,6 +1,6 @@
 package app.revanced.patches.tiktok.interaction.seekbar.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -43,7 +43,7 @@ class ShowSeekbarPatch : BytecodePatch(
                     BuilderInstruction22c(Opcode.IPUT, 1, 0, fieldList["draftProgressBar"]!!)
                 )
             )
-        } ?: return AwemeGetVideoControlFingerprint.toErrorResult()
+        } ?: return AwemeGetVideoControlFingerprint.error()
         return PatchResult.Success
     }
 

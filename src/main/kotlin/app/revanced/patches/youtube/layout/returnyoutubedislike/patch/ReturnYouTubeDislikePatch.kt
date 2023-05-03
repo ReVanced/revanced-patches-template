@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
 
 import app.revanced.patcher.BytecodeContext
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -90,7 +90,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             )
         }.result?.also { result ->
             if (!TextComponentAtomicReferenceFingerprint.resolve(context, result.method, result.classDef))
-                throw TextComponentAtomicReferenceFingerprint.toErrorResult()
+                throw TextComponentAtomicReferenceFingerprint.error()
         }?.let { textComponentContextFingerprintResult ->
             val conversionContextIndex = textComponentContextFingerprintResult
                 .scanResult.patternScanResult!!.startIndex
@@ -123,7 +123,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return TextComponentContextFingerprint.toErrorResult()
+        } ?: return TextComponentContextFingerprint.error()
 
         // endregion
 
@@ -157,7 +157,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                         as OneRegisterInstruction).registerA
                 insertShorts(insertIndex, overwriteRegister)
             }
-        } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
+        } ?: return ShortsTextComponentParentFingerprint.error()
 
         // endregion
 
