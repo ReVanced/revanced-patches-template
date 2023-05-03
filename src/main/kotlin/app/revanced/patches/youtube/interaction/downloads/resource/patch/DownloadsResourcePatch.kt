@@ -38,7 +38,7 @@ class DownloadsResourcePatch : ResourcePatch {
                     TextPreference(
                         "revanced_downloads_package_name",
                         StringResource("revanced_downloads_package_name_title", "Downloader package name"),
-                        InputType.STRING,
+                        InputType.TEXT,
                         "org.schabi.newpipe" /* NewPipe */,
                         StringResource("revanced_downloads_package_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s")
                     )

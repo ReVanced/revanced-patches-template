@@ -282,7 +282,7 @@ class GeneralAdsResourcePatch : ResourcePatch {
                     TextPreference(
                         "revanced_adremover_custom_strings",
                         StringResource("revanced_adremover_custom_strings_title", "Custom filter"),
-                        InputType.STRING,
+                        InputType.TEXT,
                         "",
                         StringResource(
                             "revanced_adremover_custom_strings_summary",

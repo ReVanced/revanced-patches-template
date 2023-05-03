@@ -19,7 +19,7 @@ import org.w3c.dom.Element
 internal class TextPreference(
     key: String,
     title: StringResource,
-    var inputType: InputType = InputType.STRING,
+    var inputType: InputType = InputType.TEXT,
     val default: String? = null,
     val summary: StringResource? = null
 ) : BasePreference(key, title) {
