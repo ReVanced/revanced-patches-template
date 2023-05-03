@@ -16,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.base
 @HideBannerCompatibility
 @Version("0.0.1")
 class HideBannerPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
 
         context.base.editXmlFile(RESOURCE_FILE_PATH).use {
             it.file.getElementsByTagName("merge").item(0).childNodes.apply {

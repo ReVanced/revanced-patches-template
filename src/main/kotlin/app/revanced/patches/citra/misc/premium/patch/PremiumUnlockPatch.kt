@@ -20,7 +20,7 @@ import app.revanced.patches.citra.misc.premium.fingerprints.PremiumUnlockFingerp
 class PremiumUnlockPatch : BytecodePatch(
     listOf(PremiumUnlockFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = PremiumUnlockFingerprint.result ?: throw PatchException("${PremiumUnlockFingerprint.name} not found")
 
         result.mutableMethod.addInstructions(

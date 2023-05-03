@@ -23,7 +23,7 @@ class CodecsUnlockPatch : BytecodePatch(
         CodecsLockFingerprint, AllCodecsReferenceFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val codecsLockResult = CodecsLockFingerprint.result!!
 
         val implementation = codecsLockResult.mutableMethod.implementation!!

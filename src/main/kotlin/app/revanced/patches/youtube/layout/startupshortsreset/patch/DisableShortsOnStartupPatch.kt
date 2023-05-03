@@ -27,7 +27,7 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         UserWasInShortsFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_startup_shorts_player_enabled",

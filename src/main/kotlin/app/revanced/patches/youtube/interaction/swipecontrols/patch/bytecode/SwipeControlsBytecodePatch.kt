@@ -38,7 +38,7 @@ class SwipeControlsBytecodePatch : BytecodePatch(
         SwipeControlsHostActivityFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val wrapperClass = SwipeControlsHostActivityFingerprint.result!!.mutableClass
         val targetClass = WatchWhileActivityFingerprint.result!!.mutableClass
 

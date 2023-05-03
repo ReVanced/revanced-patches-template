@@ -18,7 +18,7 @@ import org.w3c.dom.Element
 @HideViewsCompatibility
 @Version("0.0.1")
 class HideViewsResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         arrayOf(
             "res/layout/condensed_tweet_stats.xml",
             "res/layout/focal_tweet_stats.xml"

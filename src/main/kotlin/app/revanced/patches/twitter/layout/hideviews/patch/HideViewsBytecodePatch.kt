@@ -23,7 +23,7 @@ class HideViewsBytecodePatch : BytecodePatch(
         TweetStatsViewDelegateBinderFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         removeViewsFromTimeline(context)
         removeTweetStatViewInitializer(context)
         removeTweetStatViewWrapperInitializer(context)

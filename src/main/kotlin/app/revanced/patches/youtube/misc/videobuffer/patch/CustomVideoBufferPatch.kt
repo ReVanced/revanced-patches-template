@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.videobuffer.annotations.CustomVideoBuff
 @CustomVideoBufferCompatibility
 @Version("0.0.1")
 class CustomVideoBufferPatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
                 StringResource("revanced_custom_video_buffer_disclaimer_title", "Custom video buffer"),

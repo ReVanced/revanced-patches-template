@@ -36,7 +36,7 @@ class ShowDeletedMessagesPatch : BytecodePatch(
         if-eqz $register, :no_spoiler
     """
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Spoiler mode: Force set hasModAccess member to true in constructor
         with(DeletedMessageClickableSpanCtorFingerprint.result!!.mutableMethod) {
             addInstructions(

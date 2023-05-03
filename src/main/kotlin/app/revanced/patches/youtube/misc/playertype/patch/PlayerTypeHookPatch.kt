@@ -22,7 +22,7 @@ class PlayerTypeHookPatch : BytecodePatch(
         UpdatePlayerTypeFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // hook YouTubePlayerOverlaysLayout.updatePlayerLayout()
         UpdatePlayerTypeFingerprint.result!!.mutableMethod.addInstruction(
             0,

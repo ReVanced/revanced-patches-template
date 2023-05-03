@@ -16,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.base
 @HidePlayerOverlayPatchCompatibility
 @Version("0.0.1")
 class HidePlayerOverlayPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         val attributes = arrayOf("height", "width")
 
         context.base.editXmlFile(RESOURCE_FILE_PATH).use { editor ->

@@ -24,7 +24,7 @@ class UnlockProPatch : BytecodePatch(
         SetThemeFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val lockedThemesMethod = CheckLockedThemesFingerprint.result!!.mutableMethod
         lockedThemesMethod.addInstructions(
             0,

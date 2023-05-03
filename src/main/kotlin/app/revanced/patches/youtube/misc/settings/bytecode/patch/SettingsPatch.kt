@@ -31,7 +31,7 @@ import org.jf.dexlib2.util.MethodUtil
 class SettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         fun buildInvokeInstructionsString(
             registers: String = "v0",
             classDescriptor: String = THEME_HELPER_DESCRIPTOR,

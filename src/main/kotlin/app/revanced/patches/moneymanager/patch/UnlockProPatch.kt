@@ -19,7 +19,7 @@ import app.revanced.patches.moneymanager.fingerprints.UnlockProFingerprint
 class UnlockProPatch : BytecodePatch(
     listOf(UnlockProFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
        UnlockProFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """

@@ -20,7 +20,7 @@ import app.revanced.patches.irplus.ad.fingerprints.IrplusAdsFingerprint
 class IrplusAdsPatch : BytecodePatch(
     listOf(IrplusAdsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val method = IrplusAdsFingerprint.result!!.mutableMethod
 
         // By overwriting the second parameter of the method,

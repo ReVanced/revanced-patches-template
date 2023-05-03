@@ -31,7 +31,7 @@ class WideSearchbarPatch : BytecodePatch(
         SetWordmarkHeaderFingerprint, CreateSearchSuggestionsFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_wide_searchbar",

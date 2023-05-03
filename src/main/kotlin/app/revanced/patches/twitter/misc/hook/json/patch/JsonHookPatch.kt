@@ -21,7 +21,7 @@ import java.io.InvalidClassException
 class JsonHookPatch : BytecodePatch(
     listOf(LoganSquareFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Make sure the integrations are present.
         val jsonHookPatch = context.classes.findClassProxied { it.type == JSON_HOOK_PATCH_CLASS_DESCRIPTOR }
             ?: throw PatchException("Could not find integrations.")

@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHe
 @PremiumHeadingCompatibility
 @Version("0.0.1")
 class PremiumHeadingPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
         val modes = arrayOf("light", "dark")
 

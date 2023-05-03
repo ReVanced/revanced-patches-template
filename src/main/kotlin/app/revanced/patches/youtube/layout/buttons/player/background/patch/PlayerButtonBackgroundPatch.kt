@@ -22,7 +22,7 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
         const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
     }
     
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         context.base.editXmlFile(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
                 if (node !is Element) return@node

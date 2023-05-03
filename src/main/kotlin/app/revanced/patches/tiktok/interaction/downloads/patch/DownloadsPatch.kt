@@ -41,7 +41,7 @@ class DownloadsPatch : BytecodePatch(
         SettingsStatusLoadFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val method1 = ACLCommonShareFingerprint.result!!.mutableMethod
         method1.replaceInstructions(
             0,

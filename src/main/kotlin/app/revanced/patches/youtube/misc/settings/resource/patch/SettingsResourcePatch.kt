@@ -27,7 +27,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "settings"
 ) {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         super.execute(context)
 
         /*

@@ -18,7 +18,7 @@ class SignatureDetectionPatch : BytecodePatch(
         CheckSignatureFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         CheckSignatureFingerprint.result?.apply {
             val signatureCheckInstruction = mutableMethod.instruction(scanResult.patternScanResult!!.endIndex)
             val checkRegister = (signatureCheckInstruction as OneRegisterInstruction).registerA

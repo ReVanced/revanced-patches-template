@@ -33,7 +33,7 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
         )
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
 
         // Initialize buttons and inject visibility control
         BUTTONS_DESCRIPTORS.forEach { descriptor ->

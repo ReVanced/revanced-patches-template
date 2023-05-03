@@ -22,7 +22,7 @@ class UnlockProPatch : BytecodePatch(
         IsEnabledFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val method = IsEnabledFingerprint.result!!.mutableMethod
         method.addInstructions(
             0,

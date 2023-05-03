@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.reference.FieldReference
 class HDRBrightnessPatch : BytecodePatch(
     listOf(HDRBrightnessFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_pref_hdr_autobrightness",

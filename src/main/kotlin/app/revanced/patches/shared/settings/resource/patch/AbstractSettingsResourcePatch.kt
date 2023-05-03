@@ -26,7 +26,7 @@ abstract class AbstractSettingsResourcePatch(
     private val preferenceFileName: String,
     private val sourceDirectory: String,
 ) : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         /*
          * used for self-restart
          * TODO: do this only, when necessary

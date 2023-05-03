@@ -19,7 +19,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 @ReturnYouTubeDislikeCompatibility
 @Version("0.0.1")
 class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         val youtubePackage = "com.google.android.youtube"
         SettingsPatch.addPreference(
             Preference(

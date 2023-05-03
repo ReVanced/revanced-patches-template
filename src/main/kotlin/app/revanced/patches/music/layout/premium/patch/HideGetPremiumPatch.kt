@@ -24,7 +24,7 @@ class HideGetPremiumPatch : BytecodePatch(
         HideGetPremiumParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val parentResult = HideGetPremiumParentFingerprint.result!!
         HideGetPremiumFingerprint.resolve(context, parentResult.classDef)
 

@@ -19,7 +19,7 @@ class LithoThemePatch : BytecodePatch(
         LithoThemeFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = LithoThemeFingerprint.result!!
         val method = result.mutableMethod
         val patchIndex = result.scanResult.patternScanResult!!.endIndex - 1

@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class PlayerControlsBytecodePatch : BytecodePatch(
     listOf(PlayerControlsVisibilityFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         showPlayerControlsFingerprintResult = PlayerControlsVisibilityFingerprint.result!!
 
         bottomUiContainerResourceId = ResourceMappingPatch.resourceIdOf("id", "bottom_ui_container_stub")

@@ -35,7 +35,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
     )
 ) {
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val speedLimitMin = minVideoSpeed!!.toFloat()
         val speedLimitMax = maxVideoSpeed!!.toFloat().coerceAtLeast(speedLimitMin)
         val speedsGranularity = videoSpeedsGranularity!!.toFloat()

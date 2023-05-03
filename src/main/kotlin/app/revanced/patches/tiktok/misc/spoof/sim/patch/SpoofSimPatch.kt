@@ -40,7 +40,7 @@ class SpoofSimPatch : BytecodePatch() {
         )
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Find all api call to check sim information
         buildMap {
             context.classes.forEach { classDef ->

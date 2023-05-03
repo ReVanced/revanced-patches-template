@@ -19,7 +19,7 @@ import java.io.File
 @CustomBrandingCompatibility
 @Version("0.0.1")
 class CustomBrandingPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         fun copyResources(resourceGroups: List<ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)

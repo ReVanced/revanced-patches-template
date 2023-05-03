@@ -28,7 +28,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         EngagementPanelControllerFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_player_popup_panels_enabled",

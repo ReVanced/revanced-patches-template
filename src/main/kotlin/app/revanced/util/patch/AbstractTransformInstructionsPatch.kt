@@ -20,7 +20,7 @@ internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() 
 
     abstract fun transform(mutableMethod: MutableMethod, entry: T)
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Find all instructions
         buildMap {
             context.classes.forEach { classDef ->

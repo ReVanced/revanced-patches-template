@@ -30,7 +30,7 @@ class AutoRepeatPatch : BytecodePatch(
         AutoRepeatParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_pref_auto_repeat",

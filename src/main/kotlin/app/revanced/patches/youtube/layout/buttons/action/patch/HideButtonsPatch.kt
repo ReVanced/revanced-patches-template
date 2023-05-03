@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @HideButtonsCompatibility
 @Version("0.0.1")
 class HideButtonsPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons",

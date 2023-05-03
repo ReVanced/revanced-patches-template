@@ -25,7 +25,7 @@ class FixBackToExitGesturePatch : BytecodePatch(
         OnBackPressedFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         RecyclerViewTopScrollingFingerprint.apply {
             resolve(
                 context,

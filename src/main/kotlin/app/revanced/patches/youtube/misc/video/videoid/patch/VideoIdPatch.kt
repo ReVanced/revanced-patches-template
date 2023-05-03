@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class VideoIdPatch : BytecodePatch(
     listOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         VideoIdFingerprint.result?.let { result ->
             val videoIdRegisterInstructionIndex = result.scanResult.patternScanResult!!.endIndex
 

@@ -14,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.base
 @PlayerControlsCompatibility
 @Version("0.0.1")
 class BottomControlsResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         resourceContext = context
         targetXmlEditor = context.base.editXmlFile(TARGET_RESOURCE)
 

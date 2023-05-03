@@ -22,7 +22,7 @@ class PlayerOverlaysHookPatch : BytecodePatch(
         PlayerOverlaysOnFinishInflateFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // hook YouTubePlayerOverlaysLayout.onFinishInflate()
         val method = PlayerOverlaysOnFinishInflateFingerprint.result!!.mutableMethod
         method.addInstruction(

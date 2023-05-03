@@ -31,7 +31,7 @@ class SpoofSignaturePatch : BytecodePatch(
                 "bf42c121d620ddfb7914f7a95c713d9e1c1b7bdb4a03d618e40cf7e9e235c0b5687e03b7ab3,publicExponent=10001}"
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SpoofSignatureFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """

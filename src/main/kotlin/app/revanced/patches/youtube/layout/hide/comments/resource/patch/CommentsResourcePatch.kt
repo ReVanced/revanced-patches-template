@@ -22,7 +22,7 @@ class CommentsResourcePatch : ResourcePatch {
         internal var shortsCommentsButtonId: Long = -1
     }
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_comments",

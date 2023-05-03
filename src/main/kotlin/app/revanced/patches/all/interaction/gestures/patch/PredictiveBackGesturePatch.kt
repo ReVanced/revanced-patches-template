@@ -14,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.manifestEditor
 @Description("Enables the predictive back gesture introduced on Android 13.")
 @Version("0.0.1")
 class PredictiveBackGesturePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         context.manifestEditor().use { editor ->
             val document = editor.file
 

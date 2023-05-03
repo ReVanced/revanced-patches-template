@@ -14,7 +14,7 @@ import app.revanced.patches.memegenerator.detection.license.fingerprint.LicenseV
 class LicenseValidationPatch : BytecodePatch(
     listOf(LicenseValidationFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         LicenseValidationFingerprint.result?.apply {
             mutableMethod.replaceInstructions(
                 0,

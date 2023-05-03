@@ -22,7 +22,7 @@ class CompactHeaderPatch : BytecodePatch(
         CompactHeaderConstructorFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = CompactHeaderConstructorFingerprint.result!!
         val method = result.mutableMethod
 

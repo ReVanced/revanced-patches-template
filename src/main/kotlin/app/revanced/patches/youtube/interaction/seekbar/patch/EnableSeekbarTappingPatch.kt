@@ -33,7 +33,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
         SeekbarTappingParentFingerprint, SeekbarTappingFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_enable_tap_seeking",

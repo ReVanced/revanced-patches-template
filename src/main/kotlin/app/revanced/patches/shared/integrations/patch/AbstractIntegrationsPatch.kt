@@ -46,7 +46,7 @@ abstract class AbstractIntegrationsPatch(
         }
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         if (context.classes.find { it.type == integrationsDescriptor } == null) return MISSING_INTEGRATIONS
 
         for (hook in hooks) hook.invoke(integrationsDescriptor).let {

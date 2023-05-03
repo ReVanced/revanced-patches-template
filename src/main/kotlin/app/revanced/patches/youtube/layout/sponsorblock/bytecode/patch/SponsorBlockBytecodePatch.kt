@@ -74,7 +74,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             "Lapp/revanced/integrations/sponsorblock/ui/SponsorBlockViewController;"
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         /*
          * Hook the video time methods
          */

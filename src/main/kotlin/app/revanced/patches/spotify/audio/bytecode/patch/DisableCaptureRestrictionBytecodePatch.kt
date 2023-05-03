@@ -30,7 +30,7 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
         DisableCaptureRestrictionAudioDriverFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val method = DisableCaptureRestrictionAudioDriverFingerprint.result!!.mutableMethod
 
         var invokePosition: Int? = null

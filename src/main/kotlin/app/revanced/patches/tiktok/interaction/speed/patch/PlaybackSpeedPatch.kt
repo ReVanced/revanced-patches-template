@@ -23,7 +23,7 @@ class PlaybackSpeedPatch : BytecodePatch(
         SpeedControlParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val parentMethod = SpeedControlParentFingerprint.result!!.mutableMethod
         val parentMethodInstructions = parentMethod.implementation!!.instructions
         for ((index, instruction) in parentMethodInstructions.withIndex()) {

@@ -25,7 +25,7 @@ class ResourceMappingPatch : ResourcePatch {
         fun resourceIdOf(type: String, name: String) = resourceContext!!.resourceIdOf(type, name)
     }
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         resourceContext = context
 
         return PatchResult.Success

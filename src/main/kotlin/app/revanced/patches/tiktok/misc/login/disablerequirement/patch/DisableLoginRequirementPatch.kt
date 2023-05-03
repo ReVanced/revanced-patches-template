@@ -23,7 +23,7 @@ class DisableLoginRequirementPatch : BytecodePatch(
         MandatoryLoginServiceFingerprint2
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         listOf(
             MandatoryLoginServiceFingerprint,
             MandatoryLoginServiceFingerprint2

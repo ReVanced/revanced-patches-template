@@ -27,7 +27,7 @@ class BreakingNewsPatch : BytecodePatch(
         BreakingNewsFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val breakingNewsResult = BreakingNewsFingerprint.result!!
         val breakingNewsMethod = breakingNewsResult.mutableMethod
 

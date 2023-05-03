@@ -22,7 +22,7 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @ThemeCompatibility
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
         val darkThemeSeekbarColor = darkThemeSeekbarColor!!

@@ -15,7 +15,7 @@ import org.w3c.dom.Element
 @DisableCaptureRestrictionCompatibility
 @Version("0.0.2")
 class DisableCaptureRestrictionResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         // create an xml editor instance
         context.manifestEditor().use { dom ->
             // get the application node

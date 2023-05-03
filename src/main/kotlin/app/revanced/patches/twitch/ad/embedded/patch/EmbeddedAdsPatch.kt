@@ -28,7 +28,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 class EmbeddedAdsPatch : BytecodePatch(
     listOf(CreateUsherClientFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = CreateUsherClientFingerprint.result
             ?: throw PatchException("${CreateUsherClientFingerprint.name} not found")
 

@@ -27,7 +27,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 class AudioAdsPatch : BytecodePatch(
     listOf(AudioAdsPresenterPlayFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Block playAds call
         with(AudioAdsPresenterPlayFingerprint.result!!) {
             mutableMethod.addInstructions(

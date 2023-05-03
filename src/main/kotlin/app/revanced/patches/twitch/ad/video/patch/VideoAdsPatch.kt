@@ -35,7 +35,7 @@ class VideoAdsPatch : AbstractAdPatch(
         GetReadyToShowAdFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         /* Amazon ads SDK */
         context.blockMethods(
             "Lcom/amazon/ads/video/player/AdsManagerImpl;",

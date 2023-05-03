@@ -31,7 +31,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 class GeneralAdsPatch : BytecodePatch(
     listOf(ReelConstructorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         fun String.buildHideCall(viewRegister: Int) = "invoke-static { v$viewRegister }, " +
                 "Lapp/revanced/integrations/patches/GeneralAdsPatch;" +
                 "->" +

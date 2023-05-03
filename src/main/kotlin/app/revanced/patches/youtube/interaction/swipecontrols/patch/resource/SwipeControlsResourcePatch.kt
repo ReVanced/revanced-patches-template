@@ -21,7 +21,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @SwipeControlsCompatibility
 @Version("0.0.1")
 class SwipeControlsResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_swipe_controls", StringResource("revanced_swipe_controls_title", "Swipe controls"), listOf(

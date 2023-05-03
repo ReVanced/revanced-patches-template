@@ -21,7 +21,7 @@ class BackgroundPlayPatch : BytecodePatch(
         BackgroundPlaybackDisableFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         BackgroundPlaybackDisableFingerprint.result!!.mutableMethod.addInstructions(
             0,
             """

@@ -27,7 +27,7 @@ class HideAdsPatch : BytecodePatch(
         ContainsAdFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         ContainsAdFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1

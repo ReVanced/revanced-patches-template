@@ -30,7 +30,7 @@ class CommentsPatch : BytecodePatch(
         ShortsCommentsButtonFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val shortsCommentsButtonResult = ShortsCommentsButtonFingerprint.result!!
         val shortsCommentsButtonMethod = shortsCommentsButtonResult.mutableMethod
 

@@ -38,7 +38,7 @@ class RememberVideoQualityPatch : BytecodePatch(
         VideoQualityItemOnClickParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",

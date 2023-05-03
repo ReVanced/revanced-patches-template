@@ -27,7 +27,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 class HideSeekbarPatch : BytecodePatch(
     listOf(SeekbarFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",

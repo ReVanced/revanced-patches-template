@@ -29,7 +29,7 @@ class VideoAdsPatch : BytecodePatch(
         LoadVideoAdsFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_video_ads_removal",

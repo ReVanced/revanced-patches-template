@@ -32,7 +32,7 @@ class HideTimelineAdsPatch : BytecodePatch(
         PaidPartnershipAdFingerprint // Unlike the other ads this one is resolved from all classes.
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // region Resolve required methods to check for ads.
 
         ShowAdFingerprint.result ?: return ShowAdFingerprint.error()

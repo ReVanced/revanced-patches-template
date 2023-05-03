@@ -22,7 +22,7 @@ class RemoveTasteBuilderPatch : BytecodePatch(
         TasteBuilderConstructorFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = TasteBuilderConstructorFingerprint.result!!
         val method = result.mutableMethod
 

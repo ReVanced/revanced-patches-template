@@ -22,7 +22,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch {
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         val youtubePackage = "com.google.android.youtube"
         SettingsPatch.addPreference(
             Preference(

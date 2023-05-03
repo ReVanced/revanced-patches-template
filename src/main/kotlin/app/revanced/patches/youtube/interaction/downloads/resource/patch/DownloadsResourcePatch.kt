@@ -21,7 +21,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 @DownloadsCompatibility
 @Version("0.0.1")
 class DownloadsResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_downloads",

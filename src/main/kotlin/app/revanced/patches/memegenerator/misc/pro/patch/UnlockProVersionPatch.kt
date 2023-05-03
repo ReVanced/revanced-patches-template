@@ -29,7 +29,7 @@ class UnlockProVersionPatch : BytecodePatch(
         IsFreeVersionFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         IsFreeVersionFingerprint.result?.apply {
             mutableMethod.replaceInstructions(0,
                 """

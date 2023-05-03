@@ -26,7 +26,7 @@ class GeneralAdsResourcePatch : ResourcePatch {
         var reelMultipleItemShelfId: Long = -1
     }
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_adremover_separator",

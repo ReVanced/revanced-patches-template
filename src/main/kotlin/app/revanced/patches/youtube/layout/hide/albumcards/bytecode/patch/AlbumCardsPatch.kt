@@ -27,7 +27,7 @@ class AlbumCardsPatch : BytecodePatch(
         AlbumCardsFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val albumCardsResult = AlbumCardsFingerprint.result!!
         val albumCardsMethod = albumCardsResult.mutableMethod
 

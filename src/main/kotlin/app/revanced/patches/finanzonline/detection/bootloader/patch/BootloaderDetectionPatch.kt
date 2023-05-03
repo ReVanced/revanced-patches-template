@@ -22,7 +22,7 @@ import app.revanced.patches.finanzonline.detection.shared.annotations.DetectionC
 class BootloaderDetectionPatch : BytecodePatch(
     listOf(BootloaderDetectionFingerprint, BootStateFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         arrayOf(BootloaderDetectionFingerprint, BootStateFingerprint).forEach { fingerprint ->
             fingerprint.result?.mutableMethod?.addInstruction(
                 0,

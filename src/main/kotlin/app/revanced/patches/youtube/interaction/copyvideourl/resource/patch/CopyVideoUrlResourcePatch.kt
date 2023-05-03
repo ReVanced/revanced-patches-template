@@ -22,7 +22,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @CopyVideoUrlCompatibility
 @Version("0.0.1")
 class CopyVideoUrlResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_copy_video_url",

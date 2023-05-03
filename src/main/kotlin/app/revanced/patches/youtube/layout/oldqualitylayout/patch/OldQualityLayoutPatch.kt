@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 class OldQualityLayoutPatch : BytecodePatch(
     listOf(QualityMenuViewInflateFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_use_old_style_quality_settings",

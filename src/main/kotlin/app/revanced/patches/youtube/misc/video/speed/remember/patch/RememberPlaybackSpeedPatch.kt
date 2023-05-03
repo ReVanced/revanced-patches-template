@@ -34,7 +34,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
         InitializePlaybackSpeedValuesFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_remember_playback_speed_last_selected",

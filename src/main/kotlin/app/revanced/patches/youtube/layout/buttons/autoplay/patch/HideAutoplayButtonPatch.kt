@@ -34,7 +34,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 class HideAutoplayButtonPatch : BytecodePatch(
     listOf(LayoutConstructorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",

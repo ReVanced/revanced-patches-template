@@ -29,7 +29,7 @@ class UnlockPrimePatch : BytecodePatch(
         const val PRIME_STATUS: Int = 512
     }
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         UnlockPrimeFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.endIndex + 1
 

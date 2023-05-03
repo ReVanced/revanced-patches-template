@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class ProUnlockPatch : BytecodePatch(
     listOf(ProUnlockFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = ProUnlockFingerprint.result ?: throw PatchException("${ProUnlockFingerprint.name} not found")
 
         val moveRegisterInstruction =

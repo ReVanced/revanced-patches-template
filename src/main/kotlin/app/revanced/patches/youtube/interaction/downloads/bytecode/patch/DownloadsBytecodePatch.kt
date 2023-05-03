@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.video.information.patch.VideoInformatio
 @DownloadsCompatibility
 @Version("0.0.1")
 class DownloadsBytecodePatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val integrationsPackage = "app/revanced/integrations"
         val classDescriptor = "L$integrationsPackage/videoplayer/DownloadButton;"
 

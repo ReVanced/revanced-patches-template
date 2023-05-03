@@ -15,7 +15,7 @@ import app.revanced.util.resources.ResourceUtils.manifestEditor
 @Description("Makes all app activities exportable.")
 @Version("0.0.1")
 class ExportAllActivitiesPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         context.manifestEditor().use { editor ->
             val document = editor.file
             val activities = document.getElementsByTagName("activity")

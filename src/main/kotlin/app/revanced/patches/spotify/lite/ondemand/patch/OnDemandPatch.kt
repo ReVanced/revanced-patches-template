@@ -22,7 +22,7 @@ class OnDemandPatch : BytecodePatch(
         OnDemandFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         OnDemandFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.endIndex - 1
             // Spoof a premium account

@@ -24,7 +24,7 @@ class UnlockPremiunPatch : BytecodePatch(
     )
 ) {
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         IsPremiumFingerprint.resolve(context,YukaUserConstructorFingerprint.result!!.classDef)
         val method = IsPremiumFingerprint.result!!.mutableMethod
         method.addInstructions(
