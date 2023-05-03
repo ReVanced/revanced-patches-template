@@ -25,6 +25,5 @@ class SignatureVerificationPatch : BytecodePatch(
             )
         } ?: throw VerifySignatureFingerprint.error()
 
-        return PatchResult.Success
     }
 }

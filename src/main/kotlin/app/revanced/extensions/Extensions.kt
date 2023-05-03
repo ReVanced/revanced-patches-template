@@ -12,7 +12,7 @@ import org.jf.dexlib2.util.MethodUtil
 /**
  * Throw a [PatchException] indicating that the fingerprint failed to resolve.
  */
-fun MethodFingerprint.error() = PatchException("Failed to resolve $name")
+fun MethodFingerprint.error(): Nothing = throw PatchException("Failed to resolve $name")
 
 /**
  * Find the [MutableMethod] from a given [Method] in a [MutableClass].

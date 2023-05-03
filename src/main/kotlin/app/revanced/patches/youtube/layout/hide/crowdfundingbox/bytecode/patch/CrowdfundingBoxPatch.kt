@@ -38,7 +38,6 @@ class CrowdfundingBoxPatch : BytecodePatch(
             }
         } ?: return CrowdfundingBoxFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

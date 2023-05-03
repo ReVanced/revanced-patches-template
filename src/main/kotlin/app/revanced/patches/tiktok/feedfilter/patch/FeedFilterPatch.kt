@@ -45,6 +45,5 @@ class FeedFilterPatch : BytecodePatch(
             0,
             "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableFeedFilter()V"
         )
-        return PatchResult.Success
     }
 }

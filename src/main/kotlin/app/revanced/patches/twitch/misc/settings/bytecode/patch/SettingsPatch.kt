@@ -102,7 +102,6 @@ class SettingsPatch : BytecodePatch(
         addString("revanced_reboot", "Restart")
         addString("revanced_cancel", "Cancel")
 
-        return PatchResult.Success
     }
 
     internal companion object {

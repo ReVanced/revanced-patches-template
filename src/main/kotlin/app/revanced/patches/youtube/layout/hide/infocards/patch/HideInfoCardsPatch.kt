@@ -70,6 +70,5 @@ class HideInfoCardsPatch : BytecodePatch(
             )
         }
 
-        return PatchResult.Success
     }
 }

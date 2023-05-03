@@ -37,6 +37,5 @@ class DisableLoginRequirementPatch : BytecodePatch(
             """
             )
         }
-        return PatchResult.Success
     }
 }

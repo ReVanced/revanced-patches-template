@@ -68,7 +68,6 @@ class SettingsPatch : BytecodePatch(
                 break
             }
         }
-        return PatchResult.Success
     }
 
     private fun findOptionsOnClickIndex(): IntArray {

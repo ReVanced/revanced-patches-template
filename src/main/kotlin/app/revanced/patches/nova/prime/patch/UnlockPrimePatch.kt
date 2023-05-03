@@ -44,6 +44,5 @@ class UnlockPrimePatch : BytecodePatch(
             )
         } ?: UnlockPrimeFingerprint.error()
 
-        return PatchResult.Success
     }
 }

@@ -35,6 +35,5 @@ class RemoveBroadcastsRestrictionPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 }

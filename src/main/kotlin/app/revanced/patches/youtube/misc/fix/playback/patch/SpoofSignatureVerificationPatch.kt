@@ -119,7 +119,6 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
             }
         } ?: return SubtitleWindowSettingsConstructorFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

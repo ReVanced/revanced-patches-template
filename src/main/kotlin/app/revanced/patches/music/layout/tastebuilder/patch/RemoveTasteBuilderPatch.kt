@@ -35,6 +35,5 @@ class RemoveTasteBuilderPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

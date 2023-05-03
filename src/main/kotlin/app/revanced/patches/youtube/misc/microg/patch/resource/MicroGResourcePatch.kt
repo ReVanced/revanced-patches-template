@@ -55,6 +55,5 @@ class MicroGResourcePatch : ResourcePatch {
         // add strings
         MicroGResourceHelper.addStrings(context)
 
-        return PatchResult.Success
     }
 }

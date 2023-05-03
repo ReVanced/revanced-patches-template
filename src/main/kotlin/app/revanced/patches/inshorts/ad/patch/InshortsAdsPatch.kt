@@ -32,6 +32,5 @@ class HideAdsPatch : BytecodePatch(
             }
         } ?: return InshortsAdsFingerprint.error()
 
-        return PatchResult.Success
     }
 }

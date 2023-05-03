@@ -28,6 +28,5 @@ class OnDemandPatch : BytecodePatch(
             // Spoof a premium account
             mutableMethod.addInstruction(insertIndex, "const/4 v0, 0x2")
         } ?: return OnDemandFingerprint.error()
-        return PatchResult.Success
     }
 }

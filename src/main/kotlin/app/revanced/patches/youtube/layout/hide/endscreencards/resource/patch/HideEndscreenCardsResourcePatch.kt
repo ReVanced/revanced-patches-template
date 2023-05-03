@@ -40,6 +40,5 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
         layoutIcon = findEndscreenResourceId("icon")
         layoutVideo = findEndscreenResourceId("video")
 
-        return PatchResult.Success
     }
 }

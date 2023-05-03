@@ -28,7 +28,6 @@ class ThemePatch : ResourcePatch {
         )
         resources.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource(resources))
 
-        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

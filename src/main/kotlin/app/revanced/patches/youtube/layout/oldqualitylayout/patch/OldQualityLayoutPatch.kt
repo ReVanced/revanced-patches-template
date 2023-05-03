@@ -55,6 +55,5 @@ class OldQualityLayoutPatch : BytecodePatch(
             "invoke-static { v$onItemClickViewRegister }, Lapp/revanced/integrations/patches/playback/quality/OldQualityLayoutPatch;->showOldQualityMenu(Landroid/widget/ListView;)V"
         )
 
-        return PatchResult.Success
     }
 }

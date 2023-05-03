@@ -30,6 +30,5 @@ class PremiumUnlockPatch : BytecodePatch(
                 return v0
             """
         )
-        return PatchResult.Success
     }
 }

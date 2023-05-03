@@ -50,6 +50,5 @@ class HideAdsPatch : BytecodePatch(
             }
             throw PatchException("Can not find required instruction.")
         }
-        return PatchResult.Success
     }
 }

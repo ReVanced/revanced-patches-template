@@ -30,6 +30,5 @@ class PremiumIconPatch : BytecodePatch(
                 return v0
             """
         )
-        return PatchResult.Success
     }
 }

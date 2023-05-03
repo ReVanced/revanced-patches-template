@@ -43,6 +43,5 @@ class CopyVideoUrlBytecodePatch : BytecodePatch() {
             PlayerControlsBytecodePatch.injectVisibilityCheckCall(visibilityDescriptor)
         }
 
-        return PatchResult.Success
     }
 }

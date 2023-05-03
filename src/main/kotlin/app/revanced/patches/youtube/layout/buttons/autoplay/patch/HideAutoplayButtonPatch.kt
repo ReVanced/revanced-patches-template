@@ -78,6 +78,5 @@ class HideAutoplayButtonPatch : BytecodePatch(
             )
         } ?: return LayoutConstructorFingerprint.error()
 
-        return PatchResult.Success
     }
 }

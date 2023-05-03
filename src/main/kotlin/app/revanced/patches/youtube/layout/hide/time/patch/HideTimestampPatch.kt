@@ -49,6 +49,5 @@ class HideTimestampPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

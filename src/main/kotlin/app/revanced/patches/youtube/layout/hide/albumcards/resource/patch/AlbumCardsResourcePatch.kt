@@ -34,6 +34,5 @@ class AlbumCardsResourcePatch : ResourcePatch {
 
         albumCardId = context.resourceIdOf("layout", "album_card")
 
-        return PatchResult.Success
     }
 }

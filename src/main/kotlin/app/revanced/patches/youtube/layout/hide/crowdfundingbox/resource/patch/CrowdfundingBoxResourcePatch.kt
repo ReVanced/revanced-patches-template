@@ -34,6 +34,5 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
 
         crowdfundingBoxId = context.resourceIdOf("layout", "donation_companion")
 
-        return PatchResult.Success
     }
 }

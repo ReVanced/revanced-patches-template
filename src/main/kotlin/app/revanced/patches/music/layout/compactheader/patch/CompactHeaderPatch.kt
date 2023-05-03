@@ -35,6 +35,5 @@ class CompactHeaderPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

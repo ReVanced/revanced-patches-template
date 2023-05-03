@@ -67,6 +67,5 @@ class MicroGBytecodePatch : BytecodePatch(
         // inject the notice for MicroG
         MicroGBytecodeHelper.injectNotice(WatchWhileActivityFingerprint)
 
-        return PatchResult.Success
     }
 }

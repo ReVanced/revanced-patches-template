@@ -34,6 +34,5 @@ class HideEmailAddressResourcePatch : ResourcePatch {
 
         accountSwitcherAccessibilityLabelId = context.resourceIdOf("string", "account_switcher_accessibility_label")
 
-        return PatchResult.Success
     }
 }

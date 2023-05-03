@@ -27,6 +27,5 @@ class IrplusAdsPatch : BytecodePatch(
         // the view which holds the advertisement is removed.
         method.addInstruction(0, "const/4 p2, 0x0")
 
-        return PatchResult.Success
     }
 }

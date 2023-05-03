@@ -38,7 +38,6 @@ class HideBannerPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

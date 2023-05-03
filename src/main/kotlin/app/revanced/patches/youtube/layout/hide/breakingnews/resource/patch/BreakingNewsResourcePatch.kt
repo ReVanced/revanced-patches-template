@@ -32,6 +32,5 @@ class BreakingNewsResourcePatch : ResourcePatch {
 
         horizontalCardListId = context.resourceIdOf("layout", "horizontal_card_list")
 
-        return PatchResult.Success
     }
 }

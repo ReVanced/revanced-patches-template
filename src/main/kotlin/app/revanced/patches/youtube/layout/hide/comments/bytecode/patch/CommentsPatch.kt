@@ -56,6 +56,5 @@ class CommentsPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

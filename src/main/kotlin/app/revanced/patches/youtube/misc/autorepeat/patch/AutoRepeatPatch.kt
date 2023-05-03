@@ -81,6 +81,5 @@ class AutoRepeatPatch : BytecodePatch(
         method.addInstructions(index, instructions)
 
         //Everything worked as expected, return Success
-        return PatchResult.Success
     }
 }

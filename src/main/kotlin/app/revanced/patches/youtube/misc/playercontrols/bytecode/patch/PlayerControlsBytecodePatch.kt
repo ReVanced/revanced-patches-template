@@ -33,7 +33,6 @@ class PlayerControlsBytecodePatch : BytecodePatch(
         listOf(BottomControlsInflateFingerprint).resolve(context, context.classes)
         inflateFingerprintResult = BottomControlsInflateFingerprint.result!!
 
-        return PatchResult.Success
     }
 
     internal companion object {

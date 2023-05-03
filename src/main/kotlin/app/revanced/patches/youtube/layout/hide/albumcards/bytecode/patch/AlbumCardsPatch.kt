@@ -39,6 +39,5 @@ class AlbumCardsPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

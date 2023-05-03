@@ -103,6 +103,5 @@ class EnableSeekbarTappingPatch : BytecodePatch(
                 move-result v0
             """
         )
-        return PatchResult.Success
     }
 }

@@ -19,6 +19,5 @@ class RootDetectionPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
         RootDetectionFingerprint.result!!.mutableMethod.addInstructions(0, "return-void")
-        return PatchResult.Success
     }
 }

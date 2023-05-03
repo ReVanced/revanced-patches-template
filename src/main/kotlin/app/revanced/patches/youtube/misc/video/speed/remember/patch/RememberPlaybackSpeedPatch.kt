@@ -114,7 +114,6 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
             )
         } ?: return InitializePlaybackSpeedValuesFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

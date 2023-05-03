@@ -65,6 +65,5 @@ class DebuggingPatch : ResourcePatch {
             )
         )
 
-        return PatchResult.Success
     }
 }

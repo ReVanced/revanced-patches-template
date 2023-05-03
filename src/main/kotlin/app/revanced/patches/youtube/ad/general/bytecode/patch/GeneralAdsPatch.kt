@@ -84,7 +84,6 @@ class GeneralAdsPatch : BytecodePatch(
 
         }
 
-        return PatchResult.Success
     }
 
 }

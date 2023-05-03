@@ -71,7 +71,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
 
         context.mergeStrings("settings/host/values/strings.xml")
 
-        return PatchResult.Success
     }
 
 

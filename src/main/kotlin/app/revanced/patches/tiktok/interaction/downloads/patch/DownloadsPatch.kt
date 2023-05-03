@@ -123,6 +123,5 @@ class DownloadsPatch : BytecodePatch(
             0,
             "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableDownload()V"
         )
-        return PatchResult.Success
     }
 }

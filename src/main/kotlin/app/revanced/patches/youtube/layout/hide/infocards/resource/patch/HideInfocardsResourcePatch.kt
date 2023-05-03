@@ -32,6 +32,5 @@ class HideInfocardsResourcePatch : ResourcePatch {
 
         drawerResourceId = context.resourceIdOf("id", "info_cards_drawer_header")
 
-        return PatchResult.Success
     }
 }

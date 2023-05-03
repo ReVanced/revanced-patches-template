@@ -48,6 +48,5 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
             }
         }
 
-        return PatchResult.Success
     }
 }

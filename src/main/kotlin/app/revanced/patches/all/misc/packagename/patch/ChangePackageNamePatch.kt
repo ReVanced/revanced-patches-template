@@ -38,7 +38,6 @@ class ChangePackageNamePatch : ResourcePatch {
 
         } ?: throw PatchException("No package name provided")
 
-        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

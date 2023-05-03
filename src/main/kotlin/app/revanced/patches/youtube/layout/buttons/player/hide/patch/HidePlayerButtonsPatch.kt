@@ -68,6 +68,5 @@ class HidePlayerButtonsPatch : BytecodePatch(
                 """
             )
         } ?: return PlayerControlsVisibilityModelFingerprint.error()
-        return PatchResult.Success
     }
 }

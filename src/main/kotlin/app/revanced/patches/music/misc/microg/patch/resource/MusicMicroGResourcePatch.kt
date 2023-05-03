@@ -35,6 +35,5 @@ class MusicMicroGResourcePatch : ResourcePatch {
             SPOOFED_PACKAGE_NAME,
             SPOOFED_PACKAGE_SIGNATURE
         )
-        return PatchResult.Success
     }
 }

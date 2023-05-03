@@ -76,7 +76,6 @@ class TabletMiniPlayerPatch : BytecodePatch(
          */
         MiniPlayerResponseModelSizeCheckFingerprint.addProxyCall()
 
-        return PatchResult.Success
     }
 
     // Helper methods.

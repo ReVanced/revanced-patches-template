@@ -28,6 +28,5 @@ class PlayerTypeHookPatch : BytecodePatch(
             0,
             "invoke-static { p1 }, Lapp/revanced/integrations/patches/PlayerTypeHookPatch;->YouTubePlayerOverlaysLayout_updatePlayerTypeHookEX(Ljava/lang/Object;)V"
         )
-        return PatchResult.Success
     }
 }

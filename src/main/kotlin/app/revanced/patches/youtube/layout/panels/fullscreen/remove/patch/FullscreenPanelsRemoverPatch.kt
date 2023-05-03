@@ -58,6 +58,5 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

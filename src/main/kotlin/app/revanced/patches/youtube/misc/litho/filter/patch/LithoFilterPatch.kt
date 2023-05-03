@@ -70,7 +70,6 @@ class LithoFilterPatch : BytecodePatch(
             }
         } ?: return ComponentContextParserFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

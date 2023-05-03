@@ -46,6 +46,5 @@ class HideEmailAddressPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

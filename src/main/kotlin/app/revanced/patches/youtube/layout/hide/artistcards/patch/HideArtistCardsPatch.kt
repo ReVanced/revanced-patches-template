@@ -31,6 +31,5 @@ class HideArtistCardsPatch : ResourcePatch {
                 StringResource("revanced_hide_artist_cards_off", "Artist cards is shown")
             ),
         )
-        return PatchResult.Success
     }
 }

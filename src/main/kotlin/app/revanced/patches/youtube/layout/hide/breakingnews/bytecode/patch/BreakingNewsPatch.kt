@@ -40,6 +40,5 @@ class BreakingNewsPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

@@ -28,6 +28,5 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 """
         )
 
-        return PatchResult.Success
     }
 }

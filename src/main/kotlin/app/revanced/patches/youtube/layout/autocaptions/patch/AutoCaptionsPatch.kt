@@ -74,6 +74,5 @@ class AutoCaptionsPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

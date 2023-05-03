@@ -27,6 +27,5 @@ class ExclusiveAudioPatch : BytecodePatch(
         method.replaceInstruction(method.implementation!!.instructions.count() - 1, "const/4 v0, 0x1")
         method.addInstruction("return v0")
 
-        return PatchResult.Success
     }
 }

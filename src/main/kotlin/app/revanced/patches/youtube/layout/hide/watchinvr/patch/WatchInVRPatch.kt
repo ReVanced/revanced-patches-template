@@ -49,6 +49,5 @@ class WatchInVRPatch : BytecodePatch(
                 """
         )
 
-        return PatchResult.Success
     }
 }

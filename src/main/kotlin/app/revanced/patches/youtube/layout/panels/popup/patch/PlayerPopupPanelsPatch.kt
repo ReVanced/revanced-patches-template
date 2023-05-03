@@ -55,6 +55,5 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

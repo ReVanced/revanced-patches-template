@@ -59,6 +59,5 @@ class OpenLinksExternallyPatch : BytecodePatch(
             }
         }
 
-        return PatchResult.Success
     }
 }

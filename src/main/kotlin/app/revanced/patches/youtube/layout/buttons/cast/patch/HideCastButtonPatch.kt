@@ -50,6 +50,5 @@ class HideCastButtonPatch : BytecodePatch() {
             }
         }
 
-        return PatchResult.Success
     }
 }

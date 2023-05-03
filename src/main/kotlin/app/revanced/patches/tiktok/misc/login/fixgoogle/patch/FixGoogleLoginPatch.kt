@@ -38,6 +38,5 @@ class FixGoogleLoginPatch : BytecodePatch(
                 )
             }
         }
-        return PatchResult.Success
     }
 }

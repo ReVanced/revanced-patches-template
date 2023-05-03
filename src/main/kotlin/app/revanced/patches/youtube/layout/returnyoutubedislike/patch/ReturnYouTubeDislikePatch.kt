@@ -161,7 +161,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        return PatchResult.Success
     }
 
     private companion object {

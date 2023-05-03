@@ -84,7 +84,6 @@ class SpoofAppVersionPatch : BytecodePatch(
             )
         } ?: return SpoofAppVersionFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

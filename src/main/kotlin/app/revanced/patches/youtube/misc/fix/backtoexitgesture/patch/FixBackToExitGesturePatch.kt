@@ -52,7 +52,6 @@ class FixBackToExitGesturePatch : BytecodePatch(
             }
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

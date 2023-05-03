@@ -98,6 +98,5 @@ class ShowDeletedMessagesPatch : BytecodePatch(
 
         SettingsPatch.addString("revanced_deleted_msg", "message deleted")
 
-        return PatchResult.Success
     }
 }

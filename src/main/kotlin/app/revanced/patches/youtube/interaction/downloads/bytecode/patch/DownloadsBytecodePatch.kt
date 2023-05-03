@@ -38,6 +38,5 @@ class DownloadsBytecodePatch : BytecodePatch() {
         val changeVisibilityDescriptor = "$classDescriptor->changeVisibility(Z)V"
         PlayerControlsBytecodePatch.injectVisibilityCheckCall(changeVisibilityDescriptor)
 
-        return PatchResult.Success
     }
 }

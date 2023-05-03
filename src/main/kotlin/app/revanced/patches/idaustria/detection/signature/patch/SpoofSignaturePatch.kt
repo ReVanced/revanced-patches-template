@@ -39,6 +39,5 @@ class SpoofSignaturePatch : BytecodePatch(
                 return-object v0 
             """
         )
-        return PatchResult.Success
     }
 }

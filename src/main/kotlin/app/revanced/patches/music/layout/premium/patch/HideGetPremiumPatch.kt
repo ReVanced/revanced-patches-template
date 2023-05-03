@@ -45,6 +45,5 @@ class HideGetPremiumPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

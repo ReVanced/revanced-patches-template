@@ -62,6 +62,5 @@ class SwipeControlsBytecodePatch : BytecodePatch(
                 ).toMutable()
             }
         }
-        return PatchResult.Success
     }
 }

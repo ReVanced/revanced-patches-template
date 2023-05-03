@@ -37,7 +37,6 @@ class HidePlayerOverlayPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

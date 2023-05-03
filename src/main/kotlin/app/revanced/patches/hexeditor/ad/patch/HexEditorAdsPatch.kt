@@ -32,6 +32,5 @@ class HexEditorAdsPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

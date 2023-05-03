@@ -37,7 +37,6 @@ class ExportAllActivitiesPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

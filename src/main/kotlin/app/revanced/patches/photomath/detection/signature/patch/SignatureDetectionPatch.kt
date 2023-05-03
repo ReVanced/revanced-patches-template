@@ -26,7 +26,6 @@ class SignatureDetectionPatch : BytecodePatch(
             mutableMethod.replaceInstruction(signatureCheckInstruction.location.index, "const/4 v$checkRegister, 0x1")
         } ?: throw CheckSignatureFingerprint.error()
 
-        return PatchResult.Success
     }
 
 }

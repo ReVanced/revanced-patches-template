@@ -105,6 +105,5 @@ class SwipeControlsResourcePatch : ResourcePatch {
                 "ic_sc_volume_normal.xml"
             )
         )
-        return PatchResult.Success
     }
 }

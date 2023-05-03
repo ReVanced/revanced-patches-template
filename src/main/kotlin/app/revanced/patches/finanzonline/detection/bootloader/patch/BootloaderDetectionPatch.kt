@@ -32,6 +32,5 @@ class BootloaderDetectionPatch : BytecodePatch(
                 """
             ) ?: return fingerprint.error()
         }
-        return PatchResult.Success
     }
 }

@@ -34,7 +34,6 @@ class UnlockPremiunPatch : BytecodePatch(
                 return v0
             """
         )
-        return PatchResult.Success
     }
 
 }

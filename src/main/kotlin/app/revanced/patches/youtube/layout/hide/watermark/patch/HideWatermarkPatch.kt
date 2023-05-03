@@ -56,6 +56,5 @@ class HideWatermarkPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

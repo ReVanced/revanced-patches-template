@@ -61,6 +61,5 @@ class AudioAdsPatch : BytecodePatch(
             )
         )
 
-        return PatchResult.Success
     }
 }

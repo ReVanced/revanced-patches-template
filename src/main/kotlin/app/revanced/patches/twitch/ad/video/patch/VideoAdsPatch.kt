@@ -144,6 +144,5 @@ class VideoAdsPatch : AbstractAdPatch(
             )
         )
 
-        return PatchResult.Success
     }
 }

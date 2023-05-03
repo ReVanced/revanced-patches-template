@@ -147,7 +147,6 @@ class CustomVideoSpeedPatch : BytecodePatch(
             )
         )
 
-        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

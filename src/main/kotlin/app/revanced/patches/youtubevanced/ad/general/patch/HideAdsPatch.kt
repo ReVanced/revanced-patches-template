@@ -58,6 +58,5 @@ class HideAdsPatch : BytecodePatch(
             }
         } ?: return ContainsAdFingerprint.error()
 
-        return PatchResult.Success
     }
 }

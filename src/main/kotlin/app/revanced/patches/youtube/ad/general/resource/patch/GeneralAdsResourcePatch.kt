@@ -286,6 +286,5 @@ class GeneralAdsResourcePatch : ResourcePatch {
         adAttributionId = context.resourceIdOf("id", "ad_attribution")
         reelMultipleItemShelfId = context.resourceIdOf("layout", "reel_multiple_items_shelf")
 
-        return PatchResult.Success
     }
 }

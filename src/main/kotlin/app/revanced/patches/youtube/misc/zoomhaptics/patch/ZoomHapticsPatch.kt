@@ -48,6 +48,5 @@ class ZoomHapticsPatch : BytecodePatch(
             """, listOf(ExternalLabel("vibrate", zoomHapticsFingerprintMethod.instruction(0)))
         )
 
-        return PatchResult.Success
     }
 }

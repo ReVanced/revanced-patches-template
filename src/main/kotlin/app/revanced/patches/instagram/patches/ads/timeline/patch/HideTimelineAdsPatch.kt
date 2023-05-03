@@ -102,6 +102,5 @@ class HideTimelineAdsPatch : BytecodePatch(
             // endregion
         }
 
-        return PatchResult.Success
     }
 }

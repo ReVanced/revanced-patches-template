@@ -41,6 +41,5 @@ class PlaybackSpeedPatch : BytecodePatch(
             )
             break
         }
-        return PatchResult.Success
     }
 }

@@ -29,6 +29,5 @@ class CustomVideoBufferPatch : BytecodePatch() {
             )
         )
 
-        return PatchResult.Success
     }
 }

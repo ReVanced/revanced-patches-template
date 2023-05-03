@@ -51,7 +51,6 @@ abstract class AbstractSettingsResourcePatch(
         /* prepare xml editors */
         revancedPreferencesEditor = context.base.editXmlFile("res/xml/$preferenceFileName.xml")
 
-        return PatchResult.Success
     }
 
     internal companion object {

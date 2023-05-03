@@ -53,6 +53,5 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

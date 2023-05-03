@@ -173,7 +173,6 @@ class RememberVideoQualityPatch : BytecodePatch(
                 )
             } ?: throw PatchException("Failed to find onItemClick method")
         } ?: return VideoQualityItemOnClickParentFingerprint.error()
-        return PatchResult.Success
     }
 
     private companion object {

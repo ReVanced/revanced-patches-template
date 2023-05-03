@@ -57,6 +57,5 @@ internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() 
             }
         }
 
-        return PatchResult.Success
     }
 }

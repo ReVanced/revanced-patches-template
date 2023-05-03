@@ -54,7 +54,6 @@ class JsonHookPatch : BytecodePatch(
                 """
             ) ?: throw PatchException("Could not find method to hook.")
 
-        return PatchResult.Success
     }
 
     /**

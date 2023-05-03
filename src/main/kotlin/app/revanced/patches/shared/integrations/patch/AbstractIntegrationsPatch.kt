@@ -38,7 +38,6 @@ abstract class AbstractIntegrationsPatch(
                 )
             } ?: throw PatchException("Could not find hook target fingerprint.")
 
-            return PatchResult.Success
         }
 
         interface RegisterResolver : (Method) -> Int {
@@ -53,7 +52,6 @@ abstract class AbstractIntegrationsPatch(
             if (it is PatchResult.Error) return it
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

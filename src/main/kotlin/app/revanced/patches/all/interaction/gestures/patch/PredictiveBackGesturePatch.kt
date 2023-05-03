@@ -28,7 +28,6 @@ class PredictiveBackGesturePatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

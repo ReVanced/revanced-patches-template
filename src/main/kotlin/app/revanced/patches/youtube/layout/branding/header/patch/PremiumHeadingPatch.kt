@@ -28,6 +28,5 @@ class PremiumHeadingPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 }

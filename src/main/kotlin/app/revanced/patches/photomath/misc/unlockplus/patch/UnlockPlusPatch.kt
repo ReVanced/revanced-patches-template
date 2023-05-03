@@ -36,7 +36,6 @@ class UnlockPlusPatch : BytecodePatch(
             )
         } ?: return IsPlusUnlockedFingerprint.error()
 
-        return PatchResult.Success
     }
 
 }

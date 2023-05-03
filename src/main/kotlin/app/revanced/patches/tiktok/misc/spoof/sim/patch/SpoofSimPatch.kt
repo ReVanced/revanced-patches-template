@@ -91,7 +91,6 @@ class SpoofSimPatch : BytecodePatch() {
             )
         }
 
-        return PatchResult.Success
     }
 
     // Patch Android API and return fake sim information

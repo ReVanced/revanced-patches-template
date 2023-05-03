@@ -49,6 +49,5 @@ class DynamicColorPatch : ResourcePatch {
             )
         }
 
-        return PatchResult.Success
     }
 }

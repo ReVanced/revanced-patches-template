@@ -33,6 +33,5 @@ class VerticalScrollPatch : BytecodePatch(
             )
         }
 
-        return PatchResult.Success
     }
 }

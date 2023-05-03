@@ -29,6 +29,5 @@ class PlayerOverlaysHookPatch : BytecodePatch(
             method.implementation!!.instructions.size - 2,
             "invoke-static { p0 }, Lapp/revanced/integrations/patches/PlayerOverlaysHookPatch;->YouTubePlayerOverlaysLayout_onFinishInflateHook(Ljava/lang/Object;)V"
         )
-        return PatchResult.Success
     }
 }

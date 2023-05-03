@@ -36,6 +36,5 @@ class ProUnlockPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

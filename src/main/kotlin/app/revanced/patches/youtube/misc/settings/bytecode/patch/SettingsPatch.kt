@@ -105,7 +105,6 @@ class SettingsPatch : BytecodePatch(
             }
         }
 
-        return PatchResult.Success
     }
 
     internal companion object {

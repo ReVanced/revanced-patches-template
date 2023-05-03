@@ -30,7 +30,6 @@ class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
         )
 
         fabButtonId = context.resourceIdOf("id", "fab")
-        return PatchResult.Success
     }
 
     internal companion object {

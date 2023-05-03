@@ -40,7 +40,6 @@ class HideFloatingMicrophoneButtonPatch : BytecodePatch(
             }
         } ?: return ShowFloatingMicrophoneButtonFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

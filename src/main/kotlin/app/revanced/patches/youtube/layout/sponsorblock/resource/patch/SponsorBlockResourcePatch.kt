@@ -102,6 +102,5 @@ class SponsorBlockResourcePatch : ResourcePatch {
             }
         }.close() // close afterwards
 
-        return PatchResult.Success
     }
 }

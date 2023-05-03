@@ -30,6 +30,5 @@ class BackgroundPlayPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

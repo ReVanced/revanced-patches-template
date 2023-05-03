@@ -35,6 +35,5 @@ class BypassCertificateChecksPatch : BytecodePatch(
             }
         } ?: return CheckCertificateFingerprint.error()
 
-        return PatchResult.Success
     }
 }

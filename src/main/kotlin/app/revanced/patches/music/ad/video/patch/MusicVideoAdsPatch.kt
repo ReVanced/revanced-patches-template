@@ -34,6 +34,5 @@ class MusicVideoAdsPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

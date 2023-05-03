@@ -72,6 +72,5 @@ class CreateButtonRemoverPatch : BytecodePatch() {
         }
 
 
-        return PatchResult.Success
     }
 }

@@ -18,7 +18,6 @@ class BottomControlsResourcePatch : ResourcePatch {
         resourceContext = context
         targetXmlEditor = context.base.editXmlFile(TARGET_RESOURCE)
 
-        return PatchResult.Success
     }
 
     companion object {

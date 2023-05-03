@@ -58,6 +58,5 @@ class HDRBrightnessPatch : BytecodePatch(
             )
         }
 
-        return PatchResult.Success
     }
 }

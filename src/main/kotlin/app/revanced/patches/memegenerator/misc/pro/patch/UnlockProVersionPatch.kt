@@ -39,6 +39,5 @@ class UnlockProVersionPatch : BytecodePatch(
             )
         } ?: throw IsFreeVersionFingerprint.error()
 
-        return PatchResult.Success
     }
 }

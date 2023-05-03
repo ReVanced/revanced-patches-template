@@ -28,6 +28,5 @@ class ResourceMappingPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         resourceContext = context
 
-        return PatchResult.Success
     }
 }

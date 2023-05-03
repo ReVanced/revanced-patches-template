@@ -49,6 +49,5 @@ class CodecsUnlockPatch : BytecodePatch(
             "invoke-static {}, ${allCodecsMethod.definingClass}->${allCodecsMethod.name}()Ljava/util/Set;".toInstruction()
         )
 
-        return PatchResult.Success
     }
 }

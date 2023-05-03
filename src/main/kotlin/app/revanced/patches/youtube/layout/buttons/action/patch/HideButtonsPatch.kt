@@ -69,6 +69,5 @@ class HideButtonsPatch : ResourcePatch {
                 StringResource("revanced_hide_buttons_summary", "Hide or show buttons under videos")
             )
         )
-        return PatchResult.Success
     }
 }

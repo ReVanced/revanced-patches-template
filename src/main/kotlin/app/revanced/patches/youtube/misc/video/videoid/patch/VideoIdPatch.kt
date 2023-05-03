@@ -48,7 +48,6 @@ class VideoIdPatch : BytecodePatch(
             }
         } ?: return VideoIdFingerprintBackgroundPlay.error()
 
-        return PatchResult.Success
     }
 
     companion object {

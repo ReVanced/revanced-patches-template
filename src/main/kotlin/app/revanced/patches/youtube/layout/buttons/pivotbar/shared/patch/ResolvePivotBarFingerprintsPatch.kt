@@ -37,6 +37,5 @@ class ResolvePivotBarFingerprintsPatch : BytecodePatch(
                 )
             ) return InitializeButtonsFingerprint.error()
         } ?: return PivotBarConstructorFingerprint.error()
-        return PatchResult.Success
     }
 }

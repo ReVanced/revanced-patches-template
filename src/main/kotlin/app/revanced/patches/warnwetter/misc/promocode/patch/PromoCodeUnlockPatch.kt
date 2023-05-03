@@ -39,7 +39,6 @@ class PromoCodeUnlockPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 
 

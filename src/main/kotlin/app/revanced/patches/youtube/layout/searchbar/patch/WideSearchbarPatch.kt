@@ -52,7 +52,6 @@ class WideSearchbarPatch : BytecodePatch(
             context.walkMutable(callIndex, fingerprint).injectSearchBarHook()
         }
 
-        return PatchResult.Success
     }
 
     private companion object {

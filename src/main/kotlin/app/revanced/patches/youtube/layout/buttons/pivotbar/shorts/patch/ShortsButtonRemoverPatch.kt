@@ -87,6 +87,5 @@ class ShortsButtonRemoverPatch : BytecodePatch() {
             initializeButtonsResult.mutableMethod.injectHook(hook, insertIndex)
         }
 
-        return PatchResult.Success
     }
 }

@@ -33,6 +33,5 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 }

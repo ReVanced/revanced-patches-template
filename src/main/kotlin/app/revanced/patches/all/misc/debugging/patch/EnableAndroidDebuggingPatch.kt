@@ -27,7 +27,6 @@ class EnableAndroidDebuggingPatch : ResourcePatch {
             }
         }
 
-        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

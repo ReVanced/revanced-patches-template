@@ -82,7 +82,6 @@ class MinimizedPlaybackPatch : BytecodePatch(
             )
         } ?: return KidsMinimizedPlaybackPolicyControllerFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

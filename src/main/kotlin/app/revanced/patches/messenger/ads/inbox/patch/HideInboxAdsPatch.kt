@@ -22,7 +22,6 @@ class HideInboxAdsPatch : BytecodePatch(
             this.replaceInstruction(0, "return-void")
         } ?: return LoadInboxAdsFingerprint.error()
 
-        return PatchResult.Success
     }
 }
 

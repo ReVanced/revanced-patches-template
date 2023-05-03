@@ -49,7 +49,6 @@ class ThemePatch : ResourcePatch {
             )
         }
 
-        return PatchResult.Success
     }
 
     private val dark = arrayOf(

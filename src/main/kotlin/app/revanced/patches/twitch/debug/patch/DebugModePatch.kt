@@ -70,6 +70,5 @@ class DebugModePatch : BytecodePatch(
             )
         )
 
-        return PatchResult.Success
     }
 }

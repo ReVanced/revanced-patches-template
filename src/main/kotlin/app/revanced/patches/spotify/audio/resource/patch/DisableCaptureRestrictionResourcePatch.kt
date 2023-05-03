@@ -28,6 +28,5 @@ class DisableCaptureRestrictionResourcePatch : ResourcePatch {
             applicationNode.setAttribute("android:allowAudioPlaybackCapture", "true")
         }
 
-        return PatchResult.Success
     }
 }

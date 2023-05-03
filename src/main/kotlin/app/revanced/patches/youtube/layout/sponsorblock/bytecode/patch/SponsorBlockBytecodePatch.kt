@@ -299,6 +299,5 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
         // TODO: isSBChannelWhitelisting implementation
 
-        return PatchResult.Success
     }
 }

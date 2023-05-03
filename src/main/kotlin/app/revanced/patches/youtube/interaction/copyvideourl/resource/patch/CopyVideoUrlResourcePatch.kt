@@ -55,6 +55,5 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
 
         BottomControlsResourcePatch.addControls("copyvideourl/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
-        return PatchResult.Success
     }
 }

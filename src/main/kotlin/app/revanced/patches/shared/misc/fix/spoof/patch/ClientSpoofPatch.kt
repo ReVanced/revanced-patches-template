@@ -32,7 +32,6 @@ class ClientSpoofPatch : BytecodePatch(
 
         } ?: return UserAgentHeaderBuilderFingerprint.error()
 
-        return PatchResult.Success
     }
 
     private companion object {

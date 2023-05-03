@@ -28,7 +28,6 @@ class HideViewsBytecodePatch : BytecodePatch(
         removeTweetStatViewInitializer(context)
         removeTweetStatViewWrapperInitializer(context)
         removeViewDelegateBinderSubscription()
-        return PatchResult.Success
     }
 
     private fun removeViewsFromTimeline(context: BytecodeContext) {

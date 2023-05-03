@@ -30,6 +30,5 @@ class LithoThemePatch : BytecodePatch(
                 move-result p1
             """
         )
-        return PatchResult.Success
     }
 }

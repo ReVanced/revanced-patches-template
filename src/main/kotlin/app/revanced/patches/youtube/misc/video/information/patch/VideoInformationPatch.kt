@@ -151,7 +151,6 @@ class VideoInformationPatch : BytecodePatch(
 
         userSelectedPlaybackSpeedHook(INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 
-        return PatchResult.Success
     }
 
     companion object {

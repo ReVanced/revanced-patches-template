@@ -65,6 +65,5 @@ class DownloadsResourcePatch : ResourcePatch {
 
         BottomControlsResourcePatch.addControls("downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
-        return PatchResult.Success
     }
 }

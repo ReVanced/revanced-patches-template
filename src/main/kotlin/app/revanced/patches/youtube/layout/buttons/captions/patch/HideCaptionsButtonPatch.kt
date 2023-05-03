@@ -50,6 +50,5 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
             """
         )
 
-        return PatchResult.Success
     }
 }

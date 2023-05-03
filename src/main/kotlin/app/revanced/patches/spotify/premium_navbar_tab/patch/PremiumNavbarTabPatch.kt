@@ -56,6 +56,5 @@ class PremiumNavbarTabPatch : BytecodePatch(
             if (--removeAmount == 0) break
         }
 
-        return PatchResult.Success
     }
 }

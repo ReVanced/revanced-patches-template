@@ -52,6 +52,5 @@ class HideSeekbarPatch : BytecodePatch(
         """
         )
 
-        return PatchResult.Success
     }
 }

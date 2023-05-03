@@ -65,7 +65,6 @@ class CustomBrandingPatch : ResourcePatch {
             )
         }
 
-        return PatchResult.Success
     }
 
     companion object : OptionsContainer() {

@@ -32,6 +32,5 @@ class UnlockProPatch : BytecodePatch(
             """
         )
 
-        return PatchResult.Success
     }
 }

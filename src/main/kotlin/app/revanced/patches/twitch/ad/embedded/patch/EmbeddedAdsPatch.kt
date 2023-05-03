@@ -72,6 +72,5 @@ class EmbeddedAdsPatch : BytecodePatch(
         SettingsPatch.addString("revanced_embedded_ads_service_unavailable", "%s is unavailable. Ads may show. Try switching to another ad block service in settings.")
         SettingsPatch.addString("revanced_embedded_ads_service_failed", "%s server returned an error. Ads may show. Try switching to another ad block service in settings.")
 
-        return PatchResult.Success
     }
 }

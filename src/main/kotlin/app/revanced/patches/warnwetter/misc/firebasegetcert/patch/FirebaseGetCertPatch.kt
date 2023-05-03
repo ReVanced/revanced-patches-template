@@ -40,6 +40,5 @@ class FirebaseGetCertPatch : BytecodePatch(
             spoofedInstruction
         )
 
-        return PatchResult.Success
     }
 }

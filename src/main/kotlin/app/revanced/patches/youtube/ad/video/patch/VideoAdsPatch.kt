@@ -51,6 +51,5 @@ class VideoAdsPatch : BytecodePatch(
             """, listOf(ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.instruction(0)))
         )
 
-        return PatchResult.Success
     }
 }

@@ -72,6 +72,5 @@ class RemoveUpgradeButtonPatch : BytecodePatch(
         implementation.addInstructions(
             endIndex, instructionList
         )
-        return PatchResult.Success
     }
 }

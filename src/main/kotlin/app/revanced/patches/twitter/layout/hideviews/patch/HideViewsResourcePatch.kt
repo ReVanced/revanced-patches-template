@@ -30,6 +30,5 @@ class HideViewsResourcePatch : ResourcePatch {
                     .forEach { it.parentNode.removeChild(it) }
             }
         }
-        return PatchResult.Success
     }
 }

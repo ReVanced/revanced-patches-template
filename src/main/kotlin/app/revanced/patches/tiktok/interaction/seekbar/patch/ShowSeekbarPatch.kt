@@ -44,7 +44,6 @@ class ShowSeekbarPatch : BytecodePatch(
                 )
             )
         } ?: return AwemeGetVideoControlFingerprint.error()
-        return PatchResult.Success
     }
 
 }
