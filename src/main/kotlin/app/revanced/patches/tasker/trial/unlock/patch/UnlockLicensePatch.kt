@@ -27,6 +27,5 @@ class UnlockLicensePatch : BytecodePatch(
         ?.mutableMethod
         // Return the method early, which prompts the user with a non dismissible dialog, when the trial period is over.
         ?.addInstruction(0, "return-void")
-        ?.let { PatchResult.Success }
         ?: CheckLicenseFingerprint.error()
 }

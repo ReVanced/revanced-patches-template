@@ -45,11 +45,7 @@ class FixBackToExitGesturePatch : BytecodePatch(
                 "p0", "onBackPressed", "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
             )
         ).forEach { (fingerprint, target) ->
-            try {
-                fingerprint.injectCall(target)
-            } catch (error: PatchResult.Error) {
-                return error
-            }
+            fingerprint.injectCall(target)
         }
 
     }

@@ -24,6 +24,5 @@ class LicenseValidationPatch : BytecodePatch(
                 """
             )
         } ?: throw LicenseValidationFingerprint.error()
-
     }
 }

@@ -61,5 +61,5 @@ class MusicMicroGBytecodePatch : BytecodePatch(
                 CastDynamiteModuleV2Fingerprint,
                 CastContextFetchFingerprint
             )
-        ).let { PatchResult.Success }
+        )
 }

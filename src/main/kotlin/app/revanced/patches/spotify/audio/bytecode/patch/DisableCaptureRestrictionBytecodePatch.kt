@@ -72,10 +72,8 @@ class DisableCaptureRestrictionBytecodePatch : BytecodePatch(
             break
         }
 
-        return if (matchFound)
-            PatchResult.Success
-        else
-            PatchResult.Error("Const instruction not found")
+        if (!matchFound)
+            throw PatchException("Const instruction not found")
     }
 
     private companion object {

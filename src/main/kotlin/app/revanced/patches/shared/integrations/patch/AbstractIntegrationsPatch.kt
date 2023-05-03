@@ -27,7 +27,7 @@ abstract class AbstractIntegrationsPatch(
         customFingerprint: ((methodDef: Method) -> Boolean)? = null,
         private val contextRegisterResolver: (Method) -> Int = object : RegisterResolver {}
     ) : MethodFingerprint(strings = strings, customFingerprint = customFingerprint) {
-        fun invoke(integrationsDescriptor: String): PatchResult {
+        fun invoke(integrationsDescriptor: String) {
             result?.mutableMethod?.let { method ->
                 val contextRegister = contextRegisterResolver(method)
 
@@ -37,7 +37,6 @@ abstract class AbstractIntegrationsPatch(
                             "$integrationsDescriptor->context:Landroid/content/Context;"
                 )
             } ?: throw PatchException("Could not find hook target fingerprint.")
-
         }
 
         interface RegisterResolver : (Method) -> Int {
@@ -46,16 +45,14 @@ abstract class AbstractIntegrationsPatch(
     }
 
     override fun execute(context: BytecodeContext) {
-        if (context.classes.find { it.type == integrationsDescriptor } == null) return MISSING_INTEGRATIONS
+        if (context.classes.find { it.type == integrationsDescriptor } == null) throw MISSING_INTEGRATIONS
 
-        for (hook in hooks) hook.invoke(integrationsDescriptor).let {
-            if (it is PatchResult.Error) return it
-        }
+        for (hook in hooks) hook.invoke(integrationsDescriptor)
 
     }
 
     private companion object {
-        val MISSING_INTEGRATIONS = PatchResult.Error(
+        val MISSING_INTEGRATIONS = PatchException(
             "Integrations have not been merged yet. " +
                     "This patch can not succeed without merging the integrations."
         )
