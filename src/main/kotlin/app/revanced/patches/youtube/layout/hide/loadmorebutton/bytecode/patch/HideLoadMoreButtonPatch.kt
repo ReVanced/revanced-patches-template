@@ -38,7 +38,7 @@ class HideLoadMoreButtonPatch : BytecodePatch(
 
                 addInstruction(
                     insertIndex,
-                    "invoke-static {v$viewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideView(Landroid/view/View;)V"
+                    "invoke-static {v$viewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideLoadMoreButton(Landroid/view/View;)V"
                 )
             }
         } ?: return HideLoadMoreButtonFingerprint.toErrorResult()
