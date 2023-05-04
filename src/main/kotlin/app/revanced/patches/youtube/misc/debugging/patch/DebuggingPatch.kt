@@ -56,9 +56,9 @@ class DebuggingPatch : ResourcePatch {
                         StringResource("revanced_debug_toast_on_error_summary_on", "Toast shown if error occurs"),
                         StringResource("revanced_debug_toast_on_error_summary_off", "Toast not shown if error occurs"),
                         StringResource("revanced_debug_toast_on_error_user_dialog_message",
-                            "Turning off error toasts hides all ReVanced error notifications." +
-                                    " This includes hiding normal network connection timeouts, " +
-                                    "but also hides notification of any unexpected and more serious errors."
+                            "Turning off error toasts hides all ReVanced error notifications."
+                                    + "\\n\\nThis includes hiding normal network connection timeouts, "
+                                    + "but also hides notification of any unexpected and more serious errors."
                         )
                     ),
                 ),
