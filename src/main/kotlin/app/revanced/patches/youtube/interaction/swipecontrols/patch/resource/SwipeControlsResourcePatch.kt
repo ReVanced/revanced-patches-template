@@ -65,11 +65,11 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         )
                     ),
                     TextPreference(
-                        "revanced_swipe_overlay_text_size",
-                        StringResource("revanced_swipe_overlay_text_size_title", "Swipe overlay text size"),
+                        "revanced_swipe_text_overlay_size",
+                        StringResource("revanced_swipe_text_overlay_size_title", "Swipe overlay text size"),
                         InputType.NUMBER,
                         "22",
-                        StringResource("revanced_swipe_overlay_text_size_summary", "The text size for swipe overlay")
+                        StringResource("revanced_swipe_text_overlay_size_summary", "The text size for swipe overlay")
                     ),
                     TextPreference(
                         "revanced_swipe_overlay_background_alpha",
@@ -82,12 +82,12 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         )
                     ),
                     TextPreference(
-                        "revanced_swipe_magnitude_threshold",
-                        StringResource("revanced_swipe_magnitude_threshold_title", "Swipe magnitude threshold"),
+                        "revanced_swipe_threshold",
+                        StringResource("revanced_swipe_threshold_title", "Swipe magnitude threshold"),
                         InputType.NUMBER,
                         "30",
                         StringResource(
-                            "revanced_swipe_magnitude_threshold_summary",
+                            "revanced_swipe_threshold_summary",
                             "The amount of threshold for swipe to occur"
                         )
                     )
