@@ -26,20 +26,20 @@ class DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
-                "revanced_debug",
-                StringResource("revanced_debug_title", "Debugging"),
+                "revanced_debug_preference",
+                StringResource("revanced_debug_preference_title", "Debugging"),
                 listOf(
                     SwitchPreference(
-                        "revanced_debug_enabled",
-                        StringResource("revanced_debug_enabled_title", "Debug logging"),
+                        "revanced_debug",
+                        StringResource("revanced_debug_title", "Debug logging"),
                         false,
                         StringResource("revanced_debug_summary_on", "Debug logs are enabled"),
                         StringResource("revanced_debug_summary_off", "Debug logs are disabled")
                     ),
                     SwitchPreference(
-                        "revanced_debug_stacktrace_enabled",
+                        "revanced_debug_stacktrace",
                         StringResource(
-                            "revanced_debug_stacktrace_enabled_title",
+                            "revanced_debug_stacktrace_title",
                             "Log stack traces"
                         ),
                         false,
@@ -47,9 +47,9 @@ class DebuggingPatch : ResourcePatch {
                         StringResource("revanced_debug_stacktrace_summary_off", "Debug logs do not include stack trace")
                     ),
                     SwitchPreference(
-                        "revanced_debug_toast_on_error_enabled",
+                        "revanced_debug_toast_on_error",
                         StringResource(
-                            "revanced_debug_toast_on_error_enabled_title",
+                            "revanced_debug_toast_on_error_title",
                             "Show toast on ReVanced error"
                         ),
                         true,
@@ -62,7 +62,7 @@ class DebuggingPatch : ResourcePatch {
                         )
                     ),
                 ),
-                StringResource("revanced_debug_summary", "Enable or disable debugging options")
+                StringResource("revanced_debug_preference_summary", "Enable or disable debugging options")
             )
         )
 

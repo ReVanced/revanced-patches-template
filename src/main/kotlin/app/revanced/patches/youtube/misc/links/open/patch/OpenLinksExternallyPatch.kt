@@ -34,11 +34,11 @@ class OpenLinksExternallyPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_enable_external_browser",
-                StringResource("revanced_enable_external_browser_title", "Open links in browser"),
+                "revanced_external_browser",
+                StringResource("revanced_external_browser_title", "Open links in browser"),
                 true,
-                StringResource("revanced_enable_external_browser_summary_on", "Opening links externally"),
-                StringResource("revanced_enable_external_browser_summary_off", "Opening links in app")
+                StringResource("revanced_external_browser_summary_on", "Opening links externally"),
+                StringResource("revanced_external_browser_summary_off", "Opening links in app")
             )
         )
 

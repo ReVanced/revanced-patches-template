@@ -31,159 +31,159 @@ class GeneralAdsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_adremover_separator",
-                StringResource("revanced_adremover_separator_title", "Hide gray separator"),
+                "revanced_hide_gray_separator",
+                StringResource("revanced_hide_gray_separator_title", "Hide gray separator"),
                 true,
-                StringResource("revanced_adremover_separator_summary_on", "Gray separators are hidden"),
-                StringResource("revanced_adremover_separator_summary_off", "Gray separators are shown")
+                StringResource("revanced_hide_gray_separator_summary_on", "Gray separators are hidden"),
+                StringResource("revanced_hide_gray_separator_summary_off", "Gray separators are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_hide_channel_guidelines",
-                StringResource("revanced_adremover_hide_channel_guidelines_enabled_title", "Hide channel guidelines"),
+                "revanced_hide_channel_guidelines",
+                StringResource("revanced_hide_channel_guidelines_title", "Hide channel guidelines"),
                 true,
                 StringResource(
-                    "revanced_adremover_hide_channel_guidelines_enabled_summary_on",
+                    "revanced_hide_channel_guidelines_summary_on",
                     "Channel guidelines are hidden"
                 ),
                 StringResource(
-                    "revanced_adremover_hide_channel_guidelines_enabled_summary_off",
+                    "revanced_hide_channel_guidelines_summary_off",
                     "Channel guidelines are shown"
                 )
             ),
             SwitchPreference(
-                "revanced_adremover_chapter_teaser",
+                "revanced_hide_chapter_teaser",
                 StringResource(
-                    "revanced_adremover_chapter_teaser_enabled_title",
+                    "revanced_hide_chapter_teaser_title",
                     "Hide chapter teaser under videos"
                 ),
                 true,
                 StringResource(
-                    "revanced_adremover_chapter_teaser_enabled_summary_on",
+                    "revanced_hide_chapter_teaser_summary_on",
                     "Chapter teasers are hidden"
                 ),
                 StringResource(
-                    "revanced_adremover_chapter_teaser_enabled_summary_off",
+                    "revanced_hide_chapter_teaser_summary_off",
                     "Chapter teasers are shown"
                 )
             ),
             SwitchPreference(
-                "revanced_adremover_merchandise",
-                StringResource("revanced_adremover_merchandise_enabled_title", "Hide merchandise banners"),
+                "revanced_hide_merchandise_banners",
+                StringResource("revanced_hide_merchandise_banners_title", "Hide merchandise banners"),
                 true,
-                StringResource("revanced_adremover_merchandise_enabled_summary_on", "Merchandise banners are hidden"),
-                StringResource("revanced_adremover_merchandise_enabled_summary_off", "Merchandise banners are shown")
+                StringResource("revanced_hide_merchandise_banners_summary_on", "Merchandise banners are hidden"),
+                StringResource("revanced_hide_merchandise_banners_summary_off", "Merchandise banners are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_community_posts_removal",
-                StringResource("revanced_adremover_community_posts_enabled_title", "Hide community posts"),
+                "revanced_hide_community_posts",
+                StringResource("revanced_hide_community_posts_title", "Hide community posts"),
                 false,
-                StringResource("revanced_adremover_community_posts_enabled_summary_on", "Community posts are hidden"),
-                StringResource("revanced_adremover_community_posts_enabled_summary_off", "Community posts are shown")
+                StringResource("revanced_hide_community_posts_summary_on", "Community posts are hidden"),
+                StringResource("revanced_hide_community_posts_summary_off", "Community posts are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_compact_banner_removal",
-                StringResource("revanced_adremover_compact_banner_enabled_title", "Hide compact banners"),
+                "revanced_hide_compact_banner",
+                StringResource("revanced_hide_compact_banner_title", "Hide compact banners"),
                 true,
-                StringResource("revanced_adremover_compact_banner_enabled_summary_on", "Compact banners are hidden"),
-                StringResource("revanced_adremover_compact_banner_enabled_summary_off", "Compact banners are shown")
+                StringResource("revanced_hide_compact_banner_summary_on", "Compact banners are hidden"),
+                StringResource("revanced_hide_compact_banner_summary_off", "Compact banners are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_view_products",
-                StringResource("revanced_adremover_view_products_title", "Hide banner to view products"),
+                "revanced_hide_products_banner",
+                StringResource("revanced_hide_products_banner_title", "Hide banner to view products"),
                 true,
-                StringResource("revanced_adremover_view_products_summary_on", "Banner is hidden"),
-                StringResource("revanced_adremover_view_products_summary_off", "Banner is shown")
+                StringResource("revanced_hide_products_banner_summary_on", "Banner is hidden"),
+                StringResource("revanced_hide_products_banner_summary_off", "Banner is shown")
             ),
             SwitchPreference(
-                "revanced_adremover_web_search_result",
-                StringResource("revanced_adremover_web_search_result_panel_title", "Hide web search results"),
+                "revanced_hide_web_search_results",
+                StringResource("revanced_hide_web_search_results_title", "Hide web search results"),
                 true,
-                StringResource("revanced_adremover_web_search_result_summary_on", "Web search results are hidden"),
-                StringResource("revanced_adremover_web_search_result_summary_off", "Web search results are shown")
+                StringResource("revanced_hide_web_search_results_summary_on", "Web search results are hidden"),
+                StringResource("revanced_hide_web_search_results_summary_off", "Web search results are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_movie",
-                StringResource("revanced_adremover_movie_enabled_title", "Hide movies section"),
+                "revanced_hide_movies_section",
+                StringResource("revanced_hide_movies_section_title", "Hide movies section"),
                 true,
-                StringResource("revanced_adremover_movie_enabled_summary_on", "Movies section is hidden"),
-                StringResource("revanced_adremover_movie_enabled_summary_off", "Movies section is shown")
+                StringResource("revanced_hide_movies_section_summary_on", "Movies section is hidden"),
+                StringResource("revanced_hide_movies_section_summary_off", "Movies section is shown")
             ),
             SwitchPreference(
-                "revanced_adremover_feed_survey",
-                StringResource("revanced_adremover_feed_survey_enabled_title", "Hide feed surveys"),
+                "revanced_hide_feed_survey",
+                StringResource("revanced_hide_feed_survey_title", "Hide feed surveys"),
                 true,
-                StringResource("revanced_adremover_feed_survey_enabled_summary_on", "Feed surveys are hidden"),
-                StringResource("revanced_adremover_feed_survey_enabled_summary_off", "Feed surveys are shown")
+                StringResource("revanced_hide_feed_survey_summary_on", "Feed surveys are hidden"),
+                StringResource("revanced_hide_feed_survey_summary_off", "Feed surveys are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_shorts",
-                StringResource("revanced_adremover_shorts_enabled_title", "Hide shorts"),
+                "revanced_hide_shorts",
+                StringResource("revanced_hide_shorts_title", "Hide shorts"),
                 true,
-                StringResource("revanced_adremover_shorts_enabled_summary_on", "Shorts are hidden"),
-                StringResource("revanced_adremover_shorts_enabled_summary_off", "Shorts are shown")
+                StringResource("revanced_hide_shorts_summary_on", "Shorts are hidden"),
+                StringResource("revanced_hide_shorts_summary_off", "Shorts are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_community_guidelines",
-                StringResource("revanced_adremover_community_guidelines_enabled_title", "Hide community guidelines"),
+                "revanced_hide_community_guidelines",
+                StringResource("revanced_hide_community_guidelines_title", "Hide community guidelines"),
                 true,
                 StringResource(
-                    "revanced_adremover_community_guidelines_enabled_summary_on",
+                    "revanced_hide_community_guidelines_summary_on",
                     "Community guidelines are hidden"
                 ),
                 StringResource(
-                    "revanced_adremover_community_guidelines_enabled_summary_off",
+                    "revanced_hide_community_guidelines_summary_off",
                     "Community guidelines are shown"
                 )
             ),
             SwitchPreference(
-                "revanced_adremover_subscribers_community_guidelines_removal",
+                "revanced_hide_subscribers_community_guidelines",
                 StringResource(
-                    "revanced_adremover_subscribers_community_guidelines_enabled_title",
+                    "revanced_hide_subscribers_community_guidelines_title",
                     "Hide subscribers community guidelines"
                 ),
                 true,
                 StringResource(
-                    "revanced_adremover_subscribers_community_guidelines_enabled_summary_on",
+                    "revanced_hide_subscribers_community_guidelines_summary_on",
                     "Subscribers community guidelines are hidden"
                 ),
                 StringResource(
-                    "revanced_adremover_subscribers_community_guidelines_enabled_summary_off",
+                    "revanced_hide_subscribers_community_guidelines_summary_off",
                     "Subscribers community guidelines are shown"
                 )
             ),
             SwitchPreference(
-                "revanced_adremover_channel_member_shelf_removal",
-                StringResource("revanced_adremover_channel_member_shelf_enabled_title", "Hide channel member shelf"),
+                "revanced_hide_channel_member_shelf",
+                StringResource("revanced_hide_channel_member_shelf_title", "Hide channel member shelf"),
                 true,
                 StringResource(
-                    "revanced_adremover_channel_member_shelf_enabled_summary_on",
+                    "revanced_hide_channel_member_shelf_summary_on",
                     "Channel member shelf is hidden"
                 ),
                 StringResource(
-                    "revanced_adremover_channel_member_shelf_enabled_summary_off",
+                    "revanced_hide_channel_member_shelf_summary_off",
                     "Channel member shelf is shown"
                 )
             ),
             SwitchPreference(
-                "revanced_adremover_emergency_box_removal",
-                StringResource("revanced_adremover_emergency_box_enabled_title", "Hide emergency boxes"),
+                "revanced_hide_emergency_box",
+                StringResource("revanced_hide_emergency_box_title", "Hide emergency boxes"),
                 true,
-                StringResource("revanced_adremover_emergency_box_enabled_summary_on", "Emergency boxes are hidden"),
-                StringResource("revanced_adremover_emergency_box_enabled_summary_off", "Emergency boxes are shown")
+                StringResource("revanced_hide_emergency_box_summary_on", "Emergency boxes are hidden"),
+                StringResource("revanced_hide_emergency_box_summary_off", "Emergency boxes are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_info_panel",
-                StringResource("revanced_adremover_info_panel_enabled_title", "Hide info panels"),
+                "revanced_hide_info_panels",
+                StringResource("revanced_hide_info_panels_title", "Hide info panels"),
                 true,
-                StringResource("revanced_adremover_info_panel_enabled_summary_on", "Info panels are hidden"),
-                StringResource("revanced_adremover_info_panel_enabled_summary_off", "Info panels are shown")
+                StringResource("revanced_hide_info_panels_summary_on", "Info panels are hidden"),
+                StringResource("revanced_hide_info_panels_summary_off", "Info panels are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_medical_panel",
-                StringResource("revanced_adremover_medical_panel_enabled_title", "Hide medical panels"),
+                "revanced_hide_medical_panels",
+                StringResource("revanced_hide_medical_panels_title", "Hide medical panels"),
                 true,
-                StringResource("revanced_adremover_medical_panel_enabled_summary_on", "Medical panels are hidden"),
-                StringResource("revanced_adremover_medical_panel_enabled_summary_off", "Medical panels are shown")
+                StringResource("revanced_hide_medical_panels_summary_on", "Medical panels are hidden"),
+                StringResource("revanced_hide_medical_panels_summary_off", "Medical panels are shown")
             ),
             SwitchPreference(
                 "revanced_hide_channel_bar",
@@ -224,18 +224,18 @@ class GeneralAdsResourcePatch : ResourcePatch {
 
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
-                "revanced_adremover_ad_removal",
-                StringResource("revanced_adremover_ad_removal_enabled_title", "Hide general ads"),
+                "revanced_adremover_general_ads",
+                StringResource("revanced_adremover_general_ads_title", "Hide general ads"),
                 true,
-                StringResource("revanced_adremover_ad_removal_enabled_summary_on", "General ads are hidden"),
-                StringResource("revanced_adremover_ad_removal_enabled_summary_off", "General ads are shown")
+                StringResource("revanced_adremover_general_ads_summary_on", "General ads are hidden"),
+                StringResource("revanced_adremover_general_ads_summary_off", "General ads are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_buttoned",
-                StringResource("revanced_adremover_buttoned_enabled_title", "Hide buttoned ad"),
+                "revanced_adremover_buttoned_ads",
+                StringResource("revanced_adremover_buttoned_ads_title", "Hide buttoned ad"),
                 true,
-                StringResource("revanced_adremover_buttoned_enabled_summary_on", "Buttoned ads are hidden"),
-                StringResource("revanced_adremover_buttoned_enabled_summary_off", "Buttoned ads are shown")
+                StringResource("revanced_adremover_buttoned_ads_summary_on", "Buttoned ads are hidden"),
+                StringResource("revanced_adremover_buttoned_ads_summary_off", "Buttoned ads are shown")
             ),
             SwitchPreference(
                 "revanced_adremover_paid_content",
@@ -245,11 +245,11 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_adremover_paid_content_enabled_summary_off", "Paid content is shown")
             ),
             SwitchPreference(
-                "revanced_adremover_hide_latest_posts",
-                StringResource("revanced_adremover_hide_latest_posts_enabled_title", "Hide latest posts"),
+                "revanced_adremover_latest_posts",
+                StringResource("revanced_adremover_latest_posts_title", "Hide latest posts"),
                 true,
-                StringResource("revanced_adremover_hide_latest_posts_enabled_summary_on", "Latest posts are hidden"),
-                StringResource("revanced_adremover_hide_latest_posts_enabled_summary_off", "Latest posts are shown")
+                StringResource("revanced_adremover_latest_posts_summary_on", "Latest posts are hidden"),
+                StringResource("revanced_adremover_latest_posts_summary_off", "Latest posts are shown")
             ),
             SwitchPreference(
                 "revanced_adremover_self_sponsor",
@@ -259,33 +259,33 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_adremover_self_sponsor_enabled_summary_off", "Self sponsored cards are shown")
             ),
             PreferenceScreen(
-                "revanced_adremover_custom",
-                StringResource("revanced_adremover_custom_title", "Custom filter"),
+                "revanced_adremover_custom_preference",
+                StringResource("revanced_adremover_custom_preference_title", "Custom filter"),
                 listOf(
                     SwitchPreference(
-                        "revanced_adremover_custom_enabled",
+                        "revanced_adremover_custom",
                         StringResource(
-                            "revanced_adremover_custom_enabled_title",
+                            "revanced_adremover_custom_title",
                             "Enable custom filter"
                         ),
                         false,
                         StringResource(
-                            "revanced_adremover_custom_enabled_summary_on",
+                            "revanced_adremover_custom_summary_on",
                             "Custom filter is enabled"
                         ),
                         StringResource(
-                            "revanced_adremover_custom_enabled_summary_off",
+                            "revanced_adremover_custom_summary_off",
                             "Custom filter is disabled"
                         )
                     ),
                     // TODO: This should be a dynamic ListPreference, which does not exist yet
                     TextPreference(
-                        "revanced_adremover_custom_strings",
-                        StringResource("revanced_adremover_custom_strings_title", "Custom filter"),
+                        "revanced_adremover_custom_filters",
+                        StringResource("revanced_adremover_custom_filters_title", "Custom filter"),
                         InputType.TEXT,
                         "",
                         StringResource(
-                            "revanced_adremover_custom_strings_summary",
+                            "revanced_adremover_custom_filters_summary",
                             "Filter components by their name separated by a comma"
                         )
                     )

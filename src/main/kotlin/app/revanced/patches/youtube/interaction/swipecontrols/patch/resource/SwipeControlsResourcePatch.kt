@@ -27,29 +27,29 @@ class SwipeControlsResourcePatch : ResourcePatch {
             PreferenceScreen(
                 "revanced_swipe_controls", StringResource("revanced_swipe_controls_title", "Swipe controls"), listOf(
                     SwitchPreference(
-                        "revanced_enable_swipe_brightness",
-                        StringResource("revanced_swipe_brightness_enabled_title", "Enable brightness gesture"),
+                        "revanced_swipe_brightness",
+                        StringResource("revanced_swipe_brightness_title", "Enable brightness gesture"),
                         true,
                         StringResource("revanced_swipe_brightness_summary_on", "Brightness swipe is enabled"),
                         StringResource("revanced_swipe_brightness_summary_off", "Brightness swipe is disabled")
                     ),
                     SwitchPreference(
-                        "revanced_enable_swipe_volume",
-                        StringResource("revanced_swipe_volume_enabled_title", "Enable volume gesture"),
+                        "revanced_swipe_volume",
+                        StringResource("revanced_swipe_volume_title", "Enable volume gesture"),
                         true,
                         StringResource("revanced_swipe_volume_summary_on", "Volume swipe is enabled"),
                         StringResource("revanced_swipe_volume_summary_off", "Volume swipe is disabled")
                     ),
                     SwitchPreference(
-                        "revanced_enable_press_to_swipe",
-                        StringResource("revanced_press_to_swipe_enabled_title", "Enable press-to-swipe gesture"),
+                        "revanced_swipe_press_to_engage",
+                        StringResource("revanced_swipe_press_to_engage_title", "Enable press-to-swipe gesture"),
                         false,
-                        StringResource("revanced_press_to_swipe_summary_on", "Press-to-swipe is enabled"),
-                        StringResource("revanced_press_to_swipe_summary_off", "Press-to-swipe is disabled")
+                        StringResource("revanced_swipe_press_to_engage_summary_on", "Press-to-swipe is enabled"),
+                        StringResource("revanced_swipe_press_to_engage_summary_off", "Press-to-swipe is disabled")
                     ),
                     SwitchPreference(
-                        "revanced_enable_swipe_haptic_feedback",
-                        StringResource("revanced_swipe_haptic_feedback_enabled_title", "Enable haptic feedback"),
+                        "revanced_swipe_haptic_feedback",
+                        StringResource("revanced_swipe_haptic_feedback_title", "Enable haptic feedback"),
                         true,
                         StringResource("revanced_swipe_haptic_feedback_summary_on", "Haptic feedback is enabled"),
                         StringResource("revanced_swipe_haptic_feedback_summary_off", "Haptic feedback is disabled")
