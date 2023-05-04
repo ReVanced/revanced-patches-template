@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.loadmorebutton.resourcce.patch
+package app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext

@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints.HideLoadMoreButtonFingerprint
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.resourcce.patch.HideLoadMoreButtonResourcePatch
+import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
 import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 
 @Patch

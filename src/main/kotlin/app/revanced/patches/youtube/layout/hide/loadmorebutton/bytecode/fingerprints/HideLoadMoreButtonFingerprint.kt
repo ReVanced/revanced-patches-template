@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerp
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.resourcce.patch.HideLoadMoreButtonResourcePatch
+import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
