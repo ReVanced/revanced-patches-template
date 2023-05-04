@@ -2,11 +2,8 @@
 <resources>
     <string name="revanced_settings_confirm_user_dialog_title">Do you wish to proceed?</string>
     <string name="revanced_settings_reset">Reset</string>
+
     <string name="revanced_settings_import">Import</string>
-    <string name="revanced_settings_import_sb_userid_present">Your settings contain a private SponsorBlock user id.\n\nYour user id is like a password and it should never be shared.\n</string>
-    <string name="revanced_settings_import_sb_userid_present_dismiss">Do not show again</string>
-    <string name="revanced_settings_import_sb_userid_removed">Are you sure you want to delete your existing SponsorBlock user id?</string>
-    <string name="revanced_settings_import_sb_userid_removed_canceled">Import canceled.</string>
     <string name="revanced_settings_import_copy">Copy</string>
     <string name="revanced_settings_import_success">Imported %d settings</string>
     <string name="revanced_settings_import_failure_parse">Import failed: %s</string>
