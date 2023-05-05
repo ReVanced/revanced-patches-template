@@ -19,11 +19,9 @@ import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDar
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.Method
+import app.revanced.util.patch.indexOfFirstConstantInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
 @Name("theme")
@@ -80,18 +78,7 @@ class ThemeBytecodePatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    companion object {
+    private companion object {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemePatch;"
-
-        /**
-         * @return the first constant instruction with the resource id, or -1 if not found.
-         */
-        fun Method.indexOfFirstConstantInstruction(constantValue: Long): Int {
-            return implementation?.let {
-                it.instructions.indexOfFirst { instruction ->
-                    instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
-                }
-            } ?: -1
-        }
     }
 }

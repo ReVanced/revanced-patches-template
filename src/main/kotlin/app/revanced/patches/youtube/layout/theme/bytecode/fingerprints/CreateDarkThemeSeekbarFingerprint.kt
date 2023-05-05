@@ -2,8 +2,8 @@ package app.revanced.patches.youtube.layout.theme.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.indexOfFirstConstantInstruction
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
+import app.revanced.util.patch.indexOfFirstConstantInstruction
 import org.jf.dexlib2.AccessFlags
 
 object CreateDarkThemeSeekbarFingerprint : MethodFingerprint(
