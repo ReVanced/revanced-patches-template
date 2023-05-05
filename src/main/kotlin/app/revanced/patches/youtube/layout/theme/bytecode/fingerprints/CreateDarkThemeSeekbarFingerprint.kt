@@ -10,5 +10,6 @@ object CreateDarkThemeSeekbarFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { method ->
         method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) != -1
+                && method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) != -1
     }
 )

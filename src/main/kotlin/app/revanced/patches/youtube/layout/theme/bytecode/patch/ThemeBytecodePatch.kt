@@ -43,6 +43,16 @@ class ThemeBytecodePatch : BytecodePatch(
                         move-result v$colorRegister
                     """
             )
+            
+            registerIndex = indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) + 2
+            colorRegister = (instruction(registerIndex) as OneRegisterInstruction).registerA
+            addInstructions(
+                registerIndex + 1,
+                """
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        move-result v$colorRegister
+                    """
+            )
         } ?: return CreateDarkThemeSeekbarFingerprint.toErrorResult()
 
         SetSeekbarClickedColorFingerprint.result?.let { result ->
