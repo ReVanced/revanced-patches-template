@@ -14,14 +14,16 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.mapping.misc.patch.indexOfFirstConstantInstruction
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
 @Name("theme")
@@ -78,7 +80,18 @@ class ThemeBytecodePatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    private companion object {
+    companion object {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemePatch;"
+
+        /**
+         * @return the first constant instruction with the resource id, or -1 if not found.
+         */
+        fun Method.indexOfFirstConstantInstruction(constantValue: Long): Int {
+            return implementation?.let {
+                it.instructions.indexOfFirst { instruction ->
+                    instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
+                }
+            } ?: -1
+        }
     }
 }

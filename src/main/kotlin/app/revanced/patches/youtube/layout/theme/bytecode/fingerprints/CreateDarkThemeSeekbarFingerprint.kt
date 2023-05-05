@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.theme.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.shared.mapping.misc.patch.indexOfFirstConstantInstruction
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.indexOfFirstConstantInstruction
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 import org.jf.dexlib2.AccessFlags
 
