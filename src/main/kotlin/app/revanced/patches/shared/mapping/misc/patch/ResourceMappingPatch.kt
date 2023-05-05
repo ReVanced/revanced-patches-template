@@ -7,6 +7,9 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
+import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.Method
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.w3c.dom.Element
 import java.util.*
 import java.util.concurrent.Executors
@@ -71,3 +74,14 @@ class ResourceMappingPatch : ResourcePatch {
 }
 
 data class ResourceElement(val type: String, val name: String, val id: Long)
+
+/**
+ * @return the first constant instruction with the resource id, or -1 if not found.
+ */
+fun Method.indexOfFirstConstantInstruction(constantValue: Long): Int {
+    return implementation?.let {
+        it.instructions.indexOfFirst { instruction ->
+            instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
+        }
+    } ?: -1;
+}

@@ -14,12 +14,13 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.mapping.misc.patch.indexOfFirstConstantInstruction
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
-import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint.indexOfInstructionWithSeekbarId
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch
@@ -33,18 +34,24 @@ class ThemeBytecodePatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         CreateDarkThemeSeekbarFingerprint.result?.let {
-            val putColorValueIndex = it.method.indexOfInstructionWithSeekbarId!! + 3
+            val colorRegisterInstructionIndexes = mutableListOf(
+                it.method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) + 2,
+                it.method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) + 2,
+            )
+            // Add hooks from last to first, otherwise added instructions can change the insert indexes of remaining items.
+            colorRegisterInstructionIndexes.sortDescending()
 
-            it.mutableMethod.apply {
-                val overrideRegister = (instruction(putColorValueIndex) as TwoRegisterInstruction).registerA
-
-                addInstructions(
-                    putColorValueIndex,
+            colorRegisterInstructionIndexes.forEach { colorValueRegisterIndex ->
+                it.mutableMethod.apply {
+                    val colorRegister = (instruction(colorValueRegisterIndex) as OneRegisterInstruction).registerA
+                    addInstructions(
+                        colorValueRegisterIndex + 1,
+                        """
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        move-result v$colorRegister
                     """
-                        invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue()I
-                        move-result v$overrideRegister
-                    """
-                )
+                    )
+                }
             }
         } ?: return CreateDarkThemeSeekbarFingerprint.toErrorResult()
 
