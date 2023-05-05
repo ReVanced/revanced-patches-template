@@ -18,7 +18,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction11x
 
 @Patch
 @Name("hide-load-more-button")
-@Description("Hides the button under videos to load similar videos.")
+@Description("Hides the button under videos that loads similar videos.")
 @DependsOn([HideLoadMoreButtonResourcePatch::class])
 @Version("0.0.1")
 class HideLoadMoreButtonPatch : BytecodePatch(
