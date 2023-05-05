@@ -42,7 +42,7 @@
     <string name="sb_general_min_duration_sum">Segments shorter than this value (in seconds) will not be shown or skipped</string>
     <string name="sb_general_uuid">Your private user id</string>
     <string name="sb_general_uuid_sum">This should be kept private. This is like a password and should not be shared with anyone. If someone has this, they can impersonate you</string>
-    <string name="sb_general_uuid_invalid">User id cannot be blank</string>
+    <string name="sb_general_uuid_invalid">Private user id must be at least 30 characters long</string>
     <string name="sb_general_api_url">Change API URL</string>
     <string name="sb_general_api_url_sum">The address SponsorBlock uses to make calls to the server. Do not change this unless you know what you\'re doing</string>
     <string name="sb_api_url_reset">API URL reset</string>
