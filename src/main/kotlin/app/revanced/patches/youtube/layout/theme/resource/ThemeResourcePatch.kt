@@ -32,11 +32,11 @@ class ThemeResourcePatch : ResourcePatch {
         // For that the resource id is used in a bytecode patch to change the color.
 
         val seekbarErrorMessage = "Could not find seekbar resource"
-        inlineTimeBarPlayedNotHighlightedColorId = ResourceMappingPatch.resourceMappings
-            .find { it.name == "inline_time_bar_played_not_highlighted_color" }?.id
-            ?: return PatchResultError(seekbarErrorMessage)
         inlineTimeBarColorizedBarPlayedColorDarkId = ResourceMappingPatch.resourceMappings
             .find { it.name == "inline_time_bar_colorized_bar_played_color_dark" }?.id
+            ?: return PatchResultError(seekbarErrorMessage)
+        inlineTimeBarPlayedNotHighlightedColorId = ResourceMappingPatch.resourceMappings
+            .find { it.name == "inline_time_bar_played_not_highlighted_color" }?.id
             ?: return PatchResultError(seekbarErrorMessage)
 
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!

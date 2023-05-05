@@ -33,26 +33,26 @@ class ThemeBytecodePatch : BytecodePatch(
     listOf(CreateDarkThemeSeekbarFingerprint, SetSeekbarClickedColorFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        CreateDarkThemeSeekbarFingerprint.result?.let {
-            val colorRegisterInstructionIndexes = mutableListOf(
-                it.method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) + 2,
-                it.method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) + 2,
-            )
-            // Add hooks from last to first, otherwise added instructions can change the insert indexes of remaining items.
-            colorRegisterInstructionIndexes.sortDescending()
-
-            colorRegisterInstructionIndexes.forEach { colorValueRegisterIndex ->
-                it.mutableMethod.apply {
-                    val colorRegister = (instruction(colorValueRegisterIndex) as OneRegisterInstruction).registerA
-                    addInstructions(
-                        colorValueRegisterIndex + 1,
-                        """
+        CreateDarkThemeSeekbarFingerprint.result?.mutableMethod?.apply {
+            var registerIndex = indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) + 2
+            var colorRegister = (instruction(registerIndex) as OneRegisterInstruction).registerA
+            addInstructions(
+                registerIndex + 1,
+                """
                         invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
                         move-result v$colorRegister
                     """
-                    )
-                }
-            }
+            )
+            
+            registerIndex = indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) + 2
+            colorRegister = (instruction(registerIndex) as OneRegisterInstruction).registerA
+            addInstructions(
+                registerIndex + 1,
+                """
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        move-result v$colorRegister
+                    """
+            )
         } ?: return CreateDarkThemeSeekbarFingerprint.toErrorResult()
 
         SetSeekbarClickedColorFingerprint.result?.let { result ->
