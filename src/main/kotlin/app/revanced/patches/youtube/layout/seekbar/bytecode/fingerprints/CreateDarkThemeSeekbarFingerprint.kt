@@ -2,14 +2,14 @@ package app.revanced.patches.youtube.layout.theme.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
+import app.revanced.patches.youtube.layout.theme.resource.SeekbarColorResourcePatch
 import app.revanced.util.patch.indexOfFirstConstantInstruction
 import org.jf.dexlib2.AccessFlags
 
 object CreateDarkThemeSeekbarFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { method ->
-        method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) != -1
-                && method.indexOfFirstConstantInstruction(ThemeResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) != -1
+        method.indexOfFirstConstantInstruction(SeekbarColorResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) != -1
+                && method.indexOfFirstConstantInstruction(SeekbarColorResourcePatch.inlineTimeBarPlayedNotHighlightedColorId) != -1
     }
 )

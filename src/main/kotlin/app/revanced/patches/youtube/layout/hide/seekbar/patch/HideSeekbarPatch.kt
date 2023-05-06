@@ -16,7 +16,7 @@ import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
@@ -24,7 +24,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([
     IntegrationsPatch::class,
     SettingsPatch::class,
-    ThemeBytecodePatch::class // Used to hide the seekbar in the feed and watch history
+    SeekbarColorBytecodePatch::class // Used to hide the seekbar in the feed and watch history
 ])
 @Name("hide-seekbar")
 @Description("Hides the seekbar.")

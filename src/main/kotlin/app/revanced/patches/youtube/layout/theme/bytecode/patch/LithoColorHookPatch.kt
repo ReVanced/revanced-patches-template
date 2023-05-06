@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.bytecode.patch
+package app.revanced.patches.youtube.layout.theme.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -13,11 +13,11 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
-@Name("theme-litho-components")
-@Description("Applies a custom theme to Litho components.")
+@Name("litho-color-hook")
+@Description("Adds a hook to set color of Litho components.")
 @ThemeCompatibility
 @Version("0.0.1")
-class ThemeLithoComponentsPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
+class LithoColorHookPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         LithoThemeFingerprint.result?.let {
             insertionIndex = it.scanResult.patternScanResult!!.endIndex - 1
@@ -25,13 +25,9 @@ class ThemeLithoComponentsPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
             insertionMethod = it.mutableMethod
         } ?: return LithoThemeFingerprint.toErrorResult()
 
-        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getValue")
-
         return PatchResultSuccess()
     }
     companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemeLithoComponentsPatch;"
-
         private var insertionIndex : Int = -1
         private lateinit var colorRegister : String
         private lateinit var insertionMethod : MutableMethod
