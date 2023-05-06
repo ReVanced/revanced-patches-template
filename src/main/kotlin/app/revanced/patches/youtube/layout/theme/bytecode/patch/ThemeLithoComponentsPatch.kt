@@ -9,6 +9,7 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
@@ -19,22 +20,32 @@ import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerpr
 class ThemeLithoComponentsPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         LithoThemeFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val patchIndex = it.scanResult.patternScanResult!!.endIndex - 1
-
-                addInstructions(
-                    patchIndex,
-                    """
-                        invoke-static {p1}, $INTEGRATIONS_CLASS_DESCRIPTOR->getValue(I)I
-                        move-result p1
-                    """
-                )
-            }
+            insertionIndex = it.scanResult.patternScanResult!!.endIndex - 1
+            colorRegister = "p1"
+            insertionMethod = it.mutableMethod
         } ?: return LithoThemeFingerprint.toErrorResult()
+
+        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getValue")
+
         return PatchResultSuccess()
     }
-
-    private companion object {
+    companion object {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemeLithoComponentsPatch;"
+
+        private var insertionIndex : Int = -1
+        private lateinit var colorRegister : String
+        private lateinit var insertionMethod : MutableMethod
+
+        internal fun lithoColorOverrideHook(targetMethodClass: String, targetMethodName: String)  {
+            insertionMethod.addInstructions(
+                insertionIndex,
+                """
+                        invoke-static {$colorRegister}, $targetMethodClass->$targetMethodName(I)I
+                        move-result $colorRegister
+                    """
+            )
+            insertionIndex += 2
+        }
     }
+
 }

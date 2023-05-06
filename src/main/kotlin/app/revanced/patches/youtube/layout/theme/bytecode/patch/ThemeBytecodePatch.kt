@@ -17,6 +17,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeLithoComponentsPatch.Companion.lithoColorOverrideHook
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.util.patch.indexOfFirstConstantInstruction
@@ -68,13 +69,16 @@ class ThemeBytecodePatch : BytecodePatch(
                     addInstructions(
                         0,
                         """
-                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarClickedColorValue(I)I
+                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorOverride(I)I
                             move-result v$colorRegister
                         """
                     )
                 }
             }
         } ?: return SetSeekbarClickedColorFingerprint.toErrorResult()
+
+        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getSeekbarColorOverride")
+
         return PatchResultSuccess()
     }
 
