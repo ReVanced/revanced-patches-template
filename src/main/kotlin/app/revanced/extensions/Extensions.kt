@@ -7,6 +7,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.util.MethodUtil
+import org.w3c.dom.Node
 
 // TODO: populate this to all patches
 /**
@@ -33,4 +34,9 @@ fun MutableClass.transformMethods(transform: MutableMethod.() -> MutableMethod) 
     val transformedMethods = methods.map { it.transform() }
     methods.clear()
     methods.addAll(transformedMethods)
+}
+
+internal fun Node.doRecursively(action: (Node) -> Unit) {
+    action(this)
+    for (i in 0 until this.childNodes.length) this.childNodes.item(i).doRecursively(action)
 }

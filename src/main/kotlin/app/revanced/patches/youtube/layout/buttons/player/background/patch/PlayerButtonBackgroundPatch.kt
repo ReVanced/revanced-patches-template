@@ -1,12 +1,12 @@
 package app.revanced.patches.youtube.layout.buttons.player.background.patch
 
+import app.revanced.extensions.doRecursively
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.dom.DomUtil.doRecursively
 import app.revanced.patches.youtube.layout.buttons.player.background.annotations.PlayerButtonBackgroundCompatibility
 import app.revanced.util.resources.ResourceUtils.base
 import org.w3c.dom.Element
