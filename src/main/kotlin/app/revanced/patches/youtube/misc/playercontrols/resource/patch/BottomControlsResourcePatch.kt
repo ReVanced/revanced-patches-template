@@ -38,7 +38,7 @@ class BottomControlsResourcePatch : ResourcePatch {
          */
         internal fun addControls(hostYouTubeControlsBottomUiResourceName: String) {
             val sourceXmlEditor =
-                resourceContext.xmlEditor(
+                resourceContext.openXmlFile(
                     this::class.java.classLoader.getResourceAsStream(
                         hostYouTubeControlsBottomUiResourceName
                     )!!

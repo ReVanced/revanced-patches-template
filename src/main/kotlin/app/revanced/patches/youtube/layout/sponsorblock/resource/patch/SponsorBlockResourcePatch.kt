@@ -80,7 +80,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
 
         val targetXmlEditor = context.base.editXmlFile("res/layout/youtube_controls_layout.xml")
         "RelativeLayout".copyXmlNode(
-            context.xmlEditor(hostingResourceStream),
+            context.openXmlFile(hostingResourceStream),
             targetXmlEditor
         ).also {
             val children = targetXmlEditor.file.getElementsByTagName("RelativeLayout").item(0).childNodes

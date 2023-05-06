@@ -88,7 +88,7 @@ internal object ResourceUtils {
         targetTag: String,
         callback: (node: Node) -> Unit
     ) =
-        xmlEditor(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
+        openXmlFile(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
             val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
             for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
         }
