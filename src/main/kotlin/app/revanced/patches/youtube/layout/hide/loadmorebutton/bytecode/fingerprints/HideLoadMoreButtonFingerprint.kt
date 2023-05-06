@@ -12,12 +12,6 @@ object HideLoadMoreButtonFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     parameters = listOf("L", "L", "L", "L"),
     opcodes = listOf(
-        Opcode.INVOKE_DIRECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.IPUT_OBJECT,
-        Opcode.IPUT_OBJECT,
-        Opcode.IPUT_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
         Opcode.CONST,
         Opcode.CONST_4,
         Opcode.INVOKE_STATIC,
