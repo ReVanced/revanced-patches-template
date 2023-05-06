@@ -48,7 +48,7 @@ abstract class AbstractSettingsResourcePatch(
         )
 
         /* prepare xml editors */
-        revancedPreferencesEditor = context.base.editXmlFile("res/xml/$preferenceFileName.xml")
+        revancedPreferencesEditor = context.base.openXmlFile("res/xml/$preferenceFileName.xml")
 
     }
 

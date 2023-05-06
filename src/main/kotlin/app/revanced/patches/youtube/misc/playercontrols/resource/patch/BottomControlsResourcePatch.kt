@@ -16,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.base
 class BottomControlsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         resourceContext = context
-        targetXmlEditor = context.base.editXmlFile(TARGET_RESOURCE)
+        targetXmlEditor = context.base.openXmlFile(TARGET_RESOURCE)
 
     }
 

@@ -23,7 +23,7 @@ class HideViewsResourcePatch : ResourcePatch {
             "res/layout/condensed_tweet_stats.xml",
             "res/layout/focal_tweet_stats.xml"
         ).forEach { file ->
-            context.base.editXmlFile(file).use { editor ->
+            context.base.openXmlFile(file).use { editor ->
                 val tags = editor.file.getElementsByTagName("com.twitter.ui.tweet.TweetStatView")
                 List(tags.length) { tags.item(it) as Element }
                     .filter { it.getAttribute("android:id").contains("views_stat") }

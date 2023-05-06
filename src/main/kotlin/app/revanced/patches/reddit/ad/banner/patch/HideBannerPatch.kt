@@ -17,7 +17,7 @@ import app.revanced.util.resources.ResourceUtils.base
 class HideBannerPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
 
-        context.base.editXmlFile(RESOURCE_FILE_PATH).use {
+        context.base.openXmlFile(RESOURCE_FILE_PATH).use {
             it.file.getElementsByTagName("merge").item(0).childNodes.apply {
                 val attributes = arrayOf("height", "width")
 

@@ -54,7 +54,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             context.copyResources("settings", resourceGroup)
         }
 
-        preferencesEditor = context.base.editXmlFile("res/xml/settings_fragment.xml")
+        preferencesEditor = context.base.openXmlFile("res/xml/settings_fragment.xml")
 
         // Add the ReVanced settings to the YouTube settings
         val youtubePackage = "com.google.android.youtube"
