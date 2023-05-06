@@ -28,7 +28,7 @@ class PlaybackSpeedPatch : BytecodePatch(
         for ((index, instruction) in parentMethodInstructions.withIndex()) {
             if (instruction.opcode != Opcode.INVOKE_VIRTUAL) continue
             val isSpeedEnableMethod = context
-                .toMethodWalker(parentMethod)
+                .traceMethodCalls(parentMethod)
                 .nextMethod(index, true)
                 .getMethod() as MutableMethod
             isSpeedEnableMethod.addInstructions(

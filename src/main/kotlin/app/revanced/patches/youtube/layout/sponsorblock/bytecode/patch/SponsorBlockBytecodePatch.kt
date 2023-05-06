@@ -202,7 +202,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
 
                     zoomOverlayResourceId -> {
                         val invertVisibilityMethod =
-                            context.toMethodWalker(method).nextMethod(index - 6, true).getMethod() as MutableMethod
+                            context.traceMethodCalls(method).nextMethod(index - 6, true).getMethod() as MutableMethod
                         // change visibility of the buttons
                         invertVisibilityMethod.addInstructions(
                             0, """

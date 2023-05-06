@@ -61,7 +61,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
 
             val settingsBooleanIndex = booleanCalls.elementAt(1).index
             val settingsBooleanMethod =
-                context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
+                context.traceMethodCalls(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
 
             settingsBooleanMethod.addInstructions(
                 0, """

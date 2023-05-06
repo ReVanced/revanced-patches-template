@@ -131,7 +131,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         ShortsTextComponentParentFingerprint.result?.let {
             context
-                .toMethodWalker(it.method)
+                .traceMethodCalls(it.method)
                 .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
                 .getMethod().let { method ->
                     with(method as MutableMethod) {

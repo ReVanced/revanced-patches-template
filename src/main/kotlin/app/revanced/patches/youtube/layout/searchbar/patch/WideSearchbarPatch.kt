@@ -63,8 +63,8 @@ class WideSearchbarPatch : BytecodePatch(
          */
         fun BytecodeContext.walkMutable(index: Int, fromFingerprint: MethodFingerprint) =
             fromFingerprint.result?.let {
-                toMethodWalker(it.method).nextMethod(index, true).getMethod() as MutableMethod
-            } ?: throw fromFingerprint.error()
+                traceMethodCalls(it.method).nextMethod(index, true).getMethod() as MutableMethod
+            } ?: fromFingerprint.error()
 
 
         /**

@@ -111,7 +111,7 @@ class VideoInformationPatch : BytecodePatch(
          * Set the video time method
          */
         with(PlayerControllerSetTimeReferenceFingerprint.result!!) {
-            timeMethod = context.toMethodWalker(method)
+            timeMethod = context.traceMethodCalls(method)
                 .nextMethod(scanResult.patternScanResult!!.startIndex, true)
                 .getMethod() as MutableMethod
         }

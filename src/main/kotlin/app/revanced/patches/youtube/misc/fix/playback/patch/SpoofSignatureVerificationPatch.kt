@@ -66,7 +66,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
         // hook parameter
         ProtobufParameterBuilderFingerprint.result?.let {
             val setParamMethod = context
-                .toMethodWalker(it.method)
+                .traceMethodCalls(it.method)
                 .nextMethod(it.scanResult.patternScanResult!!.startIndex, true).getMethod() as MutableMethod
 
             setParamMethod.apply {

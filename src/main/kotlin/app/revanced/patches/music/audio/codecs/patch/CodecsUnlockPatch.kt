@@ -39,7 +39,7 @@ class CodecsUnlockPatch : BytecodePatch(
 
         val allCodecsResult = AllCodecsReferenceFingerprint.result!!
         val allCodecsMethod =
-            context.toMethodWalker(allCodecsResult.method)
+            context.traceMethodCalls(allCodecsResult.method)
                 .nextMethod(allCodecsResult.scanResult.patternScanResult!!.startIndex)
                 .getMethod()
 
