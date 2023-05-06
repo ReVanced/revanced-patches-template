@@ -11,7 +11,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Element
-import org.w3c.dom.NodeList
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class ThemeResourcePatch : ResourcePatch {
@@ -25,7 +24,7 @@ class ThemeResourcePatch : ResourcePatch {
                 StringResource(
                     "revanced_seekbar_color_summary",
                     "The color of the seekbar for the dark theme."
-                )
+       ø         )
             ),
         )
 
@@ -68,12 +67,12 @@ class ThemeResourcePatch : ResourcePatch {
             val layerList = editor.file.getElementsByTagName("layer-list").item(0) as Element
             val progressNode = layerList.getElementsByTagName("item").item(1) as Element
             if (!progressNode.getAttributeNode("android:id").value.endsWith("progress")) {
-                return PatchResultError("Could not find progress bar");
+                return PatchResultError("Could not find progress bar")
             }
-            val scaleNode = (progressNode.getElementsByTagName("scale") as NodeList).item(0) as Element
-            val shapeNode = (scaleNode.getElementsByTagName("shape")  as NodeList).item(0) as Element
+            val scaleNode = progressNode.getElementsByTagName("scale").item(0) as Element
+            val shapeNode = scaleNode.getElementsByTagName("shape").item(0) as Element
             val replacementNode = editor.file.createElement(
-                "app.revanced.integrations.patches.theme.SeekbarDrawableCustomColor")
+                "app.revanced.integrations.patches.theme.ProgressBarDrawable")
             scaleNode.replaceChild(replacementNode, shapeNode)
         }
 
