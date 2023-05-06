@@ -30,14 +30,21 @@ internal object ResourceUtils {
         }
     }
 
-    internal fun String.toColorResource(resources: Apk.Resources) = if (startsWith('@')) reference(resources, this) else color(this)
+    internal fun ResourceFile.editText(block: (String) -> String) = use {
+        it.contents = block(String(it.contents)).toByteArray()
+    }
+
+    internal fun String.toColorResource(resources: Apk.Resources) =
+        if (startsWith('@')) reference(resources, this) else color(this)
+
     internal fun Apk.Resources.setMultiple(
         type: String,
         names: List<String>,
         value: Resource,
         configuration: String? = null
     ) = setGroup(type,
-        names.associateWith { value }, configuration)
+        names.associateWith { value }, configuration
+    )
 
     /**
      * Copy resources from the current class loader to the resource directory.
@@ -64,7 +71,8 @@ internal object ResourceUtils {
         null
     } else this
 
-    internal fun ResourceContext.resourceIdOf(type: String, name: String) = apkBundle.resources.resolve(type, name).toLong()
+    internal fun ResourceContext.resourceIdOf(type: String, name: String) =
+        apkBundle.resources.resolve(type, name).toLong()
 
     internal val ResourceContext.base get() = apkBundle.base.resources
 

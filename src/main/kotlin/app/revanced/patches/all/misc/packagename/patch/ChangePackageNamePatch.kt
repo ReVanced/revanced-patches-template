@@ -8,6 +8,7 @@ import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.editText
 import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
@@ -30,10 +31,8 @@ class ChangePackageNamePatch : ResourcePatch {
             if (!originalPackageName.matches(packageNameRegex))
                 throw PatchException("Failed to get the original package name")
 
-            context.base.openFile(Apk.manifest).use {
-                it.readText().replace(originalPackageName, packageName).let { modified ->
-                    it.writeText(modified)
-                }
+            context.base.openFile(Apk.manifest).editText {
+                it.replace(originalPackageName, packageName)
             }
 
         } ?: throw PatchException("No package name provided")

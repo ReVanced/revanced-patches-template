@@ -11,6 +11,7 @@ import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrand
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.resources.ResourceUtils.editText
 import java.io.File
 
 @Patch
@@ -55,13 +56,10 @@ class CustomBrandingPatch : ResourcePatch {
             .let(::copyResources)
 
         // change the name of the app
-        context.base.openFile(Apk.manifest).use { manifest ->
-            manifest.writeText(
-                manifest.readText()
-                    .replace(
-                        "android:label=\"@string/application_name",
-                        "android:label=\"$appName"
-                    )
+        context.base.openFile(Apk.manifest).editText {
+            it.replace(
+                "android:label=\"@string/application_name",
+                "android:label=\"$appName"
             )
         }
 

@@ -2,6 +2,7 @@ package app.revanced.util.microg
 
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
+import app.revanced.util.resources.ResourceUtils.editText
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 /**
@@ -33,8 +34,7 @@ internal object MicroGResourceHelper {
         toName: String
     ) {
         fun Apk.transform() {
-            resources.openFile(Apk.manifest).use { file ->
-                val txt = file.readText()
+            resources.openFile(Apk.manifest).editText { txt ->
                 if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed
                     txt.replace(
@@ -64,7 +64,7 @@ internal object MicroGResourceHelper {
                 }.replace(
                     "package=\"$fromPackageName",
                     "package=\"$toPackageName"
-                ).let { file.writeText(it) }
+                )
             }
         }
 
