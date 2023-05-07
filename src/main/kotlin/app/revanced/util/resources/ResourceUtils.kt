@@ -34,10 +34,10 @@ internal object ResourceUtils {
         it.contents = block(String(it.contents)).toByteArray()
     }
 
-    internal fun String.toColorResource(resources: Apk.Resources) =
+    internal fun String.toColorResource(resources: Apk.ResourceContainer) =
         if (startsWith('@')) reference(resources, this) else color(this)
 
-    internal fun Apk.Resources.setMultiple(
+    internal fun Apk.ResourceContainer.setMultiple(
         type: String,
         names: List<String>,
         value: Resource,

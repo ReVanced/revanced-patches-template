@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @Version("0.0.1")
 class DynamicColorPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        fun Apk.Resources.setColors(configuration: String, resources: Map<String, String>) =
+        fun Apk.ResourceContainer.setColors(configuration: String, resources: Map<String, String>) =
             setGroup("color", resources.mapValues { it.value.toColorResource(this) }, configuration)
 
         context.base.apply {

@@ -54,7 +54,7 @@ abstract class AbstractSettingsResourcePatch(
 
     internal companion object {
         private var revancedPreferenceNode: Node? = null
-        private var base: Apk.Resources? = null
+        private var base: Apk.ResourceContainer? = null
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
