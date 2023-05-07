@@ -5,7 +5,7 @@ import org.jf.dexlib2.Opcode
 
 object SwitchComposeButtonFingerprint : MethodFingerprint(
     returnType = "V",
-    parameters = listOf("Landroid/text/Editable;", "Z"),
+    parameters = listOf("L", "Z"),
     strings = listOf("afterTextChanged", "expression_search"),
     opcodes = listOf(
         Opcode.IGET_OBJECT,
