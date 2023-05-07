@@ -13,42 +13,41 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HidePlayerOverlayPatchCompatibility
-import app.revanced.patches.youtube.layout.hide.player.overlay.bytecode.fingerprints.HidePlayerOverlayFingerprint
+import app.revanced.patches.youtube.layout.hide.player.overlay.bytecode.fingerprints.CreatePlayerOverviewFingerprint
 import app.revanced.patches.youtube.layout.hide.player.overlay.resource.patch.HidePlayerOverlayResourcePatch
+import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
 @Name("hide-player-overlay")
-@Description("Hides the dark player overlay when player controls are visible.")
+@Description("Hides the dark background overlay from the player when player controls are visible.")
 @DependsOn([HidePlayerOverlayResourcePatch::class])
 @HidePlayerOverlayPatchCompatibility
 @Version("0.0.2")
-class HidePlayerOverlayPatch : BytecodePatch(
-    listOf(
-        HidePlayerOverlayFingerprint
-    )
-) {
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/HidePlayerOverlayPatch;"
-    }
-
+class HidePlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        HidePlayerOverlayFingerprint.result?.let { result ->
+        CreatePlayerOverviewFingerprint.result?.let { result ->
             result.mutableMethod.apply {
-                val instructions = implementation!!.instructions
-                val viewRegisterIndex = instructions.indexOfFirst {
-                    (it as? WideLiteralInstruction)?.wideLiteral == HidePlayerOverlayResourcePatch.scrimOverlayId
-                } + 3
-                val viewRegister = (instruction(viewRegisterIndex) as Instruction21c).registerA
+                val viewRegisterIndex = implementation!!.instructions.indexOfFirst {
+                    val literal = (it as? WideLiteralInstruction)?.wideLiteral
 
+                    literal == HidePlayerOverlayResourcePatch.scrimOverlayId
+                } + 3
+                val viewRegister = instruction<OneRegisterInstruction>(viewRegisterIndex).registerA
+
+                val insertIndex = viewRegisterIndex + 1
                 addInstruction(
-                    viewRegisterIndex + 1,
-                    "invoke-static {v$viewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->hidePlayerOverlay(Landroid/widget/ImageView;)V"
+                    insertIndex,
+                    "invoke-static { v$viewRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->hidePlayerOverlay(Landroid/widget/ImageView;)V"
                 )
             }
-        } ?: return HidePlayerOverlayFingerprint.toErrorResult()
+        } ?: return CreatePlayerOverviewFingerprint.toErrorResult()
 
         return PatchResultSuccess()
+    }
+
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/HidePlayerOverlayPatch;"
     }
 }

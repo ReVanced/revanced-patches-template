@@ -7,7 +7,7 @@ import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-object HidePlayerOverlayFingerprint : MethodFingerprint(
+object CreatePlayerOverviewFingerprint : MethodFingerprint(
     returnType = "V",
     access = AccessFlags.PRIVATE or AccessFlags.FINAL,
     opcodes = listOf(
@@ -17,9 +17,12 @@ object HidePlayerOverlayFingerprint : MethodFingerprint(
         Opcode.CHECK_CAST
     ),
     customFingerprint = { methodDef ->
-        methodDef.implementation?.instructions?.any { instruction ->
-            instruction.opcode.ordinal == Opcode.CONST.ordinal &&
-                    (instruction as? WideLiteralInstruction)?.wideLiteral == HidePlayerOverlayResourcePatch.scrimOverlayId
-        } == true
+        methodDef.implementation?.instructions?.any {
+            if (it.opcode != Opcode.INVOKE_VIRTUAL) return@any false
+
+            val literal = (it as WideLiteralInstruction).wideLiteral
+
+            literal == HidePlayerOverlayResourcePatch.scrimOverlayId
+        } ?: false
     }
 )

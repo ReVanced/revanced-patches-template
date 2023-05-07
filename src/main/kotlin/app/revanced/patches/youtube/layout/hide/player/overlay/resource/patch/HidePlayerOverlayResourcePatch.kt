@@ -16,18 +16,14 @@ import jdk.jfr.Name
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 @HidePlayerOverlayPatchCompatibility
 class HidePlayerOverlayResourcePatch : ResourcePatch {
-    internal companion object {
-        var scrimOverlayId: Long = -1
-    }
-
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_overlay",
-                StringResource("revanced_hide_player_overlay_title", "Hide player overlay"),
+                StringResource("revanced_hide_player_overlay_title", "Hide background overlay in player"),
                 false,
-                StringResource("revanced_hide_player_overlay_summary_on", "Player overlay is hidden"),
-                StringResource("revanced_hide_player_overlay_summary_off", "Player overlay is shown")
+                StringResource("revanced_hide_player_overlay_summary_on", "Background overlay is hidden"),
+                StringResource("revanced_hide_player_overlay_summary_off", "Background overlay is shown")
             )
         )
 
@@ -36,5 +32,9 @@ class HidePlayerOverlayResourcePatch : ResourcePatch {
         }.id
 
         return PatchResultSuccess()
+    }
+
+    internal companion object {
+        var scrimOverlayId: Long = -1
     }
 }
