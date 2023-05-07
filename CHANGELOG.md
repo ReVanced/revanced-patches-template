@@ -1,3 +1,24 @@
+# [2.174.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.6...v2.174.0-dev.7) (2023-05-07)
+
+
+### Features
+
+* **syncforreddit:** add `disable-ads` patch ([#2066](https://github.com/revanced/revanced-patches/issues/2066)) ([c1de5d6](https://github.com/revanced/revanced-patches/commit/c1de5d6e433263b9a17305fa1c65807921594731))
+
+# [2.174.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.5...v2.174.0-dev.6) (2023-05-07)
+
+
+### Features
+
+* **youtube:** `hide-load-more-button` patch ([#2078](https://github.com/revanced/revanced-patches/issues/2078)) ([7170802](https://github.com/revanced/revanced-patches/commit/71708022a06453f6f56c19d686fc505286523391))
+
+# [2.174.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.4...v2.174.0-dev.5) (2023-05-07)
+
+
+### Bug Fixes
+
+* **spotify/disable-capture-restriction:** make compatible with latest versions ([#2095](https://github.com/revanced/revanced-patches/issues/2095)) ([e48f127](https://github.com/revanced/revanced-patches/commit/e48f1278da2a9d82e70be41fa2c4c480c574816b))
+
 # [2.174.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.3...v2.174.0-dev.4) (2023-05-07)
 
 

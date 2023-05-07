@@ -2,6 +2,8 @@
 
 The official ReVanced Patches.
 
+## 📋 List of patches in this repository
+
 ### [📦 `com.google.android.youtube`](https://play.google.com/store/apps/details?id=com.google.android.youtube)
 <details>
 
@@ -172,6 +174,14 @@ The official ReVanced Patches.
 |:--------:|:--------------:|:-----------------:|
 | `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | all |
 | `spoof-signature` | Spoofs the signature of the app. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
@@ -428,7 +438,6 @@ Example:
     "description": "Enables a custom theme.",
     "version": "0.0.1",
     "excluded": false,
-    "deprecated": false,
     "options": [
       {
         "key": "theme",
@@ -455,7 +464,6 @@ Example:
     "description": "Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).",
     "version": "0.0.1",
     "excluded": false,
-    "deprecated": false,
     "options": [
       {
         "key": "appName",
