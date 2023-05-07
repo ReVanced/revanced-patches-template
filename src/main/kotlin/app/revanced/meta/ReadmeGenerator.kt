@@ -38,7 +38,6 @@ internal class ReadmeGenerator : PatchesFileGenerator {
                     }
                 }.let { commonMap ->
                     commonMap.maxByOrNull { it.value }?.value?.let {
-                        // Uses FlexVer (https://github.com/unascribed/FlexVer/) to perform version comparison
                         commonMap.entries.filter { mostCommon -> mostCommon.value == it }
                             .maxOfWith(FlexVerComparator::compare, Map.Entry<String, Int>::key)
                     } ?: "all"
