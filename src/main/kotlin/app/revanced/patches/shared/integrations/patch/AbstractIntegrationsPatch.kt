@@ -33,8 +33,12 @@ abstract class AbstractIntegrationsPatch(
         customFingerprint: ((methodDef: Method) -> Boolean)? = null,
         private val contextRegisterResolver: (Method) -> Int = object : RegisterResolver {}
     ) : MethodFingerprint(
-        returnType = returnType, access = access, parameters = parameters,
-        opcodes = opcodes, strings = strings, customFingerprint = customFingerprint
+        returnType,
+        access,
+        parameters,
+        opcodes,
+        strings,
+        customFingerprint
     ) {
         fun invoke(integrationsDescriptor: String): PatchResult {
             result?.mutableMethod?.let { method ->
