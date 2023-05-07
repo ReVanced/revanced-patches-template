@@ -14,7 +14,7 @@ package app.revanced.patches.ads.patch
 @Patch
 @Name("disable-ads")
 @Description("Disables ads.")
-@DependsOn([HideAdResourcePatch:class])
+@DependsOn([DisableAdResourcePatch:class])
 @Compatibility([Package("com.some.app", arrayOf("0.1.0"))])
 @Version("0.0.1")
 class DisableAdsPatch : BytecodePatch(
@@ -47,7 +47,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
    @Patch
    @Name("disable-ads")
    @Description("Disables ads.")
-   @DependsOn([HideAdResourcePatch:class])
+   @DependsOn([DisableAdResourcePatch:class])
    @Compatibility([Package("com.some.app", arrayOf("0.1.0"))])
    @Version("0.0.1")
    ```
