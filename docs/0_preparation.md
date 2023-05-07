@@ -10,7 +10,7 @@ To develop ReVanced patches, a certain development environment is required.
 
 ## 🏃 Prepare the environment
 
-For this guide, the [ReVanced Patches](https://github.com/revanced/revanced-patches) will be used as a base.
+For this guide, [ReVanced Patches](https://github.com/revanced/revanced-patches) will be used as a base.
 
 1. Clone the repository
 
@@ -26,6 +26,6 @@ For this guide, the [ReVanced Patches](https://github.com/revanced/revanced-patc
 
 ## ⏭️ Whats next
 
-The following section will give you a basic understanding of the [ReVanced Patcher](https://github.com/revanced/revanced-patcher).
+The following section will give you a basic understanding of [ReVanced Patcher](https://github.com/revanced/revanced-patcher).
 
-Continue: [💉 Introduction to the ReVanced Patcher](1_introduction.md)
+Continue: [💉 Introduction to ReVanced Patcher](1_introduction.md)
