@@ -62,7 +62,6 @@ class CustomBrandingPatch : ResourcePatch {
                 "android:label=\"$appName"
             )
         }
-
     }
 
     companion object : OptionsContainer() {
