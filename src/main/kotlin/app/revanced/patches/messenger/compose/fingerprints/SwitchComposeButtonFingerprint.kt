@@ -1,0 +1,18 @@
+package app.revanced.patches.messenger.compose.fingerprints
+
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import org.jf.dexlib2.Opcode
+
+object SwitchComposeButtonFingerprint : MethodFingerprint(
+    returnType = "V",
+    parameters = listOf("Landroid/text/Editable;", "Z"),
+    strings = listOf("afterTextChanged", "expression_search"),
+    opcodes = listOf(
+        Opcode.IGET_OBJECT,
+        Opcode.IF_EQZ,
+        Opcode.CONST_STRING,
+        Opcode.GOTO,
+        Opcode.CONST_STRING,
+        Opcode.GOTO
+    )
+)
