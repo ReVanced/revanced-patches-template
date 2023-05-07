@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.patch
+package app.revanced.patches.youtube.layout.theme.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
@@ -59,23 +59,7 @@ class ThemeResourcePatch : ResourcePatch {
         return PatchResultSuccess()
     }
 
-    companion object : OptionsContainer() {
-        var darkThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "darkThemeBackgroundColor",
-                default = "@android:color/black",
-                title = "Background color for the dark theme",
-                description = "The background color of the dark theme. Can be a hex color or a resource reference.",
-            )
-        )
-
-        var lightThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "lightThemeBackgroundColor",
-                default = "@android:color/white",
-                title = "Background color for the light theme",
-                description = "The background color of the light theme. Can be a hex color or a resource reference.",
-            )
-        )
+    internal companion object {
+        var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
     }
 }
