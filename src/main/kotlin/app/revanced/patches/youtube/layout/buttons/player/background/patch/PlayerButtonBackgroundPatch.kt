@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.buttons.player.background.annotations.PlayerButtonBackgroundCompatibility
 import org.w3c.dom.Element
 
-@Patch
+@Patch(false)
 @Name("remove-player-button-background")
 @Description("Removes the background from the video player buttons.")
 @PlayerButtonBackgroundCompatibility
