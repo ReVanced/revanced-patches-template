@@ -21,16 +21,21 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Description("Disables switching to sticker search mode in compose field")
 @Compatibility([Package("com.facebook.orca")])
 @Version("0.0.1")
-class DisableComposeExpressionTabChange : BytecodePatch(
-    listOf(SwitchComposeButtonFingerprint)
-) {
+class DisableComposeExpressionTabChange : BytecodePatch(listOf(SwitchComposeButtonFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SwitchComposeButtonFingerprint.result?.apply {
-            val setStringInstruction = mutableMethod.instruction(scanResult.patternScanResult!!.startIndex + 2)
-            val targetRegister = (setStringInstruction as OneRegisterInstruction).registerA
+        SwitchComposeButtonFingerprint.result?.let {
+            val setStringIndex = it.scanResult.patternScanResult!!.startIndex + 2
 
-            mutableMethod.replaceInstruction(setStringInstruction.location.index, "const-string v$targetRegister, \"expression\"")
+            it.mutableMethod.apply {
+                val targetRegister = instruction<OneRegisterInstruction>(setStringIndex).registerA
+
+                replaceInstruction(
+                    setStringIndex,
+                    "const-string v$targetRegister, \"expression\""
+                )
+            }
         } ?: throw SwitchComposeButtonFingerprint.toErrorResult()
+
         return PatchResultSuccess()
     }
 }
