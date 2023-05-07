@@ -13,19 +13,15 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.syncforreddit.ads.annotations.DisableAdsCompatibility
 import app.revanced.patches.syncforreddit.ads.fingerprints.IsAdsEnabledFingerprint
-import app.revanced.patches.syncforreddit.detection.piracy.patch.PiracyDetectionPatch
+import app.revanced.patches.syncforreddit.detection.piracy.patch.DisablePiracyDetectionPatch
 
 @Patch
 @Name("disable-ads")
-@DependsOn([PiracyDetectionPatch::class])
+@DependsOn([DisablePiracyDetectionPatch::class])
 @Description("Disables ads.")
 @Version("0.0.1")
 @DisableAdsCompatibility
-class DisableAdsPatch : BytecodePatch(
-    listOf(
-        IsAdsEnabledFingerprint
-    )
-) {
+class DisableAdsPatch : BytecodePatch(listOf(IsAdsEnabledFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         IsAdsEnabledFingerprint.result?.mutableMethod?.apply {
             addInstructions(

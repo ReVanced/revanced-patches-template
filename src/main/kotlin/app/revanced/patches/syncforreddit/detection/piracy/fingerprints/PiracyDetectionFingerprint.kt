@@ -19,8 +19,11 @@ object PiracyDetectionFingerprint : MethodFingerprint(
     ),
     customFingerprint = { method ->
         method.implementation?.instructions?.any {
-            it.opcode == Opcode.NEW_INSTANCE &&
-                    ((it as ReferenceInstruction).reference as TypeReference).type=="Lcom/github/javiersantos/piracychecker/PiracyChecker;"
+            if (it.opcode != Opcode.NEW_INSTANCE) return@any false
+
+            val reference = (it as ReferenceInstruction).reference
+
+            reference.toString() == "Lcom/github/javiersantos/piracychecker/PiracyChecker;"
         } ?: false
     }
 )
