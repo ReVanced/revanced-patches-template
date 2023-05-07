@@ -18,9 +18,12 @@ object HideLoadMoreButtonFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT_OBJECT
     ),
     customFingerprint = { methodDef ->
-        methodDef.implementation?.instructions?.any { instruction ->
-            instruction.opcode.ordinal == Opcode.CONST.ordinal &&
-                    (instruction as? WideLiteralInstruction)?.wideLiteral == HideLoadMoreButtonResourcePatch.expandButtonDownId
-        } == true
+        methodDef.implementation?.instructions?.any {
+            if (it.opcode != Opcode.CONST) return@any false
+
+            val literal = (it as WideLiteralInstruction).wideLiteral
+
+            literal == HideLoadMoreButtonResourcePatch.expandButtonDownId
+        } ?: false
     }
 )

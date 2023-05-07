@@ -16,10 +16,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 @HideLoadMoreButtonCompatibility
 class HideLoadMoreButtonResourcePatch : ResourcePatch {
-    internal companion object {
-        var expandButtonDownId: Long = -1
-    }
-
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
@@ -36,5 +32,9 @@ class HideLoadMoreButtonResourcePatch : ResourcePatch {
         }.id
 
         return PatchResultSuccess()
+    }
+
+    internal companion object {
+        var expandButtonDownId: Long = -1
     }
 }

@@ -14,35 +14,34 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints.HideLoadMoreButtonFingerprint
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
-import org.jf.dexlib2.iface.instruction.formats.Instruction11x
+import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch
 @Name("hide-load-more-button")
 @Description("Hides the button under videos that loads similar videos.")
 @DependsOn([HideLoadMoreButtonResourcePatch::class])
 @Version("0.0.1")
-class HideLoadMoreButtonPatch : BytecodePatch(
-    listOf(
-        HideLoadMoreButtonFingerprint
-    )
-) {
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/HideLoadMoreButtonPatch;"
-    }
-
+class HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         HideLoadMoreButtonFingerprint.result?.let {
             it.mutableMethod.apply {
-                val insertIndex = it.scanResult.patternScanResult!!.endIndex + 1
-                val viewRegister = (instruction(insertIndex - 1) as Instruction11x).registerA
+                val moveRegisterIndex = it.scanResult.patternScanResult!!.endIndex
+                val viewRegister = instruction<TwoRegisterInstruction>(moveRegisterIndex).registerA
 
+                val insertIndex = moveRegisterIndex + 1
                 addInstruction(
                     insertIndex,
-                    "invoke-static {v$viewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->hideLoadMoreButton(Landroid/view/View;)V"
+                    "invoke-static { v$viewRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->hideLoadMoreButton(Landroid/view/View;)V"
                 )
             }
         } ?: return HideLoadMoreButtonFingerprint.toErrorResult()
 
         return PatchResultSuccess()
+    }
+
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/HideLoadMoreButtonPatch;"
     }
 }
