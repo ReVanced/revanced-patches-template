@@ -5,6 +5,7 @@
 
     <string name="revanced_settings_import">Import</string>
     <string name="revanced_settings_import_copy">Copy</string>
+    <string name="revanced_settings_import_reset">ReVanced settings reset to default</string>
     <string name="revanced_settings_import_success">Imported %d settings</string>
     <string name="revanced_settings_import_failure_parse">Import failed: %s</string>
 </resources>
