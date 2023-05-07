@@ -5,24 +5,14 @@ import app.revanced.patcher.extensions.PatchExtensions.compatiblePackages
 import app.revanced.patcher.extensions.PatchExtensions.description
 import app.revanced.patcher.extensions.PatchExtensions.patchName
 import app.revanced.patcher.patch.Patch
+import com.unascribed.flexver.FlexVerComparator
 import java.io.File
-import java.lang.module.ModuleDescriptor.Version
 
 internal class ReadmeGenerator : PatchesFileGenerator {
     private companion object {
         private const val TABLE_HEADER =
             "| \uD83D\uDC8A Patch | \uD83D\uDCDC Description | \uD83C\uDFF9 Target Version |\n" +
                     "|:--------:|:--------------:|:-----------------:|"
-
-        // First try to parse the version string as ModuleDescriptor.Version and use it for comparison. This prevents
-        // the issue with the lexicographical ordering, where version 8.9 is considered newer than 8.10.
-        // If the parsing fails, use the string as-is (fallback to alphabetical order).
-        private fun List<Map.Entry<String, Int>>.getRecommendedVersion(): String =
-                try {
-                    this.maxBy { Version.parse(it.key) }
-                } catch (e: IllegalArgumentException) {
-                    this.maxBy { it.key }
-                }.key
     }
 
     override fun generate(bundle: PatchBundlePatches) {
@@ -48,7 +38,9 @@ internal class ReadmeGenerator : PatchesFileGenerator {
                     }
                 }.let { commonMap ->
                     commonMap.maxByOrNull { it.value }?.value?.let {
-                        commonMap.entries.filter { mostCommon -> mostCommon.value == it }.getRecommendedVersion()
+                        // Uses FlexVer (https://github.com/unascribed/FlexVer/) to perform version comparison
+                        commonMap.entries.filter { mostCommon -> mostCommon.value == it }
+                            .maxOfWith(FlexVerComparator::compare, Map.Entry<String, Int>::key)
                     } ?: "all"
                 }
 
