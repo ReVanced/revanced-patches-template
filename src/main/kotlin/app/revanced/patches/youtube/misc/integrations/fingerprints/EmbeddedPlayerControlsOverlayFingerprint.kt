@@ -7,7 +7,7 @@ import org.jf.dexlib2.AccessFlags
 object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     access = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
-    parameters = listOf("Landroid/content/Context;", "Lcom/google/android/apps/youtube/embeddedplayer/service/layoutpolicy/remoteloaded/", "L"),
+    parameters = listOf("L", "L", "L"),
     customFingerprint = { methodDef ->
         methodDef.definingClass.startsWith("Lcom/google/android/apps/youtube/embeddedplayer/service/ui/overlays/controlsoverlay/remoteloaded/")
     },
