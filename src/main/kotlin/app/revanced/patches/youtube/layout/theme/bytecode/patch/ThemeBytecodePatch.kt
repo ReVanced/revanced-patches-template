@@ -8,9 +8,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -36,7 +34,7 @@ class ThemeBytecodePatch : BytecodePatch(
             val putColorValueIndex = it.method.indexOfInstructionWithSeekbarId!! + 3
 
             it.mutableMethod.apply {
-                val overrideRegister = (instruction(putColorValueIndex) as TwoRegisterInstruction).registerA
+                val overrideRegister = instruction<TwoRegisterInstruction>(putColorValueIndex).registerA
 
                 addInstructions(
                     putColorValueIndex,
@@ -57,7 +55,7 @@ class ThemeBytecodePatch : BytecodePatch(
                     .getMethod() as MutableMethod
 
                 method.apply {
-                    val colorRegister = (method.instruction(0) as TwoRegisterInstruction).registerA
+                    val colorRegister = method.instruction<TwoRegisterInstruction>(0).registerA
                     addInstructions(
                         0,
                         """
@@ -71,7 +69,25 @@ class ThemeBytecodePatch : BytecodePatch(
         return PatchResultSuccess()
     }
 
-    private companion object {
+    companion object : OptionsContainer() {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemePatch;"
+
+        var darkThemeBackgroundColor: String? by option(
+            PatchOption.StringOption(
+                key = "darkThemeBackgroundColor",
+                default = "@android:color/black",
+                title = "Background color for the dark theme",
+                description = "The background color of the dark theme. Can be a hex color or a resource reference.",
+            )
+        )
+
+        var lightThemeBackgroundColor: String? by option(
+            PatchOption.StringOption(
+                key = "lightThemeBackgroundColor",
+                default = "@android:color/white",
+                title = "Background color for the light theme",
+                description = "The background color of the light theme. Can be a hex color or a resource reference.",
+            )
+        )
     }
 }
