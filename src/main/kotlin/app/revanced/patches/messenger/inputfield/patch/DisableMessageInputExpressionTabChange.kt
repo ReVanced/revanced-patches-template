@@ -1,4 +1,4 @@
-package app.revanced.patches.messenger.compose.patch
+package app.revanced.patches.messenger.inputfield.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Compatibility
@@ -13,17 +13,17 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.messenger.compose.fingerprints.SwitchComposeButtonFingerprint
+import app.revanced.patches.messenger.inputfield.fingerprints.SwitchMessangeInputEmojiButtonFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("disable-compose-tab-switch")
-@Description("Disables switching to sticker search mode in compose field")
+@Name("disable-message-input-expression-tab-switch")
+@Description("Disables switching from emoji to sticker search mode in message input field")
 @Compatibility([Package("com.facebook.orca")])
 @Version("0.0.1")
-class DisableComposeExpressionTabChange : BytecodePatch(listOf(SwitchComposeButtonFingerprint)) {
+class DisableMessageInputExpressionTabChange : BytecodePatch(listOf(SwitchMessangeInputEmojiButtonFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SwitchComposeButtonFingerprint.result?.let {
+        SwitchMessangeInputEmojiButtonFingerprint.result?.let {
             val setStringIndex = it.scanResult.patternScanResult!!.startIndex + 2
 
             it.mutableMethod.apply {
@@ -34,7 +34,7 @@ class DisableComposeExpressionTabChange : BytecodePatch(listOf(SwitchComposeButt
                     "const-string v$targetRegister, \"expression\""
                 )
             }
-        } ?: throw SwitchComposeButtonFingerprint.toErrorResult()
+        } ?: throw SwitchMessangeInputEmojiButtonFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

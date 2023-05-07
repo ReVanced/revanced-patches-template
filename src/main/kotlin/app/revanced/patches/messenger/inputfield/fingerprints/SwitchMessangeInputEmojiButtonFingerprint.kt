@@ -1,9 +1,9 @@
-package app.revanced.patches.messenger.compose.fingerprints
+package app.revanced.patches.messenger.inputfield.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
 
-object SwitchComposeButtonFingerprint : MethodFingerprint(
+object SwitchMessangeInputEmojiButtonFingerprint : MethodFingerprint(
     returnType = "V",
     parameters = listOf("L", "Z"),
     strings = listOf("afterTextChanged", "expression_search"),
