@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.bytecode.patch
+package app.revanced.patches.youtube.layout.seekbar.bytecode.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -12,12 +12,12 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.layout.theme.annotations.SeekbarColorCompatibility
-import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
-import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
-import app.revanced.patches.youtube.layout.theme.patch.LithoColorHookPatch
-import app.revanced.patches.youtube.layout.theme.patch.LithoColorHookPatch.Companion.lithoColorOverrideHook
-import app.revanced.patches.youtube.layout.theme.resource.SeekbarColorResourcePatch
+import app.revanced.patches.youtube.layout.seekbar.annotations.SeekbarColorCompatibility
+import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
+import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch.Companion.lithoColorOverrideHook
+import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.util.patch.indexOfFirstConstantInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction

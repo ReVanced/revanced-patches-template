@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.patch
+package app.revanced.patches.youtube.layout.theme.bytecode.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
-import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
+import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.LithoThemeFingerprint
 
 @Name("litho-color-hook")
 @Description("Adds a hook to set color of Litho components.")

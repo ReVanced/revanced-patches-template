@@ -16,7 +16,7 @@ import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.SeekbarColorBytecodePatch
+import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 

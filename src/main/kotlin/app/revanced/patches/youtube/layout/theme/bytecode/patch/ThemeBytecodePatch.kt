@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.patch
+package app.revanced.patches.youtube.layout.theme.bytecode.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -7,9 +7,10 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
-import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.SeekbarColorBytecodePatch
+import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
+import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
+import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
+import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 
 @Patch
 @Name("theme")

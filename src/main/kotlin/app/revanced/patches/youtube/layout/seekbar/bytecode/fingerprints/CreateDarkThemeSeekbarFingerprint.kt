@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.layout.theme.bytecode.fingerprints
+package app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.layout.theme.resource.SeekbarColorResourcePatch
+import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
 import app.revanced.util.patch.indexOfFirstConstantInstruction
 import org.jf.dexlib2.AccessFlags
 

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.annotations
+package app.revanced.patches.youtube.layout.seekbar.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

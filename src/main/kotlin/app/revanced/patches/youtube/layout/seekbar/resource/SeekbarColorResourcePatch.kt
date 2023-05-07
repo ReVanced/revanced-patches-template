@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.theme.resource
+package app.revanced.patches.youtube.layout.seekbar.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
@@ -38,7 +38,7 @@ class SeekbarColorResourcePatch : ResourcePatch {
         return PatchResultSuccess()
     }
 
-    companion object : OptionsContainer() {
+    companion object {
         internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
         internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
     }
