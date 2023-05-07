@@ -10,7 +10,7 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `always-autorepeat` | Always repeats the playing video again. | 18.16.37 |
-| `client-spoof` | Spoofs a patched client to allow playback. | 18.16.37 |
+| `client-spoof` | Spoofs a patched client to allow playback.(Also fix issues "the following content is not available") | 18.16.37 |
 | `comments` | Hides components related to comments. | 18.16.37 |
 | `copy-video-url` | Adds buttons in player to copy video links. | 18.16.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
