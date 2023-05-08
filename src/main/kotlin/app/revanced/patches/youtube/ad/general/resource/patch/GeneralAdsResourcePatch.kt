@@ -224,68 +224,68 @@ class GeneralAdsResourcePatch : ResourcePatch {
 
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
-                "revanced_adremover_general_ads",
-                StringResource("revanced_adremover_general_ads_title", "Hide general ads"),
+                "revanced_hide_general_ads",
+                StringResource("revanced_hide_general_ads_title", "Hide general ads"),
                 true,
-                StringResource("revanced_adremover_general_ads_summary_on", "General ads are hidden"),
-                StringResource("revanced_adremover_general_ads_summary_off", "General ads are shown")
+                StringResource("revanced_hide_general_ads_summary_on", "General ads are hidden"),
+                StringResource("revanced_hide_general_ads_summary_off", "General ads are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_buttoned_ads",
-                StringResource("revanced_adremover_buttoned_ads_title", "Hide buttoned ad"),
+                "revanced_hide_buttoned_ads",
+                StringResource("revanced_hide_buttoned_ads_title", "Hide buttoned ad"),
                 true,
-                StringResource("revanced_adremover_buttoned_ads_summary_on", "Buttoned ads are hidden"),
-                StringResource("revanced_adremover_buttoned_ads_summary_off", "Buttoned ads are shown")
+                StringResource("revanced_hide_buttoned_ads_summary_on", "Buttoned ads are hidden"),
+                StringResource("revanced_hide_buttoned_ads_summary_off", "Buttoned ads are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_paid_content",
-                StringResource("revanced_adremover_paid_content_enabled_title", "Hide paid content"),
+                "revanced_hide_paid_content_ads",
+                StringResource("revanced_hide_paid_content_ads_title", "Hide paid content"),
                 true,
-                StringResource("revanced_adremover_paid_content_enabled_summary_on", "Paid content is hidden"),
-                StringResource("revanced_adremover_paid_content_enabled_summary_off", "Paid content is shown")
+                StringResource("revanced_hide_paid_content_ads_summary_on", "Paid content is hidden"),
+                StringResource("revanced_hide_paid_content_ads_summary_off", "Paid content is shown")
             ),
             SwitchPreference(
-                "revanced_adremover_latest_posts",
-                StringResource("revanced_adremover_latest_posts_title", "Hide latest posts"),
+                "revanced_hide_latest_posts_ads",
+                StringResource("revanced_hide_latest_posts_ads_title", "Hide latest posts"),
                 true,
-                StringResource("revanced_adremover_latest_posts_summary_on", "Latest posts are hidden"),
-                StringResource("revanced_adremover_latest_posts_summary_off", "Latest posts are shown")
+                StringResource("revanced_hide_latest_posts_ads_summary_on", "Latest posts are hidden"),
+                StringResource("revanced_hide_latest_posts_ads_summary_off", "Latest posts are shown")
             ),
             SwitchPreference(
-                "revanced_adremover_self_sponsor",
-                StringResource("revanced_adremover_self_sponsor_enabled_title", "Hide self sponsored cards"),
+                "revanced_hide_self_sponsor_ads",
+                StringResource("revanced_hide_self_sponsor_ads_title", "Hide self sponsored cards"),
                 true,
-                StringResource("revanced_adremover_self_sponsor_enabled_summary_on", "Self sponsored cards are hidden"),
-                StringResource("revanced_adremover_self_sponsor_enabled_summary_off", "Self sponsored cards are shown")
+                StringResource("revanced_hide_self_sponsor_ads_summary_on", "Self sponsored cards are hidden"),
+                StringResource("revanced_hide_self_sponsor_ads_summary_off", "Self sponsored cards are shown")
             ),
             PreferenceScreen(
-                "revanced_adremover_custom_preference",
-                StringResource("revanced_adremover_custom_preference_title", "Custom filter"),
+                "revanced_custom_filter_preference",
+                StringResource("revanced_custom_filter_preference_title", "Custom filter"),
                 listOf(
                     SwitchPreference(
-                        "revanced_adremover_custom",
+                        "revanced_custom_filter",
                         StringResource(
-                            "revanced_adremover_custom_title",
+                            "revanced_custom_filter_title",
                             "Enable custom filter"
                         ),
                         false,
                         StringResource(
-                            "revanced_adremover_custom_summary_on",
+                            "revanced_custom_filter_summary_on",
                             "Custom filter is enabled"
                         ),
                         StringResource(
-                            "revanced_adremover_custom_summary_off",
+                            "revanced_custom_filter_summary_off",
                             "Custom filter is disabled"
                         )
                     ),
                     // TODO: This should be a dynamic ListPreference, which does not exist yet
                     TextPreference(
-                        "revanced_adremover_custom_filters",
-                        StringResource("revanced_adremover_custom_filters_title", "Custom filter"),
+                        "revanced_custom_filter_strings",
+                        StringResource("revanced_custom_filter_strings_title", "Custom filter"),
                         InputType.TEXT,
                         "",
                         StringResource(
-                            "revanced_adremover_custom_filters_summary",
+                            "revanced_custom_filter_strings_summary",
                             "Filter components by their name separated by a comma"
                         )
                     )
