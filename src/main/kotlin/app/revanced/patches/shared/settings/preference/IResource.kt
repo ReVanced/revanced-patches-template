@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.settings.preference
 
-import app.revanced.patcher.arsc.Resource
+import app.revanced.patcher.resource.Resource
 
 /**
  * Resource

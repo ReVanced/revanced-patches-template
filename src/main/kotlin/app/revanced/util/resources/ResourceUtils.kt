@@ -4,9 +4,9 @@ import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.apk.ResourceFile
-import app.revanced.patcher.arsc.Resource
-import app.revanced.patcher.arsc.color
-import app.revanced.patcher.arsc.reference
+import app.revanced.patcher.resource.Resource
+import app.revanced.patcher.resource.color
+import app.revanced.patcher.resource.reference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import org.w3c.dom.Node

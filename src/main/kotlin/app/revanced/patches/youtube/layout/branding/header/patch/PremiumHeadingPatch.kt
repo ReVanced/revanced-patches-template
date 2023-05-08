@@ -4,7 +4,7 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.arsc.reference
+import app.revanced.patcher.resource.reference
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHeadingCompatibility

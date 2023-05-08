@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patcher.arsc.Array
+import app.revanced.patcher.resource.Array
 import app.revanced.patches.shared.settings.preference.IResource
 
 /**
@@ -14,6 +14,6 @@ internal data class ArrayResource(
     override val name: String,
     val items: List<StringResource>
 ) : IResource {
-    override val patcherValue = Array(items.map { app.revanced.patcher.arsc.StringResource(it.value) })
+    override val patcherValue = Array(items.map { app.revanced.patcher.resource.StringResource(it.value) })
     override val type = "array"
 }

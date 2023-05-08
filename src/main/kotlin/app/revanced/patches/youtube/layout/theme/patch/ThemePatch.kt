@@ -4,9 +4,9 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.arsc.Style
-import app.revanced.patcher.arsc.integer
-import app.revanced.patcher.arsc.reference
+import app.revanced.patcher.resource.Style
+import app.revanced.patcher.resource.integer
+import app.revanced.patcher.resource.reference
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
