@@ -1,11 +1,7 @@
 package app.revanced.patches.messenger.inputfield.patch
 
 import app.revanced.extensions.toErrorResult
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
@@ -17,11 +13,11 @@ import app.revanced.patches.messenger.inputfield.fingerprints.SwitchMessangeInpu
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("disable-message-input-expression-tab-switch")
+@Name("disable-switching-emoji-to-sticker-in-message-input-field")
 @Description("Disables switching from emoji to sticker search mode in message input field")
 @Compatibility([Package("com.facebook.orca")])
 @Version("0.0.1")
-class DisableMessageInputExpressionTabChange : BytecodePatch(listOf(SwitchMessangeInputEmojiButtonFingerprint)) {
+class DisableSwitchingEmojiToStickerInMessageInputField : BytecodePatch(listOf(SwitchMessangeInputEmojiButtonFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         SwitchMessangeInputEmojiButtonFingerprint.result?.let {
             val setStringIndex = it.scanResult.patternScanResult!!.startIndex + 2
