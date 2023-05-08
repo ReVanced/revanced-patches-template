@@ -34,13 +34,13 @@ class ThemeBytecodePatch : BytecodePatch(
             val putColorValueIndex = it.method.indexOfInstructionWithSeekbarId!! + 3
 
             it.mutableMethod.apply {
-                val overrideRegister = instruction<TwoRegisterInstruction>(putColorValueIndex).registerA
+                val colorRegister = instruction<TwoRegisterInstruction>(putColorValueIndex).registerA
 
                 addInstructions(
                     putColorValueIndex,
                     """
-                        invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue()I
-                        move-result v$overrideRegister
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        move-result v$colorRegister
                     """
                 )
             }

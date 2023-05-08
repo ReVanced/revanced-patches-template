@@ -28,7 +28,7 @@ class ThemeResourcePatch : ResourcePatch {
                 "#FF0000",
                 StringResource(
                     "revanced_seekbar_color_summary",
-                    "The color of the seekbar for the dark theme."
+                    "The color of the seekbar for the dark theme, leave empty to use default."
                 )
             ),
         )
