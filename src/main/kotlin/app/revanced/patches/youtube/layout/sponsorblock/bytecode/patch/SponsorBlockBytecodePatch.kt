@@ -7,6 +7,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -19,7 +20,7 @@ import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.AppendTimeFingerprint
-import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.PlayerOverlaysLayoutInitFingerprint
+import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ControlsOverlayFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.RectangleFieldInvalidatorFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
@@ -58,7 +59,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
     listOf(
         SeekbarFingerprint,
         AppendTimeFingerprint,
-        PlayerOverlaysLayoutInitFingerprint,
+        ControlsOverlayFingerprint,
         AutoRepeatParentFingerprint,
     )
 ) {
@@ -194,8 +195,8 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         method.addInstructions(
                             moveResultInstructionIndex + 1, // insert right after moving the view to the register and use that register
                             """
-                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
-                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V
+                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/View;)V
+                                invoke-static {v$inflatedViewRegister}, $INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/View;)V
                             """
                         )
                     }
@@ -236,10 +237,16 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         VideoInformationPatch.onCreateHook(INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR, "initialize")
 
         // initialize the sponsorblock view
-        PlayerOverlaysLayoutInitFingerprint.result!!.mutableMethod.addInstruction(
-            6, // after inflating the view
-            "invoke-static {p0}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Ljava/lang/Object;)V"
-        )
+        ControlsOverlayFingerprint.result?.let {
+            val startIndex = it.scanResult.patternScanResult!!.startIndex
+            it.mutableMethod.apply {
+                val frameLayoutRegister = (instruction(startIndex + 2) as OneRegisterInstruction).registerA
+                addInstruction(
+                    startIndex + 3,
+                    "invoke-static {v$frameLayoutRegister}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/ViewGroup;)V"
+                )
+            }
+        }  ?: return ControlsOverlayFingerprint.toErrorResult()
 
         // get rectangle field name
         RectangleFieldInvalidatorFingerprint.resolve(context, seekbarSignatureResult.classDef)

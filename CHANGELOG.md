@@ -1,3 +1,206 @@
+# [2.174.0-dev.15](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.14...v2.174.0-dev.15) (2023-05-08)
+
+
+### Features
+
+* **messenger:** add `disable-switching-emoji-to-sticker-in-message-input-field` patch ([#2099](https://github.com/revanced/revanced-patches/issues/2099)) ([ac5532a](https://github.com/revanced/revanced-patches/commit/ac5532a65c353b1964d9b7d990341fc7362e510d))
+
+# [2.174.0-dev.14](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.13...v2.174.0-dev.14) (2023-05-07)
+
+
+### Features
+
+* **youtube/hide-player-overlay:** make it toggleable in settings ([#2044](https://github.com/revanced/revanced-patches/issues/2044)) ([f693d55](https://github.com/revanced/revanced-patches/commit/f693d55caf1e0b72bb1f4c39b1eeb59436191e02))
+
+# [2.174.0-dev.13](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.12...v2.174.0-dev.13) (2023-05-07)
+
+
+### Bug Fixes
+
+* account fo breaking changes from ReVanced Patcher ([#2103](https://github.com/revanced/revanced-patches/issues/2103)) ([5be25cd](https://github.com/revanced/revanced-patches/commit/5be25cde4b34d58ced35a7edbb499477b538b748))
+
+# [2.174.0-dev.12](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.11...v2.174.0-dev.12) (2023-05-07)
+
+
+### Bug Fixes
+
+* **readme-generator:** attempt sorting versions with `FlexVer` ([#2059](https://github.com/revanced/revanced-patches/issues/2059)) ([a54c464](https://github.com/revanced/revanced-patches/commit/a54c464522fa2a6a2d2525c8cb0ec961c2cc771c))
+
+# [2.174.0-dev.11](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.10...v2.174.0-dev.11) (2023-05-07)
+
+# [2.174.0-dev.10](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.9...v2.174.0-dev.10) (2023-05-07)
+
+
+### Bug Fixes
+
+* incorrect instruction offsets ([42a5a38](https://github.com/revanced/revanced-patches/commit/42a5a387da3c53c579234a44c124ab0ba26117cb))
+* incorrect smali syntax ([4e74a80](https://github.com/revanced/revanced-patches/commit/4e74a800c311d7acb2c2ddb492b43747db8a8def))
+
+# [2.174.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.8...v2.174.0-dev.9) (2023-05-07)
+
+
+### Bug Fixes
+
+* incorrect cast of instruction ([fb94a1c](https://github.com/revanced/revanced-patches/commit/fb94a1cb48e8952981e2f9146eb90ee92a517b2e))
+
+# [2.174.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.7...v2.174.0-dev.8) (2023-05-07)
+
+
+### Bug Fixes
+
+* **youtube/integrations:** allow playback of embedded videos  ([#2092](https://github.com/revanced/revanced-patches/issues/2092)) ([8a43d75](https://github.com/revanced/revanced-patches/commit/8a43d75e2db63c47bb9ad1b75027df0868c094e5))
+
+# [2.174.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.6...v2.174.0-dev.7) (2023-05-07)
+
+
+### Features
+
+* **syncforreddit:** add `disable-ads` patch ([#2066](https://github.com/revanced/revanced-patches/issues/2066)) ([c1de5d6](https://github.com/revanced/revanced-patches/commit/c1de5d6e433263b9a17305fa1c65807921594731))
+
+# [2.174.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.5...v2.174.0-dev.6) (2023-05-07)
+
+
+### Features
+
+* **youtube:** `hide-load-more-button` patch ([#2078](https://github.com/revanced/revanced-patches/issues/2078)) ([7170802](https://github.com/revanced/revanced-patches/commit/71708022a06453f6f56c19d686fc505286523391))
+
+# [2.174.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.4...v2.174.0-dev.5) (2023-05-07)
+
+
+### Bug Fixes
+
+* **spotify/disable-capture-restriction:** make compatible with latest versions ([#2095](https://github.com/revanced/revanced-patches/issues/2095)) ([e48f127](https://github.com/revanced/revanced-patches/commit/e48f1278da2a9d82e70be41fa2c4c480c574816b))
+
+# [2.174.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.3...v2.174.0-dev.4) (2023-05-07)
+
+
+### Bug Fixes
+
+* **youtube/theme:** move options out of dependency patch ([a953448](https://github.com/revanced/revanced-patches/commit/a95344879c2ac2cd6da8ce0273dcb05e8a35d2ec))
+
+
+### Features
+
+* improve structure of `README` ([279b193](https://github.com/revanced/revanced-patches/commit/279b193b687ad9cba44ab9c2a88d2ce06be0bbf0))
+
+# [2.174.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.2...v2.174.0-dev.3) (2023-05-06)
+
+# [2.174.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.1...v2.174.0-dev.2) (2023-05-03)
+
+
+### Features
+
+* **patch:** bump compatibility ([#2060](https://github.com/revanced/revanced-patches/issues/2060)) ([f86836d](https://github.com/revanced/revanced-patches/commit/f86836d6295db9eb8c59916deaa991b4d99e96be))
+
+# [2.174.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.173.1-dev.1...v2.174.0-dev.1) (2023-05-03)
+
+
+### Features
+
+* **youtube/settings:** add reset button to edit preference dialog ([#2047](https://github.com/revanced/revanced-patches/issues/2047)) ([ede765a](https://github.com/revanced/revanced-patches/commit/ede765ae3c506909ee8a99517b99b6f5f113f01a))
+
+## [2.173.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.173.0...v2.173.1-dev.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** fix skip button in wrong location when full screen and comments visible ([#2051](https://github.com/revanced/revanced-patches/issues/2051)) ([30a954c](https://github.com/revanced/revanced-patches/commit/30a954cac83a66fbb25589edc487797ea5f19986))
+
+# [2.173.0](https://github.com/revanced/revanced-patches/compare/v2.172.0...v2.173.0) (2023-05-02)
+
+
+### Features
+
+* **youtube/create-button:** switch create with notifications button ([385ceda](https://github.com/revanced/revanced-patches/commit/385ceda61f586f24b11a284688f55758ef5b4e74))
+* **youtube/theme:** change seekbar color via preference ([9b465d9](https://github.com/revanced/revanced-patches/commit/9b465d95887863f6b42baa6b710ed98c97383a82))
+* **youtube/theme:** theme seekbar when clicked ([691a231](https://github.com/revanced/revanced-patches/commit/691a231d99b3b2fbe446fc7edb7a88c7a3127037))
+* **youtube:** `navigation-buttons` patch ([4bece31](https://github.com/revanced/revanced-patches/commit/4bece31f56eb340933ad26da3d1bfc902ea8569f))
+* **youtube:** bump compatibility to `18.16.37` ([fe3fdd5](https://github.com/revanced/revanced-patches/commit/fe3fdd5c6cb186bcebc2f86b1d5b597109b25cb6))
+* **youtube:** support version `18.16.37` ([8beb5ea](https://github.com/revanced/revanced-patches/commit/8beb5ea860284be915c0ef0c6039821a50c14fa8))
+
+# [2.173.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.173.0-dev.4...v2.173.0-dev.5) (2023-05-02)
+
+
+### Features
+
+* **youtube:** `navigation-buttons` patch ([4bece31](https://github.com/revanced/revanced-patches/commit/4bece31f56eb340933ad26da3d1bfc902ea8569f))
+
+# [2.173.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.173.0-dev.3...v2.173.0-dev.4) (2023-05-02)
+
+
+### Features
+
+* **youtube/create-button:** switch create with notifications button ([385ceda](https://github.com/revanced/revanced-patches/commit/385ceda61f586f24b11a284688f55758ef5b4e74))
+
+# [2.173.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.173.0-dev.2...v2.173.0-dev.3) (2023-05-02)
+
+
+### Features
+
+* **youtube/theme:** theme seekbar when clicked ([691a231](https://github.com/revanced/revanced-patches/commit/691a231d99b3b2fbe446fc7edb7a88c7a3127037))
+
+# [2.173.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.173.0-dev.1...v2.173.0-dev.2) (2023-05-02)
+
+
+### Features
+
+* **youtube/theme:** change seekbar color via preference ([9b465d9](https://github.com/revanced/revanced-patches/commit/9b465d95887863f6b42baa6b710ed98c97383a82))
+
+# [2.173.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.172.0...v2.173.0-dev.1) (2023-05-02)
+
+
+### Features
+
+* **youtube:** bump compatibility to `18.16.37` ([fe3fdd5](https://github.com/revanced/revanced-patches/commit/fe3fdd5c6cb186bcebc2f86b1d5b597109b25cb6))
+* **youtube:** support version `18.16.37` ([8beb5ea](https://github.com/revanced/revanced-patches/commit/8beb5ea860284be915c0ef0c6039821a50c14fa8))
+
+# [2.172.0](https://github.com/revanced/revanced-patches/compare/v2.171.0...v2.172.0) (2023-05-01)
+
+
+### Bug Fixes
+
+* **change-package-name:** use `null` as default value for option `packageName` ([#1998](https://github.com/revanced/revanced-patches/issues/1998)) ([8128e6b](https://github.com/revanced/revanced-patches/commit/8128e6ba57ec4e4e01a0923a0d353cc934b93899))
+* **youtube/minimized-playback:** fix background play of kids videos ([#2016](https://github.com/revanced/revanced-patches/issues/2016)) ([89b1484](https://github.com/revanced/revanced-patches/commit/89b1484d1d8c1419ba8020d0571b25071d43e926))
+* **youtube/return-youtube-dislike:** support older UI layouts ([#2031](https://github.com/revanced/revanced-patches/issues/2031)) ([c82ccb5](https://github.com/revanced/revanced-patches/commit/c82ccb59955d7663a5be20338b4b5c9b7601195c))
+* **youtube/spoof-app-version:** adjust available app targets ([#2030](https://github.com/revanced/revanced-patches/issues/2030)) ([a16cb0d](https://github.com/revanced/revanced-patches/commit/a16cb0d32f40694f237cb1820b965cee26663fdd))
+
+
+### Features
+
+* **youtube/general-ads:** hide multiple audio track button on video player overlay ([#2021](https://github.com/revanced/revanced-patches/issues/2021)) ([8d7f305](https://github.com/revanced/revanced-patches/commit/8d7f305aa2d8f86a9232a6a9577a87f58b53d51c))
+* **youtube/hide-get-premium:** hide get premium advertisements under video player ([#2020](https://github.com/revanced/revanced-patches/issues/2020)) ([05904a2](https://github.com/revanced/revanced-patches/commit/05904a2569cf9b82e3731692b93bc3a6bb005b03))
+* **youtube/hide-player-overlay:** exclude by default ([1c6fb94](https://github.com/revanced/revanced-patches/commit/1c6fb941f59599e2fe4a7d6f96babb6b0edac054))
+* **youtube/spoof-app-version:** user selectable version to spoof ([#2013](https://github.com/revanced/revanced-patches/issues/2013)) ([fd66417](https://github.com/revanced/revanced-patches/commit/fd6641747bd60bdd8b967db7cceaed454fb891a1))
+* **youtube/spoof-signature-verification:** list known spoofing side effects in revanced settings ([#2011](https://github.com/revanced/revanced-patches/issues/2011)) ([dc6e9b2](https://github.com/revanced/revanced-patches/commit/dc6e9b2268efe8a1bb72b80e5285d7002f448f4d))
+
+# [2.172.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.8...v2.172.0-dev.9) (2023-05-01)
+
+
+### Features
+
+* **youtube/general-ads:** hide multiple audio track button on video player overlay ([#2021](https://github.com/revanced/revanced-patches/issues/2021)) ([8d7f305](https://github.com/revanced/revanced-patches/commit/8d7f305aa2d8f86a9232a6a9577a87f58b53d51c))
+
+# [2.172.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.7...v2.172.0-dev.8) (2023-05-01)
+
+
+### Bug Fixes
+
+* **change-package-name:** use `null` as default value for option `packageName` ([#1998](https://github.com/revanced/revanced-patches/issues/1998)) ([8128e6b](https://github.com/revanced/revanced-patches/commit/8128e6ba57ec4e4e01a0923a0d353cc934b93899))
+
+# [2.172.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.6...v2.172.0-dev.7) (2023-04-30)
+
+
+### Bug Fixes
+
+* **youtube/return-youtube-dislike:** support older UI layouts ([#2031](https://github.com/revanced/revanced-patches/issues/2031)) ([c82ccb5](https://github.com/revanced/revanced-patches/commit/c82ccb59955d7663a5be20338b4b5c9b7601195c))
+
+# [2.172.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.5...v2.172.0-dev.6) (2023-04-30)
+
+
+### Features
+
+* **youtube/hide-get-premium:** hide get premium advertisements under video player ([#2020](https://github.com/revanced/revanced-patches/issues/2020)) ([05904a2](https://github.com/revanced/revanced-patches/commit/05904a2569cf9b82e3731692b93bc3a6bb005b03))
+
 # [2.172.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.172.0-dev.4...v2.172.0-dev.5) (2023-04-30)
 
 

@@ -65,7 +65,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
             val jumpInstruction = layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
 
             // can be clobbered because this register is overwritten after the injected code
-            val clobberRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
+            val clobberRegister = instruction<OneRegisterInstruction>(insertIndex).registerA
 
             addInstructions(
                 insertIndex,

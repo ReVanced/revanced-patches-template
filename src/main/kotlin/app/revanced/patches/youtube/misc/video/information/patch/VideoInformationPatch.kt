@@ -90,7 +90,7 @@ class VideoInformationPatch : BytecodePatch(
 
             with(videoLengthMethodResult.mutableMethod) {
                 val videoLengthRegisterIndex = videoLengthMethodResult.scanResult.patternScanResult!!.endIndex - 2
-                val videoLengthRegister = (instruction(videoLengthRegisterIndex) as OneRegisterInstruction).registerA
+                val videoLengthRegister = instruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
                 val dummyRegisterForLong = videoLengthRegister + 1 // required for long values since they are wide
 
                 addInstruction(
@@ -137,7 +137,7 @@ class VideoInformationPatch : BytecodePatch(
             speedSelectionInsertMethod = mutableMethod
             speedSelectionInsertIndex = scanResult.patternScanResult!!.startIndex - 3
             speedSelectionValueRegister =
-                (mutableMethod.instruction(speedSelectionInsertIndex) as FiveRegisterInstruction).registerD
+                mutableMethod.instruction<FiveRegisterInstruction>(speedSelectionInsertIndex).registerD
 
             val speedSelectionMethodInstructions = mutableMethod.implementation!!.instructions
             setPlaybackSpeedContainerClassFieldReference =

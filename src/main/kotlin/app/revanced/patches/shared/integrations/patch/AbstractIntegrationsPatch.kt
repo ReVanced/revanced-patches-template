@@ -8,6 +8,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint.RegisterResolver
+import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.Method
 
 @Description("Applies mandatory patches to implement the ReVanced integrations into the application.")
@@ -23,10 +24,21 @@ abstract class AbstractIntegrationsPatch(
      * @see MethodFingerprint
      */
     abstract class IntegrationsFingerprint(
+        returnType: String? = null,
+        access: Int? = null,
+        parameters: Iterable<String>? = null,
+        opcodes: Iterable<Opcode?>? = null,
         strings: Iterable<String>? = null,
         customFingerprint: ((methodDef: Method) -> Boolean)? = null,
         private val contextRegisterResolver: (Method) -> Int = object : RegisterResolver {}
-    ) : MethodFingerprint(strings = strings, customFingerprint = customFingerprint) {
+    ) : MethodFingerprint(
+        returnType,
+        access,
+        parameters,
+        opcodes,
+        strings,
+        customFingerprint
+    ) {
         fun invoke(integrationsDescriptor: String) {
             result?.mutableMethod?.let { method ->
                 val contextRegister = contextRegisterResolver(method)

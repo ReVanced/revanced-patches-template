@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.extensions.replaceInstruction
@@ -45,6 +46,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentConstructorFingerprint,
         ShortsTextComponentParentFingerprint,
+        DislikesOldLayoutTextViewFingerprint,
         LikeFingerprint,
         DislikeFingerprint,
         RemoveLikeFingerprint,
@@ -53,7 +55,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
 
-        VideoIdPatch.injectCall("$INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
+        VideoIdPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
         // endregion
 
@@ -69,7 +71,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     0,
                     """
                     const/4 v0, ${vote.value}
-                    invoke-static {v0}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->sendVote(I)V
+                    invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->sendVote(I)V
                     """
                 )
             } ?: throw PatchException("Failed to find ${fingerprint.name} method.")
@@ -97,18 +99,21 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             val atomicReferenceStartIndex = TextComponentAtomicReferenceFingerprint.result!!
                 .scanResult.patternScanResult!!.startIndex
 
+            val insertIndex = atomicReferenceStartIndex + 8
+
             textComponentContextFingerprintResult.mutableMethod.apply {
                 // Get the conversion context obfuscated field name, and the registers for the AtomicReference and CharSequence
                 val conversionContextFieldReference =
-                    (instruction(conversionContextIndex) as ReferenceInstruction).reference
+                    instruction<ReferenceInstruction>(conversionContextIndex).reference
+
                 // any free register
                 val contextRegister =
-                    (instruction(atomicReferenceStartIndex) as TwoRegisterInstruction).registerB
-                val atomicReferenceRegister =
-                    (instruction(atomicReferenceStartIndex + 5) as FiveRegisterInstruction).registerC
+                    instruction<TwoRegisterInstruction>(atomicReferenceStartIndex).registerB
 
-                val insertIndex = atomicReferenceStartIndex + 8
-                val moveCharSequenceInstruction = instruction(insertIndex) as TwoRegisterInstruction
+                val atomicReferenceRegister =
+                    instruction<FiveRegisterInstruction>(atomicReferenceStartIndex + 5).registerC
+
+                val moveCharSequenceInstruction = instruction<TwoRegisterInstruction>(insertIndex)
                 val charSequenceRegister = moveCharSequenceInstruction.registerB
 
                 // Insert as first instructions at the control flow label.
@@ -117,7 +122,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 addInstructions(
                     insertIndex + 1, """
                         iget-object v$contextRegister, v$contextRegister, $conversionContextFieldReference  # copy obfuscated context field into free register
-                        invoke-static {v$contextRegister, v$atomicReferenceRegister, v$charSequenceRegister}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        invoke-static {v$contextRegister, v$atomicReferenceRegister, v$charSequenceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$charSequenceRegister
                         move-object v${moveCharSequenceInstruction.registerA}, v${charSequenceRegister}  # original instruction at the insertion point
                     """
@@ -140,8 +145,8 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                             throw PatchException("Method signature did not match: $this $parameterTypes")
 
                         val insertIndex = implementation!!.instructions.size - 1
-                        val spannedParameterRegister = (instruction(insertIndex) as OneRegisterInstruction).registerA
-                        val parameter = (instruction(insertIndex - 2) as BuilderInstruction35c).reference
+                        val spannedParameterRegister = instruction<OneRegisterInstruction>(insertIndex).registerA
+                        val parameter = instruction<BuilderInstruction35c>(insertIndex - 2).reference
 
                         if (!parameter.toString().endsWith("Landroid/text/Spanned;"))
                             throw PatchException("Method signature parameter did not match: $parameter")
@@ -161,10 +166,26 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
+        // region Hook old UI layout dislikes, for the older app spoofs used with spoof-app-version.
+        DislikesOldLayoutTextViewFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val startIndex = it.scanResult.patternScanResult!!.startIndex
+
+                val resourceIdentifierRegister = instruction<OneRegisterInstruction>(startIndex).registerA
+                val textViewRegister = instruction<OneRegisterInstruction>(startIndex + 4).registerA
+
+                addInstruction(
+                    startIndex + 4,
+                    "invoke-static {v$resourceIdentifierRegister, v$textViewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setOldUILayoutDislikes(ILandroid/widget/TextView;)V"
+                )
+            }
+        } ?: DislikesOldLayoutTextViewFingerprint.error()
+
+        // endregion
     }
 
     private companion object {
-        const val INTEGRATIONS_PATCH_CLASS_DESCRIPTOR =
+        const val INTEGRATIONS_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
 
         private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
@@ -178,7 +199,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         private fun MutableMethod.insertShorts(index: Int, register: Int) {
             addInstructions(
                 index, """
-                invoke-static {v$register}, $INTEGRATIONS_PATCH_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
+                invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
                 move-result-object v$register
             """
             )

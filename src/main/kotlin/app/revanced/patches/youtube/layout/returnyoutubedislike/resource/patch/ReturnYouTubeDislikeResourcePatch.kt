@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
@@ -18,6 +19,10 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 @ReturnYouTubeDislikeCompatibility
 @Version("0.0.1")
 class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
+    companion object {
+        internal var oldUIDislikeId: Long = -1
+    }
+
     override fun execute(context: ResourceContext) {
         val youtubePackage = "com.google.android.youtube"
         SettingsPatch.addPreference(
@@ -34,5 +39,6 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
         // merge strings
         context.mergeStrings("returnyoutubedislike/host/values/strings.xml")
 
+        oldUIDislikeId = ResourceMappingPatch.resourceIdOf("id", "dislike_button")
     }
 }

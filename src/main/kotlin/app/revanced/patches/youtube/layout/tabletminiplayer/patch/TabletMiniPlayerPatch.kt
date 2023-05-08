@@ -9,6 +9,7 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -18,6 +19,7 @@ import app.revanced.patches.youtube.layout.tabletminiplayer.annotations.TabletMi
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -65,10 +67,28 @@ class TabletMiniPlayerPatch : BytecodePatch(
          */
         MiniPlayerOverrideParentFingerprint.result?.let {
             if (!MiniPlayerOverrideFingerprint.resolve(context, it.classDef))
-                throw MiniPlayerOverrideFingerprint.error()
-
-            MiniPlayerOverrideFingerprint.addProxyCall()
+                MiniPlayerOverrideFingerprint.error()
         } ?: MiniPlayerOverrideParentFingerprint.error()
+
+        /*
+         * Override every return instruction with the proxy call.
+         */
+        MiniPlayerOverrideFingerprint.result!!.mutableMethod.apply {
+            implementation!!.let { implementation ->
+                val returnIndices = implementation.instructions
+                    .withIndex()
+                    .filter { (_, instruction) -> instruction.opcode == Opcode.RETURN }
+                    .map { (index, _) -> index }
+
+                if (returnIndices.isEmpty()) throw PatchException("No return instructions found.")
+
+                // This method clobbers register p0 to return the value, calculate to override.
+                val returnedRegister = implementation.registerCount - parameters.size
+
+                // Hook the returned register on every return instruction.
+                returnIndices.forEach { index -> insertOverride(index, returnedRegister) }
+            }
+        }
 
         /*
          * Size check return value override.

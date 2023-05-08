@@ -30,7 +30,7 @@ class HideAdsPatch : BytecodePatch(
         ContainsAdFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
-                val adsListRegister = (instruction(insertIndex - 2) as Instruction21c).registerA
+                val adsListRegister = instruction<Instruction21c>(insertIndex - 2).registerA
 
                 listOf(
                     "_buttoned_layout",

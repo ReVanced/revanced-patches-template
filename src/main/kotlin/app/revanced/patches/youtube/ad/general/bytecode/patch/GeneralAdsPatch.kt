@@ -2,21 +2,21 @@ package app.revanced.patches.youtube.ad.general.bytecode.patch
 
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.patcher.BytecodeContext
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
 import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
 import app.revanced.patches.youtube.ad.general.bytecode.fingerprints.ReelConstructorFingerprint
 import app.revanced.patches.youtube.ad.general.resource.patch.GeneralAdsResourcePatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch.FixBackToExitGesturePatch
-import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction31i
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
@@ -69,20 +69,16 @@ class GeneralAdsPatch : BytecodePatch(
             }
         }
 
-        with(
-            ReelConstructorFingerprint.result
-                ?: throw PatchException("Could not resolve fingerprint")
-        ) {
+        ReelConstructorFingerprint.result?.let {
             // iput-object v$viewRegister, ...
-            val insertIndex = this.scanResult.patternScanResult!!.startIndex + 2
+            val insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
 
-            with(this.mutableMethod) {
-                val viewRegister = (instruction(insertIndex) as TwoRegisterInstruction).registerA
+            it.mutableMethod.apply {
+                val viewRegister = instruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 injectHideCall(insertIndex, viewRegister, "hideReelView")
             }
-
-        }
+        } ?: ReelConstructorFingerprint.error()
 
     }
 

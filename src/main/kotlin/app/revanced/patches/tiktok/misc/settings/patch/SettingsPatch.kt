@@ -23,7 +23,6 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.StringReference
-import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
@@ -86,14 +85,14 @@ class SettingsPatch : BytecodePatch(
 
             // New UI settings option to replace to 'Revanced Settings'
             results[1] = AboutViewFingerprint.result!!.scanResult.patternScanResult!!.startIndex
-        } ?: throw SettingsOnViewCreatedFingerprint.error()
+        } ?: SettingsOnViewCreatedFingerprint.error()
         return results
     }
 
     private fun patchOptionNameAndOnClickEvent(index: Int, context: BytecodeContext) {
         with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
             // Patch option name
-            val overrideRegister = (instruction(index - 4) as OneRegisterInstruction).registerA
+            val overrideRegister = instruction<OneRegisterInstruction>(index - 4).registerA
             replaceInstruction(
                 index - 4,
                 """
@@ -102,16 +101,14 @@ class SettingsPatch : BytecodePatch(
             )
 
             // Patch option OnClick Event
-            with(((instruction(index) as ReferenceInstruction).reference as TypeReference).type) {
-                context.classes.findClassProxied(this)!!.mutableClass.methods.first { it.name == "onClick" }
-                    .addInstructions(
-                        0,
-                        """
-                                 invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                                 return-void
-                             """
-                    )
-            }
+            val type = instruction<ReferenceInstruction>(index).reference.toString()
+            context.classes.findClassProxied(type)!!.mutableClass.methods.first { type == "onClick" }.addInstructions(
+                0,
+            """
+                     invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                     return-void
+                 """
+            )
         }
     }
 }

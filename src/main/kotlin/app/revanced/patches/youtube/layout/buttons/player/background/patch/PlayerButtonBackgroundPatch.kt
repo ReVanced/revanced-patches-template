@@ -11,16 +11,12 @@ import app.revanced.patches.youtube.layout.buttons.player.background.annotations
 import app.revanced.util.resources.ResourceUtils.base
 import org.w3c.dom.Element
 
-@Patch
+@Patch(false)
 @Name("remove-player-button-background")
 @Description("Removes the background from the video player buttons.")
 @PlayerButtonBackgroundCompatibility
 @Version("0.0.1")
 class PlayerButtonBackgroundPatch : ResourcePatch {
-    private companion object {
-        const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
-    }
-    
     override fun execute(context: ResourceContext) {
         context.base.openXmlFile(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
@@ -32,5 +28,9 @@ class PlayerButtonBackgroundPatch : ResourcePatch {
             }
         }
 
+    }
+
+    private companion object {
+        const val RESOURCE_FILE_PATH = "res/drawable/player_button_circle_background.xml"
     }
 }
