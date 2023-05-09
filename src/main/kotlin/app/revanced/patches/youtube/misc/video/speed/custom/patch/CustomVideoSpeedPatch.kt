@@ -46,7 +46,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
                     "revanced_custom_video_speeds_summary",
                     "Add or change the video speeds available"
                 ),
-                default = "0.25,\n0.5,\n0.75,\n0.9,\n0.95,\n1.0,\n1.05,\n1.1,\n1.25,\n1.5,\n1.75,\n2.0,\n3.0,\n4.0,\n5.0,"
+                default = "0.25\n0.5\n0.75\n0.9\n0.95\n1.0\n1.05\n1.1\n1.25\n1.5\n1.75\n2.0\n3.0\n4.0\n5.0"
             )
         )
 
