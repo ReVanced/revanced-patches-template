@@ -1,11 +1,11 @@
 package app.revanced.patches.youtube.layout.theme.resource
 
-import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.resource.Style
+import app.revanced.patcher.resource.integer
+import app.revanced.patcher.resource.reference
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -14,12 +14,16 @@ import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePat
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
+import app.revanced.util.resources.ResourceUtils.setMultiple
+import app.revanced.util.resources.ResourceUtils.toColorResource
 import org.w3c.dom.Element
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class ThemeResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             TextPreference(
                 "revanced_seekbar_color",
@@ -36,43 +40,44 @@ class ThemeResourcePatch : ResourcePatch {
         // Edit theme colors via bytecode.
         // For that the resource id is used in a bytecode patch to change the color.
 
-        inlineTimeBarColorizedBarPlayedColorDarkId = ResourceMappingPatch.resourceMappings
-            .find { it.name == "inline_time_bar_colorized_bar_played_color_dark" }?.id
-            ?: return PatchResultError("Could not find seekbar resource")
+        inlineTimeBarColorizedBarPlayedColorDarkId =
+            context.resourceIdOf("id", "inline_time_bar_colorized_bar_played_color_dark")
 
 
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
 
         // Edit theme colors via resources.
-        context.xmlEditor["res/values/colors.xml"].use { editor ->
-            val resourcesNode = editor.file.getElementsByTagName("resources").item(0) as Element
+        with(context.base) {
+            setMultiple("color", dark, darkThemeBackgroundColor.toColorResource(this))
+            setMultiple("color", light, lightThemeBackgroundColor.toColorResource(this))
 
-            for (i in 0 until resourcesNode.childNodes.length) {
-                val node = resourcesNode.childNodes.item(i) as? Element ?: continue
-
-                node.textContent = when (node.getAttribute("name")) {
-                    "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3",
-                    "yt_black4", "yt_status_bar_background_dark", "material_grey_850" -> darkThemeBackgroundColor
-
-                    "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98",
-                    "yt_white2", "yt_white3", "yt_white4",
-                    -> lightThemeBackgroundColor
-
-                    else -> continue
-                }
-            }
+            // change the splash screen color
+            set(
+                "style", "Base.Theme.YouTube.Launcher", Style(
+                    mapOf(
+                        "android:windowSplashScreenBackground" to reference(this, "@android:color/black"),
+                        "android:windowSplashScreenAnimatedIcon" to reference(this, "@drawable/avd_anim"),
+                        "android:windowSplashScreenAnimationDuration" to integer(1000),
+                    ),
+                    parent = "@style/Theme.AppCompat.NoActionBar"
+                ), configuration = "-night-v31"
+            )
         }
-
-        // Copy the resource file to change the splash screen color.
-        context.copyResources(
-            "theme", ResourceUtils.ResourceGroup("values-night-v31", "styles.xml")
-        )
-
-        return PatchResultSuccess()
     }
 
     internal companion object {
         var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
+
+        private val dark = listOf(
+            "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3",
+            "yt_black4", "yt_status_bar_background_dark", "material_grey_850"
+        )
+
+        private val light =
+            listOf(
+                "yt_white1", "yt_white1_opacity95", "yt_white1_opacity98",
+                "yt_white2", "yt_white3", "yt_white4",
+            )
     }
 }

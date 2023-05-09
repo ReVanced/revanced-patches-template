@@ -1,11 +1,10 @@
 package app.revanced.patches.youtube.layout.theme.bytecode.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.*
@@ -29,7 +28,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class ThemeBytecodePatch : BytecodePatch(
     listOf(CreateDarkThemeSeekbarFingerprint, SetSeekbarClickedColorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         CreateDarkThemeSeekbarFingerprint.result?.let {
             val putColorValueIndex = it.method.indexOfInstructionWithSeekbarId!! + 3
 
@@ -44,13 +43,13 @@ class ThemeBytecodePatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return CreateDarkThemeSeekbarFingerprint.toErrorResult()
+        } ?: CreateDarkThemeSeekbarFingerprint.error()
 
         SetSeekbarClickedColorFingerprint.result?.let { result ->
             result.mutableMethod.let {
                 val setColorMethodIndex = result.scanResult.patternScanResult!!.startIndex + 1
                 val method = context
-                    .toMethodWalker(it)
+                    .traceMethodCalls(it)
                     .nextMethod(setColorMethodIndex, true)
                     .getMethod() as MutableMethod
 
@@ -65,8 +64,7 @@ class ThemeBytecodePatch : BytecodePatch(
                     )
                 }
             }
-        } ?: return SetSeekbarClickedColorFingerprint.toErrorResult()
-        return PatchResultSuccess()
+        } ?: SetSeekbarClickedColorFingerprint.error()
     }
 
     companion object : OptionsContainer() {

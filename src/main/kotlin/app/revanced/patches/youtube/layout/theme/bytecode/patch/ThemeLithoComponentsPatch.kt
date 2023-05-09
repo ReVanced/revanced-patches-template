@@ -1,14 +1,12 @@
 package app.revanced.patches.youtube.layout.theme.bytecode.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
@@ -17,7 +15,7 @@ import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerpr
 @ThemeCompatibility
 @Version("0.0.1")
 class ThemeLithoComponentsPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         LithoThemeFingerprint.result?.let {
             it.mutableMethod.apply {
                 val patchIndex = it.scanResult.patternScanResult!!.endIndex - 1
@@ -30,8 +28,7 @@ class ThemeLithoComponentsPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
                     """
                 )
             }
-        } ?: return LithoThemeFingerprint.toErrorResult()
-        return PatchResultSuccess()
+        } ?: LithoThemeFingerprint.error()
     }
 
     private companion object {
