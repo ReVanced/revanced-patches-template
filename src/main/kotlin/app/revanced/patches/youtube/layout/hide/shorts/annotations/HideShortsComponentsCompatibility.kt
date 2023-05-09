@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.comments.annotations
+package app.revanced.patches.youtube.layout.hide.shorts.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -21,4 +21,4 @@ import app.revanced.patcher.annotation.Package
     )]
 )
 @Target(AnnotationTarget.CLASS)
-internal annotation class CommentsCompatibility
+internal annotation class HideShortsComponentsCompatibility
