@@ -38,14 +38,14 @@ class CustomVideoSpeedPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(
-                key = "revanced_speed_available_options",
+                key = "revanced_custom_video_speeds",
                 title = StringResource(
-                    "revanced_speed_available_options_title",
+                    "revanced_custom_video_speeds_title",
                     "Playback speeds available"
                 ),
                 inputType = InputType.TEXT_MULTI_LINE,
                 summary = StringResource(
-                    "revanced_speed_available_options_summary",
+                    "revanced_custom_video_speeds_summary",
                     "List of available video speeds"
                 ),
                 default = "0.25,\n0.5,\n0.75,\n0.9,\n0.95,\n1.0,\n1.05,\n1.1,\n1.25,\n1.5,\n1.75,\n2.0,\n3.0,\n4.0,\n5.0,"
