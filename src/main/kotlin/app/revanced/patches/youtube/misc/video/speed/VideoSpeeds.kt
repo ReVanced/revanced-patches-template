@@ -19,6 +19,6 @@ import app.revanced.patches.youtube.misc.video.speed.remember.patch.RememberPlay
 @Version("0.0.1")
 class VideoSpeeds : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
-        return PatchResultSuccess() // All dependent patches succeeded.
+        return PatchResultSuccess() // All sub patches succeeded.
     }
 }
