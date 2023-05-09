@@ -77,11 +77,11 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
 
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(
-                "",
-                StringResource("revanced_pref_import_export_title", "Import / Export"),
-                InputType.TEXT_MULTI_LINE,
-                StringResource("revanced_pref_import_export_summary", "Import / Export ReVanced settings"),
-                "app.revanced.integrations.settingsmenu.ImportExportPreference"
+                key = "",
+                title = StringResource("revanced_pref_import_export_title", "Import / Export"),
+                inputType = InputType.TEXT_MULTI_LINE,
+                summary = StringResource("revanced_pref_import_export_summary", "Import / Export ReVanced settings"),
+                tag = "app.revanced.integrations.settingsmenu.ImportExportPreference"
             )
         )
 
