@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.misc.video.speed.custom.patch.CustomVideoSpe
 import app.revanced.patches.youtube.misc.video.speed.remember.patch.RememberPlaybackSpeedPatch
 
 @Patch
-@Name("video-speeds")
+@Name("video-speed")
 @Description("Adds custom video speeds and ability to remember the playback speed you chose in the video playback speed flyout.")
 @DependsOn([CustomVideoSpeedPatch::class, RememberPlaybackSpeedPatch::class])
 @Version("0.0.1")
