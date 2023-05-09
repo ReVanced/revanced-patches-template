@@ -31,7 +31,6 @@ class DownloadsResourcePatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_external_downloader",
                         StringResource("revanced_external_downloader_title", "Show download button"),
-                        true,
                         StringResource("revanced_external_downloader_summary_on", "Download button is shown"),
                         StringResource("revanced_external_downloader_summary_off", "Download button is not shown")
                     ),
@@ -39,7 +38,6 @@ class DownloadsResourcePatch : ResourcePatch {
                         "revanced_external_downloader_name",
                         StringResource("revanced_external_downloader_name_title", "Downloader package name"),
                         InputType.TEXT,
-                        "org.schabi.newpipe" /* NewPipe */,
                         StringResource("revanced_external_downloader_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s")
                     )
                 ),

@@ -37,7 +37,6 @@ class SpoofAppVersionPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_spoof_app_version",
                 StringResource("revanced_spoof_app_version_title", "Spoof app version"),
-                false,
                 StringResource("revanced_spoof_app_version_summary_on", "Version spoofed"),
                 StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed"),
                 StringResource("revanced_spoof_app_version_user_dialog_message",

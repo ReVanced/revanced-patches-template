@@ -14,16 +14,16 @@ import org.w3c.dom.Element
  * @param title The title of the list preference.
  * @param entries The human-readable entries of the list preference.
  * @param entryValues The entry values of the list preference.
- * @param default The default entry value of the list preference.
  * @param summary The summary of the list preference.
+ * @param default The default entry value of the list preference.
  */
 internal class ListPreference(
     key: String,
     title: StringResource,
     val entries: ArrayResource,
     val entryValues: ArrayResource,
-    val default: String? = null,
-    val summary: StringResource? = null
+    val summary: StringResource? = null,
+    val default: String? = null, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
 ) : BasePreference(key, title) {
     override val tag: String = "ListPreference"
 

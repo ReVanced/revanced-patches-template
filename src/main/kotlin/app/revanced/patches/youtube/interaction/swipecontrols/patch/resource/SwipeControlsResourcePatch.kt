@@ -29,28 +29,24 @@ class SwipeControlsResourcePatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_swipe_brightness",
                         StringResource("revanced_swipe_brightness_title", "Enable brightness gesture"),
-                        true,
                         StringResource("revanced_swipe_brightness_summary_on", "Brightness swipe is enabled"),
                         StringResource("revanced_swipe_brightness_summary_off", "Brightness swipe is disabled")
                     ),
                     SwitchPreference(
                         "revanced_swipe_volume",
                         StringResource("revanced_swipe_volume_title", "Enable volume gesture"),
-                        true,
                         StringResource("revanced_swipe_volume_summary_on", "Volume swipe is enabled"),
                         StringResource("revanced_swipe_volume_summary_off", "Volume swipe is disabled")
                     ),
                     SwitchPreference(
                         "revanced_swipe_press_to_engage",
                         StringResource("revanced_swipe_press_to_engage_title", "Enable press-to-swipe gesture"),
-                        false,
                         StringResource("revanced_swipe_press_to_engage_summary_on", "Press-to-swipe is enabled"),
                         StringResource("revanced_swipe_press_to_engage_summary_off", "Press-to-swipe is disabled")
                     ),
                     SwitchPreference(
                         "revanced_swipe_haptic_feedback",
                         StringResource("revanced_swipe_haptic_feedback_title", "Enable haptic feedback"),
-                        true,
                         StringResource("revanced_swipe_haptic_feedback_summary_on", "Haptic feedback is enabled"),
                         StringResource("revanced_swipe_haptic_feedback_summary_off", "Haptic feedback is disabled")
                     ),
@@ -58,7 +54,6 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         "revanced_swipe_overlay_timeout",
                         StringResource("revanced_swipe_overlay_timeout_title", "Swipe overlay timeout"),
                         InputType.NUMBER,
-                        "500",
                         StringResource(
                             "revanced_swipe_overlay_timeout_summary",
                             "The amount of milliseconds the overlay is visible"
@@ -68,14 +63,12 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         "revanced_swipe_text_overlay_size",
                         StringResource("revanced_swipe_text_overlay_size_title", "Swipe overlay text size"),
                         InputType.NUMBER,
-                        "22",
                         StringResource("revanced_swipe_text_overlay_size_summary", "The text size for swipe overlay")
                     ),
                     TextPreference(
                         "revanced_swipe_overlay_background_alpha",
                         StringResource("revanced_swipe_overlay_background_alpha_title", "Swipe background visibility"),
                         InputType.NUMBER,
-                        "127",
                         StringResource(
                             "revanced_swipe_overlay_background_alpha_summary",
                             "The visibility of swipe overlay background"
@@ -85,7 +78,6 @@ class SwipeControlsResourcePatch : ResourcePatch {
                         "revanced_swipe_threshold",
                         StringResource("revanced_swipe_threshold_title", "Swipe magnitude threshold"),
                         InputType.NUMBER,
-                        "30",
                         StringResource(
                             "revanced_swipe_threshold_summary",
                             "The amount of threshold for swipe to occur"

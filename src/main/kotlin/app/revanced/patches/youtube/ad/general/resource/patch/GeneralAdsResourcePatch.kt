@@ -33,14 +33,12 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_gray_separator",
                 StringResource("revanced_hide_gray_separator_title", "Hide gray separator"),
-                true,
                 StringResource("revanced_hide_gray_separator_summary_on", "Gray separators are hidden"),
                 StringResource("revanced_hide_gray_separator_summary_off", "Gray separators are shown")
             ),
             SwitchPreference(
                 "revanced_hide_channel_guidelines",
                 StringResource("revanced_hide_channel_guidelines_title", "Hide channel guidelines"),
-                true,
                 StringResource(
                     "revanced_hide_channel_guidelines_summary_on",
                     "Channel guidelines are hidden"
@@ -56,7 +54,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                     "revanced_hide_chapter_teaser_title",
                     "Hide chapter teaser under videos"
                 ),
-                true,
                 StringResource(
                     "revanced_hide_chapter_teaser_summary_on",
                     "Chapter teasers are hidden"
@@ -69,63 +66,54 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_merchandise_banners",
                 StringResource("revanced_hide_merchandise_banners_title", "Hide merchandise banners"),
-                true,
                 StringResource("revanced_hide_merchandise_banners_summary_on", "Merchandise banners are hidden"),
                 StringResource("revanced_hide_merchandise_banners_summary_off", "Merchandise banners are shown")
             ),
             SwitchPreference(
                 "revanced_hide_community_posts",
                 StringResource("revanced_hide_community_posts_title", "Hide community posts"),
-                false,
                 StringResource("revanced_hide_community_posts_summary_on", "Community posts are hidden"),
                 StringResource("revanced_hide_community_posts_summary_off", "Community posts are shown")
             ),
             SwitchPreference(
                 "revanced_hide_compact_banner",
                 StringResource("revanced_hide_compact_banner_title", "Hide compact banners"),
-                true,
                 StringResource("revanced_hide_compact_banner_summary_on", "Compact banners are hidden"),
                 StringResource("revanced_hide_compact_banner_summary_off", "Compact banners are shown")
             ),
             SwitchPreference(
                 "revanced_hide_products_banner",
                 StringResource("revanced_hide_products_banner_title", "Hide banner to view products"),
-                true,
                 StringResource("revanced_hide_products_banner_summary_on", "Banner is hidden"),
                 StringResource("revanced_hide_products_banner_summary_off", "Banner is shown")
             ),
             SwitchPreference(
                 "revanced_hide_web_search_results",
                 StringResource("revanced_hide_web_search_results_title", "Hide web search results"),
-                true,
                 StringResource("revanced_hide_web_search_results_summary_on", "Web search results are hidden"),
                 StringResource("revanced_hide_web_search_results_summary_off", "Web search results are shown")
             ),
             SwitchPreference(
                 "revanced_hide_movies_section",
                 StringResource("revanced_hide_movies_section_title", "Hide movies section"),
-                true,
                 StringResource("revanced_hide_movies_section_summary_on", "Movies section is hidden"),
                 StringResource("revanced_hide_movies_section_summary_off", "Movies section is shown")
             ),
             SwitchPreference(
                 "revanced_hide_feed_survey",
                 StringResource("revanced_hide_feed_survey_title", "Hide feed surveys"),
-                true,
                 StringResource("revanced_hide_feed_survey_summary_on", "Feed surveys are hidden"),
                 StringResource("revanced_hide_feed_survey_summary_off", "Feed surveys are shown")
             ),
             SwitchPreference(
                 "revanced_hide_shorts",
                 StringResource("revanced_hide_shorts_title", "Hide shorts"),
-                true,
                 StringResource("revanced_hide_shorts_summary_on", "Shorts are hidden"),
                 StringResource("revanced_hide_shorts_summary_off", "Shorts are shown")
             ),
             SwitchPreference(
                 "revanced_hide_community_guidelines",
                 StringResource("revanced_hide_community_guidelines_title", "Hide community guidelines"),
-                true,
                 StringResource(
                     "revanced_hide_community_guidelines_summary_on",
                     "Community guidelines are hidden"
@@ -141,7 +129,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                     "revanced_hide_subscribers_community_guidelines_title",
                     "Hide subscribers community guidelines"
                 ),
-                true,
                 StringResource(
                     "revanced_hide_subscribers_community_guidelines_summary_on",
                     "Subscribers community guidelines are hidden"
@@ -154,7 +141,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_channel_member_shelf",
                 StringResource("revanced_hide_channel_member_shelf_title", "Hide channel member shelf"),
-                true,
                 StringResource(
                     "revanced_hide_channel_member_shelf_summary_on",
                     "Channel member shelf is hidden"
@@ -167,56 +153,48 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_emergency_box",
                 StringResource("revanced_hide_emergency_box_title", "Hide emergency boxes"),
-                true,
                 StringResource("revanced_hide_emergency_box_summary_on", "Emergency boxes are hidden"),
                 StringResource("revanced_hide_emergency_box_summary_off", "Emergency boxes are shown")
             ),
             SwitchPreference(
                 "revanced_hide_info_panels",
                 StringResource("revanced_hide_info_panels_title", "Hide info panels"),
-                true,
                 StringResource("revanced_hide_info_panels_summary_on", "Info panels are hidden"),
                 StringResource("revanced_hide_info_panels_summary_off", "Info panels are shown")
             ),
             SwitchPreference(
                 "revanced_hide_medical_panels",
                 StringResource("revanced_hide_medical_panels_title", "Hide medical panels"),
-                true,
                 StringResource("revanced_hide_medical_panels_summary_on", "Medical panels are hidden"),
                 StringResource("revanced_hide_medical_panels_summary_off", "Medical panels are shown")
             ),
             SwitchPreference(
                 "revanced_hide_channel_bar",
                 StringResource("revanced_hide_channel_bar_title", "Hide channel bar"),
-                false,
                 StringResource("revanced_hide_channel_bar_summary_on", "Channel bar is hidden"),
                 StringResource("revanced_hide_channel_bar_summary_off", "Channel bar is shown")
             ),
             SwitchPreference(
                 "revanced_hide_quick_actions",
                 StringResource("revanced_hide_quick_actions_title", "Hide quick actions in fullscreen"),
-                false,
                 StringResource("revanced_hide_quick_actions_summary_on", "Quick actions are hidden"),
                 StringResource("revanced_hide_quick_actions_summary_off", "Quick actions are shown")
             ),
             SwitchPreference(
                 "revanced_hide_related_videos",
                 StringResource("revanced_hide_related_videos_title", "Hide related videos in quick actions"),
-                false,
                 StringResource("revanced_hide_related_videos_summary_on", "Related videos are hidden"),
                 StringResource("revanced_hide_related_videos_summary_off", "Related videos are shown")
             ),
             SwitchPreference(
                 "revanced_hide_image_shelf",
                 StringResource("revanced_hide_image_shelf", "Hide image shelf in search results"),
-                true,
                 StringResource("revanced_hide_image_shelf_summary_on", "Image shelf is hidden"),
                 StringResource("revanced_hide_image_shelf_summary_off", "Image shelf is shown")
             ),
             SwitchPreference(
                 "revanced_hide_audio_track_button",
                 StringResource("revanced_hide_audio_track_button_title", "Hide audio track button"),
-                false,
                 StringResource("revanced_hide_audio_track_button_on", "Audio track button is hidden"),
                 StringResource("revanced_hide_audio_track_button_off", "Audio track button is shown")
             )
@@ -226,35 +204,30 @@ class GeneralAdsResourcePatch : ResourcePatch {
             SwitchPreference(
                 "revanced_hide_general_ads",
                 StringResource("revanced_hide_general_ads_title", "Hide general ads"),
-                true,
                 StringResource("revanced_hide_general_ads_summary_on", "General ads are hidden"),
                 StringResource("revanced_hide_general_ads_summary_off", "General ads are shown")
             ),
             SwitchPreference(
                 "revanced_hide_buttoned_ads",
                 StringResource("revanced_hide_buttoned_ads_title", "Hide buttoned ad"),
-                true,
                 StringResource("revanced_hide_buttoned_ads_summary_on", "Buttoned ads are hidden"),
                 StringResource("revanced_hide_buttoned_ads_summary_off", "Buttoned ads are shown")
             ),
             SwitchPreference(
                 "revanced_hide_paid_content_ads",
                 StringResource("revanced_hide_paid_content_ads_title", "Hide paid content"),
-                true,
                 StringResource("revanced_hide_paid_content_ads_summary_on", "Paid content is hidden"),
                 StringResource("revanced_hide_paid_content_ads_summary_off", "Paid content is shown")
             ),
             SwitchPreference(
                 "revanced_hide_latest_posts_ads",
                 StringResource("revanced_hide_latest_posts_ads_title", "Hide latest posts"),
-                true,
                 StringResource("revanced_hide_latest_posts_ads_summary_on", "Latest posts are hidden"),
                 StringResource("revanced_hide_latest_posts_ads_summary_off", "Latest posts are shown")
             ),
             SwitchPreference(
                 "revanced_hide_self_sponsor_ads",
                 StringResource("revanced_hide_self_sponsor_ads_title", "Hide self sponsored cards"),
-                true,
                 StringResource("revanced_hide_self_sponsor_ads_summary_on", "Self sponsored cards are hidden"),
                 StringResource("revanced_hide_self_sponsor_ads_summary_off", "Self sponsored cards are shown")
             ),
@@ -268,7 +241,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                             "revanced_custom_filter_title",
                             "Enable custom filter"
                         ),
-                        false,
                         StringResource(
                             "revanced_custom_filter_summary_on",
                             "Custom filter is enabled"
@@ -283,7 +255,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                         "revanced_custom_filter_strings",
                         StringResource("revanced_custom_filter_strings_title", "Custom filter"),
                         InputType.TEXT,
-                        "",
                         StringResource(
                             "revanced_custom_filter_strings_summary",
                             "Filter components by their name separated by a comma"

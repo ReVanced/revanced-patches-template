@@ -80,7 +80,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
                 "",
                 StringResource("revanced_pref_import_export_title", "Import / Export"),
                 InputType.TEXT_MULTI_LINE,
-                "",
                 StringResource("revanced_pref_import_export_summary", "Import / Export ReVanced settings"),
                 "app.revanced.integrations.settingsmenu.ImportExportPreference"
             )

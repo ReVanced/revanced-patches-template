@@ -37,7 +37,6 @@ class AutoRepeatPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_auto_repeat",
                 StringResource("revanced_auto_repeat_title", "Enable auto-repeat"),
-                false,
                 StringResource("revanced_auto_repeat_summary_on", "Auto-repeat is enabled"),
                 StringResource("revanced_auto_repeat_summary_off", "Auto-repeat is disabled")
             )

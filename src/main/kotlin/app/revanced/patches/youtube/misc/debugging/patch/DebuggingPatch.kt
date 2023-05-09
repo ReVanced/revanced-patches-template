@@ -32,7 +32,6 @@ class DebuggingPatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_debug",
                         StringResource("revanced_debug_title", "Debug logging"),
-                        false,
                         StringResource("revanced_debug_summary_on", "Debug logs are enabled"),
                         StringResource("revanced_debug_summary_off", "Debug logs are disabled")
                     ),
@@ -42,7 +41,6 @@ class DebuggingPatch : ResourcePatch {
                             "revanced_debug_stacktrace_title",
                             "Log stack traces"
                         ),
-                        false,
                         StringResource("revanced_debug_stacktrace_summary_on", "Debug logs include stack trace"),
                         StringResource("revanced_debug_stacktrace_summary_off", "Debug logs do not include stack trace")
                     ),
@@ -52,7 +50,6 @@ class DebuggingPatch : ResourcePatch {
                             "revanced_debug_toast_on_error_title",
                             "Show toast on ReVanced error"
                         ),
-                        true,
                         StringResource("revanced_debug_toast_on_error_summary_on", "Toast shown if error occurs"),
                         StringResource("revanced_debug_toast_on_error_summary_off", "Toast not shown if error occurs"),
                         StringResource("revanced_debug_toast_on_error_user_dialog_message",

@@ -36,7 +36,6 @@ class OpenLinksExternallyPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_external_browser",
                 StringResource("revanced_external_browser_title", "Open links in browser"),
-                true,
                 StringResource("revanced_external_browser_summary_on", "Opening links externally"),
                 StringResource("revanced_external_browser_summary_off", "Opening links in app")
             )

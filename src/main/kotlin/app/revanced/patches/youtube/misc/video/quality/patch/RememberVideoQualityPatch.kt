@@ -48,7 +48,6 @@ class RememberVideoQualityPatch : BytecodePatch(
                     "revanced_video_remember_last_selected_title",
                     "Remember video quality changes"
                 ),
-                true,
                 StringResource(
                     "revanced_video_remember_last_selected_summary_on",
                     "Quality changes apply to all videos"

@@ -13,15 +13,15 @@ import org.w3c.dom.Element
  * @param key The key of the text preference.
  * @param title The title of the text preference.
  * @param inputType The input type of the text preference.
- * @param default The default value of the text preference.
  * @param summary The summary of the text preference.
+ * @param default The default value of the text preference.
  */
 internal class TextPreference(
     key: String,
     title: StringResource,
     var inputType: InputType = InputType.TEXT,
-    val default: String? = null,
     val summary: StringResource? = null,
+    val default: String? = null, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
     override val tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
 ) : BasePreference(key, title) {
 

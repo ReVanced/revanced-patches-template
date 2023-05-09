@@ -33,7 +33,6 @@ class DisableShortsOnStartupPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_disable_resuming_shorts_player",
                 StringResource("revanced_disable_resuming_shorts_player_title", "Disable shorts player at app startup"),
-                false,
                 StringResource("revanced_disable_resuming_shorts_player_summary_on", "Shorts player is disabled at app startup"),
                 StringResource("revanced_disable_resuming_shorts_player_summary_off", "Shorts player is enabled at app startup")
             )

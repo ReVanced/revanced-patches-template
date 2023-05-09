@@ -44,7 +44,6 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     "revanced_speed_remember_last_selected_title",
                     "Remember playback speed changes"
                 ),
-                true,
                 StringResource(
                     "revanced_speed_remember_last_selected_summary_on",
                     "Playback speed changes apply to all videos"

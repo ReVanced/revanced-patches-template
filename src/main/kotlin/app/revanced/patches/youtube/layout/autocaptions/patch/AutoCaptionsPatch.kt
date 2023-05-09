@@ -35,7 +35,6 @@ class AutoCaptionsPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_auto_captions",
                 StringResource("revanced_auto_captions_title", "Disable auto captions"),
-                false,
                 StringResource("revanced_auto_captions_summary_on", "Auto captions are disabled"),
                 StringResource("revanced_auto_captions_summary_off", "Auto captions are enabled")
             )

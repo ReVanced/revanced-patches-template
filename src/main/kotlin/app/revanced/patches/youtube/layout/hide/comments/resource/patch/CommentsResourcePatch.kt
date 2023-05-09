@@ -32,21 +32,18 @@ class CommentsResourcePatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_hide_comments_section",
                         StringResource("revanced_hide_comments_section_title", "Hide comments section"),
-                        false,
                         StringResource("revanced_hide_comments_section_summary_on", "Comment section is hidden"),
                         StringResource("revanced_hide_comments_section_summary_off", "Comment section is shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_preview_comment",
                         StringResource("revanced_hide_preview_comment_title", "Hide preview comment"),
-                        false,
                         StringResource("revanced_hide_preview_comment_on", "Preview comment is hidden"),
                         StringResource("revanced_hide_preview_comment_off", "Preview comment is shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_shorts_comments_button",
                         StringResource("revanced_hide_shorts_comments_button_title", "Hide shorts comments button"),
-                        false,
                         StringResource("revanced_hide_shorts_comments_button_on", "Shorts comments button is hidden"),
                         StringResource("revanced_hide_shorts_comments_button_off", "Shorts comments button is shown")
                     ),

@@ -35,7 +35,6 @@ class VideoAdsPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_hide_video_ads",
                 StringResource("revanced_hide_video_ads_title", "Hide video ads"),
-                true,
                 StringResource("revanced_hide_video_ads_summary_on", "Video ads are hidden"),
                 StringResource("revanced_hide_video_ads_summary_off", "Video ads are shown")
             )

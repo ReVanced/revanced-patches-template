@@ -34,7 +34,6 @@ class OldQualityLayoutPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_video_show_old_menu",
                 StringResource("revanced_video_show_old_menu_title", "Use old video quality player menu"),
-                true,
                 StringResource("revanced_video_show_old_menu_summary_on", "Old video quality menu is used"),
                 StringResource("revanced_video_show_old_menu_summary_off", "Old video quality menu is not used")
             )

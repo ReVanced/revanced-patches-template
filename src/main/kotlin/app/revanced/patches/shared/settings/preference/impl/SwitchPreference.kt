@@ -10,17 +10,17 @@ import org.w3c.dom.Element
  *
  * @param key The key of the switch.
  * @param title The title of the switch.
- * @param default The default value of the switch.
  * @param summaryOn The summary to show when the preference is enabled.
  * @param summaryOff The summary to show when the preference is disabled.
  * @param userDialogMessage The message to show in a dialog when the user toggles the preference.
+ * @param default The default value of the switch.
  */
 internal class SwitchPreference(
     key: String, title: StringResource,
-    val default: Boolean = false,
     val summaryOn: StringResource? = null,
     val summaryOff: StringResource? = null,
-    val userDialogMessage: StringResource? = null
+    val userDialogMessage: StringResource? = null,
+    val default: Boolean = false, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
 
