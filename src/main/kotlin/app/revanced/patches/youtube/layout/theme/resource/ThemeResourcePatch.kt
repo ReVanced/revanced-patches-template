@@ -41,7 +41,7 @@ class ThemeResourcePatch : ResourcePatch {
         // For that the resource id is used in a bytecode patch to change the color.
 
         inlineTimeBarColorizedBarPlayedColorDarkId =
-            context.resourceIdOf("id", "inline_time_bar_colorized_bar_played_color_dark")
+            context.resourceIdOf("color", "inline_time_bar_colorized_bar_played_color_dark")
 
 
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
