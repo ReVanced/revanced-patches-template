@@ -1,15 +1,13 @@
 package app.revanced.patches.youtube.layout.hide.getpremium.bytecode.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -31,7 +29,7 @@ class HideGetPremiumPatch : BytecodePatch(
         GetPremiumViewFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
@@ -66,9 +64,7 @@ class HideGetPremiumPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return GetPremiumViewFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: GetPremiumViewFingerprint.error()
     }
 
     private companion object {

@@ -246,7 +246,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                     "invoke-static {v$frameLayoutRegister}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/ViewGroup;)V"
                 )
             }
-        }  ?: return ControlsOverlayFingerprint.toErrorResult()
+        }  ?: ControlsOverlayFingerprint.error()
 
         // get rectangle field name
         RectangleFieldInvalidatorFingerprint.resolve(context, seekbarSignatureResult.classDef)

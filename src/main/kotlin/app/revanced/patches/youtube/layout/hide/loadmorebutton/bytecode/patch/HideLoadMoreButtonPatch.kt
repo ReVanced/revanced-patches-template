@@ -1,15 +1,13 @@
 package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints.HideLoadMoreButtonFingerprint
@@ -23,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @DependsOn([HideLoadMoreButtonResourcePatch::class])
 @Version("0.0.1")
 class HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         HideLoadMoreButtonFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveRegisterIndex = it.scanResult.patternScanResult!!.endIndex
@@ -36,9 +34,7 @@ class HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerpri
                             "$INTEGRATIONS_CLASS_DESCRIPTOR->hideLoadMoreButton(Landroid/view/View;)V"
                 )
             }
-        } ?: return HideLoadMoreButtonFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: HideLoadMoreButtonFingerprint.error()
     }
 
     private companion object {
