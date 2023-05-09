@@ -21,6 +21,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch.Companion.reference
+import app.revanced.patches.youtube.misc.video.speed.custom.patch.CustomVideoSpeedPatch
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
@@ -28,7 +29,7 @@ import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 @Patch
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
 @RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
