@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
+import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -23,7 +24,6 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
 
-@Patch
 @Name("custom-video-speed")
 @Description("Adds custom video speed options.")
 @DependsOn([IntegrationsPatch::class])
@@ -73,12 +73,13 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val arrayLengthConstDestination = (arrayLengthConst as OneRegisterInstruction).registerA
 
-        val videoSpeedsArrayType = "Lapp/revanced/integrations/patches/playback/speed/CustomVideoSpeedPatch;->videoSpeeds:[F"
+        val customVideoSpeedsArray = "Lapp/revanced/integrations/patches/playback/speed/CustomVideoSpeedPatch;->customVideoSpeeds()[F"
 
         arrayGenMethod.addInstructions(
             arrayLengthConstIndex + 1,
             """
-            sget-object v$arrayLengthConstDestination, $videoSpeedsArrayType
+            invoke-static {}, $customVideoSpeedsArray
+            move-result-object v$arrayLengthConstDestination
             array-length v$arrayLengthConstDestination, v$arrayLengthConstDestination
             """
         )
@@ -92,9 +93,12 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val originalArrayFetchDestination = (originalArrayFetch as OneRegisterInstruction).registerA
 
-        arrayGenMethod.replaceInstruction(
+        arrayGenMethod.replaceInstructions(
             originalArrayFetchIndex,
-            "sget-object v$originalArrayFetchDestination, $videoSpeedsArrayType"
+            """
+                invoke-static {}, $customVideoSpeedsArray
+                move-result-object v$originalArrayFetchDestination
+            """
         )
 
         val limiterMethod = SpeedLimiterFingerprint.result?.mutableMethod!!
@@ -108,6 +112,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
         val limiterMinConstDestination = (limiterMinConst as OneRegisterInstruction).registerA
         val limiterMaxConstDestination = (limiterMaxConst as OneRegisterInstruction).registerA
 
+        // edit: alternatively this might work by overriding with fixed values such as 0.1x and 10x
         limiterMethod.replaceInstruction(
             limiterMinConstIndex,
             "sget v$limiterMinConstDestination, Lapp/revanced/integrations/patches/playback/speed/CustomVideoSpeedPatch;->minVideoSpeed:F"

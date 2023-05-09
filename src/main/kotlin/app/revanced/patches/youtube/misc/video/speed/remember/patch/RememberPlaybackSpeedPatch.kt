@@ -25,7 +25,6 @@ import app.revanced.patches.youtube.misc.video.speed.custom.patch.CustomVideoSpe
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 
-@Patch
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
