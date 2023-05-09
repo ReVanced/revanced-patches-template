@@ -6,10 +6,8 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.replaceInstruction
-import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
@@ -73,13 +71,12 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val arrayLengthConstDestination = (arrayLengthConst as OneRegisterInstruction).registerA
 
-        val customVideoSpeedsArray = "Lapp/revanced/integrations/patches/playback/speed/CustomVideoSpeedPatch;->customVideoSpeeds()[F"
+        val videoSpeedsArrayType = "Lapp/revanced/integrations/patches/playback/speed/CustomVideoSpeedPatch;->customVideoSpeeds:[F"
 
         arrayGenMethod.addInstructions(
             arrayLengthConstIndex + 1,
             """
-            invoke-static {}, $customVideoSpeedsArray
-            move-result-object v$arrayLengthConstDestination
+            sget-object v$arrayLengthConstDestination, $videoSpeedsArrayType
             array-length v$arrayLengthConstDestination, v$arrayLengthConstDestination
             """
         )
@@ -93,12 +90,9 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val originalArrayFetchDestination = (originalArrayFetch as OneRegisterInstruction).registerA
 
-        arrayGenMethod.replaceInstructions(
+        arrayGenMethod.replaceInstruction(
             originalArrayFetchIndex,
-            """
-                invoke-static {}, $customVideoSpeedsArray
-                move-result-object v$originalArrayFetchDestination
-            """
+            "sget-object v$originalArrayFetchDestination, $videoSpeedsArrayType"
         )
 
         val limiterMethod = SpeedLimiterFingerprint.result?.mutableMethod!!
