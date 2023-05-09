@@ -61,7 +61,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 "revanced_default_playback_speed",
                 StringResource(
                     "revanced_default_playback_speed_title",
-                    "Playback speed default"
+                    "Default playback speed"
                 ),
                 // Dummy data:
                 // Entries and values are set by Integrations code based on the actual speeds available,
