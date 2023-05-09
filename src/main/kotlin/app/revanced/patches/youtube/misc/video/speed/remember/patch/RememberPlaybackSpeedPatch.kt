@@ -24,12 +24,11 @@ import app.revanced.patches.youtube.misc.video.information.patch.VideoInformatio
 import app.revanced.patches.youtube.misc.video.speed.custom.patch.CustomVideoSpeedPatch
 import app.revanced.patches.youtube.misc.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.misc.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
-import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
 
 @Patch
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoIdPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
 @RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
@@ -78,8 +77,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
             )
         )
 
-        VideoIdPatch.injectCall("${INTEGRATIONS_CLASS_DESCRIPTOR}->newVideoLoaded(Ljava/lang/String;)V")
-
+        VideoInformationPatch.onCreateHook(INTEGRATIONS_CLASS_DESCRIPTOR, "newVideoStarted")
         VideoInformationPatch.userSelectedPlaybackSpeedHook(
             INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
 
