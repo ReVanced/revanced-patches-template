@@ -136,24 +136,29 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
-                val startIndex = it.scanResult.patternScanResult!!.startIndex
-                val endIndex = it.scanResult.patternScanResult!!.endIndex
-                val textViewFieldReference = // Obfuscated TextView field
-                    instruction<ReferenceInstruction>(endIndex - 2).reference
-                val isLikesBooleanReference = // Obfuscated boolean field
-                    instruction<ReferenceInstruction>(endIndex).reference
+                val patternResult = it.scanResult.patternScanResult!!
 
-                addInstructions(startIndex + 6, """
+                // Boolean field that indicates if the TextView is for a dislikes button
+                val isLikesBooleanReference = instruction<ReferenceInstruction>(patternResult.endIndex).reference
+
+                val textViewFieldReference = // Like/Dislike button TextView field
+                    instruction<ReferenceInstruction>(patternResult.endIndex - 2).reference
+
+                // insert after call to parent class constructor and after a null check
+                val insertIndex = patternResult.startIndex + 6
+                addInstructions(
+                    insertIndex, """
                     iget-boolean v0, p0, $isLikesBooleanReference  # copy boolean field
-                    if-eqz v0, :likesbutton
+                    if-eqz v0, :likesbutton     # if false, then this instance is for the likes button (not interested in)
                     iget-object v0, p0, $textViewFieldReference   # copy text field reference
                     invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateShortsDislikes(Landroid/view/View;)Z
                     move-result v0
-                    if-eqz v0, :likesbutton
+                    if-eqz v0, :likesbutton  # if zero then RYD is not enabled
                     return-void
-                    :likesbutton     # button is not for dislikes, or RYD is not enabled 
+                    :likesbutton   # instance is for the likes button, or RYD is not enabled 
                     nop
-                """)
+                """
+                )
             }
         } ?: return ShortsTextViewFingerprint.toErrorResult()
 
