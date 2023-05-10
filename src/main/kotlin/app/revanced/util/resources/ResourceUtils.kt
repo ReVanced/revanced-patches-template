@@ -17,18 +17,10 @@ internal object ResourceUtils {
      * Merge strings. This manages [StringResource]s automatically.
      * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
      */
-    internal fun ResourceContext.mergeStrings(host: String) {
-        this.iterateXmlNodeChildren(host, "resources") {
-            // TODO: figure out why this is needed
-            if (!it.hasAttributes()) return@iterateXmlNodeChildren
-
-            val attributes = it.attributes
-            val key = attributes.getNamedItem("name")!!.nodeValue!!
-            val value = it.textContent!!
-
+    internal fun ResourceContext.mergeStrings(host: String) =
+        base.mergeStrings(ResourceUtils.javaClass.classLoader.getResourceAsStream(host)!!) { (key, value) ->
             SettingsPatch.addString(key, value)
         }
-    }
 
     internal fun ResourceFile.editText(block: (String) -> String) = use {
         it.contents = block(String(it.contents)).toByteArray()
@@ -42,7 +34,8 @@ internal object ResourceUtils {
         names: List<String>,
         value: Resource,
         configuration: String? = null
-    ) = setGroup(type,
+    ) = setGroup(
+        type,
         names.associateWith { value }, configuration
     )
 
@@ -84,23 +77,6 @@ internal object ResourceUtils {
      * @param resources A list of resource names.
      */
     internal class ResourceGroup(val resourceDirectoryName: String, vararg val resources: String)
-
-    /**
-     * Iterate through the children of a node by its tag.
-     * @param resource The xml resource.
-     * @param targetTag The target xml node.
-     * @param callback The callback to call when iterating over the nodes.
-     */
-    internal fun ResourceContext.iterateXmlNodeChildren(
-        resource: String,
-        targetTag: String,
-        callback: (node: Node) -> Unit
-    ) =
-        openXmlFile(ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!).use {
-            val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
-            for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
-        }
-
 
     /**
      * Copies the specified node of the source [DomFileEditor] to the target [DomFileEditor].
