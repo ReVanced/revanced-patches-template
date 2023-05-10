@@ -144,7 +144,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 val textViewFieldReference = // Like/Dislike button TextView field
                     instruction<ReferenceInstruction>(patternResult.endIndex - 2).reference
 
-                // insert after call to parent class constructor and after a null check
+                // Check if the hooked TextView object is that of the dislike button. 
+                // If RYD is disabled, or the TextView object is not that of the dislike button, the execution flow is not interrupted. 
+                // Otherwise, the TextView object is modified, and the execution flow is interrupted to prevent it from being changed afterward.
                 val insertIndex = patternResult.startIndex + 6
                 addInstructions(
                     insertIndex, """
