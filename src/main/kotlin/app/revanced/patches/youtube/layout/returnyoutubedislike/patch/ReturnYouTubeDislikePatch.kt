@@ -148,8 +148,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 val insertIndex = patternResult.startIndex + 6
                 addInstructions(
                     insertIndex, """
-                    iget-boolean v0, p0, $isLikesBooleanReference  # copy boolean field
-                    if-eqz v0, :likesbutton     # if false, then this instance is for the likes button
+                    # check if the current view is a dislike button
+                    iget-boolean v0, p0, $isLikesBooleanReference
+                    if-eqz v0, :likesbutton
                     iget-object v0, p0, $textViewFieldReference   # copy TextView field
                     invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateShortsDislikes(Landroid/view/View;)Z
                     move-result v0
