@@ -138,7 +138,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             it.mutableMethod.apply {
                 val patternResult = it.scanResult.patternScanResult!!
 
-                // Boolean field that indicates if the TextView is for a dislikes button
+                // If the field is true, the TextView is for a dislike button.
                 val isLikesBooleanReference = instruction<ReferenceInstruction>(patternResult.endIndex).reference
 
                 val textViewFieldReference = // Like/Dislike button TextView field
