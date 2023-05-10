@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.extensions.addInstructions
@@ -19,14 +18,12 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
-import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
@@ -48,7 +45,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class ReturnYouTubeDislikePatch : BytecodePatch(
     listOf(
         TextComponentConstructorFingerprint,
-        ShortsTextComponentParentFingerprint,
+        ShortsTextViewFingerprint,
         DislikesOldLayoutTextViewFingerprint,
         LikeFingerprint,
         DislikeFingerprint,
@@ -137,35 +134,28 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
 
         // region Hook for Short videos.
 
-        ShortsTextComponentParentFingerprint.result?.let {
-            context
-                .toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.endIndex, true)
-                .getMethod().let { method ->
-                    with(method as MutableMethod) {
-                        // After walking, verify the found method is what's expected.
-                        if (returnType != ("Ljava/lang/CharSequence;") || parameterTypes.size != 1)
-                            return PatchResultError("Method signature did not match: $this $parameterTypes")
+        ShortsTextViewFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val startIndex = it.scanResult.patternScanResult!!.startIndex
+                val endIndex = it.scanResult.patternScanResult!!.endIndex
+                val textViewFieldReference = // Obfuscated TextView field
+                    instruction<ReferenceInstruction>(endIndex - 2).reference
+                val isLikesBooleanReference = // Obfuscated boolean field
+                    instruction<ReferenceInstruction>(endIndex).reference
 
-                        val insertIndex = implementation!!.instructions.size - 1
-                        val spannedParameterRegister = instruction<OneRegisterInstruction>(insertIndex).registerA
-                        val parameter = instruction<BuilderInstruction35c>(insertIndex - 2).reference
-
-                        if (!parameter.toString().endsWith("Landroid/text/Spanned;"))
-                            return PatchResultError("Method signature parameter did not match: $parameter")
-
-                        insertShorts(insertIndex, spannedParameterRegister)
-                    }
-                }
-
-            // Additional hook, called after user dislikes.
-            with(it.mutableMethod) {
-                val insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
-                val overwriteRegister = (implementation!!.instructions.elementAt(insertIndex - 1)
-                        as OneRegisterInstruction).registerA
-                insertShorts(insertIndex, overwriteRegister)
+                addInstructions(startIndex + 6, """
+                    iget-boolean v0, p0, $isLikesBooleanReference  # copy boolean field
+                    if-eqz v0, :likesbutton
+                    iget-object v0, p0, $textViewFieldReference   # copy text field reference
+                    invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateShortsDislikes(Landroid/view/View;)Z
+                    move-result v0
+                    if-eqz v0, :likesbutton
+                    return-void
+                    :likesbutton     # button is not for dislikes, or RYD is not enabled 
+                    nop
+                """)
             }
-        } ?: return ShortsTextComponentParentFingerprint.toErrorResult()
+        } ?: return ShortsTextViewFingerprint.toErrorResult()
 
         // endregion
 
@@ -200,15 +190,6 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
             LIKE(1),
             DISLIKE(-1),
             REMOVE_LIKE(0)
-        }
-
-        private fun MutableMethod.insertShorts(index: Int, register: Int) {
-            addInstructions(
-                index, """
-                invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->onShortsComponentCreated(Landroid/text/Spanned;)Landroid/text/Spanned;
-                move-result-object v$register
-            """
-            )
         }
     }
 }
