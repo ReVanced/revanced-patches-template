@@ -18,9 +18,7 @@ internal object ResourceUtils {
      * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
      */
     internal fun ResourceContext.mergeStrings(host: String) =
-        base.mergeStrings(ResourceUtils.javaClass.classLoader.getResourceAsStream(host)!!) { (key, value) ->
-            SettingsPatch.addString(key, value)
-        }
+        base.mergeStrings(ResourceUtils.javaClass.classLoader.getResourceAsStream(host)!!)
 
     internal fun ResourceFile.editText(block: (String) -> String) = use {
         it.contents = block(String(it.contents)).toByteArray()
