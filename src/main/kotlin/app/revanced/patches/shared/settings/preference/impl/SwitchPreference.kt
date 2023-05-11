@@ -20,7 +20,7 @@ internal class SwitchPreference(
     val summaryOn: StringResource? = null,
     val summaryOff: StringResource? = null,
     val userDialogMessage: StringResource? = null,
-    val default: Boolean = false, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
+    val default: Boolean? = null,
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
 

@@ -21,7 +21,7 @@ internal class TextPreference(
     title: StringResource,
     var inputType: InputType = InputType.TEXT,
     val summary: StringResource? = null,
-    val default: String? = null, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
+    val default: String? = null,
     override val tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
 ) : BasePreference(key, title) {
 

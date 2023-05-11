@@ -23,7 +23,7 @@ internal class ListPreference(
     val entries: ArrayResource,
     val entryValues: ArrayResource,
     val summary: StringResource? = null,
-    val default: String? = null, // Default does not need to be set if key is present in YouTube or TikTok SettingsEnum
+    val default: String? = null,
 ) : BasePreference(key, title) {
     override val tag: String = "ListPreference"
 
