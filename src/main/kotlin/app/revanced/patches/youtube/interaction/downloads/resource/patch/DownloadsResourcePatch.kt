@@ -37,8 +37,8 @@ class DownloadsResourcePatch : ResourcePatch {
                     TextPreference(
                         "revanced_external_downloader_name",
                         StringResource("revanced_external_downloader_name_title", "Downloader package name"),
-                        InputType.TEXT,
-                        StringResource("revanced_external_downloader_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s")
+                        StringResource("revanced_external_downloader_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s"),
+                        InputType.TEXT
                     )
                 ),
                 StringResource("revanced_external_downloader_preference_screen_summary", "Settings related to downloads")

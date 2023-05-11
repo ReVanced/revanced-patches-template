@@ -19,8 +19,8 @@ import org.w3c.dom.Element
 internal class TextPreference(
     key: String,
     title: StringResource,
+    summary: StringResource,
     var inputType: InputType = InputType.TEXT,
-    summary: StringResource? = null,
     val default: String? = null,
     override val tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
 ) : BasePreference(key, title, summary) {

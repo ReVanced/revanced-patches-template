@@ -68,10 +68,10 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         SettingsPatch.addPreference(
             Preference(
                 StringResource("revanced_settings", "ReVanced"),
+                StringResource("revanced_settings_summary", "ReVanced specific settings"),
                 Preference.Intent(
                     youtubePackage, "revanced_settings", "com.google.android.libraries.social.licenses.LicenseActivity"
-                ),
-                StringResource("revanced_settings_summary", "ReVanced specific settings"),
+                )
             )
         )
 

@@ -55,35 +55,35 @@ class SwipeControlsResourcePatch : ResourcePatch {
                     TextPreference(
                         "revanced_swipe_overlay_timeout",
                         StringResource("revanced_swipe_overlay_timeout_title", "Swipe overlay timeout"),
-                        InputType.NUMBER,
                         StringResource(
                             "revanced_swipe_overlay_timeout_summary",
                             "The amount of milliseconds the overlay is visible"
-                        )
+                        ),
+                        InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_text_overlay_size",
                         StringResource("revanced_swipe_text_overlay_size_title", "Swipe overlay text size"),
-                        InputType.NUMBER,
-                        StringResource("revanced_swipe_text_overlay_size_summary", "The text size for swipe overlay")
+                        StringResource("revanced_swipe_text_overlay_size_summary", "The text size for swipe overlay"),
+                        InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_overlay_background_alpha",
                         StringResource("revanced_swipe_overlay_background_alpha_title", "Swipe background visibility"),
-                        InputType.NUMBER,
                         StringResource(
                             "revanced_swipe_overlay_background_alpha_summary",
                             "The visibility of swipe overlay background"
-                        )
+                        ),
+                        InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_threshold",
                         StringResource("revanced_swipe_threshold_title", "Swipe magnitude threshold"),
-                        InputType.NUMBER,
                         StringResource(
                             "revanced_swipe_threshold_summary",
                             "The amount of threshold for swipe to occur"
-                        )
+                        ),
+                        InputType.NUMBER
                     )
                 ),
                 StringResource("revanced_swipe_controls_preference_screen_summary","Control volume and brightness")

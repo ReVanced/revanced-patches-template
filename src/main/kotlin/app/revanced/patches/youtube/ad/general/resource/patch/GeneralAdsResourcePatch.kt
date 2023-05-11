@@ -254,11 +254,11 @@ class GeneralAdsResourcePatch : ResourcePatch {
                     TextPreference(
                         "revanced_custom_filter_strings",
                         StringResource("revanced_custom_filter_strings_title", "Custom filter"),
-                        InputType.TEXT,
                         StringResource(
                             "revanced_custom_filter_strings_summary",
                             "Filter components by their name separated by a comma"
-                        )
+                        ),
+                        InputType.TEXT
                     )
                 )
             )

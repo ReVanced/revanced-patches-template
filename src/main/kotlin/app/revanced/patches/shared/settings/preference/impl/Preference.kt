@@ -16,17 +16,17 @@ import org.w3c.dom.Element
 internal class Preference(
     key: String,
     title: StringResource,
-    val intent: Intent,
-    summary: StringResource? = null
+    summary: StringResource,
+    val intent: Intent
 ) : BasePreference(key, title, summary) {
     override val tag: String = "Preference"
 
     /* Key-less constructor */
     constructor(
         title: StringResource,
-        intent: Intent,
-        summary: StringResource? = null
-    ) : this("", title, intent, summary)
+        summary: StringResource,
+        intent: Intent
+    ) : this("", title, summary, intent)
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
