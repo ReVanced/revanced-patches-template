@@ -392,8 +392,12 @@ The file contains an array of objects, each object representing a patch. The obj
 | `compatiblePackages`          | An array of packages compatible with this patch.                                                                                                                                      |
 | `compatiblePackages.name`     | The name of the package.                                                                                                                                                              |
 | `compatiblePackages.versions` | An array of versions of the package compatible with this patch. If empty, all versions are seemingly compatible.                                                                      |
+<details>
 
-Example:
+
+
+<summary> Example </summary>
+
 
 ```json
 [
@@ -484,3 +488,4 @@ Example:
   }
 ]
 ```
+</details>
