@@ -38,17 +38,17 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_speed_remember_last_selected",
+                "revanced_remember_playback_speed_last_selected",
                 StringResource(
-                    "revanced_speed_remember_last_selected_title",
+                    "revanced_remember_playback_speed_last_selected_title",
                     "Remember playback speed changes"
                 ),
                 StringResource(
-                    "revanced_speed_remember_last_selected_summary_on",
+                    "revanced_remember_playback_speed_last_selected_summary_on",
                     "Playback speed changes apply to all videos"
                 ),
                 StringResource(
-                    "revanced_speed_remember_last_selected_summary_off",
+                    "revanced_remember_playback_speed_last_selected_summary_off",
                     "Playback speed changes only apply to the current video"
                 )
             )

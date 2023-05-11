@@ -43,17 +43,17 @@ class RememberVideoQualityPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_video_remember_last_selected",
+                "revanced_remember_video_quality_last_selected",
                 StringResource(
-                    "revanced_video_remember_last_selected_title",
+                    "revanced_remember_video_quality_last_selected_title",
                     "Remember video quality changes"
                 ),
                 StringResource(
-                    "revanced_video_remember_last_selected_summary_on",
+                    "revanced_remember_video_quality_last_selected_summary_on",
                     "Quality changes apply to all videos"
                 ),
                 StringResource(
-                    "revanced_video_remember_last_selected_summary_off",
+                    "revanced_remember_video_quality_last_selected_summary_off",
                     "Quality changes only apply to the current video"
                 )
             )
