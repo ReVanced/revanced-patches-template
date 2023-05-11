@@ -56,21 +56,21 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
 
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             ListPreference(
-                "revanced_speed_default",
+                "revanced_playback_speed_default",
                 StringResource(
-                    "revanced_speed_default_title",
+                    "revanced_playback_speed_default_title",
                     "Default playback speed"
                 ),
                 // Dummy data:
                 // Entries and values are set by Integrations code based on the actual speeds available,
                 // and the values set here are ignored and do nothing.
                 ArrayResource(
-                    "revanced_speed_default_entries",
-                    listOf(StringResource("revanced_speed_default_entry", "1.0x"))
+                    "revanced_playback_speed_default_entries",
+                    listOf(StringResource("revanced_playback_speed_default_entries", "1.0x"))
                 ),
                 ArrayResource(
-                    "revanced_speed_default_entry_values",
-                    listOf(StringResource("revanced_speed_default_entry_value", "1.0"))
+                    "revanced_playback_speed_default_entry_values",
+                    listOf(StringResource("revanced_playback_speed_default_entry_value", "1.0"))
                 )
             )
         )

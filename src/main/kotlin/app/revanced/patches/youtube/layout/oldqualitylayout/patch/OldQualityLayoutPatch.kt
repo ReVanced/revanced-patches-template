@@ -32,10 +32,10 @@ class OldQualityLayoutPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_video_show_old_menu",
-                StringResource("revanced_video_show_old_menu_title", "Use old video quality player menu"),
-                StringResource("revanced_video_show_old_menu_summary_on", "Old video quality menu is used"),
-                StringResource("revanced_video_show_old_menu_summary_off", "Old video quality menu is not used")
+                "revanced_show_old_video_menu",
+                StringResource("revanced_show_old_video_menu_title", "Use old video quality player menu"),
+                StringResource("revanced_show_old_video_menu_summary_on", "Old video quality menu is used"),
+                StringResource("revanced_show_old_video_menu_summary_off", "Old video quality menu is not used")
             )
         )
 
