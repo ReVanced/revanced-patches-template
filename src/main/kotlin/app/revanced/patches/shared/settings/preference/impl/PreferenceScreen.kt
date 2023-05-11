@@ -18,8 +18,8 @@ internal open class PreferenceScreen(
     key: String,
     title: StringResource,
     var preferences: List<BasePreference>,
-    val summary: StringResource? = null
-) : BasePreference(key, title) {
+    summary: StringResource? = null
+) : BasePreference(key, title, summary) {
     override val tag: String = "PreferenceScreen"
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {

@@ -22,9 +22,9 @@ internal class ListPreference(
     title: StringResource,
     val entries: ArrayResource,
     val entryValues: ArrayResource,
-    val summary: StringResource? = null,
+    summary: StringResource? = null,
     val default: String? = null,
-) : BasePreference(key, title) {
+) : BasePreference(key, title, summary) {
     override val tag: String = "ListPreference"
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {

@@ -17,8 +17,8 @@ internal class Preference(
     key: String,
     title: StringResource,
     val intent: Intent,
-    val summary: StringResource? = null
-) : BasePreference(key, title) {
+    summary: StringResource? = null
+) : BasePreference(key, title, summary) {
     override val tag: String = "Preference"
 
     /* Key-less constructor */

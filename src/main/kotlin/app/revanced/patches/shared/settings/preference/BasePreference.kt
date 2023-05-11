@@ -13,6 +13,7 @@ import org.w3c.dom.Element
 internal abstract class BasePreference(
     override val key: String,
     override val title: StringResource,
+    val summary: StringResource? = null,
 ) : IPreference {
 
     /**

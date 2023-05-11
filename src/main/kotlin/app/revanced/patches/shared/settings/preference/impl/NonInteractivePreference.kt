@@ -12,13 +12,13 @@ import org.w3c.dom.Element
  */
 internal class NonInteractivePreference(
     title: StringResource,
-    val summary: StringResource,
-) : BasePreference("", title) {
+    summary: StringResource,
+) : BasePreference("", title, summary) {
     override val tag: String = "Preference"
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
-            addSummary(summary.also { resourceCallback?.invoke(it)
+            addSummary(summary?.also { resourceCallback?.invoke(it)
                 setAttribute("android:selectable", false.toString())
             })
         }
