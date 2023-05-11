@@ -15,8 +15,8 @@ import app.revanced.patches.twitch.chat.autoclaim.annotations.AutoClaimCommunity
 import app.revanced.patches.twitch.chat.autoclaim.fingerprints.*
 
 @Patch
-@Name("auto-redeem-community-point")
-@Description("Automatically redeem Community point.")
+@Name("auto-claim-community-points")
+@Description("Automatically claim Community points.")
 @AutoClaimCommunityPointsCompatibility
 @Version("0.0.1")
 class AutoClaimCommunityPointPatch : BytecodePatch(
