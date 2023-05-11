@@ -26,8 +26,8 @@ class CommentsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                "revanced_comments",
-                StringResource("revanced_comments_title", "Comments"),
+                "revanced_comments_preference_screen",
+                StringResource("revanced_comments_preference_screen_title", "Comments"),
                 listOf(
                     SwitchPreference(
                         "revanced_hide_comments_section",
@@ -48,7 +48,7 @@ class CommentsResourcePatch : ResourcePatch {
                         StringResource("revanced_hide_shorts_comments_button_off", "Shorts comments button is shown")
                     ),
                 ),
-                StringResource("revanced_comments_summary", "Manage the visibility of comments section components")
+                StringResource("revanced_comments_preference_screen_summary", "Manage the visibility of comments section components")
             )
         )
 

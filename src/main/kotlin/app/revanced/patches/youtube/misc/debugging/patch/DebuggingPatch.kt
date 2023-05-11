@@ -26,8 +26,8 @@ class DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
-                "revanced_debug_preference",
-                StringResource("revanced_debug_preference_title", "Debugging"),
+                "revanced_debug_preference_screen",
+                StringResource("revanced_debug_preference_screen_title", "Debugging"),
                 listOf(
                     SwitchPreference(
                         "revanced_debug",
@@ -59,7 +59,7 @@ class DebuggingPatch : ResourcePatch {
                         )
                     ),
                 ),
-                StringResource("revanced_debug_preference_summary", "Enable or disable debugging options")
+                StringResource("revanced_debug_preference_screen_summary", "Enable or disable debugging options")
             )
         )
 

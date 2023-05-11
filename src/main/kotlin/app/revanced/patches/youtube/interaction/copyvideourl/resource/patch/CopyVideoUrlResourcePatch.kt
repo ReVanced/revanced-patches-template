@@ -26,8 +26,8 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
-                "revanced_copy_video_url_preference",
-                StringResource("revanced_copy_video_preference_title", "Copy video URL settings"),
+                "revanced_copy_video_url_preference_screen",
+                StringResource("revanced_copy_video_url_preference_screen_title", "Copy video URL settings"),
                 listOf(
                     SwitchPreference(
                         "revanced_copy_video_url",
@@ -42,7 +42,7 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
                         StringResource("revanced_copy_video_url_timestamp_summary_off", "Button is not shown")
                     )
                 ),
-                StringResource("revanced_copy_video_url_preference_summary", "Settings related to copy URL buttons in video player")
+                StringResource("revanced_copy_video_url_preference_screen_summary", "Settings related to copy URL buttons in video player")
             )
         )
 

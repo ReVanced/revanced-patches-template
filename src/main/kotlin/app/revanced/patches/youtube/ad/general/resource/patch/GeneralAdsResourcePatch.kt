@@ -232,8 +232,8 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_hide_self_sponsor_ads_summary_off", "Self sponsored cards are shown")
             ),
             PreferenceScreen(
-                "revanced_custom_filter_preference",
-                StringResource("revanced_custom_filter_preference_title", "Custom filter"),
+                "revanced_custom_filter_preference_screen",
+                StringResource("revanced_custom_filter_preference_screen_title", "Custom filter"),
                 listOf(
                     SwitchPreference(
                         "revanced_custom_filter",

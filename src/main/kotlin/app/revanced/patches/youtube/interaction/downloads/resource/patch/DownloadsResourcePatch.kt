@@ -25,8 +25,8 @@ class DownloadsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
-                "revanced_external_downloader_preference",
-                StringResource("revanced_external_downloader_preference_title", "Download settings"),
+                "revanced_external_downloader_preference_screen",
+                StringResource("revanced_external_downloader_preference_screen_title", "Download settings"),
                 listOf(
                     SwitchPreference(
                         "revanced_external_downloader",
@@ -41,7 +41,7 @@ class DownloadsResourcePatch : ResourcePatch {
                         StringResource("revanced_external_downloader_name_summary", "Package name of the downloader app such as NewPipe\\'s or PowerTube\\'s")
                     )
                 ),
-                StringResource("revanced_external_downloader_preference_summary", "Settings related to downloads")
+                StringResource("revanced_external_downloader_preference_screen_summary", "Settings related to downloads")
             )
         )
 

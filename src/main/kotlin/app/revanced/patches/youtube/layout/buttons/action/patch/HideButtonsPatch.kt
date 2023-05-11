@@ -27,8 +27,8 @@ class HideButtonsPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                "revanced_hide_buttons",
-                StringResource("revanced_hide_buttons_title", "Hide action buttons"),
+                "revanced_hide_buttons_preference_screen",
+                StringResource("revanced_hide_buttons_preference_screen_title", "Hide action buttons"),
                 listOf(
                     SwitchPreference(
                         "revanced_hide_like_dislike_button",
@@ -63,7 +63,7 @@ class HideButtonsPatch : ResourcePatch {
                         StringResource("revanced_hide_action_buttons_summary_off", "Share, remix, thanks, shop, live chat buttons are shown")
                     )
                 ),
-                StringResource("revanced_hide_buttons_summary", "Hide or show buttons under videos")
+                StringResource("revanced_hide_buttons_preference_screen_summary", "Hide or show buttons under videos")
             )
         )
         return PatchResultSuccess()
