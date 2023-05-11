@@ -139,7 +139,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 val patternResult = it.scanResult.patternScanResult!!
 
                 // If the field is true, the TextView is for a dislike button.
-                val isLikesBooleanReference = instruction<ReferenceInstruction>(patternResult.endIndex).reference
+                val isDisLikesBooleanReference = instruction<ReferenceInstruction>(patternResult.endIndex).reference
 
                 val textViewFieldReference = // Like/Dislike button TextView field
                     instruction<ReferenceInstruction>(patternResult.endIndex - 2).reference
@@ -149,9 +149,9 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                 // Otherwise, the TextView object is modified, and the execution flow is interrupted to prevent it from being changed afterward.
                 val insertIndex = patternResult.startIndex + 6
                 addInstructions(
-                    insertIndex, """    
+                    insertIndex, """
                     # Check, if the TextView is for a dislike button
-                    iget-boolean v0, p0, $isLikesBooleanReference
+                    iget-boolean v0, p0, $isDisLikesBooleanReference
                     if-eqz v0, :is_like
                     
                     # Hook the TextView, if it is for the dislike button
