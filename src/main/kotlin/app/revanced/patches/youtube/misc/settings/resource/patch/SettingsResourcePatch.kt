@@ -68,8 +68,12 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        context.mergeStrings("settings/host/values/strings.xml")
-
+        context.mergeStrings(
+            mapOf(
+                "revanced_settings_confirm_user_dialog_title" to "Do you wish to proceed?",
+                "revanced_settings_reset" to "Reset",
+            )
+        )
     }
 
 

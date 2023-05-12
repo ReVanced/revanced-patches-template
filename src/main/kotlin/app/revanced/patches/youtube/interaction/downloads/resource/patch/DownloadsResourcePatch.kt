@@ -11,8 +11,10 @@ import app.revanced.patches.youtube.interaction.downloads.annotation.DownloadsCo
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
+import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.setString
 
 @Name("downloads-resource-patch")
 @DependsOn([BottomControlsResourcePatch::class, SettingsPatch::class])
@@ -45,12 +47,7 @@ class DownloadsResourcePatch : ResourcePatch {
             )
         )
 
-
-        /*
-         * Copy strings
-         */
-
-        context.mergeStrings("downloads/host/values/strings.xml")
+        context.base.setString("downloader_not_installed_warning", "is not installed. Please install it.")
 
         /*
          * Copy resources

@@ -34,6 +34,14 @@ internal object ResourceUtils {
         names.associateWith { value }, configuration
     )
 
+    internal fun Apk.ResourceContainer.setString(name: String, value: String) = set("string", name, StringResource(value))
+
+    internal fun Apk.ResourceContainer.setStrings(resources: Map<String, String>) = setGroup("string", resources.mapValues {
+        StringResource(
+            it.value
+        )
+    })
+
     /**
      * Copy resources from the current class loader to the resource directory.
      * @param sourceResourceDirectory The source resource directory name.

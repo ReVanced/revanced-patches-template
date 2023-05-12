@@ -9,15 +9,18 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
  * Helper class for applying resource patches needed for the microg-support patches.
  */
 internal object MicroGResourceHelper {
+    private val strings = mapOf(
+        "microg_not_installed_warning" to "Vanced MicroG is not installed. Please install it.",
+        "microg_not_running_warning" to "Vanced MicroG is failing to run. Please follow the \"Don't kill my app\" guide for Vanced MicroG.",
+    )
 
     /**
      * Add necessary strings to the strings.xml file.
      *
      * @param context The resource context.
-     * @param stringsHost The file which hosts the strings.
      */
-    fun addStrings(context: ResourceContext, stringsHost: String = "microg/host/values/strings.xml") =
-        context.mergeStrings(stringsHost)
+    fun addStrings(context: ResourceContext) =
+        context.mergeStrings(strings)
 
     /**
      * Patch the manifest to work with MicroG.
