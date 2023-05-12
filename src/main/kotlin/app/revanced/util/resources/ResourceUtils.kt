@@ -5,20 +5,17 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
 import app.revanced.patcher.apk.ResourceFile
 import app.revanced.patcher.resource.Resource
+import app.revanced.patcher.resource.StringResource
 import app.revanced.patcher.resource.color
 import app.revanced.patcher.resource.reference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import org.w3c.dom.Node
 
 internal object ResourceUtils {
-
-    /**
-     * Merge strings. This manages [StringResource]s automatically.
-     * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
-     */
-    internal fun ResourceContext.mergeStrings(host: String) =
-        base.mergeStrings(ResourceUtils.javaClass.classLoader.getResourceAsStream(host)!!)
+    internal fun ResourceContext.mergeStrings(resources: Map<String, String>) =
+        base.setGroup("string", resources.mapValues {
+            StringResource(
+                it.value
+            )
+        })
 
     internal fun ResourceFile.editText(block: (String) -> String) = use {
         it.contents = block(String(it.contents)).toByteArray()
