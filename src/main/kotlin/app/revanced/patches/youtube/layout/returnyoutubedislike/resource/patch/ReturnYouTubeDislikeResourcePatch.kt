@@ -72,8 +72,7 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
             "revanced_ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary" to "Client rate limit encountered %d times",
 
             "revanced_ryd_statistics_millisecond_text" to "%d milliseconds",
-
-            )
+        )
     }
 
     override fun execute(context: ResourceContext) {

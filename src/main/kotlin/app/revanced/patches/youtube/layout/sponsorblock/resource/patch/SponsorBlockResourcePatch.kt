@@ -207,8 +207,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
             "sb_about_api" to "sponsor.ajay.app",
             "sb_about_api_sum" to "Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms",
             "sb_about_made_by" to "ReVanced integration by JakubWeg,\nrecoded by oSumAtrIX",
-
-            )
+        )
     }
 
     override fun execute(context: ResourceContext) {
