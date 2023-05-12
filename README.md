@@ -15,7 +15,6 @@ The official ReVanced Patches.
 | `copy-video-url` | Adds buttons in player to copy video links. | 18.16.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 18.16.37 |
-| `custom-video-speed` | Adds more video speed options. | 18.16.37 |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.16.37 |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.16.37 |
 | `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.16.37 |
@@ -49,7 +48,6 @@ The official ReVanced Patches.
 | `old-quality-layout` | Enables the original video quality flyout in the video player settings | 18.16.37 |
 | `open-links-externally` | Open links outside of the app directly in your browser. | 18.16.37 |
 | `premium-heading` | Shows premium branding on the home screen. | all |
-| `remember-playback-speed` | Adds the ability to remember the playback speed you chose in the video playback speed flyout. | 18.16.37 |
 | `remember-video-quality` | Adds the ability to remember the video quality you chose in the video quality flyout. | 18.16.37 |
 | `remove-player-button-background` | Removes the background from the video player buttons. | 18.16.37 |
 | `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 18.16.37 |
@@ -58,7 +56,6 @@ The official ReVanced Patches.
 | `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.16.37 |
 | `swipe-controls` | Adds volume and brightness swipe controls. | 18.16.37 |
 | `tablet-mini-player` | Enables the tablet mini player layout. | 18.16.37 |
-| `theme` | Applies a custom theme. | all |
 | `vanced-microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.16.37 |
 | `video-ads` | Removes ads in the video player. | 18.16.37 |
 | `wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.16.37 |
@@ -313,36 +310,20 @@ The official ReVanced Patches.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
-### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
-</details>
-
-### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | 4.6377 |
-</details>
-
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks pro features. | all |
+</details>
+
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
@@ -353,12 +334,28 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | 4.6377 |
+</details>
+
+### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
