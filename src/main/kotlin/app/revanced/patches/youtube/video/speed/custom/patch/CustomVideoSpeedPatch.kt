@@ -16,8 +16,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.video.speed.custom.annotations.CustomPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedLimiterFingerprint
-import app.revanced.patches.youtube.video.speed.custom.fingerprints.VideoSpeedPatchFingerprint
-import org.jf.dexlib2.builder.instruction.BuilderArrayPayload
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
