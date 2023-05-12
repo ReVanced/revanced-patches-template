@@ -156,7 +156,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     
                     # Hook the TextView, if it is for the dislike button
                     iget-object v0, p0, $textViewFieldReference
-                    invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateShortsDislikes(Landroid/view/View;)Z
+                    invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setShortsDislikes(Landroid/view/View;)Z
                     move-result v0
                     if-eqz v0, :ryd_disabled
                     return-void
