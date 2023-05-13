@@ -8,8 +8,6 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
-import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.CreateDarkThemeSeekbarFingerprint
-import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 
 @Patch
@@ -17,9 +15,7 @@ import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 @Description("Applies a custom theme.")
 @DependsOn([LithoColorHookPatch::class, SeekbarColorBytecodePatch::class, ThemeResourcePatch::class])
 @Version("0.0.1")
-class ThemeBytecodePatch : BytecodePatch(
-    listOf(CreateDarkThemeSeekbarFingerprint, SetSeekbarClickedColorFingerprint)
-) {
+class ThemeBytecodePatch : BytecodePatch() {
 
     override fun execute(context: BytecodeContext): PatchResult {
         LithoColorHookPatch.lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getValue")
