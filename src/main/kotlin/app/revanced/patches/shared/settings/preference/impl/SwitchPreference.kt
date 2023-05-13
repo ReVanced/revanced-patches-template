@@ -20,7 +20,7 @@ internal class SwitchPreference(
     val summaryOn: StringResource? = null,
     val summaryOff: StringResource? = null,
     val userDialogMessage: StringResource? = null,
-    val default: Boolean? = null,
+    val default: Boolean = false,
 ) : BasePreference(key, title) {
     override val tag: String = "SwitchPreference"
 
