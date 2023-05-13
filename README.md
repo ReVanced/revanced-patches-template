@@ -33,6 +33,7 @@ The official ReVanced Patches.
 | `hide-crowdfunding-box` | Hides the crowdfunding box between the player and video description. | 18.16.37 |
 | `hide-email-address` | Hides the email address in the account switcher. | 18.16.37 |
 | `hide-endscreen-cards` | Hides the suggested video cards at the end of a video in fullscreen. | 18.16.37 |
+| `hide-filter-bar` | Hides the filter bar in video feeds. | 18.16.37 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.16.37 |
 | `hide-get-premium` | Hides advertisement for YouTube Premium under the video player. | 18.16.37 |
 | `hide-info-cards` | Hides info cards in videos. | 18.16.37 |
@@ -116,6 +117,7 @@ The official ReVanced Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
+| `auto-claim-channel-points` | Automatically claim channel points. | all |
 | `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
 | `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
 | `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
