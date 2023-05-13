@@ -17,8 +17,8 @@ import org.w3c.dom.Element
  */
 internal class SwitchPreference(
     key: String, title: StringResource,
-    val summaryOn: StringResource? = null,
-    val summaryOff: StringResource? = null,
+    val summaryOn: StringResource,
+    val summaryOff: StringResource,
     val userDialogMessage: StringResource? = null,
     val default: Boolean = false,
 ) : BasePreference(key, title) {
@@ -30,8 +30,8 @@ internal class SwitchPreference(
 
         return super.serialize(ownerDocument, resourceCallback).apply {
             addDefault(default)
-            addSummary(summaryOn?.also { resourceCallback?.invoke(it) }, SummaryType.ON)
-            addSummary(summaryOff?.also { resourceCallback?.invoke(it) }, SummaryType.OFF)
+            addSummary(summaryOn.also { resourceCallback?.invoke(it) }, SummaryType.ON)
+            addSummary(summaryOff.also { resourceCallback?.invoke(it) }, SummaryType.OFF)
         }
     }
 }
