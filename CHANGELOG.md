@@ -1,3 +1,17 @@
+# [2.174.0-dev.24](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.23...v2.174.0-dev.24) (2023-05-13)
+
+
+### Features
+
+* **twitch/auto-claim-channel-points:** use correct casing for "Channel Points" ([#2138](https://github.com/revanced/revanced-patches/issues/2138)) ([76a3bf2](https://github.com/revanced/revanced-patches/commit/76a3bf23b5e5591ae635e612af07cbbd78d49f53))
+
+# [2.174.0-dev.23](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.22...v2.174.0-dev.23) (2023-05-13)
+
+
+### Bug Fixes
+
+* **youtube/custom-video-speed:** add missing class for `video-speeds` patch ([#2137](https://github.com/revanced/revanced-patches/issues/2137)) ([758ef42](https://github.com/revanced/revanced-patches/commit/758ef42f9cd36d665b1737b67bcdde22d3e3eb98))
+
 # [2.174.0-dev.22](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.21...v2.174.0-dev.22) (2023-05-12)
 
 
