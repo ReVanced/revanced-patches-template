@@ -30,10 +30,11 @@ internal fun Element.addSummary(summaryResource: StringResource?, summaryType: S
     }
 
 internal fun <T> Element.addDefault(default: T) {
+    if (default is Boolean && !(default as Boolean)) return // No need to include the default, as no value already means 'false'
     default?.let {
         setAttribute(
             "android:defaultValue", when (it) {
-                is Boolean -> if (it) "true" else "false"
+                is Boolean -> it.toString()
                 is String -> it
                 else -> throw IllegalArgumentException("Unsupported default value type: ${it::class.java.name}")
             }
