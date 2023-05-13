@@ -1,3 +1,24 @@
+# [2.174.0-dev.22](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.21...v2.174.0-dev.22) (2023-05-12)
+
+
+### Features
+
+* **youtube:** move video settings to `Video` settings category ([#2010](https://github.com/revanced/revanced-patches/issues/2010)) ([f4b9180](https://github.com/revanced/revanced-patches/commit/f4b918075a70d1a4ed9ac7e9c1f0e0acd1c77404))
+
+# [2.174.0-dev.21](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.20...v2.174.0-dev.21) (2023-05-12)
+
+
+### Features
+
+* **twitch:** add `auto-claim-channel-points` patch ([#2131](https://github.com/revanced/revanced-patches/issues/2131)) ([80fb670](https://github.com/revanced/revanced-patches/commit/80fb6701b52a8c6c6bada5546dffe3438f0e4879))
+
+# [2.174.0-dev.20](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.19...v2.174.0-dev.20) (2023-05-12)
+
+
+### Features
+
+* **youtube:** add `hide-filter-bar` patch ([6cc5f61](https://github.com/revanced/revanced-patches/commit/6cc5f61e0712fe25cd45b137773decaf4b9bb582))
+
 # [2.174.0-dev.19](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.18...v2.174.0-dev.19) (2023-05-11)
 
 
