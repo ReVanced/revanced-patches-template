@@ -20,4 +20,9 @@ internal interface IPreference {
      * Tag name of the preference.
      */
     val tag: String
+
+    /**
+     * Optional summary of the preference.
+     */
+    val summary: StringResource?
 }
