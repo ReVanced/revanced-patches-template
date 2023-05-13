@@ -15,9 +15,9 @@ import org.w3c.dom.Element
 internal open class PreferenceCategory(
     key: String,
     title: StringResource,
-    var preferences: List<BasePreference>
-) : BasePreference(key, title) {
+    var preferences: List<BasePreference>,
     override val tag: String = "PreferenceCategory"
+) : BasePreference(key, title) {
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
