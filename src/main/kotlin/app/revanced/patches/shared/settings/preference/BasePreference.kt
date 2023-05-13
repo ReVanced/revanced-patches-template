@@ -11,7 +11,7 @@ import org.w3c.dom.Element
  * @param title The title of the preference.
  */
 internal abstract class BasePreference(
-    override val key: String,
+    override val key: String?,
     override val title: StringResource,
     val summary: StringResource? = null,
 ) : IPreference {
@@ -24,8 +24,7 @@ internal abstract class BasePreference(
      */
     open fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)? = null): Element {
         return ownerDocument.createElement(tag).apply {
-            if(key.isNotEmpty())
-                setAttribute("android:key", key)
+            if (key != null) setAttribute("android:key", key)
             setAttribute("android:title", "@string/${title.also { resourceCallback?.invoke(it) }.name}")
         }
     }

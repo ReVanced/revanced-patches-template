@@ -9,7 +9,7 @@ internal interface IPreference {
     /**
      * Key of the preference.
      */
-    val key: String
+    val key: String?
 
     /**
      * Title of the preference.

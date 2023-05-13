@@ -13,7 +13,7 @@ import org.w3c.dom.Element
 internal class NonInteractivePreference(
     title: StringResource,
     summary: StringResource,
-) : BasePreference("", title, summary) {
+) : BasePreference(null, title, summary) {
     override val tag: String = "Preference"
 
     override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {

@@ -17,7 +17,7 @@ import org.w3c.dom.Element
  * @param default The default value of the text preference.
  */
 internal class TextPreference(
-    key: String,
+    key: String?,
     title: StringResource,
     summary: StringResource,
     var inputType: InputType = InputType.TEXT,
