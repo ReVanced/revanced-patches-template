@@ -257,8 +257,7 @@ class GeneralAdsResourcePatch : ResourcePatch {
                         StringResource(
                             "revanced_custom_filter_strings_summary",
                             "Filter components by their name separated by a comma"
-                        ),
-                        InputType.TEXT
+                        )
                     )
                 )
             )
