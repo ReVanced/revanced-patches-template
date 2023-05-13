@@ -10,7 +10,7 @@ import org.w3c.dom.Node
  * @param resource The resource to add.
  * @param resourceCallback Called when a resource has been processed.
  */
-internal fun Node.addResource(resource: BaseResource, resourceCallback: ((IResource) -> Unit)? = null) {
+internal fun Node.addResource(resource: BaseResource, resourceCallback: (BaseResource) -> Unit = { }) {
     appendChild(resource.serialize(ownerDocument, resourceCallback))
 }
 
@@ -20,7 +20,7 @@ internal fun Node.addResource(resource: BaseResource, resourceCallback: ((IResou
  * @param preference The preference to add.
  * @param resourceCallback Called when a resource has been processed.
  */
-internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((IResource) -> Unit)? = null) {
+internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((BaseResource) -> Unit) = { }) {
     appendChild(preference.serialize(ownerDocument, resourceCallback))
 }
 

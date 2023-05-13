@@ -1,14 +1,11 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.IResource
-import app.revanced.patches.shared.settings.preference.addDefault
-import app.revanced.patches.shared.settings.preference.addSummary
+import app.revanced.patches.shared.settings.preference.BaseResource
+import app.revanced.patches.shared.settings.preference.DefaultBasePreference
 import org.w3c.dom.Document
-import org.w3c.dom.Element
 
 /**
- * Text preference.
+ * A text preference.
  *
  * @param key The key of the text preference.
  * @param title The title of the text preference.
@@ -19,17 +16,14 @@ import org.w3c.dom.Element
 internal class TextPreference(
     key: String?,
     title: StringResource,
-    summary: StringResource,
-    var inputType: InputType = InputType.TEXT,
-    val default: String? = null,
-    override val tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
-) : BasePreference(key, title, summary) {
+    summary: StringResource?,
+    val inputType: InputType = InputType.TEXT,
+    default: String? = null,
+    tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
+) : DefaultBasePreference<String>(key, title, summary, tag, default) {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
-        return super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
+        super.serialize(ownerDocument, resourceCallback).apply {
             setAttribute("android:inputType", inputType.type)
-            addDefault(default)
-            addSummary(summary?.also { resourceCallback?.invoke(it) })
         }
-    }
 }

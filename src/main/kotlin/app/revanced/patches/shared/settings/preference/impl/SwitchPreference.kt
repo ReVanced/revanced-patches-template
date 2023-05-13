@@ -1,12 +1,15 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.*
+import app.revanced.patches.shared.settings.preference.BaseResource
+import app.revanced.patches.shared.settings.preference.DefaultBasePreference
+import app.revanced.patches.shared.settings.preference.SummaryType
+import app.revanced.patches.shared.settings.preference.addSummary
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
 /**
- * Switch preference.
+ * A switch preference.
  *
  * @param key The key of the switch.
  * @param title The title of the switch.
@@ -20,18 +23,14 @@ internal class SwitchPreference(
     val summaryOn: StringResource,
     val summaryOff: StringResource,
     val userDialogMessage: StringResource? = null,
-    val default: Boolean = false,
-) : BasePreference(key, title) {
-    override val tag: String = "SwitchPreference"
-
-    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
-        // dialog message is stored as a regular string and later referenced by SettingsEnum
+    default: Boolean = false,
+) : DefaultBasePreference<Boolean>( key,  title,  null,  "SwitchPreference", default) {
+    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
         userDialogMessage?.include()
 
         return super.serialize(ownerDocument, resourceCallback).apply {
-            addDefault(default)
-            addSummary(summaryOn.also { resourceCallback?.invoke(it) }, SummaryType.ON)
-            addSummary(summaryOff.also { resourceCallback?.invoke(it) }, SummaryType.OFF)
+            addSummary(summaryOn.also { resourceCallback.invoke(it) }, SummaryType.ON)
+            addSummary(summaryOff.also { resourceCallback.invoke(it) }, SummaryType.OFF)
         }
     }
 }
