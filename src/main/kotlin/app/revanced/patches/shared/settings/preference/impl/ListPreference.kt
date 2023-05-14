@@ -1,11 +1,9 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.IResource
-import app.revanced.patches.shared.settings.preference.addDefault
+import app.revanced.patches.shared.settings.preference.BaseResource
+import app.revanced.patches.shared.settings.preference.DefaultBasePreference
 import app.revanced.patches.shared.settings.preference.addSummary
 import org.w3c.dom.Document
-import org.w3c.dom.Element
 
 /**
  * List preference.
@@ -23,16 +21,12 @@ internal class ListPreference(
     val entries: ArrayResource,
     val entryValues: ArrayResource,
     summary: StringResource? = null,
-    val default: String? = null,
-) : BasePreference(key, title, summary) {
-    override val tag: String = "ListPreference"
-
-    override fun serialize(ownerDocument: Document, resourceCallback: ((IResource) -> Unit)?): Element {
-        return super.serialize(ownerDocument, resourceCallback).apply {
-            setAttribute("android:entries", "@array/${entries.also { resourceCallback?.invoke(it) }.name}")
-            setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback?.invoke(it) }.name}")
-            addDefault(default)
+    default: String? = null,
+) : DefaultBasePreference<String>(key, title, summary, "ListPreference", default) {
+    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
+        super.serialize(ownerDocument, resourceCallback).apply {
+            setAttribute("android:entries", "@array/${entries.also { resourceCallback.invoke(it) }.name}")
+            setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback.invoke(it) }.name}")
             addSummary(summary)
         }
-    }
 }
