@@ -20,19 +20,18 @@ class VerticalScrollPatch : BytecodePatch(
     listOf(CanScrollVerticallyFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = CanScrollVerticallyFingerprint.result ?: return CanScrollVerticallyFingerprint.toErrorResult()
+        CanScrollVerticallyFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val moveResultIndex = it.scanResult.patternScanResult!!.endIndex
+                val moveResultRegister = instruction<OneRegisterInstruction>(moveResultIndex).registerA
 
-        with(result) {
-            val method = mutableMethod
-
-            val moveResultIndex = scanResult.patternScanResult!!.endIndex
-            val moveResultRegister = (method.instruction(moveResultIndex) as OneRegisterInstruction).registerA
-
-            method.addInstruction(
-                moveResultIndex + 1,
-                "const/4 v$moveResultRegister, 0x0"
-            )
-        }
+                val insertIndex = moveResultIndex + 1
+                addInstruction(
+                    insertIndex,
+                    "const/4 v$moveResultRegister, 0x0"
+                )
+            }
+        } ?: return CanScrollVerticallyFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

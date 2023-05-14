@@ -7,6 +7,8 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
+import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
@@ -20,21 +22,13 @@ class ThemeResourcePatch : ResourcePatch {
                 "revanced_seekbar_color",
                 StringResource("revanced_seekbar_color_title", "Seekbar color"),
                 InputType.STRING,
-                "#ffff0000",
+                "#FF0000",
                 StringResource(
                     "revanced_seekbar_color_summary",
-                    "The color of the seekbar for the dark theme."
+                    "The color of the seekbar"
                 )
             ),
         )
-
-        // Edit theme colors via bytecode.
-        // For that the resource id is used in a bytecode patch to change the color.
-
-        inlineTimeBarColorizedBarPlayedColorDarkId = ResourceMappingPatch.resourceMappings
-            .find { it.name == "inline_time_bar_colorized_bar_played_color_dark" }?.id
-            ?: return PatchResultError("Could not find seekbar resource")
-
 
         val darkThemeBackgroundColor = darkThemeBackgroundColor!!
         val lightThemeBackgroundColor = lightThemeBackgroundColor!!
@@ -67,25 +61,4 @@ class ThemeResourcePatch : ResourcePatch {
         return PatchResultSuccess()
     }
 
-    companion object : OptionsContainer() {
-        internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
-
-        var darkThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "darkThemeBackgroundColor",
-                default = "@android:color/black",
-                title = "Background color for the dark theme",
-                description = "The background color of the dark theme. Can be a hex color or a resource reference.",
-            )
-        )
-
-        var lightThemeBackgroundColor: String? by option(
-            PatchOption.StringOption(
-                key = "lightThemeBackgroundColor",
-                default = "@android:color/white",
-                title = "Background color for the light theme",
-                description = "The background color of the light theme. Can be a hex color or a resource reference.",
-            )
-        )
-    }
 }

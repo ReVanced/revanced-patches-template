@@ -1,8 +1,8 @@
-## 🧩 Patches
+## 🧩 ReVanced Patches
 
-The official Patch bundle provided by ReVanced and the community.
+The official ReVanced Patches.
 
-> Looking for the JSON variant of this? [Click here](patches.json).
+## 📋 List of patches in this repository
 
 ### [📦 `com.google.android.youtube`](https://play.google.com/store/apps/details?id=com.google.android.youtube)
 <details>
@@ -15,7 +15,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `copy-video-url` | Adds buttons in player to copy video links. | 18.16.37 |
 | `custom-branding` | Changes the YouTube launcher icon and name to your choice (defaults to ReVanced). | all |
 | `custom-video-buffer` | Lets you change the buffers of videos. | 18.16.37 |
-| `custom-video-speed` | Adds more video speed options. | 18.16.37 |
 | `disable-auto-captions` | Disable forced captions from being automatically enabled. | 18.16.37 |
 | `disable-fullscreen-panels` | Disables video description and comments panel in fullscreen view. | 18.16.37 |
 | `disable-player-popup-panels` | Disables panels from appearing automatically when going into fullscreen (playlist or live chat). | 18.16.37 |
@@ -34,11 +33,12 @@ The official Patch bundle provided by ReVanced and the community.
 | `hide-crowdfunding-box` | Hides the crowdfunding box between the player and video description. | 18.16.37 |
 | `hide-email-address` | Hides the email address in the account switcher. | 18.16.37 |
 | `hide-endscreen-cards` | Hides the suggested video cards at the end of a video in fullscreen. | 18.16.37 |
+| `hide-filter-bar` | Hides the filter bar in video feeds. | 18.16.37 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.16.37 |
 | `hide-get-premium` | Hides advertisement for YouTube Premium under the video player. | 18.16.37 |
 | `hide-info-cards` | Hides info cards in videos. | 18.16.37 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | all |
-| `hide-player-overlay` | Hides the dark player overlay when player controls are visible. | all |
+| `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |
 | `hide-seekbar` | Hides the seekbar. | 18.16.37 |
 | `hide-timestamp` | Hides timestamp in video player. | 18.16.37 |
 | `hide-video-action-buttons` | Adds the options to hide action buttons under a video. | 18.16.37 |
@@ -49,7 +49,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `old-quality-layout` | Enables the original video quality flyout in the video player settings | 18.16.37 |
 | `open-links-externally` | Open links outside of the app directly in your browser. | 18.16.37 |
 | `premium-heading` | Shows premium branding on the home screen. | all |
-| `remember-playback-speed` | Adds the ability to remember the playback speed you chose in the video playback speed flyout. | 18.16.37 |
 | `remember-video-quality` | Adds the ability to remember the video quality you chose in the video quality flyout. | 18.16.37 |
 | `remove-player-button-background` | Removes the background from the video player buttons. | 18.16.37 |
 | `return-youtube-dislike` | Shows the dislike count of videos using the Return YouTube Dislike API. | 18.16.37 |
@@ -58,7 +57,6 @@ The official Patch bundle provided by ReVanced and the community.
 | `spoof-app-version` | Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI. | 18.16.37 |
 | `swipe-controls` | Adds volume and brightness swipe controls. | 18.16.37 |
 | `tablet-mini-player` | Enables the tablet mini player layout. | 18.16.37 |
-| `theme` | Applies a custom theme. | all |
 | `vanced-microg-support` | Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG. | 18.16.37 |
 | `video-ads` | Removes ads in the video player. | 18.16.37 |
 | `wide-searchbar` | Replaces the search icon with a wide search bar. This will hide the YouTube logo when active. | 18.16.37 |
@@ -119,6 +117,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
+| `auto-claim-channel-points` | Automatically claim Channel Points. | all |
 | `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
 | `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
 | `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
@@ -158,6 +157,15 @@ The official Patch bundle provided by ReVanced and the community.
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
 
+### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `disable-switching-emoji-to-sticker-in-message-input-field` | Disables switching from emoji to sticker search mode in message input field | all |
+| `hide-inbox-ads` | Hides ads in inbox. | all |
+</details>
+
 ### [📦 `at.gv.bmf.bmf2go`](https://play.google.com/store/apps/details?id=at.gv.bmf.bmf2go)
 <details>
 
@@ -174,6 +182,14 @@ The official Patch bundle provided by ReVanced and the community.
 |:--------:|:--------------:|:-----------------:|
 | `remove-root-detection` | Removes the check for root permissions and unlocked bootloader. | all |
 | `spoof-signature` | Spoofs the signature of the app. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
@@ -206,14 +222,6 @@ The official Patch bundle provided by ReVanced and the community.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `hide-ads` | Removes general ads. | all |
-</details>
-
-### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `hide-inbox-ads` | Hides ads in inbox. | all |
 </details>
 
 ### [📦 `com.instagram.android`](https://play.google.com/store/apps/details?id=com.instagram.android)
@@ -285,7 +293,7 @@ The official Patch bundle provided by ReVanced and the community.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `unlock-plus` | Unlocks plus features. | 8.9.0 |
+| `unlock-plus` | Unlocks plus features. | all |
 </details>
 
 ### [📦 `io.yuka.android`](https://play.google.com/store/apps/details?id=io.yuka.android)
@@ -304,36 +312,20 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
-### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
-</details>
-
-### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | 4.6364 |
-</details>
-
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks pro features. | all |
+</details>
+
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
@@ -344,12 +336,28 @@ The official Patch bundle provided by ReVanced and the community.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | 4.6377 |
+</details>
+
+### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all professional features. | 3.4.9 |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
@@ -369,6 +377,8 @@ The official Patch bundle provided by ReVanced and the community.
 </details>
 
 
+
+> Looking for the JSON variant of this? [Click here](patches.json).
 
 ## 📝 JSON Format
 
@@ -428,7 +438,6 @@ Example:
     "description": "Enables a custom theme.",
     "version": "0.0.1",
     "excluded": false,
-    "deprecated": false,
     "options": [
       {
         "key": "theme",
@@ -455,7 +464,6 @@ Example:
     "description": "Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).",
     "version": "0.0.1",
     "excluded": false,
-    "deprecated": false,
     "options": [
       {
         "key": "appName",

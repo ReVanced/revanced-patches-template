@@ -1,3 +1,183 @@
+# [2.174.0-dev.26](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.25...v2.174.0-dev.26) (2023-05-14)
+
+
+### Bug Fixes
+
+* **youtube/return-youtube-dislikes:** fix temporarily frozen video after opening a shorts ([#2126](https://github.com/revanced/revanced-patches/issues/2126)) ([e0877e3](https://github.com/revanced/revanced-patches/commit/e0877e33814ba396e64e18a577064aa5be952413))
+
+# [2.174.0-dev.25](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.24...v2.174.0-dev.25) (2023-05-14)
+
+# [2.174.0-dev.24](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.23...v2.174.0-dev.24) (2023-05-13)
+
+
+### Features
+
+* **twitch/auto-claim-channel-points:** use correct casing for "Channel Points" ([#2138](https://github.com/revanced/revanced-patches/issues/2138)) ([76a3bf2](https://github.com/revanced/revanced-patches/commit/76a3bf23b5e5591ae635e612af07cbbd78d49f53))
+
+# [2.174.0-dev.23](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.22...v2.174.0-dev.23) (2023-05-13)
+
+
+### Bug Fixes
+
+* **youtube/custom-video-speed:** add missing class for `video-speeds` patch ([#2137](https://github.com/revanced/revanced-patches/issues/2137)) ([758ef42](https://github.com/revanced/revanced-patches/commit/758ef42f9cd36d665b1737b67bcdde22d3e3eb98))
+
+# [2.174.0-dev.22](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.21...v2.174.0-dev.22) (2023-05-12)
+
+
+### Features
+
+* **youtube:** move video settings to `Video` settings category ([#2010](https://github.com/revanced/revanced-patches/issues/2010)) ([f4b9180](https://github.com/revanced/revanced-patches/commit/f4b918075a70d1a4ed9ac7e9c1f0e0acd1c77404))
+
+# [2.174.0-dev.21](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.20...v2.174.0-dev.21) (2023-05-12)
+
+
+### Features
+
+* **twitch:** add `auto-claim-channel-points` patch ([#2131](https://github.com/revanced/revanced-patches/issues/2131)) ([80fb670](https://github.com/revanced/revanced-patches/commit/80fb6701b52a8c6c6bada5546dffe3438f0e4879))
+
+# [2.174.0-dev.20](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.19...v2.174.0-dev.20) (2023-05-12)
+
+
+### Features
+
+* **youtube:** add `hide-filter-bar` patch ([6cc5f61](https://github.com/revanced/revanced-patches/commit/6cc5f61e0712fe25cd45b137773decaf4b9bb582))
+
+# [2.174.0-dev.19](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.18...v2.174.0-dev.19) (2023-05-11)
+
+
+### Features
+
+* **youtube/video-speed:** change custom video speeds inside app settings ([#2114](https://github.com/revanced/revanced-patches/issues/2114)) ([d97815a](https://github.com/revanced/revanced-patches/commit/d97815af18e645fd0fa087db0174bcc2a771ec72))
+
+# [2.174.0-dev.18](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.17...v2.174.0-dev.18) (2023-05-11)
+
+
+### Bug Fixes
+
+* **youtube/theme:** apply custom seekbar color to video thumbnails ([#2085](https://github.com/revanced/revanced-patches/issues/2085)) ([d497027](https://github.com/revanced/revanced-patches/commit/d4970273ad10f62cd9455ef9b847c686147f7dca))
+
+# [2.174.0-dev.17](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.16...v2.174.0-dev.17) (2023-05-09)
+
+
+### Bug Fixes
+
+* **youtube/remember-video-quality:** fix default video quality/speed being applied when resuming app. ([#2112](https://github.com/revanced/revanced-patches/issues/2112)) ([f68a41c](https://github.com/revanced/revanced-patches/commit/f68a41ce9f9a78818d3f28b069e70b8c66125f53))
+
+# [2.174.0-dev.16](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.15...v2.174.0-dev.16) (2023-05-08)
+
+
+### Bug Fixes
+
+* check for opcode type `CONST` ([e5bb63c](https://github.com/revanced/revanced-patches/commit/e5bb63c7ab4427b6116de4a999be306e0f3cf12e))
+
+# [2.174.0-dev.15](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.14...v2.174.0-dev.15) (2023-05-08)
+
+
+### Features
+
+* **messenger:** add `disable-switching-emoji-to-sticker-in-message-input-field` patch ([#2099](https://github.com/revanced/revanced-patches/issues/2099)) ([ac5532a](https://github.com/revanced/revanced-patches/commit/ac5532a65c353b1964d9b7d990341fc7362e510d))
+
+# [2.174.0-dev.14](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.13...v2.174.0-dev.14) (2023-05-07)
+
+
+### Features
+
+* **youtube/hide-player-overlay:** make it toggleable in settings ([#2044](https://github.com/revanced/revanced-patches/issues/2044)) ([f693d55](https://github.com/revanced/revanced-patches/commit/f693d55caf1e0b72bb1f4c39b1eeb59436191e02))
+
+# [2.174.0-dev.13](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.12...v2.174.0-dev.13) (2023-05-07)
+
+
+### Bug Fixes
+
+* account fo breaking changes from ReVanced Patcher ([#2103](https://github.com/revanced/revanced-patches/issues/2103)) ([5be25cd](https://github.com/revanced/revanced-patches/commit/5be25cde4b34d58ced35a7edbb499477b538b748))
+
+# [2.174.0-dev.12](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.11...v2.174.0-dev.12) (2023-05-07)
+
+
+### Bug Fixes
+
+* **readme-generator:** attempt sorting versions with `FlexVer` ([#2059](https://github.com/revanced/revanced-patches/issues/2059)) ([a54c464](https://github.com/revanced/revanced-patches/commit/a54c464522fa2a6a2d2525c8cb0ec961c2cc771c))
+
+# [2.174.0-dev.11](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.10...v2.174.0-dev.11) (2023-05-07)
+
+# [2.174.0-dev.10](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.9...v2.174.0-dev.10) (2023-05-07)
+
+
+### Bug Fixes
+
+* incorrect instruction offsets ([42a5a38](https://github.com/revanced/revanced-patches/commit/42a5a387da3c53c579234a44c124ab0ba26117cb))
+* incorrect smali syntax ([4e74a80](https://github.com/revanced/revanced-patches/commit/4e74a800c311d7acb2c2ddb492b43747db8a8def))
+
+# [2.174.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.8...v2.174.0-dev.9) (2023-05-07)
+
+
+### Bug Fixes
+
+* incorrect cast of instruction ([fb94a1c](https://github.com/revanced/revanced-patches/commit/fb94a1cb48e8952981e2f9146eb90ee92a517b2e))
+
+# [2.174.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.7...v2.174.0-dev.8) (2023-05-07)
+
+
+### Bug Fixes
+
+* **youtube/integrations:** allow playback of embedded videos  ([#2092](https://github.com/revanced/revanced-patches/issues/2092)) ([8a43d75](https://github.com/revanced/revanced-patches/commit/8a43d75e2db63c47bb9ad1b75027df0868c094e5))
+
+# [2.174.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.6...v2.174.0-dev.7) (2023-05-07)
+
+
+### Features
+
+* **syncforreddit:** add `disable-ads` patch ([#2066](https://github.com/revanced/revanced-patches/issues/2066)) ([c1de5d6](https://github.com/revanced/revanced-patches/commit/c1de5d6e433263b9a17305fa1c65807921594731))
+
+# [2.174.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.5...v2.174.0-dev.6) (2023-05-07)
+
+
+### Features
+
+* **youtube:** `hide-load-more-button` patch ([#2078](https://github.com/revanced/revanced-patches/issues/2078)) ([7170802](https://github.com/revanced/revanced-patches/commit/71708022a06453f6f56c19d686fc505286523391))
+
+# [2.174.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.4...v2.174.0-dev.5) (2023-05-07)
+
+
+### Bug Fixes
+
+* **spotify/disable-capture-restriction:** make compatible with latest versions ([#2095](https://github.com/revanced/revanced-patches/issues/2095)) ([e48f127](https://github.com/revanced/revanced-patches/commit/e48f1278da2a9d82e70be41fa2c4c480c574816b))
+
+# [2.174.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.3...v2.174.0-dev.4) (2023-05-07)
+
+
+### Bug Fixes
+
+* **youtube/theme:** move options out of dependency patch ([a953448](https://github.com/revanced/revanced-patches/commit/a95344879c2ac2cd6da8ce0273dcb05e8a35d2ec))
+
+
+### Features
+
+* improve structure of `README` ([279b193](https://github.com/revanced/revanced-patches/commit/279b193b687ad9cba44ab9c2a88d2ce06be0bbf0))
+
+# [2.174.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.2...v2.174.0-dev.3) (2023-05-06)
+
+# [2.174.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.1...v2.174.0-dev.2) (2023-05-03)
+
+
+### Features
+
+* **patch:** bump compatibility ([#2060](https://github.com/revanced/revanced-patches/issues/2060)) ([f86836d](https://github.com/revanced/revanced-patches/commit/f86836d6295db9eb8c59916deaa991b4d99e96be))
+
+# [2.174.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.173.1-dev.1...v2.174.0-dev.1) (2023-05-03)
+
+
+### Features
+
+* **youtube/settings:** add reset button to edit preference dialog ([#2047](https://github.com/revanced/revanced-patches/issues/2047)) ([ede765a](https://github.com/revanced/revanced-patches/commit/ede765ae3c506909ee8a99517b99b6f5f113f01a))
+
+## [2.173.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.173.0...v2.173.1-dev.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** fix skip button in wrong location when full screen and comments visible ([#2051](https://github.com/revanced/revanced-patches/issues/2051)) ([30a954c](https://github.com/revanced/revanced-patches/commit/30a954cac83a66fbb25589edc487797ea5f19986))
+
 # [2.173.0](https://github.com/revanced/revanced-patches/compare/v2.172.0...v2.173.0) (2023-05-02)
 
 
