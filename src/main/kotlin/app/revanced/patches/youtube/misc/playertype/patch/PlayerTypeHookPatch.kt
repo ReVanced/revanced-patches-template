@@ -6,6 +6,7 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
+import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.instruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -15,7 +16,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.annotation.PlayerTypeHookCompatibility
 import app.revanced.patches.youtube.misc.playertype.fingerprint.UpdatePlayerTypeFingerprint
 import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFingerprint
-import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("player-type-hook")
 @Description("Hook to get the current player type and video playback state")
@@ -39,10 +40,12 @@ class PlayerTypeHookPatch : BytecodePatch(
         VideoStateFingerprint.result?.let {
             it.mutableMethod.apply {
                 val endIndex = it.scanResult.patternScanResult!!.endIndex
-                val register = instruction<TwoRegisterInstruction>(endIndex).registerA
-                addInstruction(
-                    endIndex + 1,
-                    "invoke-static {v$register}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoState(Ljava/lang/Enum;)V"
+                val videoStateFieldName = instruction<ReferenceInstruction>(endIndex).reference
+                addInstructions(
+                    0, """
+                        iget-object v0, p1, $videoStateFieldName  # copy VideoState parameter field
+                        invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setVideoState(Ljava/lang/Enum;)V
+                    """
                 )
             }
         } ?: return VideoStateFingerprint.toErrorResult()

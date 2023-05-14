@@ -11,13 +11,12 @@ object VideoStateFingerprint : MethodFingerprint(
     parameters = listOf("Lcom/google/android/libraries/youtube/player/features/overlay/controls/ControlsState;"),
     opcodes = listOf(
         Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
-        Opcode.IF_NEZ,
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,
+        Opcode.CONST_4,
+        Opcode.IF_EQZ,
+        Opcode.IF_EQZ,
+        Opcode.IGET_OBJECT, // obfuscated parameter field name
     ),
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.endsWith("YouTubeControlsOverlay;")
