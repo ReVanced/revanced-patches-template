@@ -31,7 +31,8 @@ class PlayerTypeHookPatch : BytecodePatch(
             it.mutableMethod.apply {
                 addInstruction(
                     0,
-                    "invoke-static { p1 }, $INTEGRATIONS_CLASS_DESCRIPTOR->YouTubePlayerOverlaysLayout_updatePlayerTypeHookEX(Ljava/lang/Object;)V")
+                    "invoke-static {p1}, $INTEGRATIONS_CLASS_DESCRIPTOR->setPlayerType(Ljava/lang/Enum;)V"
+                )
             }
         } ?: return UpdatePlayerTypeFingerprint.toErrorResult()
 
