@@ -7,7 +7,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.util.bytecode.*
 import app.revanced.patches.all.ads.blocklist.*
@@ -16,7 +15,6 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.instruction.formats.Instruction3rc
 import org.jf.dexlib2.iface.reference.MethodReference
 import org.jf.dexlib2.iface.reference.StringReference
 import org.jf.dexlib2.immutable.reference.ImmutableStringReference

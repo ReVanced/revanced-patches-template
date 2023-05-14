@@ -4,14 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.instruction.formats.Instruction3rc
-import org.jf.dexlib2.iface.reference.MethodReference
-import org.jf.dexlib2.iface.reference.StringReference
-import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
-import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
 
