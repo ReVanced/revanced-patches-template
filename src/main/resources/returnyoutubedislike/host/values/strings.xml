@@ -27,7 +27,7 @@
 
     <string name="ryd_toast_on_connection_error_title">Show toast if dislikes not available</string>
     <string name="ryd_toast_on_connection_error_summary_on">Toast shown if dislikes not available</string>
-    <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if dislikes not available</string>
+    <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if ReturnYouTubeDislike is not available</string>
 
     <string name="revanced_ryd_about">About</string>
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
