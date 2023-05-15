@@ -1,8 +1,6 @@
 package app.revanced.patches.all.ads.bytecode
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -23,8 +21,7 @@ import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
 import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
 
-
-@Patch
+@Patch(false)
 @Name("ads")
 @Description("Removes all ads from the selected application.")
 @Version("0.0.1")
@@ -32,6 +29,7 @@ class AdsBytecodePatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         BytecodeUtils.transformIns(context, ::invokesTransformFunction, invokeOpcodes)
         BytecodeUtils.transformIns(context, ::urlTransformFunction, stringOpcodes)
+
         return PatchResultSuccess()
     }
 
@@ -42,10 +40,7 @@ class AdsBytecodePatch : BytecodePatch() {
             if (blockInvokes.any{blockInvokes.contains(instructionMethodReference.getName())}) {
                 
                 // make class and method mutable, if not already
-                var mutableClass: MutableClass? = context.proxy(classDef).mutableClass
-                var mutableMethod: MutableMethod? =  mutableClass!!.methods.first {
-                    it.name == methodDef.name && it.parameterTypes.containsAll(methodDef.parameterTypes)
-                }
+                var mutableMethod = BytecodeUtils.makeMethodMutable(context, classDef, methodDef)
 
                 mutableMethod!!.implementation!!.replaceInstruction(
                     index,
@@ -63,10 +58,7 @@ class AdsBytecodePatch : BytecodePatch() {
             if (blockUrls.any{blockUrls.contains(str)}) {
 
                 // make class and method mutable, if not already
-                var mutableClass: MutableClass? = context.proxy(classDef).mutableClass
-                var mutableMethod: MutableMethod? =  mutableClass!!.methods.first {
-                    it.name == methodDef.name && it.parameterTypes.containsAll(methodDef.parameterTypes)
-                }
+                var mutableMethod = BytecodeUtils.makeMethodMutable(context, classDef, methodDef)
 
                 // replace instruction with updated string
                 mutableMethod!!.implementation!!.replaceInstruction(
