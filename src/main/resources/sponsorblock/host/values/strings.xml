@@ -123,7 +123,7 @@
     <string name="sb_submit_failed_invalid" formatted="false">Unable to submit segment: %s</string>
     <string name="sb_submit_failed_timeout">SponsorBlock is temporarily down (try again later)</string>
     <string name="sb_submit_failed_unknown_error" formatted="false">Unable to submit segment (status: %d %s)</string>
-    <string name="sb_submit_failed_rate_limit">Unable to submit the segment.\nRate Limited (too many from the same user or IP)</string>
+    <string name="sb_submit_failed_rate_limit">Unable to submit segment.\nRate Limited (too many from the same user or IP)</string>
     <string name="sb_submit_failed_forbidden" formatted="false">Can\'t submit the segment: %s</string>
     <string name="sb_submit_failed_duplicate">Can\'t submit the segment.\nAlready exists</string>
     <string name="sb_submit_succeeded">Segment submitted successfully</string>
