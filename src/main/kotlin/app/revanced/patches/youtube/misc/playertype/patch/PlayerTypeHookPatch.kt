@@ -14,7 +14,7 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.annotation.PlayerTypeHookCompatibility
-import app.revanced.patches.youtube.misc.playertype.fingerprint.UpdatePlayerTypeFingerprint
+import app.revanced.patches.youtube.misc.playertype.fingerprint.PlayerTypeFingerprint
 import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFingerprint
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
@@ -24,18 +24,18 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 @Version("0.0.1")
 @DependsOn([IntegrationsPatch::class])
 class PlayerTypeHookPatch : BytecodePatch(
-    listOf(UpdatePlayerTypeFingerprint, VideoStateFingerprint)
+    listOf(PlayerTypeFingerprint, VideoStateFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
 
-        UpdatePlayerTypeFingerprint.result?.let {
+        PlayerTypeFingerprint.result?.let {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static {p1}, $INTEGRATIONS_CLASS_DESCRIPTOR->setPlayerType(Ljava/lang/Enum;)V"
                 )
             }
-        } ?: return UpdatePlayerTypeFingerprint.toErrorResult()
+        } ?: return PlayerTypeFingerprint.toErrorResult()
 
         VideoStateFingerprint.result?.let {
             it.mutableMethod.apply {
