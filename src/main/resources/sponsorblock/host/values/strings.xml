@@ -37,7 +37,7 @@
     <string name="sb_general">General</string>
     <string name="sb_toast_on_connection_error_title">Show toast if SB not available</string>
     <string name="sb_toast_on_connection_error_summary_on">Toast shown if SponsorBlock not available</string>
-    <string name="sb_toast_on_connection_error_summary_off">Toast not shown if SponsorBlock not available</string>
+    <string name="sb_toast_on_connection_error_summary_off">Toast not shown if SponsorBlock is not available</string>
     <string name="sb_general_skipcount">Enable skip count tracking</string>
     <string name="sb_general_skipcount_sum_on">Lets the SponsorBlock leaderboard know how much time is saved. A message is sent to the leaderboard each time a segment is skipped</string>
     <string name="sb_general_skipcount_sum_off">Skip count tracking is not enabled</string>
