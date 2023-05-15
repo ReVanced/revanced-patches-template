@@ -35,7 +35,7 @@
     <string name="sb_guidelines_popup_open">Show me</string>
 
     <string name="sb_general">General</string>
-    <string name="sb_toast_on_connection_error_title">Show toast if SB not available</string>
+    <string name="sb_toast_on_connection_error_title">Show toast if SB is not available</string>
     <string name="sb_toast_on_connection_error_summary_on">Toast shown if SponsorBlock is not available</string>
     <string name="sb_toast_on_connection_error_summary_off">Toast not shown if SponsorBlock is not available</string>
     <string name="sb_general_skipcount">Enable skip count tracking</string>
