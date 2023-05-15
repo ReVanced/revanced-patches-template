@@ -26,8 +26,8 @@
     <string name="revanced_ryd_compact_layout_summary_off">Like button styled for best appearance</string>
 
     <string name="ryd_toast_on_connection_error_title">Show toast if dislikes not available</string>
-    <string name="ryd_toast_on_connection_error_summary_on">Toast shown if video dislikes not available</string>
-    <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if video dislikes not available</string>
+    <string name="ryd_toast_on_connection_error_summary_on">Toast shown if dislikes not available</string>
+    <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if dislikes not available</string>
 
     <string name="revanced_ryd_about">About</string>
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
