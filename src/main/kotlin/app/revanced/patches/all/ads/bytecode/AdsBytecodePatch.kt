@@ -54,7 +54,7 @@ class RemoveAdsPatch : BytecodePatch() {
     private fun urlTransformFunction(ins: Instruction, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) {
         if (ins is Instruction21c) {
             val str = (ins.reference as StringReference).string
-            if (blockUrls.any{ it == str }) {
+            if (blockUrls.any{ it.contains(str) }) {
                 // make class and method mutable, if not already
                 var mutableMethod = BytecodeUtils.makeMethodMutable(context, classDef, methodDef)
 
