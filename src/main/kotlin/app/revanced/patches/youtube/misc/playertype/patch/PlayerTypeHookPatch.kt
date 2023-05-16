@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFinger
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("player-type-hook")
-@Description("Hook to get the current player type and video playback state")
+@Description("Hook to get the current player type and video playback state.")
 @PlayerTypeHookCompatibility
 @Version("0.0.1")
 @DependsOn([IntegrationsPatch::class])
