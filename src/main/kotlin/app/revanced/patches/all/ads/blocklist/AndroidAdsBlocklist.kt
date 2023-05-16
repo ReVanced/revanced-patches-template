@@ -1,4 +1,4 @@
-package app.revanced.patches.all.ads.blocklist
+package app.revanced.patches.all.ads.bytecode
 
 import org.jf.dexlib2.Opcode
 
@@ -15,6 +15,7 @@ val stringOpcodes: List<Opcode> = listOf(
     Opcode.CONST_STRING
 )
 
+// https://developers.google.com/admob/android/banner
 val blockInvokes: List<String> = listOf(
     "loadAd",
     "AdListener",

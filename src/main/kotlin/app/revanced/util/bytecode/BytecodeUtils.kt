@@ -4,18 +4,19 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
+import org.jf.dexlib2.iface.instruction.Instruction
 
+typealias transformFnAlias =  (ins: Instruction, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) -> Any
 
 internal object BytecodeUtils{
-    public fun transformIns(context: BytecodeContext, transformFn: (Ins: Any, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) -> Any, opcodes: List<Opcode>) {
+    public fun transformIns(context: BytecodeContext, transformFn: transformFnAlias, opcodes: List<Opcode>) {
         context.transformInstructions(transformFn, opcodes, context)
     }
 
 
-    private fun BytecodeContext.transformInstructions(transformFn: (Ins: Any, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) -> Any , opcodes: List<Opcode>, context:BytecodeContext) {
+    private fun BytecodeContext.transformInstructions(transformFn: transformFnAlias , opcodes: List<Opcode>, context:BytecodeContext) {
         classes.forEach { classDef ->
 
             // enumerate all methods
@@ -36,7 +37,7 @@ internal object BytecodeUtils{
         var mutableMethod: MutableMethod? =  mutableClass!!.methods.first {
             it.name == methodDef.name && it.parameterTypes.containsAll(methodDef.parameterTypes)
         }
-        
+
         return mutableMethod
     }
 }
