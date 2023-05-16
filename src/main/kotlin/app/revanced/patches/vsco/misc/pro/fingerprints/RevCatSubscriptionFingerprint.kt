@@ -6,7 +6,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
 object RevCatSubscriptionFingerprint : MethodFingerprint(
     returnType = "V",
-    parameters = listOf("Z"),
     strings = listOf("use_debug_subscription_settings"),
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.endsWith("/RevCatSubscriptionSettingsRepository;")
