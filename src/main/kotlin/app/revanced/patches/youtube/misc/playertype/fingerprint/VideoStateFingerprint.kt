@@ -8,7 +8,7 @@ import org.jf.dexlib2.Opcode
 object VideoStateFingerprint : MethodFingerprint(
     access = AccessFlags.PUBLIC or AccessFlags.FINAL,
     returnType = "V",
-    parameters = listOf("Lcom/google/android/libraries/youtube/player/features/overlay/controls/ControlsState;"),
+    parameters = listOf("L"),
     opcodes = listOf(
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_VIRTUAL,
