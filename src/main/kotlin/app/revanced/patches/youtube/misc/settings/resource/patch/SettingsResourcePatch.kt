@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
@@ -37,26 +38,10 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         }!!.id
 
         /*
-         * create missing directory for the resources
-         */
-        context["res/drawable-ldrtl-xxxhdpi"].mkdirs()
-
-        /*
          * copy layout resources
          */
         arrayOf(
-            ResourceUtils.ResourceGroup(
-                "layout",
-                "revanced_settings_toolbar.xml",
-                "revanced_settings_with_toolbar.xml",
-                "revanced_settings_with_toolbar_layout.xml"
-            ), ResourceUtils.ResourceGroup(
-                // required resource for back button, because when the base APK is used, this resource will not exist
-                "drawable-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
-            ), ResourceUtils.ResourceGroup(
-                // required resource for back button, because when the base APK is used, this resource will not exist
-                "drawable-ldrtl-xxxhdpi", "quantum_ic_arrow_back_white_24.png"
-            )
+            ResourceUtils.ResourceGroup("layout", "revanced_settings_with_toolbar.xml")
         ).forEach { resourceGroup ->
             context.copyResources("settings", resourceGroup)
         }
@@ -70,10 +55,38 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
                 StringResource("revanced_settings", "ReVanced"),
                 StringResource("revanced_settings_summary", "ReVanced specific settings"),
                 Preference.Intent(
-                    youtubePackage, "revanced_settings", "com.google.android.libraries.social.licenses.LicenseActivity"
+                    youtubePackage, "revanced_settings", "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
                 )
             )
         )
+
+        // Add the ReVanced settings activity to the manifest.
+        // An xml regular expression would probably work better than this manual searching.
+        context.xmlEditor["AndroidManifest.xml"].use { editor ->
+            val manifestNodes = editor.file.getElementsByTagName("manifest").item(0).childNodes
+            for (i in 0..manifestNodes.length) {
+                val node = manifestNodes.item(i)
+                if (node != null && node.nodeName == "application") {
+                    val applicationNodes = node.childNodes
+                    for (j in 0..applicationNodes.length) {
+                        val applicationChild = applicationNodes.item(j)
+                        if (applicationChild is Element && applicationChild.nodeName == "activity"
+                            && applicationChild.getAttribute("android:name") == "com.google.android.libraries.social.licenses.LicenseActivity"
+                        ) {
+                            // Copy the existing settings activity to use it's attributes
+                            val revancedSettingsIntent = applicationChild.cloneNode(false) as Element
+                            revancedSettingsIntent.setAttribute(
+                                "android:name",
+                                "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
+                            )
+                            revancedSettingsIntent.setAttribute("android:exported", "true")
+                            node.appendChild(revancedSettingsIntent)
+                            break
+                        }
+                    }
+                }
+            }
+        }
 
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(

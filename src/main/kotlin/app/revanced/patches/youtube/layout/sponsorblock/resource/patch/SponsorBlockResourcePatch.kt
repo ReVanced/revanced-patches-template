@@ -27,12 +27,12 @@ class SponsorBlockResourcePatch : ResourcePatch {
         val youtubePackage = "com.google.android.youtube"
         SettingsPatch.addPreference(
             Preference(
-                StringResource("sb_settings", "SponsorBlock"),
+                StringResource("revanced_sponsorblock_settings_title", "SponsorBlock"),
                 StringResource("revanced_sponsorblock_settings_summary", "SponsorBlock related settings"),
                 Preference.Intent(
                     youtubePackage,
                     "sponsorblock_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
+                    "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
                 )
             )
         )

@@ -14,11 +14,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterAppFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
-import org.jf.dexlib2.util.MethodUtil
 
 @DependsOn(
     [
@@ -30,7 +28,7 @@ import org.jf.dexlib2.util.MethodUtil
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
-    listOf(LicenseActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
+    listOf(ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         fun buildInvokeInstructionsString(
@@ -78,43 +76,12 @@ class SettingsPatch : BytecodePatch(
             }
         } ?: return ThemeSetterAppFingerprint.toErrorResult()
 
-        // set the theme based on the preference of the device
-        LicenseActivityFingerprint.result!!.apply licenseActivity@{
-            mutableMethod.apply {
-                fun buildSettingsActivityInvokeString(
-                    registers: String = "p0",
-                    classDescriptor: String = SETTINGS_ACTIVITY_DESCRIPTOR,
-                    methodName: String = "initializeSettings",
-                    parameters: String = this@licenseActivity.mutableClass.type
-                ) = buildInvokeInstructionsString(registers, classDescriptor, methodName, parameters)
-
-                // initialize the settings
-                addInstructions(
-                    1, """
-                        ${buildSettingsActivityInvokeString()}
-                        return-void
-                    """
-                )
-
-                // set the current theme
-                addInstruction(0, buildSettingsActivityInvokeString(methodName = "setTheme"))
-            }
-
-            // remove method overrides
-            mutableClass.apply {
-                methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
-            }
-        }
-
         return PatchResultSuccess()
     }
 
     internal companion object {
-        private const val INTEGRATIONS_PACKAGE = "app/revanced/integrations"
 
-        private const val SETTINGS_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/settingsmenu/ReVancedSettingActivity;"
-
-        private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
+        private const val THEME_HELPER_DESCRIPTOR = "Lapp/revanced/integrations/utils/ThemeHelper;"
         private const val SET_THEME_METHOD_NAME = "setTheme"
 
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
