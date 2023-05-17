@@ -35,7 +35,7 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
                     SwitchPreference(
                         "revanced_copy_video_url_timestamp",
                         StringResource("revanced_copy_video_url_timestamp_title", "Show copy timestamp URL button"),
-                        StringResource("revanced_copy_video_url_timestamp_summary_on", "Button is shown, tap to copy video URL with timestamp"),
+                        StringResource("revanced_copy_video_url_timestamp_summary_on", "Button is shown.  Tap to copy video URL with timestamp. Tap and hold to copy video without timestamp"),
                         StringResource("revanced_copy_video_url_timestamp_summary_off", "Button is not shown")
                     )
                 ),
