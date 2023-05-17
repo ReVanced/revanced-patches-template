@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.video.information.patch.VideoInformationPatc
 
 @Patch
 @Name("copy-video-url")
-@Description("Adds buttons in player to copy video links.")
+@Description("Adds a player button to copy the video link.")
 @DependsOn([
     CopyVideoUrlResourcePatch::class,
     PlayerControlsBytecodePatch::class,
@@ -26,23 +26,16 @@ import app.revanced.patches.youtube.video.information.patch.VideoInformationPatc
 @Version("0.0.1")
 class CopyVideoUrlBytecodePatch : BytecodePatch() {
     private companion object {
-        const val INTEGRATIONS_PACKAGE = "Lapp/revanced/integrations"
-        const val INTEGRATIONS_PLAYER_PACKAGE = "$INTEGRATIONS_PACKAGE/videoplayer"
-        val BUTTONS_DESCRIPTORS = listOf(
-            "$INTEGRATIONS_PLAYER_PACKAGE/CopyVideoUrlButton;",
-            "$INTEGRATIONS_PLAYER_PACKAGE/CopyVideoUrlTimestampButton;"
-        )
+        const val BUTTON_DESCRIPTOR = "Lapp/revanced/integrations/videoplayer/CopyVideoUrlButton;"
     }
 
     override fun execute(context: BytecodeContext): PatchResult {
 
-        // Initialize buttons and inject visibility control
-        BUTTONS_DESCRIPTORS.forEach { descriptor ->
-            val initializeButtonDescriptor = "$descriptor->initializeButton(Ljava/lang/Object;)V"
-            val visibilityDescriptor = "$descriptor->changeVisibility(Z)V"
-            PlayerControlsBytecodePatch.initializeControl(initializeButtonDescriptor)
-            PlayerControlsBytecodePatch.injectVisibilityCheckCall(visibilityDescriptor)
-        }
+        // Initialize button and inject visibility control
+        PlayerControlsBytecodePatch.initializeControl(
+            "$BUTTON_DESCRIPTOR->initializeButton(Landroid/view/View;)V")
+        PlayerControlsBytecodePatch.injectVisibilityCheckCall(
+            "$BUTTON_DESCRIPTOR->changeVisibility(Z)V")
 
         return PatchResultSuccess()
     }
