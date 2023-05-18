@@ -1,3 +1,13 @@
+# [2.174.0-dev.35](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.34...v2.174.0-dev.35) (2023-05-18)
+
+
+### Features
+
+* add capability to filter from protobuf buffer ([b738b6b](https://github.com/revanced/revanced-patches/commit/b738b6bf3506f222844ef4bca99a91f78d331391))
+* use consistent names for patches ([6347146](https://github.com/revanced/revanced-patches/commit/634714690086168e63d6aa9475893135cb58db68))
+* **youtube/hide-shorts-components:** hide navigation bar ([a722c4a](https://github.com/revanced/revanced-patches/commit/a722c4ada3fa6d0461bb1a3006038adfd638d5e3))
+* **youtube:** add `hide-shorts-components` patch ([b38d0e0](https://github.com/revanced/revanced-patches/commit/b38d0e0f5fb36eb811c89ce636096633085ee958))
+
 # [2.174.0-dev.34](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.33...v2.174.0-dev.34) (2023-05-16)
 
 

@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.ad.general.annotation.GeneralAdsCompatibility
+import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
@@ -20,13 +20,9 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.P
         ResourceMappingPatch::class
     ]
 )
-@GeneralAdsCompatibility
+@HideAdsCompatibility
 @Version("0.0.1")
-class GeneralAdsResourcePatch : ResourcePatch {
-    internal companion object {
-        var adAttributionId: Long = -1
-        var reelMultipleItemShelfId: Long = -1
-    }
+class HideAdsResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext): PatchResult {
         PreferenceScreen.LAYOUT.addPreferences(
@@ -104,12 +100,6 @@ class GeneralAdsResourcePatch : ResourcePatch {
                 StringResource("revanced_hide_feed_survey_title", "Hide feed surveys"),
                 StringResource("revanced_hide_feed_survey_summary_on", "Feed surveys are hidden"),
                 StringResource("revanced_hide_feed_survey_summary_off", "Feed surveys are shown")
-            ),
-            SwitchPreference(
-                "revanced_hide_shorts",
-                StringResource("revanced_hide_shorts_title", "Hide shorts"),
-                StringResource("revanced_hide_shorts_summary_on", "Shorts are hidden"),
-                StringResource("revanced_hide_shorts_summary_off", "Shorts are shown")
             ),
             SwitchPreference(
                 "revanced_hide_community_guidelines",
@@ -263,11 +253,12 @@ class GeneralAdsResourcePatch : ResourcePatch {
             )
         )
 
-        fun String.getId() = ResourceMappingPatch.resourceMappings.single { it.name == this }.id
-
-        adAttributionId = "ad_attribution".getId()
-        reelMultipleItemShelfId = "reel_multiple_items_shelf".getId()
+        adAttributionId = ResourceMappingPatch.resourceMappings.single { it.name == "ad_attribution" }.id
 
         return PatchResultSuccess()
+    }
+
+    internal companion object {
+        var adAttributionId: Long = -1
     }
 }
