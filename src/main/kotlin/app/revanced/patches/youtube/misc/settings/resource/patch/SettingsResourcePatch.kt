@@ -60,34 +60,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        // Add the ReVanced settings activity to the manifest.
-        // An xml regular expression would probably work better than this manual searching.
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
-            val manifestNodes = editor.file.getElementsByTagName("manifest").item(0).childNodes
-            for (i in 0..manifestNodes.length) {
-                val node = manifestNodes.item(i)
-                if (node != null && node.nodeName == "application") {
-                    val applicationNodes = node.childNodes
-                    for (j in 0..applicationNodes.length) {
-                        val applicationChild = applicationNodes.item(j)
-                        if (applicationChild is Element && applicationChild.nodeName == "activity"
-                            && applicationChild.getAttribute("android:name") == "com.google.android.libraries.social.licenses.LicenseActivity"
-                        ) {
-                            // Copy the existing settings activity to use it's attributes
-                            val revancedSettingsIntent = applicationChild.cloneNode(false) as Element
-                            revancedSettingsIntent.setAttribute(
-                                "android:name",
-                                "app.revanced.integrations.settingsmenu.ReVancedSettingActivity"
-                            )
-                            revancedSettingsIntent.setAttribute("android:exported", "true")
-                            node.appendChild(revancedSettingsIntent)
-                            break
-                        }
-                    }
-                }
-            }
-        }
-
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(
                 key = null,

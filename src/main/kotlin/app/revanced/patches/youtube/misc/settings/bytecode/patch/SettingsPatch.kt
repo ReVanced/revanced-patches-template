@@ -14,9 +14,11 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterAppFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.ThemeSetterSystemFingerprint
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import org.jf.dexlib2.util.MethodUtil
 
 @DependsOn(
     [
@@ -28,7 +30,7 @@ import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourc
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
-    listOf(ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
+    listOf(LicenseActivityFingerprint, ThemeSetterSystemFingerprint, ThemeSetterAppFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         fun buildInvokeInstructionsString(
@@ -76,12 +78,42 @@ class SettingsPatch : BytecodePatch(
             }
         } ?: return ThemeSetterAppFingerprint.toErrorResult()
 
+
+        // Modify the license activity and remove all existing layout code.
+        // Must modify an existing activity and cannot add a new activity to the manifest,
+        // as that fails for root installations.
+        LicenseActivityFingerprint.result!!.apply licenseActivity@{
+            mutableMethod.apply {
+                fun buildSettingsActivityInvokeString(
+                    registers: String = "p0",
+                    classDescriptor: String = SETTINGS_ACTIVITY_DESCRIPTOR,
+                    methodName: String = "initializeSettings",
+                    parameters: String = "Landroid/app/Activity;"
+                ) = buildInvokeInstructionsString(registers, classDescriptor, methodName, parameters)
+
+                // initialize the settings
+                addInstructions(
+                    1, """
+                        ${buildSettingsActivityInvokeString()}
+                        return-void
+                    """
+                )
+            }
+
+            // remove method overrides
+            mutableClass.apply {
+                methods.removeIf { it.name != "onCreate" && !MethodUtil.isConstructor(it) }
+            }
+        }
+
+
         return PatchResultSuccess()
     }
 
     internal companion object {
-
-        private const val THEME_HELPER_DESCRIPTOR = "Lapp/revanced/integrations/utils/ThemeHelper;"
+        private const val INTEGRATIONS_PACKAGE = "app/revanced/integrations"
+        private const val SETTINGS_ACTIVITY_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/settingsmenu/ReVancedSettingActivity;"
+        private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
         private const val SET_THEME_METHOD_NAME = "setTheme"
 
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
