@@ -127,6 +127,15 @@ class SettingsPatch : BytecodePatch(
         fun renameIntentsTargetPackage(newPackage: String) {
             SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
         }
+
+        /**
+         * Creates an intent to open ReVanced settings of the given name
+         */
+        fun createReVancedSettingsIntent(settingsName: String) = Preference.Intent(
+            "com.google.android.youtube",
+            settingsName,
+            "com.google.android.libraries.social.licenses.LicenseActivity"
+        )
     }
 
     /**
