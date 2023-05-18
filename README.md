@@ -22,8 +22,8 @@ The official ReVanced Patches.
 | `disable-zoom-haptics` | Disables haptics when zooming. | all |
 | `downloads` | Adds a download button to the YouTube video player. | 18.16.37 |
 | `enable-debugging` | Adds debugging options. | all |
-| `general-ads` | Removes general ads. | 18.16.37 |
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.16.37 |
+| `hide-ads` | Removes general ads. | 18.16.37 |
 | `hide-album-cards` | Hides the album cards below the artist description. | 18.16.37 |
 | `hide-artist-card` | Hides the artist card below the searchbar. | 18.16.37 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.16.37 |
@@ -41,6 +41,7 @@ The official ReVanced Patches.
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | all |
 | `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |
 | `hide-seekbar` | Hides the seekbar. | 18.16.37 |
+| `hide-shorts-components` | Hides components from YouTube Shorts. | 18.16.37 |
 | `hide-timestamp` | Hides timestamp in video player. | 18.16.37 |
 | `hide-video-action-buttons` | Adds the options to hide action buttons under a video. | 18.16.37 |
 | `hide-watch-in-vr` | Hides the option to watch in VR from the player settings flyout panel. | 18.16.37 |
@@ -165,7 +166,7 @@ The official ReVanced Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `general-reddit-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.12.0 |
+| `hide-ads` | Removes general ads from the Reddit frontpage and subreddits. | 2023.12.0 |
 | `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | 2023.12.0 |
 | `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
 </details>
@@ -370,6 +371,14 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all professional features. | 3.4.9 |
+</details>
+
+### [📦 `com.vsco.cam`](https://play.google.com/store/apps/details?id=com.vsco.cam)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)

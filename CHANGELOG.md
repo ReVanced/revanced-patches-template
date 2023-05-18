@@ -1,3 +1,27 @@
+# [2.174.0-dev.35](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.34...v2.174.0-dev.35) (2023-05-18)
+
+
+### Features
+
+* add capability to filter from protobuf buffer ([b738b6b](https://github.com/revanced/revanced-patches/commit/b738b6bf3506f222844ef4bca99a91f78d331391))
+* use consistent names for patches ([6347146](https://github.com/revanced/revanced-patches/commit/634714690086168e63d6aa9475893135cb58db68))
+* **youtube/hide-shorts-components:** hide navigation bar ([a722c4a](https://github.com/revanced/revanced-patches/commit/a722c4ada3fa6d0461bb1a3006038adfd638d5e3))
+* **youtube:** add `hide-shorts-components` patch ([b38d0e0](https://github.com/revanced/revanced-patches/commit/b38d0e0f5fb36eb811c89ce636096633085ee958))
+
+# [2.174.0-dev.34](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.33...v2.174.0-dev.34) (2023-05-16)
+
+
+### Features
+
+* **vsco:** add `unlock-pro` patch ([#2168](https://github.com/revanced/revanced-patches/issues/2168)) ([7ffd1a0](https://github.com/revanced/revanced-patches/commit/7ffd1a09a7bcf09bc7e7d5f3c8c8613ca34c8c59))
+
+# [2.174.0-dev.33](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.32...v2.174.0-dev.33) (2023-05-16)
+
+
+### Bug Fixes
+
+* **youtube/spoof-signature-verification:** adjusting summary text ([#2169](https://github.com/revanced/revanced-patches/issues/2169)) ([4ccb1ee](https://github.com/revanced/revanced-patches/commit/4ccb1ee0b988bc0ddd6a0c986975b17caa828770))
+
 # [2.174.0-dev.32](https://github.com/revanced/revanced-patches/compare/v2.174.0-dev.31...v2.174.0-dev.32) (2023-05-16)
 
 
