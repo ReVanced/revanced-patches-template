@@ -18,5 +18,5 @@ object ShareLinkFactoryFingerprint : MethodFingerprint(
         Opcode.INVOKE_STATIC, // returnType: Ljava/lang/String;
         Opcode.MOVE_RESULT_OBJECT
     ),
-    customFingerprint = { it.definingClass.endsWith("ShareLinkFactory;") }
+    customFingerprint = { methodDef, _ -> methodDef.definingClass.endsWith("ShareLinkFactory;") }
 )
