@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/ytBrandBackgroundSolid"
-                app:navigationIcon="@drawable/quantum_ic_arrow_back_white_24"
+                app:navigationIcon="@drawable/yt_outline_arrow_left_black_24"
                 app:title="@string/revanced_settings" />
         </FrameLayout>
 
