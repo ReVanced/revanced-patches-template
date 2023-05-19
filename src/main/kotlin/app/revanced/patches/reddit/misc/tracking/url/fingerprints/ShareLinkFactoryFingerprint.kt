@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.misc.uriparameters.fingerprints
+package app.revanced.patches.reddit.misc.tracking.url.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -15,7 +15,7 @@ object ShareLinkFactoryFingerprint : MethodFingerprint(
         Opcode.APUT_OBJECT,
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT,
-        Opcode.INVOKE_STATIC, // returnType: Ljava/lang/String;
+        Opcode.INVOKE_STATIC, // Returns the URL.
         Opcode.MOVE_RESULT_OBJECT
     ),
     customFingerprint = { methodDef, _ -> methodDef.definingClass.endsWith("ShareLinkFactory;") }
