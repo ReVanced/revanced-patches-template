@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 @Name("settings-resource-patch")
@@ -44,6 +45,34 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         }
 
         preferencesEditor = context.xmlEditor["res/xml/settings_fragment.xml"]
+
+        // Modify the manifest and add an data intent filter to the LicenseActivity.
+        // Some devices freak out if undeclared data is passed to an intent,
+        // and this change appears to fix the issue.
+        context.xmlEditor["AndroidManifest.xml"].use { editor ->
+            // An xml regular expression would probably work better than this manual searching.
+            val manifestNodes = editor.file.getElementsByTagName("manifest").item(0).childNodes
+            for (i in 0..manifestNodes.length) {
+                val node = manifestNodes.item(i)
+                if (node != null && node.nodeName == "application") {
+                    val applicationNodes = node.childNodes
+                    for (j in 0..applicationNodes.length) {
+                        val applicationChild = applicationNodes.item(j)
+                        if (applicationChild is Element && applicationChild.nodeName == "activity"
+                            && applicationChild.getAttribute("android:name") == "com.google.android.libraries.social.licenses.LicenseActivity"
+                        ) {
+                            val intentFilter = editor.file.createElement("intent-filter")
+                            val mimeType = editor.file.createElement("data")
+                            mimeType.setAttribute("android:mimeType", "text/plain")
+                            intentFilter.appendChild(mimeType)
+                            applicationChild.appendChild(intentFilter)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+
 
         // Add the ReVanced settings to the YouTube settings
         SettingsPatch.addPreference(
