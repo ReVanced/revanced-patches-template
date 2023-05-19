@@ -29,9 +29,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
     override fun execute(context: ResourceContext): PatchResult {
         super.execute(context)
 
-        /*
-         * used by a fingerprint of SettingsPatch
-         */
+        // Used for a fingerprint from SettingsPatch.
         appearanceStringId = ResourceMappingPatch.resourceMappings.find {
             it.type == "string" && it.name == "app_theme_appearance_dark"
         }!!.id
@@ -73,11 +71,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
 
 
     internal companion object {
-        // Used by a fingerprint of SettingsPatch
-        // this field is located in the SettingsResourcePatch
-        // because if it were to be defined in the SettingsPatch companion object,
-        // the companion object could be initialized before ResourceMappingResourcePatch has executed.
-        internal var appearanceStringId: Long = -1
+        // Used for a fingerprint from SettingsPatch.
+        internal var appearanceStringId = -1L
 
         // if this is not null, all intents will be renamed to this
         var overrideIntentsTargetPackage: String? = null
