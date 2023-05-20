@@ -41,9 +41,9 @@ class SanitizeUrlQueryPatch : BytecodePatch(
                 addInstructions(
                     insertIndex,
                     """
-                        invoke-static {v$urlRegister}, Lapp/revanced/reddit/privacy;->removeTrackingParameters(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {v$urlRegister}, Lapp/revanced/reddit/patches/SanitizeUrlQueryPatch;->removeTrackingParameters(Ljava/lang/String;)Ljava/lang/String;
   move-result-object v$urlRegister
-                        """
+                   """
                 )
             }
         } ?: return ShareLinkFactoryFingerprint.toErrorResult()
