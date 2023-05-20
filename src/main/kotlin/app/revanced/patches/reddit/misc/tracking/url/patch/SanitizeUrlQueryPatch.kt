@@ -41,14 +41,8 @@ class SanitizeUrlQueryPatch : BytecodePatch(
                 addInstructions(
                     insertIndex,
                     """
-                        const-string v$freeRegister2, ".?utm_source=.+"
-                        invoke-static {v$freeRegister2}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
-                        move-result-object v$freeRegister1
-                        invoke-virtual {v$freeRegister1, v$urlRegister}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
-                        move-result-object v$freeRegister1
-                        const-string v$freeRegister2, ""
-                        invoke-virtual {v$freeRegister1, v$freeRegister2}, Ljava/util/regex/Matcher;->replaceAll(Ljava/lang/String;)Ljava/lang/String;
-                        move-result-object v$urlRegister
+                        invoke-static {v$urlRegister}, Lapp/revanced/reddit/privacy;->removeTrackingParameters(Ljava/lang/String;)Ljava/lang/String;
+  move-result-object v$urlRegister
                         """
                 )
             }
