@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patches.reddit.misc.tracking.url.annotations.SanitizeUrlQueryCompatibility
 import app.revanced.patches.reddit.misc.tracking.url.fingerprints.ShareLinkFactoryFingerprint
 import org.jf.dexlib2.iface.instruction.Instruction
@@ -21,6 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Description("Removes (tracking) query parameters from the URLs when sharing links.")
 @SanitizeUrlQueryCompatibility
 @Version("0.0.1")
+@RequiresIntegrations
 class SanitizeUrlQueryPatch : BytecodePatch(
     listOf(ShareLinkFactoryFingerprint)
 ) {
@@ -32,8 +34,8 @@ class SanitizeUrlQueryPatch : BytecodePatch(
                 val startIndex = patternScan.startIndex
                 val endIndex = patternScan.endIndex
 
-                val freeRegister1 = instruction(startIndex).registerA
-                val freeRegister2 = instruction(startIndex + 1).registerA
+                val freeRegister1 = instruction<OneRegisterInstruction>(startIndex).registerA
+                val freeRegister2 = instruction<OneRegisterInstruction>(startIndex + 1).registerA
 
                 val urlRegister = instruction(endIndex).registerA
 
