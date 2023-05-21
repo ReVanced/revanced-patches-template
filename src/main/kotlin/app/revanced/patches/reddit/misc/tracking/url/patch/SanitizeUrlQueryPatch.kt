@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patches.reddit.misc.tracking.url.annotations.SanitizeUrlQueryCompatibility
 import app.revanced.patches.reddit.misc.tracking.url.fingerprints.ShareLinkFactoryFingerprint
-import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -27,24 +26,16 @@ class SanitizeUrlQueryPatch : BytecodePatch(
     listOf(ShareLinkFactoryFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        ShareLinkFactoryFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val patternScan = it.scanResult.patternScanResult!!
+        ShareLinkFactoryFingerprint.result?.let { result ->
+            result.mutableMethod.apply {
+                val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
+                val urlRegister = instruction<OneRegisterInstruction>(insertIndex - 1).registerA
 
-                val startIndex = patternScan.startIndex
-                val endIndex = patternScan.endIndex
-
-                val freeRegister1 = instruction<OneRegisterInstruction>(startIndex).registerA
-                val freeRegister2 = instruction<OneRegisterInstruction>(startIndex + 1).registerA
-
-                val urlRegister = instruction(endIndex).registerA
-
-                val insertIndex = endIndex + 1 // Right after URL is moved into a register.
                 addInstructions(
                     insertIndex,
                     """
-                        invoke-static {v$urlRegister}, Lapp/revanced/reddit/patches/SanitizeUrlQueryPatch;->removeTrackingParameters(Ljava/lang/String;)Ljava/lang/String;
-  move-result-object v$urlRegister
+                        invoke-static {v$urlRegister}, $SANITIZE_METHOD_DESCRIPTOR
+                        move-result-object v$urlRegister
                    """
                 )
             }
@@ -54,7 +45,8 @@ class SanitizeUrlQueryPatch : BytecodePatch(
     }
 
     private companion object {
-        val Instruction.registerA
-            get() = (this as OneRegisterInstruction).registerA
+        private const val SANITIZE_METHOD_DESCRIPTOR =
+            "Lapp/revanced/reddit/patches/SanitizeUrlQueryPatch;" +
+                    "->stripQueryParameters(Ljava/lang/String;)Ljava/lang/String;"
     }
 }
