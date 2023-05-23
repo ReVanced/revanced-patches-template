@@ -22,7 +22,6 @@ import app.revanced.patcher.annotation.Package
             "8.18.1",
             "8.19.0",
             "8.20.0",
-            "8.21.0",
         )
     )]
 )
