@@ -26,4 +26,15 @@ internal open class PreferenceScreen(
             for (childPreference in preferences)
                 this.appendChild(childPreference.serialize(ownerDocument, resourceCallback))
         }
+
+    fun addPreferences(vararg preferencesToAdd: BasePreference) {
+        val list: MutableList<BasePreference>
+        if (preferences is MutableList) {
+            list = preferences as MutableList<BasePreference>
+        } else {
+            list = preferences.toMutableList()
+            preferences = list
+        }
+        list.addAll(preferencesToAdd)
+    }
 }

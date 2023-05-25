@@ -4,6 +4,8 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
+import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
 
@@ -35,11 +37,20 @@ class SeekbarColorResourcePatch : ResourcePatch {
             scaleNode.replaceChild(replacementNode, shapeNode)
         }
 
+        seekbarPreferenceScreen = PreferenceScreen(
+            "revanced_seekbar_preference_screen",
+            StringResource("revanced_seekbar_preference_screen_title", "Seekbar settings"),
+            emptyList()
+        )
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(seekbarPreferenceScreen)
+
         return PatchResultSuccess()
     }
 
     companion object {
         internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
         internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
+
+        internal lateinit var seekbarPreferenceScreen : PreferenceScreen
     }
 }

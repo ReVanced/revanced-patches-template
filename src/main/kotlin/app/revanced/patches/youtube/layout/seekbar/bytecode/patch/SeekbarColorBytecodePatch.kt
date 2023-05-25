@@ -37,7 +37,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             addInstructions(
                 registerIndex + 1,
                 """
-                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColorOverride(I)I
                         move-result v$colorRegister
                     """
             )
@@ -47,7 +47,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             addInstructions(
                 registerIndex + 1,
                 """
-                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorValue(I)I
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColorOverride(I)I
                         move-result v$colorRegister
                     """
             )
@@ -66,7 +66,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
                     addInstructions(
                         0,
                         """
-                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getSeekbarColorOverride(I)I
+                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarClickedColorOverride(I)I
                             move-result v$colorRegister
                         """
                     )
@@ -74,7 +74,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             }
         } ?: return SetSeekbarClickedColorFingerprint.toErrorResult()
 
-        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getSeekbarColorOverride")
+        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getLithoColorOverride")
 
         return PatchResultSuccess()
     }
