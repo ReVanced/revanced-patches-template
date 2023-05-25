@@ -19,7 +19,7 @@ import org.w3c.dom.Element
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class ThemeResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SeekbarColorResourcePatch.seekbarPreferenceScreen.addPreferences(
+        SeekbarColorResourcePatch.addSeekbarPreferences(
             TextPreference(
                 "revanced_seekbar_color",
                 StringResource("revanced_seekbar_color_title", "Seekbar color"),

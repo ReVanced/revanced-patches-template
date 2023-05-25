@@ -35,7 +35,7 @@ class HideSeekbarPatch : BytecodePatch(
     listOf(SeekbarFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SeekbarColorResourcePatch.seekbarPreferenceScreen.addPreferences(
+        SeekbarColorResourcePatch.addSeekbarPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",
                 StringResource("revanced_hide_seekbar_title", "Hide seekbar in video player"),
