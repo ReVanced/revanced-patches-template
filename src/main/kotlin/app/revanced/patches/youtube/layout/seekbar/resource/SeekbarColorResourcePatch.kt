@@ -40,7 +40,7 @@ class SeekbarColorResourcePatch : ResourcePatch {
         seekbarPreferenceScreen = PreferenceScreen(
             "revanced_seekbar_preference_screen",
             StringResource("revanced_seekbar_preference_screen_title", "Seekbar settings"),
-            emptyList()
+            mutableListOf()
         )
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(seekbarPreferenceScreen)
 
