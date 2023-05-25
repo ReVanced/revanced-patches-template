@@ -74,7 +74,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             }
         } ?: return SetSeekbarClickedColorFingerprint.toErrorResult()
 
-        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getLithoColorOverride")
+        lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getLithoColor")
 
         return PatchResultSuccess()
     }
