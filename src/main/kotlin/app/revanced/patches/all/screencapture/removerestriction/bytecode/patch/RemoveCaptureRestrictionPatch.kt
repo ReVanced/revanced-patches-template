@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.all.screencapture.removerestriction.resources.patch.RemoveCaptureRestrictionResourcePatch
+import app.revanced.patches.all.screencapture.removerestriction.resource.patch.RemoveCaptureRestrictionResourcePatch
 import app.revanced.util.patch.*
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
