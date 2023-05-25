@@ -37,7 +37,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             addInstructions(
                 registerIndex + 1,
                 """
-                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColorOverride(I)I
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColor(I)I
                         move-result v$colorRegister
                     """
             )
@@ -47,7 +47,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
             addInstructions(
                 registerIndex + 1,
                 """
-                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColorOverride(I)I
+                        invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarColor(I)I
                         move-result v$colorRegister
                     """
             )
@@ -66,7 +66,7 @@ class SeekbarColorBytecodePatch : BytecodePatch(
                     addInstructions(
                         0,
                         """
-                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarClickedColorOverride(I)I
+                            invoke-static { v$colorRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getVideoPlayerSeekbarClickedColor(I)I
                             move-result v$colorRegister
                         """
                     )
