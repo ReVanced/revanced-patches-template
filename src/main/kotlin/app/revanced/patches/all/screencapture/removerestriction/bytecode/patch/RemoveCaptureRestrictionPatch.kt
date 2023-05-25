@@ -20,13 +20,6 @@ import org.jf.dexlib2.iface.instruction.Instruction
 @DependsOn([RemoveCaptureRestrictionResourcePatch::class])
 @RequiresIntegrations
 internal class RemoveCaptureRestrictionPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>() {
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX =
-            "Lapp/revanced/all/screencapture/removerestriction/RemoveScreencaptureRestrictionPatch"
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "$INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX;"
-    }
-
     // Information about method calls we want to replace
     enum class MethodCall(
         override val definedClassName: String,
@@ -63,5 +56,11 @@ internal class RemoveCaptureRestrictionPatch : AbstractTransformInstructionsPatc
     override fun transform(mutableMethod: MutableMethod, entry: Instruction35cInfo) {
         val (methodType, instruction, instructionIndex) = entry
         methodType.replaceInvokeVirtualWithIntegrations(INTEGRATIONS_CLASS_DESCRIPTOR, mutableMethod, instruction, instructionIndex)
+    }
+
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX =
+            "Lapp/revanced/all/screencapture/removerestriction/RemoveScreencaptureRestrictionPatch"
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "$INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX;"
     }
 }
