@@ -17,7 +17,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
-import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
+import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
@@ -25,7 +25,8 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([
     IntegrationsPatch::class,
     SettingsPatch::class,
-    SeekbarColorBytecodePatch::class // Used to hide the seekbar in the feed and watch history
+    SeekbarColorBytecodePatch::class, // Used to hide the seekbar in the feed and watch history
+    SeekbarPreferencesPatch::class    // Used to add preferences to seekbar settings menu
 ])
 @Name("hide-seekbar")
 @Description("Hides the seekbar.")
@@ -35,7 +36,7 @@ class HideSeekbarPatch : BytecodePatch(
     listOf(SeekbarFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SeekbarColorResourcePatch.addSeekbarPreferences(
+        SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",
                 StringResource("revanced_hide_seekbar_title", "Hide seekbar in video player"),

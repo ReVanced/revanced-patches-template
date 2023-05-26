@@ -4,15 +4,11 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
-import java.io.Closeable
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class SeekbarColorResourcePatch : ResourcePatch, Closeable {
+class SeekbarColorResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         // Edit theme colors via bytecode.
         // For that the resource id is used in a bytecode patch to change the color.
@@ -42,24 +38,8 @@ class SeekbarColorResourcePatch : ResourcePatch, Closeable {
         return PatchResultSuccess()
     }
 
-    override fun close() {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            PreferenceScreen(
-                "revanced_seekbar_preference_screen",
-                StringResource("revanced_seekbar_preference_screen_title", "Seekbar settings"),
-                seekbarPreferences
-            )
-        )
-    }
-
     companion object {
         internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
         internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
-
-        private val seekbarPreferences = mutableListOf<BasePreference>()
-
-        internal fun addSeekbarPreferences(vararg preferencesToAdd: BasePreference) {
-            seekbarPreferences.addAll(preferencesToAdd)
-        }
     }
 }

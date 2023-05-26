@@ -9,17 +9,17 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
-import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
+import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.splashScreenBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class, ResourceMappingPatch::class, SeekbarPreferencesPatch::class])
 class ThemeResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SeekbarColorResourcePatch.addSeekbarPreferences(
+        SeekbarPreferencesPatch.addPreferences(
             TextPreference(
                 "revanced_seekbar_color",
                 StringResource("revanced_seekbar_color_title", "Seekbar color"),
