@@ -25,7 +25,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([
     IntegrationsPatch::class,
     SettingsPatch::class,
-    // Used to hide the seekbar in the feed and watch history by setting the seekbar color to transparent.
+    // Does not alter the behavior of the seek bar by default.
     SeekbarColorBytecodePatch::class,
     // Used to add preferences to the seekbar settings menu.
     SeekbarPreferencesPatch::class
