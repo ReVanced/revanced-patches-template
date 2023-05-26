@@ -1,3 +1,17 @@
+# [2.175.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.3...v2.175.0-dev.4) (2023-05-26)
+
+
+### Bug Fixes
+
+* **youtube/downloads:** rename patch to `external-downloads` ([#2274](https://github.com/revanced/revanced-patches/issues/2274)) ([4480911](https://github.com/revanced/revanced-patches/commit/4480911e0b056f2148616a0c2af6b4ab7c482c3b))
+
+# [2.175.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.2...v2.175.0-dev.3) (2023-05-25)
+
+
+### Bug Fixes
+
+* **youtube/hide-player-buttons:** fix previous/next button showing if previous video exists ([#2261](https://github.com/revanced/revanced-patches/issues/2261)) ([91d1aab](https://github.com/revanced/revanced-patches/commit/91d1aabd32be1607019bc443fb06284ca3343e9d))
+
 # [2.175.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.1...v2.175.0-dev.2) (2023-05-25)
 
 
