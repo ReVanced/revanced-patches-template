@@ -1,11 +1,15 @@
 package app.revanced.extensions
 
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
+import app.revanced.patcher.extensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.Method
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.util.MethodUtil
 import org.w3c.dom.Node
 
@@ -13,7 +17,7 @@ import org.w3c.dom.Node
 /**
  * Throw a [PatchException] indicating that the fingerprint failed to resolve.
  */
-fun MethodFingerprint.error(): Nothing = throw PatchException("Failed to resolve $name")
+internal fun MethodFingerprint.error(): Nothing = throw PatchException("Failed to resolve $name")
 
 /**
  * Find the [MutableMethod] from a given [Method] in a [MutableClass].
@@ -21,7 +25,7 @@ fun MethodFingerprint.error(): Nothing = throw PatchException("Failed to resolve
  * @param method The [Method] to find.
  * @return The [MutableMethod].
  */
-fun MutableClass.findMutableMethodOf(method: Method) = this.methods.first {
+internal fun MutableClass.findMutableMethodOf(method: Method) = this.methods.first {
     MethodUtil.methodSignaturesMatch(it, method)
 }
 
@@ -30,7 +34,7 @@ fun MutableClass.findMutableMethodOf(method: Method) = this.methods.first {
  *
  * @param transform the transformation function. original method goes in, transformed method goes out
  */
-fun MutableClass.transformMethods(transform: MutableMethod.() -> MutableMethod) {
+internal fun MutableClass.transformMethods(transform: MutableMethod.() -> MutableMethod) {
     val transformedMethods = methods.map { it.transform() }
     methods.clear()
     methods.addAll(transformedMethods)
@@ -39,4 +43,27 @@ fun MutableClass.transformMethods(transform: MutableMethod.() -> MutableMethod) 
 internal fun Node.doRecursively(action: (Node) -> Unit) {
     action(this)
     for (i in 0 until this.childNodes.length) this.childNodes.item(i).doRecursively(action)
+}
+
+internal fun MutableMethod.injectHideViewCall(
+    insertIndex: Int,
+    viewRegister: Int,
+    classDescriptor: String,
+    targetMethod: String
+) = addInstruction(
+    insertIndex,
+    "invoke-static { v$viewRegister }, $classDescriptor->$targetMethod(Landroid/view/View;)V"
+)
+
+internal fun MutableMethod.findIndexForIdResource(resourceName: String): Int {
+    fun getIdResourceId(resourceName: String) = ResourceMappingPatch.resourceIdOf("id", resourceName)
+
+    val resourceId = getIdResourceId(resourceName)
+    return implementation!!.instructions.indexOfFirst {
+        if (it.opcode != Opcode.CONST) return@indexOfFirst false
+
+        val literal = (it as WideLiteralInstruction).wideLiteral
+
+        return@indexOfFirst resourceId == literal
+    }
 }

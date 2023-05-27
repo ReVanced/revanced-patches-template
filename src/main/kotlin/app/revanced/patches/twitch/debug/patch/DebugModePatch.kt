@@ -57,7 +57,6 @@ class DebugModePatch : BytecodePatch(
                     "revanced_debug_mode_enable",
                     "Enable debug mode"
                 ),
-                false,
                 StringResource(
                     "revanced_debug_mode_on",
                     "Debug mode is enabled (not recommended)"
@@ -66,6 +65,7 @@ class DebugModePatch : BytecodePatch(
                     "revanced_debug_mode_off",
                     "Debug mode is disabled"
                 ),
+                default = false,
             )
         )
 

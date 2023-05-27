@@ -4,12 +4,13 @@ import app.revanced.patcher.resource.StringResource
 import app.revanced.patches.shared.settings.preference.IResource
 
 /**
- * Represents a string value in the strings.xml file
+ * A string value.
+ * Represets a string in the strings.xml file.
  *
  * @param name The name of the string
  * @param value The value of the string
  */
-internal data class StringResource(
+internal class StringResource(
     override val name: String,
     val value: String
 ) : IResource {

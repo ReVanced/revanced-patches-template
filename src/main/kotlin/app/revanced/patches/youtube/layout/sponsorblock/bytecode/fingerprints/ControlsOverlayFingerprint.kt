@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 object ControlsOverlayFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PRIVATE or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     parameters = listOf(),
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
@@ -21,7 +21,7 @@ object ControlsOverlayFingerprint : MethodFingerprint(
         Opcode.CHECK_CAST,
         Opcode.NEW_INSTANCE,
         ),
-    customFingerprint = { methodDef ->
+    customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/google/android/apps/youtube/app/player/overlay/YouTubeControlsOverlay;"
     }
 )

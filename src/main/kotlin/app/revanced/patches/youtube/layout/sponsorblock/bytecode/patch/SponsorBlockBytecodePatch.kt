@@ -28,8 +28,8 @@ import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.misc.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.misc.video.videoid.patch.VideoIdPatch
+import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
+import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.*
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
@@ -101,16 +101,17 @@ class SponsorBlockBytecodePatch : BytecodePatch(
         val seekbarMethodInstructions = seekbarMethod.implementation!!.instructions
 
         /*
-         * Get the instance of the seekbar rectangle
+         * Get left and right of seekbar rectangle
          */
-        for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
-            if (instruction.opcode != Opcode.MOVE_OBJECT_FROM16) continue
-            seekbarMethod.addInstruction(
-                index + 1,
-                "invoke-static/range {p0 .. p0}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarRect(Ljava/lang/Object;)V"
-            )
-            break
+        val moveRectangleToRegisterIndex = seekbarMethodInstructions.indexOfFirst {
+            it.opcode == Opcode.MOVE_OBJECT_FROM16
         }
+
+        seekbarMethod.addInstruction(
+            moveRectangleToRegisterIndex + 1,
+            "invoke-static/range {p0 .. p0}, " +
+                    "$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarRect(Ljava/lang/Object;)V"
+        )
 
         for ((index, instruction) in seekbarMethodInstructions.withIndex()) {
             if (instruction.opcode != Opcode.INVOKE_STATIC) continue
@@ -123,38 +124,15 @@ class SponsorBlockBytecodePatch : BytecodePatch(
             // set the thickness of the segment
             seekbarMethod.addInstruction(
                 insertIndex,
-                "invoke-static {v${invokeInstruction.registerC}}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarThickness(I)V"
+                "invoke-static {v${invokeInstruction.registerC}}, " +
+                        "$INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarThickness(I)V"
             )
             break
         }
 
         /*
-         * Set rectangle absolute left and right positions
-         */
-        val drawRectangleInstructions = seekbarMethodInstructions.withIndex().filter { (_, instruction) ->
-            instruction is ReferenceInstruction && (instruction.reference as? MethodReference)?.name == "drawRect"
-        }.map { (index, instruction) -> // TODO: improve code
-            index to (instruction as FiveRegisterInstruction).registerD
-        }
-
-        val (indexRight, rectangleRightRegister) = drawRectangleInstructions[0]
-        val (indexLeft, rectangleLeftRegister) = drawRectangleInstructions[3]
-
-        // order of operation is important here due to the code above which has to be improved
-        // the reason for that is that we get the index, add instructions and then the offset would be wrong
-        seekbarMethod.addInstruction(
-            indexLeft + 1,
-            "invoke-static {v$rectangleLeftRegister}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteLeft(Landroid/graphics/Rect;)V"
-        )
-        seekbarMethod.addInstruction(
-            indexRight + 1,
-            "invoke-static {v$rectangleRightRegister}, $INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR->setSponsorBarAbsoluteRight(Landroid/graphics/Rect;)V"
-        )
-
-        /*
          * Draw segment
          */
-
         // Find the drawCircle call and draw the segment before it
         for (i in seekbarMethodInstructions.size - 1 downTo 0) {
             val invokeInstruction = seekbarMethodInstructions[i] as? ReferenceInstruction ?: continue

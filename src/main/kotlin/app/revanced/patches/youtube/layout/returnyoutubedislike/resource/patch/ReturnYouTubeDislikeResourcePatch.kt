@@ -6,12 +6,12 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
 @DependsOn([SettingsPatch::class])
 @Name("return-youtube-dislike-resource-patch")
@@ -37,6 +37,10 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
             "revanced_ryd_enable_summary_on" to "Dislikes are shown",
             "revanced_ryd_enable_summary_off" to "Dislikes are not shown",
 
+            "revanced_ryd_shorts_title" to "Show dislikes on Shorts",
+            "revanced_ryd_shorts_summary_on" to "Dislikes shown on Shorts",
+            "revanced_ryd_shorts_summary_off" to "Dislikes hidden on Shorts",
+
             "revanced_ryd_dislike_percentage_title" to "Dislikes as percentage",
             "revanced_ryd_dislike_percentage_summary_on" to "Dislikes shown as percentage",
             "revanced_ryd_dislike_percentage_summary_off" to "Dislikes shown as number",
@@ -45,9 +49,13 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
             "revanced_ryd_compact_layout_summary_on" to "Like button styled for minimum width",
             "revanced_ryd_compact_layout_summary_off" to "Like button styled for best appearance",
 
+            "ryd_toast_on_connection_error_title" to "Show toast if API not available",
+            "ryd_toast_on_connection_error_summary_on" to "Toast shown if ReturnYouTubeDislike API is not available",
+            "ryd_toast_on_connection_error_summary_off" to "Toast not shown if ReturnYouTubeDislike API is not available",
+
             "revanced_ryd_about" to "About",
             "revanced_ryd_attribution_title" to "ReturnYouTubeDislike.com",
-            "revanced_ryd_attribution_summary" to "Dislike data is provided by the Return YouTube Dislike API.  Tap here to learn more.",
+            "revanced_ryd_attribution_summary" to "Data is provided by the Return YouTube Dislike API. Tap here to learn more.",
 
 
             "revanced_ryd_statistics_category_title" to "ReturnYouTubeDislike API statistics of this device",
@@ -76,21 +84,16 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext) {
-        val youtubePackage = "com.google.android.youtube"
         SettingsPatch.addPreference(
             Preference(
                 StringResource("revanced_ryd_settings_title", "Return YouTube Dislike"),
-                Preference.Intent(
-                    youtubePackage,
-                    "ryd_settings",
-                    "com.google.android.libraries.social.licenses.LicenseActivity"
-                ),
                 StringResource("revanced_ryd_settings_summary", "Settings for Return YouTube Dislike"),
+                SettingsPatch.createReVancedSettingsIntent("ryd_settings")
             )
         )
         // merge strings
         context.mergeStrings(strings)
 
-        oldUIDislikeId = ResourceMappingPatch.resourceIdOf("id", "dislike_button")
+        oldUIDislikeId = context.resourceIdOf("id", "dislike_button")
     }
 }

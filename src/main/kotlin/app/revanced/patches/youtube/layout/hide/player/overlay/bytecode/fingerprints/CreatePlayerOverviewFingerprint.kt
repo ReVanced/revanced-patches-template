@@ -9,14 +9,14 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 object CreatePlayerOverviewFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PRIVATE or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.CONST,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST
     ),
-    customFingerprint = { methodDef ->
+    customFingerprint = { methodDef, _ ->
         methodDef.implementation?.instructions?.any {
             if (it.opcode != Opcode.CONST) return@any false
 

@@ -9,7 +9,7 @@ import org.jf.dexlib2.iface.reference.TypeReference
 
 object PiracyDetectionFingerprint : MethodFingerprint(
     returnType = "V",
-    access = AccessFlags.PRIVATE or AccessFlags.FINAL,
+    accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.NEW_INSTANCE,
         Opcode.INVOKE_DIRECT,
@@ -17,7 +17,7 @@ object PiracyDetectionFingerprint : MethodFingerprint(
         Opcode.INVOKE_DIRECT,
         Opcode.INVOKE_VIRTUAL
     ),
-    customFingerprint = { method ->
+    customFingerprint = { method, _ ->
         method.implementation?.instructions?.any {
             if (it.opcode != Opcode.NEW_INSTANCE) return@any false
 
