@@ -89,17 +89,23 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        context.mergeStrings(
-            mapOf(
-                "revanced_settings_title" to "ReVanced",
-                "revanced_settings_confirm_user_dialog_title" to "Do you wish to proceed?",
-                "revanced_settings_reset" to "Reset",
-            )
-        )
+        context.mergeStrings(strings)
     }
 
 
     internal companion object {
+        private val strings = mapOf(
+            "revanced_settings_title" to "ReVanced",
+            "revanced_settings_confirm_user_dialog_title" to "Do you wish to proceed?",
+            "revanced_settings_reset" to "Reset",
+
+            "revanced_settings_import" to "Import",
+            "revanced_settings_import_copy" to "Copy",
+            "revanced_settings_import_reset" to "ReVanced settings reset to default",
+            "revanced_settings_import_success" to "Imported %d settings",
+            "revanced_settings_import_failure_parse" to "Import failed: %s",
+        )
+
         // Used for a fingerprint from SettingsPatch.
         internal var appearanceStringId = -1L
 
