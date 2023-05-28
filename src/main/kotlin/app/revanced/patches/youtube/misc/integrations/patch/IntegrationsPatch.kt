@@ -4,9 +4,10 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch
 import app.revanced.patches.youtube.misc.integrations.annotations.IntegrationsCompatibility
-import app.revanced.patches.youtube.misc.integrations.fingerprints.InitFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.EmbeddedPlayerControlsOverlayFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.EmbeddedPlayerFingerprint
+import app.revanced.patches.youtube.misc.integrations.fingerprints.InitFingerprint
+import app.revanced.patches.youtube.misc.integrations.fingerprints.RemoteEmbeddedPlayerFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.ServiceFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.StandalonePlayerFingerprint
 
@@ -19,6 +20,7 @@ class IntegrationsPatch : AbstractIntegrationsPatch(
         InitFingerprint,
         StandalonePlayerFingerprint,
         ServiceFingerprint,
+        RemoteEmbeddedPlayerFingerprint,
         EmbeddedPlayerControlsOverlayFingerprint,
         EmbeddedPlayerFingerprint
     ),
