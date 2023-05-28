@@ -4,7 +4,9 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint
 import org.jf.dexlib2.AccessFlags
 
-// For embedded playback inside 3rd party android app (such as 3rd party Reddit apps)
+/**
+ * For embedded playback inside 3rd party android app (such as 3rd party Reddit apps).
+ */
 object RemoteEmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
@@ -12,6 +14,6 @@ object RemoteEmbeddedPlayerFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass == "Lcom/google/android/youtube/api/jar/client/RemoteEmbeddedPlayer;"
     },
-    // Context is the first method parameter.
+    // Integrations context is the first method parameter.
     contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
 )
