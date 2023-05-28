@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.scbeasy.detection.debugging.annotations.RemoveDebuggingDetectionCompatibility
 import app.revanced.patches.scbeasy.detection.debugging.fingerprints.DebuggingDetectionFingerprint
 
-@Patch
+@Patch(false)
 @Name("remove-debugging-detection")
 @Description("Removes the USB and wireless debugging checks.")
 @RemoveDebuggingDetectionCompatibility
