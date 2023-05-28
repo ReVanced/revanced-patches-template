@@ -5,5 +5,6 @@ import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.
 // Edit: what situation is this used for?
 object ServiceFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ -> methodDef.definingClass.endsWith("ApiPlayerService;") && methodDef.name == "<init>" },
+    // Context is the first method parameter.
     contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
 )

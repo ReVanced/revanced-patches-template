@@ -12,5 +12,6 @@ object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.startsWith("Lcom/google/android/apps/youtube/embeddedplayer/service/ui/overlays/controlsoverlay/remoteloaded/")
     },
+    // Context is the first method parameter.
     contextRegisterResolver = { it.implementation!!.registerCount - it.parameters.size }
 )
