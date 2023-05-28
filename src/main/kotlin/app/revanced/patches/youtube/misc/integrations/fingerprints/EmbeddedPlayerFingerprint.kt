@@ -4,6 +4,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint
 import org.jf.dexlib2.AccessFlags
 
+// For embedded playback inside the Google app (such as the in app 'discover' tab)
 object EmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
     returnType = "L",

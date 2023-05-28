@@ -4,6 +4,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint
 import org.jf.dexlib2.AccessFlags
 
+// For embedded playback inside Google Play store (and probably other situations as well)
 object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
     returnType = "V",
