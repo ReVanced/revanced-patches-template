@@ -1,3 +1,18 @@
+# [2.175.0-dev.11](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.10...v2.175.0-dev.11) (2023-05-28)
+
+
+### Features
+
+* **scbeasy:** add `remove-debugging-detection` patch ([#2287](https://github.com/revanced/revanced-patches/issues/2287)) ([53d91e3](https://github.com/revanced/revanced-patches/commit/53d91e32183663b0aa70994cc4e1d8ae5eb8c8e4))
+
+# [2.175.0-dev.10](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.9...v2.175.0-dev.10) (2023-05-27)
+
+
+### Features
+
+* **youtube/hide-shorts-components:** hide channel bar & sound button ([749c83d](https://github.com/revanced/revanced-patches/commit/749c83d068c2201ed6f29047d5428d1072924960))
+* **youtube/navigation-buttons:** use a better preference screen title ([5d7772b](https://github.com/revanced/revanced-patches/commit/5d7772be942c72e05644eca3f68d2bd6b9762d26))
+
 # [2.175.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.175.0-dev.8...v2.175.0-dev.9) (2023-05-27)
 
 
