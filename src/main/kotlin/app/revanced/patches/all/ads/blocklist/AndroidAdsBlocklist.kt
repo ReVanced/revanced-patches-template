@@ -1,4 +1,4 @@
-package app.revanced.patches.all.ads.bytecode
+package app.revanced.patches.all.ads.blocklist
 
 import org.jf.dexlib2.Opcode
 
@@ -13,14 +13,6 @@ val replaceUrlsWith: String = "https://example.com"
 
 val stringOpcodes: List<Opcode> = listOf(
     Opcode.CONST_STRING
-)
-
-// https://developers.google.com/admob/android/banner
-val blockInvokes: List<String> = listOf(
-    "loadAd",
-    "AdListener",
-    "AdLoad",
-    "AdView",
 )
 
 val invokeOpcodes: List<Opcode> = listOf(

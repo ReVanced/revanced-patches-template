@@ -6,70 +6,76 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.util.bytecode.*
+import app.revanced.util.patch.AbstractTransformInstructionsPatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.util.patch.*
+import app.revanced.patches.all.ads.blocklist.*
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.reference.MethodReference
-import org.jf.dexlib2.iface.reference.StringReference
-import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
-import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
-import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
 import org.jf.dexlib2.iface.instruction.Instruction
+import org.jf.dexlib2.iface.reference.MethodReference
+import org.jf.dexlib2.builder.instruction.BuilderInstruction10x
+import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import java.util.*
 
 @Patch(false)
 @Name("remove-ads")
 @Description("Attempts to remove ads.")
 @Version("0.0.1")
-class RemoveAdsPatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext): PatchResult {
-        BytecodeUtils.transformIns(context, ::invokesTransformFunction, invokeOpcodes)
-        BytecodeUtils.transformIns(context, ::urlTransformFunction, stringOpcodes)
+internal class RemoveAdsPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>() {
 
-        return PatchResultSuccess()
+    enum class MethodCall(
+        override val definedClassName: String,
+        override val methodName: String,
+        override val methodParams: Array<String>,
+        override val returnType: String,
+    ): IMethodCall {
+        loadAd(
+            "Lcom/google/android/gms/ads/BaseAdView;",
+            "loadAd",
+            arrayOf("Lcom/google/android/gms/ads/AdRequest;"),
+            "V",
+        ),
+        loadAd1(
+            "Lcom/google/android/gms/ads/AdLoader;",
+            "loadAd",
+            arrayOf("Lcom/google/android/gms/ads/AdRequest;"),
+            "V",
+        )
     }
 
-    private fun invokesTransformFunction(ins: Instruction, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) {
-        if (ins is Instruction35c) {
+
+    override fun filterMap(
+        classDef: ClassDef,
+        method: Method,
+        instruction: Instruction,
+        instructionIndex: Int
+    ) = filterMapInstruction35c<MethodCall>(
+        "a",
+        classDef,
+        instruction,
+        instructionIndex
+    )
+
+    override fun transform(mutableMethod: MutableMethod, entry: Instruction35cInfo) {
+        val implementation = mutableMethod.implementation ?: return
+
+        // enumerate all instructions and find invokes
+        implementation.instructions.forEachIndexed implLoop@{ index, instruction ->
+            if (!invokeOpcodes.any{ it == instruction.opcode}) return@implLoop
+            val ins = instruction as Instruction35c
             val instructionMethodReference = ins.getReference() as MethodReference
-
-            if (blockInvokes.any{ it == instructionMethodReference.getName() }) {
-                // make class and method mutable, if not already
-                var mutableMethod = BytecodeUtils.makeMethodMutable(context, classDef, methodDef)
-
-                mutableMethod!!.implementation!!.replaceInstruction(
-                    index,
-                    BuilderInstruction10x(
-                        Opcode.NOP
-                    )
+            println(instructionMethodReference.getName())
+            mutableMethod.implementation!!.replaceInstruction(
+                index,
+                BuilderInstruction10x(
+                    Opcode.NOP
                 )
-            } 
-        }
-    }
-
-    private fun urlTransformFunction(ins: Instruction, index: Int, methodDef: Method, classDef: ClassDef, context: BytecodeContext) {
-        if (ins is Instruction21c) {
-            val str = (ins.reference as StringReference).string
-            if (blockUrls.any{ it.contains(str) }) {
-                // make class and method mutable, if not already
-                var mutableMethod = BytecodeUtils.makeMethodMutable(context, classDef, methodDef)
-
-                // replace instruction with updated string
-                mutableMethod!!.implementation!!.replaceInstruction(
-                    index,
-                    BuilderInstruction21c(
-                        Opcode.CONST_STRING,
-                        ins.registerA,
-                        ImmutableStringReference(
-                            replaceUrlsWith
-                        )
-                    )
-                )
-            } 
-        }
+            )
+            
+        }    
+        
     }
 }
