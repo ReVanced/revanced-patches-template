@@ -15,16 +15,19 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.annotations.SettingsCompatibility
-import app.revanced.patches.tiktok.misc.settings.fingerprints.AboutViewFingerprint
+import app.revanced.patches.tiktok.misc.settings.fingerprints.AboutPageFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityOnCreateFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsOnViewCreatedFingerprint
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.builder.instruction.BuilderInstruction21c
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.reference.StringReference
+import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
@@ -34,84 +37,88 @@ import org.jf.dexlib2.iface.reference.StringReference
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
     listOf(
+        AboutPageFingerprint,
         AdPersonalizationActivityOnCreateFingerprint,
         SettingsOnViewCreatedFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsOnViewCreatedFingerprint.result?.let {
-            AboutViewFingerprint.resolve(context, it.method, it.classDef)
-        }
-        // Patch Settings UI to add 'Revanced Settings'.
-        val targetIndexes = findOptionsOnClickIndex()
-        with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
-            for (index in targetIndexes) {
-                if (
-                    instruction(index).opcode != Opcode.NEW_INSTANCE ||
-                    instruction(index - 4).opcode != Opcode.MOVE_RESULT_OBJECT
-                )
+        AboutPageFingerprint.result?.let {
+            val startIndex = it.scanResult.patternScanResult!!.startIndex
+            AboutPageFingerprint.resolve(context, it.method, it.classDef)
+            copyrightPolicyLabelId = (it.mutableMethod.instruction(startIndex) as WideLiteralInstruction).wideLiteral
+
+        } ?: return AboutPageFingerprint.toErrorResult()
+
+        SettingsOnViewCreatedFingerprint.result?.mutableMethod?.let { method ->
+            val copyrightInstructions = method.implementation!!.instructions
+
+            val copyrightIndex = copyrightInstructions.indexOfFirst {
+                it.opcode == Opcode.CONST_STRING &&
+                        (it as BuilderInstruction21c).reference.toString() == "copyright_policy"
+            } - 6
+
+            val copyrightPolicyIndex = copyrightInstructions.indexOfFirst {
+                it.opcode == Opcode.CONST &&
+                        (it as WideLiteralInstruction).wideLiteral == copyrightPolicyLabelId
+            } + 2
+
+            arrayOf(
+                copyrightIndex,
+                copyrightPolicyIndex
+            ).forEach {
+                if (method.instruction(it).opcode != Opcode.MOVE_RESULT_OBJECT)
                     return PatchResultError("Hardcode offset changed.")
-                patchOptionNameAndOnClickEvent(index, context)
+                val register = (method.instruction(it) as OneRegisterInstruction).registerA
+
+                method.insertSettings(context, it, register)
             }
-        }
-        // Implement settings screen in `AdPersonalizationActivity`
-        with(AdPersonalizationActivityOnCreateFingerprint.result!!.mutableMethod) {
-            for ((index, instruction) in implementation!!.instructions.withIndex()) {
+
+        } ?: return SettingsOnViewCreatedFingerprint.toErrorResult()
+
+        AdPersonalizationActivityOnCreateFingerprint.result?.mutableMethod?.let {
+            for ((index, instruction) in it.implementation!!.instructions.withIndex()) {
                 if (instruction.opcode != Opcode.INVOKE_SUPER) continue
                 val thisRegister = (instruction as Instruction35c).registerC
-                addInstructions(
+                it.addInstructions(
                     index + 1,
                     """
                         invoke-static {v$thisRegister}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->initializeSettings(Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;)V
                         return-void
                     """
                 )
-                break
+                return PatchResultSuccess()
             }
-        }
-        return PatchResultSuccess()
+        } ?: return AdPersonalizationActivityOnCreateFingerprint.toErrorResult()
+
+        return PatchResultError("Could not find the method to hook.")
     }
 
-    private fun findOptionsOnClickIndex(): IntArray {
-        val results = IntArray(2)
-        SettingsOnViewCreatedFingerprint.result?.apply {
-            for ((index, instruction) in mutableMethod.implementation!!.instructions.withIndex()) {
-                // Old UI settings option to replace to 'Revanced Settings'
-                if (instruction.opcode == Opcode.CONST_STRING) {
-                    val string = ((instruction as ReferenceInstruction).reference as StringReference).string
-                    if (string == "copyright_policy") {
-                        results[0] = index - 2
-                        break
-                    }
-                }
-            }
+    private companion object {
+        var copyrightPolicyLabelId: Long = -1
 
-            // New UI settings option to replace to 'Revanced Settings'
-            results[1] = AboutViewFingerprint.result!!.scanResult.patternScanResult!!.startIndex
-        } ?: throw SettingsOnViewCreatedFingerprint.toErrorResult()
-        return results
-    }
-
-    private fun patchOptionNameAndOnClickEvent(index: Int, context: BytecodeContext) {
-        with(SettingsOnViewCreatedFingerprint.result!!.mutableMethod) {
-            // Patch option name
-            val overrideRegister = instruction<OneRegisterInstruction>(index - 4).registerA
+        fun MutableMethod.insertSettings(
+            context: BytecodeContext,
+            index: Int,
+            overrideRegister: Int
+        ) {
             replaceInstruction(
-                index - 4,
+                index,
                 """
                     const-string v$overrideRegister, "Revanced Settings"
                 """
             )
 
-            // Patch option OnClick Event
-            val type = instruction<ReferenceInstruction>(index).reference.toString()
-            context.findClass(type)!!.mutableClass.methods.first { type == "onClick" }.addInstructions(
-                0,
-            """
-                     invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                     return-void
-                 """
-            )
+            with(((instruction(index + 4) as ReferenceInstruction).reference as TypeReference).type) {
+                context.findClass(this)!!.mutableClass.methods.first { it.name == "onClick" }
+                    .addInstructions(
+                        0,
+                        """
+                                 invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                                 return-void
+                             """
+                    )
+            }
         }
     }
 }
