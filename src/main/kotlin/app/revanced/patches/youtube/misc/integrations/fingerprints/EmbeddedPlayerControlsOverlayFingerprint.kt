@@ -8,7 +8,7 @@ import org.jf.dexlib2.AccessFlags
  * For embedded playback inside Google Play store (and probably other situations as well).
  *
  * Note: this fingerprint may no longer be needed, as it appears
- * [RemoteEmbeddedFragmentFingerprint] may be set before this hook is called.
+ * [RemoteEmbedFragmentFingerprint] may be set before this hook is called.
  */
 object EmbeddedPlayerControlsOverlayFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR,
