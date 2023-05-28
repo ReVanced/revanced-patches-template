@@ -6,6 +6,9 @@ import org.jf.dexlib2.AccessFlags
 
 /**
  * For embedded playback inside the Google app (such as the in app 'discover' tab).
+ *
+ * Note: this fingerprint may or may not be needed, as
+ * [RemoteEmbeddedFragmentFingerprint] might be set before this is called.
  */
 object EmbeddedPlayerFingerprint : IntegrationsFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC,
