@@ -5,7 +5,7 @@ import org.jf.dexlib2.Opcode
 
 object AboutPageFingerprint : MethodFingerprint(
     opcodes = listOf(
-        Opcode.CONST,
+        Opcode.CONST, // copyrightPolicyLabel resource id
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CONST_STRING
