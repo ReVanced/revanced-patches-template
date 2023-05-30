@@ -5,7 +5,9 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.apk.Apk
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.OptionsContainer
+import app.revanced.patcher.patch.PatchOption
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
 import app.revanced.util.resources.ResourceUtils
@@ -21,21 +23,21 @@ import java.io.File
 @Version("0.0.1")
 class CustomBrandingPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        fun copyResources(resourceGroups: List<ResourceUtils.ResourceGroup>) {
+        fun copyResources(resourceGroups: Map<Apk.ResourceContainer, ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)
 
-                resourceGroups.forEach { group ->
+                resourceGroups.forEach { (apk, group) ->
                     val fromDirectory = iconPath.resolve(group.resourceDirectoryName)
                     val toDirectory = "res/${group.resourceDirectoryName}"
 
                     group.resources.forEach { iconFileName ->
-                        context.base.openFile("$toDirectory/$iconFileName").use {
+                        apk.openFile("$toDirectory/$iconFileName").use {
                             it.contents = fromDirectory.resolve(iconFileName).readBytes()
                         }
                     }
                 }
-            } ?: resourceGroups.forEach { context.copyResources("branding", it) }
+            } ?: resourceGroups.forEach { (apk, group) -> apk.copyResources("branding", group) }
         }
 
         val iconResourceFileNames = arrayOf(
@@ -45,14 +47,13 @@ class CustomBrandingPatch : ResourcePatch {
             "ic_launcher_round"
         ).map { "$it.png" }.toTypedArray()
 
-        fun createGroup(directory: String) = ResourceUtils.ResourceGroup(
-            directory, *iconResourceFileNames
+        fun createGroup(density: String) = context.apkBundle.query(density) to ResourceUtils.ResourceGroup(
+            "mipmap-$density", *iconResourceFileNames
         )
 
         // change the app icon
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi")
-            .map { "mipmap-$it" }
-            .map(::createGroup)
+            .associate(::createGroup)
             .let(::copyResources)
 
         // change the name of the app

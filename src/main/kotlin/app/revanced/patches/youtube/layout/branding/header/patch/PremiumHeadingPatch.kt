@@ -23,7 +23,7 @@ class PremiumHeadingPatch : ResourcePatch {
         modes.forEach { mode ->
             val resource = reference(context.resourceTable.resolveLocal("drawable", "${original}_$mode"))
             arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
-                val target = context.resourceTable.query(size)
+                val target = context.apkBundle.query(size)
                 target.set("drawable", "${replacement}_$mode", resource, size)
             }
         }

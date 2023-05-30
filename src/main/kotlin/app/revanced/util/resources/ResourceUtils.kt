@@ -46,17 +46,24 @@ internal object ResourceUtils {
         })
 
     /**
-     * Copy resources from the current class loader to the resource directory.
+     * Copy resources from the current class loader to the base [Apk].
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
      */
-    internal fun ResourceContext.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
+    internal fun ResourceContext.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) = base.copyResources(sourceResourceDirectory, *resources)
+
+    /**
+     * Copy resources from the current class loader to the [Apk].
+     * @param sourceResourceDirectory The source resource directory name.
+     * @param resources The resources to copy.
+     */
+    internal fun Apk.ResourceContainer.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
         val classLoader = ResourceUtils.javaClass.classLoader
 
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
-                base.openFile("res/$resourceFile").use { file ->
+                openFile("res/$resourceFile").use { file ->
                     file.outputStream().use {
                         classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it)
                     }

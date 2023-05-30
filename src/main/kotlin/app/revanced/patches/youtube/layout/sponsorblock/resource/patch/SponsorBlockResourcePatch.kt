@@ -250,14 +250,17 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 "ic_sb_logo.xml",
                 "ic_sb_publish.xml",
                 "ic_sb_voting.xml"
-            ),
-            ResourceUtils.ResourceGroup(
-                // required resource for back button, because when the base APK is used, this resource will not exist
-                "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
             )
         ).forEach { resourceGroup ->
             context.copyResources("sponsorblock", resourceGroup)
         }
+
+        context.apkBundle.query("xxxhdpi").copyResources(
+            "sponsorblock", ResourceUtils.ResourceGroup(
+                // required resource for back button, because when the base APK is used, this resource will not exist
+                "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
+            )
+        )
 
         /*
         merge xml nodes from the host to their real xml files
