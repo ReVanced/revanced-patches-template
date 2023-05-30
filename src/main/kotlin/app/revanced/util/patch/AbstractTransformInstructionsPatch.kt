@@ -36,7 +36,7 @@ internal abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() 
                     classDef.methods.forEach { method ->
                         // Since the Sequence executes lazily,
                         // using any() results in only calling
-                        // filterMap until one index has been found.
+                        // filterMap until the first index has been found.
                         val patchIndices = findPatchIndices(classDef, method)
 
                         if (patchIndices?.any() == true) {
