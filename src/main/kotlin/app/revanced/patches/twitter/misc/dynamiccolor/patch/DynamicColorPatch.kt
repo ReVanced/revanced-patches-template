@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.dynamiccolor.annotations.DynamicColorCompatibility
 import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.resourceTable
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
 @Patch
@@ -19,7 +20,7 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 class DynamicColorPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         fun Apk.ResourceContainer.setColors(configuration: String, resources: Map<String, String>) =
-            setGroup("color", resources.mapValues { it.value.toColorResource(this) }, configuration)
+            setGroup("color", resources.mapValues { it.value.toColorResource(context.resourceTable) }, configuration)
 
         context.base.apply {
             setColors(

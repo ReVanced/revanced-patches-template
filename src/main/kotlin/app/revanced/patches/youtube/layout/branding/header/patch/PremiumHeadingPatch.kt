@@ -8,6 +8,7 @@ import app.revanced.patcher.resource.reference
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHeadingCompatibility
+import app.revanced.util.resources.ResourceUtils.resourceTable
 
 @Patch
 @Name("premium-heading")
@@ -20,9 +21,9 @@ class PremiumHeadingPatch : ResourcePatch {
         val modes = arrayOf("light", "dark")
 
         modes.forEach { mode ->
-            val resource = reference(context.apkBundle.resources.resolve("drawable", "${original}_$mode"))
+            val resource = reference(context.resourceTable.resolveLocal("drawable", "${original}_$mode"))
             arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach dpi@{ size ->
-                val target = context.apkBundle.resources.query(size)
+                val target = context.resourceTable.query(size)
                 target.set("drawable", "${replacement}_$mode", resource, size)
             }
         }

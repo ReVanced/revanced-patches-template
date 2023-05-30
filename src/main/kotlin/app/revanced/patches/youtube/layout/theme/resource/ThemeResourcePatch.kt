@@ -14,6 +14,7 @@ import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePat
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.splashScreenBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.resourceTable
 import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
 import org.w3c.dom.Element
@@ -32,12 +33,12 @@ class ThemeResourcePatch : ResourcePatch {
 
         // Edit theme colors via resources.
         with(context.base) {
-            darkThemeBackgroundColor?.let { setMultiple("color", dark, it.toColorResource(this)) }
-            lightThemeBackgroundColor?.let { setMultiple("color", light, it.toColorResource(this)) }
+            darkThemeBackgroundColor?.let { setMultiple("color", dark, it.toColorResource(context.resourceTable)) }
+            lightThemeBackgroundColor?.let { setMultiple("color", light, it.toColorResource(context.resourceTable)) }
 
             // Edit splash screen background color.
             splashScreenBackgroundColor?.let {
-                val colorResourceId = set("color", COLOR_NAME, it.toColorResource(this))
+                val colorResourceId = set("color", COLOR_NAME, it.toColorResource(context.resourceTable))
 
                 // change the splash screen color
                 set(

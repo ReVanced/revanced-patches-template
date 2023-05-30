@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.layout.theme.annotations.ThemeCompatibility
 import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.resourceTable
 import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
@@ -18,16 +19,19 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        val resources = context.base
-
-        resources.setGroup(
-            "color", mapOf(
-                "gray_7" to backgroundColor!!.toColorResource(resources),
-                "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource(resources)
+        with(context.base) {
+            setGroup(
+                "color", mapOf(
+                    "gray_7" to backgroundColor!!.toColorResource(context.resourceTable),
+                    "dark_brightaccent_background_press" to accentPressedColor!!.toColorResource(context.resourceTable)
+                )
             )
-        )
-        resources.setMultiple("color", listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"), accentColor!!.toColorResource(resources))
-
+            setMultiple(
+                "color",
+                listOf("dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light"),
+                accentColor!!.toColorResource(context.resourceTable)
+            )
+        }
     }
 
     companion object : OptionsContainer() {

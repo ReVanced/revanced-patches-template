@@ -3,6 +3,7 @@ package app.revanced.util.resources
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
+import app.revanced.patcher.apk.ApkBundle
 import app.revanced.patcher.apk.ResourceFile
 import app.revanced.patcher.resource.Resource
 import app.revanced.patcher.resource.StringResource
@@ -21,8 +22,8 @@ internal object ResourceUtils {
         it.contents = block(String(it.contents)).toByteArray()
     }
 
-    internal fun String.toColorResource(resources: Apk.ResourceContainer) =
-        if (startsWith('@')) reference(resources, this) else color(this)
+    internal fun String.toColorResource(resourceTable: ApkBundle.ResourceTable) =
+        if (startsWith('@')) reference(resourceTable, this) else color(this)
 
     internal fun Apk.ResourceContainer.setMultiple(
         type: String,
@@ -34,13 +35,15 @@ internal object ResourceUtils {
         names.associateWith { value }, configuration
     )
 
-    internal fun Apk.ResourceContainer.setString(name: String, value: String) = set("string", name, StringResource(value))
+    internal fun Apk.ResourceContainer.setString(name: String, value: String) =
+        set("string", name, StringResource(value))
 
-    internal fun Apk.ResourceContainer.setStrings(resources: Map<String, String>) = setGroup("string", resources.mapValues {
-        StringResource(
-            it.value
-        )
-    })
+    internal fun Apk.ResourceContainer.setStrings(resources: Map<String, String>) =
+        setGroup("string", resources.mapValues {
+            StringResource(
+                it.value
+            )
+        })
 
     /**
      * Copy resources from the current class loader to the resource directory.
@@ -68,9 +71,11 @@ internal object ResourceUtils {
     } else this
 
     internal fun ResourceContext.resourceIdOf(type: String, name: String) =
-        apkBundle.resources.resolve(type, name).toLong()
+        apkBundle.resources.resolveLocal(type, name).toLong()
 
     internal val ResourceContext.base get() = apkBundle.base.resources
+
+    internal val ResourceContext.resourceTable get() = apkBundle.resources
 
     internal fun ResourceContext.manifestEditor() = base.openXmlFile(Apk.manifest)
 
