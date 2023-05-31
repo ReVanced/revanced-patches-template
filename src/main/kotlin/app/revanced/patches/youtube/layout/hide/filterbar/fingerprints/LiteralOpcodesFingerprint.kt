@@ -4,8 +4,9 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-
-abstract class LiteralOpcodesFingerprint(opcodes: List<Opcode>, literal: Long) : MethodFingerprint(
+abstract class LiteralOpcodesFingerprint(returnType: String?, accessFlags: Int?, opcodes: List<Opcode>, literal: Long) : MethodFingerprint(
+    returnType = returnType,
+    accessFlags = accessFlags,
     opcodes = opcodes,
     customFingerprint = { methodDef, _ ->
         methodDef.implementation?.instructions?.any { instruction ->

@@ -1,8 +1,11 @@
 package app.revanced.patches.twitch.misc.settings.fingerprints
 
+import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import org.jf.dexlib2.AccessFlags
 
 object MenuGroupsUpdatedFingerprint : MethodFingerprint(
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { methodDef, _ ->
         methodDef.definingClass.endsWith("/SettingsMenuPresenter\$Event\$MenuGroupsUpdated;")
                 && methodDef.name == "<init>"
