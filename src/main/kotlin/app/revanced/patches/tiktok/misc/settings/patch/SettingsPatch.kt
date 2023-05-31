@@ -25,6 +25,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 import org.jf.dexlib2.iface.reference.StringReference
+import org.jf.dexlib2.iface.reference.TypeReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
@@ -104,14 +105,16 @@ class SettingsPatch : BytecodePatch(
             )
 
             // Patch option OnClick Event
-            val type = instruction<ReferenceInstruction>(index).reference.toString()
-            context.findClass(type)!!.mutableClass.methods.first { type == "onClick" }.addInstructions(
-                0,
-            """
-                     invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
-                     return-void
-                 """
-            )
+            with(((instruction(index) as ReferenceInstruction).reference as TypeReference).type) {
+                context.findClass(this)!!.mutableClass.methods.first { it.name == "onClick" }
+                    .addInstructions(
+                        0,
+                        """
+                            invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsMenu;->startSettingsActivity()V
+                            return-void
+                        """
+                    )
+            }
         }
     }
 }
