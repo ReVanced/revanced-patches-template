@@ -36,7 +36,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
         KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(

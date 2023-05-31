@@ -17,7 +17,7 @@ import org.w3c.dom.Element
 @Description("Changes the package name.")
 @Version("0.0.1")
 class ChangePackageNamePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         packageName?.let { packageName ->
             val packageNameRegex = Regex("^[a-z]\\w*(\\.[a-z]\\w*)+\$")
             if (!packageName.matches(packageNameRegex))

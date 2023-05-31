@@ -27,7 +27,7 @@ class AlbumCardsPatch : BytecodePatch(
         AlbumCardsFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         AlbumCardsFingerprint.result?.let {
             it.mutableMethod.apply {
                 val checkCastAnchorIndex = it.scanResult.patternScanResult!!.endIndex

@@ -19,7 +19,7 @@ import app.revanced.patches.candylinkvpn.fingereprints.IsPremiumPurchasedFingerp
 class UnlockProPatch : BytecodePatch(
     listOf(IsPremiumPurchasedFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         IsPremiumPurchasedFingerprint.result?.mutableMethod?.addInstructions(
             0,
             """

@@ -23,7 +23,7 @@ import java.io.InvalidClassException
 class JsonHookPatch : BytecodePatch(
     listOf(LoganSquareFingerprint)
 ), Closeable {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         JsonHookPatchFingerprint.also {
             // Make sure the integrations are present.
             val jsonHookPatch = context.classes.findClassProxied { classDef -> classDef.type == JSON_HOOK_PATCH_CLASS_DESCRIPTOR }

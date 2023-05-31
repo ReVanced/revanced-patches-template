@@ -22,7 +22,7 @@ class MusicVideoAdsPatch : BytecodePatch(
         ShowMusicVideoAdsConstructorFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         ShowMusicVideoAdsFingerprint.resolve(context, ShowMusicVideoAdsConstructorFingerprint.result!!.classDef)
 
         val result = ShowMusicVideoAdsFingerprint.result!!

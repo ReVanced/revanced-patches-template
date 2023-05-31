@@ -17,7 +17,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class VerticalScrollPatch : BytecodePatch(
     listOf(CanScrollVerticallyFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         CanScrollVerticallyFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveResultIndex = it.scanResult.patternScanResult!!.endIndex

@@ -27,7 +27,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class SeekbarColorBytecodePatch : BytecodePatch(
     listOf(CreateDarkThemeSeekbarFingerprint, SetSeekbarClickedColorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         CreateDarkThemeSeekbarFingerprint.result?.mutableMethod?.apply {
             var registerIndex = indexOfFirstConstantInstruction(SeekbarColorResourcePatch.inlineTimeBarColorizedBarPlayedColorDarkId) + 2
             var colorRegister = (instruction(registerIndex) as OneRegisterInstruction).registerA

@@ -28,7 +28,7 @@ import org.jf.dexlib2.util.MethodUtil
 class SettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, SetThemeFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // TODO: Remove this when it is only required at one place.
         fun getSetThemeInstructionString(
             registers: String = "v0",

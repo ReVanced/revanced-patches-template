@@ -22,7 +22,7 @@ class FixGoogleLoginPatch : BytecodePatch(
         GoogleAuthAvailableFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         listOf(
             GoogleOneTapAuthAvailableFingerprint,
             GoogleAuthAvailableFingerprint

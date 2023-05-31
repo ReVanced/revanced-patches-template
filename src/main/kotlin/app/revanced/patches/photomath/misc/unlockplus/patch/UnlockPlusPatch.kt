@@ -24,7 +24,7 @@ class UnlockPlusPatch : BytecodePatch(
         IsPlusUnlockedFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         IsPlusUnlockedFingerprint.result?.mutableMethod?.apply {
             addInstructions(
                 0,

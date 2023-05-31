@@ -27,7 +27,7 @@ class HideAdsPatch : BytecodePatch(
         ConvertHelpFeedItemListFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         listOf(
             FeedItemListCloneFingerprint,
             ConvertHelpFeedItemListFingerprint

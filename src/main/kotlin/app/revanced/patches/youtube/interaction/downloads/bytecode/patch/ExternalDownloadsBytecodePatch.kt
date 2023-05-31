@@ -23,7 +23,7 @@ class ExternalDownloadsBytecodePatch : BytecodePatch() {
         const val BUTTON_DESCRIPTOR = "Lapp/revanced/integrations/videoplayer/ExternalDownloadButton;"
     }
 
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         /*
         initialize the control
          */

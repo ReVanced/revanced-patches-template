@@ -22,7 +22,7 @@ import app.revanced.patches.trakt.fingerprints.RealmUserSettingsFingerprint
 class UnlockProPatch : BytecodePatch(
     listOf(RealmUserSettingsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         RealmUserSettingsFingerprint.result?.classDef?.let { realUserSettingsClass ->
             arrayOf(IsVIPFingerprint, IsVIPEPFingerprint).onEach { fingerprint ->
                 // Resolve both fingerprints on the same class.

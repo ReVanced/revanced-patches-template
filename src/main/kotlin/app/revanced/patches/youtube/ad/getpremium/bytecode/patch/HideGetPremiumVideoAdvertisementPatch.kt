@@ -21,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @HideGetPremiumCompatibility
 @Version("0.0.1")
 class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint,)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",

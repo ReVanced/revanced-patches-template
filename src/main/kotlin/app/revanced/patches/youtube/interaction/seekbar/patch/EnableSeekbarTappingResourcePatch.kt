@@ -13,7 +13,7 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 @Version("0.0.1")
 class EnableSeekbarTappingResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",

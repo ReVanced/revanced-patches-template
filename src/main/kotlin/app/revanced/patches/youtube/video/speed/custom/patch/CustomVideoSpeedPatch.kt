@@ -30,7 +30,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
         SpeedArrayGeneratorFingerprint, SpeedLimiterFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             TextPreference(
                 key = "revanced_custom_playback_speeds",

@@ -21,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class ProUnlockPatch : BytecodePatch(
     listOf(ProUnlockFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         ProUnlockFingerprint.result?.let { result ->
             val registerIndex = result.scanResult.patternScanResult!!.endIndex - 1
 

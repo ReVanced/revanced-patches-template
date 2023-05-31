@@ -29,7 +29,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
         InitializeCustomTabSupportFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_external_browser",

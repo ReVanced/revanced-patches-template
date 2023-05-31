@@ -29,7 +29,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class LithoFilterPatch : BytecodePatch(
     listOf(ComponentContextParserFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         ComponentContextParserFingerprint.result?.also {
             arrayOf(
                 EmptyComponentBuilderFingerprint, ReadComponentIdentifierFingerprint, ProtobufBufferFingerprint

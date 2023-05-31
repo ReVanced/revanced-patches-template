@@ -29,7 +29,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 class EnableSeekbarTappingPatch : BytecodePatch(
     listOf(AccessibilityPlayerProgressTimeFingerprint, SeekbarTappingFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // Find the required methods to tap the seekbar.
         val seekbarTappingMethods =
             AccessibilityPlayerProgressTimeFingerprint.result?.classDef?.methods?.let { methods ->

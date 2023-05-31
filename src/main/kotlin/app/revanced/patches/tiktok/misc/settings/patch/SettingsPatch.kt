@@ -36,7 +36,7 @@ class SettingsPatch : BytecodePatch(
         SettingsOnViewCreatedFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsOnViewCreatedFingerprint.result?.let {
             AboutViewFingerprint.resolve(context, it.method, it.classDef)
         }

@@ -36,7 +36,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @NavigationButtonsCompatibility
 @Version("0.0.1")
 class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",

@@ -20,7 +20,7 @@ import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 @OldQualityLayoutCompatibility
 @Version("0.0.1")
 class OldQualityLayoutPatch : BytecodePatch(listOf(QualityMenuViewInflateFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val inflateFingerprintResult = QualityMenuViewInflateFingerprint.result!!
         val method = inflateFingerprintResult.mutableMethod
         val instructions = method.implementation!!.instructions

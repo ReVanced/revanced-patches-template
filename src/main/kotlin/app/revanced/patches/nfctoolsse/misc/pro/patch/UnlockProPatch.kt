@@ -22,7 +22,7 @@ class UnlockProPatch : BytecodePatch(
         IsLicenseRegisteredFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         IsLicenseRegisteredFingerprint.result?.mutableMethod?.apply {
             addInstructions(
                 0,

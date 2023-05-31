@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class SanitizeUrlQueryPatch : BytecodePatch(
     listOf(ShareLinkFactoryFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         ShareLinkFactoryFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1

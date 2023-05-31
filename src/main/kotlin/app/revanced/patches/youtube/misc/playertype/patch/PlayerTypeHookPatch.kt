@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 class PlayerTypeHookPatch : BytecodePatch(
     listOf(PlayerTypeFingerprint, VideoStateFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
 
         PlayerTypeFingerprint.result?.let {
             it.mutableMethod.apply {

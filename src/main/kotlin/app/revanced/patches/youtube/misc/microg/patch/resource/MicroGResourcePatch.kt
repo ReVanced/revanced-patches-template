@@ -26,7 +26,7 @@ import app.revanced.util.microg.MicroGResourceHelper
 @MicroGPatchCompatibility
 @Version("0.0.1")
 class MicroGResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(
             Preference(
                 StringResource("microg_settings", "MicroG Settings"),

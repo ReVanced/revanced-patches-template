@@ -14,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 @HideFloatingMicrophoneButtonCompatibility
 @Version("0.0.1")
 class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_floating_microphone_button",

@@ -25,7 +25,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "settings"
 ) {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         super.execute(context)
 
         // Used for a fingerprint from SettingsPatch.

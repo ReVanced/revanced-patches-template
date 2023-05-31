@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 class HideFloatingMicrophoneButtonPatch : BytecodePatch(
     listOf(ShowFloatingMicrophoneButtonFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         ShowFloatingMicrophoneButtonFingerprint.result?.let { result ->
             with(result.mutableMethod) {
                 val insertIndex = result.scanResult.patternScanResult!!.startIndex + 1

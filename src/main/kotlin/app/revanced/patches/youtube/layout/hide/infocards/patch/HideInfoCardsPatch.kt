@@ -33,7 +33,7 @@ class HideInfoCardsPatch : BytecodePatch(
         InfocardsMethodCallFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
        InfocardsIncognitoFingerprint.also {
             it.resolve(context, InfocardsIncognitoParentFingerprint.result!!.classDef)
         }.result!!.mutableMethod.apply {

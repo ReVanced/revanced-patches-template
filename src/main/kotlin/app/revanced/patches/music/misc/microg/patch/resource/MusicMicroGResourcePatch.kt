@@ -19,7 +19,7 @@ import app.revanced.util.microg.MicroGResourceHelper
 @MusicMicroGPatchCompatibility
 @Version("0.0.2")
 class MusicMicroGResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         // update manifest
         MicroGResourceHelper.patchManifest(
             context,

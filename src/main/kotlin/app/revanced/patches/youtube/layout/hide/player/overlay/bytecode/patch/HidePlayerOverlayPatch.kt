@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 @HidePlayerOverlayPatchCompatibility
 @Version("0.0.2")
 class HidePlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         CreatePlayerOverviewFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val viewRegisterIndex = implementation!!.instructions.indexOfFirst {

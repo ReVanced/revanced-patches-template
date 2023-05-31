@@ -21,7 +21,7 @@ import org.w3c.dom.Element
 
 @DependsOn([SettingsPatch::class, SeekbarPreferencesPatch::class])
 class ThemeResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(
             TextPreference(
                 "revanced_seekbar_color",

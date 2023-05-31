@@ -23,7 +23,7 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 @Version("0.0.1")
 class HideAdsResourcePatch : ResourcePatch {
 
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_gray_separator",

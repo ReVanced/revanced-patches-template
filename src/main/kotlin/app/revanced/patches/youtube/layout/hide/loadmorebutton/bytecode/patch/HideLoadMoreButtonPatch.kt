@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 @HideLoadMoreButtonCompatibility
 @Version("0.0.1")
 class HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         HideLoadMoreButtonFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveRegisterIndex = it.scanResult.patternScanResult!!.endIndex

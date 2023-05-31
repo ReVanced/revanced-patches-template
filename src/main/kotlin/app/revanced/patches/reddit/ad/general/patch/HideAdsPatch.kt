@@ -19,7 +19,7 @@ import org.jf.dexlib2.immutable.reference.ImmutableStringReference
 @HideAdsCompatibility
 @Version("0.0.1")
 class HideAdsPatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         context.classes.forEach { classDef ->
             classDef.methods.forEach methodLoop@{ method ->
                 val implementation = method.implementation ?: return@methodLoop

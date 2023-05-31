@@ -14,7 +14,7 @@ import jdk.jfr.Name
 @DependsOn([SettingsPatch::class])
 @HidePlayerOverlayPatchCompatibility
 class HidePlayerOverlayResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_overlay",

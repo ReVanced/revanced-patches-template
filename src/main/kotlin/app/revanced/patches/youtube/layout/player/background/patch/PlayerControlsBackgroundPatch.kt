@@ -17,7 +17,7 @@ import org.w3c.dom.Element
 @PlayerControlsBackgroundCompatibility
 @Version("0.0.1")
 class PlayerControlsBackgroundPatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         context.base.openXmlFile(RESOURCE_FILE_PATH).use { editor ->
             editor.file.doRecursively node@{ node ->
                 if (node !is Element) return@node

@@ -24,7 +24,7 @@ class UnlockPaidWidgetsPatch : BytecodePatch(
         WeatherWidgetUnlockFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         listOf(
             AgendaDaysWidgetUnlockFingerprint,
             CalendarBigWidgetUnlockFingerprint,

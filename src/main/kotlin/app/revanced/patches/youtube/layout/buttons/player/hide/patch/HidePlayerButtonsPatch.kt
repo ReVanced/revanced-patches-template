@@ -32,7 +32,7 @@ class HidePlayerButtonsPatch : BytecodePatch(
         const val HAS_PREVIOUS = 6
     }
 
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_buttons",

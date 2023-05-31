@@ -26,7 +26,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 class AutoClaimChannelPointPatch : BytecodePatch(
     listOf(CommunityPointsButtonViewDelegateFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             SwitchPreference(
                 "revanced_auto_claim_channel_points",

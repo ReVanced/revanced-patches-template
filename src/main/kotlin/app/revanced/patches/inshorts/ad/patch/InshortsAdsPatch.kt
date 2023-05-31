@@ -19,7 +19,7 @@ import app.revanced.patches.inshorts.ad.fingerprints.InshortsAdsFingerprint
 class HideAdsPatch : BytecodePatch(
     listOf(InshortsAdsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         InshortsAdsFingerprint.result?.let { result ->
             result.apply {
                 mutableMethod.addInstruction(

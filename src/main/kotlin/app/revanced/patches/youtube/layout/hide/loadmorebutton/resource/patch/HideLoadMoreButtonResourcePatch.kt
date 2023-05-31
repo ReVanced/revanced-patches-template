@@ -15,7 +15,7 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 @HideLoadMoreButtonCompatibility
 class HideLoadMoreButtonResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_load_more_button",

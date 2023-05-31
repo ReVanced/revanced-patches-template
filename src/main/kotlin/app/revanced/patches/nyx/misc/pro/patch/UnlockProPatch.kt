@@ -20,7 +20,7 @@ class UnlockProPatch : BytecodePatch(
         CheckProFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val method = CheckProFingerprint.result!!.mutableMethod
         method.addInstructions(
             0,

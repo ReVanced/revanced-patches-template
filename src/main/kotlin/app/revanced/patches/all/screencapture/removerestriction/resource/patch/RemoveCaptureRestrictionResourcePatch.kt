@@ -12,7 +12,7 @@ import org.w3c.dom.Element
 @Description("Sets allowAudioPlaybackCapture in manifest to true.")
 @Version("0.0.1")
 internal class RemoveCaptureRestrictionResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         // create an xml editor instance
         context.manifestEditor().use { dom ->
             // get the application node

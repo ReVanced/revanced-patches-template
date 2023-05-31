@@ -27,7 +27,7 @@ class HideEmailAddressPatch : BytecodePatch(
         AccountSwitcherAccessibilityLabelFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         AccountSwitcherAccessibilityLabelFingerprint.result?.let {
             it.mutableMethod.apply {
                 val setVisibilityConstIndex = it.scanResult.patternScanResult!!.endIndex

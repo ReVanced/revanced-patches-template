@@ -18,7 +18,7 @@ import app.revanced.patches.idaustria.detection.shared.annotations.DetectionComp
 class RootDetectionPatch : BytecodePatch(
     listOf(RootDetectionFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         RootDetectionFingerprint.result!!.mutableMethod.addInstructions(0, "return-void")
     }
 }

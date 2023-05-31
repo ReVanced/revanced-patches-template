@@ -13,7 +13,7 @@ import app.revanced.patches.memegenerator.detection.signature.fingerprint.Verify
 class SignatureVerificationPatch : BytecodePatch(
     listOf(VerifySignatureFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         VerifySignatureFingerprint.result?.apply {
             mutableMethod.replaceInstructions(
                 0,

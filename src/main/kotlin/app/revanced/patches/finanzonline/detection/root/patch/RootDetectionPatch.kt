@@ -19,7 +19,7 @@ import app.revanced.patches.finanzonline.detection.shared.annotations.DetectionC
 class RootDetectionPatch : BytecodePatch(
     listOf(RootDetectionFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         RootDetectionFingerprint.result?.mutableMethod?.addInstructions(
             0,
             """

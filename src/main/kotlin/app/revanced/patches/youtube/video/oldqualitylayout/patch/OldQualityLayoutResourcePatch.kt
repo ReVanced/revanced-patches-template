@@ -11,7 +11,7 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class OldQualityLayoutResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_show_old_video_menu",

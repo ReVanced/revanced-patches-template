@@ -20,7 +20,7 @@ class PremiumIconPatch : BytecodePatch(
         PremiumIconFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val method = PremiumIconFingerprint.result!!.mutableMethod
         method.addInstructions(
             0,

@@ -22,7 +22,7 @@ class BypassCertificateChecksPatch : BytecodePatch(
         CheckCertificateFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         CheckCertificateFingerprint.result?.let { result ->
             val noMatchIndex = result.scanResult.stringsScanResult!!.matches.first().index
 

@@ -32,7 +32,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 @HideAdsCompatibility
 @Version("0.0.1")
 class HideAdsPatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         context.classes.forEach { classDef ->
             classDef.methods.forEach { method ->
                 with(method.implementation) {

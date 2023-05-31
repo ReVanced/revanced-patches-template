@@ -21,7 +21,7 @@ class UnlockLicensePatch : BytecodePatch(
         CheckLicenseFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) = CheckLicenseFingerprint
+    override suspend fun execute(context: BytecodeContext) = CheckLicenseFingerprint
         .result
         ?.mutableMethod
         // Return the method early, which prompts the user with a non dismissible dialog, when the trial period is over.

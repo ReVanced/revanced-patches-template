@@ -16,7 +16,7 @@ import org.w3c.dom.Element
 @RemoveBroadcastsRestrictionCompatibility
 @Version("0.0.1")
 class RemoveBroadcastsRestrictionPatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         context.manifestEditor().use { dom ->
             val applicationNode = dom
                 .file

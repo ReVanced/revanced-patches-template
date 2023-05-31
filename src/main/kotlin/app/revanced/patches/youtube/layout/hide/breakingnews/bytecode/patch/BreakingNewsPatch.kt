@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class BreakingNewsPatch : BytecodePatch(
     listOf(BreakingNewsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         BreakingNewsFingerprint.result?.let {
             val insertIndex = it.scanResult.patternScanResult!!.endIndex - 1
             val moveResultIndex = insertIndex - 1

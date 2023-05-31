@@ -83,7 +83,7 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
         )
     }
 
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(
             Preference(
                 StringResource("revanced_ryd_settings_title", "Return YouTube Dislike"),

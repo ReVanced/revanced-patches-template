@@ -26,7 +26,7 @@ class RemoveUpgradeButtonPatch : BytecodePatch(
         PivotBarConstructorFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val result = PivotBarConstructorFingerprint.result!!
         val implementation = result.mutableMethod.implementation!!
 

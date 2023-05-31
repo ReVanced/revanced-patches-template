@@ -20,7 +20,7 @@ class HexEditorAdsPatch : BytecodePatch(
         PrimaryAdsFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val method = PrimaryAdsFingerprint.result!!.mutableMethod
         
         method.replaceInstructions(

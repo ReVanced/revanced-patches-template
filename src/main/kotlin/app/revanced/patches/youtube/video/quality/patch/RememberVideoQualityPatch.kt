@@ -38,7 +38,7 @@ class RememberVideoQualityPatch : BytecodePatch(
         VideoQualityItemOnClickParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // This is bloated as each value has it's own String key/value
         // ideally the entries would be raw values (and not a key to a String resource)
         val entries = listOf(

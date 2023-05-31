@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.setString
 @Version("0.0.1")
 class ExternalDownloadsResourcePatch : ResourcePatch {
 
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_external_downloader_preference_screen",

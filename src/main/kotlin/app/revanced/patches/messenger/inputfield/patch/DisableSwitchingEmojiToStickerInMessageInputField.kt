@@ -16,7 +16,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Compatibility([Package("com.facebook.orca")])
 @Version("0.0.1")
 class DisableSwitchingEmojiToStickerInMessageInputField : BytecodePatch(listOf(SwitchMessangeInputEmojiButtonFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SwitchMessangeInputEmojiButtonFingerprint.result?.let {
             val setStringIndex = it.scanResult.patternScanResult!!.startIndex + 2
 

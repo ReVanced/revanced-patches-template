@@ -17,7 +17,7 @@ import app.revanced.patches.vsco.misc.pro.fingerprints.RevCatSubscriptionFingerp
 class UnlockProPatch : BytecodePatch(
     listOf(RevCatSubscriptionFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         RevCatSubscriptionFingerprint.result?.mutableMethod?.apply {
             // Set isSubscribed to true.
             addInstructions(

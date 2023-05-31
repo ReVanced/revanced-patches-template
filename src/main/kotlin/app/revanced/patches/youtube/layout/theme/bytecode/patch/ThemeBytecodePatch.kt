@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 @ThemeCompatibility
 @Version("0.0.1")
 class ThemeBytecodePatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext) =
+    override suspend fun execute(context: BytecodeContext) =
         LithoColorHookPatch.lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getValue")
 
     companion object : OptionsContainer() {

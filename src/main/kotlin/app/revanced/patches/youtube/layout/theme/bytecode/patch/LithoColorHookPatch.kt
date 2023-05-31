@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.LithoThem
 @ThemeCompatibility
 @Version("0.0.1")
 class LithoColorHookPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         LithoThemeFingerprint.result?.let {
             insertionIndex = it.scanResult.patternScanResult!!.endIndex - 1
             colorRegister = "p1"

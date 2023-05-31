@@ -46,7 +46,7 @@ class HideShortsComponentsPatch : BytecodePatch(
         SetPivotBarVisibilityParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // region Hide the Shorts shelf.
 
         ReelConstructorFingerprint.result?.let {

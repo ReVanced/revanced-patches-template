@@ -18,7 +18,7 @@ import app.revanced.patches.messenger.inputfield.fingerprints.SendTypingIndicato
 @Compatibility([Package("com.facebook.orca")])
 @Version("0.0.1")
 class DisableTypingIndicator : BytecodePatch(listOf(SendTypingIndicatorFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         SendTypingIndicatorFingerprint.result?.mutableMethod?.replaceInstruction(0, "return-void")
             ?: SendTypingIndicatorFingerprint.error()
     }

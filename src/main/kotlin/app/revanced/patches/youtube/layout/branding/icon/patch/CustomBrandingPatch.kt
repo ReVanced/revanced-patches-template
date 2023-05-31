@@ -22,7 +22,7 @@ import java.io.File
 @CustomBrandingCompatibility
 @Version("0.0.1")
 class CustomBrandingPatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         fun copyResources(resourceGroups: Map<Apk.ResourceContainer, ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)

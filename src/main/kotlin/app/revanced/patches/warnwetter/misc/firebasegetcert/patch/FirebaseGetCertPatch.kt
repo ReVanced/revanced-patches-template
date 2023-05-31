@@ -20,7 +20,7 @@ class FirebaseGetCertPatch : BytecodePatch(
         GetMessagingCertFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val spoofedInstruction =
             """
                 const-string v0, "0799DDF0414D3B3475E88743C91C0676793ED450"

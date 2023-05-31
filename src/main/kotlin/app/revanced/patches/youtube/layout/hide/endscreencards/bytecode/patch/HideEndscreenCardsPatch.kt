@@ -32,7 +32,7 @@ class HideEndscreenCardsPatch : BytecodePatch(
         LayoutVideoFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         fun MethodFingerprint.injectHideCall() {
             val layoutResult = result ?: error()
             layoutResult.mutableMethod.apply {

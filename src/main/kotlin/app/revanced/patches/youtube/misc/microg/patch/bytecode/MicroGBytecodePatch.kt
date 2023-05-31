@@ -40,7 +40,7 @@ class MicroGBytecodePatch : BytecodePatch(
         WatchWhileActivityFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // apply common microG patch
         MicroGBytecodeHelper.patchBytecode(
             context, arrayOf(

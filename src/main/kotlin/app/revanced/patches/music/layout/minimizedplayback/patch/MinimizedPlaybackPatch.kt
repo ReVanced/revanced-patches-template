@@ -20,7 +20,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
         MinimizedPlaybackManagerFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         MinimizedPlaybackManagerFingerprint.result!!.mutableMethod.addInstructions(
             0, """
                 return-void

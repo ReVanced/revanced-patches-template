@@ -45,7 +45,7 @@ class VideoInformationPatch : BytecodePatch(
         OnPlaybackSpeedItemClickFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         with(PlayerInitFingerprint.result!!) {
             playerInitMethod = mutableClass.methods.first { MethodUtil.isConstructor(it) }
 

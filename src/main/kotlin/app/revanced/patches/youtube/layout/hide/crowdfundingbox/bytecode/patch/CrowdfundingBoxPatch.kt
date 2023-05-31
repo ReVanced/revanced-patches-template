@@ -27,7 +27,7 @@ class CrowdfundingBoxPatch : BytecodePatch(
         CrowdfundingBoxFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         CrowdfundingBoxFingerprint.result?.let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex

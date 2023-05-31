@@ -215,7 +215,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
         )
     }
 
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(
             Preference(
                 StringResource("revanced_sponsorblock_settings_title", "SponsorBlock"),

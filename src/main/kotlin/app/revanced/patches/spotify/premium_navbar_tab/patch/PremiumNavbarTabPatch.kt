@@ -27,7 +27,7 @@ class PremiumNavbarTabPatch : BytecodePatch(
         AddPremiumNavbarTabParentFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val parentResult = AddPremiumNavbarTabParentFingerprint.result!!
         AddPremiumNavbarTabFingerprint.resolve(context, parentResult.classDef)
 

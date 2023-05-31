@@ -10,7 +10,7 @@ import org.w3c.dom.Element
 
 @DependsOn([SettingsPatch::class])
 class SeekbarColorResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         // Edit theme colors via bytecode.
         // For that the resource id is used in a bytecode patch to change the color.
         inlineTimeBarColorizedBarPlayedColorDarkId = context.resourceIdOf("color","inline_time_bar_colorized_bar_played_color_dark")

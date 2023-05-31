@@ -30,7 +30,7 @@ class DebugModePatch : BytecodePatch(
         ShouldShowDebugOptionsFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         listOf(
             IsDebugConfigEnabledFingerprint,
             IsOmVerificationEnabledFingerprint,

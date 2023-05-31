@@ -28,7 +28,7 @@ class FeedFilterPatch : BytecodePatch(
         SettingsStatusLoadFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         val method = FeedApiServiceLIZFingerprint.result!!.mutableMethod
         for ((index, instruction) in method.implementation!!.instructions.withIndex()) {
             if (instruction.opcode != Opcode.RETURN_OBJECT) continue

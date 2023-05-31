@@ -11,7 +11,7 @@ import app.revanced.patches.syncforreddit.detection.piracy.fingerprints.PiracyDe
 @Description("Disables detection of modified versions.")
 @Version("0.0.1")
 class DisablePiracyDetectionPatch : BytecodePatch(listOf(PiracyDetectionFingerprint)) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         PiracyDetectionFingerprint.result?.mutableMethod?.apply {
             addInstructions(
                 0,

@@ -38,7 +38,7 @@ class MusicMicroGBytecodePatch : BytecodePatch(
     // - "com.google.android.gms.phenotype.PACKAGE_NAME",
     // - "com.google.android.gms.phenotype.UPDATE",
     // - "com.google.android.gms.phenotype",
-    override fun execute(context: BytecodeContext) =
+    override suspend fun execute(context: BytecodeContext) =
         // apply common microG patch
         MicroGBytecodeHelper.patchBytecode(
             context,

@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 class ClientSpoofPatch : BytecodePatch(
     listOf(UserAgentHeaderBuilderFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         UserAgentHeaderBuilderFingerprint.result?.let { result ->
             val insertIndex = result.scanResult.patternScanResult!!.endIndex
            result.mutableMethod.apply {

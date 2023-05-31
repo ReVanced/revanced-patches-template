@@ -31,7 +31,7 @@ class HideFilterBarPatch : BytecodePatch(
         FilterBarHeightFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         FilterBarHeightFingerprint.patch<TwoRegisterInstruction> { register ->
             """
                 invoke-static { v$register }, $INTEGRATIONS_CLASS_DESCRIPTOR->hideInFeed(I)I

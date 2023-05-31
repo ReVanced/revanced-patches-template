@@ -40,7 +40,7 @@ class SettingsPatch : BytecodePatch(
         MenuGroupsOnClickFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // Hook onCreate to handle fragment creation
         with(SettingsActivityOnCreateFingerprint.result!!) {
             val insertIndex = mutableMethod.implementation!!.instructions.size - 2

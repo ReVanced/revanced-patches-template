@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.toColorResource
 @ThemeCompatibility
 @Version("0.0.1")
 class ThemePatch : ResourcePatch {
-    override fun execute(context: ResourceContext) {
+    override suspend fun execute(context: ResourceContext) {
         with(context.base) {
             setGroup(
                 "color", mapOf(

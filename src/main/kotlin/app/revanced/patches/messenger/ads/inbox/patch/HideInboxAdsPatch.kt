@@ -16,7 +16,7 @@ import app.revanced.patches.messenger.ads.inbox.fingerprints.LoadInboxAdsFingerp
 class HideInboxAdsPatch : BytecodePatch(
     listOf(LoadInboxAdsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         LoadInboxAdsFingerprint.result?.mutableMethod?.apply {
             this.replaceInstruction(0, "return-void")
         } ?: LoadInboxAdsFingerprint.error()

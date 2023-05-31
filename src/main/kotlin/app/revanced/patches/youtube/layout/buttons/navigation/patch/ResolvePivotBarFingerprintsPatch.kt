@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.Pivot
 class ResolvePivotBarFingerprintsPatch : BytecodePatch(
     listOf(PivotBarConstructorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override suspend fun execute(context: BytecodeContext) {
         // imageOnlyTabResourceId is used in InitializeButtonsFingerprint fingerprint
         imageOnlyTabResourceId = ResourceMappingPatch.resourceIdOf("layout", "image_only_tab")
 
