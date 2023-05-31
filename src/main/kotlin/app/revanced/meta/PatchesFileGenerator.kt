@@ -15,7 +15,7 @@ internal interface PatchesFileGenerator {
         fun main(args: Array<String>) = PatchBundle.Jar(
             File("build/libs/").listFiles()!!.first {
                 it.name.startsWith("revanced-patches-") && it.name.endsWith(".jar")
-            }.absolutePath
+            }
         ).toList().also {
             if (it.isEmpty()) throw IllegalStateException("No patches found")
         }.let { bundle ->
