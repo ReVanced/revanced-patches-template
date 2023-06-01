@@ -1,14 +1,16 @@
 package app.revanced.util.resources
 
+import app.revanced.arsc.resource.ResourceContainer
+import app.revanced.arsc.resource.ResourceFile
+import app.revanced.arsc.resource.ResourceTable
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.apk.Apk
-import app.revanced.patcher.apk.ApkBundle
-import app.revanced.patcher.apk.ResourceFile
-import app.revanced.patcher.resource.Resource
-import app.revanced.patcher.resource.StringResource
-import app.revanced.patcher.resource.color
-import app.revanced.patcher.resource.reference
+import app.revanced.patcher.openXmlFile
+import app.revanced.arsc.resource.Resource
+import app.revanced.arsc.resource.StringResource
+import app.revanced.arsc.resource.color
+import app.revanced.arsc.resource.reference
 
 internal object ResourceUtils {
     internal fun ResourceContext.mergeStrings(resources: Map<String, String>) =
@@ -22,10 +24,10 @@ internal object ResourceUtils {
         it.contents = block(String(it.contents)).toByteArray()
     }
 
-    internal fun String.toColorResource(resourceTable: ApkBundle.ResourceTable) =
+    internal fun String.toColorResource(resourceTable: ResourceTable) =
         if (startsWith('@')) reference(resourceTable, this) else color(this)
 
-    internal fun Apk.ResourceContainer.setMultiple(
+    internal fun ResourceContainer.setMultiple(
         type: String,
         names: List<String>,
         value: Resource,
@@ -35,10 +37,10 @@ internal object ResourceUtils {
         names.associateWith { value }, configuration
     )
 
-    internal fun Apk.ResourceContainer.setString(name: String, value: String) =
+    internal fun ResourceContainer.setString(name: String, value: String) =
         set("string", name, StringResource(value))
 
-    internal fun Apk.ResourceContainer.setStrings(resources: Map<String, String>) =
+    internal fun ResourceContainer.setStrings(resources: Map<String, String>) =
         setGroup("string", resources.mapValues {
             StringResource(
                 it.value
@@ -57,7 +59,7 @@ internal object ResourceUtils {
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
      */
-    internal fun Apk.ResourceContainer.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
+    internal fun ResourceContainer.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
         val classLoader = ResourceUtils.javaClass.classLoader
 
         for (resourceGroup in resources) {

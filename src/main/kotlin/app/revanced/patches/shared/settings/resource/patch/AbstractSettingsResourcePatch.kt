@@ -1,8 +1,9 @@
 package app.revanced.patches.shared.settings.resource.patch
 
+import app.revanced.arsc.resource.ResourceContainer
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.apk.Apk
+import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.IResource
@@ -54,7 +55,7 @@ abstract class AbstractSettingsResourcePatch(
 
     internal companion object {
         private var revancedPreferenceNode: Node? = null
-        private var base: Apk.ResourceContainer? = null
+        private var base: ResourceContainer? = null
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {

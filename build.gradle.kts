@@ -27,6 +27,7 @@ repositories {
 }
 
 dependencies {
+    implementation("app.revanced:arsclib-utils:9.0.0")
     implementation("app.revanced:revanced-patcher:9.0.0")
     implementation("app.revanced:multidexlib2:2.5.3-a3836654")
     // Required for meta

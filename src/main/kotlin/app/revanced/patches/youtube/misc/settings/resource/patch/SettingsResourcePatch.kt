@@ -5,6 +5,7 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.openXmlFile
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch

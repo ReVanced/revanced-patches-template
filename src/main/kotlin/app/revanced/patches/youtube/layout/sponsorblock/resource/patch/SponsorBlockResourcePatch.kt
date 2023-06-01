@@ -3,6 +3,7 @@ package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch

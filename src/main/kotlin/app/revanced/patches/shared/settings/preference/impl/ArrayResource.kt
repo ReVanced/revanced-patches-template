@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patcher.resource.Array
+import app.revanced.arsc.resource.Array
 import app.revanced.patches.shared.settings.preference.IResource
 
 // TODO: allow specifying an array resource file instead of using a list of StringResources
@@ -14,6 +14,6 @@ internal class ArrayResource(
     override val name: String,
     private val items: List<StringResource>
 ) : IResource {
-    override val patcherValue = Array(items.map { app.revanced.patcher.resource.StringResource(it.value) })
+    override val patcherValue = Array(items.map { app.revanced.arsc.resource.StringResource(it.value) })
     override val type = "array"
 }

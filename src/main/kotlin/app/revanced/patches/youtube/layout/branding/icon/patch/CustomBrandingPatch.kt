@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.branding.icon.patch
 
+import app.revanced.arsc.resource.ResourceContainer
 import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -23,7 +24,7 @@ import java.io.File
 @Version("0.0.1")
 class CustomBrandingPatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
-        fun copyResources(resourceGroups: Map<Apk.ResourceContainer, ResourceUtils.ResourceGroup>) {
+        fun copyResources(resourceGroups: Map<ResourceContainer, ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
                 val iconPath = File(iconPathString)
 

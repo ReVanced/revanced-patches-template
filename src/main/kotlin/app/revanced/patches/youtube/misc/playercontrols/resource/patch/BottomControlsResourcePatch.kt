@@ -5,6 +5,7 @@ import app.revanced.patcher.ResourceContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.youtube.misc.playercontrols.annotation.PlayerControlsCompatibility
 import app.revanced.util.resources.ResourceUtils.base
@@ -17,7 +18,6 @@ class BottomControlsResourcePatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
         resourceContext = context
         targetXmlEditor = context.base.openXmlFile(TARGET_RESOURCE)
-
     }
 
     companion object {

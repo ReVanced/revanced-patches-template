@@ -1,6 +1,7 @@
 package app.revanced.patches.youtube.layout.seekbar.resource
 
 import app.revanced.patcher.ResourceContext
+import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
