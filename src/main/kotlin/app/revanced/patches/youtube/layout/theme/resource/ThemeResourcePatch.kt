@@ -76,16 +76,11 @@ class ThemeResourcePatch : ResourcePatch {
 
         // Edit splash screen background color for Android 12+.
 
-        // Add the splash screen background color to the colors.xml file.
-        context.xmlEditor["res/values/colors.xml"].use {
-            val resourcesNode = it.file.getElementsByTagName("resources").item(0) as Element
-
-            it.file.createElement("color").apply {
-                setAttribute("name", COLOR_NAME)
-                setAttribute("category", "color")
-                textContent = splashScreenBackgroundColor
-            }.also(resourcesNode::appendChild)
-        }
+        // Add a dynamic background color to the colors.xml file.
+        addResourceColor(context, "res/values/colors.xml",
+            REVANCED_DYNAMIC_THEME_COLOR, lightThemeBackgroundColor!!)
+        addResourceColor(context, "res/values-night/colors.xml",
+            REVANCED_DYNAMIC_THEME_COLOR, darkThemeBackgroundColor!!)
 
         // Point to the splash screen background color.
         context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use {
@@ -93,15 +88,32 @@ class ThemeResourcePatch : ResourcePatch {
 
             val backgroundColorItem = node.childNodes.item(1) as Element
             backgroundColorItem.apply {
-                setAttribute("android:drawable", "@color/$COLOR_NAME")
+                setAttribute("android:color", splashScreenBackgroundColor)
             }
         }
 
         return PatchResultSuccess()
     }
 
+    private fun addResourceColor(context: ResourceContext,
+        resourceFile: String,
+        colorName: String,
+        colorValue: String
+    ) {
+        context.xmlEditor[resourceFile].use {
+            val resourcesNode = it.file.getElementsByTagName("resources").item(0) as Element
+
+            resourcesNode.appendChild(
+                it.file.createElement("color").apply {
+                    setAttribute("name", colorName)
+                    setAttribute("category", "color")
+                    textContent = colorValue
+                })
+        }
+    }
+
     private companion object {
         private const val LAUNCHER_STYLE_NAME = "Base.Theme.YouTube.Launcher"
-        private const val COLOR_NAME = "splash_background_color"
+        private const val REVANCED_DYNAMIC_THEME_COLOR = "revanced_dynamic_theme_color"
     }
 }
