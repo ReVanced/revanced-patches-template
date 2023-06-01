@@ -78,9 +78,9 @@ class ThemeResourcePatch : ResourcePatch {
 
         // Add a dynamic background color to the colors.xml file.
         addResourceColor(context, "res/values/colors.xml",
-            REVANCED_DYNAMIC_THEME_COLOR, lightThemeBackgroundColor!!)
+            REVANCED_DYNAMIC_BACKGROUND_COLOR, lightThemeBackgroundColor!!)
         addResourceColor(context, "res/values-night/colors.xml",
-            REVANCED_DYNAMIC_THEME_COLOR, darkThemeBackgroundColor!!)
+            REVANCED_DYNAMIC_BACKGROUND_COLOR, darkThemeBackgroundColor!!)
 
         // Point to the splash screen background color.
         context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use {
@@ -114,6 +114,6 @@ class ThemeResourcePatch : ResourcePatch {
 
     private companion object {
         private const val LAUNCHER_STYLE_NAME = "Base.Theme.YouTube.Launcher"
-        private const val REVANCED_DYNAMIC_THEME_COLOR = "revanced_dynamic_background_color"
+        private const val REVANCED_DYNAMIC_BACKGROUND_COLOR = "revanced_dynamic_background_color"
     }
 }
