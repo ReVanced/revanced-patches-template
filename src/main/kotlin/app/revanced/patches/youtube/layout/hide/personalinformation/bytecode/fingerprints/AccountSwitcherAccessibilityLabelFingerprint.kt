@@ -6,6 +6,8 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 object AccountSwitcherAccessibilityLabelFingerprint : MethodFingerprint(
+    returnType = "V",
+    parameters = listOf("L", "L"),
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,

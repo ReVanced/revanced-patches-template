@@ -11,6 +11,7 @@ object InfocardsMethodCallFingerprint : MethodFingerprint(
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_INTERFACE,
     ),
+    strings = listOf("Missing ControlsOverlayPresenter for InfoCards to work."),
     customFingerprint = { methodDef, _ ->
         methodDef.implementation?.instructions?.any { instruction ->
             (instruction as? WideLiteralInstruction)?.wideLiteral == HideInfocardsResourcePatch.drawerResourceId

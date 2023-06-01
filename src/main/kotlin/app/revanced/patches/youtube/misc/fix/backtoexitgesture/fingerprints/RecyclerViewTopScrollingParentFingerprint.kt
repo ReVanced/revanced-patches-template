@@ -7,7 +7,7 @@ import org.jf.dexlib2.Opcode
 
 object RecyclerViewTopScrollingParentFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
-    parameters = listOf("L", "L", "L", "L"),
+    parameters = listOf("L", "L", "Landroid/view/ViewGroup;", "Landroid/view/ViewGroup;"),
     opcodes = listOf(
         Opcode.INVOKE_DIRECT,
         Opcode.IPUT_OBJECT,
@@ -18,7 +18,4 @@ object RecyclerViewTopScrollingParentFingerprint : MethodFingerprint(
         Opcode.INVOKE_VIRTUAL,
         Opcode.NEW_INSTANCE
     ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.name == "<init>"
-    }
 )

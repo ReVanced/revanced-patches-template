@@ -6,6 +6,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 object LayoutCircleFingerprint : MethodFingerprint(
+    returnType = "Landroid/view/View;",
     opcodes = listOf(
         Opcode.CONST,
         Opcode.CONST_4,

@@ -8,6 +8,7 @@ import org.jf.dexlib2.Opcode
 object RecyclerViewScrollingFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     returnType = "V",
+    parameters = listOf(),
     opcodes = listOf(
         Opcode.IGET_OBJECT,
         Opcode.IGET_OBJECT,
