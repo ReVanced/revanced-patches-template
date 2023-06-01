@@ -1,13 +1,12 @@
 package app.revanced.patches.youtube.layout.hide.albumcards.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patches.youtube.layout.hide.albumcards.resource.patch.AlbumCardsResourcePatch
+import app.revanced.util.patch.LiteralValueFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
-object AlbumCardsFingerprint : MethodFingerprint(
+object AlbumCardsFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     opcodes = listOf(
         Opcode.MOVE_RESULT_OBJECT,
@@ -17,10 +16,5 @@ object AlbumCardsFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
     ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.implementation?.instructions?.any { instruction ->
-            instruction.opcode.ordinal == Opcode.CONST.ordinal &&
-            (instruction as? WideLiteralInstruction)?.wideLiteral == AlbumCardsResourcePatch.albumCardId
-        } == true
-    }
+    literal = AlbumCardsResourcePatch.albumCardId
 )
