@@ -12,7 +12,6 @@ import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.splashScreenBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
 
@@ -50,7 +49,13 @@ class ThemeResourcePatch : ResourcePatch {
             }
         }
 
-        splashScreenBackgroundColor ?: return PatchResultSuccess()
+        // Add a dynamic background color to the colors.xml file.
+        addResourceColor(context, "res/values/colors.xml",
+            SPLASH_BACKGROUND_COLOR, lightThemeBackgroundColor!!)
+        addResourceColor(context, "res/values-night/colors.xml",
+            SPLASH_BACKGROUND_COLOR, darkThemeBackgroundColor!!)
+
+        val splashScreenBackgroundColorReference = "@color/$SPLASH_BACKGROUND_COLOR"
 
         // Edit splash screen background color for Android 11 and below.
         context.xmlEditor["res/values/styles.xml"].use {
@@ -67,7 +72,7 @@ class ThemeResourcePatch : ResourcePatch {
 
                 it.file.createElement("item").apply {
                     setAttribute("name", "android:windowSplashScreenBackground")
-                    textContent = splashScreenBackgroundColor
+                    textContent = splashScreenBackgroundColorReference
                 }.also(node::appendChild)
 
                 break
@@ -76,26 +81,21 @@ class ThemeResourcePatch : ResourcePatch {
 
         // Edit splash screen background color for Android 12+.
 
-        // Add a dynamic background color to the colors.xml file.
-        addResourceColor(context, "res/values/colors.xml",
-            REVANCED_DYNAMIC_BACKGROUND_COLOR, lightThemeBackgroundColor!!)
-        addResourceColor(context, "res/values-night/colors.xml",
-            REVANCED_DYNAMIC_BACKGROUND_COLOR, darkThemeBackgroundColor!!)
-
         // Point to the splash screen background color.
         context.xmlEditor["res/drawable/quantum_launchscreen_youtube.xml"].use {
             val node = it.file.getElementsByTagName("layer-list").item(0) as Element
 
             val backgroundColorItem = node.childNodes.item(1) as Element
             backgroundColorItem.apply {
-                setAttribute("android:color", splashScreenBackgroundColor)
+                setAttribute("android:color", splashScreenBackgroundColorReference)
             }
         }
 
         return PatchResultSuccess()
     }
 
-    private fun addResourceColor(context: ResourceContext,
+    private fun addResourceColor(
+        context: ResourceContext,
         resourceFile: String,
         colorName: String,
         colorValue: String
@@ -114,6 +114,6 @@ class ThemeResourcePatch : ResourcePatch {
 
     private companion object {
         private const val LAUNCHER_STYLE_NAME = "Base.Theme.YouTube.Launcher"
-        private const val REVANCED_DYNAMIC_BACKGROUND_COLOR = "revanced_dynamic_background_color"
+        private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
     }
 }
