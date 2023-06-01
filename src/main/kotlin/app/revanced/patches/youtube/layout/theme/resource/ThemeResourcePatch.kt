@@ -114,6 +114,6 @@ class ThemeResourcePatch : ResourcePatch {
 
     private companion object {
         private const val LAUNCHER_STYLE_NAME = "Base.Theme.YouTube.Launcher"
-        private const val REVANCED_DYNAMIC_THEME_COLOR = "revanced_dynamic_theme_color"
+        private const val REVANCED_DYNAMIC_THEME_COLOR = "revanced_dynamic_background_color"
     }
 }

@@ -49,7 +49,7 @@ class ThemeBytecodePatch : BytecodePatch() {
         var splashScreenBackgroundColor: String? by option(
             PatchOption.StringOption(
                 key = "splashScreenBackgroundColor",
-                default = "@color/revanced_dynamic_theme_color",  // use the same light and dark colors custom colors for the splash screen background
+                default = "@color/revanced_dynamic_background_color",  // use the same light and dark colors custom colors for the splash screen background
                 title = "Background color for the splash screen",
                 description = "The background color of the splash screen. Can be a hex color or a resource reference.",
             )
