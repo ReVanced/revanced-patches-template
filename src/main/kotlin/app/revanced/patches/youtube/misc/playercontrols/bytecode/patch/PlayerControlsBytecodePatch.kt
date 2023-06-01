@@ -5,7 +5,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -23,24 +22,16 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @PlayerControlsCompatibility
 @Version("0.0.1")
 class PlayerControlsBytecodePatch : BytecodePatch(
-    listOf(PlayerControlsVisibilityFingerprint)
+    listOf(PlayerControlsVisibilityFingerprint, BottomControlsInflateFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         showPlayerControlsFingerprintResult = PlayerControlsVisibilityFingerprint.result!!
-
-        bottomUiContainerResourceId = ResourceMappingPatch
-            .resourceMappings
-            .single { it.type == "id" && it.name == "bottom_ui_container_stub" }.id
-
-        // TODO: another solution is required, this is hacky
-        listOf(BottomControlsInflateFingerprint).resolve(context, context.classes)
         inflateFingerprintResult = BottomControlsInflateFingerprint.result!!
 
         return PatchResultSuccess()
     }
 
     internal companion object {
-        var bottomUiContainerResourceId: Long = 0
 
         lateinit var showPlayerControlsFingerprintResult: MethodFingerprintResult
 
