@@ -30,6 +30,12 @@ class HidePlayerFlyoutMenuPanelItemsPatch: ResourcePatch {
                 StringResource("${KEY}_title", "Player flyout menu items"),
                 listOf(
                     SwitchPreference(
+                        "${KEY}_quality",
+                        StringResource("${KEY}_quality_title", "Hide Quality menu"),
+                        StringResource("${KEY}_quality_on", "Quality menu item is hidden"),
+                        StringResource("${KEY}_quality_off", "Quality menu item is shown")
+                    ),
+                    SwitchPreference(
                         "${KEY}_captions",
                         StringResource("${KEY}_captions_title", "Hide Captions menu"),
                         StringResource("${KEY}_captions_on", "Captions menu item is hidden"),
