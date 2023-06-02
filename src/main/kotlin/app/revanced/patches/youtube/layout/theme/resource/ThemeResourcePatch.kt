@@ -57,11 +57,11 @@ class ThemeResourcePatch : ResourcePatch {
             SPLASH_BACKGROUND_COLOR, darkThemeBackgroundColor!!)
 
         // Edit splash screen files and change the background color.
-        val launchScreenResourceFiles = listOf(
+        val splashScreenResourceFiles = listOf(
             "res/drawable/quantum_launchscreen_youtube.xml",
             "res/drawable-sw600dp/quantum_launchscreen_youtube.xml")
 
-         launchScreenResourceFiles.forEach editLaunchScreen@ { resourceFile ->
+         splashScreenResourceFiles.forEach editSplashScreen@ { resourceFile ->
             context.xmlEditor[resourceFile].use {
                 val layerList = it.file.getElementsByTagName("layer-list").item(0) as Element
 
@@ -70,7 +70,7 @@ class ThemeResourcePatch : ResourcePatch {
                     val node = childNodes.item(i)
                     if (node is Element && node.hasAttribute("android:drawable")) {
                         node.setAttribute("android:drawable", "@color/$SPLASH_BACKGROUND_COLOR")
-                        return@editLaunchScreen
+                        return@editSplashScreen
                     }
                 }
                 return PatchResultError("Failed to modify launch screen")
