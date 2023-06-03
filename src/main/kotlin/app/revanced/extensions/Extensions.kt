@@ -80,5 +80,5 @@ fun Method.indexOfFirstConstantInstructionValue(constantValue: Long): Int {
  * @return if the method contains a constant with the given value.
  */
 fun Method.containsConstantInstructionValue(constantValue: Long): Boolean {
-    return indexOfFirstConstantInstructionValue(constantValue) != -1
+    return indexOfFirstConstantInstructionValue(constantValue) >= 0
 }
