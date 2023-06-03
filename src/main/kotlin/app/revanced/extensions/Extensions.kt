@@ -66,7 +66,7 @@ internal fun Method.findIndexForIdResource(resourceName: String): Int {
 }
 
 /**
- * @return the first constant instruction with the resource id, or -1 if not found.
+ * @return the first constant instruction with the value, or -1 if not found.
  */
 fun Method.indexOfFirstConstantInstructionValue(constantValue: Long): Int {
     return implementation?.let {
