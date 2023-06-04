@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.testing.fingerprints
+package app.revanced.patches.reddit.ad.general.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
