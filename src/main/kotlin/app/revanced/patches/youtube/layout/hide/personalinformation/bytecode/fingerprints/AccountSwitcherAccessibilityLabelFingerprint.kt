@@ -6,7 +6,7 @@ import org.jf.dexlib2.Opcode
 
 object AccountSwitcherAccessibilityLabelFingerprint : LiteralValueFingerprint(
     returnType = "V",
-    parameters = listOf("L", "L"),
+    parameters = listOf("L", "Ljava/lang/Object;"),
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,
