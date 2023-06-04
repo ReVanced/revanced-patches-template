@@ -24,15 +24,13 @@ class HideCommentAdsPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val method = HideCommentAdsFingerprint.result!!.mutableMethod
-        // Throws an exception when loading the comments page ad.
-        // Something more elegant would be nice.
+        // Returns a blank object instead of the comment ad.
         method.addInstructions(
             0,
             """
-            const-string v0, "Error loading comments page ad"
-            new-instance v0, Ljava/lang/RuntimeException;
-            invoke-direct {v0}, Ljava/lang/RuntimeException;-><init>()V
-            throw v0
+            new-instance v0, Ljava/lang/Object;
+            invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+            return-object v0
             """
         )
         return PatchResultSuccess()
