@@ -21,5 +21,10 @@ object TimeCounterFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT,
         Opcode.IF_EQZ,
         Opcode.GOTO,
-    )
+    ),
+    customFingerprint = { _, classDef ->
+        // On older devices this fingerprint resolves very slowly.
+        // Speed this up by checking for the number of methods.
+        classDef.methods.count() == 14
+    }
 )

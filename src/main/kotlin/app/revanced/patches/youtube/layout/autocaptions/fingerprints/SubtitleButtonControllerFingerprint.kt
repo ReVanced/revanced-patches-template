@@ -19,5 +19,8 @@ object SubtitleButtonControllerFingerprint : MethodFingerprint(
         Opcode.CONST,
         Opcode.INVOKE_VIRTUAL,
         Opcode.IGET_OBJECT,
-    )
+    ),
+    customFingerprint = { methodDef, _ ->
+        methodDef.definingClass.endsWith("SubtitleButtonController;")
+    }
 )

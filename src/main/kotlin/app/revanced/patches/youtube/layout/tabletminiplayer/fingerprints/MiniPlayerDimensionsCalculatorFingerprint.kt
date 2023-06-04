@@ -17,5 +17,10 @@ object MiniPlayerDimensionsCalculatorFingerprint : MethodFingerprint(
         Opcode.FLOAT_TO_DOUBLE,
         Opcode.CONST_WIDE_HIGH16,
         Opcode.CMPL_DOUBLE,
-    )
+    ),
+    customFingerprint = { _, classDef ->
+        // On older devices this fingerprint resolves very slowly (requires up to 5 seconds).
+        // Speed this up by checking for the number of methods.
+        classDef.methods.count() == 5
+    }
 )
