@@ -78,17 +78,6 @@ abstract class AbstractSettingsResourcePatch(
             }
 
         /**
-         * Add a new string to the resources.
-         *
-         * @param identifier The key of the string.
-         * @param value The value of the string.
-         * @throws IllegalArgumentException if the string already exists.
-         */
-        @Deprecated("Add strings to a strings resource file")
-        fun addString(identifier: String, value: String, formatted: Boolean) =
-            StringResource(identifier, value, formatted).include()
-
-        /**
          * Add an array to the resources.
          *
          * @param arrayResource The array resource to add.

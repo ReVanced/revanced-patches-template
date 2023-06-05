@@ -1,9 +1,11 @@
+@file:Suppress("DEPRECATION") // required to silence warnings for importing deprecated classes
+
 package app.revanced.util.resources
 
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Node
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -25,7 +27,7 @@ internal object ResourceUtils {
 
             val formatted = attributes.getNamedItem("formatted") == null
 
-            SettingsPatch.addString(key, value, formatted)
+            StringResource(key, value, formatted).include()
         }
     }
 
@@ -40,6 +42,8 @@ internal object ResourceUtils {
 
         for (resourceGroup in resources) {
             resourceGroup.resources.forEach { resource ->
+                // Create the target directory if it does not exist
+                this[targetResourceDirectory.resolve(resourceGroup.resourceDirectoryName).absolutePath].mkdir()
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
                 Files.copy(
                     classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!,

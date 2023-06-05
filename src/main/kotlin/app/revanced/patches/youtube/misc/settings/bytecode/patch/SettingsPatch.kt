@@ -98,10 +98,6 @@ class SettingsPatch : BytecodePatch(
         private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
         private const val SET_THEME_METHOD_NAME = "setTheme"
 
-        @Deprecated("obsolete")
-        fun addString(identifier: String, value: String, formatted: Boolean = true) =
-            SettingsResourcePatch.addString(identifier, value, formatted)
-
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
             SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 

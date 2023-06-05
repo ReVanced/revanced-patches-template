@@ -23,7 +23,7 @@ import org.w3c.dom.Node
 @DependsOn([ResourceMappingPatch::class])
 @Description("Applies mandatory patches to implement ReVanced settings into the application.")
 @Version("0.0.1")
-class SettingsResourcePatch : AbstractSettingsResourcePatch(
+class SettingsResourcePatch : AbstractSettingsResourcePatch( // TODO: rename to YouTubeSettingsResourcePatch
     "revanced_prefs",
     "youtube/settings"
 ) {
@@ -123,17 +123,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
          */
         fun addPreference(preference: Preference) =
             preferencesNode!!.addPreference(preference) { it.include() }
-
-        /**
-         * Add a new string to the resources.
-         *
-         * @param identifier The key of the string.
-         * @param value The value of the string.
-         * @throws IllegalArgumentException if the string already exists.
-         */
-        @Deprecated("obsolete")
-        fun addString(identifier: String, value: String, formatted: Boolean) =
-            AbstractSettingsResourcePatch.addString(identifier, value, formatted)
 
         /**
          * Add an array to the resources.
