@@ -2,7 +2,6 @@ package app.revanced.patches.shared.settings.preference.impl
 
 import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.DefaultBasePreference
-import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Document
 
 /**
@@ -22,19 +21,6 @@ internal class TextPreference(
     default: String? = null,
     tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
 ) : DefaultBasePreference<String>(key, titleKey, summaryKey, tag, default) {
-
-    @Deprecated("Add strings to strings resource file and used non deprecated keyed constructor")
-    constructor(
-        key: String?,
-        title: StringResource,
-        summary: StringResource?,
-        inputType: InputType = InputType.TEXT,
-        default: String? = null,
-        tag: String = "app.revanced.integrations.settingsmenu.ResettableEditTextPreference"
-    ) : this(key, title.name, summary?.name, inputType, default, tag) {
-        title.include()
-        summary?.include()
-    }
 
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
         super.serialize(ownerDocument, resourceCallback).apply {

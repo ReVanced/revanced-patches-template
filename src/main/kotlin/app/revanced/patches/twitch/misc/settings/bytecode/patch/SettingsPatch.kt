@@ -175,6 +175,7 @@ class SettingsPatch : BytecodePatch(
 
         internal class CustomScreen(key: String, title: String, summary: String) : Screen(key, title, summary) {
             /* Categories */
+            // TODO: move these strings to strings.xml
             val GENERAL = CustomCategory("twitch_general",
                 StringResource("twitch_general_title", "General settings"))
             val OTHER = CustomCategory("twitch_other",
@@ -198,7 +199,6 @@ class SettingsPatch : BytecodePatch(
                     return PreferenceCategory(
                         key,
                         titleKey,
-                        // FIXME: Ideally this would be sorted in Integrations to use alphabetical of the current language
                         preferences.sortedBy { it.titleKey },
                         "app.revanced.twitch.settingsmenu.preference.CustomPreferenceCategory"
                     )

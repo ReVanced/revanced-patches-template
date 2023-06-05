@@ -43,6 +43,7 @@ class EmbeddedAdsPatch : BytecodePatch(
             """
         )
 
+        // TODO: extract these Strings to Strings.xml
         SettingsPatch.PreferenceScreen.ADS.SURESTREAM.addPreferences(
             ListPreference(
                 "revanced_block_embedded_ads",
