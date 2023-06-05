@@ -12,7 +12,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
@@ -34,9 +33,9 @@ class VideoAdsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_ads",
-                StringResource("revanced_hide_video_ads_title", "Hide video ads"),
-                StringResource("revanced_hide_video_ads_summary_on", "Video ads are hidden"),
-                StringResource("revanced_hide_video_ads_summary_off", "Video ads are shown")
+                "revanced_hide_video_ads_title",
+                "revanced_hide_video_ads_summary_on",
+                "revanced_hide_video_ads_summary_off"
             )
         )
 

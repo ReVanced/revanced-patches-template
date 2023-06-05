@@ -13,13 +13,12 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.autorepeat.annotations.AutoRepeatCompatibility
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
@@ -36,9 +35,9 @@ class AutoRepeatPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_auto_repeat",
-                StringResource("revanced_auto_repeat_title", "Enable auto-repeat"),
-                StringResource("revanced_auto_repeat_summary_on", "Auto-repeat is enabled"),
-                StringResource("revanced_auto_repeat_summary_off", "Auto-repeat is disabled")
+                "revanced_auto_repeat_title",
+                "revanced_auto_repeat_summary_on",
+                "revanced_auto_repeat_summary_off"
             )
         )
 
@@ -50,7 +49,7 @@ class AutoRepeatPatch : BytecodePatch(
         val playMethod = parentResult.mutableMethod
         AutoRepeatFingerprint.resolve(context, parentResult.classDef)
         //String is: Laamp;->E()V
-        val methodToCall = playMethod.definingClass + "->" + playMethod.name + "()V";
+        val methodToCall = playMethod.definingClass + "->" + playMethod.name + "()V"
 
         //This is the method we search for
         val result = AutoRepeatFingerprint.result

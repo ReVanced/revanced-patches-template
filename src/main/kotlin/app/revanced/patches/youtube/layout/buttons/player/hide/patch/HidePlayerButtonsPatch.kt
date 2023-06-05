@@ -12,7 +12,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.player.hide.annotations.HidePlayerButtonsCompatibility
 import app.revanced.patches.youtube.layout.buttons.player.hide.fingerprints.PlayerControlsVisibilityModelFingerprint
@@ -38,18 +37,9 @@ class HidePlayerButtonsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_buttons",
-                StringResource(
-                    "revanced_hide_player_buttons_title",
-                    "Hide previous & next video buttons"
-                ),
-                StringResource(
-                    "revanced_hide_player_buttons_summary_on",
-                    "Buttons are hidden"
-                ),
-                StringResource(
-                    "revanced_hide_player_buttons_summary_off",
-                    "Buttons are shown"
-                )
+                "revanced_hide_player_buttons_title",
+                "revanced_hide_player_buttons_summary_on",
+                "revanced_hide_player_buttons_summary_off"
             )
         )
 

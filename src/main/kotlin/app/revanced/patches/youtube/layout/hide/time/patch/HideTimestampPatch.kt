@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.time.annotations.HideTimeCompatibility
 import app.revanced.patches.youtube.layout.hide.time.fingerprints.TimeCounterFingerprint
@@ -32,9 +31,9 @@ class HideTimestampPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_timestamp",
-                StringResource("revanced_hide_timestamp_title", "Hide video timestamp"),
-                StringResource("revanced_hide_timestamp_summary_on", "Timestamp is hidden"),
-                StringResource("revanced_hide_timestamp_summary_off", "Timestamp is shown")
+                "revanced_hide_timestamp_title",
+                "revanced_hide_timestamp_summary_on",
+                "revanced_hide_timestamp_summary_off"
             )
         )
 

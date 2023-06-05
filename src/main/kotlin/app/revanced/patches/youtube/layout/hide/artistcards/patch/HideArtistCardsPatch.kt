@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.artistcards.annotations.HideArtistCardCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
@@ -27,9 +26,9 @@ class HideArtistCardsPatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_artist_cards",
-                StringResource("revanced_hide_artist_cards_title", "Hide artist cards"),
-                StringResource("revanced_hide_artist_cards_on", "Artist cards is hidden"),
-                StringResource("revanced_hide_artist_cards_off", "Artist cards is shown")
+                "revanced_hide_artist_cards_title",
+                "revanced_hide_artist_cards_on",
+                "revanced_hide_artist_cards_off"
             ),
         )
         return PatchResultSuccess()

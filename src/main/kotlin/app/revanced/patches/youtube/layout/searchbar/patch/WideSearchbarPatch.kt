@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.searchbar.annotations.WideSearchbarCompatibility
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSuggestionsFingerprint
@@ -37,9 +36,9 @@ class WideSearchbarPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_wide_searchbar",
-                StringResource("revanced_wide_searchbar_enabled_title", "Enable wide search bar"),
-                StringResource("revanced_wide_searchbar_summary_on", "Wide search bar is enabled"),
-                StringResource("revanced_wide_searchbar_summary_off", "Wide search bar is disabled")
+                "revanced_wide_searchbar_enabled_title",
+                "revanced_wide_searchbar_summary_on",
+                "revanced_wide_searchbar_summary_off"
             )
         )
 

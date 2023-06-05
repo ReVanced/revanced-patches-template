@@ -13,7 +13,6 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.panels.fullscreen.remove.annotations.FullscreenPanelsCompatibility
 import app.revanced.patches.youtube.layout.panels.fullscreen.remove.fingerprints.FullscreenViewAdderFingerprint
@@ -36,9 +35,9 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_fullscreen_panels",
-                StringResource("revanced_hide_fullscreen_panels_title", "Hide fullscreen panels"),
-                StringResource("revanced_hide_fullscreen_panels_summary_on", "Fullscreen panels are hidden"),
-                StringResource("revanced_hide_fullscreen_panels_summary_off", "Fullscreen panels are shown")
+                "revanced_hide_fullscreen_panels_title",
+                "revanced_hide_fullscreen_panels_summary_on",
+                "revanced_hide_fullscreen_panels_summary_off"
             )
         )
 

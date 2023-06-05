@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.navigation.annotations.NavigationButtonsCompatibility
 import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
@@ -42,49 +41,37 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",
-                StringResource("revanced_navigation_buttons_preference_screen_title", "Navigation buttons"),
+                "revanced_navigation_buttons_preference_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_hide_home_button",
-                        StringResource("revanced_hide_home_button_title", "Hide home button"),
-                        StringResource("revanced_hide_home_button_summary_on", "Home button is hidden"),
-                        StringResource("revanced_hide_home_button_summary_off", "Home button is shown")
+                        "revanced_hide_home_button_title",
+                        "revanced_hide_home_button_summary_on",
+                        "revanced_hide_home_button_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_hide_shorts_button",
-                        StringResource("revanced_hide_shorts_button_title", "Hide shorts button"),
-                        StringResource("revanced_hide_shorts_button_summary_on", "Shorts button is hidden"),
-                        StringResource("revanced_hide_shorts_button_summary_off", "Shorts button is shown")
+                        "revanced_hide_shorts_button_title",
+                        "revanced_hide_shorts_button_summary_on",
+                        "revanced_hide_shorts_button_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_hide_subscriptions_button",
-                        StringResource("revanced_hide_subscriptions_button_title", "Hide subscriptions button"),
-                        StringResource(
-                            "revanced_hide_subscriptions_button_summary_on",
-                            "Home subscriptions is hidden"
-                        ),
-                        StringResource("revanced_hide_subscriptions_button_summary_off", "Home subscriptions is shown")
+                        "revanced_hide_subscriptions_button_title",
+                        "revanced_hide_subscriptions_button_summary_on",
+                        "revanced_hide_subscriptions_button_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_hide_create_button",
-                        StringResource("revanced_hide_create_button_title", "Hide create button"),
-                        StringResource("revanced_hide_create_button_summary_on", "Create button is hidden"),
-                        StringResource("revanced_hide_create_button_summary_off", "Create button is shown")
+                        "revanced_hide_create_button_title",
+                        "revanced_hide_create_button_summary_on",
+                        "revanced_hide_create_button_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_switch_create_with_notifications_button",
-                        StringResource(
-                            "revanced_switch_create_with_notifications_button_title",
-                            "Switch create with notifications button"
-                        ),
-                        StringResource(
-                            "revanced_switch_create_with_notifications_button_summary_on",
-                            "Create button is switched with notifications"
-                        ),
-                        StringResource(
-                            "revanced_switch_create_with_notifications_button_summary_off",
-                            "Create button is not switched with notifications"
-                        ),
+                        "revanced_switch_create_with_notifications_button_title",
+                        "revanced_switch_create_with_notifications_button_summary_on",
+                        "revanced_switch_create_with_notifications_button_summary_off",
                     ),
                 ),
             )

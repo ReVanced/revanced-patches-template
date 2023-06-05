@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
@@ -22,8 +21,8 @@ class ThemeResourcePatch : ResourcePatch {
         SeekbarPreferencesPatch.addPreferences(
             TextPreference(
                 "revanced_seekbar_color",
-                StringResource("revanced_seekbar_color_title", "Seekbar color"),
-                StringResource("revanced_seekbar_color_summary", "The color of the seekbar"),
+                "revanced_seekbar_color_title",
+                "revanced_seekbar_color_summary",
                 InputType.TEXT_CAP_CHARACTERS
             )
         )

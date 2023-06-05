@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.tabletminiplayer.annotations.TabletMiniPlayerCompatibility
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.*
@@ -41,9 +40,9 @@ class TabletMiniPlayerPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_miniplayer",
-                StringResource("revanced_tablet_miniplayer_title", "Enable tablet mini player"),
-                StringResource("revanced_tablet_miniplayer_summary_on", "Mini player is enabled"),
-                StringResource("revanced_tablet_miniplayer_summary_off", "Mini player is disabled")
+                "revanced_tablet_miniplayer_title",
+                "revanced_tablet_miniplayer_summary_on",
+                "revanced_tablet_miniplayer_summary_off"
             )
         )
 

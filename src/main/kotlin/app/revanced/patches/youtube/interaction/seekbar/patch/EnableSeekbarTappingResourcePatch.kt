@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
@@ -19,9 +18,9 @@ class EnableSeekbarTappingResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",
-                StringResource("revanced_seekbar_tapping_title", "Enable seekbar tapping"),
-                StringResource("revanced_seekbar_tapping_summary_on", "Seekbar tapping is enabled"),
-                StringResource("revanced_seekbar_tapping_summary_off", "Seekbar tapping is disabled")
+                "revanced_seekbar_tapping_title",
+                "revanced_seekbar_tapping_summary_on",
+                "revanced_seekbar_tapping_summary_off"
             )
         )
 

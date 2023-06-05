@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.watchinvr.annotations.WatchInVRCompatibility
 import app.revanced.patches.youtube.layout.hide.watchinvr.fingerprints.WatchInVRFingerprint
@@ -32,9 +31,9 @@ class WatchInVRPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_watch_in_vr",
-                StringResource("revanced_hide_watch_in_vr_title", "Hide VR setting"),
-                StringResource("revanced_hide_watch_in_vr_summary_on", "VR setting is hidden"),
-                StringResource("revanced_hide_watch_in_vr_summary_off", "VR setting is shown")
+                "revanced_hide_watch_in_vr_title",
+                "revanced_hide_watch_in_vr_summary_on",
+                "revanced_hide_watch_in_vr_summary_off"
             )
         )
 

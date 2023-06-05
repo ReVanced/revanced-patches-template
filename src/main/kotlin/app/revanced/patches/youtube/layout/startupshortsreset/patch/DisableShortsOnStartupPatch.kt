@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.startupshortsreset.annotations.StartupShortsResetCompatibility
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.UserWasInShortsFingerprint
@@ -32,9 +31,9 @@ class DisableShortsOnStartupPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_disable_resuming_shorts_player",
-                StringResource("revanced_disable_resuming_shorts_player_title", "Disable shorts player at app startup"),
-                StringResource("revanced_disable_resuming_shorts_player_summary_on", "Shorts player is disabled at app startup"),
-                StringResource("revanced_disable_resuming_shorts_player_summary_off", "Shorts player is enabled at app startup")
+                "revanced_disable_resuming_shorts_player_title",
+                "revanced_disable_resuming_shorts_player_summary_on",
+                "revanced_disable_resuming_shorts_player_summary_off"
             )
         )
 

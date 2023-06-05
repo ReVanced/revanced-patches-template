@@ -14,7 +14,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.autoplay.annotations.AutoplayButtonCompatibility
 import app.revanced.patches.youtube.layout.buttons.autoplay.fingerprints.LayoutConstructorFingerprint
@@ -39,9 +38,9 @@ class HideAutoplayButtonPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",
-                StringResource("revanced_hide_autoplay_button_title", "Hide autoplay button"),
-                StringResource("revanced_hide_autoplay_button_summary_on", "Autoplay button is hidden"),
-                StringResource("revanced_hide_autoplay_button_summary_off", "Autoplay button is shown")
+                "revanced_hide_autoplay_button_title",
+                "revanced_hide_autoplay_button_summary_on",
+                "revanced_hide_autoplay_button_summary_off"
             ),
         )
 

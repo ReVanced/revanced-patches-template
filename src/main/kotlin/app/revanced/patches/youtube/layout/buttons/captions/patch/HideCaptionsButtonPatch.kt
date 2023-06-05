@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleButtonControllerFingerprint
 import app.revanced.patches.youtube.layout.buttons.captions.annotations.HideCaptionsButtonCompatibility
@@ -31,9 +30,9 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_captions_button",
-                StringResource("revanced_hide_captions_button_title", "Hide captions button"),
-                StringResource("revanced_hide_captions_button_summary_on", "Captions button is hidden"),
-                StringResource("revanced_hide_captions_button_summary_off", "Captions button is shown")
+                "revanced_hide_captions_button_title",
+                "revanced_hide_captions_button_summary_on",
+                "revanced_hide_captions_button_summary_off"
             )
         )
 

@@ -17,6 +17,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMut
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
@@ -174,18 +175,31 @@ class SettingsPatch : BytecodePatch(
 
         internal class CustomScreen(key: String, title: String, summary: String) : Screen(key, title, summary) {
             /* Categories */
-            val GENERAL = CustomCategory("general", "General settings")
-            val OTHER = CustomCategory("other", "Other settings")
-            val CLIENT_SIDE = CustomCategory("client_ads", "Client-side ads")
-            val SURESTREAM = CustomCategory("surestream_ads", "Server-side surestream ads")
+            val GENERAL = CustomCategory("twitch_general",
+                StringResource("twitch_general_title", "General settings"))
+            val OTHER = CustomCategory("twitch_other",
+                StringResource("twitch_other_title", "Other settings"))
+            val CLIENT_SIDE = CustomCategory("twitch_client_ads",
+                StringResource("twitch_client_ads_title", "Client-side ads"))
+            val SURESTREAM = CustomCategory("twitch_surestream_ads",
+                StringResource("twitch_surestream_ads_title", "Server-side surestream ads"))
 
             internal inner class CustomCategory(key: String, title: String) : Screen.Category(key, title) {
+                @Deprecated("Add strings to strings resource file and used non deprecated keyed constructor")
+                constructor(
+                    key: String,
+                    title: StringResource
+                ) : this(key, title.name) {
+                    title.include()
+                }
+
                 /* For Twitch, we need to load our CustomPreferenceCategory class instead of the default one. */
                 override fun transform(): PreferenceCategory {
                     return PreferenceCategory(
                         key,
-                        StringResource("${key}_title", title),
-                        preferences.sortedBy { it.title.value },
+                        titleKey,
+                        // FIXME: Ideally this would be sorted in Integrations to use alphabetical of the current language
+                        preferences.sortedBy { it.titleKey },
                         "app.revanced.twitch.settingsmenu.preference.CustomPreferenceCategory"
                     )
                 }

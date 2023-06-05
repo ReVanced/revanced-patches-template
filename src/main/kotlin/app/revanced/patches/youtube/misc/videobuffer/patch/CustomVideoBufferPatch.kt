@@ -24,9 +24,8 @@ class CustomVideoBufferPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
-                StringResource("revanced_custom_video_buffer_disclaimer_title", "Custom video buffer"),
-                StringResource("revanced_custom_video_buffer_disclaimer_title_summary",
-                    "These settings have been removed, because they were not functional for the duration of their existence"),
+                "revanced_custom_video_buffer_disclaimer_title",
+                "revanced_custom_video_buffer_disclaimer_title_summary",
             )
         )
 

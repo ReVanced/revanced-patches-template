@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.all.misc.debugging.patch.EnableAndroidDebuggingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.debugging.annotations.DebuggingCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -27,38 +26,28 @@ class DebuggingPatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
                 "revanced_debug_preference_screen",
-                StringResource("revanced_debug_preference_screen_title", "Debugging"),
+                "revanced_debug_preference_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_debug",
-                        StringResource("revanced_debug_title", "Debug logging"),
-                        StringResource("revanced_debug_summary_on", "Debug logs are enabled"),
-                        StringResource("revanced_debug_summary_off", "Debug logs are disabled")
+                        "revanced_debug_title",
+                        "revanced_debug_summary_on",
+                        "revanced_debug_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_debug_stacktrace",
-                        StringResource(
-                            "revanced_debug_stacktrace_title",
-                            "Log stack traces"
-                        ),
-                        StringResource("revanced_debug_stacktrace_summary_on", "Debug logs include stack trace"),
-                        StringResource("revanced_debug_stacktrace_summary_off", "Debug logs do not include stack trace")
+                        "revanced_debug_stacktrace_title",
+                        "revanced_debug_stacktrace_summary_on",
+                        "revanced_debug_stacktrace_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_debug_toast_on_error",
-                        StringResource(
-                            "revanced_debug_toast_on_error_title",
-                            "Show toast on ReVanced error"
-                        ),
-                        StringResource("revanced_debug_toast_on_error_summary_on", "Toast shown if error occurs"),
-                        StringResource("revanced_debug_toast_on_error_summary_off", "Toast not shown if error occurs"),
-                        StringResource("revanced_debug_toast_on_error_user_dialog_message",
-                            "Turning off error toasts hides all ReVanced error notifications."
-                                    + "\\n\\nYou will not be notified of any unexpected events."
-                        )
+                        "revanced_debug_toast_on_error_title",
+                        "revanced_debug_toast_on_error_summary_on",
+                        "revanced_debug_toast_on_error_summary_off"
                     ),
                 ),
-                StringResource("revanced_debug_preference_screen_summary", "Enable or disable debugging options")
+                "revanced_debug_preference_screen_summary"
             )
         )
 

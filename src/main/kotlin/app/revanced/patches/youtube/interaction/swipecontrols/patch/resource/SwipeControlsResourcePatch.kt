@@ -20,79 +20,64 @@ class SwipeControlsResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_swipe_controls_preference_screen",
-                StringResource("revanced_swipe_controls_preference_screen_title", "Swipe controls"),
+                "revanced_swipe_controls_preference_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_swipe_brightness",
-                        StringResource("revanced_swipe_brightness_title", "Enable brightness gesture"),
-                        StringResource("revanced_swipe_brightness_summary_on", "Brightness swipe is enabled"),
-                        StringResource("revanced_swipe_brightness_summary_off", "Brightness swipe is disabled")
+                        "revanced_swipe_brightness_title",
+                        "revanced_swipe_brightness_summary_on",
+                        "revanced_swipe_brightness_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_swipe_volume",
-                        StringResource("revanced_swipe_volume_title", "Enable volume gesture"),
-                        StringResource("revanced_swipe_volume_summary_on", "Volume swipe is enabled"),
-                        StringResource("revanced_swipe_volume_summary_off", "Volume swipe is disabled")
+                        "revanced_swipe_volume_title",
+                        "revanced_swipe_volume_summary_on",
+                        "revanced_swipe_volume_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_swipe_press_to_engage",
-                        StringResource("revanced_swipe_press_to_engage_title", "Enable press-to-swipe gesture"),
-                        StringResource("revanced_swipe_press_to_engage_summary_on", "Press-to-swipe is enabled"),
-                        StringResource("revanced_swipe_press_to_engage_summary_off", "Press-to-swipe is disabled")
+                        "revanced_swipe_press_to_engage_title",
+                        "revanced_swipe_press_to_engage_summary_on",
+                        "revanced_swipe_press_to_engage_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_swipe_haptic_feedback",
-                        StringResource("revanced_swipe_haptic_feedback_title", "Enable haptic feedback"),
-                        StringResource("revanced_swipe_haptic_feedback_summary_on", "Haptic feedback is enabled"),
-                        StringResource("revanced_swipe_haptic_feedback_summary_off", "Haptic feedback is disabled")
+                        "revanced_swipe_haptic_feedback_title",
+                        "revanced_swipe_haptic_feedback_summary_on",
+                        "revanced_swipe_haptic_feedback_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_swipe_save_and_restore_brightness",
-                        StringResource("revanced_swipe_save_and_restore_brightness_title", "Save and restore brightness"),
-                        StringResource(
-                            "revanced_swipe_save_and_restore_brightness_summary_on",
-                            "Save and restore brightness when exiting or entering fullscreen"
-                        ),
-                        StringResource(
-                            "revanced_swipe_save_and_restore_brightness_summary_off",
-                            "Do not save and restore brightness when exiting or entering fullscreen"
-                        )
+                        "revanced_swipe_save_and_restore_brightness_title",
+                        "revanced_swipe_save_and_restore_brightness_summary_on",
+                        "revanced_swipe_save_and_restore_brightness_summary_off"
                     ),
                     TextPreference(
                         "revanced_swipe_overlay_timeout",
-                        StringResource("revanced_swipe_overlay_timeout_title", "Swipe overlay timeout"),
-                        StringResource(
-                            "revanced_swipe_overlay_timeout_summary",
-                            "The amount of milliseconds the overlay is visible"
-                        ),
+                        "revanced_swipe_overlay_timeout_title",
+                        "revanced_swipe_overlay_timeout_summary",
                         InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_text_overlay_size",
-                        StringResource("revanced_swipe_text_overlay_size_title", "Swipe overlay text size"),
-                        StringResource("revanced_swipe_text_overlay_size_summary", "The text size for swipe overlay"),
+                        "revanced_swipe_text_overlay_size_title",
+                        "revanced_swipe_text_overlay_size_summary",
                         InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_overlay_background_alpha",
-                        StringResource("revanced_swipe_overlay_background_alpha_title", "Swipe background visibility"),
-                        StringResource(
-                            "revanced_swipe_overlay_background_alpha_summary",
-                            "The visibility of swipe overlay background"
-                        ),
+                        "revanced_swipe_overlay_background_alpha_title",
+                        "revanced_swipe_overlay_background_alpha_summary",
                         InputType.NUMBER
                     ),
                     TextPreference(
                         "revanced_swipe_threshold",
-                        StringResource("revanced_swipe_threshold_title", "Swipe magnitude threshold"),
-                        StringResource(
-                            "revanced_swipe_threshold_summary",
-                            "The amount of threshold for swipe to occur"
-                        ),
+                        "revanced_swipe_threshold_title",
+                        "revanced_swipe_threshold_summary",
                         InputType.NUMBER
                     )
                 ),
-                StringResource("revanced_swipe_controls_preference_screen_summary","Control volume and brightness")
+                "revanced_swipe_controls_preference_screen_summary"
             )
         )
 

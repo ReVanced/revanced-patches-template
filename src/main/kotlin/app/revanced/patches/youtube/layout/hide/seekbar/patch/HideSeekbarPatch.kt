@@ -13,7 +13,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
@@ -41,15 +40,15 @@ class HideSeekbarPatch : BytecodePatch(
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",
-                StringResource("revanced_hide_seekbar_title", "Hide seekbar in video player"),
-                StringResource("revanced_hide_seekbar_summary_on", "Video player seekbar is hidden"),
-                StringResource("revanced_hide_seekbar_summary_off", "Video player seekbar is shown")
+                "revanced_hide_seekbar_title",
+                "revanced_hide_seekbar_summary_on",
+                "revanced_hide_seekbar_summary_off"
             ),
             SwitchPreference(
                 "revanced_hide_seekbar_thumbnail",
-                StringResource("revanced_hide_seekbar_thumbnail_title", "Hide seekbar in video thumbnails"),
-                StringResource("revanced_hide_seekbar_thumbnail_summary_on", "Thumbnail seekbar is hidden"),
-                StringResource("revanced_hide_seekbar_thumbnail_summary_off", "Thumbnail seekbar is shown")
+                "revanced_hide_seekbar_thumbnail_title",
+                "revanced_hide_seekbar_thumbnail_summary_on",
+                "revanced_hide_seekbar_thumbnail_summary_off"
             )
         )
 

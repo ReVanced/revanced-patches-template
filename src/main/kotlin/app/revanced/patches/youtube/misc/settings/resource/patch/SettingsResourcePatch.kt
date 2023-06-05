@@ -77,17 +77,17 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         // Add the ReVanced settings to the YouTube settings
         SettingsPatch.addPreference(
             Preference(
-                StringResource("revanced_settings", "ReVanced"),
-                StringResource("revanced_settings_summary", "ReVanced specific settings"),
-                SettingsPatch.createReVancedSettingsIntent("revanced_settings")
+                "revanced_settings_title",
+                "revanced_settings_summary",
+                SettingsPatch.createReVancedSettingsIntent("revanced_settings_intent")
             )
         )
 
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(
                 key = null,
-                title = StringResource("revanced_pref_import_export_title", "Import / Export"),
-                summary = StringResource("revanced_pref_import_export_summary", "Import / Export ReVanced settings"),
+                titleKey = "revanced_pref_import_export_title",
+                summaryKey = "revanced_pref_import_export_summary",
                 inputType = InputType.TEXT_MULTI_LINE,
                 tag = "app.revanced.integrations.settingsmenu.ImportExportPreference"
             )
@@ -131,6 +131,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
          * @param value The value of the string.
          * @throws IllegalArgumentException if the string already exists.
          */
+        @Deprecated("obsolete")
         fun addString(identifier: String, value: String, formatted: Boolean) =
             AbstractSettingsResourcePatch.addString(identifier, value, formatted)
 

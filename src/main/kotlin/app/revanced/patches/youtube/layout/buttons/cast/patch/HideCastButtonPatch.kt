@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.cast.annotations.CastButtonCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -28,9 +27,9 @@ class HideCastButtonPatch : BytecodePatch() {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_cast_button",
-                StringResource("revanced_hide_cast_button_title", "Hide cast button"),
-                StringResource("revanced_hide_cast_button_summary_on", "Cast button is hidden"),
-                StringResource("revanced_hide_cast_button_summary_off", "Cast button is shown")
+                "revanced_hide_cast_button_title",
+                "revanced_hide_cast_button_summary_on",
+                "revanced_hide_cast_button_summary_off"
             )
         )
 

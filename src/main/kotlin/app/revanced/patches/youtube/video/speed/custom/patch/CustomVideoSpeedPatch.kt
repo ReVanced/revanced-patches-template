@@ -9,7 +9,6 @@ import app.revanced.patcher.extensions.replaceInstruction
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.InputType
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -35,15 +34,9 @@ class CustomVideoSpeedPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             TextPreference(
                 key = "revanced_custom_playback_speeds",
-                title = StringResource(
-                    "revanced_custom_playback_speeds_title",
-                    "Custom playback speeds"
-                ),
-                inputType = InputType.TEXT_MULTI_LINE,
-                summary = StringResource(
-                    "revanced_custom_playback_speeds_summary",
-                    "Add or change the video speeds available"
-                )
+                titleKey = "revanced_custom_playback_speeds_title",
+                summaryKey = "revanced_custom_playback_speeds_summary",
+                inputType = InputType.TEXT_MULTI_LINE
             )
         )
 

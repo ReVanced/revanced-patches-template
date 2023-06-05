@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.annotations.HideLoadMoreButtonCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -20,9 +19,9 @@ class HideLoadMoreButtonResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_load_more_button",
-                StringResource("revanced_hide_load_more_button_title", "Hide Load More button"),
-                StringResource("revanced_hide_load_more_button_summary_on", "Load More button is hidden"),
-                StringResource("revanced_hide_load_more_button_summary_off", "Load More button is shown")
+                "revanced_hide_load_more_button_title",
+                "revanced_hide_load_more_button_summary_on",
+                "revanced_hide_load_more_button_summary_off"
             )
         )
 

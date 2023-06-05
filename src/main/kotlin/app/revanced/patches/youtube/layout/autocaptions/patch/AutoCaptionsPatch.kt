@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoInformerFingerprint
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleButtonControllerFingerprint
@@ -34,9 +33,9 @@ class AutoCaptionsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_auto_captions",
-                StringResource("revanced_auto_captions_title", "Disable auto captions"),
-                StringResource("revanced_auto_captions_summary_on", "Auto captions are disabled"),
-                StringResource("revanced_auto_captions_summary_off", "Auto captions are enabled")
+                "revanced_auto_captions_title",
+                "revanced_auto_captions_summary_on",
+                "revanced_auto_captions_summary_off"
             )
         )
 

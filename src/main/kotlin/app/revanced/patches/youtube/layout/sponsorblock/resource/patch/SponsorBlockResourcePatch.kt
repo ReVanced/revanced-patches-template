@@ -9,12 +9,10 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
-import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Name("sponsorblock-resource-patch")
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
@@ -24,17 +22,12 @@ class SponsorBlockResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.addPreference(
             Preference(
-                StringResource("revanced_sponsorblock_settings_title", "SponsorBlock"),
-                StringResource("revanced_sponsorblock_settings_summary", "SponsorBlock related settings"),
-                SettingsPatch.createReVancedSettingsIntent("sponsorblock_settings")
+                "revanced_sponsorblock_settings_title",
+                "revanced_sponsorblock_settings_summary",
+                SettingsPatch.createReVancedSettingsIntent("sponsorblock_settings_intent")
             )
         )
         val classLoader = this.javaClass.classLoader
-
-        /*
-         merge SponsorBlock strings to main strings
-         */
-        context.mergeStrings("youtube/sponsorblock/host/values/strings.xml")
 
         /*
          merge SponsorBlock drawables to main drawables

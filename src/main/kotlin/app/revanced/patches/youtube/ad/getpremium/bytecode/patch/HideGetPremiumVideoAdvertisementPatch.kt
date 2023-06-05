@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.getpremium.annotations.HideGetPremiumCompatibility
 import app.revanced.patches.youtube.ad.getpremium.bytecode.fingerprints.GetPremiumViewFingerprint
@@ -27,18 +26,9 @@ class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint,)) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
-                StringResource(
-                    "revanced_hide_get_premium_title",
-                    "Hide YouTube Premium advertisement under video player"
-                ),
-                StringResource(
-                    "revanced_hide_get_premium_summary_on",
-                    "YouTube Premium advertisement are hidden"
-                ),
-                StringResource(
-                    "revanced_hide_get_premium_summary_off",
-                    "YouTube Premium advertisement are shown"
-                )
+                "revanced_hide_get_premium_title",
+                "revanced_hide_get_premium_summary_on",
+                "revanced_hide_get_premium_summary_off"
             )
         )
 

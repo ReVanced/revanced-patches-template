@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
@@ -19,61 +18,28 @@ class HideFilterBarResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_filter_bar_preference",
-                StringResource(
-                    "revanced_hide_filter_bar_preference_title",
-                    "Hide filter bar"
-                ),
+                "revanced_hide_filter_bar_preference_title",
                 listOf(
                     SwitchPreference(
                         "revanced_hide_filter_bar_feed_in_feed",
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_feed_title",
-                            "Hide in feed"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_feed_summary_on",
-                            "Hidden in feed"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_feed_summary_off",
-                            "Shown in feed"
-                        )
+                        "revanced_hide_filter_bar_feed_in_feed_title",
+                        "revanced_hide_filter_bar_feed_in_feed_summary_on",
+                        "revanced_hide_filter_bar_feed_in_feed_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_hide_filter_bar_feed_in_search",
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_search_title",
-                            "Hide in search"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_search_summary_on",
-                            "Hidden in search"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_search_summary_off",
-                            "Shown in search"
-                        )
+                        "revanced_hide_filter_bar_feed_in_search_title",
+                        "revanced_hide_filter_bar_feed_in_search_summary_on",
+                        "revanced_hide_filter_bar_feed_in_search_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_hide_filter_bar_feed_in_related_videos",
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_related_videos_title",
-                            "Hide in related videos"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_related_videos_summary_on",
-                            "Hidden in related videos"
-                        ),
-                        StringResource(
-                            "revanced_hide_filter_bar_feed_in_related_videos_summary_off",
-                            "Shown in related videos"
-                        )
+                        "revanced_hide_filter_bar_feed_in_related_videos_title",
+                        "revanced_hide_filter_bar_feed_in_related_videos_summary_on",
+                        "revanced_hide_filter_bar_feed_in_related_videos_summary_off"
                     ),
                 ),
-                StringResource(
-                    "revanced_hide_filter_bar_preference_summary",
-                    "Manage the visibility of the filter bar in the feed, search and related videos"
-                )
+                "revanced_hide_filter_bar_preference_summary"
             )
         )
 

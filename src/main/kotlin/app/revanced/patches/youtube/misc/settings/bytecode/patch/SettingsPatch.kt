@@ -98,6 +98,7 @@ class SettingsPatch : BytecodePatch(
         private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
         private const val SET_THEME_METHOD_NAME = "setTheme"
 
+        @Deprecated("obsolete")
         fun addString(identifier: String, value: String, formatted: Boolean = true) =
             SettingsResourcePatch.addString(identifier, value, formatted)
 
@@ -124,11 +125,11 @@ class SettingsPatch : BytecodePatch(
      * Preference screens patches should add their settings to.
      */
     internal object PreferenceScreen : AbstractPreferenceScreen() {
-        val ADS = Screen("ads", "Ads", "Ad related settings")
-        val INTERACTIONS = Screen("interactions", "Interaction", "Settings related to interactions")
-        val LAYOUT = Screen("layout", "Layout", "Settings related to the layout")
-        val VIDEO = Screen("video", "Video", "Settings related to the video player")
-        val MISC = Screen("misc", "Misc", "Miscellaneous patches")
+        val ADS = Screen("revanced_ads_screen", "revanced_ads_screen_title", "revanced_ads_screen_summary")
+        val INTERACTIONS = Screen("revanced_interaction_screen", "revanced_interaction_screen_title", "revanced_interaction_screen_summary")
+        val LAYOUT = Screen("revanced_layout_screen", "revanced_layout_screen_title", "revanced_layout_screen_summary")
+        val MISC = Screen("revanced_misc_screen", "revanced_misc_screen_title", "revanced_misc_screen_summary")
+        val VIDEO = Screen("revanced_video_screen", "revanced_video_screen_title", "revanced_video_screen_summary")
 
         override fun commit(screen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) {
             addPreferenceScreen(screen)

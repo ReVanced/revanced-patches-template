@@ -24,10 +24,16 @@ internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((
     appendChild(preference.serialize(ownerDocument, resourceCallback))
 }
 
-internal fun Element.addSummary(summaryResource: StringResource?, summaryType: SummaryType = SummaryType.DEFAULT) =
-    summaryResource?.let { summary ->
-        setAttribute("android:${summaryType.type}", "@string/${summary.name}")
-    }
+internal fun Element.addSummary(summaryResourceKey: String?, summaryType: SummaryType = SummaryType.DEFAULT)  {
+    if (summaryResourceKey != null)
+        setAttribute("android:${summaryType.type}", "@string/$summaryResourceKey")
+}
+
+@Deprecated("obsolete")
+internal fun Element.addSummary(summaryResource: StringResource?, summaryType: SummaryType = SummaryType.DEFAULT){
+    if (summaryResource != null)
+        addSummary(summaryResource.name, summaryType)
+}
 
 internal fun <T> Element.addDefault(default: T) {
     if (default is Boolean && !(default as Boolean)) return // No need to include the default, as no value already means 'false'

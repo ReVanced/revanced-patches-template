@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.infocards.annotations.HideInfocardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -24,9 +23,9 @@ class HideInfocardsResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_info_cards",
-                StringResource("revanced_hide_info_cards_title", "Hide info cards"),
-                StringResource("revanced_hide_info_cards_summary_on", "Info cards are hidden"),
-                StringResource("revanced_hide_info_cards_summary_off", "Info cards are shown")
+                "revanced_hide_info_cards_title",
+                "revanced_hide_info_cards_summary_on",
+                "revanced_hide_info_cards_summary_off"
             )
         )
 

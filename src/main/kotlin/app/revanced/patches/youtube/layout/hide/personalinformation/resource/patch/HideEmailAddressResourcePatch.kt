@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.personalinformation.annotations.HideEmailAddressCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -26,9 +25,9 @@ class HideEmailAddressResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_email_address",
-                StringResource("revanced_hide_email_address_title", "Hide email in account switcher"),
-                StringResource("revanced_hide_email_address_summary_on", "Email address is hidden"),
-                StringResource("revanced_hide_email_address_summary_off", "Email address is shown")
+                "revanced_hide_email_address_title",
+                "revanced_hide_email_address_summary_on",
+                "revanced_hide_email_address_summary_off"
             )
         )
 

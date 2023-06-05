@@ -10,7 +10,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.links.open.annotations.OpenLinksExternallyCompatibility
 import app.revanced.patches.youtube.misc.links.open.fingerprints.BindSessionServiceFingerprint
@@ -35,9 +34,9 @@ class OpenLinksExternallyPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_external_browser",
-                StringResource("revanced_external_browser_title", "Open links in browser"),
-                StringResource("revanced_external_browser_summary_on", "Opening links externally"),
-                StringResource("revanced_external_browser_summary_off", "Opening links in app")
+                "revanced_external_browser_title",
+                "revanced_external_browser_summary_on",
+                "revanced_external_browser_summary_off"
             )
         )
 

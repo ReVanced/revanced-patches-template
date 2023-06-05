@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.crowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -26,9 +25,9 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_crowdfunding_box",
-                StringResource("revanced_hide_crowdfunding_box_title", "Hide crowdfunding box"),
-                StringResource("revanced_hide_crowdfunding_box_summary_on", "Crowdfunding box is hidden"),
-                StringResource("revanced_hide_crowdfunding_box_summary_off", "Crowdfunding box is shown")
+                "revanced_hide_crowdfunding_box_title",
+                "revanced_hide_crowdfunding_box_summary_on",
+                "revanced_hide_crowdfunding_box_summary_off"
             )
         )
 

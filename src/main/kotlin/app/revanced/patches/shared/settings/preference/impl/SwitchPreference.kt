@@ -12,25 +12,37 @@ import org.w3c.dom.Element
  * A switch preference.
  *
  * @param key The key of the switch.
- * @param title The title of the switch.
- * @param summaryOn The summary to show when the preference is enabled.
- * @param summaryOff The summary to show when the preference is disabled.
- * @param userDialogMessage The message to show in a dialog when the user toggles the preference.
+ * @param titleKey The title of the switch.
+ * @param summaryOnKey The summary to show when the preference is enabled.
+ * @param summaryOffKey The summary to show when the preference is disabled.
  * @param default The default value of the switch.
  */
 internal class SwitchPreference(
-    key: String, title: StringResource,
-    val summaryOn: StringResource,
-    val summaryOff: StringResource,
-    val userDialogMessage: StringResource? = null,
+    key: String,
+    titleKey: String,
+    val summaryOnKey: String,
+    val summaryOffKey: String,
     default: Boolean = false,
-) : DefaultBasePreference<Boolean>( key,  title,  null,  "SwitchPreference", default) {
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
-        userDialogMessage?.include()
+) : DefaultBasePreference<Boolean>( key, titleKey, null, "SwitchPreference", default) {
 
+    @Deprecated("Add strings to strings resource file and used non deprecated keyed constructor")
+    constructor(
+        key: String, title: StringResource,
+        summaryOn: StringResource,
+        summaryOff: StringResource,
+        userDialogMessage: StringResource? = null,
+        default: Boolean = false,
+        ) : this(key, title.name, summaryOn.name, summaryOff.name, default) {
+        title.include()
+        summaryOn.include()
+        summaryOff.include()
+        userDialogMessage?.include()
+    }
+
+    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
-            addSummary(summaryOn.also { resourceCallback.invoke(it) }, SummaryType.ON)
-            addSummary(summaryOff.also { resourceCallback.invoke(it) }, SummaryType.OFF)
+            addSummary(summaryOnKey, SummaryType.ON)
+            addSummary(summaryOffKey, SummaryType.OFF)
         }
     }
 }

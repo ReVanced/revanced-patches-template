@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.NonInteractivePreference
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.minimizedplayback.annotations.MinimizedPlaybackCompatibility
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
@@ -43,8 +42,8 @@ class MinimizedPlaybackPatch : BytecodePatch(
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
-                StringResource("revanced_minimized_playback_enabled_title", "Minimized playback"),
-                StringResource("revanced_minimized_playback_summary_on", "This setting can be found in Settings -> Background")
+                "revanced_minimized_playback_enabled_title",
+                "revanced_minimized_playback_summary_on"
             )
         )
 

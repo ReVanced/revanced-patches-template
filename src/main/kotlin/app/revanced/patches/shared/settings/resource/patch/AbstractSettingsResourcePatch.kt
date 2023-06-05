@@ -84,6 +84,7 @@ abstract class AbstractSettingsResourcePatch(
          * @param value The value of the string.
          * @throws IllegalArgumentException if the string already exists.
          */
+        @Deprecated("Add strings to a strings resource file")
         fun addString(identifier: String, value: String, formatted: Boolean) =
             StringResource(identifier, value, formatted).include()
 
@@ -126,6 +127,8 @@ abstract class AbstractSettingsResourcePatch(
     override fun close() {
         // merge all strings, skip duplicates
         strings.forEach {
+            // can be used to extract existing StringResources declarations in one go
+            // println("<string name=\"${it.name}\">${it.value}</string>")
             stringsNode!!.addResource(it)
         }
 

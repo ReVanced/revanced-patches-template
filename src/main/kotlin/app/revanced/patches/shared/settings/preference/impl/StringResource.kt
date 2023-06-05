@@ -11,6 +11,7 @@ import org.w3c.dom.Document
  * @param value The value of the string.
  * @param formatted If the string is formatted. If false, the attribute will be set.
  */
+@Deprecated("extract resources to a Strings.xml file")
 internal class StringResource(
     name: String,
     val value: String,

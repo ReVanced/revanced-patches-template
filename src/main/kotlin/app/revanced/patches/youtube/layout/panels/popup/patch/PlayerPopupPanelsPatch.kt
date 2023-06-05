@@ -11,7 +11,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.panels.popup.annotations.PlayerPopupPanelsCompatibility
 import app.revanced.patches.youtube.layout.panels.popup.fingerprints.EngagementPanelControllerFingerprint
@@ -33,9 +32,9 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_popup_panels",
-                StringResource("revanced_hide_player_popup_panels_title", "Hide player popup panels"),
-                StringResource("revanced_hide_player_popup_panels_summary_on", "Player popup panels are hidden"),
-                StringResource("revanced_hide_player_popup_panels_summary_off", "Player popup panels are shown")
+                "revanced_hide_player_popup_panels_title",
+                "revanced_hide_player_popup_panels_summary_on",
+                "revanced_hide_player_popup_panels_summary_off"
             )
         )
 

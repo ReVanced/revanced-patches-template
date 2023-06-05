@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.albumcards.annotations.AlbumCardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -26,9 +25,9 @@ class AlbumCardsResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_album_cards",
-                StringResource("revanced_hide_album_cards_title", "Hide album cards"),
-                StringResource("revanced_hide_album_cards_summary_on", "Album cards are hidden"),
-                StringResource("revanced_hide_album_cards_summary_off", "Album cards are shown")
+                "revanced_hide_album_cards_title",
+                "revanced_hide_album_cards_summary_on",
+                "revanced_hide_album_cards_summary_off"
             )
         )
 

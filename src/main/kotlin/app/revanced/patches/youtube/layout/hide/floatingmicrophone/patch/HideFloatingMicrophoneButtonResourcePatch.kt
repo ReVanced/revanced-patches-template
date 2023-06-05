@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.floatingmicrophone.annotations.HideFloatingMicrophoneButtonCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -21,12 +20,9 @@ class HideFloatingMicrophoneButtonResourcePatch : ResourcePatch {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_floating_microphone_button",
-                StringResource(
-                    "revanced_hide_floating_microphone_button_enabled_title",
-                    "Hide floating microphone button"
-                ),
-                StringResource("revanced_hide_floating_microphone_button_summary_on", "Microphone button hidden"),
-                StringResource("revanced_hide_floating_microphone_button_summary_off", "Microphone button shown")
+                "revanced_hide_floating_microphone_button_enabled_title",
+                "revanced_hide_floating_microphone_button_summary_on",
+                "revanced_hide_floating_microphone_button_summary_off"
             )
         )
 

@@ -13,7 +13,6 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.watermark.annotations.HideWatermarkCompatibility
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkFingerprint
@@ -36,9 +35,9 @@ class HideWatermarkPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_watermark",
-                StringResource("revanced_hide_video_watermark_title", "Hide creator watermark on videos"),
-                StringResource("revanced_hide_video_watermark_summary_on", "Watermark is hidden"),
-                StringResource("revanced_hide_video_watermark_summary_off", "Watermark is shown")
+                "revanced_hide_video_watermark_title",
+                "revanced_hide_video_watermark_summary_on",
+                "revanced_hide_video_watermark_summary_off"
             )
         )
 

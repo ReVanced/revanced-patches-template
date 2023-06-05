@@ -3,7 +3,6 @@ package app.revanced.patches.shared.settings.util
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import java.io.Closeable
 
 internal abstract class AbstractPreferenceScreen(
@@ -14,7 +13,7 @@ internal abstract class AbstractPreferenceScreen(
         if (root.isEmpty())
             return
 
-        for (preference in root.sortedBy { it.title }) {
+        for (preference in root.sortedBy { it.titleKey }) {
             commit(preference.transform())
         }
     }
@@ -26,20 +25,18 @@ internal abstract class AbstractPreferenceScreen(
 
     open inner class Screen(
         key: String,
-        title: String,
-        val summary: String? = null,
+        titleKey: String,
+        val summaryKey: String? = null,
         preferences: MutableList<BasePreference> = mutableListOf(),
         val categories: MutableList<Category> = mutableListOf()
-    ) : BasePreferenceCollection(key, title, preferences) {
+    ) : BasePreferenceCollection(key, titleKey, preferences) {
         override fun transform(): PreferenceScreen {
             return PreferenceScreen(
                 key,
-                StringResource("${key}_title", title),
-                 preferences.sortedBy { it.title.value.lowercase() } +
-                         categories.sortedBy { it.title.lowercase() }.map { it.transform() },
-                summary?.let { summary ->
-                    StringResource("${key}_summary", summary)
-                }
+                titleKey,
+                 preferences.sortedBy { it.titleKey } +
+                         categories.sortedBy { it.titleKey }.map { it.transform() },
+                summaryKey
             )
         }
 
@@ -56,14 +53,15 @@ internal abstract class AbstractPreferenceScreen(
 
         open inner class Category(
             key: String,
-            title: String,
+            titleKey: String,
             preferences: MutableList<BasePreference> = mutableListOf()
-        ): BasePreferenceCollection(key, title, preferences) {
+        ): BasePreferenceCollection(key, titleKey, preferences) {
             override fun transform(): PreferenceCategory {
                 return PreferenceCategory(
                     key,
-                    StringResource("${key}_title", title),
-                    preferences.sortedBy { it.title.value.lowercase() }
+                    titleKey,
+                    // FIXME: Ideally this would be sorted in Integrations to use alphabetical of the current language
+                    preferences.sortedBy { it.titleKey }
                 )
             }
 
@@ -81,7 +79,7 @@ internal abstract class AbstractPreferenceScreen(
 
     abstract class BasePreferenceCollection(
         val key: String,
-        val title: String,
+        val titleKey: String,
         val preferences: MutableList<BasePreference> = mutableListOf()
     ) {
         abstract fun transform(): BasePreference
