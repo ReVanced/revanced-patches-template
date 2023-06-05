@@ -60,7 +60,6 @@ internal abstract class AbstractPreferenceScreen(
                 return PreferenceCategory(
                     key,
                     titleKey,
-                    // FIXME: Ideally this would be sorted in Integrations to use alphabetical of the current language
                     preferences.sortedBy { it.titleKey }
                 )
             }
