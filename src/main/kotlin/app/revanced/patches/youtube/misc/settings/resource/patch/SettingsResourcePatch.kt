@@ -25,7 +25,7 @@ import org.w3c.dom.Node
 @Version("0.0.1")
 class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
-    "settings"
+    "youtube/settings"
 ) {
     override fun execute(context: ResourceContext): PatchResult {
         super.execute(context)
@@ -41,7 +41,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         arrayOf(
             ResourceUtils.ResourceGroup("layout", "revanced_settings_with_toolbar.xml")
         ).forEach { resourceGroup ->
-            context.copyResources("settings", resourceGroup)
+            context.copyResources("youtube/settings", resourceGroup)
         }
 
         preferencesEditor = context.xmlEditor["res/xml/settings_fragment.xml"]
@@ -93,7 +93,7 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        context.mergeStrings("settings/host/values/strings.xml")
+        context.mergeStrings("youtube/settings/host/values/strings.xml")
 
         return PatchResultSuccess()
     }

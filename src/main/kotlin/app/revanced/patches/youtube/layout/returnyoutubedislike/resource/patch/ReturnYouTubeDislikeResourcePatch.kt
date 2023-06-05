@@ -34,7 +34,7 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
             )
         )
         // merge strings
-        context.mergeStrings("returnyoutubedislike/host/values/strings.xml")
+        context.mergeStrings("youtube/returnyoutubedislike/host/values/strings.xml")
 
         oldUIDislikeId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "dislike_button"

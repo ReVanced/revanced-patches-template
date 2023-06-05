@@ -44,13 +44,13 @@ class ExternalDownloadsResourcePatch : ResourcePatch {
 
 
         // Copy strings
-        context.mergeStrings("downloads/host/values/strings.xml")
+        context.mergeStrings("youtube/downloads/host/values/strings.xml")
 
         // Copy resources
-        context.copyResources("downloads", ResourceUtils.ResourceGroup("drawable", "revanced_yt_download_button.xml"))
+        context.copyResources("youtube/downloads", ResourceUtils.ResourceGroup("drawable", "revanced_yt_download_button.xml"))
 
         // Add download button node
-        BottomControlsResourcePatch.addControls("downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
+        BottomControlsResourcePatch.addControls("youtube/downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
         return PatchResultSuccess()
     }

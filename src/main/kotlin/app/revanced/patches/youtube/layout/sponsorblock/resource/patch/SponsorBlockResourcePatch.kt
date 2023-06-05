@@ -34,7 +34,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
         /*
          merge SponsorBlock strings to main strings
          */
-        context.mergeStrings("sponsorblock/host/values/strings.xml")
+        context.mergeStrings("youtube/sponsorblock/host/values/strings.xml")
 
         /*
          merge SponsorBlock drawables to main drawables
@@ -62,7 +62,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
             )
         ).forEach { resourceGroup ->
-            context.copyResources("sponsorblock", resourceGroup)
+            context.copyResources("youtube/sponsorblock", resourceGroup)
         }
 
         /*
@@ -71,7 +71,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
 
         // copy nodes from host resources to their real xml files
         val hostingResourceStream =
-            classLoader.getResourceAsStream("sponsorblock/host/layout/youtube_controls_layout.xml")!!
+            classLoader.getResourceAsStream("youtube/sponsorblock/host/layout/youtube_controls_layout.xml")!!
 
         val targetXmlEditor = context.xmlEditor["res/layout/youtube_controls_layout.xml"]
         "RelativeLayout".copyXmlNode(

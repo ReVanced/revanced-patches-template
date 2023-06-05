@@ -97,7 +97,7 @@ class SwipeControlsResourcePatch : ResourcePatch {
         )
 
         context.copyResources(
-            "swipecontrols",
+            "youtube/swipecontrols",
             ResourceUtils.ResourceGroup(
                 "drawable",
                 "ic_sc_brightness_auto.xml",

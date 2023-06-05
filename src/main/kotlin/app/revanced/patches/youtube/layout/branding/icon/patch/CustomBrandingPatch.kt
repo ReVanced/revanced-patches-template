@@ -35,7 +35,7 @@ class CustomBrandingPatch : ResourcePatch {
                         )
                     }
                 }
-            } ?: resourceGroups.forEach { context.copyResources("branding", it) }
+            } ?: resourceGroups.forEach { context.copyResources("youtube/branding", it) }
         }
 
         val iconResourceFileNames = arrayOf(
