@@ -110,8 +110,8 @@ class TwitchSettingsPatch : BytecodePatch(
         private const val MENU_DISMISS_EVENT_CLASS = "Ltv/twitch/android/feature/settings/menu/SettingsMenuViewDelegate\$Event\$OnDismissClicked;"
 
         private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
-        private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/SettingsHooks;"
-        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/TwitchReVancedUtils;"
+        private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/TwitchSettingsHooks;"
+        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedTwitchUtils;"
 
         private fun MethodFingerprintResult.injectMenuItem(
             name: String,
@@ -175,7 +175,7 @@ class TwitchSettingsPatch : BytecodePatch(
                         key,
                         titleKey,
                         preferences.sortedBy { it.titleKey },
-                        "app.revanced.twitch.settingsmenu.preference.CustomPreferenceCategory"
+                        "app.revanced.twitch.settingsmenu.preference.TwitchPreferenceCategory"
                     )
                 }
             }
