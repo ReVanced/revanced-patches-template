@@ -40,8 +40,8 @@ class RememberVideoQualityPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        // This is bloated as each value has it's own String key/value
-        // ideally the entries would be raw values (and not a key to a String resource)
+        // Must specify the entire list as localized strings,
+        // Because the first entry is localized text ("Automatic quality")
         val entries = listOf(
             "revanced_video_quality_default_entry_1",
             "revanced_video_quality_default_entry_2",
@@ -54,15 +54,15 @@ class RememberVideoQualityPatch : BytecodePatch(
             "revanced_video_quality_default_entry_9",
         )
         val entryValues = listOf(
-            "revanced_video_quality_default_entry_value_1",
-            "revanced_video_quality_default_entry_value_2",
-            "revanced_video_quality_default_entry_value_3",
-            "revanced_video_quality_default_entry_value_4",
-            "revanced_video_quality_default_entry_value_5",
-            "revanced_video_quality_default_entry_value_6",
-            "revanced_video_quality_default_entry_value_7",
-            "revanced_video_quality_default_entry_value_8",
-            "revanced_video_quality_default_entry_value_9",
+            "-1",
+            "2160",
+            "1440",
+            "1080",
+            "720",
+            "480",
+            "360",
+            "240",
+            "144",
         )
 
         YouTubeSettingsPatch.PreferenceScreen.VIDEO.addPreferences(
@@ -76,14 +76,14 @@ class RememberVideoQualityPatch : BytecodePatch(
                 "revanced_video_quality_default_wifi",
                 "revanced_video_quality_default_wifi_title",
                 ArrayResource("revanced_video_quality_default_wifi_entry", entries),
-                ArrayResource("revanced_video_quality_default_wifi_entry_values", entryValues)
+                ArrayResource("revanced_video_quality_default_wifi_entry_values", entryValues, literalValues = true)
                 // default value and summary are set by integrations after loading
             ),
             ListPreference(
                 "revanced_video_quality_default_mobile",
                 "revanced_video_quality_default_mobile_title",
                 ArrayResource("revanced_video_quality_default_mobile_entries", entries),
-                ArrayResource("revanced_video_quality_default_mobile_values", entryValues)
+                ArrayResource("revanced_video_quality_default_mobile_values", entryValues, literalValues = true)
             )
         )
 

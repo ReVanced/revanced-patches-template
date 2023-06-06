@@ -18,16 +18,20 @@ import org.w3c.dom.Document
 internal class ListPreference(
     key: String,
     titleKey: String,
-    val entries: ArrayResource,
-    val entryValues: ArrayResource,
+    val entries: ArrayResource?,
+    val entryValues: ArrayResource?,
     summaryKey: String? = null,
     default: String? = null,
 ) : DefaultBasePreference<String>(key, titleKey, summaryKey, "ListPreference", default) {
 
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
         super.serialize(ownerDocument, resourceCallback).apply {
-            setAttribute("android:entries", "@array/${entries.also { resourceCallback.invoke(it) }.name}")
-            setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback.invoke(it) }.name}")
+            if (entries != null) {
+                setAttribute("android:entries", "@array/${entries.also { resourceCallback.invoke(it) }.name}")
+            }
+            if (entryValues != null) {
+                setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback.invoke(it) }.name}")
+            }
             addSummary(summaryKey)
         }
 }

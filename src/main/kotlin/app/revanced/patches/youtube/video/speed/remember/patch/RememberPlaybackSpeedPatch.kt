@@ -12,7 +12,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -42,17 +41,9 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
             ListPreference(
                 "revanced_playback_speed_default",
                 "revanced_playback_speed_default_title",
-                // Dummy data:
-                // Entries and values are set by Integrations code based on the actual speeds available,
-                // and the values set here are ignored and do nothing.
-                ArrayResource(
-                    "revanced_playback_speed_default_entries",
-                    listOf("revanced_playback_speed_default_entries")
-                ),
-                ArrayResource(
-                    "revanced_playback_speed_default_entry_values",
-                    listOf("revanced_playback_speed_default_entry_value")
-                )
+                // Entries and values are set by Integrations code based on the actual speeds available.
+                null,
+                null
             )
         )
 

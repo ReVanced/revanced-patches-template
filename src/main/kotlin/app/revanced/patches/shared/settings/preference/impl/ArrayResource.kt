@@ -8,10 +8,13 @@ import org.w3c.dom.Document
  *
  *  @param name The name of the array resource.
  *  @param items The items of the array resource.
+ *  @param literalValues If the values are to be used exactly as is.
+ *                       If false, the values are treated as Strings.xml entries.
  */
 internal class ArrayResource(
     name: String,
-    val items: Iterable<String>
+    val items: Iterable<String>,
+    val literalValues : Boolean = false
 ) : BaseResource(name, "string-array") {
 
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
@@ -20,7 +23,7 @@ internal class ArrayResource(
 
             items.forEach { item ->
                 this.appendChild(ownerDocument.createElement("item").also { itemNode ->
-                    itemNode.textContent = "@string/$item"
+                    itemNode.textContent = if (literalValues) item else "@string/$item"
                 })
             }
         }
