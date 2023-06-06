@@ -4,11 +4,14 @@ package app.revanced.util.resources
 
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Node
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
+import java.util.jar.JarFile
+import java.util.regex.Pattern
 
 internal object ResourceUtils {
 
@@ -52,6 +55,35 @@ internal object ResourceUtils {
             }
         }
     }
+
+    /**
+     * Copy localized strings from a given directory.
+     */
+    internal fun copyLocalizedStringFiles(context: ResourceContext, directory: String) {
+        val pattern = Pattern.compile("$directory/([-_a-zA-Z0-9]+)/strings\\.xml")
+
+        var jf: JarFile? = null
+        try {
+            jf = JarFile(this.javaClass.protectionDomain.codeSource.location.toURI().path)
+            val entries = jf.entries()
+            var foundElements = false
+            while (entries.hasMoreElements()) {
+                val match = pattern.matcher(entries.nextElement().name)
+                if (match.find()) {
+                    val languageDirectory = match.group(1)
+                    context.copyResources(
+                        directory,
+                        ResourceGroup(languageDirectory, "strings.xml")
+                    )
+                    foundElements = true
+                }
+            }
+            if (!foundElements) throw PatchResultError("could not find translated string files")
+        } finally {
+            jf?.close()
+        }
+    }
+
 
     /**
      * Resource names mapped to their corresponding resource data.
