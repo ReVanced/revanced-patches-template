@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">נגן המיני מושבת</string>
     <string name="revanced_tablet_miniplayer_summary_on">נגן מיני מופעל</string>
     <string name="revanced_tablet_miniplayer_title">הפעל מיני נגן טאבלט</string>
-    <string name="revanced_video_quality_default_entry_1">איכות אוטומטית</string>
+    <string name="revanced_video_quality_automatic">איכות אוטומטית</string>
     <string name="revanced_video_quality_default_mobile_title">איכות וידאו ברירת מחדל ברשת סלולרית</string>
     <string name="revanced_video_quality_default_wifi_title">איכות וידאו ברירת מחדל ברשת Wi-Fi</string>
     <string name="revanced_wide_searchbar_enabled_title">אפשר סרגל חיפוש רחב</string>

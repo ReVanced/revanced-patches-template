@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">منی پلیئر غیر فعال ہے۔</string>
     <string name="revanced_tablet_miniplayer_summary_on">منی پلیئر فعال ہے۔</string>
     <string name="revanced_tablet_miniplayer_title">ٹیبلیٹ منی پلیئر کو فعال کریں۔</string>
-    <string name="revanced_video_quality_default_entry_1">خودکار معیار</string>
+    <string name="revanced_video_quality_automatic">خودکار معیار</string>
     <string name="revanced_video_quality_default_mobile_title">موبائل نیٹ ورک پر پہلے سے طے شدہ ویڈیو کا معیار</string>
     <string name="revanced_video_quality_default_wifi_title">Wi-Fi نیٹ ورک پر پہلے سے طے شدہ ویڈیو کا معیار</string>
     <string name="revanced_wide_searchbar_enabled_title">وسیع سرچ بار کو فعال کریں۔</string>

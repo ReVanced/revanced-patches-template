@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">Le mini-lecteur est désactivé</string>
     <string name="revanced_tablet_miniplayer_summary_on">Le mini-lecteur est activé</string>
     <string name="revanced_tablet_miniplayer_title">Activer le mini-lecteur de tablette</string>
-    <string name="revanced_video_quality_default_entry_1">Qualité automatique</string>
+    <string name="revanced_video_quality_automatic">Qualité automatique</string>
     <string name="revanced_video_quality_default_mobile_title">Qualité vidéo par défaut sur le réseau mobile</string>
     <string name="revanced_video_quality_default_wifi_title">Qualité vidéo par défaut sur le réseau Wi-Fi</string>
     <string name="revanced_wide_searchbar_enabled_title">Activer la barre de recherche large</string>

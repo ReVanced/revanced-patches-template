@@ -43,7 +43,7 @@ class RememberVideoQualityPatch : BytecodePatch(
         // Must specify the entire list as localized strings,
         // Because the first entry is localized text ("Automatic quality")
         val entries = listOf(
-            "revanced_video_quality_default_entry_1",
+            "revanced_video_quality_automatic",
             "revanced_video_quality_default_entry_2",
             "revanced_video_quality_default_entry_3",
             "revanced_video_quality_default_entry_4",

@@ -394,7 +394,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">Mini player is disabled</string>
     <string name="revanced_tablet_miniplayer_summary_on">Mini player is enabled</string>
     <string name="revanced_tablet_miniplayer_title">Enable tablet mini player</string>
-    <string name="revanced_video_quality_default_entry_1">Automatic quality</string>
+    <string name="revanced_video_quality_automatic">Automatic quality</string>
     <string name="revanced_video_quality_default_mobile_title">Default video quality on mobile network</string>
     <string name="revanced_video_quality_default_wifi_title">Default video quality on Wi-Fi network</string>
     <string name="revanced_wide_searchbar_enabled_title">Enable wide search bar</string>

@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">迷你播放器已停用</string>
     <string name="revanced_tablet_miniplayer_summary_on">迷你播放器已启用</string>
     <string name="revanced_tablet_miniplayer_title">启用平板电脑迷你播放器</string>
-    <string name="revanced_video_quality_default_entry_1">自动质量</string>
+    <string name="revanced_video_quality_automatic">自动质量</string>
     <string name="revanced_video_quality_default_mobile_title">移动网络上的默认视频质量</string>
     <string name="revanced_video_quality_default_wifi_title">Wi-Fi 网络上的默认视频质量</string>
     <string name="revanced_wide_searchbar_enabled_title">启用宽搜索栏</string>

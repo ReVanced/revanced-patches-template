@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">كىچىك قويغۇچ چەكلەنگەن</string>
     <string name="revanced_tablet_miniplayer_summary_on">كىچىك قويغۇچ قوزغىتىلدى</string>
     <string name="revanced_tablet_miniplayer_title">تاختا كومپيۇتېر كىچىك قويغۇچنى قوزغىتىڭ</string>
-    <string name="revanced_video_quality_default_entry_1">ئاپتوماتىك سۈپەت</string>
+    <string name="revanced_video_quality_automatic">ئاپتوماتىك سۈپەت</string>
     <string name="revanced_video_quality_default_mobile_title">كۆچمە توردىكى سۈكۈتتىكى سىن سۈپىتى</string>
     <string name="revanced_video_quality_default_wifi_title">Wi-Fi تورىدىكى سۈكۈتتىكى سىن سۈپىتى</string>
     <string name="revanced_wide_searchbar_enabled_title">كەڭ ئىزدەش بالدىقىنى قوزغىتىڭ</string>

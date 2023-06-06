@@ -383,7 +383,7 @@
     <string name="revanced_tablet_miniplayer_summary_off">Isidlali esincane sikhutshaziwe</string>
     <string name="revanced_tablet_miniplayer_summary_on">Isidlali esincane sinikwe amandla</string>
     <string name="revanced_tablet_miniplayer_title">Nika amandla isidlali esincane sethebhulethi</string>
-    <string name="revanced_video_quality_default_entry_1">Ikhwalithi ezenzakalelayo</string>
+    <string name="revanced_video_quality_automatic">Ikhwalithi ezenzakalelayo</string>
     <string name="revanced_video_quality_default_mobile_title">Ikhwalithi yevidiyo ezenzakalelayo kunethiwekhi yeselula</string>
     <string name="revanced_video_quality_default_wifi_title">Ikhwalithi yevidiyo ezenzakalelayo kunethiwekhi ye-Wi-Fi</string>
     <string name="revanced_wide_searchbar_enabled_title">Nika amandla ibha yokusesha ebanzi</string>
