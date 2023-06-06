@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">Toast affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
     <string name="ryd_toast_on_connection_error_summary_off">Toast non affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
     <string name="ryd_about">À propos</string>
-    <string name="ryd_attribution_title">RetourYouTubeDislike.com</string>
     <string name="ryd_attribution_summary">Les données sont fournies par l\'API Return YouTube Dislike. Appuyez ici pour en savoir plus.</string>
-    <string name="ryd_statistics_category_title">Renvoie les statistiques de l\'API YouTubeDislike de cet appareil</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">Temps de réponse de l\'API, moyen</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">Temps de réponse de l\'API, minimum</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">Temps de réponse de l\'API, maximum</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">Temps de réponse de l\'API, dernière vidéo</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Dislikes temporairement non disponible - Limite de débit de l\'API client en vigueur</string>
-    <string name="ryd_statistics_getFetchCallCount_title">L\'API récupère les votes, le nombre d\'appels</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">Aucun appel réseau effectué</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d appels réseau effectués</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">L\'API récupère les votes, le nombre de délais d\'attente</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">Aucun appel réseau n\'a expiré</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d appels réseau ont expiré</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">Limites de débit client API</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">Aucune limite de débit client rencontrée</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Limite de débit client rencontrée %d fois</string>
-    <string name="ryd_statistics_millisecond_text">%d millisecondes</string>
 
 
     <string name="sb_enable_sb">Activer SponsorBlock</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">Réinitialiser la couleur</string>
     <string name="sb_reset">Réinitialiser</string>
     <string name="sb_about">À propos</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
     <string name="sb_about_api_sum">Les données sont fournies par l\'API SponsorBlock. Appuyez ici pour en savoir plus et voir les téléchargements pour d\'autres plates-formes</string>
     <string name="sb_about_made_by">Intégration ReVanced par JakubWeg,\nrecodée par oSumAtrIX</string>
 </resources>

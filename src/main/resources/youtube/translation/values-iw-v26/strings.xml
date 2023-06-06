@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">טוסט מוצג אם ReturnYouTubeDislike API אינו זמין</string>
     <string name="ryd_toast_on_connection_error_summary_off">טוסט לא מוצג אם ReturnYouTubeDislike API אינו זמין</string>
     <string name="ryd_about">על אודות</string>
-    <string name="ryd_attribution_title">ReturnYouTubeDislike.com</string>
     <string name="ryd_attribution_summary">הנתונים מסופקים על ידי ה-Retur YouTube Dislike API. הקש כאן למידע נוסף.</string>
-    <string name="ryd_statistics_category_title">ReturnYouTubeDislike API של מכשיר זה</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">זמן תגובה של API, ממוצע</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">זמן תגובה של API, מינימום</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">זמן תגובה של API, מקסימום</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">זמן תגובה של API, סרטון אחרון</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">דיסלייקים אינם זמינים באופן זמני - מגבלת שיעור לקוח API בתוקף</string>
-    <string name="ryd_statistics_getFetchCallCount_title">API אחזור קולות, מספר שיחות</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">לא בוצעו שיחות רשת</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">בוצעו %d שיחות רשת</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">אחזור קולות של API, מספר פסקי זמן</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">לא פג הזמן הקצוב לשיחות ברשת</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">תם הזמן הקצוב של %d שיחות רשת</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">מגבלות שיעורי לקוח API</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">לא נתקלו במגבלות על שיעורי לקוחות</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">מגבלת תעריף לקוחות נתקלה ב-%d פעמים</string>
-    <string name="ryd_statistics_millisecond_text">%d אלפיות שניות</string>
 
 
     <string name="sb_enable_sb">הפעל חסימת חסות</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">אפס צבע</string>
     <string name="sb_reset">אִתחוּל</string>
     <string name="sb_about">על אודות</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
     <string name="sb_about_api_sum">הנתונים מסופקים על ידי SponsorBlock API. הקש כאן כדי ללמוד עוד ולראות הורדות עבור פלטפורמות אחרות</string>
     <string name="sb_about_made_by">אינטגרציה מחודשת על ידי JakubWeg,\nמקודדת על ידי oSumAtrIX</string>
 </resources>

@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا كۆرسىتىلىدۇ</string>
     <string name="ryd_toast_on_connection_error_summary_off">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا توست كۆرسىتىلمەيدۇ</string>
     <string name="ryd_about">ھەققىدە</string>
-    <string name="ryd_attribution_title">ReturnYouTubeDislike.com</string>
     <string name="ryd_attribution_summary">سانلىق مەلۇمات قايتۇرۇش YouTube ياقتۇرمايدىغان API تەرىپىدىن تەمىنلەنگەن. تېخىمۇ كۆپ بىلىمگە ئېرىشىش ئۈچۈن بۇ يەرنى چېكىڭ.</string>
-    <string name="ryd_statistics_category_title">ReturnYouTube بۇ ئۈسكۈنىنىڭ API سىتاتىستىكىسى</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">API ئىنكاس ۋاقتى ، ئوتتۇرىچە</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">API ئىنكاس ۋاقتى ، ئەڭ تۆۋەن</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">API ئىنكاس ۋاقتى ، ئەڭ يۇقىرى</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">API ئىنكاس ۋاقتى ، ئاخىرقى سىن</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">ۋاقىتلىق ئىشلەتكىلى بولمايدۇ - خېرىدارلارنىڭ API نىسبىتى چەكلىمىسى كۈچكە ئىگە</string>
-    <string name="ryd_statistics_getFetchCallCount_title">API بېلەت ، تېلېفون سانى</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">تور تېلېفونى قىلىنمىدى</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d تور تېلېفونى قىلىندى</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">API بېلەتكە ئېرىشىدۇ ، ۋاقىت سانى</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">ھېچقانداق تور تېلېفونىنىڭ ۋاقتى توشمىدى</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d تور تېلېفونىنىڭ ۋاقتى ئۆتۈپ كەتتى</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API خېرىدار نىسبىتى چەكلىمىسى</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">خېرىدارلارنىڭ ئۆسۈم نىسبىتى چەكلىمىسىگە ئۇچرىمىدى</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">خېرىدارلارنىڭ نىسبىتى %d قېتىم ئۇچرايدۇ</string>
-    <string name="ryd_statistics_millisecond_text">%d مىللىمېتىر</string>
 
 
     <string name="sb_enable_sb">SponsorBlock نى قوزغىتىڭ</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">رەڭنى ئەسلىگە كەلتۈرۈش</string>
     <string name="sb_reset">ئەسلىگە قايتۇرۇش</string>
     <string name="sb_about">ھەققىدە</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
     <string name="sb_about_api_sum">سانلىق مەلۇماتلارنى SponsorBlock API تەمىنلىگەن. بۇ يەرنى چېكىپ تېخىمۇ كۆپ بىلىمگە ئېرىشىش ۋە باشقا سۇپىلارنىڭ چۈشۈرۈشلىرىنى كۆرۈڭ</string>
     <string name="sb_about_made_by">JakubWeg تەرىپىدىن قايتا بىرلەشتۈرۈلگەن ، \oSumAtrIX تەرىپىدىن كودلانغان</string>
 </resources>

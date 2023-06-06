@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ دکھایا گیا ہے۔</string>
     <string name="ryd_toast_on_connection_error_summary_off">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ نہیں دکھایا گیا ہے۔</string>
     <string name="ryd_about">کے بارے میں</string>
-    <string name="ryd_attribution_title">YouTubeDislike.com پر واپس جائیں۔</string>
     <string name="ryd_attribution_summary">ڈیٹا Return YouTube Dislike API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="ryd_statistics_category_title">اس ڈیوائس کے YouTubeDislike API کے اعدادوشمار واپس کریں۔</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">API جوابی وقت، اوسط</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">API جوابی وقت، کم از کم</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">API جوابی وقت، زیادہ سے زیادہ</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">API ردعمل کا وقت، آخری ویڈیو</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">ناپسندیدگیاں عارضی طور پر دستیاب نہیں ہیں - کلائنٹ API کی شرح کی حد اثر میں ہے۔</string>
-    <string name="ryd_statistics_getFetchCallCount_title">API ووٹ حاصل کریں، کالز کی تعداد</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">کوئی نیٹ ورک کال نہیں کی گئی۔</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d نیٹ ورک کالز کی گئیں۔</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">API بازیافت ووٹ، ٹائم آؤٹ کی تعداد</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">کسی نیٹ ورک کال کا وقت ختم نہیں ہوا۔</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d نیٹ ورک کالز کا وقت ختم ہو گیا۔</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API کلائنٹ کی شرح کی حدود</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">کلائنٹ کی شرح کی کسی حد کا سامنا نہیں ہوا۔</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">کلائنٹ کی شرح کی حد کا %d بار سامنا ہوا۔</string>
-    <string name="ryd_statistics_millisecond_text">%d ملی سیکنڈ</string>
 
 
     <string name="sb_enable_sb">اسپانسر بلاک کو فعال کریں۔</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">رنگ ری سیٹ کریں۔</string>
     <string name="sb_reset">دوبارہ ترتیب دیں۔</string>
     <string name="sb_about">کے بارے میں</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
     <string name="sb_about_api_sum">ڈیٹا SponsorBlock API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں اور دوسرے پلیٹ فارمز کے لیے ڈاؤن لوڈز دیکھیں</string>
     <string name="sb_about_made_by">JakubWeg کی طرف سے ری وینسڈ انضمام، oSumAtrIX کے ذریعے دوبارہ کوڈ کیا گیا۔</string>
 </resources>

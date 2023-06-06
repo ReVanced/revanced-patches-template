@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Strings that should never be translated, and should never be added to localized Strings.xml -->
+    <!--
+        Strings that should never be translated, and should never be added to localized Strings.xml
+    -->
+
+    <!-- literal values -->
     <string name="revanced_video_quality_default_entry_2">2160p</string>
     <string name="revanced_video_quality_default_entry_3">1440p</string>
     <string name="revanced_video_quality_default_entry_4">1080p</string>
@@ -10,7 +14,32 @@
     <string name="revanced_video_quality_default_entry_8">240p</string>
     <string name="revanced_video_quality_default_entry_9">144p</string>
 
-    <!-- Everything else -->
+    <!-- websites and non translatable text -->
+    <string name="ryd_attribution_title">ReturnYouTubeDislike.com</string>
+    <string name="sb_about_api">sponsor.ajay.app</string>
+
+    <!-- debugging statistics that are probably not worth translating -->
+    <string name="ryd_statistics_category_title">ReturnYouTubeDislike API statistics of this device</string>
+    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">API response time, average</string>
+    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">API response time, minimum</string>
+    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">API response time, maximum</string>
+    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">API response time, last video</string>
+    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Dislikes temporarily not available - Client API rate limit in effect</string>
+    <string name="ryd_statistics_getFetchCallCount_title">API fetch votes, number of calls</string>
+    <string name="ryd_statistics_getFetchCallCount_zero_summary">No network calls made</string>
+    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d network calls made</string>
+    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">API fetch votes, number of timeouts</string>
+    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">No network calls timed out</string>
+    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d network calls timed out</string>
+    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API client rate limits</string>
+    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">No client rate limits encountered</string>
+    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit encountered %d times</string>
+    <string name="ryd_statistics_millisecond_text">%d milliseconds</string>
+
+
+    <!--
+        Everything that should be translated
+     -->
 
     <string name="revanced_ads_screen_title">Ads</string>
     <string name="revanced_ads_screen_summary">Ad related settings</string>
@@ -424,25 +453,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">Toast shown if ReturnYouTubeDislike API is not available</string>
     <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if ReturnYouTubeDislike API is not available</string>
     <string name="ryd_about">About</string>
-    <string name="ryd_attribution_title">ReturnYouTubeDislike.com</string>
     <string name="ryd_attribution_summary">Data is provided by the Return YouTube Dislike API. Tap here to learn more.</string>
-    <string name="ryd_statistics_category_title">ReturnYouTubeDislike API statistics of this device</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">API response time, average</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">API response time, minimum</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">API response time, maximum</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">API response time, last video</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Dislikes temporarily not available - Client API rate limit in effect</string>
-    <string name="ryd_statistics_getFetchCallCount_title">API fetch votes, number of calls</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">No network calls made</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d network calls made</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">API fetch votes, number of timeouts</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">No network calls timed out</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d network calls timed out</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API client rate limits</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">No client rate limits encountered</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Client rate limit encountered %d times</string>
-    <string name="ryd_statistics_millisecond_text">%d milliseconds</string>
-
 
     <string name="sb_enable_sb">Enable SponsorBlock</string>
     <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos</string>
@@ -616,7 +627,6 @@
     <string name="sb_reset_color">Reset color</string>
     <string name="sb_reset">Reset</string>
     <string name="sb_about">About</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
     <string name="sb_about_api_sum">Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms</string>
     <string name="sb_about_made_by">ReVanced integration by JakubWeg,\nrecoded by oSumAtrIX</string>
     

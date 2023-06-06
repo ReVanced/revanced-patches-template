@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">如果 ReturnYouTubeDislike API 不可用，则显示 Toast</string>
     <string name="ryd_toast_on_connection_error_summary_off">如果 ReturnYouTubeDislike API 不可用，则不显示 Toast</string>
     <string name="ryd_about">关于</string>
-    <string name="ryd_attribution_title">返回YouTubeDislike.com</string>
     <string name="ryd_attribution_summary">数据由 Return YouTube Dislike API 提供。点击此处了解更多信息。</string>
-    <string name="ryd_statistics_category_title">返回此设备的 YouTubeDislike API 统计信息</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">API 响应时间，平均</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">API 响应时间，最小</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">API 响应时间，最大值</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">API 响应时间，最后一个视频</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">不喜欢暂时不可用 - 客户端 API 速率限制生效</string>
-    <string name="ryd_statistics_getFetchCallCount_title">API 取票、调用次数</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">没有拨打网络电话</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">进行了 %d 次网络调用</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">API 取票、超时次数</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">没有网络调用超时</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d 个网络调用超时</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">API 客户端速率限制</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">没有遇到客户端速率限制</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">遇到客户端速率限制 %d 次</string>
-    <string name="ryd_statistics_millisecond_text">%d 毫秒</string>
 
 
     <string name="sb_enable_sb">启用 SponsorBlock</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">重置颜色</string>
     <string name="sb_reset">重置</string>
     <string name="sb_about">关于</string>
-    <string name="sb_about_api">赞助商.ajay.app</string>
     <string name="sb_about_api_sum">数据由 SponsorBlock API 提供。点击此处了解更多信息并查看其他平台的下载</string>
     <string name="sb_about_made_by">JakubWeg 重新集成，\n由 oSumAtrIX 重新编码</string>
 </resources>

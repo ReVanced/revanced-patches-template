@@ -414,24 +414,7 @@
     <string name="ryd_toast_on_connection_error_summary_on">I-Toast iyaboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
     <string name="ryd_toast_on_connection_error_summary_off">I-Toast ayiboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
     <string name="ryd_about">Mayelana</string>
-    <string name="ryd_attribution_title">BuyiselaYouTubeDislike.com</string>
     <string name="ryd_attribution_summary">Idatha ihlinzekwa yi-Return YouTube Dislike API. Thepha lapha ukuze ufunde kabanzi.</string>
-    <string name="ryd_statistics_category_title">Buyisa izibalo ze-API ye-YouTubeDislike yale divayisi</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeAverage_title">Isikhathi sokuphendula se-API, isilinganiso</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMin_title">Isikhathi sokuphendula se-API, ubuncane</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeMax_title">Isikhathi sokuphendula se-API, esiphezulu</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_title">Isikhathi sokuphendula se-API, ividiyo yokugcina</string>
-    <string name="ryd_statistics_getFetchCallResponseTimeLast_rate_limit_summary">Ukungathandwa akutholakali okwesikhashana - Umkhawulo wesilinganiso se-Client API uyasebenza</string>
-    <string name="ryd_statistics_getFetchCallCount_title">I-API ukulanda amavoti, inombolo yamakholi</string>
-    <string name="ryd_statistics_getFetchCallCount_zero_summary">Awekho amakholi enethiwekhi enziwe</string>
-    <string name="ryd_statistics_getFetchCallCount_non_zero_summary">%d amakholi enethiwekhi enziwe</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_title">I-API yokulanda amavoti, inombolo yokuphela kwesikhathi</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_zero_summary">Awekho amakholi enethiwekhi aphelelwe yisikhathi</string>
-    <string name="ryd_statistics_getFetchCallNumberOfFailures_non_zero_summary">%d amakholi enethiwekhi aphelelwe yisikhathi</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_title">Imikhawulo yesilinganiso seklayenti le-API</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_zero_summary">Ayikho imikhawulo yesilinganiso seklayenti okuhlangatshezwane nayo</string>
-    <string name="ryd_statistics_getNumberOfRateLimitRequestsEncountered_non_zero_summary">Umkhawulo wesilinganiso seklayenti uhlangabezane nezikhathi ezingu-%d</string>
-    <string name="ryd_statistics_millisecond_text">%d ama-millisecond</string>
 
 
     <string name="sb_enable_sb">Nika amandla i-SponsorBlock</string>
@@ -606,7 +589,6 @@
     <string name="sb_reset_color">Setha kabusha umbala</string>
     <string name="sb_reset">Setha kabusha</string>
     <string name="sb_about">Mayelana</string>
-    <string name="sb_about_api">umxhasi.ajay.app</string>
     <string name="sb_about_api_sum">Idatha inikezwa i-SponsorBlock API. Thepha lapha ukuze ufunde kabanzi futhi ubone okulandiwe kwezinye izinkundla</string>
     <string name="sb_about_made_by">Ukuhlanganiswa okuthuthukisiwe ngu-JakubWeg,\nkufakwe kabusha yi-oSumAtriIX</string>
 </resources>
