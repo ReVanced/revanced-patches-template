@@ -23,7 +23,7 @@ import org.w3c.dom.Node
 @DependsOn([ResourceMappingPatch::class])
 @Description("Applies mandatory patches to implement ReVanced settings into the application.")
 @Version("0.0.1")
-class SettingsResourcePatch : AbstractSettingsResourcePatch( // TODO: rename to YouTubeSettingsResourcePatch
+class YouTubeSettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "youtube/settings"
 ) {

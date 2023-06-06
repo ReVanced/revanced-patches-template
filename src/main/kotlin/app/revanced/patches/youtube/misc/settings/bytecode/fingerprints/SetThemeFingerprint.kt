@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.settings.bytecode.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.YouTubeSettingsResourcePatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
@@ -14,7 +14,7 @@ object SetThemeFingerprint : MethodFingerprint(
 
             val wideLiteral = (instruction as WideLiteralInstruction).wideLiteral
 
-            SettingsResourcePatch.appearanceStringId == wideLiteral
+            YouTubeSettingsResourcePatch.appearanceStringId == wideLiteral
         } ?: false
     }
 )

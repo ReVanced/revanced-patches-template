@@ -18,12 +18,12 @@ import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.SetThemeFingerprint
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.YouTubeSettingsResourcePatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.util.MethodUtil
 
-@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")
@@ -99,12 +99,12 @@ class SettingsPatch : BytecodePatch(
         private const val SET_THEME_METHOD_NAME = "setTheme"
 
         fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+            YouTubeSettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
-        fun addPreference(preference: Preference) = SettingsResourcePatch.addPreference(preference)
+        fun addPreference(preference: Preference) = YouTubeSettingsResourcePatch.addPreference(preference)
 
         fun renameIntentsTargetPackage(newPackage: String) {
-            SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
+            YouTubeSettingsResourcePatch.overrideIntentsTargetPackage = newPackage
         }
 
         /**
