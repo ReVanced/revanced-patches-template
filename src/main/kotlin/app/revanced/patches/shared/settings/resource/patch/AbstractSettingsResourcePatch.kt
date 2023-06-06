@@ -77,9 +77,15 @@ abstract class AbstractSettingsResourcePatch(
                 arraysNode = value.getNode("resources")
             }
 
-        fun addString(key: String, value: String, isFormatted: Boolean) {
-            StringResource(key, value, isFormatted).include()
-        }
+        /**
+         * Add a new string to the resources.  This does not support localization.
+         *
+         * @param identifier The key of the string.
+         * @param value The value of the string.
+         * @throws IllegalArgumentException if the string already exists.
+         */
+        fun addString(identifier: String, value: String, formatted: Boolean) =
+            StringResource(identifier, value, formatted).include()
 
         /**
          * Add an array to the resources.
@@ -120,8 +126,6 @@ abstract class AbstractSettingsResourcePatch(
     override fun close() {
         // merge all strings, skip duplicates
         strings.forEach {
-            // can be used to extract existing StringResources declarations in one go
-            // println("<string name=\"${it.name}\">${it.value}</string>")
             stringsNode!!.addResource(it)
         }
 
