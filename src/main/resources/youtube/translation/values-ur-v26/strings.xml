@@ -122,7 +122,7 @@
     <string name="revanced_hide_clip_button_summary_off">کلپ کا بٹن دکھایا گیا ہے۔</string>
     <string name="revanced_hide_clip_button_summary_on">کلپ بٹن چھپا ہوا ہے۔</string>
     <string name="revanced_hide_clip_button_title">کلپ بٹن چھپائیں۔</string>
-    <string name="revanced_hide_clip_button_user_dialog_message">ہو سکتا ہے کلپ بٹن کو چھپانا قابل اعتماد طریقے سے کام نہ کرے۔ اگر یہ کام نہیں کرتا ہے، تو اسے صرف \\'دیگر تمام ایکشن بٹن چھپائیں\\' کو فعال کر کے چھپایا جا سکتا ہے۔</string>
+    <string name="revanced_hide_clip_button_user_dialog_message">ہو سکتا ہے کلپ بٹن کو چھپانا قابل اعتماد طریقے سے کام نہ کرے۔ اگر یہ کام نہیں کرتا ہے، تو اسے صرف \'دیگر تمام ایکشن بٹن چھپائیں\' کو فعال کر کے چھپایا جا سکتا ہے۔</string>
     <string name="revanced_hide_comments_section_summary_off">تبصرہ سیکشن دکھایا گیا ہے۔</string>
     <string name="revanced_hide_comments_section_summary_on">تبصرہ سیکشن چھپا ہوا ہے۔</string>
     <string name="revanced_hide_comments_section_title">تبصرے کا سیکشن چھپائیں۔</string>
@@ -517,7 +517,7 @@
     <string name="sb_segments_sponsor">سپانسر</string>
     <string name="sb_segments_sponsor_sum">بامعاوضہ پروموشن، بامعاوضہ حوالہ جات اور براہ راست اشتہارات۔ خود کو فروغ دینے یا اسباب/تخلیق کاروں/ویب سائٹس/مصنوعات کے لیے مفت شور مچانے کے لیے نہیں</string>
     <string name="sb_segments_selfpromo">بلا معاوضہ/خود پروموشن</string>
-    <string name="sb_segments_selfpromo_sum">بلا معاوضہ یا خود پروموشن کے علاوہ \\'اسپانسر\\' کی طرح۔ تجارتی مال، عطیات، یا اس کے بارے میں معلومات کے حصے شامل ہیں کہ انہوں نے کس کے ساتھ تعاون کیا۔</string>
+    <string name="sb_segments_selfpromo_sum">بلا معاوضہ یا خود پروموشن کے علاوہ \'اسپانسر\' کی طرح۔ تجارتی مال، عطیات، یا اس کے بارے میں معلومات کے حصے شامل ہیں کہ انہوں نے کس کے ساتھ تعاون کیا۔</string>
     <string name="sb_segments_interaction">تعامل کی یاد دہانی (سبسکرائب کریں)</string>
     <string name="sb_segments_interaction_sum">مواد کے بیچ میں ان کو پسند کرنے، سبسکرائب کرنے یا ان کی پیروی کرنے کے لیے ایک مختصر یاد دہانی۔ اگر یہ لمبا ہے یا کسی خاص چیز کے بارے میں ہے، تو اسے بجائے خود پروموشن کے تحت ہونا چاہیے۔</string>
     <string name="sb_segments_highlight">نمایاں کریں۔</string>
