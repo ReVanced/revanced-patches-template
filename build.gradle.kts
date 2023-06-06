@@ -1,11 +1,21 @@
+import java.util.*
+
 plugins {
     kotlin("jvm") version "1.8.10"
 }
 
 group = "app.revanced"
 
-val githubUsername: String = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
-val githubPassword: String = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
+val localProperties = Properties().apply {
+    File(rootProject.rootDir, "local.properties").inputStream().use { load(it) }
+}
+
+fun gitGithubCredential(property: String, env: String): String {
+    return project.findProperty(property) as? String ?: localProperties.getProperty(property) ?: System.getenv(env)
+}
+
+val githubUsername: String = gitGithubCredential("gpr.user", "GITHUB_ACTOR")
+val githubPassword: String = gitGithubCredential("gpr.key", "GITHUB_TOKEN")
 
 repositories {
     mavenCentral()
