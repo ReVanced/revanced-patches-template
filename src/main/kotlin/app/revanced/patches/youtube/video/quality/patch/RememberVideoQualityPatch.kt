@@ -54,7 +54,7 @@ class RememberVideoQualityPatch : BytecodePatch(
             "revanced_video_quality_default_entry_9",
         )
         val entryValues = listOf(
-            "-1",
+            "-2",
             "2160",
             "1440",
             "1080",
