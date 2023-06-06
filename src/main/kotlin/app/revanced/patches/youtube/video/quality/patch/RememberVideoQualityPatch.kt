@@ -18,7 +18,7 @@ import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.quality.annotations.RememberVideoQualityCompatibility
 import app.revanced.patches.youtube.video.quality.fingerprints.SetQualityByIndexMethodClassFieldReferenceFingerprint
@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.FieldReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, VideoInformationPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, VideoInformationPatch::class, YouTubeSettingsPatch::class])
 @Name("remember-video-quality")
 @Description("Adds the ability to remember the video quality you chose in the video quality flyout.")
 @RememberVideoQualityCompatibility
@@ -65,7 +65,7 @@ class RememberVideoQualityPatch : BytecodePatch(
             "revanced_video_quality_default_entry_value_9",
         )
 
-        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",
                 "revanced_remember_video_quality_last_selected_title",

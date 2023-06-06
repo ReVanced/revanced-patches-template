@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.settings.annotations
+package app.revanced.patches.tiktok.misc.integrations.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,4 +10,4 @@ import app.revanced.patcher.annotation.Package
     ]
 )
 @Target(AnnotationTarget.CLASS)
-internal annotation class SettingsCompatibility
+internal annotation class TikTokIntegrationsCompatibility

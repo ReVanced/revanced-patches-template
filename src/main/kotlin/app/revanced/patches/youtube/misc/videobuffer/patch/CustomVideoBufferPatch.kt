@@ -10,19 +10,19 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.misc.videobuffer.annotations.CustomVideoBufferCompatibility
 
 // TODO: delete this patch
 @Patch(include = false)
 @Name("custom-video-buffer")
 @Description("Lets you change the buffers of videos.")
-@DependsOn([SettingsPatch::class])
+@DependsOn([YouTubeSettingsPatch::class])
 @CustomVideoBufferCompatibility
 @Version("0.0.1")
 class CustomVideoBufferPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
                 "revanced_custom_video_buffer_disclaimer_title",
                 "revanced_custom_video_buffer_disclaimer_title_summary",

@@ -14,16 +14,16 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.getpremium.annotations.HideGetPremiumCompatibility
 import app.revanced.patches.youtube.ad.getpremium.bytecode.fingerprints.GetPremiumViewFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("hide-get-premium")
 @HideGetPremiumCompatibility
 @Version("0.0.1")
 class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint,)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.ADS.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
                 "revanced_hide_get_premium_title",

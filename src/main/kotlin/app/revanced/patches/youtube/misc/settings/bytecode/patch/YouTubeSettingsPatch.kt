@@ -27,7 +27,7 @@ import org.jf.dexlib2.util.MethodUtil
 @Name("settings")
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")
-class SettingsPatch : BytecodePatch(
+class YouTubeSettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, SetThemeFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {

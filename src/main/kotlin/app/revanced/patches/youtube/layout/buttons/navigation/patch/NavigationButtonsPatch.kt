@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @DependsOn(
     [
         IntegrationsPatch::class,
-        SettingsPatch::class,
+        YouTubeSettingsPatch::class,
         ResolvePivotBarFingerprintsPatch::class,
     ]
 )
@@ -38,7 +38,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",
                 "revanced_navigation_buttons_preference_screen_title",

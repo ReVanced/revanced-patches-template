@@ -12,14 +12,14 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibility
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
+import app.revanced.patches.tiktok.misc.settings.patch.TikTokSettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([TikTokIntegrationsPatch::class, TikTokSettingsPatch::class])
 @Name("feed-filter")
 @Description("Filters tiktok videos: removing ads, removing livestreams.")
 @FeedFilterCompatibility

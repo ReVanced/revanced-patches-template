@@ -10,12 +10,12 @@ import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Name("settings-resource-patch")
 @DependsOn([IntegrationsPatch::class])
-@SettingsCompatibility
+@TwitchSettingsCompatibility
 @Version("0.0.1")
 class TwitchSettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",

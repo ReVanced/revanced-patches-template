@@ -18,11 +18,11 @@ import app.revanced.patches.youtube.layout.panels.fullscreen.remove.annotations.
 import app.revanced.patches.youtube.layout.panels.fullscreen.remove.fingerprints.FullscreenViewAdderFingerprint
 import app.revanced.patches.youtube.layout.panels.fullscreen.remove.fingerprints.FullscreenViewAdderParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
 @Name("disable-fullscreen-panels")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Description("Disables video description and comments panel in fullscreen view.")
 @FullscreenPanelsCompatibility
 @Version("0.0.1")
@@ -32,7 +32,7 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_fullscreen_panels",
                 "revanced_hide_fullscreen_panels_title",

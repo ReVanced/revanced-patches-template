@@ -18,7 +18,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.addPreference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
-import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsUpdatedFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsActivityOnCreateFingerprint
@@ -31,9 +31,9 @@ import org.jf.dexlib2.immutable.ImmutableField
 @DependsOn([TwitchSettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings menu to Twitch.")
-@SettingsCompatibility
+@TwitchSettingsCompatibility
 @Version("0.0.1")
-class SettingsPatch : BytecodePatch(
+class TwitchSettingsPatch : BytecodePatch(
     listOf(
         SettingsActivityOnCreateFingerprint,
         SettingsMenuItemEnumFingerprint,

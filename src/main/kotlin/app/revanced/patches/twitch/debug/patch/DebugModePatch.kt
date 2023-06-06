@@ -16,10 +16,10 @@ import app.revanced.patches.twitch.debug.fingerprints.IsDebugConfigEnabledFinger
 import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
 
 @Patch(false)
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
 @Name("debug-mode")
 @Description("Enables Twitch's internal debugging mode.")
 @DebugModeCompatibility
@@ -51,7 +51,7 @@ class DebugModePatch : BytecodePatch(
             }
         }
 
-        SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
+        TwitchSettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
             SwitchPreference(
                 "revanced_debug_mode",
                 "revanced_debug_mode_enable",

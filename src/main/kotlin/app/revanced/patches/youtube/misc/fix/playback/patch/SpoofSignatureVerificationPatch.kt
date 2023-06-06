@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParam
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.SubtitleWindowSettingsConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -27,7 +27,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Description("Spoofs a patched client to prevent playback issues.")
 @DependsOn([
     IntegrationsPatch::class,
-    SettingsPatch::class,
+    YouTubeSettingsPatch::class,
     PlayerTypeHookPatch::class,
     VideoIdPatch::class
 ])
@@ -40,7 +40,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_signature_verification",
                 "revanced_spoof_signature_verification_title",

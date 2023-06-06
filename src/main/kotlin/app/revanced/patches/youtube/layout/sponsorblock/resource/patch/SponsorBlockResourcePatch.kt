@@ -9,22 +9,22 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 
 @Name("sponsorblock-resource-patch")
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
 @Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.addPreference(
+        YouTubeSettingsPatch.addPreference(
             Preference(
                 "revanced_sponsorblock_settings_title",
                 "revanced_sponsorblock_settings_summary",
-                SettingsPatch.createReVancedSettingsIntent("sponsorblock_settings_intent")
+                YouTubeSettingsPatch.createReVancedSettingsIntent("sponsorblock_settings_intent")
             )
         )
         val classLoader = this.javaClass.classLoader

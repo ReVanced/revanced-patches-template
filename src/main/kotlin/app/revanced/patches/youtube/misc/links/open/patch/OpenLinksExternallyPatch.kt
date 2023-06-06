@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.links.open.annotations.OpenLinksExterna
 import app.revanced.patches.youtube.misc.links.open.fingerprints.BindSessionServiceFingerprint
 import app.revanced.patches.youtube.misc.links.open.fingerprints.GetCustomTabPackageNameFingerprint
 import app.revanced.patches.youtube.misc.links.open.fingerprints.InitializeCustomTabSupportFingerprint
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
@@ -31,7 +31,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_external_browser",
                 "revanced_external_browser_title",

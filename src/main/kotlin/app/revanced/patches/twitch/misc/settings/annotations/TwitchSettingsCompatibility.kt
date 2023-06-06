@@ -5,4 +5,4 @@ import app.revanced.patcher.annotation.Package
 
 @Compatibility([Package("tv.twitch.android.app")])
 @Target(AnnotationTarget.CLASS)
-internal annotation class SettingsCompatibility
+internal annotation class TwitchSettingsCompatibility

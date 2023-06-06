@@ -16,10 +16,10 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.audio.annotations.AudioAdsCompatibility
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
 @Name("block-audio-ads")
 @Description("Blocks audio ads in streams and VODs.")
 @AudioAdsCompatibility
@@ -42,7 +42,7 @@ class AudioAdsPatch : BytecodePatch(
             )
         }
 
-        SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
+        TwitchSettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_audio_ads",
                 "revanced_block_audio_ads",

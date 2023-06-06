@@ -4,10 +4,10 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.w3c.dom.Element
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
 class SeekbarColorResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         // Edit theme colors via bytecode.

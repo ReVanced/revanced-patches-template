@@ -14,8 +14,8 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.tiktok.misc.settings.annotations.SettingsCompatibility
+import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
+import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AboutPageFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityOnCreateFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsOnViewCreatedFingerprint
@@ -26,12 +26,12 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([TikTokIntegrationsPatch::class])
 @Name("settings")
 @Description("Adds ReVanced settings to TikTok.")
-@SettingsCompatibility
+@TikTokSettingsCompatibility
 @Version("0.0.1")
-class SettingsPatch : BytecodePatch(
+class TikTokSettingsPatch : BytecodePatch(
     listOf(
         AboutPageFingerprint,
         AdPersonalizationActivityOnCreateFingerprint,
@@ -114,7 +114,7 @@ class SettingsPatch : BytecodePatch(
 
     private companion object {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/tiktok/settingsmenu/SettingsMenu;"
+            "Lapp/revanced/tiktok/settingsmenu/TikTokSettingsMenu;"
 
         private const val INITIALIZE_SETTINGS_METHOD_DESCRIPTOR =
             "$INTEGRATIONS_CLASS_DESCRIPTOR->initializeSettings(" +

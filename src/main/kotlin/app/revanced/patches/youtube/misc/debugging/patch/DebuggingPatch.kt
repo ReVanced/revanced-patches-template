@@ -13,17 +13,17 @@ import app.revanced.patches.all.misc.debugging.patch.EnableAndroidDebuggingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.debugging.annotations.DebuggingCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
 @Name("enable-debugging")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, EnableAndroidDebuggingPatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class, EnableAndroidDebuggingPatch::class])
 @Description("Adds debugging options.")
 @DebuggingCompatibility
 @Version("0.0.2")
 class DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
                 "revanced_debug_preference_screen",
                 "revanced_debug_preference_screen_title",

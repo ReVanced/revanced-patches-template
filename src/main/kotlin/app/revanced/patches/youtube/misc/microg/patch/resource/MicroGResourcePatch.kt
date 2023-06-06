@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NA
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_SIGNATURE
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.misc.settings.resource.patch.YouTubeSettingsResourcePatch
 import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
@@ -28,14 +28,14 @@ import app.revanced.util.microg.MicroGResourceHelper
 @Version("0.0.1")
 class MicroGResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.addPreference(
+        YouTubeSettingsPatch.addPreference(
             Preference(
                 "microg_settings_title",
                 "microg_settings_summary",
                 Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
             )
         )
-        SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
+        YouTubeSettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
 
         // update manifest
         MicroGResourceHelper.patchManifest(

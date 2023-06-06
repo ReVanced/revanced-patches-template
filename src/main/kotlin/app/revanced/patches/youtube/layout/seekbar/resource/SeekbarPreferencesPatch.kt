@@ -6,10 +6,10 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import java.io.Closeable
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
 class SeekbarPreferencesPatch : ResourcePatch, Closeable {
     override fun execute(context: ResourceContext): PatchResult {
 
@@ -19,7 +19,7 @@ class SeekbarPreferencesPatch : ResourcePatch, Closeable {
     }
 
     override fun close() {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_seekbar_preference_screen",
                 "revanced_seekbar_preference_screen_title",

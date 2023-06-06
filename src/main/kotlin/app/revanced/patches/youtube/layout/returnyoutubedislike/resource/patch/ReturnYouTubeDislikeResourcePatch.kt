@@ -11,9 +11,9 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
-@DependsOn([SettingsPatch::class])
+@DependsOn([YouTubeSettingsPatch::class])
 @Name("return-youtube-dislike-resource-patch")
 @Description("Adds the preferences for Return YouTube Dislike.")
 @ReturnYouTubeDislikeCompatibility
@@ -24,11 +24,11 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.addPreference(
+        YouTubeSettingsPatch.addPreference(
             Preference(
                 "revanced_ryd_settings_title",
                 "revanced_ryd_settings_summary",
-                SettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
+                YouTubeSettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
             )
         )
 

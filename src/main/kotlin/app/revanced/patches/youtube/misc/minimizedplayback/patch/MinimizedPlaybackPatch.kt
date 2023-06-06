@@ -21,14 +21,14 @@ import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMini
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
 @Name("minimized-playback")
 @Description("Enables minimized and background playback.")
-@DependsOn([IntegrationsPatch::class, PlayerTypeHookPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, PlayerTypeHookPatch::class, YouTubeSettingsPatch::class])
 @MinimizedPlaybackCompatibility
 @Version("0.0.1")
 class MinimizedPlaybackPatch : BytecodePatch(
@@ -40,7 +40,7 @@ class MinimizedPlaybackPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         // TODO: remove this empty preference sometime after mid 2023
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
                 "revanced_minimized_playback_enabled_title",
                 "revanced_minimized_playback_summary_on"

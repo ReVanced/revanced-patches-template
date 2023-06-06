@@ -10,16 +10,16 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
 @Name("copy-video-url-resource")
-@DependsOn([BottomControlsResourcePatch::class, SettingsPatch::class])
+@DependsOn([BottomControlsResourcePatch::class, YouTubeSettingsPatch::class])
 @Version("0.0.1")
 class CopyVideoUrlResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_copy_video_url_preference_screen",
                 "revanced_copy_video_url_preference_screen_title",

@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedLimiterFingerprint
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
@@ -31,7 +31,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
 ) {
 
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             TextPreference(
                 key = "revanced_custom_playback_speeds",
                 titleKey = "revanced_custom_playback_speeds_title",

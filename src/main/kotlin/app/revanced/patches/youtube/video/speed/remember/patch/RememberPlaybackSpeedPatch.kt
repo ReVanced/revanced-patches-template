@@ -16,7 +16,7 @@ import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.speed.custom.patch.CustomVideoSpeedPatch
 import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
@@ -32,7 +32,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_playback_speed_last_selected",
                 "revanced_remember_playback_speed_last_selected_title",
