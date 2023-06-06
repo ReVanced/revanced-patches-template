@@ -1,12 +1,10 @@
-@file:Suppress("DEPRECATION") // required to silence warnings for importing deprecated classes
 
 package app.revanced.util.resources
 
 import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
+import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
 import org.w3c.dom.Node
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -16,7 +14,7 @@ import java.util.regex.Pattern
 internal object ResourceUtils {
 
     /**
-     * Merge strings. This manages [StringResource]s automatically.
+     * Merge strings in the default Strings.xml file
      * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
      */
     internal fun ResourceContext.mergeStrings(host: String) {
@@ -30,7 +28,7 @@ internal object ResourceUtils {
 
             val formatted = attributes.getNamedItem("formatted") == null
 
-            StringResource(key, value, formatted).include()
+            AbstractSettingsResourcePatch.addString(key, value, formatted)
         }
     }
 

@@ -3,7 +3,6 @@ package app.revanced.patches.shared.settings.preference.impl
 import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.DefaultBasePreference
 import app.revanced.patches.shared.settings.preference.addSummary
-import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Document
 
 /**

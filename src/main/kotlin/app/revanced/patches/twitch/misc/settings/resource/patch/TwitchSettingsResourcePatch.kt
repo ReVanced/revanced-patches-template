@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION") // required to silence warnings for importing deprecated classes
 
 package app.revanced.patches.twitch.misc.settings.resource.patch
 import app.revanced.patcher.annotation.Name

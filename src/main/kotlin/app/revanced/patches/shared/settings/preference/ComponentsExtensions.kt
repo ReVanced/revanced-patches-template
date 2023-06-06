@@ -1,6 +1,5 @@
 package app.revanced.patches.shared.settings.preference
 
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -27,12 +26,6 @@ internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((
 internal fun Element.addSummary(summaryResourceKey: String?, summaryType: SummaryType = SummaryType.DEFAULT)  {
     if (summaryResourceKey != null)
         setAttribute("android:${summaryType.type}", "@string/$summaryResourceKey")
-}
-
-@Deprecated("obsolete")
-internal fun Element.addSummary(summaryResource: StringResource?, summaryType: SummaryType = SummaryType.DEFAULT){
-    if (summaryResource != null)
-        addSummary(summaryResource.name, summaryType)
 }
 
 internal fun <T> Element.addDefault(default: T) {

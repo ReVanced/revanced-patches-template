@@ -10,9 +10,9 @@ import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.addResource
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
+import org.w3c.dom.Document
 import org.w3c.dom.Node
 
 /**
@@ -77,6 +77,10 @@ abstract class AbstractSettingsResourcePatch(
                 arraysNode = value.getNode("resources")
             }
 
+        fun addString(key: String, value: String, isFormatted: Boolean) {
+            StringResource(key, value, isFormatted).include()
+        }
+
         /**
          * Add an array to the resources.
          *
@@ -125,4 +129,26 @@ abstract class AbstractSettingsResourcePatch(
         stringsEditor?.close()
         arraysEditor?.close()
     }
+}
+
+/**
+ * Legacy code, used to import non translated default strings into the Strings.xml file.
+ *
+ * @param name The name of the string.
+ * @param value The value of the string.
+ * @param formatted If the string is formatted. If false, the attribute will be set.
+ */
+private class StringResource(
+    name: String,
+    val value: String,
+    val formatted: Boolean = true
+) : BaseResource(name, "string") {
+
+    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
+        super.serialize(ownerDocument, resourceCallback).apply {
+            // if the string is un-formatted, explicitly add the formatted attribute
+            if (!formatted) setAttribute("formatted", "false")
+
+            textContent = value
+        }
 }
