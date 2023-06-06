@@ -25,19 +25,6 @@ internal class ListPreference(
     default: String? = null,
 ) : DefaultBasePreference<String>(key, titleKey, summaryKey, "ListPreference", default) {
 
-    @Deprecated("Add strings to strings resource file and used non deprecated keyed constructor")
-    constructor(
-        key: String,
-        title: StringResource,
-        entries: ArrayResource,
-        entryValues: ArrayResource,
-        summary: StringResource? = null,
-        default: String? = null
-    ) : this(key, title.name, entries, entryValues, summary?.name, default) {
-        title.include()
-        summary?.include()
-    }
-
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
         super.serialize(ownerDocument, resourceCallback).apply {
             setAttribute("android:entries", "@array/${entries.also { resourceCallback.invoke(it) }.name}")

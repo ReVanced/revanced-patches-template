@@ -10,6 +10,6 @@ import app.revanced.patches.twitch.misc.integrations.fingerprints.InitFingerprin
 @IntegrationsCompatibility
 @RequiresIntegrations
 class IntegrationsPatch : AbstractIntegrationsPatch(
-    "Lapp/revanced/twitch/utils/ReVancedUtils;",
+    "Lapp/revanced/twitch/utils/ReVancedTwitchUtils;",
     listOf(InitFingerprint)
 )

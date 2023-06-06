@@ -55,18 +55,9 @@ class DebugModePatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
             SwitchPreference(
                 "revanced_debug_mode",
-                StringResource(
-                    "revanced_debug_mode_enable",
-                    "Enable debug mode"
-                ),
-                StringResource(
-                    "revanced_debug_mode_on",
-                    "Debug mode is enabled (not recommended)"
-                ),
-                StringResource(
-                    "revanced_debug_mode_off",
-                    "Debug mode is disabled"
-                ),
+                "revanced_debug_mode_enable",
+                "revanced_debug_mode_on",
+                "revanced_debug_mode_off",
                 default = false,
             )
         )

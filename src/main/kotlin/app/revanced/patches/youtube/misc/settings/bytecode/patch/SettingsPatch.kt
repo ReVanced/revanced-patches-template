@@ -23,7 +23,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.util.MethodUtil
 
-@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class, ])
+@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")

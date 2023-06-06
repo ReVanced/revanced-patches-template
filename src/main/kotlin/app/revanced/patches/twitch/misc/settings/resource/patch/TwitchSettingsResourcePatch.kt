@@ -1,34 +1,38 @@
 @file:Suppress("DEPRECATION") // required to silence warnings for importing deprecated classes
 
 package app.revanced.patches.twitch.misc.settings.resource.patch
-
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
+import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
+import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
+import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Name("settings-resource-patch")
+@DependsOn([IntegrationsPatch::class])
 @SettingsCompatibility
 @Version("0.0.1")
-class SettingsResourcePatch : AbstractSettingsResourcePatch( // TODO: rename to TwitchSettingsResourcePatch
-"revanced_prefs",
-"twitch/settings"
+class TwitchSettingsResourcePatch : AbstractSettingsResourcePatch(
+    "revanced_prefs",
+    "twitch/settings"
 ) {
+
+    override fun execute(context: ResourceContext): PatchResult {
+        super.execute(context)
+
+        context.mergeStrings("twitch/settings/host/values/strings.xml")
+
+        return PatchResultSuccess()
+    }
+
     internal companion object {
         /* Companion delegates */
-
-        /**
-         * Add a new string to the resources.
-         *
-         * @param identifier The key of the string.
-         * @param value The value of the string.
-         * @throws IllegalArgumentException if the string already exists.
-         */
-        fun addString(identifier: String, value: String, formatted: Boolean) =
-            StringResource(identifier, value, formatted).include()
 
         /**
          * Add an array to the resources.

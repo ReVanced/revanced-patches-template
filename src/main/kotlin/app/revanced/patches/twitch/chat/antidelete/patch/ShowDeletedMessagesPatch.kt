@@ -15,7 +15,6 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.twitch.chat.antidelete.annotations.ShowDeletedMessagesCompatibility
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.ChatUtilCreateDeletedSpanFingerprint
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.DeletedMessageClickableSpanCtorFingerprint
@@ -78,31 +77,26 @@ class ShowDeletedMessagesPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             ListPreference(
                 "revanced_show_deleted_messages",
-                StringResource(
-                    "revanced_show_deleted_messages_title",
-                    "Show deleted messages"
-                ),
+                "revanced_show_deleted_messages_title",
                 ArrayResource(
                     "revanced_deleted_messages",
                     listOf(
-                        StringResource("revanced_deleted_messages_hide", "Do not show deleted messages"),
-                        StringResource("revanced_deleted_messages_spoiler", "Hide deleted messages behind a spoiler"),
-                        StringResource("revanced_deleted_messages_cross_out", "Show deleted messages as crossed-out text")
+                        "revanced_deleted_messages_hide",
+                        "revanced_deleted_messages_spoiler",
+                        "revanced_deleted_messages_cross_out",
                     )
                 ),
                 ArrayResource(
                     "revanced_deleted_messages_values",
                     listOf(
-                        StringResource("key_revanced_deleted_messages_hide", "hide"),
-                        StringResource("key_revanced_deleted_messages_spoiler", "spoiler"),
-                        StringResource("key_revanced_deleted_messages_cross_out", "cross-out")
+                        "key_revanced_deleted_messages_hide",
+                        "key_revanced_deleted_messages_spoiler",
+                        "key_revanced_deleted_messages_cross_out",
                     )
                 ),
                 default = "cross-out"
             )
         )
-
-        SettingsPatch.addString("revanced_deleted_msg", "message deleted")
 
         return PatchResultSuccess()
     }

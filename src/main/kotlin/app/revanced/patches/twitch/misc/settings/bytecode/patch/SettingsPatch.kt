@@ -16,21 +16,19 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.include
+import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.addPreference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsUpdatedFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsActivityOnCreateFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEnumFingerprint
-import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.TwitchSettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
+@DependsOn([TwitchSettingsResourcePatch::class])
 @Name("settings")
 @Description("Adds settings menu to Twitch.")
 @SettingsCompatibility
@@ -98,21 +96,10 @@ class SettingsPatch : BytecodePatch(
             )
         }
 
-        addString("revanced_settings", "ReVanced Settings", false)
-        addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?", false)
-        addString("revanced_reboot", "Restart", false)
-        addString("revanced_cancel", "Cancel", false)
-
         return PatchResultSuccess()
     }
 
     internal companion object {
-        fun addString(identifier: String, value: String, formatted: Boolean = true) =
-            SettingsResourcePatch.addString(identifier, value, formatted)
-
-        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
-
         /* Private members */
         private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
         private const val REVANCED_SETTINGS_MENU_ITEM_ID = 0x7
@@ -124,7 +111,7 @@ class SettingsPatch : BytecodePatch(
 
         private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
         private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/SettingsHooks;"
-        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedUtils;"
+        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/TwitchReVancedUtils;"
 
         private fun MethodFingerprintResult.injectMenuItem(
             name: String,
@@ -169,30 +156,18 @@ class SettingsPatch : BytecodePatch(
      * Preference screens patches should add their settings to.
      */
     internal object PreferenceScreen : AbstractPreferenceScreen() {
-        val ADS = CustomScreen("ads", "Ads", "Ad blocking settings")
-        val CHAT = CustomScreen("chat", "Chat", "Chat settings")
-        val MISC = CustomScreen("misc", "Misc", "Miscellaneous patches")
+        val ADS = CustomScreen("revanced_twitch_ads_screen", "revanced_twitch_ads_screen_title", "revanced_twitch_ads_screen_summary")
+        val CHAT = CustomScreen("revanced_twitch_chat_screen", "revanced_twitch_chat_screen_title", "revanced_twitch_chat_screen_summary")
+        val MISC = CustomScreen("revanced_twitch_misc_screen", "revanced_twitch_misc_screen_title", "revanced_twitch_misc_screen_summary")
 
-        internal class CustomScreen(key: String, title: String, summary: String) : Screen(key, title, summary) {
+        internal class CustomScreen(key: String, titleKey: String, summaryKey: String) : Screen(key, titleKey, summaryKey) {
             /* Categories */
-            // TODO: move these strings to strings.xml
-            val GENERAL = CustomCategory("twitch_general",
-                StringResource("twitch_general_title", "General settings"))
-            val OTHER = CustomCategory("twitch_other",
-                StringResource("twitch_other_title", "Other settings"))
-            val CLIENT_SIDE = CustomCategory("twitch_client_ads",
-                StringResource("twitch_client_ads_title", "Client-side ads"))
-            val SURESTREAM = CustomCategory("twitch_surestream_ads",
-                StringResource("twitch_surestream_ads_title", "Server-side surestream ads"))
+            val GENERAL = CustomCategory("twitch_general","twitch_general_title")
+            val OTHER = CustomCategory("twitch_other", "twitch_other_title")
+            val CLIENT_SIDE = CustomCategory("twitch_client_ads", "twitch_client_ads_title")
+            val SURESTREAM = CustomCategory("twitch_surestream_ads","twitch_surestream_ads_title")
 
             internal inner class CustomCategory(key: String, title: String) : Screen.Category(key, title) {
-                @Deprecated("Add strings to strings resource file and used non deprecated keyed constructor")
-                constructor(
-                    key: String,
-                    title: StringResource
-                ) : this(key, title.name) {
-                    title.include()
-                }
 
                 /* For Twitch, we need to load our CustomPreferenceCategory class instead of the default one. */
                 override fun transform(): PreferenceCategory {
@@ -207,9 +182,10 @@ class SettingsPatch : BytecodePatch(
         }
 
         override fun commit(screen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) {
-            addPreferenceScreen(screen)
+            addPreference(screen)
         }
     }
+
 
     override fun close() = PreferenceScreen.close()
 }

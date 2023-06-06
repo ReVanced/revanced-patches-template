@@ -128,18 +128,9 @@ class VideoAdsPatch : AbstractAdPatch(
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_video_ads",
-                StringResource(
-                    "revanced_block_video_ads",
-                    "Block video ads"
-                ),
-                StringResource(
-                    "revanced_block_video_ads_on",
-                    "Video ads are blocked"
-                ),
-                StringResource(
-                    "revanced_block_video_ads_off",
-                    "Video ads are unblocked"
-                ),
+                "revanced_block_video_ads",
+                "revanced_block_video_ads_on",
+                "revanced_block_video_ads_off",
                 default = true
             )
         )
