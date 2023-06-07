@@ -30,8 +30,8 @@ class MicroGResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         YouTubeSettingsPatch.addPreference(
             Preference(
-                "microg_settings_title",
-                "microg_settings_summary",
+                "revanced_microg_settings_title",
+                "revanced_microg_settings_summary",
                 Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
             )
         )
@@ -51,9 +51,6 @@ class MicroGResourcePatch : ResourcePatch {
             SPOOFED_PACKAGE_NAME,
             SPOOFED_PACKAGE_SIGNATURE
         )
-
-        // add strings
-        MicroGResourceHelper.addStrings(context)
 
         return PatchResultSuccess()
     }

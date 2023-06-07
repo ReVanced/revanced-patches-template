@@ -348,6 +348,10 @@
     <string name="revanced_hide_web_search_results_summary_off">Web search results are shown</string>
     <string name="revanced_hide_web_search_results_summary_on">Web search results are hidden</string>
     <string name="revanced_hide_web_search_results_title">Hide web search results</string>
+    <string name="revanced_microg_not_installed_warning">Vanced MicroG is not installed. Please install it.</string>
+    <string name="revanced_microg_not_running_warning">Vanced MicroG is failing to run. Please follow the "Don't kill my app" guide for Vanced MicroG.</string>
+    <string name="revanced_microg_settings_title">MicroG Settings</string>
+    <string name="revanced_microg_settings_summary">Settings for MicroG</string>
     <string name="revanced_minimized_playback_enabled_title">Minimized playback</string>
     <string name="revanced_minimized_playback_summary_on">This setting can be found in Settings -> Background</string>
     <string name="revanced_misc_summary">Miscellaneous patches</string>
