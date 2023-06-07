@@ -216,9 +216,9 @@
     <string name="revanced_hide_general_ads_summary_off">General ads are shown</string>
     <string name="revanced_hide_general_ads_summary_on">General ads are hidden</string>
     <string name="revanced_hide_general_ads_title">Hide general ads</string>
-    <string name="revanced_hide_get_premium_summary_off">YouTube Premium advertisement are shown</string>
-    <string name="revanced_hide_get_premium_summary_on">YouTube Premium advertisement are hidden</string>
-    <string name="revanced_hide_get_premium_title">Hide YouTube Premium advertisement under video player</string>
+    <string name="revanced_hide_get_premium_summary_off">YouTube Premium advertisements under video player are shown</string>
+    <string name="revanced_hide_get_premium_summary_on">YouTube Premium advertisements under video player are hidden</string>
+    <string name="revanced_hide_get_premium_title">Hide YouTube premium advertisement</string>
     <string name="revanced_hide_gray_separator_summary_off">Gray separators are shown</string>
     <string name="revanced_hide_gray_separator_summary_on">Gray separators are hidden</string>
     <string name="revanced_hide_gray_separator_title">Hide gray separator</string>
