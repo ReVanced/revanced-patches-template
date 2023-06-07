@@ -4,8 +4,9 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
@@ -45,15 +46,15 @@ class TwitchSettingsPatch : BytecodePatch(
         // Hook onCreate to handle fragment creation
         with(SettingsActivityOnCreateFingerprint.result!!) {
             val insertIndex = mutableMethod.implementation!!.instructions.size - 2
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 insertIndex,
                 """
-                        invoke-static       {p0}, $SETTINGS_HOOKS_CLASS->handleSettingsCreation(Landroidx/appcompat/app/AppCompatActivity;)Z
-                        move-result         v0
-                        if-eqz              v0, :no_rv_settings_init
-                        return-void
+                    invoke-static       {p0}, $SETTINGS_HOOKS_CLASS->handleSettingsCreation(Landroidx/appcompat/app/AppCompatActivity;)Z
+                    move-result         v0
+                    if-eqz              v0, :no_rv_settings_init
+                    return-void
                 """,
-                listOf(ExternalLabel("no_rv_settings_init", mutableMethod.instruction(insertIndex)))
+                ExternalLabel("no_rv_settings_init", mutableMethod.getInstruction(insertIndex))
             )
         }
 
@@ -82,7 +83,7 @@ class TwitchSettingsPatch : BytecodePatch(
         // Intercept onclick events for the settings menu
         with(MenuGroupsOnClickFingerprint.result!!) {
             val insertIndex = 0
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 insertIndex,
                 """
                         invoke-static       {p1}, $SETTINGS_HOOKS_CLASS->handleSettingMenuOnClick(Ljava/lang/Enum;)Z
@@ -92,7 +93,7 @@ class TwitchSettingsPatch : BytecodePatch(
                         invoke-virtual      {p0, p1}, Ltv/twitch/android/core/mvp/viewdelegate/RxViewDelegate;->pushEvent(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;)V
                         return-void
                 """,
-                listOf(ExternalLabel("no_rv_settings_onclick", mutableMethod.instruction(insertIndex)))
+                ExternalLabel("no_rv_settings_onclick", mutableMethod.getInstruction(insertIndex))
             )
         }
 
