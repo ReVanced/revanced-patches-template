@@ -36,8 +36,14 @@ internal object ResourceUtils {
      * Copy resources from the current class loader to the resource directory.
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
+     * @param replaceDestinationFiles If any existing destination files should be replaced.
+     *                                If set to false, an exception is thrown if any destination files exist.
      */
-    internal fun ResourceContext.copyResources(sourceResourceDirectory: String, vararg resources: ResourceGroup) {
+    internal fun ResourceContext.copyResources(
+        sourceResourceDirectory: String,
+        vararg resources: ResourceGroup,
+        replaceDestinationFiles: Boolean = true
+    ) {
         val classLoader = ResourceUtils.javaClass.classLoader
         val targetResourceDirectory = this["res"]
 
@@ -48,7 +54,8 @@ internal object ResourceUtils {
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
                 Files.copy(
                     classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!,
-                    targetResourceDirectory.resolve(resourceFile).toPath(), StandardCopyOption.REPLACE_EXISTING
+                    targetResourceDirectory.resolve(resourceFile).toPath(),
+                    *(if (replaceDestinationFiles) arrayOf(StandardCopyOption.REPLACE_EXISTING) else emptyArray())
                 )
             }
         }
@@ -71,7 +78,8 @@ internal object ResourceUtils {
                     val languageDirectory = match.group(1)
                     context.copyResources(
                         directory,
-                        ResourceGroup(languageDirectory, "strings.xml")
+                        ResourceGroup(languageDirectory, "strings.xml"),
+                        replaceDestinationFiles = false // Destination files should not exist.
                     )
                     foundElements = true
                 }
