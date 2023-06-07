@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--
-        Strings that should never be translated, and should never be added to localized Strings.xml
+        Strings that should never be translated and should not be added to any localized Strings.xml
     -->
 
     <!-- literal values -->
@@ -14,8 +14,13 @@
     <string name="revanced_video_quality_default_entry_8">240p</string>
     <string name="revanced_video_quality_default_entry_9">144p</string>
 
-    <!-- websites and non translatable text -->
+    <!-- Non translatable text -->
+    <string name="revanced_settings_title">ReVanced</string>
+
+    <string name="revanced_ryd_settings_title">Return YouTube Dislike</string>
     <string name="ryd_attribution_title">ReturnYouTubeDislike.com</string>
+
+    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
     <string name="sb_about_api">sponsor.ajay.app</string>
 
     <!-- debugging statistics that are probably not worth translating -->
@@ -52,7 +57,6 @@
     <string name="revanced_video_screen_title">Video</string>
     <string name="revanced_video_screen_summary">Settings related to the video player</string>
 
-    <string name="revanced_settings_title">ReVanced</string>
     <string name="revanced_settings_summary">ReVanced specific settings</string>
     <string name="revanced_settings_confirm_user_dialog_title">Do you wish to proceed?</string>
     <string name="revanced_settings_reset">Reset</string>
@@ -367,7 +371,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">Quality changes apply to all videos</string>
     <string name="revanced_remember_video_quality_last_selected_title">Remember video quality changes</string>
     <string name="revanced_ryd_settings_summary">Settings for Return YouTube Dislike</string>
-    <string name="revanced_ryd_settings_title">Return YouTube Dislike</string>
     <string name="revanced_seekbar_color_summary">The color of the seekbar</string>
     <string name="revanced_seekbar_color_title">Seekbar color</string>
     <string name="revanced_seekbar_preference_screen_title">Seekbar settings</string>
@@ -382,7 +385,6 @@
     <string name="revanced_show_old_video_menu_summary_on">Old video quality menu is used</string>
     <string name="revanced_show_old_video_menu_title">Use old video quality player menu</string>
     <string name="revanced_sponsorblock_settings_summary">SponsorBlock related settings</string>
-    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">Version not spoofed</string>
     <string name="revanced_spoof_app_version_summary_on">Version spoofed</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - Restore old UI layout</string>

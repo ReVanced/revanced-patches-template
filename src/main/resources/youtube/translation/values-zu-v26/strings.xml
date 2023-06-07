@@ -12,7 +12,6 @@
     <string name="revanced_video_screen_title">Ividiyo</string>
     <string name="revanced_video_screen_summary">Izilungiselelo ezihlobene nesidlali sevidiyo</string>
 
-    <string name="revanced_settings_title">I-ReVanced</string>
     <string name="revanced_settings_summary">Izilungiselelo ezithile ezithuthukisiwe</string>
     <string name="revanced_settings_confirm_user_dialog_title">Uyafisa ukuqhubeka?</string>
     <string name="revanced_settings_reset">Setha kabusha</string>
@@ -323,7 +322,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">Izinguquko zekhwalithi zisebenza kuwo wonke amavidiyo</string>
     <string name="revanced_remember_video_quality_last_selected_title">Khumbula izinguquko zekhwalithi yevidiyo</string>
     <string name="revanced_ryd_settings_summary">Izilungiselelo zokubuyisela Ukungathandwa kwe-YouTube</string>
-    <string name="revanced_ryd_settings_title">Buyisa Ukungathandwa kwe-YouTube</string>
     <string name="revanced_seekbar_color_summary">Umbala we-seakbar</string>
     <string name="revanced_seekbar_color_title">Umbala we-Seekbar</string>
     <string name="revanced_seekbar_preference_screen_title">Izilungiselelo zebha yokufuna</string>
@@ -338,7 +336,6 @@
     <string name="revanced_show_old_video_menu_summary_on">Kusetshenziswa imenyu yekhwalithi yevidiyo endala</string>
     <string name="revanced_show_old_video_menu_title">Sebenzisa imenyu yesidlali sekhwalithi yevidiyo endala</string>
     <string name="revanced_sponsorblock_settings_summary">Izilungiselelo ezihlobene ne-SponsorBlock</string>
-    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">Inguqulo ayiphazwanga</string>
     <string name="revanced_spoof_app_version_summary_on">Inguqulo yonakele</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - Buyisela ukwakheka kwe-UI endala</string>

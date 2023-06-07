@@ -12,7 +12,6 @@
     <string name="revanced_video_screen_title">Vidéo</string>
     <string name="revanced_video_screen_summary">Paramètres liés au lecteur vidéo</string>
 
-    <string name="revanced_settings_title">ReVancé</string>
     <string name="revanced_settings_summary">Paramètres spécifiques ReVanced</string>
     <string name="revanced_settings_confirm_user_dialog_title">Voulez-vous continuer?</string>
     <string name="revanced_settings_reset">Réinitialiser</string>
@@ -323,7 +322,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">Les changements de qualité s\'appliquent à toutes les vidéos</string>
     <string name="revanced_remember_video_quality_last_selected_title">Mémoriser les changements de qualité vidéo</string>
     <string name="revanced_ryd_settings_summary">Paramètres pour le retour YouTube Dislike</string>
-    <string name="revanced_ryd_settings_title">Retourner YouTube n\'aime pas</string>
     <string name="revanced_seekbar_color_summary">La couleur de la barre de recherche</string>
     <string name="revanced_seekbar_color_title">Couleur de la barre de recherche</string>
     <string name="revanced_seekbar_preference_screen_title">Paramètres de la barre de recherche</string>
@@ -338,7 +336,6 @@
     <string name="revanced_show_old_video_menu_summary_on">L\'ancien menu de qualité vidéo est utilisé</string>
     <string name="revanced_show_old_video_menu_title">Utiliser l\'ancien menu du lecteur de qualité vidéo</string>
     <string name="revanced_sponsorblock_settings_summary">Paramètres liés à SponsorBlock</string>
-    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">Version non usurpée</string>
     <string name="revanced_spoof_app_version_summary_on">Version usurpée</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - Restaurer l\'ancienne disposition de l\'interface utilisateur</string>

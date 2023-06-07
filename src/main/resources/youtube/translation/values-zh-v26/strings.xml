@@ -12,7 +12,6 @@
     <string name="revanced_video_screen_title">视频</string>
     <string name="revanced_video_screen_summary">与视频播放器相关的设置</string>
 
-    <string name="revanced_settings_title">更新</string>
     <string name="revanced_settings_summary">ReVanced 特定设置</string>
     <string name="revanced_settings_confirm_user_dialog_title">你想继续吗？</string>
     <string name="revanced_settings_reset">重置</string>
@@ -323,7 +322,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">质量更改适用于所有视频</string>
     <string name="revanced_remember_video_quality_last_selected_title">记住视频质量变化</string>
     <string name="revanced_ryd_settings_summary">返回 YouTube 不喜欢的设置</string>
-    <string name="revanced_ryd_settings_title">返回 YouTube 不喜欢</string>
     <string name="revanced_seekbar_color_summary">搜索栏的颜色</string>
     <string name="revanced_seekbar_color_title">搜索栏颜色</string>
     <string name="revanced_seekbar_preference_screen_title">搜索栏设置</string>
@@ -338,7 +336,6 @@
     <string name="revanced_show_old_video_menu_summary_on">使用旧的视频质量菜单</string>
     <string name="revanced_show_old_video_menu_title">使用旧的视频质量播放器菜单</string>
     <string name="revanced_sponsorblock_settings_summary">SponsorBlock 相关设置</string>
-    <string name="revanced_sponsorblock_settings_title">赞助区块</string>
     <string name="revanced_spoof_app_version_summary_off">版本未被欺骗</string>
     <string name="revanced_spoof_app_version_summary_on">版本欺骗</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - 恢复旧的 UI 布局</string>

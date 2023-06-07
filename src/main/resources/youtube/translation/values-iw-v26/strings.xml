@@ -12,7 +12,6 @@
     <string name="revanced_video_screen_title">וִידֵאוֹ</string>
     <string name="revanced_video_screen_summary">הגדרות הקשורות לנגן הווידאו</string>
 
-    <string name="revanced_settings_title">ReVanced</string>
     <string name="revanced_settings_summary">הגדרות ספציפיות מחודשות</string>
     <string name="revanced_settings_confirm_user_dialog_title">האם אתה מעוניין להמשיך?</string>
     <string name="revanced_settings_reset">אִתחוּל</string>
@@ -323,7 +322,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">שינויים באיכות חלים על כל הסרטונים</string>
     <string name="revanced_remember_video_quality_last_selected_title">זכור שינויים באיכות הסרטון</string>
     <string name="revanced_ryd_settings_summary">הגדרות להחזרת YouTube Dislike</string>
-    <string name="revanced_ryd_settings_title">Return YouTube Dislike</string>
     <string name="revanced_seekbar_color_summary">צבע סרגל החיפוש</string>
     <string name="revanced_seekbar_color_title">צבע סרגל החיפוש</string>
     <string name="revanced_seekbar_preference_screen_title">הגדרות סרגל החיפוש</string>
@@ -338,7 +336,6 @@
     <string name="revanced_show_old_video_menu_summary_on">נעשה שימוש בתפריט איכות וידאו ישן</string>
     <string name="revanced_show_old_video_menu_title">השתמש בתפריט נגן איכות וידאו ישן</string>
     <string name="revanced_sponsorblock_settings_summary">הגדרות הקשורות לחסימת חסות</string>
-    <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">הגרסה לא מזויפת</string>
     <string name="revanced_spoof_app_version_summary_on">הגרסה מזויפת</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - שחזור פריסת ממשק משתמש ישנה</string>

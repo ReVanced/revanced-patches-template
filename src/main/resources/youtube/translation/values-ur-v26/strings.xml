@@ -12,7 +12,6 @@
     <string name="revanced_video_screen_title">ویڈیو</string>
     <string name="revanced_video_screen_summary">ویڈیو پلیئر سے متعلق ترتیبات</string>
 
-    <string name="revanced_settings_title">ReVanced</string>
     <string name="revanced_settings_summary">ReVanced مخصوص ترتیبات</string>
     <string name="revanced_settings_confirm_user_dialog_title">کیا آپ آگے بڑھنا چاہتے ہیں؟</string>
     <string name="revanced_settings_reset">دوبارہ ترتیب دیں۔</string>
@@ -323,7 +322,6 @@
     <string name="revanced_remember_video_quality_last_selected_summary_on">معیار کی تبدیلیاں تمام ویڈیوز پر لاگو ہوتی ہیں۔</string>
     <string name="revanced_remember_video_quality_last_selected_title">ویڈیو کے معیار کی تبدیلیوں کو یاد رکھیں</string>
     <string name="revanced_ryd_settings_summary">YouTube ناپسندیدگی کی واپسی کی ترتیبات</string>
-    <string name="revanced_ryd_settings_title">YouTube ناپسندیدگی واپس کریں۔</string>
     <string name="revanced_seekbar_color_summary">سیک بار کا رنگ</string>
     <string name="revanced_seekbar_color_title">سیکبار رنگ</string>
     <string name="revanced_seekbar_preference_screen_title">سیک بار کی ترتیبات</string>
@@ -338,7 +336,6 @@
     <string name="revanced_show_old_video_menu_summary_on">پرانا ویڈیو کوالٹی مینو استعمال کیا جاتا ہے۔</string>
     <string name="revanced_show_old_video_menu_title">پرانا ویڈیو کوالٹی پلیئر مینو استعمال کریں۔</string>
     <string name="revanced_sponsorblock_settings_summary">اسپانسر بلاک سے متعلق ترتیبات</string>
-    <string name="revanced_sponsorblock_settings_title">اسپانسر بلاک</string>
     <string name="revanced_spoof_app_version_summary_off">ورژن جعلی نہیں ہے۔</string>
     <string name="revanced_spoof_app_version_summary_on">ورژن جعلساز</string>
     <string name="revanced_spoof_app_version_target_entry_1">17.30.35 - پرانے UI لے آؤٹ کو بحال کریں۔</string>
