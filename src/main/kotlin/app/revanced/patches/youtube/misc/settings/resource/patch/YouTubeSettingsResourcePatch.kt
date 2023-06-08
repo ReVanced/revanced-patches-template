@@ -93,6 +93,10 @@ class YouTubeSettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
+        // Strings that are the same for all languages.
+        context.mergeStrings("youtube/settings/host/values/universal_strings.xml")
+
+        // English strings.
         context.mergeStrings("youtube/settings/host/values/strings.xml")
 
         return PatchResultSuccess()
