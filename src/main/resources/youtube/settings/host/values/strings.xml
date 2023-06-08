@@ -2,6 +2,8 @@
 <resources>
     <!--
         Strings that should be translated into other language String.xml files.
+
+        All keys should use the patch name as a prefix so it's clear what strings belongs to each patch.
      -->
 
     <string name="revanced_ads_screen_title">Ads</string>
