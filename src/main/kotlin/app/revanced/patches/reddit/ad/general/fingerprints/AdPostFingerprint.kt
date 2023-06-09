@@ -7,11 +7,6 @@ object AdPostFingerprint : MethodFingerprint(
     // "children" are present throughout multiple versions
     // "uxExperiences" might not work on all versions
     // Not sure how to refine the search better.
-    strings = listOf(
-        "children",
-        "uxExperiences"
-    ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.definingClass.endsWith("Listing;")
-    },
+    strings = listOf("children", "uxExperiences"),
+    customFingerprint = { methodDef, _ -> methodDef.definingClass.endsWith("Listing;") },
 )

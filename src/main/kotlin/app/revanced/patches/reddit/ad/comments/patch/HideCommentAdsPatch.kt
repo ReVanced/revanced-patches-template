@@ -8,15 +8,11 @@ import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
-import app.revanced.patches.reddit.ad.comments.annotations.HideCommentAdsCompatibility
 import app.revanced.patches.reddit.ad.comments.fingerprints.HideCommentAdsFingerprint
 
-@Patch
 @Name("hide-comment-ads")
 @Description("Removes all comment ads.")
-@HideCommentAdsCompatibility
 @RequiresIntegrations
 @Version("0.0.1")
 class HideCommentAdsPatch : BytecodePatch(
