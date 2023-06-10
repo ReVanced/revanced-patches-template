@@ -10,6 +10,6 @@ import app.revanced.patches.tiktok.misc.integrations.fingerprints.InitFingerprin
 @TikTokIntegrationsCompatibility
 @RequiresIntegrations
 class TikTokIntegrationsPatch : AbstractIntegrationsPatch(
-    "Lapp/revanced/tiktok/utils/ReVancedTikTokUtils;",
+    "Lapp/revanced/tiktok/utils/TikTokUtils;",
     listOf(InitFingerprint)
 )

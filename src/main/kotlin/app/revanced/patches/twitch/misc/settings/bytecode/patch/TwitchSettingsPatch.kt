@@ -112,7 +112,7 @@ class TwitchSettingsPatch : BytecodePatch(
 
         private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
         private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/TwitchSettingsHooks;"
-        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedTwitchUtils;"
+        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/TwitchUtils;"
 
         private fun MethodFingerprintResult.injectMenuItem(
             name: String,
