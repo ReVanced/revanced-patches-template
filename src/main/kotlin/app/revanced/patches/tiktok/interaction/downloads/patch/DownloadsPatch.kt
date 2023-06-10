@@ -24,7 +24,7 @@ import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonS
 import app.revanced.patches.tiktok.interaction.downloads.fingerprints.DownloadPathParentFingerprint
 import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.patch.TikTokSettingsPatch
+import app.revanced.patches.tiktok.misc.settings.bytecode.patch.TikTokSettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
