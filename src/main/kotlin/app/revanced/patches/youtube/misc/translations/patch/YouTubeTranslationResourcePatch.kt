@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 import app.revanced.patches.youtube.misc.translations.annotation.YouTubeTranslationCompatibility
 import app.revanced.util.resources.ResourceUtils
 
-@Patch
+//@Patch // TODO: release this after translations are usable
 @Name("translations")
 @Description("Adds translations to YouTube.")
 @YouTubeTranslationCompatibility
