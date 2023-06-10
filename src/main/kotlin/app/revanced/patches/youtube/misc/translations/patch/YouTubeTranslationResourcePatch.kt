@@ -23,6 +23,7 @@ import app.revanced.util.resources.ResourceUtils
 class YouTubeTranslationResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext): PatchResult {
+        // Look in the jar file and find the paths of the translation string files.
         ResourceUtils.copyLocalizedStringFiles(context, TRANSLATION_RESOURCE_DIRECTORY)
 
         return PatchResultSuccess()

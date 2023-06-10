@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.settings.bytecode.patch
+package app.revanced.patches.tiktok.misc.settings.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -19,7 +19,6 @@ import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompa
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AboutPageFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityOnCreateFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsOnViewCreatedFingerprint
-import app.revanced.patches.tiktok.misc.settings.resource.patch.TikTokSettingsResourcePatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -27,7 +26,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
-@DependsOn([TikTokSettingsResourcePatch::class])
+@DependsOn([TikTokIntegrationsPatch::class])
 @Name("settings")
 @Description("Adds ReVanced settings to TikTok.")
 @TikTokSettingsCompatibility

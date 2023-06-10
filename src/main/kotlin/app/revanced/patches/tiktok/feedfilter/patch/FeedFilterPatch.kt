@@ -14,7 +14,7 @@ import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibilit
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
 import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.bytecode.patch.TikTokSettingsPatch
+import app.revanced.patches.tiktok.misc.settings.patch.TikTokSettingsPatch
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
