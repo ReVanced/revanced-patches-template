@@ -578,8 +578,8 @@
     <string name="sb_stats_submissions" formatted="false">You\'ve created &lt;b>%s&lt;/b> segments</string>
     <string name="sb_stats_saved_zero">SponsorBlock leaderboard</string>
     <string name="sb_stats_saved" formatted="false">You\'ve saved people from &lt;b>%s&lt;/b> segments</string>
-    <string name="sb_stats_saved_sum_zero">Tap here to see the global stats and top contributors</string>
-    <string name="sb_stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the leaderboard</string>
+    <string name="sb_stats_saved_sum_zero">Tap here to see the global stats</string>
+    <string name="sb_stats_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b> of their lives.&lt;br>Tap here to see the global stats</string>
     <string name="sb_stats_self_saved" formatted="false">You\'ve skipped &lt;b>%s&lt;/b> segments</string>
     <string name="sb_stats_self_saved_sum" formatted="false">That\'s &lt;b>%s&lt;/b></string>
     <string name="sb_stats_self_saved_reset_title">Reset skipped segments counter?</string>
