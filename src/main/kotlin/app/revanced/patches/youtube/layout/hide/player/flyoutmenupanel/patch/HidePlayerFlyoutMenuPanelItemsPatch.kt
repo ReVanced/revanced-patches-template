@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @Name("player-flyout-menu-panel")
-@Description("Hides player flyout menu panel items")
+@Description("Hides player flyout menu panel items.")
 @DependsOn([LithoFilterPatch::class, SettingsPatch::class])
 @HidePlayerFlyoutMenuPanelItemsCompatibility
 @Version("0.0.1")
