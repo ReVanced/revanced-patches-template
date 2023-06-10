@@ -30,7 +30,7 @@ object ShowNotificationFingerprint : MethodFingerprint(
 ) {
     val expectedReference = ImmutableMethodReference(
         "Lcom/google/android/material/bottomnavigation/BottomNavigationView;",
-        "showNotification", // Placeholder.
+        "f", // While the method is called "f" in 9.5.0, this may change in a future version, so it is not used for matching.
         listOf("I"),
         "Lcom/google/android/material/badge/BadgeDrawable;",
     )
