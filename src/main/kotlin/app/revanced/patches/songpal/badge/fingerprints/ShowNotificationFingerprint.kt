@@ -1,25 +1,37 @@
 package app.revanced.patches.songpal.badge.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patches.songpal.badge.fingerprints.ShowNotificationFingerprint.expectedReference
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.dexbacked.reference.DexBackedMethodReference
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
+import org.jf.dexlib2.iface.reference.MethodReference
+import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
 // Located @ com.sony.songpal.mdr.vim.activity.MdrRemoteBaseActivity.e#run (9.5.0)
 object ShowNotificationFingerprint : MethodFingerprint(
     "V",
     accessFlags = AccessFlags.PUBLIC.value,
-    customFingerprint = { methodDef, _ ->
+    customFingerprint = custom@{ methodDef, _ ->
         methodDef.implementation?.instructions?.any { instruction ->
             if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return@any false
-            if (instruction !is ReferenceInstruction) return@any false
-            if (instruction.reference !is DexBackedMethodReference) return@any false
 
-            val ref = (instruction.reference as DexBackedMethodReference)
-            ref.definingClass == "Lcom/google/android/material/bottomnavigation/BottomNavigationView;"
-                    && ref.parameterTypes.size == 1 && ref.parameterTypes[0] == "I"
-                    && ref.returnType == "Lcom/google/android/material/badge/BadgeDrawable;"
+            with(expectedReference) {
+                val currentReference = (instruction as ReferenceInstruction).reference as MethodReference
+                currentReference.let {
+                    if (it.definingClass != definingClass) return@any false
+                    if (it.parameterTypes != parameterTypes) return@any false
+                    if (it.returnType != returnType) return@any false
+                }
+            }
+            true
         } ?: false
     }
-)
+) {
+    val expectedReference = ImmutableMethodReference(
+        "Lcom/google/android/material/bottomnavigation/BottomNavigationView;",
+        "showNotification", // Placeholder.
+        listOf("I"),
+        "Lcom/google/android/material/badge/BadgeDrawable;",
+    )
+}
