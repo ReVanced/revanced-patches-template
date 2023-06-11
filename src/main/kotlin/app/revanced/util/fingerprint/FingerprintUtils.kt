@@ -5,7 +5,7 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.Instruction
 
 object FingerprintUtils {
-    inline fun <reified T : Instruction> hasInstruction(
+    inline fun <reified T : Instruction> any(
         opcode: Opcode,
         crossinline predicate: (T) -> Boolean
     ): CustomFingerprint {
