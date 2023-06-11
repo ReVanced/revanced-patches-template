@@ -3,7 +3,7 @@ package app.revanced.util.fingerprint
 import app.revanced.extensions.InstructionExtensions
 import app.revanced.extensions.InstructionExtensions.referenceEquals
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.util.fingerprint.FingerprintUtils.hasInstruction
+import app.revanced.util.fingerprint.FingerprintUtils.any
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
@@ -24,7 +24,7 @@ abstract class MethodWithReferenceInstructionFingerprint(
     parameters,
     opcodes,
     strings,
-    customFingerprint = hasInstruction<ReferenceInstruction>(instructionOpcode) {
+    customFingerprint = any<ReferenceInstruction>(instructionOpcode) {
         it.referenceEquals(methodReference, matchSettings)
     }
 )
