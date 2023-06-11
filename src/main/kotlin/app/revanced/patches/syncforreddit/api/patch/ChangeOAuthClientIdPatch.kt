@@ -1,5 +1,6 @@
 package app.revanced.patches.syncforreddit.api.patch
 
+import android.os.Environment
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -13,6 +14,7 @@ import app.revanced.patches.syncforreddit.api.fingerprints.GetBearerTokenFingerp
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.StringReference
+import java.io.File
 import java.util.*
 
 @Patch
@@ -24,13 +26,32 @@ class ChangeOAuthClientIdPatch : BytecodePatch(
     listOf(GetAuthorizationStringFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        if (clientId == null) return PatchResultError("No client ID provided.")
+        if (clientId == null) {
+            // Test if on Android
+            try {
+                Class.forName("android.os.Environment")
+            } catch (e: ClassNotFoundException) {
+                return PatchResultError("No client ID provided")
+            }
 
-        GetAuthorizationStringFingerprint.result?.also {
-            if (!GetBearerTokenFingerprint.resolve(context, it.classDef))
-                return PatchResultError("Could not find required method to patch.")
+            File(Environment.getExternalStorageDirectory(), "reddit_client_id_revanced.txt").also {
+                if (it.exists()) return@also
 
-            GetBearerTokenFingerprint.result!!.mutableMethod.apply {
+                val error = """
+                    In order to use this patch, you need to provide a client ID.
+                    You can do this by creating a file at ${it.absolutePath} with the client ID as its content.
+                    Alternatively, you can provide the client ID using patch options.
+                    
+                    You can get your client ID from https://www.reddit.com/prefs/apps.
+                    The redirect URI has to be set to "http://redditsync/auth".
+                """.trimIndent()
+
+                return PatchResultError(error)
+            }.let { clientId = it.readText() }
+        }
+
+        GetAuthorizationStringFingerprint.result?.also { result ->
+            GetBearerTokenFingerprint.also { it.resolve(context, result.classDef) }.result?.mutableMethod?.apply {
                 val auth = Base64.getEncoder().encodeToString("$clientId:".toByteArray(Charsets.UTF_8))
                 addInstructions(
                     0,
@@ -39,7 +60,7 @@ class ChangeOAuthClientIdPatch : BytecodePatch(
                          return-object v0
                     """
                 )
-            }
+            } ?: return PatchResultError("Could not find required method to patch.")
         }?.let {
             val occurrenceIndex = it.scanResult.stringsScanResult!!.matches.first().index
 
@@ -63,7 +84,7 @@ class ChangeOAuthClientIdPatch : BytecodePatch(
     }
 
     companion object : OptionsContainer() {
-        val clientId by option(
+        var clientId by option(
             PatchOption.StringOption(
                 "client-id",
                 null,
