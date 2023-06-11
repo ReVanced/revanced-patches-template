@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.misc.disablescreenshotpopup.fingerprints
+package app.revanced.patches.reddit.layout.disablescreenshotpopup.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode

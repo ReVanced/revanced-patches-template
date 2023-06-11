@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.misc.disablescreenshotpopup.patch
+package app.revanced.patches.reddit.layout.disablescreenshotpopup.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -10,8 +10,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.reddit.misc.disablescreenshotpopup.annotations.DisableScreenshotPopupCompatibility
-import app.revanced.patches.reddit. misc.disablescreenshotpopup.fingerprints.DisableScreenshotPopupFingerprint
+import app.revanced.patches.reddit.layout.disablescreenshotpopup.annotations.DisableScreenshotPopupCompatibility
+import app.revanced.patches.reddit.layout.disablescreenshotpopup.fingerprints.DisableScreenshotPopupFingerprint
 
 @Patch
 @Name("disable-screenshot-popup")

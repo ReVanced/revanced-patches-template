@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.misc.disablescreenshotpopup.annotations
+package app.revanced.patches.reddit.layout.disablescreenshotpopup.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
