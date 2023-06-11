@@ -65,7 +65,7 @@ internal object ResourceUtils {
      * Copy localized strings from a given directory.
      */
     internal fun copyLocalizedStringFiles(context: ResourceContext, directory: String) {
-        val pattern = Pattern.compile("$directory/([-_a-zA-Z0-9]+)/strings\\.xml")
+        val pattern = Pattern.compile("$directory/([-_a-zA-Z0-9]+)/strings\\.xml$")
 
         var jf: JarFile? = null
         try {
