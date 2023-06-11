@@ -7,14 +7,14 @@ import org.jf.dexlib2.iface.instruction.Instruction
 
 object FingerprintUtils {
     // TODO: Use CustomFingerprint typealias once https://github.com/revanced/revanced-patcher/pull/189 is merged
-    inline fun <reified T : Instruction> hasInstruction(
+    inline fun <reified T : Instruction> any(
         opcode: Opcode,
         crossinline predicate: (T) -> Boolean
     ): ((methodDef: Method, classDef: ClassDef) -> Boolean) {
         return { methodDef, _ ->
-            methodDef.implementation?.instructions?.any {
-                if (it.opcode != opcode) return@any false
-                if (it !is T) return@any false
+            methodDef.implementation?.instructions?.any anyInstruction@{
+                if (it.opcode != opcode) return@anyInstruction false
+                if (it !is T) return@anyInstruction false
 
                 predicate(it)
             } ?: false
