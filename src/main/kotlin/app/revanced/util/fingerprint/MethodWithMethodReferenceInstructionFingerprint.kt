@@ -9,7 +9,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 import java.util.*
 
-abstract class MethodWithReferenceInstructionFingerprint(
+abstract class MethodWithMethodReferenceInstructionFingerprint(
     internal val returnType: String? = null,
     internal val accessFlags: Int? = null,
     internal val parameters: Iterable<String>? = null,

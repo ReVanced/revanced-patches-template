@@ -1,12 +1,12 @@
 package app.revanced.patches.songpal.badge.fingerprints
 
 import app.revanced.patches.songpal.badge.patch.BadgeTabPatch
-import app.revanced.util.fingerprint.MethodWithReferenceInstructionFingerprint
+import app.revanced.util.fingerprint.MethodWithMethodReferenceInstructionFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.immutable.reference.ImmutableMethodReference
 
-object CreateTabsFingerprint : MethodWithReferenceInstructionFingerprint(
+object CreateTabsFingerprint : MethodWithMethodReferenceInstructionFingerprint(
     "Ljava/util/List",
     accessFlags = AccessFlags.PRIVATE.value,
     instructionOpcode = Opcode.INVOKE_STATIC,
