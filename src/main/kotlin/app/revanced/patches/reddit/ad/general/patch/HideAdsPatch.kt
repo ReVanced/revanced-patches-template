@@ -6,7 +6,6 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.addInstructions
 import app.revanced.patcher.extensions.removeInstruction
-import app.revanced.patcher.extensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -19,13 +18,10 @@ import app.revanced.patches.reddit.ad.general.annotations.HideAdsCompatibility
 import app.revanced.patches.reddit.ad.general.fingerprints.AdPostFingerprint
 import app.revanced.patches.reddit.ad.general.fingerprints.NewAdPostFingerprint
 import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.instruction.formats.Instruction22c
 import org.jf.dexlib2.iface.reference.FieldReference
 import org.jf.dexlib2.iface.reference.MethodReference
-import org.jf.dexlib2.iface.reference.StringReference
-import org.jf.dexlib2.util.MethodUtil
 
 @Patch
 @Name("hide-ads")
@@ -38,42 +34,6 @@ class HideAdsPatch : BytecodePatch(
     listOf(AdPostFingerprint, NewAdPostFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        // region Remove general ads from Frontpage and Subreddits.
-
-        context.classes.forEach { classDef ->
-            classDef.methods.forEach methodLoop@{ method ->
-                method.implementation?.instructions?.forEachIndexed { i, instruction ->
-                    // Find instructions that need to be replaced.
-                    if (instruction.opcode != Opcode.CONST_STRING)
-                        return@forEachIndexed
-                    if (((instruction as ReferenceInstruction).reference as StringReference).string != "AdPost")
-                        return@forEachIndexed
-
-                    context.proxy(classDef).mutableClass.methods.first {
-                        MethodUtil.methodSignaturesMatch(it, method)
-                    }.apply {
-                        // TODO: Figure out the trick behind this.
-                        // Probably in some cases AdPost is accompanied by another string right before it.
-                        // In this case we replace the string with SubredditPost.
-                        // The only cases where this was the case, was when the previous string was "SubredditPost",
-                        // so the string and the previous string are the same,
-                        // or else the string is modified to be "AdPost1", which is unclear what it is.
-                        val newString = if (implementation!!.instructions[i - 1].opcode == Opcode.CONST_STRING) {
-                            "SubredditPost"
-                        } else {
-                            "AdPost1"
-                        }
-
-                        val originalRegister =
-                            (implementation!!.instructions[i] as OneRegisterInstruction).registerA
-
-                        replaceInstructions(i, "const-string v$originalRegister, \"$newString\"")
-                    }
-                }
-            }
-        }
-
-        // endregion
 
         // region Filter promoted ads (does not work in popular or latest feed)
 
