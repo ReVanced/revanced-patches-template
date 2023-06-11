@@ -30,7 +30,7 @@ object ShowNotificationFingerprint : MethodFingerprint(
 ) {
     val expectedReference = ImmutableMethodReference(
         "Lcom/google/android/material/bottomnavigation/BottomNavigationView;",
-        "f", // While the method is called "f" in 9.5.0, this may change in a future version, so it is not used for matching.
+        "getOrCreateBadge", // This is the non-obfuscated method name, but this is not used for matching since it may change due to R8/Proguard
         listOf("I"),
         "Lcom/google/android/material/badge/BadgeDrawable;",
     )
