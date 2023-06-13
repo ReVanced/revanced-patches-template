@@ -20,7 +20,12 @@ import java.util.*
 @Patch
 @Name("change-oauth-client-id")
 @Description("Changes the OAuth client ID.")
-@Compatibility([Package("com.laurencedawson.reddit_sync")])
+@Compatibility(
+    [
+        Package("com.laurencedawson.reddit_sync"),
+        Package("com.laurencedawson.reddit_sync.pro")
+    ]
+)
 @Version("0.0.1")
 class ChangeOAuthClientIdPatch : BytecodePatch(
     listOf(GetAuthorizationStringFingerprint)
@@ -34,10 +39,7 @@ class ChangeOAuthClientIdPatch : BytecodePatch(
                 return PatchResultError("No client ID provided")
             }
 
-            File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                "reddit_client_id_revanced.txt"
-            ).also {
+            File(Environment.getExternalStorageDirectory(), "reddit_client_id_revanced.txt").also {
                 if (it.exists()) return@also
 
                 val error = """
@@ -50,7 +52,7 @@ class ChangeOAuthClientIdPatch : BytecodePatch(
                 """.trimIndent()
 
                 return PatchResultError(error)
-            }.let { clientId = it.readText() }
+            }.let { clientId = it.readText().trim() }
         }
 
         GetAuthorizationStringFingerprint.result?.also { result ->
