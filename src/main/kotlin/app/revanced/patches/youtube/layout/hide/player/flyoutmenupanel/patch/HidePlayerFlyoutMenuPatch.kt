@@ -17,12 +17,12 @@ import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@Name("player-flyout-menu-panel")
-@Description("Hides player flyout menu panel items.")
+@Name("player-flyout-menu")
+@Description("Hides player flyout menu items.")
 @DependsOn([LithoFilterPatch::class, SettingsPatch::class])
 @HidePlayerFlyoutMenuPanelItemsCompatibility
 @Version("0.0.1")
-class HidePlayerFlyoutMenuPanelItemsPatch: ResourcePatch {
+class HidePlayerFlyoutMenuPatch: ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -94,10 +94,15 @@ class HidePlayerFlyoutMenuPanelItemsPatch: ResourcePatch {
             )
         )
 
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
         return PatchResultSuccess()
     }
 
     private companion object {
         const val KEY = "revanced_player_flyout_menu_items"
+
+        const val FILTER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/components/HidePlayerFlyoutMenuFilter;"
     }
 }
