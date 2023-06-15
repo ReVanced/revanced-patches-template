@@ -25,7 +25,6 @@ The official ReVanced Patches.
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.19.35 |
 | `hide-ads` | Removes general ads. | 18.19.35 |
 | `hide-album-cards` | Hides the album cards below the artist description. | 18.19.35 |
-| `hide-artist-card` | Hides the artist card below the searchbar. | 18.19.35 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.19.35 |
 | `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.19.35 |
 | `hide-captions-button` | Hides the captions button on video player. | 18.19.35 |
@@ -36,6 +35,7 @@ The official ReVanced Patches.
 | `hide-filter-bar` | Hides the filter bar in video feeds. | 18.19.35 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.19.35 |
 | `hide-info-cards` | Hides info cards in videos. | 18.19.35 |
+| `hide-layout-components` | Hides general layout components. | 18.19.35 |
 | `hide-load-more-button` | Hides the button under videos that loads similar videos. | 18.19.35 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | 18.19.35 |
 | `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |
@@ -140,17 +140,6 @@ The official ReVanced Patches.
 | `hide-views-stats` | Hides the view stats under tweets. | 9.71.0-release.0 |
 </details>
 
-### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `hide-ads` | Removes general ads from the Reddit frontpage and subreddits. | all |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | all |
-| `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
-| `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
-</details>
-
 ### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
 <details>
 
@@ -159,6 +148,25 @@ The official ReVanced Patches.
 | `disable-switching-emoji-to-sticker-in-message-input-field` | Disables switching from emoji to sticker search mode in message input field | all |
 | `disable-typing-indicator` | Disables the indicator while typing a message | all |
 | `hide-inbox-ads` | Hides ads in inbox. | all |
+</details>
+
+### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-ads` | Removes ads from the Reddit. | all |
+| `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
+| `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
@@ -197,20 +205,20 @@ The official ReVanced Patches.
 | `spoof-signature` | Spoofs the signature of the app. | all |
 </details>
 
+### [📦 `com.laurencedawson.reddit_sync.pro`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.pro)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `disable-ads` | Disables ads in HexEditor. | all |
-</details>
-
-### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.spotify.lite`](https://play.google.com/store/apps/details?id=com.spotify.lite)

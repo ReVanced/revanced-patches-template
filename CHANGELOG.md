@@ -1,3 +1,118 @@
+## [2.177.1-dev.2](https://github.com/revanced/revanced-patches/compare/v2.177.1-dev.1...v2.177.1-dev.2) (2023-06-14)
+
+
+### Bug Fixes
+
+* **youtube:** separate `hide-ads` to `hide-layout-components` patch ([7e0417f](https://github.com/revanced/revanced-patches/commit/7e0417f6728fa7b79a9d8cbcfd3ccba484a5567d))
+
+## [2.177.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.177.0...v2.177.1-dev.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* don't include all Litho patches, when not included ([fc69491](https://github.com/revanced/revanced-patches/commit/fc69491dfe4b119d46dd3da27b556e55fe0cecfb))
+
+# [2.177.0](https://github.com/revanced/revanced-patches/compare/v2.176.1...v2.177.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* **reddit/hide-ads:** search for correct reference class descriptor ([ad2a858](https://github.com/revanced/revanced-patches/commit/ad2a8585b2a5ecbc5eb92dd23b0ab124aa8a2541))
+* **syncforreddit/change-oauth-client-id:** trim whitespace from OAuth string ([#2402](https://github.com/revanced/revanced-patches/issues/2402)) ([2afea71](https://github.com/revanced/revanced-patches/commit/2afea71557cfe4eb64d7c7ebf5a07dfd24a11824))
+* **syncforreddit/change-oauth-client-id:** use downloads directory ([9b5af77](https://github.com/revanced/revanced-patches/commit/9b5af77a229a22466cfe8ed41a21d081beeae960))
+
+
+### Features
+
+* **syncforreddit/change-oauth-client-id:** support pro version ([d34288b](https://github.com/revanced/revanced-patches/commit/d34288b6e8c7f5bb944622a3c741fcc693868033))
+
+# [2.177.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.177.0-dev.1...v2.177.0-dev.2) (2023-06-12)
+
+
+### Bug Fixes
+
+* **reddit/hide-ads:** search for correct reference class descriptor ([ad2a858](https://github.com/revanced/revanced-patches/commit/ad2a8585b2a5ecbc5eb92dd23b0ab124aa8a2541))
+
+# [2.177.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.176.2-dev.2...v2.177.0-dev.1) (2023-06-12)
+
+
+### Features
+
+* **syncforreddit/change-oauth-client-id:** support pro version ([d34288b](https://github.com/revanced/revanced-patches/commit/d34288b6e8c7f5bb944622a3c741fcc693868033))
+
+## [2.176.2-dev.2](https://github.com/revanced/revanced-patches/compare/v2.176.2-dev.1...v2.176.2-dev.2) (2023-06-12)
+
+
+### Bug Fixes
+
+* **syncforreddit/change-oauth-client-id:** trim whitespace from OAuth string ([#2402](https://github.com/revanced/revanced-patches/issues/2402)) ([2afea71](https://github.com/revanced/revanced-patches/commit/2afea71557cfe4eb64d7c7ebf5a07dfd24a11824))
+
+## [2.176.2-dev.1](https://github.com/revanced/revanced-patches/compare/v2.176.1...v2.176.2-dev.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **syncforreddit/change-oauth-client-id:** use downloads directory ([9b5af77](https://github.com/revanced/revanced-patches/commit/9b5af77a229a22466cfe8ed41a21d081beeae960))
+
+## [2.176.1](https://github.com/revanced/revanced-patches/compare/v2.176.0...v2.176.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **syncforreddit/change-oauth-client-id:** use correct signature for Android API ([4db2eba](https://github.com/revanced/revanced-patches/commit/4db2eba6d66f094f1d2400bfa8b9c15a175f796e))
+
+## [2.176.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.176.0...v2.176.1-dev.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **syncforreddit/change-oauth-client-id:** use correct signature for Android API ([4db2eba](https://github.com/revanced/revanced-patches/commit/4db2eba6d66f094f1d2400bfa8b9c15a175f796e))
+
+# [2.176.0](https://github.com/revanced/revanced-patches/compare/v2.175.0...v2.176.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* **instagram/hide-timeline-ads:** constrain to version `275.0.0.27.98` ([#2377](https://github.com/revanced/revanced-patches/issues/2377)) ([6ee836c](https://github.com/revanced/revanced-patches/commit/6ee836c587676ba53c2e4748ec1828e193f1c071))
+* **songpal:** make patches more resilient ([#2386](https://github.com/revanced/revanced-patches/issues/2386)) ([947bf42](https://github.com/revanced/revanced-patches/commit/947bf42b7c8d029b8a26a5c306869e02a69b62fd))
+* use correct import ([9b6e730](https://github.com/revanced/revanced-patches/commit/9b6e730395e56e60cf08372dbbc3a10e92ba8e95))
+* **youtube/hide-get-premium:** shorten descriptions ([f5224c4](https://github.com/revanced/revanced-patches/commit/f5224c4980285ef1e29d17887f02b5b397785245))
+* **youtube/theme:** use custom light/dark colors for launch splash screen ([#2337](https://github.com/revanced/revanced-patches/issues/2337)) ([8adc05a](https://github.com/revanced/revanced-patches/commit/8adc05a17445dede5f35ee27426d20b750a2a1d3))
+
+
+### Features
+
+* **citra:** remove patches ([#2384](https://github.com/revanced/revanced-patches/issues/2384)) ([d182329](https://github.com/revanced/revanced-patches/commit/d1823297ce27fc6f3246123c91d9463080afb7ee))
+* **finanzonline:** support any version ([#2347](https://github.com/revanced/revanced-patches/issues/2347)) ([cc66b1f](https://github.com/revanced/revanced-patches/commit/cc66b1fc6200bbdcc2697ddd7085d46447775be2))
+* **reddit:** add `hide-promoted` patch ([#2350](https://github.com/revanced/revanced-patches/issues/2350)) ([c3fd36c](https://github.com/revanced/revanced-patches/commit/c3fd36cfba7fb8246f8b3a29d9310bd88f01c3e7))
+* **songpal:** add `remove-badge-tab` patch ([bde9053](https://github.com/revanced/revanced-patches/commit/bde9053f04e202a7b394a1dad335470d5495e5fc))
+* **songpal:** add `remove-notification-badge` patch ([1b77f96](https://github.com/revanced/revanced-patches/commit/1b77f9633cf7e72d653f1d37483b7399e1ad797d))
+* **syncforreddit/change-oauth-client-id:** improve error message ([a39b2fd](https://github.com/revanced/revanced-patches/commit/a39b2fd9828b514670135918e69ee736cb4615e5))
+* **syncforreddit:** add `change-oauth-client-id` patch ([#2393](https://github.com/revanced/revanced-patches/issues/2393)) ([c93f0c6](https://github.com/revanced/revanced-patches/commit/c93f0c6a99fb2365747371f0f38eff8e0b77aee1))
+* **youtube/hide-ads:** hide mix playlists ([dbb38ed](https://github.com/revanced/revanced-patches/commit/dbb38eddfd33db685b8e8be2f2a641a1199e7361))
+* **youtube/swipe-controls:** add option to save and restore brightness ([3d03471](https://github.com/revanced/revanced-patches/commit/3d03471b1c2f18d22f17167db78764520064353a))
+
+# [2.176.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.176.0-dev.6...v2.176.0-dev.7) (2023-06-12)
+
+
+### Features
+
+* **syncforreddit/change-oauth-client-id:** improve error message ([a39b2fd](https://github.com/revanced/revanced-patches/commit/a39b2fd9828b514670135918e69ee736cb4615e5))
+
+# [2.176.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.176.0-dev.5...v2.176.0-dev.6) (2023-06-12)
+
+
+### Features
+
+* **reddit:** add `hide-promoted` patch ([#2350](https://github.com/revanced/revanced-patches/issues/2350)) ([c3fd36c](https://github.com/revanced/revanced-patches/commit/c3fd36cfba7fb8246f8b3a29d9310bd88f01c3e7))
+
+# [2.176.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.176.0-dev.4...v2.176.0-dev.5) (2023-06-11)
+
+
+### Features
+
+* **syncforreddit:** add `change-oauth-client-id` patch ([#2393](https://github.com/revanced/revanced-patches/issues/2393)) ([c93f0c6](https://github.com/revanced/revanced-patches/commit/c93f0c6a99fb2365747371f0f38eff8e0b77aee1))
+
 # [2.176.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.176.0-dev.3...v2.176.0-dev.4) (2023-06-11)
 
 
