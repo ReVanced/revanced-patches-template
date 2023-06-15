@@ -1,3 +1,10 @@
+# [2.178.0](https://github.com/efraimbart/revanced-patches/compare/v2.177.0...v2.178.0) (2023-06-15)
+
+
+### Features
+
+* First go at patching the reddit url to another service ([13946e6](https://github.com/efraimbart/revanced-patches/commit/13946e63bab6480ccde359cefc26c4512ef5fcda))
+
 # [2.177.0](https://github.com/revanced/revanced-patches/compare/v2.176.1...v2.177.0) (2023-06-12)
 
 
