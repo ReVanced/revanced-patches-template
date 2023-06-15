@@ -56,16 +56,16 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                         "revanced_hide_shorts_button_summary_off"
                     ),
                     SwitchPreference(
-                        "revanced_hide_subscriptions_button",
-                        "revanced_hide_subscriptions_button_title",
-                        "revanced_hide_subscriptions_button_summary_on",
-                        "revanced_hide_subscriptions_button_summary_off"
-                    ),
-                    SwitchPreference(
                         "revanced_hide_create_button",
                         "revanced_hide_create_button_title",
                         "revanced_hide_create_button_summary_on",
                         "revanced_hide_create_button_summary_off"
+                    ),
+                    SwitchPreference(
+                        "revanced_hide_subscriptions_button",
+                        "revanced_hide_subscriptions_button_title",
+                        "revanced_hide_subscriptions_button_summary_on",
+                        "revanced_hide_subscriptions_button_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_switch_create_with_notifications_button",
