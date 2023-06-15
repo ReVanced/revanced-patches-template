@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
@@ -52,21 +51,21 @@ class HideAdsResourcePatch : ResourcePatch {
             ),
             SwitchPreference(
                 "revanced_hide_products_banner",
-                StringResource("revanced_hide_products_banner_title", "Hide banner to view products"),
-                StringResource("revanced_hide_products_banner_summary_on", "Banner is hidden"),
-                StringResource("revanced_hide_products_banner_summary_off", "Banner is shown")
+                "revanced_hide_products_banner_title",
+                "revanced_hide_products_banner_summary_on",
+                "revanced_hide_products_banner_summary_off"
             ),
             SwitchPreference(
                 "revanced_hide_web_search_results",
-                StringResource("revanced_hide_web_search_results_title", "Hide web search results"),
-                StringResource("revanced_hide_web_search_results_summary_on", "Web search results are hidden"),
-                StringResource("revanced_hide_web_search_results_summary_off", "Web search results are shown")
+                "revanced_hide_web_search_results_title",
+                "revanced_hide_web_search_results_summary_on",
+                "revanced_hide_web_search_results_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_merchandise_banners",
-                StringResource("revanced_hide_merchandise_banners_title", "Hide merchandise banners"),
-                StringResource("revanced_hide_merchandise_banners_summary_on", "Merchandise banners are hidden"),
-                StringResource("revanced_hide_merchandise_banners_summary_off", "Merchandise banners are shown")
+                "revanced_hide_merchandise_banners_title",
+                "revanced_hide_merchandise_banners_summary_on",
+                "revanced_hide_merchandise_banners_summary_off",
             )
         )
 
