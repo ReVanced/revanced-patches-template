@@ -414,178 +414,178 @@
     <string name="revanced_ryd_attribution_summary">Idatha ihlinzekwa yi-Return YouTube Dislike API. Thepha lapha ukuze ufunde kabanzi.</string>
 
 
-    <string name="sb_enable_sb">Nika amandla i-SponsorBlock</string>
-    <string name="sb_enable_sb_sum">I-SponsorBlock iwuhlelo olugcwele isixuku lokweqa izingxenye ezicasulayo zamavidiyo e-YouTube</string>
-    <string name="sb_appearance_category">Ukubukeka</string>
-    <string name="sb_enable_voting">Bonisa inkinobho yokuvota</string>
-    <string name="sb_enable_voting_sum_on">Inkinobho yokuvota yengxenye iyaboniswa</string>
-    <string name="sb_enable_voting_sum_off">Inkinobho yokuvota yengxenye ayiboniswa</string>
-    <string name="sb_enable_compact_skip_button">Sebenzisa inkinobho yokweqa ehlangene</string>
-    <string name="sb_enable_compact_skip_button_sum_on">Inkinobho yokweqa ifakwe isitayela sobubanzi obuncane</string>
-    <string name="sb_enable_compact_skip_button_sum_off">Inkinobho yokweqa ifakwe isitayela ukuze ibonakale kahle kakhulu</string>
-    <string name="sb_enable_auto_hide_skip_segment_button">Fihla ngokuzenzakalela inkinobho yokweqa</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">Inkinobho yokweqa iyacasha ngemva kwemizuzwana embalwa</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">Inkinobho yokweqa iboniswe ingxenye yonke</string>
-    <string name="sb_general_skiptoast">Bonisa ithosi uma weqa ngokuzenzakalelayo</string>
-    <string name="sb_general_skiptoast_sum_on">I-toast eboniswa lapho isegimenti yeqiwa ngokuzenzakalelayo. Thepha lapha ukuze ubone isibonelo</string>
-    <string name="sb_general_skiptoast_sum_off">I-toast ayiboniswa. Thepha lapha ukuze ubone isibonelo</string>
-    <string name="sb_general_time_without">Bonisa ubude bevidiyo ngaphandle kwamasegimenti</string>
-    <string name="sb_general_time_without_sum_on">Ubude bevidiyo ususa wonke amasegimenti, akhonjiswe kubakaki eduze kobude bevidiyo egcwele</string>
-    <string name="sb_general_time_without_sum_off">Ubude bevidiyo obugcwele bubonisiwe</string>
-    <string name="sb_create_segment_category">Ukudala amasegimenti amasha</string>
-    <string name="sb_enable_create_segment">Bonisa inkinobho yesegimenti entsha</string>
-    <string name="sb_enable_create_segment_sum_on">Inkinobho yesegimenti entsha iyaboniswa</string>
-    <string name="sb_enable_create_segment_sum_off">Inkinobho yesegimenti entsha ayiboniswa</string>
-    <string name="sb_general_adjusting">Lungisa isinyathelo sesegimenti entsha</string>
-    <string name="sb_general_adjusting_sum">Inombolo yama-millisecond izinkinobho zokulungisa isikhathi ezihambayo lapho udala amasegimenti amasha</string>
-    <string name="sb_general_adjusting_invalid">Inani kufanele libe inombolo ephozithivu</string>
-    <string name="sb_guidelines_preference_title">Buka imihlahlandlela</string>
-    <string name="sb_guidelines_preference_sum">Imihlahlandlela iqukethe imithetho namathiphu okudala amasegimenti amasha</string>
-    <string name="sb_guidelines_popup_title">Landela iziqondiso</string>
-    <string name="sb_guidelines_popup_content">Funda imihlahlandlela ye-SponsorBlock ngaphambi kokudala amasegimenti amasha</string>
-    <string name="sb_guidelines_popup_already_read">Sekufundiwe</string>
-    <string name="sb_guidelines_popup_open">Ngibonise</string>
-    <string name="sb_general">Okujwayelekile</string>
-    <string name="sb_toast_on_connection_error_title">Bonisa i-toast uma i-API ingatholakali</string>
-    <string name="sb_toast_on_connection_error_summary_on">I-Toast iyaboniswa uma i-SponsorBlock API ingatholakali</string>
-    <string name="sb_toast_on_connection_error_summary_off">I-toast ayiboniswa uma i-SponsorBlock API ingatholakali</string>
-    <string name="sb_general_skipcount">Nika amandla ukulandelela ukubalwa kweqa</string>
-    <string name="sb_general_skipcount_sum_on">Ivumela ibhodi yabaphambili ye-SponsorBlock ukuthi singakanani isikhathi esilondolozwe. Umlayezo uthunyelwa ebhodini labaphambili isikhathi ngasinye lapho ingxenye yeqiwa</string>
-    <string name="sb_general_skipcount_sum_off">Ukulandelela isibalo sokweqa akuvunyelwe</string>
-    <string name="sb_general_min_duration">Ubuncane besikhathi sesegimenti</string>
-    <string name="sb_general_min_duration_sum">Amasegimenti amafushane kunaleli nani (ngamasekhondi) ngeke aboniswe noma eqiwe</string>
-    <string name="sb_general_uuid">Umazisi wakho oyimfihlo</string>
-    <string name="sb_general_uuid_sum">Lokhu kufanele kugcinwe kuyimfihlo. Lokhu kufana nephasiwedi futhi akufanele yabiwe nanoma ubani. Uma umuntu enalokhu, angazenza wena</string>
-    <string name="sb_general_uuid_invalid">Umazisi oyimfihlo kufanele okungenani ube nezinhlamvu ezingu-30 ubude</string>
-    <string name="sb_general_api_url">Shintsha i-URL ye-API</string>
-    <string name="sb_general_api_url_sum">Ikheli i-SponsorBlock elisebenzisayo ukwenza amakholi kuseva. Ungakushintshi lokhu ngaphandle uma wazi ukuthi wenzani</string>
-    <string name="sb_api_url_reset">Ukusethwa kabusha kwe-URL ye-API</string>
-    <string name="sb_api_url_invalid">I-API URL ayivumelekile</string>
-    <string name="sb_api_url_changed">I-API URL ishintshile</string>
-    <string name="sb_settings_ie">Ngenisa/Thumela izilungiselelo</string>
-    <string name="sb_settings_copy">Kopisha</string>
-    <string name="sb_settings_ie_sum">Ukulungiselelwa kwakho kwe-SponsorBlock JSON okungangeniswa/kukhishelwe ku-ReVanced nezinye izinkundla ze-SponsorBlock. Lokhu kufaka phakathi umazisi wakho oyimfihlo. Qiniseka ukuthi wabelana ngalokhu ngokuhlakanipha</string>
-    <string name="sb_settings_import_successful">Izilungiselelo zingeniswe ngempumelelo</string>
-    <string name="sb_settings_import_failed">Yehlulekile ukungenisa: %s</string>
-    <string name="sb_settings_export_failed">Yehlulekile ukuthumela: %s</string>
-    <string name="sb_settings_revanced_export_user_id_warning">Izilungiselelo zakho ziqukethe i-id yomsebenzisi ye-SponsorBlock eyimfihlo.\n\nI-id yakho yomsebenzisi ifana nephasiwedi futhi akufanele yabiwe.\n</string>
-    <string name="sb_settings_revanced_export_user_id_warning_dismiss">Ungabonisi futhi</string>
-    <string name="sb_diff_segments">Shintsha ukuziphatha kwesegimenti</string>
-    <string name="sb_segments_sponsor">Umxhasi</string>
-    <string name="sb_segments_sponsor_sum">Iphromoshini ekhokhelwayo, ukudluliselwa okukhokhelwayo kanye nezikhangiso eziqondile. Hhayi okokuziphromotha noma ukumemeza kwamahhala kwizimbangela/abadali/amawebhusayithi/imikhiqizo abayithandayo</string>
-    <string name="sb_segments_selfpromo">Okungakhokhelwa/Ukuphromotha</string>
-    <string name="sb_segments_selfpromo_sum">Kufana nokuthi \'Umxhasi\' ngaphandle kokungakhokhelwa noma ukuzinyusela wena ngokwakho. Kufaka phakathi izigaba ezimayelana nokuthengiswayo, iminikelo, noma ulwazi mayelana nokuthi bahlanganyele nobani</string>
-    <string name="sb_segments_interaction">Isikhumbuzi Sokusebenzelana (Bhalisa)</string>
-    <string name="sb_segments_interaction_sum">Isikhumbuzi esifushane sokuthanda, ukubhalisa noma ukusilandela phakathi nokuqukethwe. Uma kuyinde noma imayelana nokuthile okuqondile, kufanele kube ngaphansi kokuzinyusa</string>
-    <string name="sb_segments_highlight">Gqamisa</string>
-    <string name="sb_segments_highlight_sum">Ingxenye yevidiyo efunwa abantu abaningi</string>
-    <string name="sb_segments_intro">Ikhefu/Isingeniso Opopayi</string>
-    <string name="sb_segments_intro_sum">Isikhawu esingenakho okuqukethwe kwangempela. Kungaba ukumiswa okwesikhashana, uzimele omile, noma ukugqwayiza okuphindayo. Ayifaki izinguquko eziqukethe ulwazi</string>
-    <string name="sb_segments_outro">Amakhadi Okugcina/Amakhredithi</string>
-    <string name="sb_segments_outro_sum">Amakhredithi noma uma amakhadi okugcina e-YouTube evela. Hhayi ngeziphetho ngolwazi</string>
-    <string name="sb_segments_preview">Buka kuqala/Recap</string>
-    <string name="sb_segments_preview_sum">Ukuqoqwa kweziqeshana ezibonisa okwenzekayo noma okwenzeka kuvidiyo noma kwamanye amavidiyo ochungechunge, lapho lonke ulwazi luphindwaphindwa kwenye indawo.</string>
-    <string name="sb_segments_filler">I-Filler Tangent/Amahlaya</string>
-    <string name="sb_segments_filler_sum">Izigcawu ze-Tangential zengezwe kuphela ukugcwalisa noma ukuhlekisa okungadingeki ukuze uqonde okuqukethwe okuyinhloko kwevidiyo. Akubandakanyi amasegimenti anikeza umongo noma imininingwane yangemuva</string>
-    <string name="sb_segments_nomusic">Umculo: Ingxenye Okungeyona Eyomculo</string>
-    <string name="sb_segments_nomusic_sum">Kuphela ukusetshenziswa kumavidiyo omculo. Izigaba zamavidiyo omculo angenawo umculo, ezingakafakwa esinye isigaba</string>
-    <string name="sb_skip_button_compact">Yeqa</string>
-    <string name="sb_skip_button_compact_highlight">Gqamisa</string>
-    <string name="sb_skip_button_sponsor">Yeqa umxhasi</string>
-    <string name="sb_skip_button_selfpromo">Yeqa iphromo</string>
-    <string name="sb_skip_button_interaction">Yeqa ukuhlanganyela</string>
-    <string name="sb_skip_button_highlight">Yeqa ukuze ugqamise</string>
-    <string name="sb_skip_button_intro_beginning">Yeqa isingeniso</string>
-    <string name="sb_skip_button_intro_middle">Yeqa ukuphumula</string>
-    <string name="sb_skip_button_intro_end">Yeqa ukuphumula</string>
-    <string name="sb_skip_button_outro">yeqa okunye</string>
-    <string name="sb_skip_button_preview_beginning">Yeqa ukubuka kuqala</string>
-    <string name="sb_skip_button_preview_middle">Yeqa ukubuka kuqala</string>
-    <string name="sb_skip_button_preview_end">Yeqa isifinyezo</string>
-    <string name="sb_skip_button_filler">Yeqa isigcwalisi</string>
-    <string name="sb_skip_button_nomusic">Yeqa okungewona umculo</string>
-    <string name="sb_skip_button_unsubmitted">Yeqa ingxenye</string>
-    <string name="sb_skipped_sponsor">Umxhasi weqiwe</string>
-    <string name="sb_skipped_selfpromo">Kweqiwe ukuzithuthukisa</string>
-    <string name="sb_skipped_interaction">Yeqiwe isikhumbuzi esicasulayo</string>
-    <string name="sb_skipped_highlight">Kweqiwe ukuze kugqanyiswe</string>
-    <string name="sb_skipped_intro_beginning">Yeqiwe isingeniso</string>
-    <string name="sb_skipped_intro_middle">Ikhefu leqiwe</string>
-    <string name="sb_skipped_intro_end">Ikhefu leqiwe</string>
-    <string name="sb_skipped_outro">Kweqiwe i-outro</string>
-    <string name="sb_skipped_preview_beginning">Ukubuka kuqala kweqiwe</string>
-    <string name="sb_skipped_preview_middle">Ukubuka kuqala kweqiwe</string>
-    <string name="sb_skipped_preview_end">I-recap yeqiwe</string>
-    <string name="sb_skipped_filler">Isigcwalisi eseqiwe</string>
-    <string name="sb_skipped_nomusic">Weqe isigaba esingewona owomculo</string>
-    <string name="sb_skipped_unsubmitted">Yeqiwe ingxenye engathunyelwanga</string>
-    <string name="sb_skipped_multiple_segments">Yeqiwe amasegimenti amaningi</string>
-    <string name="sb_skip_automatically">Yeqa ngokuzenzakalelayo</string>
-    <string name="sb_skip_automatically_once">Yeqa ngokuzenzakalela kanye</string>
-    <string name="sb_skip_showbutton">Bonisa inkinobho yokweqa</string>
-    <string name="sb_skip_seekbaronly">Bonisa kubha yokufuna</string>
-    <string name="sb_skip_ignore">Khubaza</string>
-    <string name="sb_submit_failed_invalid" formatted="false">Ayikwazi ukuthumela isegimenti: %s</string>
-    <string name="sb_submit_failed_timeout">I-SponsorBlock iphansi okwesikhashana</string>
-    <string name="sb_submit_failed_unknown_error" formatted="false">Ayikwazi ukuthumela isegimenti (isimo: %d %s)</string>
-    <string name="sb_submit_failed_rate_limit">Ayikwazi ukuthumela isegimenti.\nI-Rate Limited (iningi kakhulu evela kumsebenzisi ofanayo noma i-IP)</string>
-    <string name="sb_submit_failed_forbidden" formatted="false">Ayikwazi ukuhambisa ingxenye: %s</string>
-    <string name="sb_submit_failed_duplicate">Ayikwazi ukuhambisa isegimenti.\nSeyivele ikhona</string>
-    <string name="sb_submit_succeeded">Isegimenti ihanjiswe ngempumelelo</string>
-    <string name="sb_sponsorblock_connection_failure_generic">I-SponsorBlock ayitholakali okwamanje</string>
-    <string name="sb_sponsorblock_connection_failure_status" formatted="false">I-SponsorBlock ayitholakali okwamanje (isimo %d)</string>
-    <string name="sb_sponsorblock_connection_failure_timeout">I-SponsorBlock ayitholakali okwesikhashana (i-API iphelelwe yisikhathi)</string>
-    <string name="sb_vote_failed_timeout">Ayikwazi ukuvotela ingxenye (i-API iphelelwe yisikhathi)</string>
-    <string name="sb_vote_failed_unknown_error" formatted="false">Ayikwazi ukuvotela isegimenti (isimo: %d %s)</string>
-    <string name="sb_vote_failed_forbidden" formatted="false">Ayikwazi ukuvotela isegimenti: %s</string>
-    <string name="sb_vote_upvote">Votela phezulu</string>
-    <string name="sb_vote_downvote">Votela phansi</string>
-    <string name="sb_vote_category">Shintsha isigaba</string>
-    <string name="sb_vote_no_segments">Awekho amasegimenti ongawavotela</string>
-    <string name="sb_new_segment_choose_category">Khetha isigaba sesigaba</string>
-    <string name="sb_new_segment_disabled_category">Isigaba sikhutshaziwe kuzilungiselelo. Nika amandla isigaba ukuze usihambise.</string>
-    <string name="sb_new_segment_title">Ingxenye entsha ye-SponsorBlock</string>
-    <string name="sb_new_segment_mark_time_as_question" formatted="false">Setha u-d: d: d njengesiqalo noma isiphetho sengxenye entsha?</string>
-    <string name="sb_new_segment_mark_start">qala</string>
-    <string name="sb_new_segment_mark_end">ukuphela</string>
-    <string name="sb_new_segment_now">manje</string>
-    <string name="sb_new_segment_time_start">Isikhathi isigaba siqala ngo</string>
-    <string name="sb_new_segment_time_end">Isikhathi ingxenye iphela ngo</string>
-    <string name="sb_new_segment_confirm_title">Ingabe izikhathi zilungile?</string>
-    <string name="sb_new_segment_confirm_content" formatted="false">Isegimenti isuka ku-%02d:%02d ukuya ku-%02d:%02d (%d amaminithi %02d imizuzwana)\nIngabe isilungele ukuthunyelwa?</string>
-    <string name="sb_new_segment_start_is_before_end">Ukuqala kufanele kube ngaphambi kokuphela</string>
-    <string name="sb_new_segment_mark_locations_first">Maka izindawo ezimbili kubha yesikhathi kuqala</string>
-    <string name="sb_new_segment_preview_segment_first">Buka kuqala ingxenye, futhi uqinisekise ukuthi yeqa kahle</string>
-    <string name="sb_new_segment_edit_by_hand_title">Hlela isikhathi sesegimenti mathupha</string>
-    <string name="sb_new_segment_edit_by_hand_content">Uyafuna ukuhlela isikhathi sokuqala noma sokuphela kwesegimenti?</string>
-    <string name="sb_new_segment_edit_by_hand_parse_error">Isikhathi esingavumelekile esinikeziwe</string>
-    <string name="sb_stats">Izibalo</string>
-    <string name="sb_stats_connection_failure">Izibalo azitholakali okwesikhashana (i-API iphansi)</string>
-    <string name="sb_stats_loading">Iyalayisha...</string>
-    <string name="sb_stats_sb_disabled">I-SponsorBlock ikhutshaziwe</string>
-    <string name="sb_stats_username" formatted="false">Igama lakho lomsebenzisi: &lt;b&gt;%s&lt;/b&gt;</string>
-    <string name="sb_stats_username_change">Thepha lapha ukuze ushintshe igama lakho lomsebenzisi</string>
-    <string name="sb_stats_username_change_unknown_error" formatted="false">Ayikwazi ukushintsha igama lomsebenzisi: Isimo: %d %s</string>
-    <string name="sb_stats_username_changed">Igama lomsebenzisi lishintshwe ngempumelelo</string>
-    <string name="sb_stats_reputation" formatted="false">Isithunzi sakho &lt;b&gt;%.2f&lt;/b&gt;</string>
-    <string name="sb_stats_submissions" formatted="false">Udale &lt;b&gt;%s&lt;/b&gt; amasegimenti</string>
-    <string name="sb_stats_saved_zero">Ibhodi yabaphambili ye-SponsorBlock</string>
-    <string name="sb_stats_saved" formatted="false">Usindise abantu kumasegimenti &lt;b&gt;%s&lt;/b&gt;</string>
-    <string name="sb_stats_saved_sum_zero">Thepha lapha ukuze ubone izibalo zomhlaba wonke nabanikeli abaphezulu</string>
-    <string name="sb_stats_saved_sum" formatted="false">Lokho &lt;b&gt;%s&lt;/b&gt; kwezimpilo zabo.&lt;br&gt;Thepha lapha ukuze ubone ibhodi yabaphambili</string>
-    <string name="sb_stats_self_saved" formatted="false">Weqe &lt;b&gt;%s&lt;/b&gt; amasegimenti</string>
-    <string name="sb_stats_self_saved_sum" formatted="false">Lokho &lt;b&gt;%s&lt;/b&gt;</string>
-    <string name="sb_stats_self_saved_reset_title">Setha kabusha isibali samasegimenti eqiwe?</string>
-    <string name="sb_stats_saved_hour_format" formatted="false">%d amahora %d amaminithi</string>
-    <string name="sb_stats_saved_minute_format" formatted="false">%d amaminithi %d amasekhondi</string>
-    <string name="sb_stats_saved_second_format" formatted="false">%d imizuzwana</string>
-    <string name="sb_color_dot_label">Umbala:</string>
-    <string name="sb_color_changed">Umbala ushintshile</string>
-    <string name="sb_color_reset">Ukusetha kabusha umbala</string>
-    <string name="sb_color_invalid">Ikhodi yombala engavumelekile</string>
-    <string name="sb_reset_color">Setha kabusha umbala</string>
-    <string name="sb_reset">Setha kabusha</string>
-    <string name="sb_about">Mayelana</string>
-    <string name="sb_about_api_sum">Idatha inikezwa i-SponsorBlock API. Thepha lapha ukuze ufunde kabanzi futhi ubone okulandiwe kwezinye izinkundla</string>
-    <string name="sb_about_made_by">Ukuhlanganiswa okuthuthukisiwe ngu-JakubWeg,\nkufakwe kabusha yi-oSumAtriIX</string>
+    <string name="revanced_sb_enable_sb">Nika amandla i-SponsorBlock</string>
+    <string name="revanced_sb_enable_sb_sum">I-SponsorBlock iwuhlelo olugcwele isixuku lokweqa izingxenye ezicasulayo zamavidiyo e-YouTube</string>
+    <string name="revanced_sb_appearance_category">Ukubukeka</string>
+    <string name="revanced_sb_enable_voting">Bonisa inkinobho yokuvota</string>
+    <string name="revanced_sb_enable_voting_sum_on">Inkinobho yokuvota yengxenye iyaboniswa</string>
+    <string name="revanced_sb_enable_voting_sum_off">Inkinobho yokuvota yengxenye ayiboniswa</string>
+    <string name="revanced_sb_enable_compact_skip_button">Sebenzisa inkinobho yokweqa ehlangene</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_on">Inkinobho yokweqa ifakwe isitayela sobubanzi obuncane</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_off">Inkinobho yokweqa ifakwe isitayela ukuze ibonakale kahle kakhulu</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button">Fihla ngokuzenzakalela inkinobho yokweqa</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">Inkinobho yokweqa iyacasha ngemva kwemizuzwana embalwa</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">Inkinobho yokweqa iboniswe ingxenye yonke</string>
+    <string name="revanced_sb_general_skiptoast">Bonisa ithosi uma weqa ngokuzenzakalelayo</string>
+    <string name="revanced_sb_general_skiptoast_sum_on">I-toast eboniswa lapho isegimenti yeqiwa ngokuzenzakalelayo. Thepha lapha ukuze ubone isibonelo</string>
+    <string name="revanced_sb_general_skiptoast_sum_off">I-toast ayiboniswa. Thepha lapha ukuze ubone isibonelo</string>
+    <string name="revanced_sb_general_time_without">Bonisa ubude bevidiyo ngaphandle kwamasegimenti</string>
+    <string name="revanced_sb_general_time_without_sum_on">Ubude bevidiyo ususa wonke amasegimenti, akhonjiswe kubakaki eduze kobude bevidiyo egcwele</string>
+    <string name="revanced_sb_general_time_without_sum_off">Ubude bevidiyo obugcwele bubonisiwe</string>
+    <string name="revanced_sb_create_segment_category">Ukudala amasegimenti amasha</string>
+    <string name="revanced_sb_enable_create_segment">Bonisa inkinobho yesegimenti entsha</string>
+    <string name="revanced_sb_enable_create_segment_sum_on">Inkinobho yesegimenti entsha iyaboniswa</string>
+    <string name="revanced_sb_enable_create_segment_sum_off">Inkinobho yesegimenti entsha ayiboniswa</string>
+    <string name="revanced_sb_general_adjusting">Lungisa isinyathelo sesegimenti entsha</string>
+    <string name="revanced_sb_general_adjusting_sum">Inombolo yama-millisecond izinkinobho zokulungisa isikhathi ezihambayo lapho udala amasegimenti amasha</string>
+    <string name="revanced_sb_general_adjusting_invalid">Inani kufanele libe inombolo ephozithivu</string>
+    <string name="revanced_sb_guidelines_preference_title">Buka imihlahlandlela</string>
+    <string name="revanced_sb_guidelines_preference_sum">Imihlahlandlela iqukethe imithetho namathiphu okudala amasegimenti amasha</string>
+    <string name="revanced_sb_guidelines_popup_title">Landela iziqondiso</string>
+    <string name="revanced_sb_guidelines_popup_content">Funda imihlahlandlela ye-SponsorBlock ngaphambi kokudala amasegimenti amasha</string>
+    <string name="revanced_sb_guidelines_popup_already_read">Sekufundiwe</string>
+    <string name="revanced_sb_guidelines_popup_open">Ngibonise</string>
+    <string name="revanced_sb_general">Okujwayelekile</string>
+    <string name="revanced_sb_toast_on_connection_error_title">Bonisa i-toast uma i-API ingatholakali</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_on">I-Toast iyaboniswa uma i-SponsorBlock API ingatholakali</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_off">I-toast ayiboniswa uma i-SponsorBlock API ingatholakali</string>
+    <string name="revanced_sb_general_skipcount">Nika amandla ukulandelela ukubalwa kweqa</string>
+    <string name="revanced_sb_general_skipcount_sum_on">Ivumela ibhodi yabaphambili ye-SponsorBlock ukuthi singakanani isikhathi esilondolozwe. Umlayezo uthunyelwa ebhodini labaphambili isikhathi ngasinye lapho ingxenye yeqiwa</string>
+    <string name="revanced_sb_general_skipcount_sum_off">Ukulandelela isibalo sokweqa akuvunyelwe</string>
+    <string name="revanced_sb_general_min_duration">Ubuncane besikhathi sesegimenti</string>
+    <string name="revanced_sb_general_min_duration_sum">Amasegimenti amafushane kunaleli nani (ngamasekhondi) ngeke aboniswe noma eqiwe</string>
+    <string name="revanced_sb_general_uuid">Umazisi wakho oyimfihlo</string>
+    <string name="revanced_sb_general_uuid_sum">Lokhu kufanele kugcinwe kuyimfihlo. Lokhu kufana nephasiwedi futhi akufanele yabiwe nanoma ubani. Uma umuntu enalokhu, angazenza wena</string>
+    <string name="revanced_sb_general_uuid_invalid">Umazisi oyimfihlo kufanele okungenani ube nezinhlamvu ezingu-30 ubude</string>
+    <string name="revanced_sb_general_api_url">Shintsha i-URL ye-API</string>
+    <string name="revanced_sb_general_api_url_sum">Ikheli i-SponsorBlock elisebenzisayo ukwenza amakholi kuseva. Ungakushintshi lokhu ngaphandle uma wazi ukuthi wenzani</string>
+    <string name="revanced_sb_api_url_reset">Ukusethwa kabusha kwe-URL ye-API</string>
+    <string name="revanced_sb_api_url_invalid">I-API URL ayivumelekile</string>
+    <string name="revanced_sb_api_url_changed">I-API URL ishintshile</string>
+    <string name="revanced_sb_settings_ie">Ngenisa/Thumela izilungiselelo</string>
+    <string name="revanced_sb_settings_copy">Kopisha</string>
+    <string name="revanced_sb_settings_ie_sum">Ukulungiselelwa kwakho kwe-SponsorBlock JSON okungangeniswa/kukhishelwe ku-ReVanced nezinye izinkundla ze-SponsorBlock. Lokhu kufaka phakathi umazisi wakho oyimfihlo. Qiniseka ukuthi wabelana ngalokhu ngokuhlakanipha</string>
+    <string name="revanced_sb_settings_import_successful">Izilungiselelo zingeniswe ngempumelelo</string>
+    <string name="revanced_sb_settings_import_failed">Yehlulekile ukungenisa: %s</string>
+    <string name="revanced_sb_settings_export_failed">Yehlulekile ukuthumela: %s</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning">Izilungiselelo zakho ziqukethe i-id yomsebenzisi ye-SponsorBlock eyimfihlo.\n\nI-id yakho yomsebenzisi ifana nephasiwedi futhi akufanele yabiwe.\n</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">Ungabonisi futhi</string>
+    <string name="revanced_sb_diff_segments">Shintsha ukuziphatha kwesegimenti</string>
+    <string name="revanced_sb_segments_sponsor">Umxhasi</string>
+    <string name="revanced_sb_segments_sponsor_sum">Iphromoshini ekhokhelwayo, ukudluliselwa okukhokhelwayo kanye nezikhangiso eziqondile. Hhayi okokuziphromotha noma ukumemeza kwamahhala kwizimbangela/abadali/amawebhusayithi/imikhiqizo abayithandayo</string>
+    <string name="revanced_sb_segments_selfpromo">Okungakhokhelwa/Ukuphromotha</string>
+    <string name="revanced_sb_segments_selfpromo_sum">Kufana nokuthi \'Umxhasi\' ngaphandle kokungakhokhelwa noma ukuzinyusela wena ngokwakho. Kufaka phakathi izigaba ezimayelana nokuthengiswayo, iminikelo, noma ulwazi mayelana nokuthi bahlanganyele nobani</string>
+    <string name="revanced_sb_segments_interaction">Isikhumbuzi Sokusebenzelana (Bhalisa)</string>
+    <string name="revanced_sb_segments_interaction_sum">Isikhumbuzi esifushane sokuthanda, ukubhalisa noma ukusilandela phakathi nokuqukethwe. Uma kuyinde noma imayelana nokuthile okuqondile, kufanele kube ngaphansi kokuzinyusa</string>
+    <string name="revanced_sb_segments_highlight">Gqamisa</string>
+    <string name="revanced_sb_segments_highlight_sum">Ingxenye yevidiyo efunwa abantu abaningi</string>
+    <string name="revanced_sb_segments_intro">Ikhefu/Isingeniso Opopayi</string>
+    <string name="revanced_sb_segments_intro_sum">Isikhawu esingenakho okuqukethwe kwangempela. Kungaba ukumiswa okwesikhashana, uzimele omile, noma ukugqwayiza okuphindayo. Ayifaki izinguquko eziqukethe ulwazi</string>
+    <string name="revanced_sb_segments_outro">Amakhadi Okugcina/Amakhredithi</string>
+    <string name="revanced_sb_segments_outro_sum">Amakhredithi noma uma amakhadi okugcina e-YouTube evela. Hhayi ngeziphetho ngolwazi</string>
+    <string name="revanced_sb_segments_preview">Buka kuqala/Recap</string>
+    <string name="revanced_sb_segments_preview_sum">Ukuqoqwa kweziqeshana ezibonisa okwenzekayo noma okwenzeka kuvidiyo noma kwamanye amavidiyo ochungechunge, lapho lonke ulwazi luphindwaphindwa kwenye indawo.</string>
+    <string name="revanced_sb_segments_filler">I-Filler Tangent/Amahlaya</string>
+    <string name="revanced_sb_segments_filler_sum">Izigcawu ze-Tangential zengezwe kuphela ukugcwalisa noma ukuhlekisa okungadingeki ukuze uqonde okuqukethwe okuyinhloko kwevidiyo. Akubandakanyi amasegimenti anikeza umongo noma imininingwane yangemuva</string>
+    <string name="revanced_sb_segments_nomusic">Umculo: Ingxenye Okungeyona Eyomculo</string>
+    <string name="revanced_sb_segments_nomusic_sum">Kuphela ukusetshenziswa kumavidiyo omculo. Izigaba zamavidiyo omculo angenawo umculo, ezingakafakwa esinye isigaba</string>
+    <string name="revanced_sb_skip_button_compact">Yeqa</string>
+    <string name="revanced_sb_skip_button_compact_highlight">Gqamisa</string>
+    <string name="revanced_sb_skip_button_sponsor">Yeqa umxhasi</string>
+    <string name="revanced_sb_skip_button_selfpromo">Yeqa iphromo</string>
+    <string name="revanced_sb_skip_button_interaction">Yeqa ukuhlanganyela</string>
+    <string name="revanced_sb_skip_button_highlight">Yeqa ukuze ugqamise</string>
+    <string name="revanced_sb_skip_button_intro_beginning">Yeqa isingeniso</string>
+    <string name="revanced_sb_skip_button_intro_middle">Yeqa ukuphumula</string>
+    <string name="revanced_sb_skip_button_intro_end">Yeqa ukuphumula</string>
+    <string name="revanced_sb_skip_button_outro">yeqa okunye</string>
+    <string name="revanced_sb_skip_button_preview_beginning">Yeqa ukubuka kuqala</string>
+    <string name="revanced_sb_skip_button_preview_middle">Yeqa ukubuka kuqala</string>
+    <string name="revanced_sb_skip_button_preview_end">Yeqa isifinyezo</string>
+    <string name="revanced_sb_skip_button_filler">Yeqa isigcwalisi</string>
+    <string name="revanced_sb_skip_button_nomusic">Yeqa okungewona umculo</string>
+    <string name="revanced_sb_skip_button_unsubmitted">Yeqa ingxenye</string>
+    <string name="revanced_sb_skipped_sponsor">Umxhasi weqiwe</string>
+    <string name="revanced_sb_skipped_selfpromo">Kweqiwe ukuzithuthukisa</string>
+    <string name="revanced_sb_skipped_interaction">Yeqiwe isikhumbuzi esicasulayo</string>
+    <string name="revanced_sb_skipped_highlight">Kweqiwe ukuze kugqanyiswe</string>
+    <string name="revanced_sb_skipped_intro_beginning">Yeqiwe isingeniso</string>
+    <string name="revanced_sb_skipped_intro_middle">Ikhefu leqiwe</string>
+    <string name="revanced_sb_skipped_intro_end">Ikhefu leqiwe</string>
+    <string name="revanced_sb_skipped_outro">Kweqiwe i-outro</string>
+    <string name="revanced_sb_skipped_preview_beginning">Ukubuka kuqala kweqiwe</string>
+    <string name="revanced_sb_skipped_preview_middle">Ukubuka kuqala kweqiwe</string>
+    <string name="revanced_sb_skipped_preview_end">I-recap yeqiwe</string>
+    <string name="revanced_sb_skipped_filler">Isigcwalisi eseqiwe</string>
+    <string name="revanced_sb_skipped_nomusic">Weqe isigaba esingewona owomculo</string>
+    <string name="revanced_sb_skipped_unsubmitted">Yeqiwe ingxenye engathunyelwanga</string>
+    <string name="revanced_sb_skipped_multiple_segments">Yeqiwe amasegimenti amaningi</string>
+    <string name="revanced_sb_skip_automatically">Yeqa ngokuzenzakalelayo</string>
+    <string name="revanced_sb_skip_automatically_once">Yeqa ngokuzenzakalela kanye</string>
+    <string name="revanced_sb_skip_showbutton">Bonisa inkinobho yokweqa</string>
+    <string name="revanced_sb_skip_seekbaronly">Bonisa kubha yokufuna</string>
+    <string name="revanced_sb_skip_ignore">Khubaza</string>
+    <string name="revanced_sb_submit_failed_invalid" formatted="false">Ayikwazi ukuthumela isegimenti: %s</string>
+    <string name="revanced_sb_submit_failed_timeout">I-SponsorBlock iphansi okwesikhashana</string>
+    <string name="revanced_sb_submit_failed_unknown_error" formatted="false">Ayikwazi ukuthumela isegimenti (isimo: %d %s)</string>
+    <string name="revanced_sb_submit_failed_rate_limit">Ayikwazi ukuthumela isegimenti.\nI-Rate Limited (iningi kakhulu evela kumsebenzisi ofanayo noma i-IP)</string>
+    <string name="revanced_sb_submit_failed_forbidden" formatted="false">Ayikwazi ukuhambisa ingxenye: %s</string>
+    <string name="revanced_sb_submit_failed_duplicate">Ayikwazi ukuhambisa isegimenti.\nSeyivele ikhona</string>
+    <string name="revanced_sb_submit_succeeded">Isegimenti ihanjiswe ngempumelelo</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_generic">I-SponsorBlock ayitholakali okwamanje</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status" formatted="false">I-SponsorBlock ayitholakali okwamanje (isimo %d)</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_timeout">I-SponsorBlock ayitholakali okwesikhashana (i-API iphelelwe yisikhathi)</string>
+    <string name="revanced_sb_vote_failed_timeout">Ayikwazi ukuvotela ingxenye (i-API iphelelwe yisikhathi)</string>
+    <string name="revanced_sb_vote_failed_unknown_error" formatted="false">Ayikwazi ukuvotela isegimenti (isimo: %d %s)</string>
+    <string name="revanced_sb_vote_failed_forbidden" formatted="false">Ayikwazi ukuvotela isegimenti: %s</string>
+    <string name="revanced_sb_vote_upvote">Votela phezulu</string>
+    <string name="revanced_sb_vote_downvote">Votela phansi</string>
+    <string name="revanced_sb_vote_category">Shintsha isigaba</string>
+    <string name="revanced_sb_vote_no_segments">Awekho amasegimenti ongawavotela</string>
+    <string name="revanced_sb_new_segment_choose_category">Khetha isigaba sesigaba</string>
+    <string name="revanced_sb_new_segment_disabled_category">Isigaba sikhutshaziwe kuzilungiselelo. Nika amandla isigaba ukuze usihambise.</string>
+    <string name="revanced_sb_new_segment_title">Ingxenye entsha ye-SponsorBlock</string>
+    <string name="revanced_sb_new_segment_mark_time_as_question" formatted="false">Setha u-d: d: d njengesiqalo noma isiphetho sengxenye entsha?</string>
+    <string name="revanced_sb_new_segment_mark_start">qala</string>
+    <string name="revanced_sb_new_segment_mark_end">ukuphela</string>
+    <string name="revanced_sb_new_segment_now">manje</string>
+    <string name="revanced_sb_new_segment_time_start">Isikhathi isigaba siqala ngo</string>
+    <string name="revanced_sb_new_segment_time_end">Isikhathi ingxenye iphela ngo</string>
+    <string name="revanced_sb_new_segment_confirm_title">Ingabe izikhathi zilungile?</string>
+    <string name="revanced_sb_new_segment_confirm_content" formatted="false">Isegimenti isuka ku-%02d:%02d ukuya ku-%02d:%02d (%d amaminithi %02d imizuzwana)\nIngabe isilungele ukuthunyelwa?</string>
+    <string name="revanced_sb_new_segment_start_is_before_end">Ukuqala kufanele kube ngaphambi kokuphela</string>
+    <string name="revanced_sb_new_segment_mark_locations_first">Maka izindawo ezimbili kubha yesikhathi kuqala</string>
+    <string name="revanced_sb_new_segment_preview_segment_first">Buka kuqala ingxenye, futhi uqinisekise ukuthi yeqa kahle</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_title">Hlela isikhathi sesegimenti mathupha</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_content">Uyafuna ukuhlela isikhathi sokuqala noma sokuphela kwesegimenti?</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_parse_error">Isikhathi esingavumelekile esinikeziwe</string>
+    <string name="revanced_sb_stats">Izibalo</string>
+    <string name="revanced_sb_stats_connection_failure">Izibalo azitholakali okwesikhashana (i-API iphansi)</string>
+    <string name="revanced_sb_stats_loading">Iyalayisha...</string>
+    <string name="revanced_sb_stats_sb_disabled">I-SponsorBlock ikhutshaziwe</string>
+    <string name="revanced_sb_stats_username" formatted="false">Igama lakho lomsebenzisi: &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_username_change">Thepha lapha ukuze ushintshe igama lakho lomsebenzisi</string>
+    <string name="revanced_sb_stats_username_change_unknown_error" formatted="false">Ayikwazi ukushintsha igama lomsebenzisi: Isimo: %d %s</string>
+    <string name="revanced_sb_stats_username_changed">Igama lomsebenzisi lishintshwe ngempumelelo</string>
+    <string name="revanced_sb_stats_reputation" formatted="false">Isithunzi sakho &lt;b&gt;%.2f&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_submissions" formatted="false">Udale &lt;b&gt;%s&lt;/b&gt; amasegimenti</string>
+    <string name="revanced_sb_stats_saved_zero">Ibhodi yabaphambili ye-SponsorBlock</string>
+    <string name="revanced_sb_stats_saved" formatted="false">Usindise abantu kumasegimenti &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_saved_sum_zero">Thepha lapha ukuze ubone izibalo zomhlaba wonke nabanikeli abaphezulu</string>
+    <string name="revanced_sb_stats_saved_sum" formatted="false">Lokho &lt;b&gt;%s&lt;/b&gt; kwezimpilo zabo.&lt;br&gt;Thepha lapha ukuze ubone ibhodi yabaphambili</string>
+    <string name="revanced_sb_stats_self_saved" formatted="false">Weqe &lt;b&gt;%s&lt;/b&gt; amasegimenti</string>
+    <string name="revanced_sb_stats_self_saved_sum" formatted="false">Lokho &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_self_saved_reset_title">Setha kabusha isibali samasegimenti eqiwe?</string>
+    <string name="revanced_sb_stats_saved_hour_format" formatted="false">%d amahora %d amaminithi</string>
+    <string name="revanced_sb_stats_saved_minute_format" formatted="false">%d amaminithi %d amasekhondi</string>
+    <string name="revanced_sb_stats_saved_second_format" formatted="false">%d imizuzwana</string>
+    <string name="revanced_sb_color_dot_label">Umbala:</string>
+    <string name="revanced_sb_color_changed">Umbala ushintshile</string>
+    <string name="revanced_sb_color_reset">Ukusetha kabusha umbala</string>
+    <string name="revanced_sb_color_invalid">Ikhodi yombala engavumelekile</string>
+    <string name="revanced_sb_reset_color">Setha kabusha umbala</string>
+    <string name="revanced_sb_reset">Setha kabusha</string>
+    <string name="revanced_sb_about">Mayelana</string>
+    <string name="revanced_sb_about_api_sum">Idatha inikezwa i-SponsorBlock API. Thepha lapha ukuze ufunde kabanzi futhi ubone okulandiwe kwezinye izinkundla</string>
+    <string name="revanced_sb_about_made_by">Ukuhlanganiswa okuthuthukisiwe ngu-JakubWeg,\nkufakwe kabusha yi-oSumAtriIX</string>
 </resources>

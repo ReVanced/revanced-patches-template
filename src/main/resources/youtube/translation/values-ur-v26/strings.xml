@@ -414,178 +414,178 @@
     <string name="revanced_ryd_attribution_summary">ڈیٹا Return YouTube Dislike API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں۔</string>
 
 
-    <string name="sb_enable_sb">اسپانسر بلاک کو فعال کریں۔</string>
-    <string name="sb_enable_sb_sum">اسپانسر بلاک YouTube ویڈیوز کے پریشان کن حصوں کو چھوڑنے کے لیے کراؤڈ سورسڈ سسٹم ہے۔</string>
-    <string name="sb_appearance_category">ظہور</string>
-    <string name="sb_enable_voting">ووٹنگ بٹن دکھائیں۔</string>
-    <string name="sb_enable_voting_sum_on">سیگمنٹ ووٹنگ بٹن دکھایا گیا ہے۔</string>
-    <string name="sb_enable_voting_sum_off">سیگمنٹ ووٹنگ کا بٹن نہیں دکھایا گیا ہے۔</string>
-    <string name="sb_enable_compact_skip_button">کومپیکٹ اسکیپ بٹن کا استعمال کریں۔</string>
-    <string name="sb_enable_compact_skip_button_sum_on">کم از کم چوڑائی کے لیے اسٹائل کردہ بٹن کو چھوڑ دیں۔</string>
-    <string name="sb_enable_compact_skip_button_sum_off">بہترین ظاہری شکل کے لیے اسٹائل کردہ بٹن کو چھوڑیں۔</string>
-    <string name="sb_enable_auto_hide_skip_segment_button">اسکپ بٹن کو خودکار طور پر چھپائیں۔</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">سکپ بٹن چند سیکنڈ کے بعد چھپ جاتا ہے۔</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">سکیپ بٹن پورے سیگمنٹ کے لیے دکھایا گیا ہے۔</string>
-    <string name="sb_general_skiptoast">خود بخود اچھالتے وقت ٹوسٹ دکھائیں۔</string>
-    <string name="sb_general_skiptoast_sum_on">ٹوسٹ دکھایا جاتا ہے جب کوئی سیگمنٹ خود بخود چھوڑ دیا جاتا ہے۔ مثال دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="sb_general_skiptoast_sum_off">ٹوسٹ نہیں دکھایا گیا۔ مثال دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="sb_general_time_without">سیگمنٹس کے بغیر ویڈیو کی لمبائی دکھائیں۔</string>
-    <string name="sb_general_time_without_sum_on">ویڈیو کی لمبائی مائنس تمام سیگمنٹس، پوری ویڈیو کی لمبائی کے آگے قوسین میں دکھائی گئی ہے۔</string>
-    <string name="sb_general_time_without_sum_off">مکمل ویڈیو کی لمبائی دکھائی گئی۔</string>
-    <string name="sb_create_segment_category">نئے طبقات کی تخلیق</string>
-    <string name="sb_enable_create_segment">نیا سیگمنٹ بنائیں بٹن دکھائیں۔</string>
-    <string name="sb_enable_create_segment_sum_on">نیا سیگمنٹ بنائیں بٹن دکھایا گیا ہے۔</string>
-    <string name="sb_enable_create_segment_sum_off">نیا سیگمنٹ بنائیں بٹن نہیں دکھایا گیا ہے۔</string>
-    <string name="sb_general_adjusting">نئے سیگمنٹ مرحلہ کو ایڈجسٹ کریں۔</string>
-    <string name="sb_general_adjusting_sum">نئے سیگمنٹس بناتے وقت ٹائم ایڈجسٹمنٹ کے بٹن کی حرکت ملی سیکنڈز کی تعداد</string>
-    <string name="sb_general_adjusting_invalid">قدر ایک مثبت نمبر ہونا چاہیے۔</string>
-    <string name="sb_guidelines_preference_title">رہنما خطوط دیکھیں</string>
-    <string name="sb_guidelines_preference_sum">گائیڈ لائنز میں نئے سیگمنٹس بنانے کے لیے اصول اور تجاویز شامل ہیں۔</string>
-    <string name="sb_guidelines_popup_title">ہدایات پر عمل کریں۔</string>
-    <string name="sb_guidelines_popup_content">نئے سیگمنٹس بنانے سے پہلے SponsorBlock کے رہنما خطوط پڑھیں</string>
-    <string name="sb_guidelines_popup_already_read">پہلے ہی پڑھ چکے ہیں۔</string>
-    <string name="sb_guidelines_popup_open">مجھے دکھا</string>
-    <string name="sb_general">جنرل</string>
-    <string name="sb_toast_on_connection_error_title">اگر API دستیاب نہیں ہے تو ٹوسٹ دکھائیں۔</string>
-    <string name="sb_toast_on_connection_error_summary_on">اگر SponsorBlock API دستیاب نہیں ہے تو ٹوسٹ دکھایا گیا ہے۔</string>
-    <string name="sb_toast_on_connection_error_summary_off">اگر SponsorBlock API دستیاب نہیں ہے تو ٹوسٹ نہیں دکھایا گیا ہے۔</string>
-    <string name="sb_general_skipcount">اسکیپ کاؤنٹ ٹریکنگ کو فعال کریں۔</string>
-    <string name="sb_general_skipcount_sum_on">SponsorBlock لیڈر بورڈ کو بتاتا ہے کہ کتنا وقت بچتا ہے۔ ہر بار جب کوئی سیگمنٹ چھوڑا جاتا ہے تو لیڈر بورڈ کو ایک پیغام بھیجا جاتا ہے۔</string>
-    <string name="sb_general_skipcount_sum_off">اسکیپ کاؤنٹ ٹریکنگ فعال نہیں ہے۔</string>
-    <string name="sb_general_min_duration">کم از کم سیگمنٹ کا دورانیہ</string>
-    <string name="sb_general_min_duration_sum">اس قدر سے چھوٹے حصے (سیکنڈ میں) نہیں دکھائے جائیں گے اور نہ ہی چھوڑے جائیں گے۔</string>
-    <string name="sb_general_uuid">آپ کا پرائیویٹ یوزر آئی ڈی</string>
-    <string name="sb_general_uuid_sum">اس کو پرائیویٹ رکھا جائے۔ یہ ایک پاس ورڈ کی طرح ہے اور کسی کے ساتھ شیئر نہیں کیا جانا چاہیے۔ اگر کسی کے پاس یہ ہے، تو وہ آپ کی نقالی کر سکتا ہے۔</string>
-    <string name="sb_general_uuid_invalid">نجی صارف کی شناخت کم از کم 30 حروف کی ہونی چاہیے۔</string>
-    <string name="sb_general_api_url">API URL کو تبدیل کریں۔</string>
-    <string name="sb_general_api_url_sum">ایڈریس SponsorBlock سرور پر کال کرنے کے لیے استعمال کرتا ہے۔ اسے تبدیل نہ کریں جب تک کہ آپ کو معلوم نہ ہو کہ آپ کیا کر رہے ہیں۔</string>
-    <string name="sb_api_url_reset">API URL ری سیٹ</string>
-    <string name="sb_api_url_invalid">API URL غلط ہے۔</string>
-    <string name="sb_api_url_changed">API URL کو تبدیل کر دیا گیا۔</string>
-    <string name="sb_settings_ie">درآمد/برآمد کی ترتیبات</string>
-    <string name="sb_settings_copy">کاپی</string>
-    <string name="sb_settings_ie_sum">آپ کا اسپانسر بلاک JSON کنفیگریشن جسے ReVanced اور دیگر SponsorBlock پلیٹ فارمز پر درآمد/برآمد کیا جا سکتا ہے۔ اس میں آپ کی پرائیویٹ یوزر آئی ڈی بھی شامل ہے۔ اس کو عقلمندی سے شیئر ضرور کریں۔</string>
-    <string name="sb_settings_import_successful">ترتیبات کامیابی کے ساتھ درآمد ہو گئیں۔</string>
-    <string name="sb_settings_import_failed">درآمد کرنے میں ناکام: %s</string>
-    <string name="sb_settings_export_failed">برآمد کرنے میں ناکام: %s</string>
-    <string name="sb_settings_revanced_export_user_id_warning">آپ کی سیٹنگز میں ایک پرائیویٹ اسپانسر بلاک یوزر آئی ڈی ہے۔\n\nآپ کی یوزر آئی ڈی ایک پاس ورڈ کی طرح ہے اور اسے کبھی شیئر نہیں کیا جانا چاہیے۔\n</string>
-    <string name="sb_settings_revanced_export_user_id_warning_dismiss">پھر سے مت دکھاو</string>
-    <string name="sb_diff_segments">طبقہ کے رویے کو تبدیل کریں۔</string>
-    <string name="sb_segments_sponsor">سپانسر</string>
-    <string name="sb_segments_sponsor_sum">بامعاوضہ پروموشن، بامعاوضہ حوالہ جات اور براہ راست اشتہارات۔ خود کو فروغ دینے یا اسباب/تخلیق کاروں/ویب سائٹس/مصنوعات کے لیے مفت شور مچانے کے لیے نہیں</string>
-    <string name="sb_segments_selfpromo">بلا معاوضہ/خود پروموشن</string>
-    <string name="sb_segments_selfpromo_sum">بلا معاوضہ یا خود پروموشن کے علاوہ \'اسپانسر\' کی طرح۔ تجارتی مال، عطیات، یا اس کے بارے میں معلومات کے حصے شامل ہیں کہ انہوں نے کس کے ساتھ تعاون کیا۔</string>
-    <string name="sb_segments_interaction">تعامل کی یاد دہانی (سبسکرائب کریں)</string>
-    <string name="sb_segments_interaction_sum">مواد کے بیچ میں ان کو پسند کرنے، سبسکرائب کرنے یا ان کی پیروی کرنے کے لیے ایک مختصر یاد دہانی۔ اگر یہ لمبا ہے یا کسی خاص چیز کے بارے میں ہے، تو اسے بجائے خود پروموشن کے تحت ہونا چاہیے۔</string>
-    <string name="sb_segments_highlight">نمایاں کریں۔</string>
-    <string name="sb_segments_highlight_sum">ویڈیو کا وہ حصہ جسے زیادہ تر لوگ تلاش کر رہے ہیں۔</string>
-    <string name="sb_segments_intro">انٹرمیشن/انٹرو اینیمیشن</string>
-    <string name="sb_segments_intro_sum">اصل مواد کے بغیر وقفہ۔ ایک توقف، جامد فریم، یا دہرائی جانے والی اینیمیشن ہو سکتی ہے۔ معلومات پر مشتمل ٹرانزیشن شامل نہیں ہے۔</string>
-    <string name="sb_segments_outro">اینڈ کارڈز/کریڈٹس</string>
-    <string name="sb_segments_outro_sum">کریڈٹس یا جب YouTube اینڈ کارڈز ظاہر ہوتے ہیں۔ معلومات کے ساتھ نتیجہ اخذ کرنے کے لیے نہیں۔</string>
-    <string name="sb_segments_preview">پیش نظارہ/تذکرہ</string>
-    <string name="sb_segments_preview_sum">کلپس کا مجموعہ جو دکھاتا ہے کہ ویڈیو میں یا سیریز کے دیگر ویڈیوز میں کیا ہو رہا ہے یا کیا ہوا ہے، جہاں تمام معلومات کو کہیں اور دہرایا جاتا ہے۔</string>
-    <string name="sb_segments_filler">فلر ٹینجنٹ/مذاق</string>
-    <string name="sb_segments_filler_sum">ٹینجینٹل مناظر صرف فلر یا مزاح کے لیے شامل کیے گئے ہیں جن کی ویڈیو کے مرکزی مواد کو سمجھنے کی ضرورت نہیں ہے۔ سیاق و سباق یا پس منظر کی تفصیلات فراہم کرنے والے حصے شامل نہیں ہیں۔</string>
-    <string name="sb_segments_nomusic">موسیقی: نان میوزک سیکشن</string>
-    <string name="sb_segments_nomusic_sum">صرف میوزک ویڈیوز میں استعمال کے لیے۔ میوزک کے بغیر میوزک ویڈیوز کے سیکشنز، جو پہلے ہی کسی دوسرے زمرے میں شامل نہیں ہیں۔</string>
-    <string name="sb_skip_button_compact">چھوڑ دو</string>
-    <string name="sb_skip_button_compact_highlight">نمایاں کریں۔</string>
-    <string name="sb_skip_button_sponsor">اسپانسر کو چھوڑیں۔</string>
-    <string name="sb_skip_button_selfpromo">پرومو کو چھوڑیں۔</string>
-    <string name="sb_skip_button_interaction">تعامل کو چھوڑیں۔</string>
-    <string name="sb_skip_button_highlight">نمایاں کرنے کے لیے جائیں۔</string>
-    <string name="sb_skip_button_intro_beginning">تعارف کو چھوڑیں۔</string>
-    <string name="sb_skip_button_intro_middle">وقفہ چھوڑ دیں۔</string>
-    <string name="sb_skip_button_intro_end">وقفہ چھوڑ دیں۔</string>
-    <string name="sb_skip_button_outro">دوسرے کو چھوڑ دو</string>
-    <string name="sb_skip_button_preview_beginning">پیش نظارہ کو چھوڑیں۔</string>
-    <string name="sb_skip_button_preview_middle">پیش نظارہ کو چھوڑیں۔</string>
-    <string name="sb_skip_button_preview_end">ریکاپ کو چھوڑیں۔</string>
-    <string name="sb_skip_button_filler">فلر کو چھوڑیں۔</string>
-    <string name="sb_skip_button_nomusic">غیر موسیقی کو چھوڑیں۔</string>
-    <string name="sb_skip_button_unsubmitted">سیگمنٹ کو چھوڑیں۔</string>
-    <string name="sb_skipped_sponsor">اسپانسر کو چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_selfpromo">خود پروموشن کو چھوڑ دیا۔</string>
-    <string name="sb_skipped_interaction">پریشان کن یاد دہانی چھوڑ دی گئی۔</string>
-    <string name="sb_skipped_highlight">نمایاں کرنے کے لیے چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_intro_beginning">تعارف چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_intro_middle">وقفہ چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_intro_end">وقفہ چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_outro">باہر چھوڑ دیا</string>
-    <string name="sb_skipped_preview_beginning">پیش نظارہ چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_preview_middle">پیش نظارہ چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_preview_end">اسکپڈ ریکیپ</string>
-    <string name="sb_skipped_filler">فلر چھوڑ دیا</string>
-    <string name="sb_skipped_nomusic">غیر میوزک سیکشن کو چھوڑ دیا۔</string>
-    <string name="sb_skipped_unsubmitted">جمع نہ کیے گئے سیگمنٹ کو چھوڑ دیا گیا۔</string>
-    <string name="sb_skipped_multiple_segments">متعدد سیگمنٹس کو چھوڑ دیا گیا۔</string>
-    <string name="sb_skip_automatically">خود بخود چھوڑ دیں۔</string>
-    <string name="sb_skip_automatically_once">ایک بار خود بخود چھوڑ دیں۔</string>
-    <string name="sb_skip_showbutton">اسکیپ بٹن دکھائیں۔</string>
-    <string name="sb_skip_seekbaronly">سیک بار میں دکھائیں۔</string>
-    <string name="sb_skip_ignore">غیر فعال کریں۔</string>
-    <string name="sb_submit_failed_invalid" formatted="false">سیگمنٹ جمع کرنے سے قاصر: %s</string>
-    <string name="sb_submit_failed_timeout">SponsorBlock عارضی طور پر بند ہے۔</string>
-    <string name="sb_submit_failed_unknown_error" formatted="false">سیگمنٹ جمع کرنے سے قاصر (اسٹیٹس: %d %s)</string>
-    <string name="sb_submit_failed_rate_limit">سیگمنٹ جمع کرنے سے قاصر۔\nریٹ محدود (ایک ہی صارف یا IP سے بہت زیادہ)</string>
-    <string name="sb_submit_failed_forbidden" formatted="false">سیگمنٹ جمع نہیں کر سکتے: %s</string>
-    <string name="sb_submit_failed_duplicate">سیگمنٹ جمع نہیں کر سکتا۔\nپہلے سے موجود ہے۔</string>
-    <string name="sb_submit_succeeded">سیگمنٹ کامیابی کے ساتھ جمع ہو گیا۔</string>
-    <string name="sb_sponsorblock_connection_failure_generic">SponsorBlock عارضی طور پر دستیاب نہیں ہے۔</string>
-    <string name="sb_sponsorblock_connection_failure_status" formatted="false">اسپانسر بلاک عارضی طور پر دستیاب نہیں ہے (حیثیت %d)</string>
-    <string name="sb_sponsorblock_connection_failure_timeout">اسپانسر بلاک عارضی طور پر دستیاب نہیں ہے (API کا وقت ختم ہو گیا)</string>
-    <string name="sb_vote_failed_timeout">سیگمنٹ کے لیے ووٹ دینے سے قاصر (API کا وقت ختم)</string>
-    <string name="sb_vote_failed_unknown_error" formatted="false">سیگمنٹ کے لیے ووٹ دینے سے قاصر (اسٹیٹس: %d %s)</string>
-    <string name="sb_vote_failed_forbidden" formatted="false">سیگمنٹ کے لیے ووٹ دینے سے قاصر: %s</string>
-    <string name="sb_vote_upvote">ووٹ دیں</string>
-    <string name="sb_vote_downvote">ڈاؤن ووٹ</string>
-    <string name="sb_vote_category">زمرہ تبدیل کریں۔</string>
-    <string name="sb_vote_no_segments">ووٹ دینے کے لیے کوئی طبقہ نہیں ہے۔</string>
-    <string name="sb_new_segment_choose_category">طبقہ زمرہ منتخب کریں۔</string>
-    <string name="sb_new_segment_disabled_category">زمرہ ترتیبات میں غیر فعال ہے۔ جمع کرانے کے لیے زمرہ کو فعال کریں۔</string>
-    <string name="sb_new_segment_title">نیا اسپانسر بلاک سیگمنٹ</string>
-    <string name="sb_new_segment_mark_time_as_question" formatted="false">d: d: d کو نئے سیگمنٹ کے آغاز یا اختتام کے طور پر سیٹ کریں؟</string>
-    <string name="sb_new_segment_mark_start">شروع</string>
-    <string name="sb_new_segment_mark_end">اختتام</string>
-    <string name="sb_new_segment_now">ابھی</string>
-    <string name="sb_new_segment_time_start">جس وقت سیگمنٹ شروع ہوتا ہے۔</string>
-    <string name="sb_new_segment_time_end">جس وقت سیگمنٹ ختم ہوتا ہے۔</string>
-    <string name="sb_new_segment_confirm_title">کیا اوقات درست ہیں؟</string>
-    <string name="sb_new_segment_confirm_content" formatted="false">سیگمنٹ %02d:%02d سے %02d:%02d (%d منٹ %02d سیکنڈ) تک رہتا ہے\nکیا یہ جمع کرانے کے لیے تیار ہے؟</string>
-    <string name="sb_new_segment_start_is_before_end">آغاز ختم ہونے سے پہلے ہونا چاہیے۔</string>
-    <string name="sb_new_segment_mark_locations_first">پہلے ٹائم بار پر دو مقامات کو نشان زد کریں۔</string>
-    <string name="sb_new_segment_preview_segment_first">سیگمنٹ کا پیش نظارہ کریں، اور یقینی بنائیں کہ یہ آسانی سے چھوٹ جاتا ہے۔</string>
-    <string name="sb_new_segment_edit_by_hand_title">دستی طور پر سیگمنٹ کے اوقات میں ترمیم کریں۔</string>
-    <string name="sb_new_segment_edit_by_hand_content">کیا آپ سیگمنٹ کے آغاز یا اختتام کے وقت میں ترمیم کرنا چاہتے ہیں؟</string>
-    <string name="sb_new_segment_edit_by_hand_parse_error">غلط وقت دیا گیا۔</string>
-    <string name="sb_stats">اعدادوشمار</string>
-    <string name="sb_stats_connection_failure">اعدادوشمار عارضی طور پر دستیاب نہیں ہیں (API بند ہے)</string>
-    <string name="sb_stats_loading">لوڈ ہو رہا ہے...</string>
-    <string name="sb_stats_sb_disabled">اسپانسر بلاک غیر فعال ہے۔</string>
-    <string name="sb_stats_username" formatted="false">آپ کا صارف نام: &lt;b&gt;%s&lt;/b&gt;</string>
-    <string name="sb_stats_username_change">اپنا صارف نام تبدیل کرنے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="sb_stats_username_change_unknown_error" formatted="false">صارف نام تبدیل کرنے سے قاصر: حیثیت: %d %s</string>
-    <string name="sb_stats_username_changed">صارف نام کامیابی کے ساتھ تبدیل ہو گیا۔</string>
-    <string name="sb_stats_reputation" formatted="false">آپ کی ساکھ &lt;b&gt;%.2f&lt;/b&gt; ہے۔</string>
-    <string name="sb_stats_submissions" formatted="false">آپ نے &lt;b&gt;%s&lt;/b&gt; سیگمنٹ بنائے ہیں۔</string>
-    <string name="sb_stats_saved_zero">اسپانسر بلاک لیڈر بورڈ</string>
-    <string name="sb_stats_saved" formatted="false">آپ نے لوگوں کو &lt;b&gt;%s&lt;/b&gt; حصوں سے بچایا ہے۔</string>
-    <string name="sb_stats_saved_sum_zero">عالمی اعدادوشمار اور سرفہرست تعاون کرنے والوں کو دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="sb_stats_saved_sum" formatted="false">یہ ان کی زندگی کا &lt;b&gt;%s&lt;/b&gt; ہے۔&lt;br&gt;لیڈر بورڈ دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
-    <string name="sb_stats_self_saved" formatted="false">آپ نے &lt;b&gt;%s&lt;/b&gt; سیگمنٹس کو چھوڑ دیا ہے۔</string>
-    <string name="sb_stats_self_saved_sum" formatted="false">یہ ہے &lt;b&gt;%s&lt;/b&gt;</string>
-    <string name="sb_stats_self_saved_reset_title">چھوڑے گئے سیگمنٹ کاؤنٹر کو ری سیٹ کریں؟</string>
-    <string name="sb_stats_saved_hour_format" formatted="false">%d گھنٹے %d منٹ</string>
-    <string name="sb_stats_saved_minute_format" formatted="false">%d منٹ %d سیکنڈ</string>
-    <string name="sb_stats_saved_second_format" formatted="false">%d سیکنڈ</string>
-    <string name="sb_color_dot_label">رنگ:</string>
-    <string name="sb_color_changed">رنگ بدل گیا۔</string>
-    <string name="sb_color_reset">رنگ ری سیٹ</string>
-    <string name="sb_color_invalid">غلط رنگ کا کوڈ</string>
-    <string name="sb_reset_color">رنگ ری سیٹ کریں۔</string>
-    <string name="sb_reset">دوبارہ ترتیب دیں۔</string>
-    <string name="sb_about">کے بارے میں</string>
-    <string name="sb_about_api_sum">ڈیٹا SponsorBlock API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں اور دوسرے پلیٹ فارمز کے لیے ڈاؤن لوڈز دیکھیں</string>
-    <string name="sb_about_made_by">JakubWeg کی طرف سے ری وینسڈ انضمام، oSumAtrIX کے ذریعے دوبارہ کوڈ کیا گیا۔</string>
+    <string name="revanced_sb_enable_sb">اسپانسر بلاک کو فعال کریں۔</string>
+    <string name="revanced_sb_enable_sb_sum">اسپانسر بلاک YouTube ویڈیوز کے پریشان کن حصوں کو چھوڑنے کے لیے کراؤڈ سورسڈ سسٹم ہے۔</string>
+    <string name="revanced_sb_appearance_category">ظہور</string>
+    <string name="revanced_sb_enable_voting">ووٹنگ بٹن دکھائیں۔</string>
+    <string name="revanced_sb_enable_voting_sum_on">سیگمنٹ ووٹنگ بٹن دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_enable_voting_sum_off">سیگمنٹ ووٹنگ کا بٹن نہیں دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_enable_compact_skip_button">کومپیکٹ اسکیپ بٹن کا استعمال کریں۔</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_on">کم از کم چوڑائی کے لیے اسٹائل کردہ بٹن کو چھوڑ دیں۔</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_off">بہترین ظاہری شکل کے لیے اسٹائل کردہ بٹن کو چھوڑیں۔</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button">اسکپ بٹن کو خودکار طور پر چھپائیں۔</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">سکپ بٹن چند سیکنڈ کے بعد چھپ جاتا ہے۔</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">سکیپ بٹن پورے سیگمنٹ کے لیے دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_general_skiptoast">خود بخود اچھالتے وقت ٹوسٹ دکھائیں۔</string>
+    <string name="revanced_sb_general_skiptoast_sum_on">ٹوسٹ دکھایا جاتا ہے جب کوئی سیگمنٹ خود بخود چھوڑ دیا جاتا ہے۔ مثال دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_sb_general_skiptoast_sum_off">ٹوسٹ نہیں دکھایا گیا۔ مثال دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_sb_general_time_without">سیگمنٹس کے بغیر ویڈیو کی لمبائی دکھائیں۔</string>
+    <string name="revanced_sb_general_time_without_sum_on">ویڈیو کی لمبائی مائنس تمام سیگمنٹس، پوری ویڈیو کی لمبائی کے آگے قوسین میں دکھائی گئی ہے۔</string>
+    <string name="revanced_sb_general_time_without_sum_off">مکمل ویڈیو کی لمبائی دکھائی گئی۔</string>
+    <string name="revanced_sb_create_segment_category">نئے طبقات کی تخلیق</string>
+    <string name="revanced_sb_enable_create_segment">نیا سیگمنٹ بنائیں بٹن دکھائیں۔</string>
+    <string name="revanced_sb_enable_create_segment_sum_on">نیا سیگمنٹ بنائیں بٹن دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_enable_create_segment_sum_off">نیا سیگمنٹ بنائیں بٹن نہیں دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_general_adjusting">نئے سیگمنٹ مرحلہ کو ایڈجسٹ کریں۔</string>
+    <string name="revanced_sb_general_adjusting_sum">نئے سیگمنٹس بناتے وقت ٹائم ایڈجسٹمنٹ کے بٹن کی حرکت ملی سیکنڈز کی تعداد</string>
+    <string name="revanced_sb_general_adjusting_invalid">قدر ایک مثبت نمبر ہونا چاہیے۔</string>
+    <string name="revanced_sb_guidelines_preference_title">رہنما خطوط دیکھیں</string>
+    <string name="revanced_sb_guidelines_preference_sum">گائیڈ لائنز میں نئے سیگمنٹس بنانے کے لیے اصول اور تجاویز شامل ہیں۔</string>
+    <string name="revanced_sb_guidelines_popup_title">ہدایات پر عمل کریں۔</string>
+    <string name="revanced_sb_guidelines_popup_content">نئے سیگمنٹس بنانے سے پہلے SponsorBlock کے رہنما خطوط پڑھیں</string>
+    <string name="revanced_sb_guidelines_popup_already_read">پہلے ہی پڑھ چکے ہیں۔</string>
+    <string name="revanced_sb_guidelines_popup_open">مجھے دکھا</string>
+    <string name="revanced_sb_general">جنرل</string>
+    <string name="revanced_sb_toast_on_connection_error_title">اگر API دستیاب نہیں ہے تو ٹوسٹ دکھائیں۔</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_on">اگر SponsorBlock API دستیاب نہیں ہے تو ٹوسٹ دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_off">اگر SponsorBlock API دستیاب نہیں ہے تو ٹوسٹ نہیں دکھایا گیا ہے۔</string>
+    <string name="revanced_sb_general_skipcount">اسکیپ کاؤنٹ ٹریکنگ کو فعال کریں۔</string>
+    <string name="revanced_sb_general_skipcount_sum_on">SponsorBlock لیڈر بورڈ کو بتاتا ہے کہ کتنا وقت بچتا ہے۔ ہر بار جب کوئی سیگمنٹ چھوڑا جاتا ہے تو لیڈر بورڈ کو ایک پیغام بھیجا جاتا ہے۔</string>
+    <string name="revanced_sb_general_skipcount_sum_off">اسکیپ کاؤنٹ ٹریکنگ فعال نہیں ہے۔</string>
+    <string name="revanced_sb_general_min_duration">کم از کم سیگمنٹ کا دورانیہ</string>
+    <string name="revanced_sb_general_min_duration_sum">اس قدر سے چھوٹے حصے (سیکنڈ میں) نہیں دکھائے جائیں گے اور نہ ہی چھوڑے جائیں گے۔</string>
+    <string name="revanced_sb_general_uuid">آپ کا پرائیویٹ یوزر آئی ڈی</string>
+    <string name="revanced_sb_general_uuid_sum">اس کو پرائیویٹ رکھا جائے۔ یہ ایک پاس ورڈ کی طرح ہے اور کسی کے ساتھ شیئر نہیں کیا جانا چاہیے۔ اگر کسی کے پاس یہ ہے، تو وہ آپ کی نقالی کر سکتا ہے۔</string>
+    <string name="revanced_sb_general_uuid_invalid">نجی صارف کی شناخت کم از کم 30 حروف کی ہونی چاہیے۔</string>
+    <string name="revanced_sb_general_api_url">API URL کو تبدیل کریں۔</string>
+    <string name="revanced_sb_general_api_url_sum">ایڈریس SponsorBlock سرور پر کال کرنے کے لیے استعمال کرتا ہے۔ اسے تبدیل نہ کریں جب تک کہ آپ کو معلوم نہ ہو کہ آپ کیا کر رہے ہیں۔</string>
+    <string name="revanced_sb_api_url_reset">API URL ری سیٹ</string>
+    <string name="revanced_sb_api_url_invalid">API URL غلط ہے۔</string>
+    <string name="revanced_sb_api_url_changed">API URL کو تبدیل کر دیا گیا۔</string>
+    <string name="revanced_sb_settings_ie">درآمد/برآمد کی ترتیبات</string>
+    <string name="revanced_sb_settings_copy">کاپی</string>
+    <string name="revanced_sb_settings_ie_sum">آپ کا اسپانسر بلاک JSON کنفیگریشن جسے ReVanced اور دیگر SponsorBlock پلیٹ فارمز پر درآمد/برآمد کیا جا سکتا ہے۔ اس میں آپ کی پرائیویٹ یوزر آئی ڈی بھی شامل ہے۔ اس کو عقلمندی سے شیئر ضرور کریں۔</string>
+    <string name="revanced_sb_settings_import_successful">ترتیبات کامیابی کے ساتھ درآمد ہو گئیں۔</string>
+    <string name="revanced_sb_settings_import_failed">درآمد کرنے میں ناکام: %s</string>
+    <string name="revanced_sb_settings_export_failed">برآمد کرنے میں ناکام: %s</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning">آپ کی سیٹنگز میں ایک پرائیویٹ اسپانسر بلاک یوزر آئی ڈی ہے۔\n\nآپ کی یوزر آئی ڈی ایک پاس ورڈ کی طرح ہے اور اسے کبھی شیئر نہیں کیا جانا چاہیے۔\n</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">پھر سے مت دکھاو</string>
+    <string name="revanced_sb_diff_segments">طبقہ کے رویے کو تبدیل کریں۔</string>
+    <string name="revanced_sb_segments_sponsor">سپانسر</string>
+    <string name="revanced_sb_segments_sponsor_sum">بامعاوضہ پروموشن، بامعاوضہ حوالہ جات اور براہ راست اشتہارات۔ خود کو فروغ دینے یا اسباب/تخلیق کاروں/ویب سائٹس/مصنوعات کے لیے مفت شور مچانے کے لیے نہیں</string>
+    <string name="revanced_sb_segments_selfpromo">بلا معاوضہ/خود پروموشن</string>
+    <string name="revanced_sb_segments_selfpromo_sum">بلا معاوضہ یا خود پروموشن کے علاوہ \'اسپانسر\' کی طرح۔ تجارتی مال، عطیات، یا اس کے بارے میں معلومات کے حصے شامل ہیں کہ انہوں نے کس کے ساتھ تعاون کیا۔</string>
+    <string name="revanced_sb_segments_interaction">تعامل کی یاد دہانی (سبسکرائب کریں)</string>
+    <string name="revanced_sb_segments_interaction_sum">مواد کے بیچ میں ان کو پسند کرنے، سبسکرائب کرنے یا ان کی پیروی کرنے کے لیے ایک مختصر یاد دہانی۔ اگر یہ لمبا ہے یا کسی خاص چیز کے بارے میں ہے، تو اسے بجائے خود پروموشن کے تحت ہونا چاہیے۔</string>
+    <string name="revanced_sb_segments_highlight">نمایاں کریں۔</string>
+    <string name="revanced_sb_segments_highlight_sum">ویڈیو کا وہ حصہ جسے زیادہ تر لوگ تلاش کر رہے ہیں۔</string>
+    <string name="revanced_sb_segments_intro">انٹرمیشن/انٹرو اینیمیشن</string>
+    <string name="revanced_sb_segments_intro_sum">اصل مواد کے بغیر وقفہ۔ ایک توقف، جامد فریم، یا دہرائی جانے والی اینیمیشن ہو سکتی ہے۔ معلومات پر مشتمل ٹرانزیشن شامل نہیں ہے۔</string>
+    <string name="revanced_sb_segments_outro">اینڈ کارڈز/کریڈٹس</string>
+    <string name="revanced_sb_segments_outro_sum">کریڈٹس یا جب YouTube اینڈ کارڈز ظاہر ہوتے ہیں۔ معلومات کے ساتھ نتیجہ اخذ کرنے کے لیے نہیں۔</string>
+    <string name="revanced_sb_segments_preview">پیش نظارہ/تذکرہ</string>
+    <string name="revanced_sb_segments_preview_sum">کلپس کا مجموعہ جو دکھاتا ہے کہ ویڈیو میں یا سیریز کے دیگر ویڈیوز میں کیا ہو رہا ہے یا کیا ہوا ہے، جہاں تمام معلومات کو کہیں اور دہرایا جاتا ہے۔</string>
+    <string name="revanced_sb_segments_filler">فلر ٹینجنٹ/مذاق</string>
+    <string name="revanced_sb_segments_filler_sum">ٹینجینٹل مناظر صرف فلر یا مزاح کے لیے شامل کیے گئے ہیں جن کی ویڈیو کے مرکزی مواد کو سمجھنے کی ضرورت نہیں ہے۔ سیاق و سباق یا پس منظر کی تفصیلات فراہم کرنے والے حصے شامل نہیں ہیں۔</string>
+    <string name="revanced_sb_segments_nomusic">موسیقی: نان میوزک سیکشن</string>
+    <string name="revanced_sb_segments_nomusic_sum">صرف میوزک ویڈیوز میں استعمال کے لیے۔ میوزک کے بغیر میوزک ویڈیوز کے سیکشنز، جو پہلے ہی کسی دوسرے زمرے میں شامل نہیں ہیں۔</string>
+    <string name="revanced_sb_skip_button_compact">چھوڑ دو</string>
+    <string name="revanced_sb_skip_button_compact_highlight">نمایاں کریں۔</string>
+    <string name="revanced_sb_skip_button_sponsor">اسپانسر کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_selfpromo">پرومو کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_interaction">تعامل کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_highlight">نمایاں کرنے کے لیے جائیں۔</string>
+    <string name="revanced_sb_skip_button_intro_beginning">تعارف کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_intro_middle">وقفہ چھوڑ دیں۔</string>
+    <string name="revanced_sb_skip_button_intro_end">وقفہ چھوڑ دیں۔</string>
+    <string name="revanced_sb_skip_button_outro">دوسرے کو چھوڑ دو</string>
+    <string name="revanced_sb_skip_button_preview_beginning">پیش نظارہ کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_preview_middle">پیش نظارہ کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_preview_end">ریکاپ کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_filler">فلر کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_nomusic">غیر موسیقی کو چھوڑیں۔</string>
+    <string name="revanced_sb_skip_button_unsubmitted">سیگمنٹ کو چھوڑیں۔</string>
+    <string name="revanced_sb_skipped_sponsor">اسپانسر کو چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_selfpromo">خود پروموشن کو چھوڑ دیا۔</string>
+    <string name="revanced_sb_skipped_interaction">پریشان کن یاد دہانی چھوڑ دی گئی۔</string>
+    <string name="revanced_sb_skipped_highlight">نمایاں کرنے کے لیے چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_intro_beginning">تعارف چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_intro_middle">وقفہ چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_intro_end">وقفہ چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_outro">باہر چھوڑ دیا</string>
+    <string name="revanced_sb_skipped_preview_beginning">پیش نظارہ چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_preview_middle">پیش نظارہ چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_preview_end">اسکپڈ ریکیپ</string>
+    <string name="revanced_sb_skipped_filler">فلر چھوڑ دیا</string>
+    <string name="revanced_sb_skipped_nomusic">غیر میوزک سیکشن کو چھوڑ دیا۔</string>
+    <string name="revanced_sb_skipped_unsubmitted">جمع نہ کیے گئے سیگمنٹ کو چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skipped_multiple_segments">متعدد سیگمنٹس کو چھوڑ دیا گیا۔</string>
+    <string name="revanced_sb_skip_automatically">خود بخود چھوڑ دیں۔</string>
+    <string name="revanced_sb_skip_automatically_once">ایک بار خود بخود چھوڑ دیں۔</string>
+    <string name="revanced_sb_skip_showbutton">اسکیپ بٹن دکھائیں۔</string>
+    <string name="revanced_sb_skip_seekbaronly">سیک بار میں دکھائیں۔</string>
+    <string name="revanced_sb_skip_ignore">غیر فعال کریں۔</string>
+    <string name="revanced_sb_submit_failed_invalid" formatted="false">سیگمنٹ جمع کرنے سے قاصر: %s</string>
+    <string name="revanced_sb_submit_failed_timeout">SponsorBlock عارضی طور پر بند ہے۔</string>
+    <string name="revanced_sb_submit_failed_unknown_error" formatted="false">سیگمنٹ جمع کرنے سے قاصر (اسٹیٹس: %d %s)</string>
+    <string name="revanced_sb_submit_failed_rate_limit">سیگمنٹ جمع کرنے سے قاصر۔\nریٹ محدود (ایک ہی صارف یا IP سے بہت زیادہ)</string>
+    <string name="revanced_sb_submit_failed_forbidden" formatted="false">سیگمنٹ جمع نہیں کر سکتے: %s</string>
+    <string name="revanced_sb_submit_failed_duplicate">سیگمنٹ جمع نہیں کر سکتا۔\nپہلے سے موجود ہے۔</string>
+    <string name="revanced_sb_submit_succeeded">سیگمنٹ کامیابی کے ساتھ جمع ہو گیا۔</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock عارضی طور پر دستیاب نہیں ہے۔</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status" formatted="false">اسپانسر بلاک عارضی طور پر دستیاب نہیں ہے (حیثیت %d)</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_timeout">اسپانسر بلاک عارضی طور پر دستیاب نہیں ہے (API کا وقت ختم ہو گیا)</string>
+    <string name="revanced_sb_vote_failed_timeout">سیگمنٹ کے لیے ووٹ دینے سے قاصر (API کا وقت ختم)</string>
+    <string name="revanced_sb_vote_failed_unknown_error" formatted="false">سیگمنٹ کے لیے ووٹ دینے سے قاصر (اسٹیٹس: %d %s)</string>
+    <string name="revanced_sb_vote_failed_forbidden" formatted="false">سیگمنٹ کے لیے ووٹ دینے سے قاصر: %s</string>
+    <string name="revanced_sb_vote_upvote">ووٹ دیں</string>
+    <string name="revanced_sb_vote_downvote">ڈاؤن ووٹ</string>
+    <string name="revanced_sb_vote_category">زمرہ تبدیل کریں۔</string>
+    <string name="revanced_sb_vote_no_segments">ووٹ دینے کے لیے کوئی طبقہ نہیں ہے۔</string>
+    <string name="revanced_sb_new_segment_choose_category">طبقہ زمرہ منتخب کریں۔</string>
+    <string name="revanced_sb_new_segment_disabled_category">زمرہ ترتیبات میں غیر فعال ہے۔ جمع کرانے کے لیے زمرہ کو فعال کریں۔</string>
+    <string name="revanced_sb_new_segment_title">نیا اسپانسر بلاک سیگمنٹ</string>
+    <string name="revanced_sb_new_segment_mark_time_as_question" formatted="false">d: d: d کو نئے سیگمنٹ کے آغاز یا اختتام کے طور پر سیٹ کریں؟</string>
+    <string name="revanced_sb_new_segment_mark_start">شروع</string>
+    <string name="revanced_sb_new_segment_mark_end">اختتام</string>
+    <string name="revanced_sb_new_segment_now">ابھی</string>
+    <string name="revanced_sb_new_segment_time_start">جس وقت سیگمنٹ شروع ہوتا ہے۔</string>
+    <string name="revanced_sb_new_segment_time_end">جس وقت سیگمنٹ ختم ہوتا ہے۔</string>
+    <string name="revanced_sb_new_segment_confirm_title">کیا اوقات درست ہیں؟</string>
+    <string name="revanced_sb_new_segment_confirm_content" formatted="false">سیگمنٹ %02d:%02d سے %02d:%02d (%d منٹ %02d سیکنڈ) تک رہتا ہے\nکیا یہ جمع کرانے کے لیے تیار ہے؟</string>
+    <string name="revanced_sb_new_segment_start_is_before_end">آغاز ختم ہونے سے پہلے ہونا چاہیے۔</string>
+    <string name="revanced_sb_new_segment_mark_locations_first">پہلے ٹائم بار پر دو مقامات کو نشان زد کریں۔</string>
+    <string name="revanced_sb_new_segment_preview_segment_first">سیگمنٹ کا پیش نظارہ کریں، اور یقینی بنائیں کہ یہ آسانی سے چھوٹ جاتا ہے۔</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_title">دستی طور پر سیگمنٹ کے اوقات میں ترمیم کریں۔</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_content">کیا آپ سیگمنٹ کے آغاز یا اختتام کے وقت میں ترمیم کرنا چاہتے ہیں؟</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_parse_error">غلط وقت دیا گیا۔</string>
+    <string name="revanced_sb_stats">اعدادوشمار</string>
+    <string name="revanced_sb_stats_connection_failure">اعدادوشمار عارضی طور پر دستیاب نہیں ہیں (API بند ہے)</string>
+    <string name="revanced_sb_stats_loading">لوڈ ہو رہا ہے...</string>
+    <string name="revanced_sb_stats_sb_disabled">اسپانسر بلاک غیر فعال ہے۔</string>
+    <string name="revanced_sb_stats_username" formatted="false">آپ کا صارف نام: &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_username_change">اپنا صارف نام تبدیل کرنے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_sb_stats_username_change_unknown_error" formatted="false">صارف نام تبدیل کرنے سے قاصر: حیثیت: %d %s</string>
+    <string name="revanced_sb_stats_username_changed">صارف نام کامیابی کے ساتھ تبدیل ہو گیا۔</string>
+    <string name="revanced_sb_stats_reputation" formatted="false">آپ کی ساکھ &lt;b&gt;%.2f&lt;/b&gt; ہے۔</string>
+    <string name="revanced_sb_stats_submissions" formatted="false">آپ نے &lt;b&gt;%s&lt;/b&gt; سیگمنٹ بنائے ہیں۔</string>
+    <string name="revanced_sb_stats_saved_zero">اسپانسر بلاک لیڈر بورڈ</string>
+    <string name="revanced_sb_stats_saved" formatted="false">آپ نے لوگوں کو &lt;b&gt;%s&lt;/b&gt; حصوں سے بچایا ہے۔</string>
+    <string name="revanced_sb_stats_saved_sum_zero">عالمی اعدادوشمار اور سرفہرست تعاون کرنے والوں کو دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_sb_stats_saved_sum" formatted="false">یہ ان کی زندگی کا &lt;b&gt;%s&lt;/b&gt; ہے۔&lt;br&gt;لیڈر بورڈ دیکھنے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_sb_stats_self_saved" formatted="false">آپ نے &lt;b&gt;%s&lt;/b&gt; سیگمنٹس کو چھوڑ دیا ہے۔</string>
+    <string name="revanced_sb_stats_self_saved_sum" formatted="false">یہ ہے &lt;b&gt;%s&lt;/b&gt;</string>
+    <string name="revanced_sb_stats_self_saved_reset_title">چھوڑے گئے سیگمنٹ کاؤنٹر کو ری سیٹ کریں؟</string>
+    <string name="revanced_sb_stats_saved_hour_format" formatted="false">%d گھنٹے %d منٹ</string>
+    <string name="revanced_sb_stats_saved_minute_format" formatted="false">%d منٹ %d سیکنڈ</string>
+    <string name="revanced_sb_stats_saved_second_format" formatted="false">%d سیکنڈ</string>
+    <string name="revanced_sb_color_dot_label">رنگ:</string>
+    <string name="revanced_sb_color_changed">رنگ بدل گیا۔</string>
+    <string name="revanced_sb_color_reset">رنگ ری سیٹ</string>
+    <string name="revanced_sb_color_invalid">غلط رنگ کا کوڈ</string>
+    <string name="revanced_sb_reset_color">رنگ ری سیٹ کریں۔</string>
+    <string name="revanced_sb_reset">دوبارہ ترتیب دیں۔</string>
+    <string name="revanced_sb_about">کے بارے میں</string>
+    <string name="revanced_sb_about_api_sum">ڈیٹا SponsorBlock API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں اور دوسرے پلیٹ فارمز کے لیے ڈاؤن لوڈز دیکھیں</string>
+    <string name="revanced_sb_about_made_by">JakubWeg کی طرف سے ری وینسڈ انضمام، oSumAtrIX کے ذریعے دوبارہ کوڈ کیا گیا۔</string>
 </resources>

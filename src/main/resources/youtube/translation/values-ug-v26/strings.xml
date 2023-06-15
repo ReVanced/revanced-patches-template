@@ -416,178 +416,178 @@
     <string name="revanced_ryd_attribution_summary">سانلىق مەلۇمات قايتۇرۇش YouTube ياقتۇرمايدىغان API تەرىپىدىن تەمىنلەنگەن. تېخىمۇ كۆپ بىلىمگە ئېرىشىش ئۈچۈن بۇ يەرنى چېكىڭ.</string>
 
 
-    <string name="sb_enable_sb">SponsorBlock نى قوزغىتىڭ</string>
-    <string name="sb_enable_sb_sum">SponsorBlock بولسا YouTube فىلىملىرىنىڭ كىشىنى بىزار قىلىدىغان قىسىملىرىنى ئاتلاپ ئۆتۈش ئۈچۈن توپلانغان سىستېما</string>
-    <string name="sb_appearance_category">كۆرۈنۈش</string>
-    <string name="sb_enable_voting">بېلەت تاشلاش كۇنۇپكىسىنى كۆرسەت</string>
-    <string name="sb_enable_voting_sum_on">بۆلەك بېلەت تاشلاش كۇنۇپكىسى كۆرسىتىلدى</string>
-    <string name="sb_enable_voting_sum_off">بۆلەك بېلەت تاشلاش كۇنۇپكىسى كۆرۈنمەيدۇ</string>
-    <string name="sb_enable_compact_skip_button">ئىخچام ئاتلاش كۇنۇپكىسىنى ئىشلىتىڭ</string>
-    <string name="sb_enable_compact_skip_button_sum_on">ئەڭ تۆۋەن كەڭلىكتىكى ئۇسلۇبتىكى ئاتلاش كۇنۇپكىسى</string>
-    <string name="sb_enable_compact_skip_button_sum_off">ئەڭ ياخشى كۆرۈنۈش ئۈچۈن ئۇسلۇبتىكى ئاتلاش كۇنۇپكىسى</string>
-    <string name="sb_enable_auto_hide_skip_segment_button">ئاتلاش كۇنۇپكىسىنى ئاپتوماتىك يوشۇرۇش</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_on">ئاتلاش كۇنۇپكىسى بىر نەچچە سېكۇنتتىن كېيىن يوشۇرۇنغان</string>
-    <string name="sb_enable_auto_hide_skip_segment_button_sum_off">پۈتۈن بۆلەك ئۈچۈن كۆرسىتىلگەن ئاتلاش كۇنۇپكىسى</string>
-    <string name="sb_general_skiptoast">ئاپتوماتىك ئاتلىغاندا توستنى كۆرسىتىڭ</string>
-    <string name="sb_general_skiptoast_sum_on">بىر بۆلەك ئاپتوماتىك ئاتلانغاندا كۆرسىتىلىدۇ. بۇ يەرنى چېكىپ مىسال كۆرۈڭ</string>
-    <string name="sb_general_skiptoast_sum_off">Toast not shown. بۇ يەرنى چېكىپ مىسال كۆرۈڭ</string>
-    <string name="sb_general_time_without">بۆلەكسىز سىن ئۇزۇنلۇقىنى كۆرسىتىڭ</string>
-    <string name="sb_general_time_without_sum_on">سىن ئۇزۇنلۇقى بارلىق بۆلەكلەرنى چىقىرىپ تاشلايدۇ ، پۈتۈن سىن ئۇزۇنلۇقىنىڭ يېنىدىكى تىرناق ئىچىدە كۆرسىتىلىدۇ</string>
-    <string name="sb_general_time_without_sum_off">تولۇق سىن ئۇزۇنلۇقى كۆرسىتىلدى</string>
-    <string name="sb_create_segment_category">يېڭى بۆلەكلەرنى قۇرۇش</string>
-    <string name="sb_enable_create_segment">يېڭى بۆلەك قۇرۇش كۇنۇپكىسىنى كۆرسىتىش</string>
-    <string name="sb_enable_create_segment_sum_on">يېڭى بۆلەك قۇرۇش كۇنۇپكىسى كۆرسىتىلدى</string>
-    <string name="sb_enable_create_segment_sum_off">يېڭى بۆلەك قۇرۇش كۇنۇپكىسى كۆرۈنمەيدۇ</string>
-    <string name="sb_general_adjusting">يېڭى بۆلەك باسقۇچىنى تەڭشەڭ</string>
-    <string name="sb_general_adjusting_sum">يېڭى بۆلەكلەرنى قۇرغاندا ۋاقىت تەڭشەش كۇنۇپكىلىرى ھەرىكەتلىنىدۇ</string>
-    <string name="sb_general_adjusting_invalid">قىممەت چوقۇم ئاكتىپ سان بولۇشى كېرەك</string>
-    <string name="sb_guidelines_preference_title">كۆرسەتمىلەرنى كۆرۈڭ</string>
-    <string name="sb_guidelines_preference_sum">يېتەكچى پىكىردە يېڭى بۆلەك قۇرۇشنىڭ قائىدىسى ۋە كۆرسەتمىلىرى بار</string>
-    <string name="sb_guidelines_popup_title">كۆرسەتمىگە ئەمەل قىلىڭ</string>
-    <string name="sb_guidelines_popup_content">يېڭى بۆلەك قۇرۇشتىن بۇرۇن SponsorBlock كۆرسەتمىسىنى ئوقۇڭ</string>
-    <string name="sb_guidelines_popup_already_read">ئاللىبۇرۇن ئوقۇپ بولدى</string>
-    <string name="sb_guidelines_popup_open">ماڭا كۆرسەت</string>
-    <string name="sb_general">General</string>
-    <string name="sb_toast_on_connection_error_title">ئەگەر API بولمىسا توستنى كۆرسىتىڭ</string>
-    <string name="sb_toast_on_connection_error_summary_on">SponsorBlock API نى ئىشلەتكىلى بولمىسا كۆرسىتىلىدۇ</string>
-    <string name="sb_toast_on_connection_error_summary_off">SponsorBlock API نى ئىشلەتكىلى بولمىسا توست كۆرسىتىلمەيدۇ</string>
-    <string name="sb_general_skipcount">ئاتلاپ ھېسابلاشنى ئىز قوغلاشنى قوزغىتىڭ</string>
-    <string name="sb_general_skipcount_sum_on">SponsorBlock رەھبەرلىك تاختىسىغا قانچىلىك ۋاقىت تېجىلىدىغانلىقىنى بىلدۈرىدۇ. ھەر قېتىم بىر بۆلەك ئاتلاپ ئۆتكەندىن كېيىن ئۇچۇر تاختىسىغا ئۇچۇر ئەۋەتىلىدۇ</string>
-    <string name="sb_general_skipcount_sum_off">ئاتلاپ ھېسابلاش ئىز قوغلاش قوزغىتىلمىدى</string>
-    <string name="sb_general_min_duration">ئەڭ تۆۋەن بۆلەك ۋاقتى</string>
-    <string name="sb_general_min_duration_sum">بۇ قىممەتتىن قىسقا بۆلەكلەر (سېكۇنتتا) كۆرسىتىلمەيدۇ ياكى ئاتلانمايدۇ</string>
-    <string name="sb_general_uuid">شەخسىي ئىشلەتكۈچى كىملىكىڭىز</string>
-    <string name="sb_general_uuid_sum">بۇنى شەخسىي ساقلاش كېرەك. بۇ پارولغا ئوخشايدۇ ، ھېچكىم بىلەن ئورتاقلىشىشقا بولمايدۇ. ئەگەر بىرەيلەندە بۇ بولسا ، ئۇ سىزنى دورايدۇ</string>
-    <string name="sb_general_uuid_invalid">شەخسىي ئىشلەتكۈچى كىملىكى كەم دېگەندە 30 ھەرپ بولۇشى كېرەك</string>
-    <string name="sb_general_api_url">API URL نى ئۆزگەرتىڭ</string>
-    <string name="sb_general_api_url_sum">SponsorBlock ئادرېسى مۇلازىمېتىرغا تېلېفون قىلىش ئۈچۈن ئىشلىتىلىدۇ. نېمە قىلىۋاتقانلىقىڭىزنى بىلمىسىڭىز بۇنى ئۆزگەرتمەڭ</string>
-    <string name="sb_api_url_reset">API URL ئەسلىگە قايتۇرۇش</string>
-    <string name="sb_api_url_invalid">API URL ئىناۋەتسىز</string>
-    <string name="sb_api_url_changed">API URL ئۆزگەرتىلدى</string>
-    <string name="sb_settings_ie">تەڭشەكلەرنى ئەكىرىش /چىقىرىش</string>
-    <string name="sb_settings_copy">كۆچۈرۈڭ</string>
-    <string name="sb_settings_ie_sum">سىزنىڭ SponsorBlock JSON سەپلىمىسى ReVanced ۋە باشقا SponsorBlock سۇپىسىغا ئىمپورت-ئېكسپورت قىلغىلى بولىدۇ. بۇ شەخسىي ئىشلەتكۈچى كىملىكىڭىزنى ئۆز ئىچىگە ئالىدۇ. بۇنى ئاقىلانە ئورتاقلىشىشقا كاپالەتلىك قىلىڭ</string>
-    <string name="sb_settings_import_successful">تەڭشەكلەر مۇۋەپپەقىيەتلىك ئىمپورت قىلىندى</string>
-    <string name="sb_settings_import_failed">ئىمپورت قىلىنمىدى: %s</string>
-    <string name="sb_settings_export_failed">ئېكىسپورت قىلىنمىدى: %s</string>
-    <string name="sb_settings_revanced_export_user_id_warning">تەڭشەكلىرىڭىزدە شەخسىي SponsorBlock ئىشلەتكۈچى كىملىكى بار. \N \nئىشلەتكۈچى كىملىكىڭىز پارولغا ئوخشايدۇ ، ئۇنى ھەرگىز ئورتاقلاشماسلىق كېرەك. \N</string>
-    <string name="sb_settings_revanced_export_user_id_warning_dismiss">قايتا كۆرسەتمەڭ</string>
-    <string name="sb_diff_segments">بۆلەك ھەرىكىتىنى ئۆزگەرتىش</string>
-    <string name="sb_segments_sponsor">ياردەم بەرگۈچى</string>
-    <string name="sb_segments_sponsor_sum">ھەقلىق تەشۋىق ، ھەقلىق يوللانما ۋە بىۋاسىتە ئېلان. ئۆزىنى تەشۋىق قىلىش ياكى ئۆزى ياقتۇرىدىغان سەۋەبلەر /ئىجادكارلار /تور بېكەتلەر /مەھسۇلاتلارنى ھەقسىز توۋلاش ئۈچۈن ئەمەس</string>
-    <string name="sb_segments_selfpromo">ھەقسىز /ئۆزىنى تەشۋىق قىلىش</string>
-    <string name="sb_segments_selfpromo_sum">ھەقسىز ياكى ئۆزىنى تەشۋىق قىلىشتىن باشقا \'قوللىغۇچى \' غا ئوخشاش. تاۋار ، ئىئانە ياكى كىملەر بىلەن ھەمكارلاشقانلىقى توغرىسىدىكى ئۇچۇرلارنى ئۆز ئىچىگە ئالىدۇ</string>
-    <string name="sb_segments_interaction">ئۆز-ئارا ئەسكەرتىش (مۇشتەرى بولۇش)</string>
-    <string name="sb_segments_interaction_sum">مەزمۇننىڭ ئوتتۇرىسىدا ئۇلارنى ياقتۇرۇش ، مۇشتەرى بولۇش ياكى ئۇلارغا ئەگىشىش ھەققىدە قىسقا ئەسكەرتىش. ئەگەر ئۇ ئۇزۇن ياكى كونكرېت ئىش بولسا ، ئۇنىڭ ئورنىغا ئۆزىنى تەشۋىق قىلىش كېرەك</string>
-    <string name="sb_segments_highlight">يارقىن نۇقتا</string>
-    <string name="sb_segments_highlight_sum">سىننىڭ كۆپىنچە كىشىلەر ئىزدەۋاتقان قىسمى</string>
-    <string name="sb_segments_intro">Intermission /Intro Animation</string>
-    <string name="sb_segments_intro_sum">ئەمەلىي مەزمۇن بولمىغان ئارىلىق. توختاپ قېلىش ، تۇراقلىق رامكا ياكى تەكرارلانغان كارتون بولۇشى مۇمكىن. ئۇچۇرنى ئۆز ئىچىگە ئالغان ئۆتكۈنچى مەزمۇننى ئۆز ئىچىگە ئالمايدۇ</string>
-    <string name="sb_segments_outro">Endcards /Credits</string>
-    <string name="sb_segments_outro_sum">ئىناۋەتلىك ياكى YouTube كارتىلىرى كۆرۈنگەندە. ئۇچۇر بىلەن يەكۈن چىقىرىش ئۈچۈن ئەمەس</string>
-    <string name="sb_segments_preview">ئالدىن كۆرۈش /قايتا تەكشۈرۈش</string>
-    <string name="sb_segments_preview_sum">بارلىق ئۇچۇرلار باشقا جايدا تەكرارلىنىدىغان سىن ياكى باشقا بىر يۈرۈش سىنلاردا نېمە ئىشلارنىڭ يۈز بەرگەنلىكىنى ياكى نېمە ئىش بولغانلىقىنى كۆرسىتىپ بېرىدىغان قىسقۇچلار توپلىمى</string>
-    <string name="sb_segments_filler">تولدۇرغۇچى تاڭ /چاقچاق</string>
-    <string name="sb_segments_filler_sum">سىننىڭ ئاساسلىق مەزمۇنىنى چۈشىنىش تەلەپ قىلىنمىغان تولدۇرغۇچى ياكى يۇمۇر ئۈچۈنلا قوشۇلغان كۆرۈنۈشلەر. مەزمۇن ياكى تەگلىك تەپسىلاتلىرى بىلەن تەمىنلەيدىغان بۆلەكلەرنى ئۆز ئىچىگە ئالمايدۇ</string>
-    <string name="sb_segments_nomusic">مۇزىكا: مۇزىكا ئەمەس بۆلەك</string>
-    <string name="sb_segments_nomusic_sum">پەقەت مۇزىكا سىنلىرىدا ئىشلىتىش ئۈچۈن. مۇزىكاسىز مۇزىكا سىنلىرى ، باشقا تۈرلەر تەرىپىدىن قاپلانمىغان بۆلەكلەر</string>
-    <string name="sb_skip_button_compact">ئاتلاش</string>
-    <string name="sb_skip_button_compact_highlight">يارقىن نۇقتا</string>
-    <string name="sb_skip_button_sponsor">ياردەم بەرگۈچىدىن ئاتلاڭ</string>
-    <string name="sb_skip_button_selfpromo">تەشۋىقاتتىن ئاتلاڭ</string>
-    <string name="sb_skip_button_interaction">ئۆز-ئارا تەسىر كۆرسىتىش</string>
-    <string name="sb_skip_button_highlight">گەۋدىلەندۈرۈش ئۈچۈن ئاتلاڭ</string>
-    <string name="sb_skip_button_intro_beginning">ئىچكى قىسىمدىن ئاتلاڭ</string>
-    <string name="sb_skip_button_intro_middle">ئارىلىقتىن ئاتلاش</string>
-    <string name="sb_skip_button_intro_end">ئارىلىقتىن ئاتلاش</string>
-    <string name="sb_skip_button_outro">باشقا ئاتلاش</string>
-    <string name="sb_skip_button_preview_beginning">ئالدىن كۆرۈشتىن ئاتلاڭ</string>
-    <string name="sb_skip_button_preview_middle">ئالدىن كۆرۈشتىن ئاتلاڭ</string>
-    <string name="sb_skip_button_preview_end">قايتا ئوقۇشتىن ئاتلاڭ</string>
-    <string name="sb_skip_button_filler">تولدۇرغۇچىدىن ئاتلاڭ</string>
-    <string name="sb_skip_button_nomusic">مۇزىكا ئەمەس</string>
-    <string name="sb_skip_button_unsubmitted">بۆلەكتىن ئاتلاش</string>
-    <string name="sb_skipped_sponsor">ياردەم بەرگۈچى</string>
-    <string name="sb_skipped_selfpromo">ئۆزىنى تەشۋىق قىلىشتىن ۋاز كەچتى</string>
-    <string name="sb_skipped_interaction">كىشىنى بىزار قىلىدىغان ئەسكەرتىشتىن ئاتلاندى</string>
-    <string name="sb_skipped_highlight">يورۇتۇش ئۈچۈن ئاتلاندى</string>
-    <string name="sb_skipped_intro_beginning">ئىچكى قىسىمدىن ئاتلاندى</string>
-    <string name="sb_skipped_intro_middle">ئارىلىقتىن ئاتلاندى</string>
-    <string name="sb_skipped_intro_end">ئارىلىقتىن ئاتلاندى</string>
-    <string name="sb_skipped_outro">ئاتلاپ ئۆتۈپ كەتتى</string>
-    <string name="sb_skipped_preview_beginning">ئالدىن كۆرۈش</string>
-    <string name="sb_skipped_preview_middle">ئالدىن كۆرۈش</string>
-    <string name="sb_skipped_preview_end">ئەمەلدىن قالدۇرۇلدى</string>
-    <string name="sb_skipped_filler">تولدۇرغۇچى</string>
-    <string name="sb_skipped_nomusic">مۇزىكا بولمىغان بۆلەكتىن ئاتلاندى</string>
-    <string name="sb_skipped_unsubmitted">يوللانمىغان بۆلەكتىن ئاتلاندى</string>
-    <string name="sb_skipped_multiple_segments">كۆپ بۆلەكتىن ئاتلاندى</string>
-    <string name="sb_skip_automatically">ئاپتوماتىك ئاتلاڭ</string>
-    <string name="sb_skip_automatically_once">بىر قېتىم ئاپتوماتىك ئاتلاڭ</string>
-    <string name="sb_skip_showbutton">ئاتلاش كۇنۇپكىسىنى كۆرسەت</string>
-    <string name="sb_skip_seekbaronly">ئىزدەش بالدىقىدا كۆرسىتىڭ</string>
-    <string name="sb_skip_ignore">چەكلەش</string>
-    <string name="sb_submit_failed_invalid" formatted="false">بۆلەكنى يوللىيالمىدى: %s</string>
-    <string name="sb_submit_failed_timeout">SponsorBlock ۋاقىتلىق توختىتىلدى</string>
-    <string name="sb_submit_failed_unknown_error" formatted="false">بۆلەكنى تاپشۇرالمىدى (ھالىتى: %d %s)</string>
-    <string name="sb_submit_failed_rate_limit">بۆلەكنى يوللىيالمىدى. \N باھا چەكلىك (ئوخشاش ئىشلەتكۈچى ياكى IP دىن بەك كۆپ)</string>
-    <string name="sb_submit_failed_forbidden" formatted="false">بۆلەكنى تاپشۇرالمايدۇ: %s</string>
-    <string name="sb_submit_failed_duplicate">بۆلەكنى تاپشۇرالمايدۇ. \N ئاللىبۇرۇن مەۋجۇت</string>
-    <string name="sb_submit_succeeded">بۆلەك مۇۋەپپەقىيەتلىك يوللاندى</string>
-    <string name="sb_sponsorblock_connection_failure_generic">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ</string>
-    <string name="sb_sponsorblock_connection_failure_status" formatted="false">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ (ھالەت %d)</string>
-    <string name="sb_sponsorblock_connection_failure_timeout">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ (API ۋاقتى توشتى)</string>
-    <string name="sb_vote_failed_timeout">بۆلەككە بېلەت تاشلىيالمىدى (API ۋاقتى توشتى)</string>
-    <string name="sb_vote_failed_unknown_error" formatted="false">بۆلەككە بېلەت تاشلىيالمىدى (ھالىتى: %d %s)</string>
-    <string name="sb_vote_failed_forbidden" formatted="false">بۆلەككە بېلەت تاشلىيالمىدى: %s</string>
-    <string name="sb_vote_upvote">Upvote</string>
-    <string name="sb_vote_downvote">Downvote</string>
-    <string name="sb_vote_category">سەھىپىنى ئۆزگەرتىش</string>
-    <string name="sb_vote_no_segments">بېلەت تاشلايدىغان بۆلەك يوق</string>
-    <string name="sb_new_segment_choose_category">بۆلەك تۈرىنى تاللاڭ</string>
-    <string name="sb_new_segment_disabled_category">تۈر تەڭشەكلىرى چەكلەنگەن. يوللاشقا سەھىپىنى قوزغىتىڭ.</string>
-    <string name="sb_new_segment_title">يېڭى SponsorBlock بۆلىكى</string>
-    <string name="sb_new_segment_mark_time_as_question" formatted="false">D: d: d نى يېڭى بۆلەكنىڭ باشلىنىشى ياكى ئاخىرلاشتۇرۇشى قىلىپ بېرەمسىز؟</string>
-    <string name="sb_new_segment_mark_start">باشلاش</string>
-    <string name="sb_new_segment_mark_end">end</string>
-    <string name="sb_new_segment_now">ھازىر</string>
-    <string name="sb_new_segment_time_start">بۆلەكنىڭ باشلىنىش ۋاقتى</string>
-    <string name="sb_new_segment_time_end">بۆلەك ئاخىرلاشقان ۋاقىت</string>
-    <string name="sb_new_segment_confirm_title">ۋاقىت توغرىمۇ؟</string>
-    <string name="sb_new_segment_confirm_content" formatted="false">بۇ بۆلەك% 02d:% 02d دىن% 02d:% 02d ( %d مىنۇت% 02d سېكۇنت) غىچە داۋاملىشىدۇ \nتاپشۇرۇشقا تەييارمۇ؟</string>
-    <string name="sb_new_segment_start_is_before_end">باشلاش چوقۇم ئاخىرلىشىشتىن بۇرۇن بولۇشى كېرەك</string>
-    <string name="sb_new_segment_mark_locations_first">ئالدى بىلەن ۋاقىت بالدىقىغا ئىككى ئورۇنغا بەلگە قويۇڭ</string>
-    <string name="sb_new_segment_preview_segment_first">بۆلەكنى ئالدىن كۆرۈپ بېقىڭ ھەمدە ئۇنىڭ ئوڭۇشلۇق ئۆتۈشىگە كاپالەتلىك قىلىڭ</string>
-    <string name="sb_new_segment_edit_by_hand_title">بۆلەكنىڭ ۋاقتىنى قولدا تەھرىرلەڭ</string>
-    <string name="sb_new_segment_edit_by_hand_content">بۆلەكنىڭ باشلىنىش ياكى ئاخىرلىشىش ۋاقتىنى تەھرىرلىمەكچىمۇ؟</string>
-    <string name="sb_new_segment_edit_by_hand_parse_error">بېرىلگەن ئىناۋەتسىز ۋاقىت</string>
-    <string name="sb_stats">Stats</string>
-    <string name="sb_stats_connection_failure">سانلىق مەلۇماتلارنى ۋاقىتلىق ئىشلەتكىلى بولمايدۇ (API تۆۋەن)</string>
-    <string name="sb_stats_loading">Loading ...</string>
-    <string name="sb_stats_sb_disabled">SponsorBlock چەكلەنگەن</string>
-    <string name="sb_stats_username" formatted="false">ئىشلەتكۈچى ئىسمىڭىز: &lt;b&gt; %s &lt;/b&gt;</string>
-    <string name="sb_stats_username_change">ئىشلەتكۈچى نامىنى ئۆزگەرتىش ئۈچۈن بۇ يەرنى چېكىڭ</string>
-    <string name="sb_stats_username_change_unknown_error" formatted="false">ئىشلەتكۈچى نامىنى ئۆزگەرتەلمىدى: ھالىتى: %d %s</string>
-    <string name="sb_stats_username_changed">ئىشلەتكۈچى ئىسمى مۇۋەپپەقىيەتلىك ئۆزگەرتىلدى</string>
-    <string name="sb_stats_reputation" formatted="false">ئىناۋىتىڭىز &lt;b&gt;% .2f &lt;/b&gt;</string>
-    <string name="sb_stats_submissions" formatted="false">سىز &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىنى قۇردىڭىز</string>
-    <string name="sb_stats_saved_zero">SponsorBlock رەھبەرلىك تاختىسى</string>
-    <string name="sb_stats_saved" formatted="false">سىز كىشىلەرنى &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىدىن قۇتۇلدۇردىڭىز</string>
-    <string name="sb_stats_saved_sum_zero">بۇ يەرنى چېكىپ يەرشارىدىكى سانلىق مەلۇماتلار ۋە ئەڭ كۆپ تۆھپە قوشقۇچىلارنى كۆرۈڭ</string>
-    <string name="sb_stats_saved_sum" formatted="false">بۇ ئۇلارنىڭ ھاياتىدىكى &lt;b&gt; %s &lt;/b&gt;. &lt;br&gt; بۇ يەرنى چېكىپ رەھبەرلىك تاختىسىنى كۆرۈڭ</string>
-    <string name="sb_stats_self_saved" formatted="false">سىز &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىنى ئاتلاپ ئۆتۈپ كەتتىڭىز</string>
-    <string name="sb_stats_self_saved_sum" formatted="false">ئۇ &lt;b&gt; %s &lt;/b&gt;</string>
-    <string name="sb_stats_self_saved_reset_title">ئاتلاپ ئۆتۈپ كەتكەن بۆلەكلەرنى ئەسلىگە كەلتۈرەمسىز؟</string>
-    <string name="sb_stats_saved_hour_format" formatted="false">%d سائەت %d مىنۇت</string>
-    <string name="sb_stats_saved_minute_format" formatted="false">%d مىنۇت %d سېكۇنت</string>
-    <string name="sb_stats_saved_second_format" formatted="false">%d سېكۇنت</string>
-    <string name="sb_color_dot_label">رەڭگى:</string>
-    <string name="sb_color_changed">رەڭ ئۆزگەردى</string>
-    <string name="sb_color_reset">رەڭ ئەسلىگە كەلتۈرۈش</string>
-    <string name="sb_color_invalid">ئىناۋەتسىز رەڭ كودى</string>
-    <string name="sb_reset_color">رەڭنى ئەسلىگە كەلتۈرۈش</string>
-    <string name="sb_reset">ئەسلىگە قايتۇرۇش</string>
-    <string name="sb_about">ھەققىدە</string>
-    <string name="sb_about_api_sum">سانلىق مەلۇماتلارنى SponsorBlock API تەمىنلىگەن. بۇ يەرنى چېكىپ تېخىمۇ كۆپ بىلىمگە ئېرىشىش ۋە باشقا سۇپىلارنىڭ چۈشۈرۈشلىرىنى كۆرۈڭ</string>
-    <string name="sb_about_made_by">JakubWeg تەرىپىدىن قايتا بىرلەشتۈرۈلگەن ، \oSumAtrIX تەرىپىدىن كودلانغان</string>
+    <string name="revanced_sb_enable_sb">SponsorBlock نى قوزغىتىڭ</string>
+    <string name="revanced_sb_enable_sb_sum">SponsorBlock بولسا YouTube فىلىملىرىنىڭ كىشىنى بىزار قىلىدىغان قىسىملىرىنى ئاتلاپ ئۆتۈش ئۈچۈن توپلانغان سىستېما</string>
+    <string name="revanced_sb_appearance_category">كۆرۈنۈش</string>
+    <string name="revanced_sb_enable_voting">بېلەت تاشلاش كۇنۇپكىسىنى كۆرسەت</string>
+    <string name="revanced_sb_enable_voting_sum_on">بۆلەك بېلەت تاشلاش كۇنۇپكىسى كۆرسىتىلدى</string>
+    <string name="revanced_sb_enable_voting_sum_off">بۆلەك بېلەت تاشلاش كۇنۇپكىسى كۆرۈنمەيدۇ</string>
+    <string name="revanced_sb_enable_compact_skip_button">ئىخچام ئاتلاش كۇنۇپكىسىنى ئىشلىتىڭ</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_on">ئەڭ تۆۋەن كەڭلىكتىكى ئۇسلۇبتىكى ئاتلاش كۇنۇپكىسى</string>
+    <string name="revanced_sb_enable_compact_skip_button_sum_off">ئەڭ ياخشى كۆرۈنۈش ئۈچۈن ئۇسلۇبتىكى ئاتلاش كۇنۇپكىسى</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button">ئاتلاش كۇنۇپكىسىنى ئاپتوماتىك يوشۇرۇش</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_on">ئاتلاش كۇنۇپكىسى بىر نەچچە سېكۇنتتىن كېيىن يوشۇرۇنغان</string>
+    <string name="revanced_sb_enable_auto_hide_skip_segment_button_sum_off">پۈتۈن بۆلەك ئۈچۈن كۆرسىتىلگەن ئاتلاش كۇنۇپكىسى</string>
+    <string name="revanced_sb_general_skiptoast">ئاپتوماتىك ئاتلىغاندا توستنى كۆرسىتىڭ</string>
+    <string name="revanced_sb_general_skiptoast_sum_on">بىر بۆلەك ئاپتوماتىك ئاتلانغاندا كۆرسىتىلىدۇ. بۇ يەرنى چېكىپ مىسال كۆرۈڭ</string>
+    <string name="revanced_sb_general_skiptoast_sum_off">Toast not shown. بۇ يەرنى چېكىپ مىسال كۆرۈڭ</string>
+    <string name="revanced_sb_general_time_without">بۆلەكسىز سىن ئۇزۇنلۇقىنى كۆرسىتىڭ</string>
+    <string name="revanced_sb_general_time_without_sum_on">سىن ئۇزۇنلۇقى بارلىق بۆلەكلەرنى چىقىرىپ تاشلايدۇ ، پۈتۈن سىن ئۇزۇنلۇقىنىڭ يېنىدىكى تىرناق ئىچىدە كۆرسىتىلىدۇ</string>
+    <string name="revanced_sb_general_time_without_sum_off">تولۇق سىن ئۇزۇنلۇقى كۆرسىتىلدى</string>
+    <string name="revanced_sb_create_segment_category">يېڭى بۆلەكلەرنى قۇرۇش</string>
+    <string name="revanced_sb_enable_create_segment">يېڭى بۆلەك قۇرۇش كۇنۇپكىسىنى كۆرسىتىش</string>
+    <string name="revanced_sb_enable_create_segment_sum_on">يېڭى بۆلەك قۇرۇش كۇنۇپكىسى كۆرسىتىلدى</string>
+    <string name="revanced_sb_enable_create_segment_sum_off">يېڭى بۆلەك قۇرۇش كۇنۇپكىسى كۆرۈنمەيدۇ</string>
+    <string name="revanced_sb_general_adjusting">يېڭى بۆلەك باسقۇچىنى تەڭشەڭ</string>
+    <string name="revanced_sb_general_adjusting_sum">يېڭى بۆلەكلەرنى قۇرغاندا ۋاقىت تەڭشەش كۇنۇپكىلىرى ھەرىكەتلىنىدۇ</string>
+    <string name="revanced_sb_general_adjusting_invalid">قىممەت چوقۇم ئاكتىپ سان بولۇشى كېرەك</string>
+    <string name="revanced_sb_guidelines_preference_title">كۆرسەتمىلەرنى كۆرۈڭ</string>
+    <string name="revanced_sb_guidelines_preference_sum">يېتەكچى پىكىردە يېڭى بۆلەك قۇرۇشنىڭ قائىدىسى ۋە كۆرسەتمىلىرى بار</string>
+    <string name="revanced_sb_guidelines_popup_title">كۆرسەتمىگە ئەمەل قىلىڭ</string>
+    <string name="revanced_sb_guidelines_popup_content">يېڭى بۆلەك قۇرۇشتىن بۇرۇن SponsorBlock كۆرسەتمىسىنى ئوقۇڭ</string>
+    <string name="revanced_sb_guidelines_popup_already_read">ئاللىبۇرۇن ئوقۇپ بولدى</string>
+    <string name="revanced_sb_guidelines_popup_open">ماڭا كۆرسەت</string>
+    <string name="revanced_sb_general">General</string>
+    <string name="revanced_sb_toast_on_connection_error_title">ئەگەر API بولمىسا توستنى كۆرسىتىڭ</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_on">SponsorBlock API نى ئىشلەتكىلى بولمىسا كۆرسىتىلىدۇ</string>
+    <string name="revanced_sb_toast_on_connection_error_summary_off">SponsorBlock API نى ئىشلەتكىلى بولمىسا توست كۆرسىتىلمەيدۇ</string>
+    <string name="revanced_sb_general_skipcount">ئاتلاپ ھېسابلاشنى ئىز قوغلاشنى قوزغىتىڭ</string>
+    <string name="revanced_sb_general_skipcount_sum_on">SponsorBlock رەھبەرلىك تاختىسىغا قانچىلىك ۋاقىت تېجىلىدىغانلىقىنى بىلدۈرىدۇ. ھەر قېتىم بىر بۆلەك ئاتلاپ ئۆتكەندىن كېيىن ئۇچۇر تاختىسىغا ئۇچۇر ئەۋەتىلىدۇ</string>
+    <string name="revanced_sb_general_skipcount_sum_off">ئاتلاپ ھېسابلاش ئىز قوغلاش قوزغىتىلمىدى</string>
+    <string name="revanced_sb_general_min_duration">ئەڭ تۆۋەن بۆلەك ۋاقتى</string>
+    <string name="revanced_sb_general_min_duration_sum">بۇ قىممەتتىن قىسقا بۆلەكلەر (سېكۇنتتا) كۆرسىتىلمەيدۇ ياكى ئاتلانمايدۇ</string>
+    <string name="revanced_sb_general_uuid">شەخسىي ئىشلەتكۈچى كىملىكىڭىز</string>
+    <string name="revanced_sb_general_uuid_sum">بۇنى شەخسىي ساقلاش كېرەك. بۇ پارولغا ئوخشايدۇ ، ھېچكىم بىلەن ئورتاقلىشىشقا بولمايدۇ. ئەگەر بىرەيلەندە بۇ بولسا ، ئۇ سىزنى دورايدۇ</string>
+    <string name="revanced_sb_general_uuid_invalid">شەخسىي ئىشلەتكۈچى كىملىكى كەم دېگەندە 30 ھەرپ بولۇشى كېرەك</string>
+    <string name="revanced_sb_general_api_url">API URL نى ئۆزگەرتىڭ</string>
+    <string name="revanced_sb_general_api_url_sum">SponsorBlock ئادرېسى مۇلازىمېتىرغا تېلېفون قىلىش ئۈچۈن ئىشلىتىلىدۇ. نېمە قىلىۋاتقانلىقىڭىزنى بىلمىسىڭىز بۇنى ئۆزگەرتمەڭ</string>
+    <string name="revanced_sb_api_url_reset">API URL ئەسلىگە قايتۇرۇش</string>
+    <string name="revanced_sb_api_url_invalid">API URL ئىناۋەتسىز</string>
+    <string name="revanced_sb_api_url_changed">API URL ئۆزگەرتىلدى</string>
+    <string name="revanced_sb_settings_ie">تەڭشەكلەرنى ئەكىرىش /چىقىرىش</string>
+    <string name="revanced_sb_settings_copy">كۆچۈرۈڭ</string>
+    <string name="revanced_sb_settings_ie_sum">سىزنىڭ SponsorBlock JSON سەپلىمىسى ReVanced ۋە باشقا SponsorBlock سۇپىسىغا ئىمپورت-ئېكسپورت قىلغىلى بولىدۇ. بۇ شەخسىي ئىشلەتكۈچى كىملىكىڭىزنى ئۆز ئىچىگە ئالىدۇ. بۇنى ئاقىلانە ئورتاقلىشىشقا كاپالەتلىك قىلىڭ</string>
+    <string name="revanced_sb_settings_import_successful">تەڭشەكلەر مۇۋەپپەقىيەتلىك ئىمپورت قىلىندى</string>
+    <string name="revanced_sb_settings_import_failed">ئىمپورت قىلىنمىدى: %s</string>
+    <string name="revanced_sb_settings_export_failed">ئېكىسپورت قىلىنمىدى: %s</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning">تەڭشەكلىرىڭىزدە شەخسىي SponsorBlock ئىشلەتكۈچى كىملىكى بار. \N \nئىشلەتكۈچى كىملىكىڭىز پارولغا ئوخشايدۇ ، ئۇنى ھەرگىز ئورتاقلاشماسلىق كېرەك. \N</string>
+    <string name="revanced_sb_settings_revanced_export_user_id_warning_dismiss">قايتا كۆرسەتمەڭ</string>
+    <string name="revanced_sb_diff_segments">بۆلەك ھەرىكىتىنى ئۆزگەرتىش</string>
+    <string name="revanced_sb_segments_sponsor">ياردەم بەرگۈچى</string>
+    <string name="revanced_sb_segments_sponsor_sum">ھەقلىق تەشۋىق ، ھەقلىق يوللانما ۋە بىۋاسىتە ئېلان. ئۆزىنى تەشۋىق قىلىش ياكى ئۆزى ياقتۇرىدىغان سەۋەبلەر /ئىجادكارلار /تور بېكەتلەر /مەھسۇلاتلارنى ھەقسىز توۋلاش ئۈچۈن ئەمەس</string>
+    <string name="revanced_sb_segments_selfpromo">ھەقسىز /ئۆزىنى تەشۋىق قىلىش</string>
+    <string name="revanced_sb_segments_selfpromo_sum">ھەقسىز ياكى ئۆزىنى تەشۋىق قىلىشتىن باشقا \'قوللىغۇچى \' غا ئوخشاش. تاۋار ، ئىئانە ياكى كىملەر بىلەن ھەمكارلاشقانلىقى توغرىسىدىكى ئۇچۇرلارنى ئۆز ئىچىگە ئالىدۇ</string>
+    <string name="revanced_sb_segments_interaction">ئۆز-ئارا ئەسكەرتىش (مۇشتەرى بولۇش)</string>
+    <string name="revanced_sb_segments_interaction_sum">مەزمۇننىڭ ئوتتۇرىسىدا ئۇلارنى ياقتۇرۇش ، مۇشتەرى بولۇش ياكى ئۇلارغا ئەگىشىش ھەققىدە قىسقا ئەسكەرتىش. ئەگەر ئۇ ئۇزۇن ياكى كونكرېت ئىش بولسا ، ئۇنىڭ ئورنىغا ئۆزىنى تەشۋىق قىلىش كېرەك</string>
+    <string name="revanced_sb_segments_highlight">يارقىن نۇقتا</string>
+    <string name="revanced_sb_segments_highlight_sum">سىننىڭ كۆپىنچە كىشىلەر ئىزدەۋاتقان قىسمى</string>
+    <string name="revanced_sb_segments_intro">Intermission /Intro Animation</string>
+    <string name="revanced_sb_segments_intro_sum">ئەمەلىي مەزمۇن بولمىغان ئارىلىق. توختاپ قېلىش ، تۇراقلىق رامكا ياكى تەكرارلانغان كارتون بولۇشى مۇمكىن. ئۇچۇرنى ئۆز ئىچىگە ئالغان ئۆتكۈنچى مەزمۇننى ئۆز ئىچىگە ئالمايدۇ</string>
+    <string name="revanced_sb_segments_outro">Endcards /Credits</string>
+    <string name="revanced_sb_segments_outro_sum">ئىناۋەتلىك ياكى YouTube كارتىلىرى كۆرۈنگەندە. ئۇچۇر بىلەن يەكۈن چىقىرىش ئۈچۈن ئەمەس</string>
+    <string name="revanced_sb_segments_preview">ئالدىن كۆرۈش /قايتا تەكشۈرۈش</string>
+    <string name="revanced_sb_segments_preview_sum">بارلىق ئۇچۇرلار باشقا جايدا تەكرارلىنىدىغان سىن ياكى باشقا بىر يۈرۈش سىنلاردا نېمە ئىشلارنىڭ يۈز بەرگەنلىكىنى ياكى نېمە ئىش بولغانلىقىنى كۆرسىتىپ بېرىدىغان قىسقۇچلار توپلىمى</string>
+    <string name="revanced_sb_segments_filler">تولدۇرغۇچى تاڭ /چاقچاق</string>
+    <string name="revanced_sb_segments_filler_sum">سىننىڭ ئاساسلىق مەزمۇنىنى چۈشىنىش تەلەپ قىلىنمىغان تولدۇرغۇچى ياكى يۇمۇر ئۈچۈنلا قوشۇلغان كۆرۈنۈشلەر. مەزمۇن ياكى تەگلىك تەپسىلاتلىرى بىلەن تەمىنلەيدىغان بۆلەكلەرنى ئۆز ئىچىگە ئالمايدۇ</string>
+    <string name="revanced_sb_segments_nomusic">مۇزىكا: مۇزىكا ئەمەس بۆلەك</string>
+    <string name="revanced_sb_segments_nomusic_sum">پەقەت مۇزىكا سىنلىرىدا ئىشلىتىش ئۈچۈن. مۇزىكاسىز مۇزىكا سىنلىرى ، باشقا تۈرلەر تەرىپىدىن قاپلانمىغان بۆلەكلەر</string>
+    <string name="revanced_sb_skip_button_compact">ئاتلاش</string>
+    <string name="revanced_sb_skip_button_compact_highlight">يارقىن نۇقتا</string>
+    <string name="revanced_sb_skip_button_sponsor">ياردەم بەرگۈچىدىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_selfpromo">تەشۋىقاتتىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_interaction">ئۆز-ئارا تەسىر كۆرسىتىش</string>
+    <string name="revanced_sb_skip_button_highlight">گەۋدىلەندۈرۈش ئۈچۈن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_intro_beginning">ئىچكى قىسىمدىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_intro_middle">ئارىلىقتىن ئاتلاش</string>
+    <string name="revanced_sb_skip_button_intro_end">ئارىلىقتىن ئاتلاش</string>
+    <string name="revanced_sb_skip_button_outro">باشقا ئاتلاش</string>
+    <string name="revanced_sb_skip_button_preview_beginning">ئالدىن كۆرۈشتىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_preview_middle">ئالدىن كۆرۈشتىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_preview_end">قايتا ئوقۇشتىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_filler">تولدۇرغۇچىدىن ئاتلاڭ</string>
+    <string name="revanced_sb_skip_button_nomusic">مۇزىكا ئەمەس</string>
+    <string name="revanced_sb_skip_button_unsubmitted">بۆلەكتىن ئاتلاش</string>
+    <string name="revanced_sb_skipped_sponsor">ياردەم بەرگۈچى</string>
+    <string name="revanced_sb_skipped_selfpromo">ئۆزىنى تەشۋىق قىلىشتىن ۋاز كەچتى</string>
+    <string name="revanced_sb_skipped_interaction">كىشىنى بىزار قىلىدىغان ئەسكەرتىشتىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_highlight">يورۇتۇش ئۈچۈن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_intro_beginning">ئىچكى قىسىمدىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_intro_middle">ئارىلىقتىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_intro_end">ئارىلىقتىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_outro">ئاتلاپ ئۆتۈپ كەتتى</string>
+    <string name="revanced_sb_skipped_preview_beginning">ئالدىن كۆرۈش</string>
+    <string name="revanced_sb_skipped_preview_middle">ئالدىن كۆرۈش</string>
+    <string name="revanced_sb_skipped_preview_end">ئەمەلدىن قالدۇرۇلدى</string>
+    <string name="revanced_sb_skipped_filler">تولدۇرغۇچى</string>
+    <string name="revanced_sb_skipped_nomusic">مۇزىكا بولمىغان بۆلەكتىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_unsubmitted">يوللانمىغان بۆلەكتىن ئاتلاندى</string>
+    <string name="revanced_sb_skipped_multiple_segments">كۆپ بۆلەكتىن ئاتلاندى</string>
+    <string name="revanced_sb_skip_automatically">ئاپتوماتىك ئاتلاڭ</string>
+    <string name="revanced_sb_skip_automatically_once">بىر قېتىم ئاپتوماتىك ئاتلاڭ</string>
+    <string name="revanced_sb_skip_showbutton">ئاتلاش كۇنۇپكىسىنى كۆرسەت</string>
+    <string name="revanced_sb_skip_seekbaronly">ئىزدەش بالدىقىدا كۆرسىتىڭ</string>
+    <string name="revanced_sb_skip_ignore">چەكلەش</string>
+    <string name="revanced_sb_submit_failed_invalid" formatted="false">بۆلەكنى يوللىيالمىدى: %s</string>
+    <string name="revanced_sb_submit_failed_timeout">SponsorBlock ۋاقىتلىق توختىتىلدى</string>
+    <string name="revanced_sb_submit_failed_unknown_error" formatted="false">بۆلەكنى تاپشۇرالمىدى (ھالىتى: %d %s)</string>
+    <string name="revanced_sb_submit_failed_rate_limit">بۆلەكنى يوللىيالمىدى. \N باھا چەكلىك (ئوخشاش ئىشلەتكۈچى ياكى IP دىن بەك كۆپ)</string>
+    <string name="revanced_sb_submit_failed_forbidden" formatted="false">بۆلەكنى تاپشۇرالمايدۇ: %s</string>
+    <string name="revanced_sb_submit_failed_duplicate">بۆلەكنى تاپشۇرالمايدۇ. \N ئاللىبۇرۇن مەۋجۇت</string>
+    <string name="revanced_sb_submit_succeeded">بۆلەك مۇۋەپپەقىيەتلىك يوللاندى</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_generic">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_status" formatted="false">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ (ھالەت %d)</string>
+    <string name="revanced_sb_sponsorblock_connection_failure_timeout">SponsorBlock نى ۋاقتىنچە ئىشلەتكىلى بولمايدۇ (API ۋاقتى توشتى)</string>
+    <string name="revanced_sb_vote_failed_timeout">بۆلەككە بېلەت تاشلىيالمىدى (API ۋاقتى توشتى)</string>
+    <string name="revanced_sb_vote_failed_unknown_error" formatted="false">بۆلەككە بېلەت تاشلىيالمىدى (ھالىتى: %d %s)</string>
+    <string name="revanced_sb_vote_failed_forbidden" formatted="false">بۆلەككە بېلەت تاشلىيالمىدى: %s</string>
+    <string name="revanced_sb_vote_upvote">Upvote</string>
+    <string name="revanced_sb_vote_downvote">Downvote</string>
+    <string name="revanced_sb_vote_category">سەھىپىنى ئۆزگەرتىش</string>
+    <string name="revanced_sb_vote_no_segments">بېلەت تاشلايدىغان بۆلەك يوق</string>
+    <string name="revanced_sb_new_segment_choose_category">بۆلەك تۈرىنى تاللاڭ</string>
+    <string name="revanced_sb_new_segment_disabled_category">تۈر تەڭشەكلىرى چەكلەنگەن. يوللاشقا سەھىپىنى قوزغىتىڭ.</string>
+    <string name="revanced_sb_new_segment_title">يېڭى SponsorBlock بۆلىكى</string>
+    <string name="revanced_sb_new_segment_mark_time_as_question" formatted="false">D: d: d نى يېڭى بۆلەكنىڭ باشلىنىشى ياكى ئاخىرلاشتۇرۇشى قىلىپ بېرەمسىز؟</string>
+    <string name="revanced_sb_new_segment_mark_start">باشلاش</string>
+    <string name="revanced_sb_new_segment_mark_end">end</string>
+    <string name="revanced_sb_new_segment_now">ھازىر</string>
+    <string name="revanced_sb_new_segment_time_start">بۆلەكنىڭ باشلىنىش ۋاقتى</string>
+    <string name="revanced_sb_new_segment_time_end">بۆلەك ئاخىرلاشقان ۋاقىت</string>
+    <string name="revanced_sb_new_segment_confirm_title">ۋاقىت توغرىمۇ؟</string>
+    <string name="revanced_sb_new_segment_confirm_content" formatted="false">بۇ بۆلەك% 02d:% 02d دىن% 02d:% 02d ( %d مىنۇت% 02d سېكۇنت) غىچە داۋاملىشىدۇ \nتاپشۇرۇشقا تەييارمۇ؟</string>
+    <string name="revanced_sb_new_segment_start_is_before_end">باشلاش چوقۇم ئاخىرلىشىشتىن بۇرۇن بولۇشى كېرەك</string>
+    <string name="revanced_sb_new_segment_mark_locations_first">ئالدى بىلەن ۋاقىت بالدىقىغا ئىككى ئورۇنغا بەلگە قويۇڭ</string>
+    <string name="revanced_sb_new_segment_preview_segment_first">بۆلەكنى ئالدىن كۆرۈپ بېقىڭ ھەمدە ئۇنىڭ ئوڭۇشلۇق ئۆتۈشىگە كاپالەتلىك قىلىڭ</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_title">بۆلەكنىڭ ۋاقتىنى قولدا تەھرىرلەڭ</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_content">بۆلەكنىڭ باشلىنىش ياكى ئاخىرلىشىش ۋاقتىنى تەھرىرلىمەكچىمۇ؟</string>
+    <string name="revanced_sb_new_segment_edit_by_hand_parse_error">بېرىلگەن ئىناۋەتسىز ۋاقىت</string>
+    <string name="revanced_sb_stats">Stats</string>
+    <string name="revanced_sb_stats_connection_failure">سانلىق مەلۇماتلارنى ۋاقىتلىق ئىشلەتكىلى بولمايدۇ (API تۆۋەن)</string>
+    <string name="revanced_sb_stats_loading">Loading ...</string>
+    <string name="revanced_sb_stats_sb_disabled">SponsorBlock چەكلەنگەن</string>
+    <string name="revanced_sb_stats_username" formatted="false">ئىشلەتكۈچى ئىسمىڭىز: &lt;b&gt; %s &lt;/b&gt;</string>
+    <string name="revanced_sb_stats_username_change">ئىشلەتكۈچى نامىنى ئۆزگەرتىش ئۈچۈن بۇ يەرنى چېكىڭ</string>
+    <string name="revanced_sb_stats_username_change_unknown_error" formatted="false">ئىشلەتكۈچى نامىنى ئۆزگەرتەلمىدى: ھالىتى: %d %s</string>
+    <string name="revanced_sb_stats_username_changed">ئىشلەتكۈچى ئىسمى مۇۋەپپەقىيەتلىك ئۆزگەرتىلدى</string>
+    <string name="revanced_sb_stats_reputation" formatted="false">ئىناۋىتىڭىز &lt;b&gt;% .2f &lt;/b&gt;</string>
+    <string name="revanced_sb_stats_submissions" formatted="false">سىز &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىنى قۇردىڭىز</string>
+    <string name="revanced_sb_stats_saved_zero">SponsorBlock رەھبەرلىك تاختىسى</string>
+    <string name="revanced_sb_stats_saved" formatted="false">سىز كىشىلەرنى &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىدىن قۇتۇلدۇردىڭىز</string>
+    <string name="revanced_sb_stats_saved_sum_zero">بۇ يەرنى چېكىپ يەرشارىدىكى سانلىق مەلۇماتلار ۋە ئەڭ كۆپ تۆھپە قوشقۇچىلارنى كۆرۈڭ</string>
+    <string name="revanced_sb_stats_saved_sum" formatted="false">بۇ ئۇلارنىڭ ھاياتىدىكى &lt;b&gt; %s &lt;/b&gt;. &lt;br&gt; بۇ يەرنى چېكىپ رەھبەرلىك تاختىسىنى كۆرۈڭ</string>
+    <string name="revanced_sb_stats_self_saved" formatted="false">سىز &lt;b&gt; %s &lt;/b&gt; بۆلەكلىرىنى ئاتلاپ ئۆتۈپ كەتتىڭىز</string>
+    <string name="revanced_sb_stats_self_saved_sum" formatted="false">ئۇ &lt;b&gt; %s &lt;/b&gt;</string>
+    <string name="revanced_sb_stats_self_saved_reset_title">ئاتلاپ ئۆتۈپ كەتكەن بۆلەكلەرنى ئەسلىگە كەلتۈرەمسىز؟</string>
+    <string name="revanced_sb_stats_saved_hour_format" formatted="false">%d سائەت %d مىنۇت</string>
+    <string name="revanced_sb_stats_saved_minute_format" formatted="false">%d مىنۇت %d سېكۇنت</string>
+    <string name="revanced_sb_stats_saved_second_format" formatted="false">%d سېكۇنت</string>
+    <string name="revanced_sb_color_dot_label">رەڭگى:</string>
+    <string name="revanced_sb_color_changed">رەڭ ئۆزگەردى</string>
+    <string name="revanced_sb_color_reset">رەڭ ئەسلىگە كەلتۈرۈش</string>
+    <string name="revanced_sb_color_invalid">ئىناۋەتسىز رەڭ كودى</string>
+    <string name="revanced_sb_reset_color">رەڭنى ئەسلىگە كەلتۈرۈش</string>
+    <string name="revanced_sb_reset">ئەسلىگە قايتۇرۇش</string>
+    <string name="revanced_sb_about">ھەققىدە</string>
+    <string name="revanced_sb_about_api_sum">سانلىق مەلۇماتلارنى SponsorBlock API تەمىنلىگەن. بۇ يەرنى چېكىپ تېخىمۇ كۆپ بىلىمگە ئېرىشىش ۋە باشقا سۇپىلارنىڭ چۈشۈرۈشلىرىنى كۆرۈڭ</string>
+    <string name="revanced_sb_about_made_by">JakubWeg تەرىپىدىن قايتا بىرلەشتۈرۈلگەن ، \oSumAtrIX تەرىپىدىن كودلانغان</string>
 </resources>

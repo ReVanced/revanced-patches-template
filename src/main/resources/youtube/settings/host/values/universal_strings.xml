@@ -21,7 +21,7 @@
     <string name="revanced_ryd_attribution_title">ReturnYouTubeDislike.com</string>
 
     <string name="revanced_sponsorblock_settings_title">SponsorBlock</string>
-    <string name="sb_about_api">sponsor.ajay.app</string>
+    <string name="revanced_sb_about_api">sponsor.ajay.app</string>
 
     <!-- debugging statistics that are probably not worth translating -->
     <string name="revanced_ryd_statistics_category_title">ReturnYouTubeDislike API statistics of this device</string>
