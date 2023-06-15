@@ -63,7 +63,7 @@ class ChangeRedditUrlPatch : BytecodePatch(
                     val reference = redditUrlStringInstruction.reference as StringReference
 
                     val newRedditUrl = reference.string.replace(
-                        "reddit.com",
+                        "oauth.reddit.com",
                         url!!
                     )
 
