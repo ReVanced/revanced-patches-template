@@ -397,29 +397,29 @@
     <string name="revanced_wide_searchbar_summary_on">Wide search bar is enabled</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">Hidden</string>
-    <string name="ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">Dislikes not available (status %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
-    <string name="ryd_failure_generic">Dislikes not available (%s)</string>
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Reload video to vote using ReturnYouTubeDislike</string>
-    <string name="ryd_enable_title">Return YouTube Dislike</string>
-    <string name="ryd_enable_summary_on">Dislikes are shown</string>
-    <string name="ryd_enable_summary_off">Dislikes are not shown</string>
-    <string name="ryd_shorts_title">Show dislikes on Shorts</string>
-    <string name="ryd_shorts_summary_on">Dislikes shown on Shorts</string>
-    <string name="ryd_shorts_summary_off">Dislikes hidden on Shorts</string>
-    <string name="ryd_dislike_percentage_title">Dislikes as percentage</string>
-    <string name="ryd_dislike_percentage_summary_on">Dislikes shown as percentage</string>
-    <string name="ryd_dislike_percentage_summary_off">Dislikes shown as number</string>
-    <string name="ryd_compact_layout_title">Compact like button</string>
-    <string name="ryd_compact_layout_summary_on">Like button styled for minimum width</string>
-    <string name="ryd_compact_layout_summary_off">Like button styled for best appearance</string>
-    <string name="ryd_toast_on_connection_error_title">Show toast if API not available</string>
-    <string name="ryd_toast_on_connection_error_summary_on">Toast shown if ReturnYouTubeDislike API is not available</string>
-    <string name="ryd_toast_on_connection_error_summary_off">Toast not shown if ReturnYouTubeDislike API is not available</string>
-    <string name="ryd_about">About</string>
-    <string name="ryd_attribution_summary">Data is provided by the Return YouTube Dislike API. Tap here to learn more.</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">Hidden</string>
+    <string name="revanced_ryd_failure_connection_timeout">Dislikes temporarily not available (API timed out)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">Dislikes not available (status %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">Dislikes not available (client API limit reached)</string>
+    <string name="revanced_ryd_failure_generic">Dislikes not available (%s)</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Reload video to vote using ReturnYouTubeDislike</string>
+    <string name="revanced_ryd_enable_title">Return YouTube Dislike</string>
+    <string name="revanced_ryd_enable_summary_on">Dislikes are shown</string>
+    <string name="revanced_ryd_enable_summary_off">Dislikes are not shown</string>
+    <string name="revanced_ryd_shorts_title">Show dislikes on Shorts</string>
+    <string name="revanced_ryd_shorts_summary_on">Dislikes shown on Shorts</string>
+    <string name="revanced_ryd_shorts_summary_off">Dislikes hidden on Shorts</string>
+    <string name="revanced_ryd_dislike_percentage_title">Dislikes as percentage</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">Dislikes shown as percentage</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">Dislikes shown as number</string>
+    <string name="revanced_ryd_compact_layout_title">Compact like button</string>
+    <string name="revanced_ryd_compact_layout_summary_on">Like button styled for minimum width</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Like button styled for best appearance</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Show toast if API not available</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">Toast shown if ReturnYouTubeDislike API is not available</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">Toast not shown if ReturnYouTubeDislike API is not available</string>
+    <string name="revanced_ryd_about">About</string>
+    <string name="revanced_ryd_attribution_summary">Data is provided by the Return YouTube Dislike API. Tap here to learn more.</string>
 
     <string name="sb_enable_sb">Enable SponsorBlock</string>
     <string name="sb_enable_sb_sum">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos</string>

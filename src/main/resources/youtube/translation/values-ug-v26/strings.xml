@@ -390,30 +390,30 @@
     <string name="revanced_wide_searchbar_summary_on">كەڭ ئىزدەش بالدىقى قوزغىتىلدى</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">يۇشۇرۇن</string>
-    <string name="ryd_failure_connection_timeout">ۋاقىتلىق ئىشلەتكىلى بولمايدۇ (API ۋاقتى توشتى)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">ياقتۇرمايدۇ (ھالەت %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">ياقتۇرمايدۇ (خېرىدارلارنىڭ API چېكىگە يەتتى)</string>
-    <string name="ryd_failure_generic">ياقتۇرمايدۇ ( %s)</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">يۇشۇرۇن</string>
+    <string name="revanced_ryd_failure_connection_timeout">ۋاقىتلىق ئىشلەتكىلى بولمايدۇ (API ۋاقتى توشتى)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">ياقتۇرمايدۇ (ھالەت %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">ياقتۇرمايدۇ (خېرىدارلارنىڭ API چېكىگە يەتتى)</string>
+    <string name="revanced_ryd_failure_generic">ياقتۇرمايدۇ ( %s)</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">ReturnYouTubeDislike نى ئىشلىتىپ بېلەت تاشلاڭ</string>
-    <string name="ryd_enable_title">YouTube ياقتۇرماسلىق</string>
-    <string name="ryd_enable_summary_on">ياقتۇرماسلىق كۆرسىتىلدى</string>
-    <string name="ryd_enable_summary_off">ياقتۇرماسلىق كۆرسىتىلمەيدۇ</string>
-    <string name="ryd_shorts_title">كالتە ئىشتاننى ياقتۇرمايدۇ</string>
-    <string name="ryd_shorts_summary_on">كالتە ئىشتاندا كۆرسىتىلگەن ياقتۇرمايدۇ</string>
-    <string name="ryd_shorts_summary_off">كالتە ئىشتانغا يوشۇرۇنغان</string>
-    <string name="ryd_dislike_percentage_title">پىرسەنتنى ياقتۇرمايدۇ</string>
-    <string name="ryd_dislike_percentage_summary_on">پىرسەنت سۈپىتىدە كۆرسىتىلگەن ياقتۇرمايدۇ</string>
-    <string name="ryd_dislike_percentage_summary_off">سان سۈپىتىدە كۆرسىتىلگەن ياقتۇرمايدۇ</string>
-    <string name="ryd_compact_layout_title">كونۇپكىغا ئوخشاش ئىخچام</string>
-    <string name="ryd_compact_layout_summary_on">ئەڭ تۆۋەن كەڭلىكتىكى ئۇسلۇبتىكى كۇنۇپكىغا ئوخشاش</string>
-    <string name="ryd_compact_layout_summary_off">ئەڭ ياخشى كۆرۈنۈش ئۈچۈن ئۇسلۇبتىكى كۇنۇپكا</string>
-    <string name="ryd_toast_on_connection_error_title">ئەگەر API بولمىسا توستنى كۆرسىتىڭ</string>
-    <string name="ryd_toast_on_connection_error_summary_on">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا كۆرسىتىلىدۇ</string>
-    <string name="ryd_toast_on_connection_error_summary_off">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا توست كۆرسىتىلمەيدۇ</string>
-    <string name="ryd_about">ھەققىدە</string>
-    <string name="ryd_attribution_summary">سانلىق مەلۇمات قايتۇرۇش YouTube ياقتۇرمايدىغان API تەرىپىدىن تەمىنلەنگەن. تېخىمۇ كۆپ بىلىمگە ئېرىشىش ئۈچۈن بۇ يەرنى چېكىڭ.</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">ReturnYouTubeDislike نى ئىشلىتىپ بېلەت تاشلاڭ</string>
+    <string name="revanced_ryd_enable_title">YouTube ياقتۇرماسلىق</string>
+    <string name="revanced_ryd_enable_summary_on">ياقتۇرماسلىق كۆرسىتىلدى</string>
+    <string name="revanced_ryd_enable_summary_off">ياقتۇرماسلىق كۆرسىتىلمەيدۇ</string>
+    <string name="revanced_ryd_shorts_title">كالتە ئىشتاننى ياقتۇرمايدۇ</string>
+    <string name="revanced_ryd_shorts_summary_on">كالتە ئىشتاندا كۆرسىتىلگەن ياقتۇرمايدۇ</string>
+    <string name="revanced_ryd_shorts_summary_off">كالتە ئىشتانغا يوشۇرۇنغان</string>
+    <string name="revanced_ryd_dislike_percentage_title">پىرسەنتنى ياقتۇرمايدۇ</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">پىرسەنت سۈپىتىدە كۆرسىتىلگەن ياقتۇرمايدۇ</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">سان سۈپىتىدە كۆرسىتىلگەن ياقتۇرمايدۇ</string>
+    <string name="revanced_ryd_compact_layout_title">كونۇپكىغا ئوخشاش ئىخچام</string>
+    <string name="revanced_ryd_compact_layout_summary_on">ئەڭ تۆۋەن كەڭلىكتىكى ئۇسلۇبتىكى كۇنۇپكىغا ئوخشاش</string>
+    <string name="revanced_ryd_compact_layout_summary_off">ئەڭ ياخشى كۆرۈنۈش ئۈچۈن ئۇسلۇبتىكى كۇنۇپكا</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">ئەگەر API بولمىسا توستنى كۆرسىتىڭ</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا كۆرسىتىلىدۇ</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">ReturnYouTubeDislike API نى ئىشلەتكىلى بولمىسا توست كۆرسىتىلمەيدۇ</string>
+    <string name="revanced_ryd_about">ھەققىدە</string>
+    <string name="revanced_ryd_attribution_summary">سانلىق مەلۇمات قايتۇرۇش YouTube ياقتۇرمايدىغان API تەرىپىدىن تەمىنلەنگەن. تېخىمۇ كۆپ بىلىمگە ئېرىشىش ئۈچۈن بۇ يەرنى چېكىڭ.</string>
 
 
     <string name="sb_enable_sb">SponsorBlock نى قوزغىتىڭ</string>

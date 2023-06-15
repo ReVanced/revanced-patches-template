@@ -388,30 +388,30 @@
     <string name="revanced_wide_searchbar_summary_on">وسیع سرچ بار فعال ہے۔</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">پوشیدہ</string>
-    <string name="ryd_failure_connection_timeout">ناپسندیدگی عارضی طور پر دستیاب نہیں ہے (API کا وقت ختم ہو گیا)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">ناپسندیدگی دستیاب نہیں ہے (اسٹیٹس %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">ناپسندیدگی دستیاب نہیں ہے (کلائنٹ API کی حد تک پہنچ گئی ہے)</string>
-    <string name="ryd_failure_generic">ناپسندیدگی دستیاب نہیں ہے (%s)</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">پوشیدہ</string>
+    <string name="revanced_ryd_failure_connection_timeout">ناپسندیدگی عارضی طور پر دستیاب نہیں ہے (API کا وقت ختم ہو گیا)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">ناپسندیدگی دستیاب نہیں ہے (اسٹیٹس %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">ناپسندیدگی دستیاب نہیں ہے (کلائنٹ API کی حد تک پہنچ گئی ہے)</string>
+    <string name="revanced_ryd_failure_generic">ناپسندیدگی دستیاب نہیں ہے (%s)</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">ReturnYouTubeDislike کا استعمال کرکے ووٹ دینے کے لیے ویڈیو کو دوبارہ لوڈ کریں۔</string>
-    <string name="ryd_enable_title">YouTube ناپسندیدگی واپس کریں۔</string>
-    <string name="ryd_enable_summary_on">ناپسندیدگی ظاہر کی جاتی ہے۔</string>
-    <string name="ryd_enable_summary_off">ناپسندیدگی ظاہر نہیں کی جاتی ہے۔</string>
-    <string name="ryd_shorts_title">Shorts پر ناپسندیدگی دکھائیں۔</string>
-    <string name="ryd_shorts_summary_on">شارٹس پر دکھائی گئی ناپسندیدگیاں</string>
-    <string name="ryd_shorts_summary_off">شارٹس پر چھپی ناپسندیدگی</string>
-    <string name="ryd_dislike_percentage_title">فیصد کے طور پر ناپسندیدگی</string>
-    <string name="ryd_dislike_percentage_summary_on">ناپسندیدگی کو فیصد کے طور پر دکھایا گیا ہے۔</string>
-    <string name="ryd_dislike_percentage_summary_off">ناپسندیدگی کو نمبر کے طور پر دکھایا گیا ہے۔</string>
-    <string name="ryd_compact_layout_title">کومپیکٹ جیسے بٹن</string>
-    <string name="ryd_compact_layout_summary_on">کم از کم چوڑائی کے لیے اسٹائل والے بٹن کی طرح</string>
-    <string name="ryd_compact_layout_summary_off">بہترین ظاہری شکل کے لیے لائک بٹن اسٹائل کیا گیا۔</string>
-    <string name="ryd_toast_on_connection_error_title">اگر API دستیاب نہیں ہے تو ٹوسٹ دکھائیں۔</string>
-    <string name="ryd_toast_on_connection_error_summary_on">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ دکھایا گیا ہے۔</string>
-    <string name="ryd_toast_on_connection_error_summary_off">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ نہیں دکھایا گیا ہے۔</string>
-    <string name="ryd_about">کے بارے میں</string>
-    <string name="ryd_attribution_summary">ڈیٹا Return YouTube Dislike API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں۔</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">ReturnYouTubeDislike کا استعمال کرکے ووٹ دینے کے لیے ویڈیو کو دوبارہ لوڈ کریں۔</string>
+    <string name="revanced_ryd_enable_title">YouTube ناپسندیدگی واپس کریں۔</string>
+    <string name="revanced_ryd_enable_summary_on">ناپسندیدگی ظاہر کی جاتی ہے۔</string>
+    <string name="revanced_ryd_enable_summary_off">ناپسندیدگی ظاہر نہیں کی جاتی ہے۔</string>
+    <string name="revanced_ryd_shorts_title">Shorts پر ناپسندیدگی دکھائیں۔</string>
+    <string name="revanced_ryd_shorts_summary_on">شارٹس پر دکھائی گئی ناپسندیدگیاں</string>
+    <string name="revanced_ryd_shorts_summary_off">شارٹس پر چھپی ناپسندیدگی</string>
+    <string name="revanced_ryd_dislike_percentage_title">فیصد کے طور پر ناپسندیدگی</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">ناپسندیدگی کو فیصد کے طور پر دکھایا گیا ہے۔</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">ناپسندیدگی کو نمبر کے طور پر دکھایا گیا ہے۔</string>
+    <string name="revanced_ryd_compact_layout_title">کومپیکٹ جیسے بٹن</string>
+    <string name="revanced_ryd_compact_layout_summary_on">کم از کم چوڑائی کے لیے اسٹائل والے بٹن کی طرح</string>
+    <string name="revanced_ryd_compact_layout_summary_off">بہترین ظاہری شکل کے لیے لائک بٹن اسٹائل کیا گیا۔</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">اگر API دستیاب نہیں ہے تو ٹوسٹ دکھائیں۔</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ دکھایا گیا ہے۔</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">اگر ReturnYouTubeDislike API دستیاب نہیں ہے تو ٹوسٹ نہیں دکھایا گیا ہے۔</string>
+    <string name="revanced_ryd_about">کے بارے میں</string>
+    <string name="revanced_ryd_attribution_summary">ڈیٹا Return YouTube Dislike API کے ذریعے فراہم کیا جاتا ہے۔ مزید جاننے کے لیے یہاں تھپتھپائیں۔</string>
 
 
     <string name="sb_enable_sb">اسپانسر بلاک کو فعال کریں۔</string>

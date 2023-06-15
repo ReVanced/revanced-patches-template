@@ -388,30 +388,30 @@
     <string name="revanced_wide_searchbar_summary_on">סרגל החיפוש הרחב מופעל</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">מוּסתָר</string>
-    <string name="ryd_failure_connection_timeout">דיסלייקים אינם זמינים באופן זמני (תם הזמן הקצוב של API)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">דיסלייקים אינם זמינים (סטטוס %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">דיסלייקים לא זמינים (הגעת למגבלת ה-API של הלקוח)</string>
-    <string name="ryd_failure_generic">דיסלייקים אינם זמינים (%s)</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">מוּסתָר</string>
+    <string name="revanced_ryd_failure_connection_timeout">דיסלייקים אינם זמינים באופן זמני (תם הזמן הקצוב של API)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">דיסלייקים אינם זמינים (סטטוס %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">דיסלייקים לא זמינים (הגעת למגבלת ה-API של הלקוח)</string>
+    <string name="revanced_ryd_failure_generic">דיסלייקים אינם זמינים (%s)</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">טען מחדש את הסרטון כדי להצביע באמצעות ReturnYouTubeDislike</string>
-    <string name="ryd_enable_title">החזר YouTube Dislike</string>
-    <string name="ryd_enable_summary_on">מוצגים דיסלייקים</string>
-    <string name="ryd_enable_summary_off">לא מוצגים דיסלייקים</string>
-    <string name="ryd_shorts_title">הצג דיסלייקים במכנסיים קצרים</string>
-    <string name="ryd_shorts_summary_on">דיסלייקים המוצגים במכנסיים קצרים</string>
-    <string name="ryd_shorts_summary_off">דיסלייקים מוסתרים במכנסיים קצרים</string>
-    <string name="ryd_dislike_percentage_title">לא אהבתי באחוזים</string>
-    <string name="ryd_dislike_percentage_summary_on">דיסלייקים מוצגים באחוזים</string>
-    <string name="ryd_dislike_percentage_summary_off">דיסלייקים מוצגים כמספר</string>
-    <string name="ryd_compact_layout_title">כפתור לייק קומפקטי</string>
-    <string name="ryd_compact_layout_summary_on">כפתור לייק מעוצב עבור רוחב מינימלי</string>
-    <string name="ryd_compact_layout_summary_off">כפתור לייק מעוצב למראה הטוב ביותר</string>
-    <string name="ryd_toast_on_connection_error_title">הצג טוסט אם API אינו זמין</string>
-    <string name="ryd_toast_on_connection_error_summary_on">טוסט מוצג אם ReturnYouTubeDislike API אינו זמין</string>
-    <string name="ryd_toast_on_connection_error_summary_off">טוסט לא מוצג אם ReturnYouTubeDislike API אינו זמין</string>
-    <string name="ryd_about">על אודות</string>
-    <string name="ryd_attribution_summary">הנתונים מסופקים על ידי ה-Retur YouTube Dislike API. הקש כאן למידע נוסף.</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">טען מחדש את הסרטון כדי להצביע באמצעות ReturnYouTubeDislike</string>
+    <string name="revanced_ryd_enable_title">החזר YouTube Dislike</string>
+    <string name="revanced_ryd_enable_summary_on">מוצגים דיסלייקים</string>
+    <string name="revanced_ryd_enable_summary_off">לא מוצגים דיסלייקים</string>
+    <string name="revanced_ryd_shorts_title">הצג דיסלייקים במכנסיים קצרים</string>
+    <string name="revanced_ryd_shorts_summary_on">דיסלייקים המוצגים במכנסיים קצרים</string>
+    <string name="revanced_ryd_shorts_summary_off">דיסלייקים מוסתרים במכנסיים קצרים</string>
+    <string name="revanced_ryd_dislike_percentage_title">לא אהבתי באחוזים</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">דיסלייקים מוצגים באחוזים</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">דיסלייקים מוצגים כמספר</string>
+    <string name="revanced_ryd_compact_layout_title">כפתור לייק קומפקטי</string>
+    <string name="revanced_ryd_compact_layout_summary_on">כפתור לייק מעוצב עבור רוחב מינימלי</string>
+    <string name="revanced_ryd_compact_layout_summary_off">כפתור לייק מעוצב למראה הטוב ביותר</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">הצג טוסט אם API אינו זמין</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">טוסט מוצג אם ReturnYouTubeDislike API אינו זמין</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">טוסט לא מוצג אם ReturnYouTubeDislike API אינו זמין</string>
+    <string name="revanced_ryd_about">על אודות</string>
+    <string name="revanced_ryd_attribution_summary">הנתונים מסופקים על ידי ה-Retur YouTube Dislike API. הקש כאן למידע נוסף.</string>
 
 
     <string name="sb_enable_sb">הפעל חסימת חסות</string>

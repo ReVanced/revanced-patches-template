@@ -388,30 +388,30 @@
     <string name="revanced_wide_searchbar_summary_on">宽搜索栏已启用</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">隐</string>
-    <string name="ryd_failure_connection_timeout">点赞暂时不可用（API超时）</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">不喜欢（状态 %d）</string>
-    <string name="ryd_failure_client_rate_limit_requested">不喜欢（已达到客户端 API 限制）</string>
-    <string name="ryd_failure_generic">不喜欢（%s）</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">隐</string>
+    <string name="revanced_ryd_failure_connection_timeout">点赞暂时不可用（API超时）</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">不喜欢（状态 %d）</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">不喜欢（已达到客户端 API 限制）</string>
+    <string name="revanced_ryd_failure_generic">不喜欢（%s）</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">使用 ReturnYouTubeDislike 重新加载视频以进行投票</string>
-    <string name="ryd_enable_title">返回 YouTube 不喜欢</string>
-    <string name="ryd_enable_summary_on">显示不喜欢</string>
-    <string name="ryd_enable_summary_off">不喜欢不显示</string>
-    <string name="ryd_shorts_title">在 Shorts 上显示不喜欢</string>
-    <string name="ryd_shorts_summary_on">Shorts 上显示的不喜欢</string>
-    <string name="ryd_shorts_summary_off">隐藏在 Shorts 上的不喜欢</string>
-    <string name="ryd_dislike_percentage_title">不喜欢百分比</string>
-    <string name="ryd_dislike_percentage_summary_on">不喜欢显示为百分比</string>
-    <string name="ryd_dislike_percentage_summary_off">不喜欢显示为数字</string>
-    <string name="ryd_compact_layout_title">紧凑型按钮</string>
-    <string name="ryd_compact_layout_summary_on">像最小宽度样式的按钮</string>
-    <string name="ryd_compact_layout_summary_off">Like 按钮设计为最佳外观</string>
-    <string name="ryd_toast_on_connection_error_title">如果 API 不可用则显示 toast</string>
-    <string name="ryd_toast_on_connection_error_summary_on">如果 ReturnYouTubeDislike API 不可用，则显示 Toast</string>
-    <string name="ryd_toast_on_connection_error_summary_off">如果 ReturnYouTubeDislike API 不可用，则不显示 Toast</string>
-    <string name="ryd_about">关于</string>
-    <string name="ryd_attribution_summary">数据由 Return YouTube Dislike API 提供。点击此处了解更多信息。</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">使用 ReturnYouTubeDislike 重新加载视频以进行投票</string>
+    <string name="revanced_ryd_enable_title">返回 YouTube 不喜欢</string>
+    <string name="revanced_ryd_enable_summary_on">显示不喜欢</string>
+    <string name="revanced_ryd_enable_summary_off">不喜欢不显示</string>
+    <string name="revanced_ryd_shorts_title">在 Shorts 上显示不喜欢</string>
+    <string name="revanced_ryd_shorts_summary_on">Shorts 上显示的不喜欢</string>
+    <string name="revanced_ryd_shorts_summary_off">隐藏在 Shorts 上的不喜欢</string>
+    <string name="revanced_ryd_dislike_percentage_title">不喜欢百分比</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">不喜欢显示为百分比</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">不喜欢显示为数字</string>
+    <string name="revanced_ryd_compact_layout_title">紧凑型按钮</string>
+    <string name="revanced_ryd_compact_layout_summary_on">像最小宽度样式的按钮</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Like 按钮设计为最佳外观</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">如果 API 不可用则显示 toast</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">如果 ReturnYouTubeDislike API 不可用，则显示 Toast</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">如果 ReturnYouTubeDislike API 不可用，则不显示 Toast</string>
+    <string name="revanced_ryd_about">关于</string>
+    <string name="revanced_ryd_attribution_summary">数据由 Return YouTube Dislike API 提供。点击此处了解更多信息。</string>
 
 
     <string name="sb_enable_sb">启用 SponsorBlock</string>

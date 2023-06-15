@@ -388,30 +388,30 @@
     <string name="revanced_wide_searchbar_summary_on">Ibha yokusesha ebanzi inikwe amandla</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">Kufihliwe</string>
-    <string name="ryd_failure_connection_timeout">Ukungathandwa akutholakali okwesikhashana (i-API iphelelwe yisikhathi)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">Ukungathandwa akutholakali (isimo %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">Ukungathandwa akutholakali (umkhawulo we-API yeklayenti ufinyelelwe)</string>
-    <string name="ryd_failure_generic">Ukungathandwa akutholakali (%s)</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">Kufihliwe</string>
+    <string name="revanced_ryd_failure_connection_timeout">Ukungathandwa akutholakali okwesikhashana (i-API iphelelwe yisikhathi)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">Ukungathandwa akutholakali (isimo %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">Ukungathandwa akutholakali (umkhawulo we-API yeklayenti ufinyelelwe)</string>
+    <string name="revanced_ryd_failure_generic">Ukungathandwa akutholakali (%s)</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Layisha kabusha ividiyo ukuze uvote usebenzisa i-ReturnYouTubeDislike</string>
-    <string name="ryd_enable_title">Buyisa Ukungathandwa kwe-YouTube</string>
-    <string name="ryd_enable_summary_on">Ukungathandwa kuyaboniswa</string>
-    <string name="ryd_enable_summary_off">Ukungathandwa akuboniswa</string>
-    <string name="ryd_shorts_title">Bonisa ukungathandwa kokufushane</string>
-    <string name="ryd_shorts_summary_on">Ukungathandwa kuboniswe kokuthi Okufushane</string>
-    <string name="ryd_shorts_summary_off">Ukungathandwa kufihlwe kokuthi Okufushane</string>
-    <string name="ryd_dislike_percentage_title">Ayithandi njengephesenti</string>
-    <string name="ryd_dislike_percentage_summary_on">Ukungathandwa kuboniswe njengephesenti</string>
-    <string name="ryd_dislike_percentage_summary_off">Ukungathandwa kuboniswe njengenombolo</string>
-    <string name="ryd_compact_layout_title">Inkinobho ethi Compact like</string>
-    <string name="ryd_compact_layout_summary_on">Inkinobho yokuthanda ifakwe isitayela sobubanzi obuncane</string>
-    <string name="ryd_compact_layout_summary_off">Inkinobho yokuthanda yenzelwe ukubonakala okuhle kakhulu</string>
-    <string name="ryd_toast_on_connection_error_title">Bonisa i-toast uma i-API ingatholakali</string>
-    <string name="ryd_toast_on_connection_error_summary_on">I-Toast iyaboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
-    <string name="ryd_toast_on_connection_error_summary_off">I-Toast ayiboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
-    <string name="ryd_about">Mayelana</string>
-    <string name="ryd_attribution_summary">Idatha ihlinzekwa yi-Return YouTube Dislike API. Thepha lapha ukuze ufunde kabanzi.</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Layisha kabusha ividiyo ukuze uvote usebenzisa i-ReturnYouTubeDislike</string>
+    <string name="revanced_ryd_enable_title">Buyisa Ukungathandwa kwe-YouTube</string>
+    <string name="revanced_ryd_enable_summary_on">Ukungathandwa kuyaboniswa</string>
+    <string name="revanced_ryd_enable_summary_off">Ukungathandwa akuboniswa</string>
+    <string name="revanced_ryd_shorts_title">Bonisa ukungathandwa kokufushane</string>
+    <string name="revanced_ryd_shorts_summary_on">Ukungathandwa kuboniswe kokuthi Okufushane</string>
+    <string name="revanced_ryd_shorts_summary_off">Ukungathandwa kufihlwe kokuthi Okufushane</string>
+    <string name="revanced_ryd_dislike_percentage_title">Ayithandi njengephesenti</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">Ukungathandwa kuboniswe njengephesenti</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">Ukungathandwa kuboniswe njengenombolo</string>
+    <string name="revanced_ryd_compact_layout_title">Inkinobho ethi Compact like</string>
+    <string name="revanced_ryd_compact_layout_summary_on">Inkinobho yokuthanda ifakwe isitayela sobubanzi obuncane</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Inkinobho yokuthanda yenzelwe ukubonakala okuhle kakhulu</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Bonisa i-toast uma i-API ingatholakali</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">I-Toast iyaboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">I-Toast ayiboniswa uma i-ReturnYouTubeDislike API ingatholakali</string>
+    <string name="revanced_ryd_about">Mayelana</string>
+    <string name="revanced_ryd_attribution_summary">Idatha ihlinzekwa yi-Return YouTube Dislike API. Thepha lapha ukuze ufunde kabanzi.</string>
 
 
     <string name="sb_enable_sb">Nika amandla i-SponsorBlock</string>

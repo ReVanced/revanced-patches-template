@@ -388,30 +388,30 @@
     <string name="revanced_wide_searchbar_summary_on">La barre de recherche large est activée</string>
 
 
-    <string name="ryd_video_likes_hidden_by_video_owner">Caché</string>
-    <string name="ryd_failure_connection_timeout">Dislikes temporairement indisponibles (l\'API a expiré)</string>
-    <string name="ryd_failure_connection_status_code" formatted="false">Je n\'aime pas disponible (statut %d)</string>
-    <string name="ryd_failure_client_rate_limit_requested">N\'aime pas disponible (limite de l\'API client atteinte)</string>
-    <string name="ryd_failure_generic">N\'aime pas disponible (%s)</string>
+    <string name="revanced_ryd_video_likes_hidden_by_video_owner">Caché</string>
+    <string name="revanced_ryd_failure_connection_timeout">Dislikes temporairement indisponibles (l\'API a expiré)</string>
+    <string name="revanced_ryd_failure_connection_status_code" formatted="false">Je n\'aime pas disponible (statut %d)</string>
+    <string name="revanced_ryd_failure_client_rate_limit_requested">N\'aime pas disponible (limite de l\'API client atteinte)</string>
+    <string name="revanced_ryd_failure_generic">N\'aime pas disponible (%s)</string>
 
-    <string name="ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Recharger la vidéo pour voter en utilisant ReturnYouTubeDislike</string>
-    <string name="ryd_enable_title">Retourner YouTube n\'aime pas</string>
-    <string name="ryd_enable_summary_on">Les aversions sont affichées</string>
-    <string name="ryd_enable_summary_off">Les aversions ne sont pas affichées</string>
-    <string name="ryd_shorts_title">Afficher les aversions sur les shorts</string>
-    <string name="ryd_shorts_summary_on">N\'aime pas montré sur les shorts</string>
-    <string name="ryd_shorts_summary_off">Dislikes cachés sur les shorts</string>
-    <string name="ryd_dislike_percentage_title">N\'aime pas en pourcentage</string>
-    <string name="ryd_dislike_percentage_summary_on">N\'aime pas affiché en pourcentage</string>
-    <string name="ryd_dislike_percentage_summary_off">N\'aime pas affiché sous forme de nombre</string>
-    <string name="ryd_compact_layout_title">Compact comme bouton</string>
-    <string name="ryd_compact_layout_summary_on">Comme le bouton de style pour une largeur minimale</string>
-    <string name="ryd_compact_layout_summary_off">Comme le bouton de style pour une meilleure apparence</string>
-    <string name="ryd_toast_on_connection_error_title">Afficher le toast si l\'API n\'est pas disponible</string>
-    <string name="ryd_toast_on_connection_error_summary_on">Toast affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
-    <string name="ryd_toast_on_connection_error_summary_off">Toast non affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
-    <string name="ryd_about">À propos</string>
-    <string name="ryd_attribution_summary">Les données sont fournies par l\'API Return YouTube Dislike. Appuyez ici pour en savoir plus.</string>
+    <string name="revanced_ryd_failure_ryd_enabled_while_playing_video_then_user_voted">Recharger la vidéo pour voter en utilisant ReturnYouTubeDislike</string>
+    <string name="revanced_ryd_enable_title">Retourner YouTube n\'aime pas</string>
+    <string name="revanced_ryd_enable_summary_on">Les aversions sont affichées</string>
+    <string name="revanced_ryd_enable_summary_off">Les aversions ne sont pas affichées</string>
+    <string name="revanced_ryd_shorts_title">Afficher les aversions sur les shorts</string>
+    <string name="revanced_ryd_shorts_summary_on">N\'aime pas montré sur les shorts</string>
+    <string name="revanced_ryd_shorts_summary_off">Dislikes cachés sur les shorts</string>
+    <string name="revanced_ryd_dislike_percentage_title">N\'aime pas en pourcentage</string>
+    <string name="revanced_ryd_dislike_percentage_summary_on">N\'aime pas affiché en pourcentage</string>
+    <string name="revanced_ryd_dislike_percentage_summary_off">N\'aime pas affiché sous forme de nombre</string>
+    <string name="revanced_ryd_compact_layout_title">Compact comme bouton</string>
+    <string name="revanced_ryd_compact_layout_summary_on">Comme le bouton de style pour une largeur minimale</string>
+    <string name="revanced_ryd_compact_layout_summary_off">Comme le bouton de style pour une meilleure apparence</string>
+    <string name="revanced_ryd_toast_on_connection_error_title">Afficher le toast si l\'API n\'est pas disponible</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_on">Toast affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
+    <string name="revanced_ryd_toast_on_connection_error_summary_off">Toast non affiché si l\'API ReturnYouTubeDislike n\'est pas disponible</string>
+    <string name="revanced_ryd_about">À propos</string>
+    <string name="revanced_ryd_attribution_summary">Les données sont fournies par l\'API Return YouTube Dislike. Appuyez ici pour en savoir plus.</string>
 
 
     <string name="sb_enable_sb">Activer SponsorBlock</string>
