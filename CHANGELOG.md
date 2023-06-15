@@ -1,3 +1,10 @@
+# [2.179.0](https://github.com/efraimbart/revanced-patches/compare/v2.178.0...v2.179.0) (2023-06-15)
+
+
+### Features
+
+* Updated replace url ([efdb5ce](https://github.com/efraimbart/revanced-patches/commit/efdb5ce9d3dc1d1465001cf6b7b34ee54514524d))
+
 # [2.178.0](https://github.com/efraimbart/revanced-patches/compare/v2.177.0...v2.178.0) (2023-06-15)
 
 
