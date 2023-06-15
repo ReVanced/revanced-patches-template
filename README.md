@@ -25,7 +25,6 @@ The official ReVanced Patches.
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.19.35 |
 | `hide-ads` | Removes general ads. | 18.19.35 |
 | `hide-album-cards` | Hides the album cards below the artist description. | 18.19.35 |
-| `hide-artist-card` | Hides the artist card below the searchbar. | 18.19.35 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.19.35 |
 | `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.19.35 |
 | `hide-captions-button` | Hides the captions button on video player. | 18.19.35 |
@@ -36,6 +35,7 @@ The official ReVanced Patches.
 | `hide-filter-bar` | Hides the filter bar in video feeds. | 18.19.35 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.19.35 |
 | `hide-info-cards` | Hides info cards in videos. | 18.19.35 |
+| `hide-layout-components` | Hides general layout components. | 18.19.35 |
 | `hide-load-more-button` | Hides the button under videos that loads similar videos. | 18.19.35 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | 18.19.35 |
 | `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |

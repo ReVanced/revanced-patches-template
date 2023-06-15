@@ -1,3 +1,17 @@
+## [2.177.1-dev.2](https://github.com/revanced/revanced-patches/compare/v2.177.1-dev.1...v2.177.1-dev.2) (2023-06-14)
+
+
+### Bug Fixes
+
+* **youtube:** separate `hide-ads` to `hide-layout-components` patch ([7e0417f](https://github.com/revanced/revanced-patches/commit/7e0417f6728fa7b79a9d8cbcfd3ccba484a5567d))
+
+## [2.177.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.177.0...v2.177.1-dev.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* don't include all Litho patches, when not included ([fc69491](https://github.com/revanced/revanced-patches/commit/fc69491dfe4b119d46dd3da27b556e55fe0cecfb))
+
 # [2.177.0](https://github.com/revanced/revanced-patches/compare/v2.176.1...v2.177.0) (2023-06-12)
 
 
