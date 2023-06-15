@@ -37,7 +37,8 @@ internal object ResourceUtils {
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
      * @param replaceDestinationFiles If any existing destination files should be replaced.
-     *                                If set to false, an exception is thrown if any destination files exist.
+     *                                If set to false, an exception is thrown if any source file
+     *                                would overwrite an existing file.
      */
     internal fun ResourceContext.copyResources(
         sourceResourceDirectory: String,
