@@ -42,7 +42,10 @@ class ExternalDownloadsResourcePatch : ResourcePatch {
         )
 
         // Copy resources
-        context.copyResources("youtube/downloads", ResourceUtils.ResourceGroup("drawable", "revanced_yt_download_button.xml"))
+        context.copyResources(
+            "youtube/downloads",
+            ResourceUtils.ResourceGroup("drawable", "revanced_ic_download_button.xml")
+        )
 
         // Add download button node
         BottomControlsResourcePatch.addControls("youtube/downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")

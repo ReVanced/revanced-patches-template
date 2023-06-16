@@ -33,7 +33,17 @@ class SponsorBlockResourcePatch : ResourcePatch {
          merge SponsorBlock drawables to main drawables
          */
 
-        arrayOf(
+        context.copyResources(
+            "youtube/sponsorblock",
+            ResourceUtils.ResourceGroup(
+                "drawable",
+                "revanced_ic_sb_adjust.xml",
+                "revanced_ic_sb_compare.xml",
+                "revanced_ic_sb_edit.xml",
+                "revanced_ic_sb_logo.xml",
+                "revanced_ic_sb_publish.xml",
+                "revanced_ic_sb_voting.xml"
+            ),
             ResourceUtils.ResourceGroup(
                 "layout",
                 "inline_sponsor_overlay.xml",
@@ -41,22 +51,9 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 "skip_sponsor_button.xml"
             ),
             ResourceUtils.ResourceGroup(
-                // required resource for back button, because when the base APK is used, this resource will not exist
-                "drawable",
-                "ic_sb_adjust.xml",
-                "ic_sb_compare.xml",
-                "ic_sb_edit.xml",
-                "ic_sb_logo.xml",
-                "ic_sb_publish.xml",
-                "ic_sb_voting.xml"
-            ),
-            ResourceUtils.ResourceGroup(
-                // required resource for back button, because when the base APK is used, this resource will not exist
                 "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
             )
-        ).forEach { resourceGroup ->
-            context.copyResources("youtube/sponsorblock", resourceGroup)
-        }
+        )
 
         /*
         merge xml nodes from the host to their real xml files
@@ -81,7 +78,7 @@ class SponsorBlockResourcePatch : ResourcePatch {
                 if (!(view.hasAttributes() && view.attributes.getNamedItem("android:id").nodeValue.endsWith("live_chat_overlay_button"))) continue
 
                 // voting button id from the voting button view from the youtube_controls_layout.xml host file
-                val votingButtonId = "@+id/sb_voting_button"
+                val votingButtonId = "@+id/revanced_sb_voting_button"
 
                 view.attributes.getNamedItem("android:layout_toStartOf").nodeValue = votingButtonId
 

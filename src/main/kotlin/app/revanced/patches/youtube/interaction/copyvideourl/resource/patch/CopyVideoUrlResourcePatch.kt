@@ -41,11 +41,14 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
             )
         )
 
-        context.copyResources("youtube/copyvideourl", ResourceUtils.ResourceGroup(
-            resourceDirectoryName = "drawable",
-            "revanced_yt_copy.xml",
-            "revanced_yt_copy_timestamp.xml"
-        ))
+        context.copyResources(
+            "youtube/copyvideourl",
+            ResourceUtils.ResourceGroup(
+                resourceDirectoryName = "drawable",
+                "revanced_ic_copy_video_url.xml",
+                "revanced_ic_copy_video_timestamp.xml"
+            )
+        )
 
         BottomControlsResourcePatch.addControls("youtube/copyvideourl/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
 
