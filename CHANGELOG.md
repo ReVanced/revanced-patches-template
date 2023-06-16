@@ -1,3 +1,10 @@
+# [2.182.0](https://github.com/efraimbart/revanced-patches/compare/v2.181.0...v2.182.0) (2023-06-16)
+
+
+### Features
+
+* Sync for Reddit change url ([3fb9547](https://github.com/efraimbart/revanced-patches/commit/3fb9547d90fe0eb3212f5863d490765d891964f3))
+
 # [2.181.0](https://github.com/efraimbart/revanced-patches/compare/v2.180.0...v2.181.0) (2023-06-16)
 
 
