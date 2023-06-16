@@ -71,7 +71,7 @@
     <string name="revanced_external_browser_summary_off">Opening links in app</string>
     <string name="revanced_external_browser_summary_on">Opening links externally</string>
     <string name="revanced_external_browser_title">Open links in browser</string>
-    <string name="revanced_external_downloader_not_installed_warning">is not installed. Please install it.</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_name_summary">Package name of your installed external downloader app, such as NewPipe or PowerTube</string>
     <string name="revanced_external_downloader_name_title">Downloader package name</string>
     <string name="revanced_external_downloader_preference_screen_summary">Settings for using an external downloader</string>
