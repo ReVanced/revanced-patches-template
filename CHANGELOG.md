@@ -1,3 +1,10 @@
+# [2.181.0](https://github.com/efraimbart/revanced-patches/compare/v2.180.0...v2.181.0) (2023-06-16)
+
+
+### Features
+
+* Swapped some stuff around and added logging ([7a0b9c2](https://github.com/efraimbart/revanced-patches/commit/7a0b9c2e2948097e414a71040bb687061d8b8c37))
+
 # [2.180.0](https://github.com/efraimbart/revanced-patches/compare/v2.179.0...v2.180.0) (2023-06-15)
 
 
