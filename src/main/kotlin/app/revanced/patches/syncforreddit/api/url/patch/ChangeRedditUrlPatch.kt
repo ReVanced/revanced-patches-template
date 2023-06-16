@@ -1,15 +1,14 @@
-package app.revanced.patches.syncforreddit.api.patch
+package app.revanced.patches.syncforreddit.api.url.patch
 
 import android.os.Environment
+import app.revanced.extensions.resolveMany
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.syncforreddit.api.fingerprints.GetRedditUrlFingerprint
+import app.revanced.patches.syncforreddit.api.url.fingerprints.GetRedditUrlFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.StringReference
@@ -52,28 +51,28 @@ class ChangeRedditUrlPatch : BytecodePatch(
             }.let { url = it.readText().trim() }
         }
 
+        GetRedditUrlFingerprint
+            .resolveMany(context, context.classes)
+            .forEach {
+                it.mutableMethod.apply {
+                    it.scanResult.stringsScanResult!!.matches.forEach { match ->
+                        val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(match.index)
+                        val targetRegister = (redditUrlStringInstruction as OneRegisterInstruction).registerA
+                        val reference = redditUrlStringInstruction.reference as StringReference
 
-        GetRedditUrlFingerprint.result?.let { fingerprint ->
-            fingerprint.mutableMethod.apply {
-                print(url)
-                fingerprint.scanResult.stringsScanResult!!.matches.forEach {
-                    val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(it.index)
-                    val targetRegister = (redditUrlStringInstruction as OneRegisterInstruction).registerA
-                    val reference = redditUrlStringInstruction.reference as StringReference
+                        val newRedditUrl = reference.string.replace(
+                            "oauth.reddit.com(?!/grants)".toRegex(),
+                            url!!
+                        )
 
-                    print(reference.string)
-                    val newRedditUrl = reference.string.replace(
-                        "oauth.reddit.com",
-                        url!!
-                    )
-
-                    replaceInstruction(
-                        it.index,
-                        "const-string v$targetRegister, \"$newRedditUrl\""
-                    )
+                        replaceInstruction(
+                            match.index,
+                            "const-string v$targetRegister, \"$newRedditUrl\""
+                        )
+                    }
                 }
             }
-        } ?: return PatchResultError("Could not find required method to patch.")
+
         return PatchResultSuccess()
     }
 

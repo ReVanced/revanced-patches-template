@@ -1,4 +1,4 @@
-package app.revanced.patches.syncforreddit.api.patch
+package app.revanced.patches.syncforreddit.api.clientid.patch
 
 import android.os.Environment
 import app.revanced.patcher.annotation.*
@@ -9,8 +9,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.syncforreddit.api.fingerprints.GetAuthorizationStringFingerprint
-import app.revanced.patches.syncforreddit.api.fingerprints.GetBearerTokenFingerprint
+import app.revanced.patches.syncforreddit.api.clientid.fingerprints.GetAuthorizationStringFingerprint
+import app.revanced.patches.syncforreddit.api.clientid.fingerprints.GetBearerTokenFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.StringReference

@@ -1,13 +1,17 @@
 package app.revanced.extensions
 
+import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import org.jf.dexlib2.Opcode
+import org.jf.dexlib2.iface.ClassDef
 import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.util.MethodUtil
@@ -20,6 +24,24 @@ import org.w3c.dom.Node
  * @return A [PatchResultError] for the [MethodFingerprint].
  */
 internal fun MethodFingerprint.toErrorResult() = PatchResultError("Failed to resolve $name")
+
+fun MethodFingerprint.resolveMany(context: BytecodeContext, classes: Iterable<ClassDef>) = sequence {
+    for (classDef in classes) // search through all classes for the fingerprint
+        yieldAll(this@resolveMany.resolveMany(context, classDef))
+
+}
+/**
+ * Resolve a [MethodFingerprint] against all methods of a [ClassDef].
+ *
+ * @param forClass The class on which to resolve the [MethodFingerprint] in.
+ * @param context The [BytecodeContext] to host proxies.
+ * @return A sequence of [MethodFingerprintResult].
+ */
+fun MethodFingerprint.resolveMany(context: BytecodeContext, forClass: ClassDef) = sequence {
+    for (method in forClass.methods)
+        if (this@resolveMany.resolve(context, method, forClass))
+            yield(this@resolveMany.result!!.also { this@resolveMany.result = null })
+}
 
 /**
  * Find the [MutableMethod] from a given [Method] in a [MutableClass].

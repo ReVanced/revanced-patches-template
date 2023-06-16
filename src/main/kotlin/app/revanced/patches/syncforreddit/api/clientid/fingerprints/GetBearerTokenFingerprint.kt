@@ -1,4 +1,4 @@
-package app.revanced.patches.syncforreddit.api.fingerprints
+package app.revanced.patches.syncforreddit.api.clientid.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
