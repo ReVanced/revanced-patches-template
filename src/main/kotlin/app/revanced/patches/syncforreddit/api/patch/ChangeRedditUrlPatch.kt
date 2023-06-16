@@ -54,21 +54,21 @@ class ChangeRedditUrlPatch : BytecodePatch(
 
 
         GetRedditUrlFingerprint.result?.let { fingerprint ->
-            fingerprint.scanResult.stringsScanResult!!.matches.forEach { 
-                val occurrenceIndex = it.index
-
-                fingerprint.mutableMethod.apply {
-                    val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(occurrenceIndex)
+            fingerprint.mutableMethod.apply {
+                print(url)
+                fingerprint.scanResult.stringsScanResult!!.matches.forEach {
+                    val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(it.index)
                     val targetRegister = (redditUrlStringInstruction as OneRegisterInstruction).registerA
                     val reference = redditUrlStringInstruction.reference as StringReference
 
+                    print(reference.string)
                     val newRedditUrl = reference.string.replace(
                         "oauth.reddit.com",
                         url!!
                     )
 
                     replaceInstruction(
-                        occurrenceIndex,
+                        it.index,
                         "const-string v$targetRegister, \"$newRedditUrl\""
                     )
                 }
