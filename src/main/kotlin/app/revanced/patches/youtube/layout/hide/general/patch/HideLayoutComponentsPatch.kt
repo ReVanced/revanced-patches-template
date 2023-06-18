@@ -38,10 +38,34 @@ class HideLayoutComponentsPatch : ResourcePatch {
                 "revanced_hide_channel_guidelines_summary_off",
             ),
             SwitchPreference(
-                "revanced_hide_chapter_teaser",
-                "revanced_hide_chapter_teaser_title",
-                "revanced_hide_chapter_teaser_summary_on",
-                "revanced_hide_chapter_teaser_summary_off",
+                "revanced_hide_expandable_chip",
+                StringResource(
+                    "revanced_hide_expandable_chip_title",
+                    "Hide the expandable chip under videos"
+                ),
+                StringResource(
+                    "revanced_hide_expandable_chip_summary_on",
+                    "Expandable chips are hidden"
+                ),
+                StringResource(
+                    "revanced_hide_expandable_chip_summary_off",
+                    "Expandable chips are shown"
+                )
+            ),
+            SwitchPreference(
+                "revanced_hide_chapters",
+                StringResource(
+                    "revanced_hide_chapters_title",
+                    "Hide chapters in the video description"
+                ),
+                StringResource(
+                    "revanced_hide_chapters_summary_on",
+                    "Chapters are hidden"
+                ),
+                StringResource(
+                    "revanced_hide_chapters_summary_off",
+                    "Chapters are shown"
+                )
             ),
             SwitchPreference(
                 "revanced_hide_community_posts",
