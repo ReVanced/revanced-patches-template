@@ -18,16 +18,18 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
 @Version("0.0.1")
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://rubenmayayo.com",
-    GetClientIdFingerprint
+    listOf(GetClientIdFingerprint)
 ) {
-    override fun MethodFingerprint.patch(context: BytecodeContext): PatchResult {
-        result?.mutableMethod?.addInstructions(
-            0,
-            """
-                     const-string v0, "$clientId"
-                     return-object v0
+    override fun List<MethodFingerprint>.patch(context: BytecodeContext): PatchResult {
+        map { it.result ?: return it.toErrorResult() }.forEach {
+            it.mutableMethod.addInstructions(
+                0,
                 """
-        ) ?: return toErrorResult()
+                             const-string v0, "$clientId"
+                             return-object v0
+                        """
+            )
+        }
 
         return PatchResultSuccess()
     }

@@ -3,15 +3,19 @@ package app.revanced.patches.reddit.customclients
 import android.os.Environment
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.OptionsContainer
+import app.revanced.patcher.patch.PatchOption
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patches.reddit.customclients.boostforreddit.api.patch.ChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.syncforreddit.api.patch.ChangeOAuthClientIdPatch.Companion.clientId
 import java.io.File
 
 abstract class AbstractChangeOAuthClientIdPatch(
     private val redirectUri: String,
-    private val fingerprint: MethodFingerprint,
-) : BytecodePatch(listOf(fingerprint)) {
+    private val fingerprints: List<MethodFingerprint>
+) : BytecodePatch(fingerprints) {
     override fun execute(context: BytecodeContext): PatchResult {
         if (ChangeOAuthClientIdPatch.clientId == null) {
             // Test if on Android
@@ -37,10 +41,10 @@ abstract class AbstractChangeOAuthClientIdPatch(
             }.let { clientId = it.readText().trim() }
         }
 
-        return fingerprint.patch(context)
+        return fingerprints.patch(context)
     }
 
-    abstract fun MethodFingerprint.patch(context: BytecodeContext): PatchResult
+    abstract fun List<MethodFingerprint>.patch(context: BytecodeContext): PatchResult
 
     companion object Options {
         open class ChangeOAuthClientIdOptionsContainer : OptionsContainer() {
