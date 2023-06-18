@@ -115,9 +115,6 @@
     <string name="revanced_hide_channel_member_shelf_summary_off">Ishalofu lelungu lesiteshi liyaboniswa</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">Ishalofu lelungu lesiteshi lifihliwe</string>
     <string name="revanced_hide_channel_member_shelf_title">Fihla ishalofu lelungu lesiteshi</string>
-    <string name="revanced_hide_chapter_teaser_summary_off">Amahlaya esahluko ayaboniswa</string>
-    <string name="revanced_hide_chapter_teaser_summary_on">Amahlaya esahluko afihliwe</string>
-    <string name="revanced_hide_chapter_teaser_title">Fihla amazwibela esahluko ngaphansi kwamavidiyo</string>
     <string name="revanced_hide_clip_button_summary_off">Inkinobho yokunamathisela iyaboniswa</string>
     <string name="revanced_hide_clip_button_summary_on">Inkinobho yokunamathisela ifihliwe</string>
     <string name="revanced_hide_clip_button_title">Fihla inkinobho yesiqeshana</string>

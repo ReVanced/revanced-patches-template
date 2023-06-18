@@ -115,9 +115,6 @@
     <string name="revanced_hide_channel_member_shelf_summary_off">显示频道会员架</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">频道会员架被隐藏</string>
     <string name="revanced_hide_channel_member_shelf_title">隐藏频道会员架</string>
-    <string name="revanced_hide_chapter_teaser_summary_off">已显示章节预告片</string>
-    <string name="revanced_hide_chapter_teaser_summary_on">隐藏章节预告</string>
-    <string name="revanced_hide_chapter_teaser_title">在视频下隐藏章节预告片</string>
     <string name="revanced_hide_clip_button_summary_off">显示剪辑按钮</string>
     <string name="revanced_hide_clip_button_summary_on">隐藏剪辑按钮</string>
     <string name="revanced_hide_clip_button_title">隐藏剪辑按钮</string>

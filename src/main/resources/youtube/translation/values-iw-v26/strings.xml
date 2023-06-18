@@ -115,9 +115,6 @@
     <string name="revanced_hide_channel_member_shelf_summary_off">מוצג מדף חברי הערוץ</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">מדף חברי הערוץ מוסתר</string>
     <string name="revanced_hide_channel_member_shelf_title">הסתר את מדף חברי הערוץ</string>
-    <string name="revanced_hide_chapter_teaser_summary_off">מוצגים טיזרים של פרקים</string>
-    <string name="revanced_hide_chapter_teaser_summary_on">טיזרים של פרקים מוסתרים</string>
-    <string name="revanced_hide_chapter_teaser_title">הסתר טיזר פרק מתחת לסרטונים</string>
     <string name="revanced_hide_clip_button_summary_off">לחצן הקליפ מוצג</string>
     <string name="revanced_hide_clip_button_summary_on">כפתור הקליפ מוסתר</string>
     <string name="revanced_hide_clip_button_title">הסתר כפתור קליפ</string>

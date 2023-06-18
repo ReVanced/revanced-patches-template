@@ -71,9 +71,9 @@
     <string name="revanced_external_browser_summary_off">Opening links in app</string>
     <string name="revanced_external_browser_summary_on">Opening links externally</string>
     <string name="revanced_external_browser_title">Open links in browser</string>
-    <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_name_summary">Package name of your installed external downloader app, such as NewPipe or PowerTube</string>
     <string name="revanced_external_downloader_name_title">Downloader package name</string>
+    <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_preference_screen_summary">Settings for using an external downloader</string>
     <string name="revanced_external_downloader_preference_screen_title">External download settings</string>
     <string name="revanced_external_downloader_summary_off">Download button not shown in player</string>
@@ -120,9 +120,9 @@
     <string name="revanced_hide_channel_member_shelf_summary_off">Channel member shelf is shown</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">Channel member shelf is hidden</string>
     <string name="revanced_hide_channel_member_shelf_title">Hide channel member shelf</string>
-    <string name="revanced_hide_chapter_teaser_summary_off">Chapter teasers are shown</string>
-    <string name="revanced_hide_chapter_teaser_summary_on">Chapter teasers are hidden</string>
-    <string name="revanced_hide_chapter_teaser_title">Hide chapter teaser under videos</string>
+    <string name="revanced_hide_chapters_summary_off">Chapters are shown</string>
+    <string name="revanced_hide_chapters_summary_on">Chapters are hidden</string>
+    <string name="revanced_hide_chapters_title">Hide chapters in the video description</string>
     <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
     <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
     <string name="revanced_hide_clip_button_title">Hide clip button</string>
@@ -157,6 +157,9 @@
     <string name="revanced_hide_endscreen_cards_summary_off">End screen cards are shown</string>
     <string name="revanced_hide_endscreen_cards_summary_on">End screen cards are hidden</string>
     <string name="revanced_hide_endscreen_cards_title">Hide end screen cards</string>
+    <string name="revanced_hide_expandable_chip_summary_off">Expandable chips are shown</string>
+    <string name="revanced_hide_expandable_chip_summary_on">Expandable chips are hidden</string>
+    <string name="revanced_hide_expandable_chip_title">Hide the expandable chip under videos</string>
     <string name="revanced_hide_feed_survey_summary_off">Feed surveys are shown</string>
     <string name="revanced_hide_feed_survey_summary_on">Feed surveys are hidden</string>
     <string name="revanced_hide_feed_survey_title">Hide feed surveys</string>
@@ -314,8 +317,8 @@
     <string name="revanced_hide_web_search_results_title">Hide web search results</string>
     <string name="revanced_microg_not_installed_warning">Vanced MicroG is not installed. Please install it.</string>
     <string name="revanced_microg_not_running_warning">Vanced MicroG is failing to run. Please follow the "Don't kill my app" guide for Vanced MicroG.</string>
-    <string name="revanced_microg_settings_title">MicroG Settings</string>
     <string name="revanced_microg_settings_summary">Settings for MicroG</string>
+    <string name="revanced_microg_settings_title">MicroG Settings</string>
     <string name="revanced_minimized_playback_enabled_title">Minimized playback</string>
     <string name="revanced_minimized_playback_summary_on">This setting can be found in Settings -> Background</string>
     <string name="revanced_misc_summary">Miscellaneous patches</string>

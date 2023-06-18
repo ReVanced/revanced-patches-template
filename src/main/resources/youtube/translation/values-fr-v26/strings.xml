@@ -115,9 +115,6 @@
     <string name="revanced_hide_channel_member_shelf_summary_off">L\'étagère des membres de la chaîne s\'affiche</string>
     <string name="revanced_hide_channel_member_shelf_summary_on">L\'étagère des membres de la chaîne est masquée</string>
     <string name="revanced_hide_channel_member_shelf_title">Masquer l\'étagère des membres de la chaîne</string>
-    <string name="revanced_hide_chapter_teaser_summary_off">Les teasers des chapitres sont affichés</string>
-    <string name="revanced_hide_chapter_teaser_summary_on">Les teasers des chapitres sont cachés</string>
-    <string name="revanced_hide_chapter_teaser_title">Masquer le teaser du chapitre sous les vidéos</string>
     <string name="revanced_hide_clip_button_summary_off">Le bouton Clip est affiché</string>
     <string name="revanced_hide_clip_button_summary_on">Le bouton Clip est masqué</string>
     <string name="revanced_hide_clip_button_title">Masquer le bouton du clip</string>
