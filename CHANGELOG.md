@@ -1,3 +1,31 @@
+# [2.178.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.3...v2.178.0-dev.4) (2023-06-18)
+
+
+### Features
+
+* **boostforreddit:** add `change-oauth-client-id` patch ([3dbc4bd](https://github.com/revanced/revanced-patches/commit/3dbc4bd49df1656893ef69c68550a2deb6a92cb7))
+
+# [2.178.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.2...v2.178.0-dev.3) (2023-06-17)
+
+
+### Bug Fixes
+
+* **youtube/comments:** add missing filter ([#2423](https://github.com/revanced/revanced-patches/issues/2423)) ([cab04b3](https://github.com/revanced/revanced-patches/commit/cab04b3a56cfc5bf00b7c6fcf6f86ab75aa5d4fd))
+
+# [2.178.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.1...v2.178.0-dev.2) (2023-06-16)
+
+
+### Bug Fixes
+
+* **googlerecorder/remove-device-restrictions:** add missing app constraint ([#2438](https://github.com/revanced/revanced-patches/issues/2438)) ([d5efe26](https://github.com/revanced/revanced-patches/commit/d5efe26f8959cde75dd3865ec3c2df4b05210e4a))
+
+# [2.178.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.177.1-dev.2...v2.178.0-dev.1) (2023-06-16)
+
+
+### Features
+
+* **google-recorder:** add `remove-device-restrictions` patch ([ef96ed1](https://github.com/revanced/revanced-patches/commit/ef96ed124e12091dde34124eabd8be9f2bb9280c))
+
 ## [2.177.1-dev.2](https://github.com/revanced/revanced-patches/compare/v2.177.1-dev.1...v2.177.1-dev.2) (2023-06-14)
 
 

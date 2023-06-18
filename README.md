@@ -205,6 +205,14 @@ The official ReVanced Patches.
 | `spoof-signature` | Spoofs the signature of the app. | all |
 </details>
 
+### [📦 `com.rubenmayayo.reddit`](https://play.google.com/store/apps/details?id=com.rubenmayayo.reddit)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID in Boost for Reddit. | all |
+</details>
+
 ### [📦 `com.laurencedawson.reddit_sync.pro`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.pro)
 <details>
 
@@ -293,6 +301,14 @@ The official ReVanced Patches.
 | `remove-debugging-detection` | Removes the USB and wireless debugging checks. | all |
 </details>
 
+### [📦 `com.google.android.apps.recorder`](https://play.google.com/store/apps/details?id=com.google.android.apps.recorder)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `remove-device-restrictions` | Removes restrictions from using the app on any device. | all |
+</details>
+
 ### [📦 `com.dci.dev.androidtwelvewidgets`](https://play.google.com/store/apps/details?id=com.dci.dev.androidtwelvewidgets)
 <details>
 
@@ -325,6 +341,30 @@ The official ReVanced Patches.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
+### [📦 `tv.trakt.trakt`](https://play.google.com/store/apps/details?id=tv.trakt.trakt)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
+</details>
+
+### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | 4.6377 |
+</details>
+
+### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
+</details>
+
 ### [📦 `com.vsco.cam`](https://play.google.com/store/apps/details?id=com.vsco.cam)
 <details>
 
@@ -341,39 +381,7 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
-### [📦 `com.candylink.openvpn`](https://play.google.com/store/apps/details?id=com.candylink.openvpn)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks premium features. | all |
-</details>
-
-### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
-</details>
-
 ### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | 4.6377 |
-</details>
-
-### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
@@ -389,20 +397,28 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks all professional features. | 3.4.9 |
 </details>
 
-### [📦 `tv.trakt.trakt`](https://play.google.com/store/apps/details?id=tv.trakt.trakt)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
-</details>
-
 ### [📦 `com.wakdev.apps.nfctools.se`](https://play.google.com/store/apps/details?id=com.wakdev.apps.nfctools.se)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `com.candylink.openvpn`](https://play.google.com/store/apps/details?id=com.candylink.openvpn)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks premium features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
