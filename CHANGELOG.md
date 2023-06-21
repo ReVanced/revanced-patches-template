@@ -1,3 +1,31 @@
+# [2.178.0-dev.9](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.8...v2.178.0-dev.9) (2023-06-21)
+
+
+### Features
+
+* **twitch:** 15.4.1 support ([#2462](https://github.com/revanced/revanced-patches/issues/2462)) ([826ed49](https://github.com/revanced/revanced-patches/commit/826ed49c7ca5a00e383b743f88f75dbfc00adb43))
+
+# [2.178.0-dev.8](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.7...v2.178.0-dev.8) (2023-06-20)
+
+
+### Bug Fixes
+
+* **boostforreddit:** use correct options ([ec39732](https://github.com/revanced/revanced-patches/commit/ec39732a05f7c4c3360b8ba42fe50fd60952e6ac))
+
+# [2.178.0-dev.7](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.6...v2.178.0-dev.7) (2023-06-19)
+
+
+### Features
+
+* **youtube-music:** remove version compatibility constraints ([276af14](https://github.com/revanced/revanced-patches/commit/276af1415a4d354c62fe6259b6559bca1fa84f08))
+
+# [2.178.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.5...v2.178.0-dev.6) (2023-06-18)
+
+
+### Bug Fixes
+
+* **youtube/hide-album-cards:** call correct integrations method ([0dbffaa](https://github.com/revanced/revanced-patches/commit/0dbffaae7d6dcb7050a9ea6e3c771839bcfdfbe1))
+
 # [2.178.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.178.0-dev.4...v2.178.0-dev.5) (2023-06-18)
 
 
