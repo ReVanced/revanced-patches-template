@@ -71,16 +71,15 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
-| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | all |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
-| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | 5.39.52 |
+| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | all |
 | `minimized-playback-music` | Enables minimized playback on Kids music. | all |
-| `music-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 | `music-video-ads` | Removes ads in the music player. | all |
-| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the home screen. | all |
 | `upgrade-button-remover` | Removes the upgrade tab from the pivot bar. | all |
+| `vanced-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 </details>
 
 ### [📦 `com.ss.android.ugc.trill`](https://play.google.com/store/apps/details?id=com.ss.android.ugc.trill)
@@ -120,13 +119,13 @@ The official ReVanced Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `auto-claim-channel-points` | Automatically claim Channel Points. | all |
-| `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
-| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
-| `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
+| `auto-claim-channel-points` | Automatically claim Channel Points. | 15.4.1 |
+| `block-audio-ads` | Blocks audio ads in streams and VODs. | 15.4.1 |
+| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 15.4.1 |
+| `block-video-ads` | Blocks video ads in streams and VODs. | 15.4.1 |
 | `debug-mode` | Enables Twitch's internal debugging mode. | all |
 | `settings` | Adds settings menu to Twitch. | all |
-| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
+| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | 15.4.1 |
 </details>
 
 ### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
@@ -341,12 +340,12 @@ The official ReVanced Patches.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
-### [📦 `tv.trakt.trakt`](https://play.google.com/store/apps/details?id=tv.trakt.trakt)
+### [📦 `com.candylink.openvpn`](https://play.google.com/store/apps/details?id=com.candylink.openvpn)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
+| `unlock-pro` | Unlocks premium features. | all |
 </details>
 
 ### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
@@ -355,6 +354,22 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks pro features. | 4.6377 |
+</details>
+
+### [📦 `com.wakdev.apps.nfctools.se`](https://play.google.com/store/apps/details?id=com.wakdev.apps.nfctools.se)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
@@ -373,22 +388,6 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks pro features. | all |
 </details>
 
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
 ### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
 <details>
 
@@ -397,12 +396,20 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks all professional features. | 3.4.9 |
 </details>
 
-### [📦 `com.wakdev.apps.nfctools.se`](https://play.google.com/store/apps/details?id=com.wakdev.apps.nfctools.se)
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `tv.trakt.trakt`](https://play.google.com/store/apps/details?id=tv.trakt.trakt)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
 </details>
 
 ### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
@@ -411,14 +418,6 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
-### [📦 `com.candylink.openvpn`](https://play.google.com/store/apps/details?id=com.candylink.openvpn)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks premium features. | all |
 </details>
 
 ### [📦 `com.ticktick.task`](https://play.google.com/store/apps/details?id=com.ticktick.task)
