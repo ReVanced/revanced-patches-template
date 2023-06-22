@@ -19,7 +19,6 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.StringReference
 import java.util.*
 
-
 @Patch
 @Name("change-oauth-client-id")
 @Description("Changes the OAuth client ID.")
@@ -27,44 +26,45 @@ import java.util.*
 @Version("0.0.1")
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://redditsync/auth",
+    Options,
     listOf(GetAuthorizationStringFingerprint)
 ) {
     override fun List<MethodFingerprint>.patch(context: BytecodeContext): PatchResult {
         map { it.result ?: return it.toErrorResult() }.forEach { fingerprintResult ->
             fingerprintResult.also { result ->
-                    GetBearerTokenFingerprint.also { it.resolve(context, result.classDef) }.result?.mutableMethod?.apply {
-                        val auth = Base64.getEncoder().encodeToString("$clientId:".toByteArray(Charsets.UTF_8))
-                        addInstructions(
-                            0,
-                            """
-                            const-string v0, "Basic $auth"
-                            return-object v0
+                GetBearerTokenFingerprint.also { it.resolve(context, result.classDef) }.result?.mutableMethod?.apply {
+                    val auth = Base64.getEncoder().encodeToString("$clientId:".toByteArray(Charsets.UTF_8))
+                    addInstructions(
+                        0,
                         """
-                        )
-                    } ?: return GetBearerTokenFingerprint.toErrorResult()
-                }.let {
-                    val occurrenceIndex = it.scanResult.stringsScanResult!!.matches.first().index
+                         const-string v0, "Basic $auth"
+                         return-object v0
+                    """
+                    )
+                } ?: return GetBearerTokenFingerprint.toErrorResult()
+            }.let {
+                val occurrenceIndex = it.scanResult.stringsScanResult!!.matches.first().index
 
-                    it.mutableMethod.apply {
-                        val authorizationStringInstruction = getInstruction<ReferenceInstruction>(occurrenceIndex)
-                        val targetRegister = (authorizationStringInstruction as OneRegisterInstruction).registerA
-                        val reference = authorizationStringInstruction.reference as StringReference
+                it.mutableMethod.apply {
+                    val authorizationStringInstruction = getInstruction<ReferenceInstruction>(occurrenceIndex)
+                    val targetRegister = (authorizationStringInstruction as OneRegisterInstruction).registerA
+                    val reference = authorizationStringInstruction.reference as StringReference
 
-                        val newAuthorizationUrl = reference.string.replace(
-                            "client_id=.*?&".toRegex(),
-                            "client_id=${clientId!!}&"
-                        )
+                    val newAuthorizationUrl = reference.string.replace(
+                        "client_id=.*?&".toRegex(),
+                        "client_id=$clientId&"
+                    )
 
-                        replaceInstruction(
-                            occurrenceIndex,
-                            "const-string v$targetRegister, \"$newAuthorizationUrl\""
-                        )
-                    }
+                    replaceInstruction(
+                        occurrenceIndex,
+                        "const-string v$targetRegister, \"$newAuthorizationUrl\""
+                    )
                 }
             }
+        }
 
         return PatchResultSuccess()
     }
 
-    companion object : Options.ChangeOAuthClientIdOptionsContainer()
+    companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()
 }

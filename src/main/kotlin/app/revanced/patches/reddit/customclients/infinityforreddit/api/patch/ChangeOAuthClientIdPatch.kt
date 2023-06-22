@@ -21,6 +21,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "infinity://localhost",
+    Options,
     listOf(
         GetHTTPBasicAuthHeaderFingerprint,
         LoginActivityOnCreateFingerprint
@@ -42,5 +43,5 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
         return PatchResultSuccess()
     }
 
-    companion object : Options.ChangeOAuthClientIdOptionsContainer()
+    companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()
 }
