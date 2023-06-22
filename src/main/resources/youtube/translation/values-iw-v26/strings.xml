@@ -318,6 +318,7 @@
     <string name="revanced_remember_video_quality_last_selected_summary_off">שינויי איכות חלים רק על הסרטון הנוכחי</string>
     <string name="revanced_remember_video_quality_last_selected_summary_on">שינויים באיכות חלים על כל הסרטונים</string>
     <string name="revanced_remember_video_quality_last_selected_title">זכור שינויים באיכות הסרטון</string>
+    <string name="revanced_remember_video_quality_toast" formatted="false">איכות ברירת המחדל של %s שונה ל: %s</string>
     <string name="revanced_ryd_settings_summary">הגדרות להחזרת YouTube Dislike</string>
     <string name="revanced_seekbar_color_summary">צבע סרגל החיפוש</string>
     <string name="revanced_seekbar_color_title">צבע סרגל החיפוש</string>
