@@ -20,7 +20,6 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParam
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Name("spoof-signature-verification")
@@ -29,7 +28,6 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
     IntegrationsPatch::class,
     SettingsPatch::class,
     PlayerTypeHookPatch::class,
-    VideoIdPatch::class
 ])
 @Version("0.0.1")
 class SpoofSignatureVerificationPatch : BytecodePatch(
@@ -54,9 +52,6 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                     "Turning off this setting may cause playback issues.")
             )
         )
-
-        // Hook video id, required for subtitle fix.
-        VideoIdPatch.injectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentVideoId(Ljava/lang/String;)V")
 
         // hook parameter
         ProtobufParameterBuilderFingerprint.result?.let {
