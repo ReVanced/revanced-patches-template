@@ -48,8 +48,8 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 StringResource("revanced_spoof_signature_verification_summary_on",
                     "App signature spoofed\\n\\n"
                         + "Side effects include:\\n"
+                        + "• Ambient mode may not work\\n"
                         + "• Seekbar thumbnails are hidden\\n"
-                        + "• End screen cards are hidden\\n"
                         + "• Downloading videos may not work"),
                 StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
                 StringResource("revanced_spoof_signature_verification_user_dialog_message",
@@ -97,6 +97,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
         } ?: return OpenCronetDataSourceFingerprint.toErrorResult()
 
         // hook override subtitles
+        if (false) { // Subtitle fix is not required for current protobuf parameter spoofing
         SubtitleWindowSettingsConstructorFingerprint.result?.let {
             it.mutableMethod.apply {
                 addInstructions(
@@ -114,6 +115,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 )
             }
         } ?: return SubtitleWindowSettingsConstructorFingerprint.toErrorResult()
+        }
 
         return PatchResultSuccess()
     }
