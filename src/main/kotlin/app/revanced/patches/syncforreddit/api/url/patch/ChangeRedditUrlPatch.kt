@@ -6,14 +6,15 @@ import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.syncforreddit.api.url.fingerprints.GetRedditImageUrlFingerprint
 import app.revanced.patches.syncforreddit.api.url.fingerprints.GetRedditUrlFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.StringReference
 import java.io.File
-import java.util.*
 
 @Patch
 @Name("change-reddit-url")
@@ -25,9 +26,9 @@ import java.util.*
         Package("com.laurencedawson.reddit_sync.dev")
     ]
 )
-@Version("0.0.1")
+@Version("1.0.0")
 class ChangeRedditUrlPatch : BytecodePatch(
-    listOf(GetRedditUrlFingerprint)
+    listOf(GetRedditUrlFingerprint, GetRedditImageUrlFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         if (url == null) {
@@ -53,27 +54,63 @@ class ChangeRedditUrlPatch : BytecodePatch(
 
         GetRedditUrlFingerprint
             .resolveMany(context, context.classes)
-            .forEach {
-                it.mutableMethod.apply {
-                    it.scanResult.stringsScanResult!!.matches.forEach { match ->
-                        val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(match.index)
-                        val targetRegister = (redditUrlStringInstruction as OneRegisterInstruction).registerA
-                        val reference = redditUrlStringInstruction.reference as StringReference
+            .replaceAll {
+                val replacement = it.replace(
+                    "^((?:https?://)?(?:[a-z0-9-]+\\.)*)?reddit\\.com(.*)$".toRegex(),
+                    "$1$url$2"
+                )
+                val replaced = replacement != it
 
-                        val newRedditUrl = reference.string.replace(
-                            "oauth.reddit.com(?!/grants)".toRegex(),
-                            url!!
-                        )
+                print("$it: $replaced")
+                if (replaced) print(": $replacement")
+                println()
 
+                ReplacementResults(
+                    replacement,
+                    replaced
+                )
+            }
+
+        GetRedditImageUrlFingerprint
+            .resolveMany(context, context.classes)
+            .replaceAll {
+                print("$it: ")
+                println(true)
+                ReplacementResults(
+                    it.replace(
+                        "preview.redd.it",
+                        "images.$url"
+                    ),
+                    replaced = true
+                )
+
+            }
+
+        return PatchResultSuccess()
+    }
+
+    data class ReplacementResults(val replacement: String, val replaced: Boolean)
+
+    private fun Sequence<MethodFingerprintResult>.replaceAll(replace: (replacing: String) -> ReplacementResults) {
+        this.forEach {
+            it.mutableMethod.apply {
+                it.scanResult.stringsScanResult!!.matches.forEach { match ->
+                    val redditUrlStringInstruction = getInstruction<ReferenceInstruction>(match.index)
+                    val targetRegister =
+                        (redditUrlStringInstruction as OneRegisterInstruction).registerA
+                    val reference = redditUrlStringInstruction.reference as StringReference
+
+                    val newRedditUrl = replace(reference.string)
+
+                    if (newRedditUrl.replaced) {
                         replaceInstruction(
                             match.index,
-                            "const-string v$targetRegister, \"$newRedditUrl\""
+                            "const-string v$targetRegister, \"${newRedditUrl.replacement}\""
                         )
                     }
                 }
             }
-
-        return PatchResultSuccess()
+        }
     }
 
     companion object : OptionsContainer() {
