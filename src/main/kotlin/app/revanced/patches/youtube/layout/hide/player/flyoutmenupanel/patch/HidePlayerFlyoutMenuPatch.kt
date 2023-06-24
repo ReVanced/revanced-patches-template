@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuPanelItemsCompatibility
+import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuItemsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Name("player-flyout-menu")
 @Description("Hides player flyout menu items.")
 @DependsOn([LithoFilterPatch::class, SettingsPatch::class])
-@HidePlayerFlyoutMenuPanelItemsCompatibility
+@HidePlayerFlyoutMenuItemsCompatibility
 @Version("0.0.1")
 class HidePlayerFlyoutMenuPatch: ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
@@ -103,6 +103,6 @@ class HidePlayerFlyoutMenuPatch: ResourcePatch {
         const val KEY = "revanced_player_flyout_menu_items"
 
         const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/HidePlayerFlyoutMenuFilter;"
+            "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuFilter;"
     }
 }
