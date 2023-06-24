@@ -1,10 +1,9 @@
 package app.revanced.patches.reddit.customclients.boostforreddit.api.patch
 
-import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
@@ -21,8 +20,8 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     Options,
     listOf(GetClientIdFingerprint)
 ) {
-    override fun List<MethodFingerprint>.patch(context: BytecodeContext): PatchResult {
-        map { it.result ?: return it.toErrorResult() }.forEach {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+        forEach {
             it.mutableMethod.addInstructions(
                 0,
                 """
