@@ -1,3 +1,22 @@
+# [2.179.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.178.1-dev.1...v2.179.0-dev.1) (2023-06-24)
+
+
+### Bug Fixes
+
+* **syncforreddit:** use correct overriding method signature ([#2483](https://github.com/revanced/revanced-patches/issues/2483)) ([f9770cf](https://github.com/revanced/revanced-patches/commit/f9770cf1babce61cd32f6ca9140103419d8d094d))
+
+
+### Features
+
+* **infinityforreddit:** add `change-oauth-client-id` patch ([#2452](https://github.com/revanced/revanced-patches/issues/2452)) ([9efd790](https://github.com/revanced/revanced-patches/commit/9efd7904acc6dc70f45c6c0f835c839473d9205f))
+
+## [2.178.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.178.0...v2.178.1-dev.1) (2023-06-23)
+
+
+### Bug Fixes
+
+* **youtube/client-spoof:** update settings text for known side effects of spoof signature ([#2476](https://github.com/revanced/revanced-patches/issues/2476)) ([6756f80](https://github.com/revanced/revanced-patches/commit/6756f80e3e0c09376a1fd613d28644bdaa24da57))
+
 # [2.178.0](https://github.com/revanced/revanced-patches/compare/v2.177.0...v2.178.0) (2023-06-21)
 
 
