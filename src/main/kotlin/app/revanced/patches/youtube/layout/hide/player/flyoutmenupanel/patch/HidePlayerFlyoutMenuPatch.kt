@@ -103,6 +103,6 @@ class HidePlayerFlyoutMenuPatch: ResourcePatch {
         const val KEY = "revanced_player_flyout_menu_items"
 
         const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuFilter;"
+            "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
     }
 }
