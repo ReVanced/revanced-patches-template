@@ -16,7 +16,7 @@ import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints
 
 @Patch
 @Name("change-client-id")
-@Description("Changes the OAuth client ID so Relay can be used after July 1st")
+@Description("Changes the OAuth client ID")
 @Compatibility([Package("free.reddit.news"), Package("reddit.news")])
 @Version("0.0.1")
 class ChangeClientIdPatch :
