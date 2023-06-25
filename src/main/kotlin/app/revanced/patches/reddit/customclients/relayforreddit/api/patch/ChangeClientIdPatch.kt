@@ -26,7 +26,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     Options,
     GetClientIdFingerprint
 ) {
-
     override fun MethodFingerprint.patch(context: BytecodeContext): PatchResult {
         val result = GetClientIdFingerprint.result ?: return GetClientIdFingerprint.toErrorResult()
 
