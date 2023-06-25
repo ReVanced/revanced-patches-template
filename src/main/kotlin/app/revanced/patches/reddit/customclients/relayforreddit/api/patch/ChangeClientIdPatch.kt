@@ -7,21 +7,27 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.OptionsContainer
 import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetClientIdFingerprint
 
 @Patch
-@Name("change-client-id")
-@Description("Changes the OAuth client ID")
+@Name("change-oauth-client-id")
+@Description("Changes the OAuth client ID in Relay for Reddit.")
 @Compatibility([Package("free.reddit.news"), Package("reddit.news")])
 @Version("0.0.1")
-class ChangeClientIdPatch :
-    BytecodePatch(listOf(GetClientIdFingerprint)) {
-    override fun execute(context: BytecodeContext): PatchResult {
+class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
+    "dbrady://relay",
+    Options,
+    GetClientIdFingerprint
+) {
+
+    override fun MethodFingerprint.patch(context: BytecodeContext): PatchResult {
         val result = GetClientIdFingerprint.result ?: return GetClientIdFingerprint.toErrorResult()
         val newClientId = clientId
             ?: return PatchResultError("You need to provide a client ID using patch options to use this patch")
@@ -31,14 +37,5 @@ class ChangeClientIdPatch :
         return PatchResultSuccess()
     }
 
-    companion object : OptionsContainer() {
-        var clientId: String? by option(
-            PatchOption.StringOption(
-                "client-id",
-                null,
-                "OAuth client ID",
-                "Client ID for Reddit api"
-            )
-        )
-    }
+    companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()
 }
