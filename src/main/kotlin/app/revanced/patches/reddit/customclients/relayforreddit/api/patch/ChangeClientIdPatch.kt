@@ -18,7 +18,7 @@ import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints
 
 @Patch
 @Name("change-oauth-client-id")
-@Description("Changes the OAuth client ID in Relay for Reddit.")
+@Description("Changes the OAuth client ID.")
 @Compatibility([Package("free.reddit.news"), Package("reddit.news")])
 @Version("0.0.1")
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
