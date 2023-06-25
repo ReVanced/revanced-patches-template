@@ -9,14 +9,14 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
-import app.revanced.patches.reddit.customclients.ChangeClientIdPatchAnnotation
+import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.GetHTTPBasicAuthHeaderFingerprint
 import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.LoginActivityOnCreateFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
-@ChangeClientIdPatchAnnotation
+@ChangeOAuthClientIdPatchAnnotation
 @Compatibility([Package("ml.docilealligator.infinityforreddit")])
-class ChangeClientIdPatch : AbstractChangeOAuthClientIdPatch(
+class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "infinity://localhost",
     Options,
     listOf(GetHTTPBasicAuthHeaderFingerprint, LoginActivityOnCreateFingerprint)

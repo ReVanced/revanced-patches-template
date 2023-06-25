@@ -8,12 +8,12 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
-import app.revanced.patches.reddit.customclients.ChangeClientIdPatchAnnotation
+import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints.GetClientIdFingerprint
 
-@ChangeClientIdPatchAnnotation
+@ChangeOAuthClientIdPatchAnnotation
 @Compatibility([Package("com.rubenmayayo.reddit")])
-class ChangeClientIdPatch : AbstractChangeOAuthClientIdPatch(
+class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://rubenmayayo.com", Options, listOf(GetClientIdFingerprint)
 ) {
     override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {

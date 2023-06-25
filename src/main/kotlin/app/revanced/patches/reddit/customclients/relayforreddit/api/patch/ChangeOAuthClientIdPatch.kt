@@ -8,10 +8,10 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
-import app.revanced.patches.reddit.customclients.ChangeClientIdPatchAnnotation
+import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetClientIdFingerprint
 
-@ChangeClientIdPatchAnnotation
+@ChangeOAuthClientIdPatchAnnotation
 @Compatibility([Package("free.reddit.news"), Package("reddit.news")])
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "dbrady://relay", Options, listOf(GetClientIdFingerprint)
