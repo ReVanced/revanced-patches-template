@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.infinityforreddit.api.patch
+package app.revanced.patches.reddit.customclients.relayforreddit.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
@@ -10,26 +10,33 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
-import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.GetHTTPBasicAuthHeaderFingerprint
-import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.LoginActivityOnCreateFingerprint
+import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetLoggedInBearerTokenFingerprint
+import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetLoggedOutBearerTokenFingerprint
+import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.LoginActivityClientIdFingerprint
+import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetRefreshTokenFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @ChangeOAuthClientIdPatchAnnotation
-@Compatibility([Package("ml.docilealligator.infinityforreddit")])
+@Compatibility([Package("free.reddit.news"), Package("reddit.news")])
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
-    "infinity://localhost",
+    "dbrady://relay",
     Options,
-    listOf(GetHTTPBasicAuthHeaderFingerprint, LoginActivityOnCreateFingerprint)
+    listOf(
+        LoginActivityClientIdFingerprint,
+        GetLoggedInBearerTokenFingerprint,
+        GetLoggedOutBearerTokenFingerprint,
+        GetRefreshTokenFingerprint
+    )
 ) {
     override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
         forEach {
             val clientIdIndex = it.scanResult.stringsScanResult!!.matches.first().index
             it.mutableMethod.apply {
-                val oAuthClientIdRegister = getInstruction<OneRegisterInstruction>(clientIdIndex).registerA
+                val clientIdRegister = getInstruction<OneRegisterInstruction>(clientIdIndex).registerA
 
-                replaceInstruction(
+                it.mutableMethod.replaceInstruction(
                     clientIdIndex,
-                    "const-string v$oAuthClientIdRegister, \"$clientId\""
+                    "const-string v$clientIdRegister, \"$clientId\""
                 )
             }
         }

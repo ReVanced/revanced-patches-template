@@ -1,3 +1,26 @@
+# [2.179.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.179.0-dev.4...v2.179.0-dev.5) (2023-06-27)
+
+
+### Bug Fixes
+
+* **relayforreddit/change-oauth-client-id:** change client id instead of developer key ([#2508](https://github.com/revanced/revanced-patches/issues/2508)) ([4befb44](https://github.com/revanced/revanced-patches/commit/4befb4414638c5936f99d8d63d73c729efc773a5))
+
+# [2.179.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.179.0-dev.3...v2.179.0-dev.4) (2023-06-27)
+
+# [2.179.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.179.0-dev.2...v2.179.0-dev.3) (2023-06-26)
+
+
+### Bug Fixes
+
+* **enable-android-debugging:** remove json options ([#2497](https://github.com/revanced/revanced-patches/issues/2497)) ([3e25f5f](https://github.com/revanced/revanced-patches/commit/3e25f5f8df24a585dc1097aa16877841f0c6b74a))
+
+# [2.179.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.179.0-dev.1...v2.179.0-dev.2) (2023-06-25)
+
+
+### Features
+
+* **relayforreddit:** add `change-oauth-client-id` patch ([#2491](https://github.com/revanced/revanced-patches/issues/2491)) ([fe66f40](https://github.com/revanced/revanced-patches/commit/fe66f4089d6365564c8097d3c7a1bc842c343194))
+
 # [2.179.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.178.1-dev.1...v2.179.0-dev.1) (2023-06-24)
 
 
