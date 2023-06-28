@@ -8,6 +8,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -20,6 +21,7 @@ import app.revanced.patches.youtube.misc.minimizedplayback.annotations.Minimized
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
+import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
@@ -34,7 +36,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         MinimizedPlaybackManagerFingerprint,
-        MinimizedPlaybackSettingsFingerprint,
+        MinimizedPlaybackSettingsParentFingerprint,
         KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
@@ -59,6 +61,8 @@ class MinimizedPlaybackPatch : BytecodePatch(
         } ?: return MinimizedPlaybackManagerFingerprint.toErrorResult()
 
         // Enable minimized playback option in YouTube settings
+        MinimizedPlaybackSettingsParentFingerprint.result ?: return MinimizedPlaybackSettingsParentFingerprint.toErrorResult()
+        MinimizedPlaybackSettingsFingerprint.resolve(context, MinimizedPlaybackSettingsParentFingerprint.result!!.classDef)
         MinimizedPlaybackSettingsFingerprint.result?.apply {
             val booleanCalls = method.implementation!!.instructions.withIndex()
                 .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }

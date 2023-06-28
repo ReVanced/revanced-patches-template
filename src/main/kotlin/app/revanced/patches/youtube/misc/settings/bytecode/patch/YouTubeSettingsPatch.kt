@@ -22,6 +22,7 @@ import app.revanced.patches.youtube.misc.settings.resource.patch.YouTubeSettings
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.util.MethodUtil
+import java.io.Closeable
 
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsResourcePatch::class])
 @Name("settings")
@@ -29,7 +30,7 @@ import org.jf.dexlib2.util.MethodUtil
 @Version("0.0.1")
 class YouTubeSettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, SetThemeFingerprint)
-) {
+), Closeable {
     override fun execute(context: BytecodeContext): PatchResult {
         // TODO: Remove this when it is only required at one place.
         fun getSetThemeInstructionString(

@@ -28,6 +28,7 @@ import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEn
 import app.revanced.patches.twitch.misc.settings.resource.patch.TwitchSettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
+import java.io.Closeable
 
 @Patch
 @DependsOn([TwitchSettingsResourcePatch::class])
@@ -42,7 +43,7 @@ class TwitchSettingsPatch : BytecodePatch(
         MenuGroupsUpdatedFingerprint,
         MenuGroupsOnClickFingerprint
     )
-) {
+), Closeable {
     override fun execute(context: BytecodeContext): PatchResult {
         // Hook onCreate to handle fragment creation
         SettingsActivityOnCreateFingerprint.result?.apply {

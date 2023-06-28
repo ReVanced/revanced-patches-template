@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.buttons.autoplay.patch
 
+import app.revanced.extensions.findIndexForIdResource
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -22,7 +23,6 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
@@ -47,15 +47,8 @@ class HideAutoplayButtonPatch : BytecodePatch(
         LayoutConstructorFingerprint.result?.mutableMethod?.apply {
             val layoutGenMethodInstructions = implementation!!.instructions
 
-            // resolve the offsets such as ...
-            val autoNavPreviewStubId = ResourceMappingPatch.resourceMappings.single {
-                it.name == "autonav_preview_stub"
-            }.id
-
-            // where to insert the branch instructions and ...
-            val insertIndex = layoutGenMethodInstructions.indexOfFirst {
-                (it as? WideLiteralInstruction)?.wideLiteral == autoNavPreviewStubId
-            }
+            // resolve the offsets of where to insert the branch instructions and ...
+            val insertIndex = findIndexForIdResource("autonav_preview_stub")
 
             // where to branch away
             val branchIndex =

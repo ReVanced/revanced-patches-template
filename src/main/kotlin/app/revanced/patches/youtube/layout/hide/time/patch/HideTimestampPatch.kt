@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.hide.time.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -37,7 +38,8 @@ class HideTimestampPatch : BytecodePatch(
             )
         )
 
-        TimeCounterFingerprint.result!!.mutableMethod.addInstructionsWithLabels(
+        TimeCounterFingerprint.result?.apply {
+            mutableMethod.addInstructionsWithLabels(
             0,
             """
                 invoke-static { }, Lapp/revanced/integrations/patches/HideTimestampPatch;->hideTimestamp()Z
@@ -47,7 +49,8 @@ class HideTimestampPatch : BytecodePatch(
                 :hide_time
                 nop
             """
-        )
+            )
+        } ?: return TimeCounterFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

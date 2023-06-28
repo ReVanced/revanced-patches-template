@@ -31,7 +31,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class TabletMiniPlayerPatch : BytecodePatch(
     listOf(
-        MiniPlayerDimensionsCalculatorFingerprint,
+        MiniPlayerDimensionsCalculatorParentFingerprint,
         MiniPlayerResponseModelSizeCheckFingerprint,
         MiniPlayerOverrideParentFingerprint
     )
@@ -47,7 +47,8 @@ class TabletMiniPlayerPatch : BytecodePatch(
         )
 
         // First resolve the fingerprints via the parent fingerprint.
-        val miniPlayerClass = MiniPlayerDimensionsCalculatorFingerprint.result!!.classDef
+        MiniPlayerDimensionsCalculatorParentFingerprint.result ?: return MiniPlayerDimensionsCalculatorParentFingerprint.toErrorResult()
+        val miniPlayerClass = MiniPlayerDimensionsCalculatorParentFingerprint.result!!.classDef
 
         /*
          * No context parameter method.
