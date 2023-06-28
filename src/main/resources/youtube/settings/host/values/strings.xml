@@ -50,7 +50,8 @@
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_playback_speeds_summary">Add or change the video speeds available</string>
     <string name="revanced_custom_playback_speeds_title">Custom playback speeds</string>
-    <string name="revanced_custom_playback_speeds_invalid">Invalid custom video speeds. Using default values.</string>
+    <string name="revanced_custom_playback_speeds_invalid" formatted="false">Custom speeds must be less than %s  Using default values.</string>
+    <string name="revanced_custom_playback_speeds_parse_exception">Invalid custom video speeds. Using default values.</string>
     <string name="revanced_debug_preference_screen_summary">Enable or disable debugging options</string>
     <string name="revanced_debug_preference_screen_title">Debugging</string>
     <string name="revanced_debug_stacktrace_summary_off">Debug logs do not include stack trace</string>
