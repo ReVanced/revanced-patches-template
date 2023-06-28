@@ -4,7 +4,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
 object DisableScreenshotPopupFingerprint : MethodFingerprint(
     "V",
-    parameters = listOf("Landroidx/compose/runtime/e;", "I"),
+    parameters = listOf("Landroidx/compose/runtime/", "I"),
     customFingerprint = { methodDef, classDef ->
         classDef.type.endsWith("Lcom/reddit/sharing/screenshot/composables/ComposableSingletons\$ScreenshotTakenBannerKt\$lambda-1\$1;") &&
                 methodDef.name == "invoke"
