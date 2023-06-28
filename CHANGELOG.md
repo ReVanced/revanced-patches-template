@@ -1,3 +1,17 @@
+# [2.183.0](https://github.com/efraimbart/revanced-patches/compare/v2.182.0...v2.183.0) (2023-06-23)
+
+
+### Features
+
+* fixed up to be dynamic and cover more cases ([4dcaf34](https://github.com/efraimbart/revanced-patches/commit/4dcaf347df28da4e4a4260fe96bf0fe3502449e3))
+
+# [2.182.0](https://github.com/efraimbart/revanced-patches/compare/v2.181.0...v2.182.0) (2023-06-16)
+
+
+### Features
+
+* Sync for Reddit change url ([3fb9547](https://github.com/efraimbart/revanced-patches/commit/3fb9547d90fe0eb3212f5863d490765d891964f3))
+
 # [2.181.0](https://github.com/efraimbart/revanced-patches/compare/v2.180.0...v2.181.0) (2023-06-16)
 
 
