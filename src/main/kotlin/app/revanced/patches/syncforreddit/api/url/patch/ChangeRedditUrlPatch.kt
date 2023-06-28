@@ -23,7 +23,12 @@ import java.io.File
     [
         Package("com.laurencedawson.reddit_sync"),
         Package("com.laurencedawson.reddit_sync.pro"),
-        Package("com.laurencedawson.reddit_sync.dev")
+        Package("com.laurencedawson.reddit_sync.dev"),
+        Package("free.reddit.news"),
+        Package("com.rubenmayayo.reddit"),
+        Package("com.andrewshu.android.reddit"),
+        Package("com.onelouder.baconreader"),
+        Package("o.o.joey")
     ]
 )
 @Version("1.0.0")
@@ -71,20 +76,21 @@ class ChangeRedditUrlPatch : BytecodePatch(
                 )
             }
 
-        GetRedditImageUrlFingerprint
-            .resolveMany(context, context.classes)
-            .replaceAll {
-                print("$it: ")
-                println(true)
-                ReplacementResults(
-                    it.replace(
-                        "preview.redd.it",
-                        "images.$url"
-                    ),
-                    replaced = true
-                )
-
-            }
+        if (replacePreview == true) {
+            GetRedditImageUrlFingerprint
+                .resolveMany(context, context.classes)
+                .replaceAll {
+                    print("$it: ")
+                    println(true)
+                    ReplacementResults(
+                        it.replace(
+                            "preview.redd.it",
+                            "images.$url"
+                        ),
+                        replaced = true
+                    )
+                }
+        }
 
         return PatchResultSuccess()
     }
@@ -120,6 +126,14 @@ class ChangeRedditUrlPatch : BytecodePatch(
                 null,
                 "Reddit Replacement URL",
                 "The URL to replace Reddit with."
+            )
+        )
+        var replacePreview by option(
+            PatchOption.BooleanOption(
+                "replacePreview",
+                false,
+                "Replace preview.redd.it URLs as well",
+                "Replaces preview.redd.it URLs with images.\$url."
             )
         )
     }
