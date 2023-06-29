@@ -4,7 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -33,11 +34,10 @@ class AutoCaptionsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_autocaptions_enabled",
-                StringResource("revanced_autocaptions_enabled_title", "Disable auto captions"),
-                false,
-                StringResource("revanced_autocaptions_summary_on", "Auto captions are disabled"),
-                StringResource("revanced_autocaptions_summary_off", "Auto captions are enabled")
+                "revanced_auto_captions",
+                StringResource("revanced_auto_captions_title", "Disable auto captions"),
+                StringResource("revanced_auto_captions_summary_on", "Auto captions are disabled"),
+                StringResource("revanced_auto_captions_summary_off", "Auto captions are enabled")
             )
         )
 
@@ -61,7 +61,7 @@ class AutoCaptionsPatch : BytecodePatch(
 
         val subtitleTrackMethod = SubtitleTrackFingerprint.result!!.mutableMethod
 
-        subtitleTrackMethod.addInstructions(
+        subtitleTrackMethod.addInstructionsWithLabels(
             0, """
             invoke-static {}, Lapp/revanced/integrations/patches/DisableAutoCaptionsPatch;->autoCaptionsEnabled()Z
             move-result v0

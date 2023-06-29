@@ -1,12 +1,16 @@
 package app.revanced.patches.youtube.video.oldqualitylayout.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.util.patch.LiteralValueFingerprint
+import app.revanced.patches.youtube.video.oldqualitylayout.patch.OldQualityLayoutResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object QualityMenuViewInflateFingerprint : MethodFingerprint(
-    "L", AccessFlags.FINAL or AccessFlags.PUBLIC, listOf("L", "L", "L"), listOf(
+object QualityMenuViewInflateFingerprint : LiteralValueFingerprint(
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    parameters = listOf("L", "L", "L"),
+    returnType = "L",
+    opcodes = listOf(
         Opcode.INVOKE_SUPER,
         Opcode.CONST,
         Opcode.CONST_4,
@@ -20,12 +24,7 @@ object QualityMenuViewInflateFingerprint : MethodFingerprint(
         Opcode.CONST,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT,
-        Opcode.CHECK_CAST,
-        Opcode.CONST,
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.IGET_OBJECT,
-        Opcode.CONST_STRING,
-    )
+        Opcode.CHECK_CAST
+    ),
+    literal = OldQualityLayoutResourcePatch.videoQualityBottomSheetListFragmentTitle
 )

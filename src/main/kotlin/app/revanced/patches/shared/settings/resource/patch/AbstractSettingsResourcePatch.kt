@@ -6,7 +6,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.IResource
+import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.addResource
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
@@ -14,6 +14,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import org.w3c.dom.Node
+import java.io.Closeable
 
 /**
  * Abstract settings resource patch
@@ -24,7 +25,7 @@ import org.w3c.dom.Node
 abstract class AbstractSettingsResourcePatch(
     private val preferenceFileName: String,
     private val sourceDirectory: String,
-) : ResourcePatch {
+) : ResourcePatch, Closeable {
     override fun execute(context: ResourceContext): PatchResult {
         /*
          * used for self-restart
@@ -108,7 +109,7 @@ abstract class AbstractSettingsResourcePatch(
          *
          * @throws IllegalArgumentException if the resource already exists.
          */
-        internal fun IResource.include() {
+        internal fun BaseResource.include() {
             when (this) {
                 is StringResource -> {
                     if (strings.any { it.name == name }) return

@@ -4,8 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -13,13 +13,13 @@ import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.autorepeat.annotations.AutoRepeatCompatibility
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 
 @Patch
 @DependsOn([IntegrationsPatch::class])
@@ -35,9 +35,8 @@ class AutoRepeatPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
-                "revanced_pref_auto_repeat",
-                StringResource("revanced_auto_repeat_enabled_title", "Enable auto-repeat"),
-                false,
+                "revanced_auto_repeat",
+                StringResource("revanced_auto_repeat_title", "Enable auto-repeat"),
                 StringResource("revanced_auto_repeat_summary_on", "Auto-repeat is enabled"),
                 StringResource("revanced_auto_repeat_summary_off", "Auto-repeat is disabled")
             )
@@ -80,7 +79,7 @@ class AutoRepeatPatch : BytecodePatch(
         //remove last instruction which is return-void
         method.removeInstruction(index)
         // Add our own instructions there
-        method.addInstructions(index, instructions)
+        method.addInstructionsWithLabels(index, instructions)
 
         //Everything worked as expected, return Success
         return PatchResultSuccess()

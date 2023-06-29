@@ -5,8 +5,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -36,7 +36,6 @@ class AutoClaimChannelPointPatch : BytecodePatch(
                     "revanced_auto_claim_channel_points",
                     "Automatically claim Channel Points"
                 ),
-                true,
                 StringResource(
                     "revanced_auto_claim_channel_points_on",
                     "Channel Points are claimed automatically"
@@ -45,12 +44,13 @@ class AutoClaimChannelPointPatch : BytecodePatch(
                     "revanced_auto_claim_channel_points_off",
                     "Channel Points are not claimed automatically"
                 ),
+                default = true
             )
         )
 
         CommunityPointsButtonViewDelegateFingerprint.result?.mutableMethod?.apply {
             val lastIndex = implementation!!.instructions.lastIndex
-            addInstructions(
+            addInstructionsWithLabels(
                 lastIndex, // place in front of return-void
                 """
                     invoke-static {}, Lapp/revanced/twitch/patches/AutoClaimChannelPointsPatch;->shouldAutoClaim()Z
@@ -62,9 +62,10 @@ class AutoClaimChannelPointPatch : BytecodePatch(
                     iget-object v0, p0, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate;->buttonLayout:Landroid/view/ViewGroup;
                     invoke-virtual { v0 }, Landroid/view/View;->callOnClick()Z
                 """,
-                listOf(ExternalLabel("auto_claim", instruction(lastIndex)))
+                ExternalLabel("auto_claim", getInstruction(lastIndex))
             )
         } ?: return CommunityPointsButtonViewDelegateFingerprint.toErrorResult()
+
         return PatchResultSuccess()
     }
 }

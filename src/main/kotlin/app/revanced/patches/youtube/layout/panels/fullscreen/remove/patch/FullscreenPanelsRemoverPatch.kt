@@ -4,8 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -37,7 +37,6 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_hide_fullscreen_panels",
                 StringResource("revanced_hide_fullscreen_panels_title", "Hide fullscreen panels"),
-                true,
                 StringResource("revanced_hide_fullscreen_panels_summary_on", "Fullscreen panels are hidden"),
                 StringResource("revanced_hide_fullscreen_panels_summary_off", "Fullscreen panels are shown")
             )
@@ -54,10 +53,11 @@ class FullscreenPanelsRemoverPatch : BytecodePatch(
 
         method.removeInstruction(ifIndex)
         method.addInstructions(
-            ifIndex, """
-            invoke-static {}, Lapp/revanced/integrations/patches/FullscreenPanelsRemoverPatch;->getFullscreenPanelsVisibility()I
-            move-result p1
-        """
+            ifIndex,
+            """
+                invoke-static {}, Lapp/revanced/integrations/patches/FullscreenPanelsRemoverPatch;->getFullscreenPanelsVisibility()I
+                move-result p1
+            """
         )
 
         return PatchResultSuccess()

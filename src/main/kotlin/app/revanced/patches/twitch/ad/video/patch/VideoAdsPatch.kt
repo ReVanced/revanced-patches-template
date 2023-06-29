@@ -1,11 +1,13 @@
 package app.revanced.patches.twitch.ad.video.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -85,8 +87,8 @@ class VideoAdsPatch : AbstractAdPatch(
         )
 
         // Pretend our player is ineligible for all ads
-        with(CheckAdEligibilityLambdaFingerprint.result!!) {
-            mutableMethod.addInstructions(
+        CheckAdEligibilityLambdaFingerprint.result?.apply {
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     ${createConditionInstructions()}
@@ -95,13 +97,13 @@ class VideoAdsPatch : AbstractAdPatch(
                     move-result-object p0
                     return-object p0
                 """,
-                listOf(ExternalLabel(skipLabelName, mutableMethod.instruction(0)))
+                ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        }
+        } ?: return CheckAdEligibilityLambdaFingerprint.toErrorResult()
 
-        with(GetReadyToShowAdFingerprint.result!!) {
+        GetReadyToShowAdFingerprint.result?.apply {
             val adFormatDeclined = "Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter\$Action\$AdFormatDeclined;"
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     ${createConditionInstructions()}
@@ -110,12 +112,12 @@ class VideoAdsPatch : AbstractAdPatch(
                     move-result-object p1
                     return-object p1
                 """,
-                listOf(ExternalLabel(skipLabelName, mutableMethod.instruction(0)))
+                ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        }
+        } ?: return GetReadyToShowAdFingerprint.toErrorResult()
 
         // Spoof showAds JSON field
-        with(ContentConfigShowAdsFingerprint.result!!) {
+        ContentConfigShowAdsFingerprint.result?.apply {
             mutableMethod.addInstructions(0, """
                     ${createConditionInstructions()}
                     const/4 v0, 0
@@ -123,7 +125,7 @@ class VideoAdsPatch : AbstractAdPatch(
                     return v0
                 """
             )
-        }
+        }  ?: return ContentConfigShowAdsFingerprint.toErrorResult()
 
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
@@ -132,7 +134,6 @@ class VideoAdsPatch : AbstractAdPatch(
                     "revanced_block_video_ads",
                     "Block video ads"
                 ),
-                true,
                 StringResource(
                     "revanced_block_video_ads_on",
                     "Video ads are blocked"
@@ -141,6 +142,7 @@ class VideoAdsPatch : AbstractAdPatch(
                     "revanced_block_video_ads_off",
                     "Video ads are unblocked"
                 ),
+                default = true
             )
         )
 

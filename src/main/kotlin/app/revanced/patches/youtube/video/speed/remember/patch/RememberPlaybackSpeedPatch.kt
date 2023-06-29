@@ -5,13 +5,12 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
@@ -20,15 +19,13 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch.Companion.reference
 import app.revanced.patches.youtube.video.speed.custom.patch.CustomVideoSpeedPatch
-import app.revanced.patches.youtube.video.speed.remember.annotation.RememberPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
+import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("remember-playback-speed")
 @Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
-@RememberPlaybackSpeedCompatibility
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
@@ -43,7 +40,6 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     "revanced_remember_playback_speed_last_selected_title",
                     "Remember playback speed changes"
                 ),
-                true,
                 StringResource(
                     "revanced_remember_playback_speed_last_selected_summary_on",
                     "Playback speed changes apply to all videos"
@@ -54,21 +50,21 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 )
             ),
             ListPreference(
-                "revanced_default_playback_speed",
+                "revanced_playback_speed_default",
                 StringResource(
-                    "revanced_default_playback_speed_title",
+                    "revanced_playback_speed_default_title",
                     "Default playback speed"
                 ),
                 // Dummy data:
                 // Entries and values are set by Integrations code based on the actual speeds available,
                 // and the values set here are ignored and do nothing.
                 ArrayResource(
-                    "revanced_default_playback_speed_entries",
-                    listOf(StringResource("revanced_default_playback_speed_entry", "1.0x"))
+                    "revanced_playback_speed_default_entries",
+                    listOf(StringResource("revanced_playback_speed_default_entries", "1.0x"))
                 ),
                 ArrayResource(
-                    "revanced_default_playback_speed_entry_values",
-                    listOf(StringResource("revanced_default_playback_speed_entry_value", "1.0"))
+                    "revanced_playback_speed_default_entry_values",
+                    listOf(StringResource("revanced_playback_speed_default_entry_value", "1.0"))
                 )
             )
         )
@@ -82,10 +78,11 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
          */
         InitializePlaybackSpeedValuesFingerprint.result?.apply {
             // Infer everything necessary for calling the method setPlaybackSpeed().
-            val onItemClickListenerClassFieldReference = mutableMethod.instruction(0).reference
+            val onItemClickListenerClassFieldReference =
+                mutableMethod.getInstruction<ReferenceInstruction>(0).reference
 
             // Registers are not used at index 0, so they can be freely used.
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getPlaybackSpeedOverride()F
@@ -108,7 +105,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     # Invoke setPlaybackSpeed on that class.
                     invoke-virtual {v2, v0}, ${VideoInformationPatch.setPlaybackSpeedMethodReference}
                 """.trimIndent(),
-                listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
+                ExternalLabel("do_not_override", mutableMethod.getInstruction(0))
             )
         } ?: return InitializePlaybackSpeedValuesFingerprint.toErrorResult()
 

@@ -1,10 +1,11 @@
 package app.revanced.patches.twitch.debug.patch
 
+import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -38,18 +39,16 @@ class DebugModePatch : BytecodePatch(
             IsOmVerificationEnabledFingerprint,
             ShouldShowDebugOptionsFingerprint
         ).forEach {
-            with(it.result!!) {
-                with(mutableMethod) {
-                    addInstructions(
-                        0,
-                        """
-                             invoke-static {}, Lapp/revanced/twitch/patches/DebugModePatch;->isDebugModeEnabled()Z
-                             move-result v0
-                             return v0
-                          """
-                    )
-                }
-            }
+            it.result?.mutableMethod?.apply {
+                addInstructions(
+                    0,
+                    """
+                         invoke-static {}, Lapp/revanced/twitch/patches/DebugModePatch;->isDebugModeEnabled()Z
+                         move-result v0
+                         return v0
+                      """
+                )
+            } ?: return it.toErrorResult()
         }
 
         SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
@@ -59,7 +58,6 @@ class DebugModePatch : BytecodePatch(
                     "revanced_debug_mode_enable",
                     "Enable debug mode"
                 ),
-                false,
                 StringResource(
                     "revanced_debug_mode_on",
                     "Debug mode is enabled (not recommended)"
@@ -68,6 +66,7 @@ class DebugModePatch : BytecodePatch(
                     "revanced_debug_mode_off",
                     "Debug mode is disabled"
                 ),
+                default = false,
             )
         )
 

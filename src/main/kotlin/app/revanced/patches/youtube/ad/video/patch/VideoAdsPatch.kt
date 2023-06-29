@@ -4,8 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -33,23 +33,23 @@ class VideoAdsPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
-                "revanced_video_ads_removal",
-                StringResource("revanced_video_ads_removal_title", "Hide video ads"),
-                true,
-                StringResource("revanced_video_ads_removal_summary_on", "Video ads are hidden"),
-                StringResource("revanced_video_ads_removal_summary_off", "Video ads are shown")
+                "revanced_hide_video_ads",
+                StringResource("revanced_hide_video_ads_title", "Hide video ads"),
+                StringResource("revanced_hide_video_ads_summary_on", "Video ads are hidden"),
+                StringResource("revanced_hide_video_ads_summary_off", "Video ads are shown")
             )
         )
 
         val loadVideoAdsFingerprintMethod = LoadVideoAdsFingerprint.result!!.mutableMethod
 
-        loadVideoAdsFingerprintMethod.addInstructions(
+        loadVideoAdsFingerprintMethod.addInstructionsWithLabels(
             0, """
                 invoke-static { }, Lapp/revanced/integrations/patches/VideoAdsPatch;->shouldShowAds()Z
                 move-result v0
                 if-nez v0, :show_video_ads
                 return-void
-            """, listOf(ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.instruction(0)))
+            """,
+            ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.getInstruction(0))
         )
 
         return PatchResultSuccess()

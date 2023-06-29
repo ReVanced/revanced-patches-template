@@ -6,9 +6,9 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
@@ -28,7 +28,6 @@ import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.BuilderInstruction
 import org.jf.dexlib2.builder.MutableMethodImplementation
 import org.jf.dexlib2.iface.instruction.FiveRegisterInstruction
-import org.jf.dexlib2.iface.instruction.Instruction
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.immutable.ImmutableMethod
@@ -77,11 +76,11 @@ class VideoInformationPatch : BytecodePatch(
             seekHelperMethod.addInstructions(
                 0,
                 """
-                sget-object v0, $seekSourceEnumType->a:$seekSourceEnumType
-                invoke-virtual {p0, p1, p2, v0}, ${seekFingerprintResultMethod.definingClass}->${seekFingerprintResultMethod.name}(J$seekSourceEnumType)Z
-                move-result p1
-                return p1
-            """
+                    sget-object v0, $seekSourceEnumType->a:$seekSourceEnumType
+                    invoke-virtual {p0, p1, p2, v0}, ${seekFingerprintResultMethod.definingClass}->${seekFingerprintResultMethod.name}(J$seekSourceEnumType)Z
+                    move-result p1
+                    return p1
+                """
             )
 
             // add the seekTo method to the class for the integrations to call
@@ -93,7 +92,7 @@ class VideoInformationPatch : BytecodePatch(
 
             with(videoLengthMethodResult.mutableMethod) {
                 val videoLengthRegisterIndex = videoLengthMethodResult.scanResult.patternScanResult!!.endIndex - 2
-                val videoLengthRegister = instruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
+                val videoLengthRegister = getInstruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
                 val dummyRegisterForLong = videoLengthRegister + 1 // required for long values since they are wide
 
                 addInstruction(
@@ -140,7 +139,7 @@ class VideoInformationPatch : BytecodePatch(
             speedSelectionInsertMethod = mutableMethod
             speedSelectionInsertIndex = scanResult.patternScanResult!!.startIndex - 3
             speedSelectionValueRegister =
-                mutableMethod.instruction<FiveRegisterInstruction>(speedSelectionInsertIndex).registerD
+                mutableMethod.getInstruction<FiveRegisterInstruction>(speedSelectionInsertIndex).registerD
 
             val speedSelectionMethodInstructions = mutableMethod.implementation!!.instructions
             setPlaybackSpeedContainerClassFieldReference =
@@ -218,9 +217,8 @@ class VideoInformationPatch : BytecodePatch(
             )
 
         private fun getReference(instructions: List<BuilderInstruction>, offset: Int, opcode: Opcode) =
-            instructions[instructions.indexOfFirst { it.opcode == opcode } + offset].reference
-
-        val Instruction.reference get() = (this as ReferenceInstruction).reference.toString()
+            (instructions[instructions.indexOfFirst { it.opcode == opcode } + offset] as ReferenceInstruction)
+                .reference.toString()
 
         private lateinit var speedSelectionInsertMethod: MutableMethod
         private var speedSelectionInsertIndex = 0

@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -32,7 +32,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Version("0.0.1")
 class TabletMiniPlayerPatch : BytecodePatch(
     listOf(
-        MiniPlayerDimensionsCalculatorFingerprint,
+        MiniPlayerDimensionsCalculatorParentFingerprint,
         MiniPlayerResponseModelSizeCheckFingerprint,
         MiniPlayerOverrideParentFingerprint
     )
@@ -42,14 +42,14 @@ class TabletMiniPlayerPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_tablet_miniplayer",
                 StringResource("revanced_tablet_miniplayer_title", "Enable tablet mini player"),
-                false,
                 StringResource("revanced_tablet_miniplayer_summary_on", "Mini player is enabled"),
                 StringResource("revanced_tablet_miniplayer_summary_off", "Mini player is disabled")
             )
         )
 
         // First resolve the fingerprints via the parent fingerprint.
-        val miniPlayerClass = MiniPlayerDimensionsCalculatorFingerprint.result!!.classDef
+        MiniPlayerDimensionsCalculatorParentFingerprint.result ?: return MiniPlayerDimensionsCalculatorParentFingerprint.toErrorResult()
+        val miniPlayerClass = MiniPlayerDimensionsCalculatorParentFingerprint.result!!.classDef
 
         /*
          * No context parameter method.
@@ -115,7 +115,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
                 """
                     invoke-static {v$overrideRegister}, Lapp/revanced/integrations/patches/TabletMiniPlayerOverridePatch;->getTabletMiniPlayerOverride(Z)Z
                     move-result v$overrideRegister
-                    """
+                """
             )
         }
 

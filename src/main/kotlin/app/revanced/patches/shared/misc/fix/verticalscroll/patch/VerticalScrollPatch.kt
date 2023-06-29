@@ -4,8 +4,8 @@ import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -13,7 +13,7 @@ import app.revanced.patches.shared.misc.fix.verticalscroll.annotations.VerticalS
 import app.revanced.patches.shared.misc.fix.verticalscroll.fingerprints.CanScrollVerticallyFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Description("Fixes issues with scrolling on the home screen when the first component is of type EmptyComponent.")
+@Description("Fixes issues with refreshing the feed when the first component is of type EmptyComponent.")
 @VerticalScrollCompatibility
 @Version("0.0.1")
 class VerticalScrollPatch : BytecodePatch(
@@ -23,7 +23,7 @@ class VerticalScrollPatch : BytecodePatch(
         CanScrollVerticallyFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveResultIndex = it.scanResult.patternScanResult!!.endIndex
-                val moveResultRegister = instruction<OneRegisterInstruction>(moveResultIndex).registerA
+                val moveResultRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
 
                 val insertIndex = moveResultIndex + 1
                 addInstruction(

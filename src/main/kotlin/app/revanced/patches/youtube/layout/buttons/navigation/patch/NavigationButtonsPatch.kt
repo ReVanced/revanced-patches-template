@@ -5,8 +5,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -41,27 +41,24 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                "revanced_navigation_buttons",
-                StringResource("revanced_navigation_buttons", "Navigation button settings"),
+                "revanced_navigation_buttons_preference_screen",
+                StringResource("revanced_navigation_buttons_preference_screen_title", "Navigation buttons"),
                 listOf(
                     SwitchPreference(
                         "revanced_hide_home_button",
                         StringResource("revanced_hide_home_button_title", "Hide home button"),
-                        false,
                         StringResource("revanced_hide_home_button_summary_on", "Home button is hidden"),
                         StringResource("revanced_hide_home_button_summary_off", "Home button is shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_shorts_button",
                         StringResource("revanced_hide_shorts_button_title", "Hide shorts button"),
-                        true,
                         StringResource("revanced_hide_shorts_button_summary_on", "Shorts button is hidden"),
                         StringResource("revanced_hide_shorts_button_summary_off", "Shorts button is shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_subscriptions_button",
                         StringResource("revanced_hide_subscriptions_button_title", "Hide subscriptions button"),
-                        false,
                         StringResource(
                             "revanced_hide_subscriptions_button_summary_on",
                             "Home subscriptions is hidden"
@@ -71,7 +68,6 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                     SwitchPreference(
                         "revanced_hide_create_button",
                         StringResource("revanced_hide_create_button_title", "Hide create button"),
-                        true,
                         StringResource("revanced_hide_create_button_summary_on", "Create button is hidden"),
                         StringResource("revanced_hide_create_button_summary_off", "Create button is shown")
                     ),
@@ -81,7 +77,6 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                             "revanced_switch_create_with_notifications_button_title",
                             "Switch create with notifications button"
                         ),
-                        true,
                         StringResource(
                             "revanced_switch_create_with_notifications_button_summary_on",
                             "Create button is switched with notifications"
@@ -149,7 +144,7 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                 }!!.index
 
                 val conditionalCheckIndex = stringIndex - 1
-                val conditionRegister = instruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
+                val conditionRegister = getInstruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
 
                 addInstructions(
                     conditionalCheckIndex,

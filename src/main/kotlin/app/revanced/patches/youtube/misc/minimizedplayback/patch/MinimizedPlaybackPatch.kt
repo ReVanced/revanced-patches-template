@@ -6,8 +6,9 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.data.toMethodWalker
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -21,6 +22,7 @@ import app.revanced.patches.youtube.misc.minimizedplayback.annotations.Minimized
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
+import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
@@ -35,7 +37,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 class MinimizedPlaybackPatch : BytecodePatch(
     listOf(
         MinimizedPlaybackManagerFingerprint,
-        MinimizedPlaybackSettingsFingerprint,
+        MinimizedPlaybackSettingsParentFingerprint,
         KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
@@ -44,21 +46,24 @@ class MinimizedPlaybackPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
                 StringResource("revanced_minimized_playback_enabled_title", "Minimized playback"),
-                StringResource("revanced_minimized_playback_summary_on", "This setting can be found in Settings -> General")
+                StringResource("revanced_minimized_playback_summary_on", "This setting can be found in Settings -> Background")
             )
         )
 
         MinimizedPlaybackManagerFingerprint.result?.apply {
             mutableMethod.addInstructions(
-                0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isPlaybackNotShort()Z
-                move-result v0
-                return v0
+                0,
+                """
+                    invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->isPlaybackNotShort()Z
+                    move-result v0
+                    return v0
                 """
             )
         } ?: return MinimizedPlaybackManagerFingerprint.toErrorResult()
 
         // Enable minimized playback option in YouTube settings
+        MinimizedPlaybackSettingsParentFingerprint.result ?: return MinimizedPlaybackSettingsParentFingerprint.toErrorResult()
+        MinimizedPlaybackSettingsFingerprint.resolve(context, MinimizedPlaybackSettingsParentFingerprint.result!!.classDef)
         MinimizedPlaybackSettingsFingerprint.result?.apply {
             val booleanCalls = method.implementation!!.instructions.withIndex()
                 .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }
@@ -68,10 +73,11 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
 
             settingsBooleanMethod.addInstructions(
-                0, """
-                invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideMinimizedPlaybackAvailable()Z
-                move-result v0
-                return v0
+                0,
+                """
+                    invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideMinimizedPlaybackAvailable()Z
+                    move-result v0
+                    return v0
                 """
             )
         } ?: return MinimizedPlaybackSettingsFingerprint.toErrorResult()

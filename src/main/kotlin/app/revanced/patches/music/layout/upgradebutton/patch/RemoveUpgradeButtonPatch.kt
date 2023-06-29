@@ -4,13 +4,13 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.toInstructions
-import app.revanced.patches.music.layout.upgradebutton.annotations.RemoveUpgradeButtonCompatibility
+import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.layout.upgradebutton.fingerprints.PivotBarConstructorFingerprint
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.builder.instruction.BuilderInstruction22t
@@ -21,12 +21,10 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 @Patch
 @Name("upgrade-button-remover")
 @Description("Removes the upgrade tab from the pivot bar.")
-@RemoveUpgradeButtonCompatibility
+@MusicCompatibility
 @Version("0.0.1")
 class RemoveUpgradeButtonPatch : BytecodePatch(
-    listOf(
-        PivotBarConstructorFingerprint
-    )
+    listOf(PivotBarConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         val result = PivotBarConstructorFingerprint.result!!

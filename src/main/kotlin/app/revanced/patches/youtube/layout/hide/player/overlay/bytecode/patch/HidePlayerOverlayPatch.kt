@@ -1,12 +1,13 @@
 package app.revanced.patches.youtube.layout.hide.player.overlay.bytecode.patch
 
+import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -16,7 +17,6 @@ import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HideP
 import app.revanced.patches.youtube.layout.hide.player.overlay.bytecode.fingerprints.CreatePlayerOverviewFingerprint
 import app.revanced.patches.youtube.layout.hide.player.overlay.resource.patch.HidePlayerOverlayResourcePatch
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.WideLiteralInstruction
 
 @Patch
 @Name("hide-player-overlay")
@@ -28,12 +28,9 @@ class HidePlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerpr
     override fun execute(context: BytecodeContext): PatchResult {
         CreatePlayerOverviewFingerprint.result?.let { result ->
             result.mutableMethod.apply {
-                val viewRegisterIndex = implementation!!.instructions.indexOfFirst {
-                    val literal = (it as? WideLiteralInstruction)?.wideLiteral
-
-                    literal == HidePlayerOverlayResourcePatch.scrimOverlayId
-                } + 3
-                val viewRegister = instruction<OneRegisterInstruction>(viewRegisterIndex).registerA
+                val viewRegisterIndex =
+                    indexOfFirstConstantInstructionValue(HidePlayerOverlayResourcePatch.scrimOverlayId) + 3
+                val viewRegister = getInstruction<OneRegisterInstruction>(viewRegisterIndex).registerA
 
                 val insertIndex = viewRegisterIndex + 1
                 addInstruction(

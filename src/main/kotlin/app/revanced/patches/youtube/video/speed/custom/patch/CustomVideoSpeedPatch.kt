@@ -4,16 +4,18 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.replaceInstruction
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultError
+import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.video.speed.custom.annotations.CustomPlaybackSpeedCompatibility
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedLimiterFingerprint
 import org.jf.dexlib2.iface.instruction.NarrowLiteralInstruction
@@ -25,7 +27,6 @@ import org.jf.dexlib2.iface.reference.MethodReference
 @Name("custom-video-speed")
 @Description("Adds custom video speed options.")
 @DependsOn([IntegrationsPatch::class])
-@CustomPlaybackSpeedCompatibility
 @Version("0.0.1")
 class CustomVideoSpeedPatch : BytecodePatch(
     listOf(
@@ -36,17 +37,16 @@ class CustomVideoSpeedPatch : BytecodePatch(
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             TextPreference(
-                key = "revanced_custom_video_speeds",
+                key = "revanced_custom_playback_speeds",
                 title = StringResource(
-                    "revanced_custom_video_speeds_title",
+                    "revanced_custom_playback_speeds_title",
                     "Custom playback speeds"
                 ),
                 inputType = InputType.TEXT_MULTI_LINE,
                 summary = StringResource(
-                    "revanced_custom_video_speeds_summary",
+                    "revanced_custom_playback_speeds_summary",
                     "Add or change the video speeds available"
-                ),
-                default = "0.25\n0.5\n0.75\n0.9\n0.95\n1.0\n1.05\n1.1\n1.25\n1.5\n1.75\n2.0\n3.0\n4.0\n5.0"
+                )
             )
         )
 
@@ -76,8 +76,8 @@ class CustomVideoSpeedPatch : BytecodePatch(
         arrayGenMethod.addInstructions(
             arrayLengthConstIndex + 1,
             """
-            sget-object v$arrayLengthConstDestination, $videoSpeedsArrayType
-            array-length v$arrayLengthConstDestination, v$arrayLengthConstDestination
+                sget-object v$arrayLengthConstDestination, $videoSpeedsArrayType
+                array-length v$arrayLengthConstDestination, v$arrayLengthConstDestination
             """
         )
 
@@ -98,10 +98,12 @@ class CustomVideoSpeedPatch : BytecodePatch(
         val limiterMethod = SpeedLimiterFingerprint.result?.mutableMethod!!
         val limiterMethodImpl = limiterMethod.implementation!!
 
+        val lowerLimitConst = 0.25f.toRawBits()
+        val upperLimitConst = 2.0f.toRawBits()
         val (limiterMinConstIndex, limiterMinConst) = limiterMethodImpl.instructions.withIndex()
-            .first { (it.value as? NarrowLiteralInstruction)?.narrowLiteral == 0.25f.toRawBits() }
+            .first { (it.value as? NarrowLiteralInstruction)?.narrowLiteral == lowerLimitConst }
         val (limiterMaxConstIndex, limiterMaxConst) = limiterMethodImpl.instructions.withIndex()
-            .first { (it.value as? NarrowLiteralInstruction)?.narrowLiteral == 2.0f.toRawBits() }
+            .first { (it.value as? NarrowLiteralInstruction)?.narrowLiteral == upperLimitConst }
 
         val limiterMinConstDestination = (limiterMinConst as OneRegisterInstruction).registerA
         val limiterMaxConstDestination = (limiterMaxConst as OneRegisterInstruction).registerA

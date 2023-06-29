@@ -4,8 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
@@ -37,7 +37,6 @@ class HideWatermarkPatch : BytecodePatch(
             SwitchPreference(
                 "revanced_hide_video_watermark",
                 StringResource("revanced_hide_video_watermark_title", "Hide creator watermark on videos"),
-                true,
                 StringResource("revanced_hide_video_watermark_summary_on", "Watermark is hidden"),
                 StringResource("revanced_hide_video_watermark_summary_off", "Watermark is shown")
             )
@@ -52,10 +51,11 @@ class HideWatermarkPatch : BytecodePatch(
 
         method.removeInstruction(line)
         method.addInstructions(
-            line, """
-            invoke-static {}, Lapp/revanced/integrations/patches/BrandingWaterMarkPatch;->isBrandingWatermarkShown()Z
-            move-result p2
-        """
+            line,
+            """
+                invoke-static {}, Lapp/revanced/integrations/patches/BrandingWaterMarkPatch;->isBrandingWatermarkShown()Z
+                move-result p2
+            """
         )
 
         return PatchResultSuccess()
