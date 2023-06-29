@@ -25,7 +25,6 @@ The official ReVanced Patches.
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.19.35 |
 | `hide-ads` | Removes general ads. | 18.19.35 |
 | `hide-album-cards` | Hides the album cards below the artist description. | 18.19.35 |
-| `hide-artist-card` | Hides the artist card below the searchbar. | 18.19.35 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.19.35 |
 | `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.19.35 |
 | `hide-captions-button` | Hides the captions button on video player. | 18.19.35 |
@@ -36,6 +35,7 @@ The official ReVanced Patches.
 | `hide-filter-bar` | Hides the filter bar in video feeds. | 18.19.35 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.19.35 |
 | `hide-info-cards` | Hides info cards in videos. | 18.19.35 |
+| `hide-layout-components` | Hides general layout components. | 18.19.35 |
 | `hide-load-more-button` | Hides the button under videos that loads similar videos. | 18.19.35 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | 18.19.35 |
 | `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |
@@ -71,16 +71,15 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
-| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | all |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
-| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | 5.39.52 |
+| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | all |
 | `minimized-playback-music` | Enables minimized playback on Kids music. | all |
-| `music-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 | `music-video-ads` | Removes ads in the music player. | all |
-| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the home screen. | all |
 | `upgrade-button-remover` | Removes the upgrade tab from the pivot bar. | all |
+| `vanced-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 </details>
 
 ### [📦 `com.ss.android.ugc.trill`](https://play.google.com/store/apps/details?id=com.ss.android.ugc.trill)
@@ -120,13 +119,13 @@ The official ReVanced Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `auto-claim-channel-points` | Automatically claim Channel Points. | all |
-| `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
-| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
-| `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
+| `auto-claim-channel-points` | Automatically claim Channel Points. | 15.4.1 |
+| `block-audio-ads` | Blocks audio ads in streams and VODs. | 15.4.1 |
+| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 15.4.1 |
+| `block-video-ads` | Blocks video ads in streams and VODs. | 15.4.1 |
 | `debug-mode` | Enables Twitch's internal debugging mode. | all |
 | `settings` | Adds settings menu to Twitch. | all |
-| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
+| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | 15.4.1 |
 </details>
 
 ### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
@@ -140,17 +139,6 @@ The official ReVanced Patches.
 | `hide-views-stats` | Hides the view stats under tweets. | 9.71.0-release.0 |
 </details>
 
-### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `hide-ads` | Removes general ads from the Reddit frontpage and subreddits. | all |
-| `hide-subreddit-banner` | Hides banner ads from comments on subreddits. | all |
-| `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
-| `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
-</details>
-
 ### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
 <details>
 
@@ -159,6 +147,25 @@ The official ReVanced Patches.
 | `disable-switching-emoji-to-sticker-in-message-input-field` | Disables switching from emoji to sticker search mode in message input field | all |
 | `disable-typing-indicator` | Disables the indicator while typing a message | all |
 | `hide-inbox-ads` | Hides ads in inbox. | all |
+</details>
+
+### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `hide-ads` | Removes ads from the Reddit. | all |
+| `premium-icon-reddit` | Unlocks premium Reddit app icons. | all |
+| `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
@@ -197,20 +204,60 @@ The official ReVanced Patches.
 | `spoof-signature` | Spoofs the signature of the app. | all |
 </details>
 
+### [📦 `ml.docilealligator.infinityforreddit`](https://play.google.com/store/apps/details?id=ml.docilealligator.infinityforreddit)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `free.reddit.news`](https://play.google.com/store/apps/details?id=free.reddit.news)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `reddit.news`](https://play.google.com/store/apps/details?id=reddit.news)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `com.rubenmayayo.reddit`](https://play.google.com/store/apps/details?id=com.rubenmayayo.reddit)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync.pro`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.pro)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync.dev`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.dev)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `disable-ads` | Disables ads in HexEditor. | all |
-</details>
-
-### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.spotify.lite`](https://play.google.com/store/apps/details?id=com.spotify.lite)
@@ -285,6 +332,14 @@ The official ReVanced Patches.
 | `remove-debugging-detection` | Removes the USB and wireless debugging checks. | all |
 </details>
 
+### [📦 `com.google.android.apps.recorder`](https://play.google.com/store/apps/details?id=com.google.android.apps.recorder)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `remove-device-restrictions` | Removes restrictions from using the app on any device. | all |
+</details>
+
 ### [📦 `com.dci.dev.androidtwelvewidgets`](https://play.google.com/store/apps/details?id=com.dci.dev.androidtwelvewidgets)
 <details>
 
@@ -317,44 +372,12 @@ The official ReVanced Patches.
 | `unlock-prime` | Unlocks Nova Prime and all functions of the app. | all |
 </details>
 
-### [📦 `com.vsco.cam`](https://play.google.com/store/apps/details?id=com.vsco.cam)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
-</details>
-
-### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
-</details>
-
 ### [📦 `com.candylink.openvpn`](https://play.google.com/store/apps/details?id=com.candylink.openvpn)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks premium features. | all |
-</details>
-
-### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks pro features. | all |
-</details>
-
-### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `unlock-pro` | Unlocks all pro features. | all |
 </details>
 
 ### [📦 `com.zombodroid.MemeGenerator`](https://play.google.com/store/apps/details?id=com.zombodroid.MemeGenerator)
@@ -365,12 +388,36 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks pro features. | 4.6377 |
 </details>
 
-### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
+### [📦 `com.wakdev.apps.nfctools.se`](https://play.google.com/store/apps/details?id=com.wakdev.apps.nfctools.se)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `ginlemon.iconpackstudio`](https://play.google.com/store/apps/details?id=ginlemon.iconpackstudio)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
+### [📦 `com.ithebk.expensemanager`](https://play.google.com/store/apps/details?id=com.ithebk.expensemanager)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
+</details>
+
+### [📦 `com.vsco.cam`](https://play.google.com/store/apps/details?id=com.vsco.cam)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks pro features. | all |
 </details>
 
 ### [📦 `org.totschnig.myexpenses`](https://play.google.com/store/apps/details?id=org.totschnig.myexpenses)
@@ -381,6 +428,14 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks all professional features. | 3.4.9 |
 </details>
 
+### [📦 `com.awedea.nyx`](https://play.google.com/store/apps/details?id=com.awedea.nyx)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `unlock-pro` | Unlocks all pro features. | all |
+</details>
+
 ### [📦 `tv.trakt.trakt`](https://play.google.com/store/apps/details?id=tv.trakt.trakt)
 <details>
 
@@ -389,7 +444,7 @@ The official ReVanced Patches.
 | `unlock-pro` | Unlocks pro features. | all |
 </details>
 
-### [📦 `com.wakdev.apps.nfctools.se`](https://play.google.com/store/apps/details?id=com.wakdev.apps.nfctools.se)
+### [📦 `co.windyapp.android`](https://play.google.com/store/apps/details?id=co.windyapp.android)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
