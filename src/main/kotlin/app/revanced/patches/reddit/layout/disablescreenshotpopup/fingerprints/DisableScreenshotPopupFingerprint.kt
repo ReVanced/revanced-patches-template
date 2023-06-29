@@ -8,6 +8,6 @@ object DisableScreenshotPopupFingerprint : MethodFingerprint(
     customFingerprint = custom@{ methodDef, classDef ->
         if (!classDef.type.endsWith("Lcom/reddit/sharing/screenshot/composables/ComposableSingletons\$ScreenshotTakenBannerKt\$lambda-1\$1;")) return@custom false
 
-methodDef.name == "invoke"
+        methodDef.name == "invoke"
     }
 )
