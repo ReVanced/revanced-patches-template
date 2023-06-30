@@ -25,7 +25,6 @@ The official ReVanced Patches.
 | `hdr-auto-brightness` | Makes the brightness of HDR videos follow the system default. | 18.19.35 |
 | `hide-ads` | Removes general ads. | 18.19.35 |
 | `hide-album-cards` | Hides the album cards below the artist description. | 18.19.35 |
-| `hide-artist-card` | Hides the artist card below the searchbar. | 18.19.35 |
 | `hide-autoplay-button` | Hides the autoplay button in the video player. | 18.19.35 |
 | `hide-breaking-news-shelf` | Hides the breaking news shelf on the homepage tab. | 18.19.35 |
 | `hide-captions-button` | Hides the captions button on video player. | 18.19.35 |
@@ -36,6 +35,7 @@ The official ReVanced Patches.
 | `hide-filter-bar` | Hides the filter bar in video feeds. | 18.19.35 |
 | `hide-floating-microphone-button` | Hides the floating microphone button which appears in search. | 18.19.35 |
 | `hide-info-cards` | Hides info cards in videos. | 18.19.35 |
+| `hide-layout-components` | Hides general layout components. | 18.19.35 |
 | `hide-load-more-button` | Hides the button under videos that loads similar videos. | 18.19.35 |
 | `hide-player-buttons` | Adds the option to hide video player previous and next buttons. | 18.19.35 |
 | `hide-player-overlay` | Hides the dark background overlay from the player when player controls are visible. | all |
@@ -71,16 +71,15 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `background-play` | Enables playing music in the background. | all |
-| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | 5.39.52 |
+| `bypass-certificate-checks` | Bypasses certificate checks which prevent YouTube Music from working on Android Auto. | all |
 | `codecs-unlock` | Adds more audio codec options. The new audio codecs usually result in better audio quality. | all |
 | `compact-header` | Hides the music category bar at the top of the homepage. | all |
 | `exclusive-audio-playback` | Enables the option to play music without video. | all |
-| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | 5.39.52 |
+| `hide-get-premium` | Removes all "Get Premium" evidences from the avatar menu. | all |
 | `minimized-playback-music` | Enables minimized playback on Kids music. | all |
-| `music-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 | `music-video-ads` | Removes ads in the music player. | all |
-| `tasteBuilder-remover` | Removes the "Tell us which artists you like" card from the home screen. | all |
 | `upgrade-button-remover` | Removes the upgrade tab from the pivot bar. | all |
+| `vanced-microg-support` | Allows YouTube Music ReVanced to run without root and under a different package name. | all |
 </details>
 
 ### [📦 `com.ss.android.ugc.trill`](https://play.google.com/store/apps/details?id=com.ss.android.ugc.trill)
@@ -120,13 +119,13 @@ The official ReVanced Patches.
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `auto-claim-channel-points` | Automatically claim Channel Points. | all |
-| `block-audio-ads` | Blocks audio ads in streams and VODs. | 14.6.1 |
-| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 14.6.1 |
-| `block-video-ads` | Blocks video ads in streams and VODs. | 14.6.1 |
+| `auto-claim-channel-points` | Automatically claim Channel Points. | 15.4.1 |
+| `block-audio-ads` | Blocks audio ads in streams and VODs. | 15.4.1 |
+| `block-embedded-ads` | Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker. | 15.4.1 |
+| `block-video-ads` | Blocks video ads in streams and VODs. | 15.4.1 |
 | `debug-mode` | Enables Twitch's internal debugging mode. | all |
 | `settings` | Adds settings menu to Twitch. | all |
-| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | all |
+| `show-deleted-messages` | Shows deleted chat messages behind a clickable spoiler. | 15.4.1 |
 </details>
 
 ### [📦 `com.twitter.android`](https://play.google.com/store/apps/details?id=com.twitter.android)
@@ -138,16 +137,6 @@ The official ReVanced Patches.
 | `hide-ads` | Hides ads. | all |
 | `hide-recommended-users` | Hides recommended users. | all |
 | `hide-views-stats` | Hides the view stats under tweets. | 9.71.0-release.0 |
-</details>
-
-### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `change-oauth-client-id` | Changes the OAuth client ID. | all |
-| `change-reddit-url` | Replaces the Reddit URL with one from another service. | all |
-| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.facebook.orca`](https://play.google.com/store/apps/details?id=com.facebook.orca)
@@ -170,13 +159,13 @@ The official ReVanced Patches.
 | `sanitize-sharing-links` | Removes (tracking) query parameters from the URLs when sharing links. | all |
 </details>
 
-### [📦 `com.laurencedawson.reddit_sync.pro`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.pro)
+### [📦 `com.laurencedawson.reddit_sync`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `change-oauth-client-id` | Changes the OAuth client ID. | all |
-| `change-reddit-url` | Replaces the Reddit URL with one from another service. | all |
+| `disable-ads` | Disables ads. | all |
 </details>
 
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
@@ -215,12 +204,52 @@ The official ReVanced Patches.
 | `spoof-signature` | Spoofs the signature of the app. | all |
 </details>
 
+### [📦 `ml.docilealligator.infinityforreddit`](https://play.google.com/store/apps/details?id=ml.docilealligator.infinityforreddit)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `free.reddit.news`](https://play.google.com/store/apps/details?id=free.reddit.news)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `reddit.news`](https://play.google.com/store/apps/details?id=reddit.news)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `com.rubenmayayo.reddit`](https://play.google.com/store/apps/details?id=com.rubenmayayo.reddit)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
+### [📦 `com.laurencedawson.reddit_sync.pro`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.pro)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
+</details>
+
 ### [📦 `com.laurencedawson.reddit_sync.dev`](https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync.dev)
 <details>
 
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
-| `change-reddit-url` | Replaces the Reddit URL with one from another service. | all |
+| `change-oauth-client-id` | Changes the OAuth client ID. | all |
 </details>
 
 ### [📦 `com.myprog.hexedit`](https://play.google.com/store/apps/details?id=com.myprog.hexedit)
@@ -301,6 +330,14 @@ The official ReVanced Patches.
 | 💊 Patch | 📜 Description | 🏹 Target Version |
 |:--------:|:--------------:|:-----------------:|
 | `remove-debugging-detection` | Removes the USB and wireless debugging checks. | all |
+</details>
+
+### [📦 `com.google.android.apps.recorder`](https://play.google.com/store/apps/details?id=com.google.android.apps.recorder)
+<details>
+
+| 💊 Patch | 📜 Description | 🏹 Target Version |
+|:--------:|:--------------:|:-----------------:|
+| `remove-device-restrictions` | Removes restrictions from using the app on any device. | all |
 </details>
 
 ### [📦 `com.dci.dev.androidtwelvewidgets`](https://play.google.com/store/apps/details?id=com.dci.dev.androidtwelvewidgets)
