@@ -8,54 +8,37 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
-import app.revanced.patcher.util.proxy.mutableTypes.encodedValue.MutableStringEncodedValue
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
+import app.revanced.patches.reddit.customclients.baconreader.api.fingerprints.GetAuthorizationUrlFingerprint
 import app.revanced.patches.reddit.customclients.baconreader.api.fingerprints.RequestTokenFingerprint
-import app.revanced.patches.reddit.customclients.baconreader.api.fingerprints.GetClientIdFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 
 @ChangeOAuthClientIdPatchAnnotation
 @Compatibility([Package("com.onelouder.baconreader")])
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
-    "http://baconreader.com/auth", Options, listOf(GetClientIdFingerprint, RequestTokenFingerprint)
+    "http://baconreader.com/auth", Options, listOf(GetAuthorizationUrlFingerprint, RequestTokenFingerprint)
 ) {
 
     override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+        fun MethodFingerprintResult.patch(replacementString: String) {
+            val clientIdIndex = scanResult.stringsScanResult!!.matches.first().index
 
-        GetClientIdFingerprint.result?.let {
-            val clientIdIndex = it.scanResult.stringsScanResult!!.matches.first().index
-
-            it.mutableMethod.apply {
+            mutableMethod.apply {
                 val clientIdRegister = getInstruction<OneRegisterInstruction>(clientIdIndex).registerA
                 replaceInstruction(
                     clientIdIndex,
-                    "const-string v$clientIdRegister, \"client_id=$clientId\""
+                    "const-string v$clientIdRegister, \"$replacementString\""
                 )
             }
         }
 
-        RequestTokenFingerprint.result?.let {
-            it.mutableClass.apply {
-                fields.find { field -> field.name == "APP_ID" }?.apply {
-                    val value = this.initialValue as MutableStringEncodedValue
-                    value.value = clientId!!
-                }
-            }
-        }
+        // Patch client id in authorization url.
+        first().patch("client_id=$clientId")
 
-        RequestTokenFingerprint.result?.let {
-            val clientIdIndex = it.scanResult.stringsScanResult!!.matches.first().index
-
-            it.mutableMethod.apply {
-                val clientIdRegister = getInstruction<OneRegisterInstruction>(clientIdIndex).registerA
-                replaceInstruction(
-                    clientIdIndex,
-                    "const-string v$clientIdRegister, \"$clientId\""
-                )
-            }
-        }
+        // Patch client id for access token request.
+        last().patch(clientId!!)
 
         return PatchResultSuccess()
     }
