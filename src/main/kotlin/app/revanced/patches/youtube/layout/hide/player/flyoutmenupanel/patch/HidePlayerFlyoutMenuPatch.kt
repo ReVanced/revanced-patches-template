@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([LithoFilterPatch::class, SettingsPatch::class])
 @HidePlayerFlyoutMenuItemsCompatibility
 @Version("0.0.1")
-class HidePlayerFlyoutMenuPatch: ResourcePatch {
+class HidePlayerFlyoutMenuPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
