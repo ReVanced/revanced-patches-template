@@ -368,7 +368,6 @@
     <string name="revanced_spoof_signature_verification_summary_on">App signature spoofed\n\nSide effects include:\n• Ambient mode may not work\n• Seekbar thumbnails are hidden</string>
     <string name="revanced_spoof_signature_verification_title">Spoof app signature</string>
     <string name="revanced_spoof_signature_verification_user_dialog_message">Turning off this setting may cause playback issues.</string>
-    <string name="revanced_spoof_signature_verification_toast">Spoofing app signature to prevent playback issues</string>
     <string name="revanced_swipe_brightness_summary_off">Brightness swipe is disabled</string>
     <string name="revanced_swipe_brightness_summary_on">Brightness swipe is enabled</string>
     <string name="revanced_swipe_brightness_title">Enable brightness gesture</string>
