@@ -1,3 +1,31 @@
+# [2.181.0-dev.6](https://github.com/revanced/revanced-patches/compare/v2.181.0-dev.5...v2.181.0-dev.6) (2023-07-02)
+
+
+### Bug Fixes
+
+* **reddit/hide-comment-ads:** do not require integrations ([c2211d4](https://github.com/revanced/revanced-patches/commit/c2211d458d5cab030999e604a87cc1d02805b7ef))
+
+# [2.181.0-dev.5](https://github.com/revanced/revanced-patches/compare/v2.181.0-dev.4...v2.181.0-dev.5) (2023-07-02)
+
+
+### Bug Fixes
+
+* **infinityforreddit/change-oauth-client-id:** patch correct method ([#2564](https://github.com/revanced/revanced-patches/issues/2564)) ([f1ba16e](https://github.com/revanced/revanced-patches/commit/f1ba16ebfe2fda86af96d094481ed472eebcb4f9))
+
+# [2.181.0-dev.4](https://github.com/revanced/revanced-patches/compare/v2.181.0-dev.3...v2.181.0-dev.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **youtube-music/bypass-certificate-checks:** fix fingerprint for the latest target app ([#2567](https://github.com/revanced/revanced-patches/issues/2567)) ([8eacb5b](https://github.com/revanced/revanced-patches/commit/8eacb5b5ace816da4d98b990eff0ea208691660c))
+
+# [2.181.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.181.0-dev.2...v2.181.0-dev.3) (2023-07-02)
+
+
+### Bug Fixes
+
+* **youtube/spoof-signature-verification:** remove auto re-enable functionality ([#2556](https://github.com/revanced/revanced-patches/issues/2556)) ([b8df8fb](https://github.com/revanced/revanced-patches/commit/b8df8fb99707fdac32e272fee8469dfeb940504d))
+
 # [2.181.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.181.0-dev.1...v2.181.0-dev.2) (2023-07-01)
 
 
