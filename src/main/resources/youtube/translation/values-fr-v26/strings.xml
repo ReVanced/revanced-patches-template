@@ -584,5 +584,4 @@
     <string name="revanced_sb_reset">Réinitialiser</string>
     <string name="revanced_sb_about">À propos</string>
     <string name="revanced_sb_about_api_sum">Les données sont fournies par l\'API SponsorBlock. Appuyez ici pour en savoir plus et voir les téléchargements pour d\'autres plates-formes</string>
-    <string name="revanced_sb_about_made_by">Intégration ReVanced par JakubWeg,\nrecodée par oSumAtrIX</string>
 </resources>

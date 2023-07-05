@@ -584,5 +584,4 @@
     <string name="revanced_sb_reset">重置</string>
     <string name="revanced_sb_about">关于</string>
     <string name="revanced_sb_about_api_sum">数据由 SponsorBlock API 提供。点击此处了解更多信息并查看其他平台的下载</string>
-    <string name="revanced_sb_about_made_by">JakubWeg 重新集成，\n由 oSumAtrIX 重新编码</string>
 </resources>
