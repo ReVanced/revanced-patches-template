@@ -64,7 +64,7 @@ class LithoFilterPatch : BytecodePatch(
      *
      * class SomeOtherClass {
      *    // Called before ComponentContextParser.parseBytesToComponentContext method.
-     *    public void someOtherMethod(byteBuffer: ByteBuffer) {
+     *    public void someOtherMethod(ByteBuffer byteBuffer) {
      *        ComponentContextParser.buffer = byteBuffer; // Inserted by this patch.
      *        ...
      *   }
