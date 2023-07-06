@@ -51,12 +51,13 @@ class OldVideoQualityMenuPatch : BytecodePatch(
 
         CreateBottomSheetFingerprint.result?.let {
             it.mutableMethod.apply {
-                val insertIndex = implementation!!.instructions.size - 1
-                val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
+                val returnLinearLayoutIndex = implementation!!.instructions.lastIndex
+                val linearLayoutRegister = getInstruction<OneRegisterInstruction>(returnLinearLayoutIndex).registerA
 
                 addInstruction(
-                    insertIndex,
-                    "invoke-static { v$insertRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->" +
+                    returnLinearLayoutIndex,
+                    "invoke-static { v$linearLayoutRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->" +
                             "showOldVideoQualityMenu(Landroid/widget/LinearLayout;)V"
                 )
             }
