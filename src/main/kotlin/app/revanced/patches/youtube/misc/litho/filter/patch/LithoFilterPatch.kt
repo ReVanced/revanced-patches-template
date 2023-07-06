@@ -196,9 +196,6 @@ class LithoFilterPatch : BytecodePatch(
         private val MethodFingerprint.patternScanEndIndex
             get() = patternScanResult.endIndex
 
-        private val MethodFingerprint.patternScanStartIndex
-            get() = patternScanResult.startIndex
-
         private val Instruction.descriptor
             get() = (this as ReferenceInstruction).reference.toString()
 
