@@ -1,3 +1,17 @@
+# [2.182.0-dev.3](https://github.com/revanced/revanced-patches/compare/v2.182.0-dev.2...v2.182.0-dev.3) (2023-07-05)
+
+
+### Features
+
+* **pixiv:** add `hide-ads` patch ([#2578](https://github.com/revanced/revanced-patches/issues/2578)) ([862a7ec](https://github.com/revanced/revanced-patches/commit/862a7ec5b0767c28e79454a44218069d3e9cbac7))
+
+# [2.182.0-dev.2](https://github.com/revanced/revanced-patches/compare/v2.182.0-dev.1...v2.182.0-dev.2) (2023-07-05)
+
+
+### Features
+
+* **slideforreddit:** add `change-oauth-client-id` patch ([#2571](https://github.com/revanced/revanced-patches/issues/2571)) ([8cd60ee](https://github.com/revanced/revanced-patches/commit/8cd60eea36bd49514ed1c42bf362dce7e9675fca))
+
 # [2.182.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.181.0...v2.182.0-dev.1) (2023-07-05)
 
 
