@@ -46,37 +46,16 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext): PatchResult {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
-            PreferenceScreen(
+            TextPreference(
                 key = "revanced_custom_playback_speeds",
-                title = StringResource("revanced_custom_playback_speeds_title", "Custom playback speeds"),
-                preferences = listOf(
-                    SwitchPreference(
-                        key = "revanced_custom_playback_speeds_enabled",
-                        title = StringResource(
-                            "revanced_custom_playback_speeds_enabled_title",
-                            "Enable custom playback speeds"
-                        ),
-                        summaryOn = StringResource(
-                            "revanced_custom_playback_speeds_enabled_summary",
-                            "Using custom playback speeds"
-                        ),
-                        summaryOff = StringResource(
-                            "revanced_custom_playback_speeds_enabled_summary",
-                            "Using YouTube default playback speeds "
-                        ),
-                    ),
-                    TextPreference(
-                        key = "revanced_custom_playback_speeds_list",
-                        title = StringResource(
-                            "revanced_custom_playback_speeds_title",
-                            "Custom playback speeds"
-                        ),
-                        inputType = InputType.TEXT_MULTI_LINE,
-                        summary = StringResource(
-                            "revanced_custom_playback_speeds_summary",
-                            "Add or change the custom playback speeds"
-                        )
-                    )
+                title = StringResource(
+                    "revanced_custom_playback_speeds_title",
+                    "Custom playback speeds"
+                ),
+                inputType = InputType.TEXT_MULTI_LINE,
+                summary = StringResource(
+                    "revanced_custom_playback_speeds_summary",
+                    "Add or change the available playback speeds"
                 )
             )
         )
@@ -102,7 +81,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val arrayLengthConstDestination = (arrayLengthConst as OneRegisterInstruction).registerA
 
-        val videoSpeedsArrayType = "$INTEGRATIONS_CLASS_DESCRIPTOR->videoSpeeds:[F"
+        val videoSpeedsArrayType = "$INTEGRATIONS_CLASS_DESCRIPTOR->customVideoSpeeds:[F"
 
         arrayGenMethod.addInstructions(
             arrayLengthConstIndex + 1,
