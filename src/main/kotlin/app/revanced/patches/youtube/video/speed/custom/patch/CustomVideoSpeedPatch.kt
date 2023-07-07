@@ -54,15 +54,15 @@ class CustomVideoSpeedPatch : BytecodePatch(
                         key = "revanced_custom_playback_speeds_enabled",
                         title = StringResource(
                             "revanced_custom_playback_speeds_enabled_title",
-                            "Show custom playback speeds"
+                            "Enable custom playback speeds"
                         ),
                         summaryOn = StringResource(
                             "revanced_custom_playback_speeds_enabled_summary",
-                            "Custom playback speeds are visible"
+                            "Using custom playback speeds"
                         ),
                         summaryOff = StringResource(
                             "revanced_custom_playback_speeds_enabled_summary",
-                            "Default playback speeds are visible"
+                            "Using YouTube default playback speeds "
                         ),
                     ),
                     TextPreference(
@@ -74,7 +74,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
                         inputType = InputType.TEXT_MULTI_LINE,
                         summary = StringResource(
                             "revanced_custom_playback_speeds_summary",
-                            "Customize the playback speeds"
+                            "Add or change the custom playback speeds"
                         )
                     )
                 )
@@ -102,7 +102,7 @@ class CustomVideoSpeedPatch : BytecodePatch(
 
         val arrayLengthConstDestination = (arrayLengthConst as OneRegisterInstruction).registerA
 
-        val videoSpeedsArrayType = "$INTEGRATIONS_CLASS_DESCRIPTOR->customVideoSpeeds:[F"
+        val videoSpeedsArrayType = "$INTEGRATIONS_CLASS_DESCRIPTOR->videoSpeeds:[F"
 
         arrayGenMethod.addInstructions(
             arrayLengthConstIndex + 1,
