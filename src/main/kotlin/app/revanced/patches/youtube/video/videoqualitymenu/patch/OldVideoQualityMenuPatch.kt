@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.video.videoqualitymenu.patch
 
-import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
@@ -12,21 +11,26 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patches.youtube.misc.bottomsheet.hook.patch.BottomSheetHookPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.video.videoqualitymenu.annotations.OldVideoQualityMenuCompatibility
-import app.revanced.patches.youtube.video.videoqualitymenu.fingerprints.CreateBottomSheetFingerprint
 import app.revanced.patches.youtube.video.videoqualitymenu.fingerprints.VideoQualityMenuViewInflateFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class, OldVideoQualityMenuResourcePatch::class, LithoFilterPatch::class])
+@DependsOn([
+    IntegrationsPatch::class,
+    OldVideoQualityMenuResourcePatch::class,
+    LithoFilterPatch::class,
+    BottomSheetHookPatch::class
+])
 @Name("old-video-quality-menu")
 @Description("Shows the old video quality with the advanced video quality options instead of the new one.")
 @OldVideoQualityMenuCompatibility
 @Version("0.0.1")
 class OldVideoQualityMenuPatch : BytecodePatch(
-    listOf(VideoQualityMenuViewInflateFingerprint, CreateBottomSheetFingerprint)
+    listOf(VideoQualityMenuViewInflateFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
         // region Patch for the old type of the video quality menu.
@@ -49,20 +53,7 @@ class OldVideoQualityMenuPatch : BytecodePatch(
 
         // region Patch for the new type of the video quality menu.
 
-        CreateBottomSheetFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val returnLinearLayoutIndex = implementation!!.instructions.lastIndex
-                val linearLayoutRegister = getInstruction<OneRegisterInstruction>(returnLinearLayoutIndex).registerA
-
-                addInstruction(
-                    returnLinearLayoutIndex,
-                    "invoke-static { v$linearLayoutRegister }, " +
-                            "$INTEGRATIONS_CLASS_DESCRIPTOR->" +
-                            "showOldVideoQualityMenu(Landroid/widget/LinearLayout;)V"
-                )
-            }
-        } ?: return CreateBottomSheetFingerprint.toErrorResult()
-
+        BottomSheetHookPatch.addHook(INTEGRATIONS_CLASS_DESCRIPTOR)
 
         // Required to check if the video quality menu is currently shown in order to click on the "Advanced" item.
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)

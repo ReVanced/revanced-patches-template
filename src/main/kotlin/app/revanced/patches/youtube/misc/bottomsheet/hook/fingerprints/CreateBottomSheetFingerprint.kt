@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.video.videoqualitymenu.fingerprints
+package app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patches.youtube.video.videoqualitymenu.patch.OldVideoQualityMenuResourcePatch
