@@ -330,9 +330,9 @@
     <string name="revanced_share_copy_url_timestamp_success">כתובת האתר עם חותמת הזמן הועתקה</string>
     <string name="revanced_shorts_preference_screen_summary">נהל את הנראות של רכיבי Shorts</string>
     <string name="revanced_shorts_preference_screen_title">רכיבי מכנסיים קצרים</string>
-    <string name="revanced_show_old_video_menu_summary_off">לא נעשה שימוש בתפריט איכות הווידאו הישן</string>
-    <string name="revanced_show_old_video_menu_summary_on">נעשה שימוש בתפריט איכות וידאו ישן</string>
-    <string name="revanced_show_old_video_menu_title">השתמש בתפריט נגן איכות וידאו ישן</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">לא נעשה שימוש בתפריט איכות הווידאו הישן</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">נעשה שימוש בתפריט איכות וידאו ישן</string>
+    <string name="revanced_show_old_video_quality_menu_title">השתמש בתפריט נגן איכות וידאו ישן</string>
     <string name="revanced_sponsorblock_settings_summary">הגדרות הקשורות לחסימת חסות</string>
     <string name="revanced_spoof_app_version_summary_off">הגרסה לא מזויפת</string>
     <string name="revanced_spoof_app_version_summary_on">הגרסה מזויפת</string>

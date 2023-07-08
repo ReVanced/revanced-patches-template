@@ -329,9 +329,9 @@
     <string name="revanced_share_copy_url_timestamp_success">I-URL enesitembu sesikhathi esikopishiwe</string>
     <string name="revanced_shorts_preference_screen_summary">Phatha ukubonakala kwezingxenye Ezifushane</string>
     <string name="revanced_shorts_preference_screen_title">Izingxenye zokufushane</string>
-    <string name="revanced_show_old_video_menu_summary_off">Imenyu yekhwalithi yevidiyo endala ayisetshenziswa</string>
-    <string name="revanced_show_old_video_menu_summary_on">Kusetshenziswa imenyu yekhwalithi yevidiyo endala</string>
-    <string name="revanced_show_old_video_menu_title">Sebenzisa imenyu yesidlali sekhwalithi yevidiyo endala</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">Imenyu yekhwalithi yevidiyo endala ayisetshenziswa</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">Kusetshenziswa imenyu yekhwalithi yevidiyo endala</string>
+    <string name="revanced_show_old_video_quality_menu_title">Sebenzisa imenyu yesidlali sekhwalithi yevidiyo endala</string>
     <string name="revanced_sponsorblock_settings_summary">Izilungiselelo ezihlobene ne-SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">Inguqulo ayiphazwanga</string>
     <string name="revanced_spoof_app_version_summary_on">Inguqulo yonakele</string>

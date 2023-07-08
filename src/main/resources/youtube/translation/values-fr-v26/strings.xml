@@ -329,9 +329,9 @@
     <string name="revanced_share_copy_url_timestamp_success">URL avec horodatage copié</string>
     <string name="revanced_shorts_preference_screen_summary">Gérer la visibilité des composants Shorts</string>
     <string name="revanced_shorts_preference_screen_title">Composants du short</string>
-    <string name="revanced_show_old_video_menu_summary_off">L\'ancien menu de qualité vidéo n\'est pas utilisé</string>
-    <string name="revanced_show_old_video_menu_summary_on">L\'ancien menu de qualité vidéo est utilisé</string>
-    <string name="revanced_show_old_video_menu_title">Utiliser l\'ancien menu du lecteur de qualité vidéo</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">L\'ancien menu de qualité vidéo n\'est pas utilisé</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">L\'ancien menu de qualité vidéo est utilisé</string>
+    <string name="revanced_show_old_video_quality_menu_title">Utiliser l\'ancien menu du lecteur de qualité vidéo</string>
     <string name="revanced_sponsorblock_settings_summary">Paramètres liés à SponsorBlock</string>
     <string name="revanced_spoof_app_version_summary_off">Version non usurpée</string>
     <string name="revanced_spoof_app_version_summary_on">Version usurpée</string>

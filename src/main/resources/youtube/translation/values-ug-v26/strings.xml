@@ -331,9 +331,9 @@
     <string name="revanced_share_copy_url_timestamp_success">ۋاقىت جەدۋىلى كۆچۈرۈلگەن URL</string>
     <string name="revanced_shorts_preference_screen_summary">كالتە ئىشتان زاپچاسلىرىنىڭ كۆرۈنۈشچانلىقىنى باشقۇرۇڭ</string>
     <string name="revanced_shorts_preference_screen_title">قىسقا زاپچاسلار</string>
-    <string name="revanced_show_old_video_menu_summary_off">كونا سىن سۈپىتى تىزىملىكى ئىشلىتىلمەيدۇ</string>
-    <string name="revanced_show_old_video_menu_summary_on">كونا سىن سۈپىتى تىزىملىكى ئىشلىتىلگەن</string>
-    <string name="revanced_show_old_video_menu_title">كونا سىن سۈپىتى قويغۇچ تىزىملىكىنى ئىشلىتىڭ</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">كونا سىن سۈپىتى تىزىملىكى ئىشلىتىلمەيدۇ</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">كونا سىن سۈپىتى تىزىملىكى ئىشلىتىلگەن</string>
+    <string name="revanced_show_old_video_quality_menu_title">كونا سىن سۈپىتى قويغۇچ تىزىملىكىنى ئىشلىتىڭ</string>
     <string name="revanced_sponsorblock_settings_summary">SponsorBlock مۇناسىۋەتلىك تەڭشەكلەر</string>
     <string name="revanced_spoof_app_version_summary_off">نەشىرى بۇزۇلمىدى</string>
     <string name="revanced_spoof_app_version_summary_on">نەشىرى بۇزۇلدى</string>

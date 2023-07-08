@@ -329,9 +329,9 @@
     <string name="revanced_share_copy_url_timestamp_success">已复制时间戳的 URL</string>
     <string name="revanced_shorts_preference_screen_summary">管理 Shorts 组件的可见性</string>
     <string name="revanced_shorts_preference_screen_title">短裤组件</string>
-    <string name="revanced_show_old_video_menu_summary_off">不使用旧的视频质量菜单</string>
-    <string name="revanced_show_old_video_menu_summary_on">使用旧的视频质量菜单</string>
-    <string name="revanced_show_old_video_menu_title">使用旧的视频质量播放器菜单</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">不使用旧的视频质量菜单</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">使用旧的视频质量菜单</string>
+    <string name="revanced_show_old_video_quality_menu_title">使用旧的视频质量播放器菜单</string>
     <string name="revanced_sponsorblock_settings_summary">SponsorBlock 相关设置</string>
     <string name="revanced_spoof_app_version_summary_off">版本未被欺骗</string>
     <string name="revanced_spoof_app_version_summary_on">版本欺骗</string>

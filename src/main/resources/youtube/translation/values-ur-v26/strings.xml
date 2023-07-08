@@ -329,9 +329,9 @@
     <string name="revanced_share_copy_url_timestamp_success">ٹائم اسٹیمپ کے ساتھ URL کاپی کیا گیا۔</string>
     <string name="revanced_shorts_preference_screen_summary">Shorts کے اجزاء کی مرئیت کا نظم کریں۔</string>
     <string name="revanced_shorts_preference_screen_title">شارٹس کے اجزاء</string>
-    <string name="revanced_show_old_video_menu_summary_off">پرانا ویڈیو کوالٹی مینو استعمال نہیں کیا جاتا ہے۔</string>
-    <string name="revanced_show_old_video_menu_summary_on">پرانا ویڈیو کوالٹی مینو استعمال کیا جاتا ہے۔</string>
-    <string name="revanced_show_old_video_menu_title">پرانا ویڈیو کوالٹی پلیئر مینو استعمال کریں۔</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">پرانا ویڈیو کوالٹی مینو استعمال نہیں کیا جاتا ہے۔</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">پرانا ویڈیو کوالٹی مینو استعمال کیا جاتا ہے۔</string>
+    <string name="revanced_show_old_video_quality_menu_title">پرانا ویڈیو کوالٹی پلیئر مینو استعمال کریں۔</string>
     <string name="revanced_sponsorblock_settings_summary">اسپانسر بلاک سے متعلق ترتیبات</string>
     <string name="revanced_spoof_app_version_summary_off">ورژن جعلی نہیں ہے۔</string>
     <string name="revanced_spoof_app_version_summary_on">ورژن جعلساز</string>

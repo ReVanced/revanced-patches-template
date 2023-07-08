@@ -351,9 +351,9 @@
     <string name="revanced_share_copy_url_timestamp_success">URL with timestamp copied</string>
     <string name="revanced_shorts_preference_screen_summary">Manage the visibility of Shorts components</string>
     <string name="revanced_shorts_preference_screen_title">Shorts components</string>
-    <string name="revanced_show_old_video_menu_summary_off">Old video quality menu is not used</string>
-    <string name="revanced_show_old_video_menu_summary_on">Old video quality menu is used</string>
-    <string name="revanced_show_old_video_menu_title">Use old video quality player menu</string>
+    <string name="revanced_show_old_video_quality_menu_summary_off">Old video quality menu is not used</string>
+    <string name="revanced_show_old_video_quality_menu_summary_on">Old video quality menu is used</string>
+    <string name="revanced_show_old_video_quality_menu_title">Use old video quality player menu</string>
     <string name="revanced_sponsorblock_settings_summary">SponsorBlock related settings</string>
     <string name="revanced_spoof_app_version_summary_off">Version not spoofed</string>
     <string name="revanced_spoof_app_version_summary_on">Version spoofed</string>
