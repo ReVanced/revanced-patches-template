@@ -77,7 +77,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 return v0
             """
             )
-        } ?: StoryboardThumbnailFingerprint.toErrorResult()
+        } ?: return StoryboardThumbnailFingerprint.toErrorResult()
 
 
         // Seekbar thumbnail now show up but are always a blank image.
@@ -95,7 +95,7 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 """
                 )
             }
-        } ?: ScrubbedPreviewLayoutFingerprint.toErrorResult()
+        } ?: return ScrubbedPreviewLayoutFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
