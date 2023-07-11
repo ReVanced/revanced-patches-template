@@ -1,9 +1,13 @@
 
 package app.revanced.patches.twitch.misc.settings.resource.patch
 
+import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchResult
+import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
+import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 class TwitchSettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
