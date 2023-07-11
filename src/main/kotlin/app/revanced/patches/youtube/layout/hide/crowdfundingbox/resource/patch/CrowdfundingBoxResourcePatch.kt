@@ -1,7 +1,5 @@
 package app.revanced.patches.youtube.layout.hide.crowdfundingbox.resource.patch
 
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -9,13 +7,9 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.crowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
-@Name("crowdfunding-box-resource-patch")
-@CrowdfundingBoxCompatibility
 @DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
-@Version("0.0.1")
 class CrowdfundingBoxResourcePatch : ResourcePatch {
     companion object {
         internal var crowdfundingBoxId: Long = -1

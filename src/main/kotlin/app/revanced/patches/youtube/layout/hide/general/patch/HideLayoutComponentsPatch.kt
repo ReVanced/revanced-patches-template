@@ -23,7 +23,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch.PreferenceScreen
 
 @Patch
-@Name("hide-layout-components")
+@Name("Hide layout components")
 @Description("Hides general layout components.")
 @DependsOn([LithoFilterPatch::class, YouTubeSettingsPatch::class])
 @HideLayoutComponentsCompatibility

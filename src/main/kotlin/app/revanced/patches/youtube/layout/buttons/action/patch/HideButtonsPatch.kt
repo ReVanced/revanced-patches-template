@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class])
-@Name("hide-video-action-buttons")
+@Name("Hide video action buttons")
 @Description("Adds the options to hide action buttons under a video.")
 @HideButtonsCompatibility
 @Version("0.0.1")

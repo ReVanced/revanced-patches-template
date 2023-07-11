@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch
 
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -8,12 +7,9 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.annotations.HideLoadMoreButtonCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
-@Name("hide-load-more-button-resource-patch")
 @DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
-@HideLoadMoreButtonCompatibility
 class HideLoadMoreButtonResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

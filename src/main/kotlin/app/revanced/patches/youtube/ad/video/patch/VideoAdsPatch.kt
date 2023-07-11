@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("video-ads")
+@Name("Video ads")
 @Description("Removes ads in the video player.")
 @VideoAdsCompatibility
 @Version("0.0.1")

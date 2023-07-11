@@ -28,7 +28,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch
-@Name("minimized-playback")
+@Name("Minimized playback")
 @Description("Enables minimized and background playback.")
 @DependsOn([IntegrationsPatch::class, PlayerTypeHookPatch::class, YouTubeSettingsPatch::class])
 @MinimizedPlaybackCompatibility

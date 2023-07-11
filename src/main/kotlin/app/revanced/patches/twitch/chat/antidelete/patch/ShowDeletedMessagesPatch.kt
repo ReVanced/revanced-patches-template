@@ -25,7 +25,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPa
 
 @Patch
 @DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
-@Name("show-deleted-messages")
+@Name("Show deleted messages")
 @Description("Shows deleted chat messages behind a clickable spoiler.")
 @ShowDeletedMessagesCompatibility
 @Version("0.0.1")

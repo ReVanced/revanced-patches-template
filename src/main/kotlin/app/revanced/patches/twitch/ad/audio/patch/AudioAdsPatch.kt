@@ -20,7 +20,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPa
 
 @Patch
 @DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
-@Name("block-audio-ads")
+@Name("Block audio ads")
 @Description("Blocks audio ads in streams and VODs.")
 @AudioAdsCompatibility
 @Version("0.0.1")

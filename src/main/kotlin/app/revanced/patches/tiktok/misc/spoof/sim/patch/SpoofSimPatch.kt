@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch(false)
 @DependsOn([TikTokIntegrationsPatch::class, TikTokSettingsPatch::class])
-@Name("sim-spoof")
+@Name("Sim spoof")
 @Description("Spoofs the information which is retrieved from the sim-card.")
 @SpoofSimCompatibility
 @Version("0.0.1")

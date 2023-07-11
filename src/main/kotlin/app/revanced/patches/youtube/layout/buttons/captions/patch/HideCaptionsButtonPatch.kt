@@ -19,7 +19,7 @@ import org.jf.dexlib2.Opcode
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("hide-captions-button")
+@Name("Hide captions button")
 @Description("Hides the captions button on video player.")
 @HideCaptionsButtonCompatibility
 @Version("0.0.1")

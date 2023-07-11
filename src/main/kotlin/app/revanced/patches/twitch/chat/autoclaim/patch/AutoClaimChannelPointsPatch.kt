@@ -20,7 +20,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPa
 
 @Patch
 @DependsOn([TwitchSettingsPatch::class])
-@Name("auto-claim-channel-points")
+@Name("Auto claim channel points")
 @Description("Automatically claim Channel Points.")
 @AutoClaimChannelPointsCompatibility
 @Version("0.0.1")

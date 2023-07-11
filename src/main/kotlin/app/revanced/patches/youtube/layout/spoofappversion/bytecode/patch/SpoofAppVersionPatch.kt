@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("spoof-app-version")
+@Name("Spoof app version")
 @Description("Tricks YouTube into thinking, you are running an older version of the app. One of the side effects also includes restoring the old UI.")
 @SpoofAppVersionCompatibility
 @Version("0.0.1")

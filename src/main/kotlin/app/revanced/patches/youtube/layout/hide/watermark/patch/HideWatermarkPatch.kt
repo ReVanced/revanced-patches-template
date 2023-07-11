@@ -22,7 +22,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("hide-watermark")
+@Name("Hide watermark")
 @Description("Hides creator's watermarks on videos.")
 @HideWatermarkCompatibility
 @Version("0.0.1")

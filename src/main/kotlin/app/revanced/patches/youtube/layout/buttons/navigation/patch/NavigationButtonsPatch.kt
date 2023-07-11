@@ -32,7 +32,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
         ResolvePivotBarFingerprintsPatch::class,
     ]
 )
-@Name("navigation-buttons")
+@Name("Navigation buttons")
 @Description("Adds options to hide or change navigation buttons.")
 @NavigationButtonsCompatibility
 @Version("0.0.1")

@@ -1,3 +1,60 @@
+# [2.184.0](https://github.com/revanced/revanced-patches/compare/v2.183.1...v2.184.0) (2023-07-11)
+
+
+### Features
+
+* **youtube/custom-branding:** update logo ([e2187f3](https://github.com/revanced/revanced-patches/commit/e2187f33ff82fce40592517aef31cb191b42987c))
+
+# [2.184.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.183.1...v2.184.0-dev.1) (2023-07-11)
+
+
+### Features
+
+* **youtube/custom-branding:** update logo ([e2187f3](https://github.com/revanced/revanced-patches/commit/e2187f33ff82fce40592517aef31cb191b42987c))
+
+## [2.183.1](https://github.com/revanced/revanced-patches/compare/v2.183.0...v2.183.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* find resource by correct name ([7e562f3](https://github.com/revanced/revanced-patches/commit/7e562f3fb30d0ef5601114433090b2eebcf04c9e))
+* use correct patch naming convention ([3d8856b](https://github.com/revanced/revanced-patches/commit/3d8856b29aba4d7436e637bc5778261b4acddeba))
+
+## [2.183.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.183.0...v2.183.1-dev.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* find resource by correct name ([7e562f3](https://github.com/revanced/revanced-patches/commit/7e562f3fb30d0ef5601114433090b2eebcf04c9e))
+* use correct patch naming convention ([3d8856b](https://github.com/revanced/revanced-patches/commit/3d8856b29aba4d7436e637bc5778261b4acddeba))
+
+# [2.183.0](https://github.com/revanced/revanced-patches/compare/v2.182.0...v2.183.0) (2023-07-10)
+
+
+### Bug Fixes
+
+* **youtube/custom-video-buffer:** remove non functional deprecated patch ([de233e2](https://github.com/revanced/revanced-patches/commit/de233e28246b1716b42bf331d2355ff4beed9564))
+* **youtube/custom-video-speed:** don not implicitly depend on `old-video-quality-menu` patch ([acfda46](https://github.com/revanced/revanced-patches/commit/acfda46bce2558df18a6fa562008e058df5ad31e))
+
+
+### Features
+
+* change patches naming convention ([#2612](https://github.com/revanced/revanced-patches/issues/2612)) ([2dacc45](https://github.com/revanced/revanced-patches/commit/2dacc45f7430f7b3e60a8a2db60c3d6395a2f5cc))
+
+# [2.183.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.182.1-dev.2...v2.183.0-dev.1) (2023-07-10)
+
+
+### Features
+
+* change patches naming convention ([#2612](https://github.com/revanced/revanced-patches/issues/2612)) ([2dacc45](https://github.com/revanced/revanced-patches/commit/2dacc45f7430f7b3e60a8a2db60c3d6395a2f5cc))
+
+## [2.182.1-dev.2](https://github.com/revanced/revanced-patches/compare/v2.182.1-dev.1...v2.182.1-dev.2) (2023-07-09)
+
+
+### Bug Fixes
+
+* **youtube/custom-video-speed:** don not implicitly depend on `old-video-quality-menu` patch ([acfda46](https://github.com/revanced/revanced-patches/commit/acfda46bce2558df18a6fa562008e058df5ad31e))
+
 ## [2.182.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.182.0...v2.182.1-dev.1) (2023-07-08)
 
 

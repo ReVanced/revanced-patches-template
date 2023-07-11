@@ -32,7 +32,7 @@ import java.io.Closeable
 
 @Patch
 @DependsOn([TwitchSettingsResourcePatch::class])
-@Name("settings")
+@Name("Settings")
 @Description("Adds settings menu to Twitch.")
 @TwitchSettingsCompatibility
 @Version("0.0.1")

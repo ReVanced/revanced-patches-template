@@ -25,7 +25,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("tablet-mini-player")
+@Name("Tablet mini player")
 @Description("Enables the tablet mini player layout.")
 @TabletMiniPlayerCompatibility
 @Version("0.0.1")

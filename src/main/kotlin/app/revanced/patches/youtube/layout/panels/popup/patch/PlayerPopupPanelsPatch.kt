@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("disable-player-popup-panels")
+@Name("Disable player popup panels")
 @Description("Disables panels from appearing automatically when going into fullscreen (playlist or live chat).")
 @PlayerPopupPanelsCompatibility
 @Version("0.0.1")

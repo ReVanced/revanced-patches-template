@@ -22,7 +22,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPa
 
 @Patch
 @DependsOn([VideoAdsPatch::class, IntegrationsPatch::class, TwitchSettingsPatch::class])
-@Name("block-embedded-ads")
+@Name("Block embedded ads")
 @Description("Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.")
 @EmbeddedAdsCompatibility
 @Version("0.0.1")

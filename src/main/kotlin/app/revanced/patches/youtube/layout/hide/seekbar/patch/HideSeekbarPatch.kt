@@ -29,7 +29,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
     // Used to add preferences to the seekbar settings menu.
     SeekbarPreferencesPatch::class
 ])
-@Name("hide-seekbar")
+@Name("Hide seekbar")
 @Description("Hides the seekbar.")
 @HideSeekbarCompatibility
 @Version("0.0.1")

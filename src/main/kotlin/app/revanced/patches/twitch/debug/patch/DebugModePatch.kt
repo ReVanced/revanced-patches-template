@@ -21,7 +21,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPa
 
 @Patch(false)
 @DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
-@Name("debug-mode")
+@Name("Debug mode")
 @Description("Enables Twitch's internal debugging mode.")
 @DebugModeCompatibility
 @Version("0.0.1")

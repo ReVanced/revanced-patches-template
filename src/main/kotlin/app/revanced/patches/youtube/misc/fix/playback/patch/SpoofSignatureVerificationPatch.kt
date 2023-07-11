@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
-@Name("spoof-signature-verification")
+@Name("Spoof signature verification")
 @Description("Spoofs a patched client to prevent playback issues.")
 @DependsOn([
     IntegrationsPatch::class,

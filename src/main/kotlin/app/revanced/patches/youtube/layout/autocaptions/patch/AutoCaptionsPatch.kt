@@ -21,7 +21,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("disable-auto-captions")
+@Name("Disable auto captions")
 @Description("Disable forced captions from being automatically enabled.")
 @HideCaptionsButtonCompatibility
 @Version("0.0.1")

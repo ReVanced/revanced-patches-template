@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
-@Name("disable-shorts-on-startup")
+@Name("Disable Shorts on startup")
 @Description("Disables playing YouTube Shorts when launching YouTube.")
 @StartupShortsResetCompatibility
 @Version("0.0.1")

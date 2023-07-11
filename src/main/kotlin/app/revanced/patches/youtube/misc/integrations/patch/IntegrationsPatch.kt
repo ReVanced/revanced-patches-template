@@ -12,7 +12,7 @@ import app.revanced.patches.youtube.misc.integrations.fingerprints.RemoteEmbedFr
 import app.revanced.patches.youtube.misc.integrations.fingerprints.RemoteEmbeddedPlayerFingerprint
 import app.revanced.patches.youtube.misc.integrations.fingerprints.StandalonePlayerActivityFingerprint
 
-@Name("integrations")
+@Name("Integrations")
 @IntegrationsCompatibility
 @RequiresIntegrations
 class IntegrationsPatch : AbstractIntegrationsPatch(

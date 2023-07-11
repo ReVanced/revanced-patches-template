@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@Name("comments")
+@Name("Comments")
 @Description("Hides components related to comments.")
 @HideCommentsCompatibility
 @DependsOn([YouTubeSettingsPatch::class, LithoFilterPatch::class])
