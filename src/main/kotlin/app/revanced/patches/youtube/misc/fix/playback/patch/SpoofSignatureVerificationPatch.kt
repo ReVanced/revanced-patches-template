@@ -57,12 +57,18 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
         } ?: return ProtobufParameterBuilderFingerprint.toErrorResult()
 
 
-        // Force the video time and chapters to show up when using the seekbar.
+        // When signature spoofing is enabled, the seekbar when tapped does not show
+        // the video time, chapter names, or the video thumbnail.
+        // Changing the value returned of this method forces all of these to show up,
+        // except the thumbnails are blank, which is handled with the patch below.
         StoryboardThumbnailParentFingerprint.result ?: return StoryboardThumbnailParentFingerprint.toErrorResult()
         StoryboardThumbnailFingerprint.resolve(context, StoryboardThumbnailParentFingerprint.result!!.classDef)
         StoryboardThumbnailFingerprint.result?.apply {
             val endIndex = scanResult.patternScanResult!!.endIndex
             // Replace existing instruction to preserve control flow label.
+            // The replaced return instruction always returns false
+            // (it is the 'no thumbnails found' control path),
+            // so there is no need to pass the existing return value to integrations.
             mutableMethod.replaceInstruction(
                 endIndex,
                 """
