@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
-@Name("spoof-signature-verification")
+@Name("Spoof signature verification")
 @Description("Spoofs a patched client to prevent playback issues.")
 @DependsOn([
     SpoofSignatureVerificationResourcePatch::class,
