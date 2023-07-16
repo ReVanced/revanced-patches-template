@@ -22,11 +22,10 @@ import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.bottomsheet.hook.patch.BottomSheetHookPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import app.revanced.patches.youtube.video.speed.custom.fingerprints.GetOldVideoSpeedsFingerprint
-import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldVideoSpeedMenuFingerprint
-import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldVideoSpeedMenuIntegrationsFingerprint
+import app.revanced.patches.youtube.video.speed.custom.fingerprints.GetOldPlaybackSpeedsFingerprint
+import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldPlaybackSpeedMenuFingerprint
+import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldPlaybackSpeedMenuIntegrationsFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedArrayGeneratorFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.SpeedLimiterFingerprint
 import org.jf.dexlib2.AccessFlags
