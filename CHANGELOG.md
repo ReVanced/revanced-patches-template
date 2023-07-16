@@ -1,3 +1,24 @@
+# [2.185.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.185.0-dev.1...v2.185.0-dev.2) (2023-07-15)
+
+
+### Bug Fixes
+
+* allocate for more than eight `LithoFilter` array items ([#2643](https://github.com/ReVanced/revanced-patches/issues/2643)) ([fc8660b](https://github.com/ReVanced/revanced-patches/commit/fc8660b740bec2747e5f82b7321027bb8a51e0cf))
+
+# [2.185.0-dev.1](https://github.com/revanced/revanced-patches/compare/v2.184.1-dev.1...v2.185.0-dev.1) (2023-07-15)
+
+
+### Features
+
+* **youtube:** rename `video-speed` to `playback-speed` ([#2642](https://github.com/revanced/revanced-patches/issues/2642)) ([77e8639](https://github.com/revanced/revanced-patches/commit/77e8639b71048f2795f8f32fe18d052b335e3ce4))
+
+## [2.184.1-dev.1](https://github.com/revanced/revanced-patches/compare/v2.184.0...v2.184.1-dev.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* **youtube/sponsorblock:** fix some segments skipping slightly too late ([#2634](https://github.com/revanced/revanced-patches/issues/2634)) ([3175431](https://github.com/revanced/revanced-patches/commit/31754311870324b1e245b12965d7486878e9eba4))
+
 # [2.184.0](https://github.com/revanced/revanced-patches/compare/v2.183.1...v2.184.0) (2023-07-11)
 
 
