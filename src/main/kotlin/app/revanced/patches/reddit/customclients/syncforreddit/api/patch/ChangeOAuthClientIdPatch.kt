@@ -1,17 +1,15 @@
 package app.revanced.patches.reddit.customclients.syncforreddit.api.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.GetAuthorizationStringFingerprint
@@ -35,7 +33,7 @@ import java.util.*
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://redditsync/auth", Options, listOf(GetAuthorizationStringFingerprint)
 ) {
-    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext) {
         forEach { fingerprintResult ->
             fingerprintResult.also { result ->
                 GetBearerTokenFingerprint.also { it.resolve(context, result.classDef) }.result?.mutableMethod?.apply {
@@ -47,7 +45,7 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
                          return-object v0
                     """
                     )
-                } ?: return GetBearerTokenFingerprint.toErrorResult()
+                } ?: GetBearerTokenFingerprint.error()
             }.let {
                 val occurrenceIndex = it.scanResult.stringsScanResult!!.matches.first().index
 
@@ -68,8 +66,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
                 }
             }
         }
-
-        return PatchResultSuccess()
     }
 
     companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()

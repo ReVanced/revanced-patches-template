@@ -3,12 +3,10 @@ package app.revanced.patches.reddit.customclients.relayforreddit.api.patch
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.GetLoggedInBearerTokenFingerprint
@@ -32,7 +30,7 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
         GetRefreshTokenFingerprint
     )
 ) {
-    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext) {
         forEach {
             val clientIdIndex = it.scanResult.stringsScanResult!!.matches.first().index
             it.mutableMethod.apply {
@@ -44,8 +42,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
                 )
             }
         }
-
-        return PatchResultSuccess()
     }
 
     companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()

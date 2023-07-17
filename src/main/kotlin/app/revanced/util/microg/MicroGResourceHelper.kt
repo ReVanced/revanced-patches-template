@@ -37,7 +37,7 @@ internal object MicroGResourceHelper {
         toName: String
     ) {
         fun Apk.transform() {
-            resources.openFile(Apk.manifest).editText { txt ->
+            resources.openFile(Apk.MANIFEST_FILE_NAME).editText { txt ->
                 if (this@transform is Apk.Base) {
                     // in the case of the base apk additional transformations are needed
                     txt.replace(
@@ -71,6 +71,6 @@ internal object MicroGResourceHelper {
             }
         }
 
-        context.apkBundle.all.forEach(Apk::transform)
+        context.apkBundle.forEach(Apk::transform)
     }
 }

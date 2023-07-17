@@ -1,8 +1,8 @@
 package app.revanced.patches.reddit.customclients
 
 import android.os.Environment
-import app.revanced.extensions.toErrorResult
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.*
@@ -13,13 +13,13 @@ abstract class AbstractChangeOAuthClientIdPatch(
     private val options: ChangeOAuthClientIdOptionsContainer,
     private val fingerprints: List<MethodFingerprint>
 ) : BytecodePatch(fingerprints) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override suspend fun execute(context: BytecodeContext) {
         if (options.clientId == null) {
             // Ensure device runs Android.
             try {
                 Class.forName("android.os.Environment")
             } catch (e: ClassNotFoundException) {
-                return PatchResultError("No client ID provided")
+                throw PatchException("No client ID provided")
             }
 
             File(Environment.getExternalStorageDirectory(), "reddit_client_id_revanced.txt").also {
@@ -34,14 +34,14 @@ abstract class AbstractChangeOAuthClientIdPatch(
                     The application type has to be "Installed app" and the redirect URI has to be set to "$redirectUri".
                 """.trimIndent()
 
-                return PatchResultError(error)
+                throw PatchException(error)
             }.let { options.clientId = it.readText().trim() }
         }
 
-        return fingerprints.map { it.result ?: throw it.toErrorResult() }.patch(context)
+        return fingerprints.map { it.result ?: it.error() }.patch(context)
     }
 
-    abstract fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult
+    abstract fun List<MethodFingerprintResult>.patch(context: BytecodeContext)
 
     companion object Options {
         open class ChangeOAuthClientIdOptionsContainer : OptionsContainer() {

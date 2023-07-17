@@ -16,7 +16,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Name("Player controls bytecode patch")
 @DependsOn([BottomControlsResourcePatch::class])
-@Description("Manages the code for the player controls of the YouTube player.") ])
+@Description("Manages the code for the player controls of the YouTube player.")
 @PlayerControlsCompatibility
 @Version("0.0.1")
 class PlayerControlsBytecodePatch : BytecodePatch(

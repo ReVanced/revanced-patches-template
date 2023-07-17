@@ -31,7 +31,7 @@ class ChangePackageNamePatch : ResourcePatch {
             if (!originalPackageName.matches(packageNameRegex))
                 throw PatchException("Failed to get the original package name")
 
-            context.base.openFile(Apk.manifest).editText {
+            context.base.openFile(Apk.MANIFEST_FILE_NAME).editText {
                 it.replace(originalPackageName, packageName)
             }
 

@@ -1,13 +1,11 @@
 package app.revanced.patches.reddit.customclients.boostforreddit.api.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints.GetClientIdFingerprint
@@ -20,7 +18,7 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
 class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://rubenmayayo.com", Options, listOf(GetClientIdFingerprint)
 ) {
-    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext) {
         first().mutableMethod.addInstructions(
             0,
     """
@@ -28,8 +26,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
                      return-object v0
                 """
         )
-
-        return PatchResultSuccess()
     }
 
     companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()

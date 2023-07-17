@@ -1,12 +1,10 @@
 package app.revanced.patches.youtube.misc.bottomsheet.hook.patch
 
-import app.revanced.extensions.toErrorResult
-import app.revanced.patcher.data.BytecodeContext
+import app.revanced.extensions.error
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints.CreateBottomSheetFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -16,7 +14,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 class BottomSheetHookPatch : BytecodePatch(
     listOf(CreateBottomSheetFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override suspend fun execute(context: BytecodeContext) {
         CreateBottomSheetFingerprint.result?.let {
             it.mutableMethod.apply {
                 val returnLinearLayoutIndex = implementation!!.instructions.lastIndex
@@ -31,9 +29,7 @@ class BottomSheetHookPatch : BytecodePatch(
                     )
                 }
             }
-        } ?: return CreateBottomSheetFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: CreateBottomSheetFingerprint.error()
     }
 
     internal companion object {

@@ -1,15 +1,13 @@
 package app.revanced.patches.reddit.customclients.redditisfun.api.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult.MethodFingerprintScanResult.StringsScanResult.StringMatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.redditisfun.api.fingerprints.BasicAuthorizationFingerprint
@@ -29,7 +27,7 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
         BasicAuthorizationFingerprint,
     )
 ) {
-    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext) {
         /**
          * Replaces a one register instruction with a const-string instruction
          * at the index returned by [getReplacementIndex].
@@ -53,8 +51,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
 
         // Path basic authorization.
         last().replaceWith("$clientId:") { last().index + 7 }
-
-        return PatchResultSuccess()
     }
 
     companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()

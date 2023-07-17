@@ -1,14 +1,12 @@
 package app.revanced.patches.reddit.customclients.baconreader.api.patch
 
+import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Package
-import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.reddit.customclients.AbstractChangeOAuthClientIdPatch
 import app.revanced.patches.reddit.customclients.ChangeOAuthClientIdPatchAnnotation
 import app.revanced.patches.reddit.customclients.baconreader.api.fingerprints.GetAuthorizationUrlFingerprint
@@ -30,7 +28,7 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
     "http://baconreader.com/auth", Options, listOf(GetAuthorizationUrlFingerprint, RequestTokenFingerprint)
 ) {
 
-    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext): PatchResult {
+    override fun List<MethodFingerprintResult>.patch(context: BytecodeContext) {
         fun MethodFingerprintResult.patch(replacementString: String) {
             val clientIdIndex = scanResult.stringsScanResult!!.matches.first().index
 
@@ -48,8 +46,6 @@ class ChangeOAuthClientIdPatch : AbstractChangeOAuthClientIdPatch(
 
         // Patch client id for access token request.
         last().patch(clientId!!)
-
-        return PatchResultSuccess()
     }
 
     companion object Options : AbstractChangeOAuthClientIdPatch.Options.ChangeOAuthClientIdOptionsContainer()

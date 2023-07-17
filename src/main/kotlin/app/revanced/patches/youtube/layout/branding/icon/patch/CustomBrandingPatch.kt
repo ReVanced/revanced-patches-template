@@ -15,6 +15,7 @@ import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.editText
+import app.revanced.util.resources.ResourceUtils.query
 import java.io.File
 
 @Patch
@@ -58,7 +59,7 @@ class CustomBrandingPatch : ResourcePatch {
             .let(::copyResources)
 
         // change the name of the app
-        context.base.openFile(Apk.manifest).editText {
+        context.base.openFile(Apk.MANIFEST_FILE_NAME).editText {
             it.replace(
                 "android:label=\"@string/application_name",
                 "android:label=\"$appName"
