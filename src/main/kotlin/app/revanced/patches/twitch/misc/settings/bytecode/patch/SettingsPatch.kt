@@ -1,11 +1,13 @@
 package app.revanced.patches.twitch.misc.settings.bytecode.patch
 
 import app.revanced.patcher.BytecodeContext
+import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
@@ -25,10 +27,11 @@ import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEn
 import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.immutable.ImmutableField
+import java.io.Closeable
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
-@Name("settings")
+@Name("Settings")
 @Description("Adds settings menu to Twitch.")
 @SettingsCompatibility
 @Version("0.0.1")
@@ -39,35 +42,35 @@ class SettingsPatch : BytecodePatch(
         MenuGroupsUpdatedFingerprint,
         MenuGroupsOnClickFingerprint
     )
-) {
+), Closeable {
     override suspend fun execute(context: BytecodeContext) {
         // Hook onCreate to handle fragment creation
-        with(SettingsActivityOnCreateFingerprint.result!!) {
+        SettingsActivityOnCreateFingerprint.result?.apply {
             val insertIndex = mutableMethod.implementation!!.instructions.size - 2
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 insertIndex,
                 """
-                        invoke-static       {p0}, $SETTINGS_HOOKS_CLASS->handleSettingsCreation(Landroidx/appcompat/app/AppCompatActivity;)Z
-                        move-result         v0
-                        if-eqz              v0, :no_rv_settings_init
-                        return-void
+                    invoke-static       {p0}, $SETTINGS_HOOKS_CLASS->handleSettingsCreation(Landroidx/appcompat/app/AppCompatActivity;)Z
+                    move-result         v0
+                    if-eqz              v0, :no_rv_settings_init
+                    return-void
                 """,
-                listOf(ExternalLabel("no_rv_settings_init", mutableMethod.instruction(insertIndex)))
+                ExternalLabel("no_rv_settings_init", mutableMethod.getInstruction(insertIndex))
             )
-        }
+        } ?: SettingsActivityOnCreateFingerprint.error()
 
         // Create new menu item for settings menu
-        with(SettingsMenuItemEnumFingerprint.result!!) {
+        SettingsMenuItemEnumFingerprint.result?.apply {
             injectMenuItem(
                 REVANCED_SETTINGS_MENU_ITEM_NAME,
                 REVANCED_SETTINGS_MENU_ITEM_ID,
                 REVANCED_SETTINGS_MENU_ITEM_TITLE_RES,
                 REVANCED_SETTINGS_MENU_ITEM_ICON_RES
             )
-        }
+        } ?: SettingsMenuItemEnumFingerprint.error()
 
         // Intercept settings menu creation and add new menu item
-        with(MenuGroupsUpdatedFingerprint.result!!) {
+        MenuGroupsUpdatedFingerprint.result?.apply {
             mutableMethod.addInstructions(
                 0,
                 """
@@ -76,12 +79,12 @@ class SettingsPatch : BytecodePatch(
                     move-result-object      p1
                 """
             )
-        }
+        } ?: MenuGroupsUpdatedFingerprint.error()
 
         // Intercept onclick events for the settings menu
-        with(MenuGroupsOnClickFingerprint.result!!) {
+        MenuGroupsOnClickFingerprint.result?.apply {
             val insertIndex = 0
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 insertIndex,
                 """
                         invoke-static       {p1}, $SETTINGS_HOOKS_CLASS->handleSettingMenuOnClick(Ljava/lang/Enum;)Z
@@ -91,9 +94,9 @@ class SettingsPatch : BytecodePatch(
                         invoke-virtual      {p0, p1}, Ltv/twitch/android/core/mvp/viewdelegate/RxViewDelegate;->pushEvent(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;)V
                         return-void
                 """,
-                listOf(ExternalLabel("no_rv_settings_onclick", mutableMethod.instruction(insertIndex)))
+                ExternalLabel("no_rv_settings_onclick", mutableMethod.getInstruction(insertIndex))
             )
-        }
+        }  ?: MenuGroupsOnClickFingerprint.error()
 
         addString("revanced_settings", "ReVanced Settings")
         addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?")

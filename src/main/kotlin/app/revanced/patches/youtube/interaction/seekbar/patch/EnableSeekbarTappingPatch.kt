@@ -5,8 +5,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -22,7 +22,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 
 @Patch
 @DependsOn([IntegrationsPatch::class, EnableSeekbarTappingResourcePatch::class])
-@Name("seekbar-tapping")
+@Name("Seekbar tapping")
 @Description("Enables tap-to-seek on the seekbar of the video player.")
 @SeekbarTappingCompatibility
 @Version("0.0.1")
@@ -63,7 +63,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
             val insertIndex = it.scanResult.patternScanResult!!.endIndex - 1
 
             it.mutableMethod.apply {
-                val thisInstanceRegister = instruction<Instruction35c>(insertIndex - 1).registerC
+                val thisInstanceRegister = getInstruction<Instruction35c>(insertIndex - 1).registerC
 
                 val freeRegister = 0
                 val xAxisRegister = 2
@@ -74,7 +74,7 @@ class EnableSeekbarTappingPatch : BytecodePatch(
                 fun Method.toInvokeInstructionString() =
                     "invoke-virtual { v$thisInstanceRegister, v$xAxisRegister }, $definingClass->$name(I)V"
 
-                addInstructions(
+                addInstructionsWithLabels(
                     insertIndex,
                     """
                         invoke-static { }, Lapp/revanced/integrations/patches/SeekbarTappingPatch;->seekbarTappingEnabled()Z
@@ -82,8 +82,8 @@ class EnableSeekbarTappingPatch : BytecodePatch(
                         if-eqz v$freeRegister, :disabled
                         ${oMethod.toInvokeInstructionString()}
                         ${pMethod.toInvokeInstructionString()}
-                        """,
-                    listOf(ExternalLabel("disabled", instruction(insertIndex)))
+                    """,
+                    ExternalLabel("disabled", getInstruction(insertIndex))
                 )
             }
         } ?: SeekbarTappingFingerprint.error()

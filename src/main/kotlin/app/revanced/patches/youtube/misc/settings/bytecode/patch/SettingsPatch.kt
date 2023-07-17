@@ -5,10 +5,10 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.extensions.replaceInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.Preference
@@ -20,14 +20,15 @@ import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourc
 import org.jf.dexlib2.Opcode
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import org.jf.dexlib2.util.MethodUtil
+import java.io.Closeable
 
 @DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class, ])
-@Name("settings")
+@Name("Settings")
 @Description("Adds settings for ReVanced to YouTube.")
 @Version("0.0.1")
 class SettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, SetThemeFingerprint)
-) {
+), Closeable {
     override suspend fun execute(context: BytecodeContext) {
         // TODO: Remove this when it is only required at one place.
         fun getSetThemeInstructionString(
@@ -49,7 +50,7 @@ class SettingsPatch : BytecodePatch(
 
                     setThemeMethod.apply {
                         // This register is returned by the setTheme method.
-                        val register = instruction<OneRegisterInstruction>(returnIndex).registerA
+                        val register = getInstruction<OneRegisterInstruction>(returnIndex).registerA
 
                         val setThemeInstruction = getSetThemeInstructionString("v$register")
                         replaceInstruction(returnIndex, setThemeInstruction)
@@ -72,7 +73,8 @@ class SettingsPatch : BytecodePatch(
 
                 // initialize the settings
                 addInstructions(
-                    1, """
+                    1,
+                    """
                         ${buildSettingsActivityInvokeString()}
                         return-void
                     """

@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
 
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -15,10 +13,9 @@ import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.query
 
-@Name("sponsorblock-resource-patch")
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-@Version("0.0.1")
 class SponsorBlockResourcePatch : ResourcePatch {
     private companion object {
         val strings = mapOf(
@@ -212,7 +209,6 @@ class SponsorBlockResourcePatch : ResourcePatch {
             "sb_about" to "About",
             "sb_about_api" to "sponsor.ajay.app",
             "sb_about_api_sum" to "Data is provided by the SponsorBlock API. Tap here to learn more and see downloads for other platforms",
-            "sb_about_made_by" to "ReVanced integration by JakubWeg,\nrecoded by oSumAtrIX",
         )
     }
 

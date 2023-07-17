@@ -15,7 +15,7 @@ import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
 
 @Patch(false)
-@Name("remove-screenshot-restriction")
+@Name("Remove screenshot restriction")
 @Description("Removes the restriction of taking screenshots in apps that normally wouldn't allow it.")
 @Version("0.0.1")
 @RequiresIntegrations

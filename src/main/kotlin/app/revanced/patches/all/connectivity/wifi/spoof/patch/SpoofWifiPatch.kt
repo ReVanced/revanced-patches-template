@@ -15,7 +15,7 @@ import org.jf.dexlib2.iface.Method
 import org.jf.dexlib2.iface.instruction.Instruction
 
 @Patch(false)
-@Name("spoof-wifi-connection")
+@Name("Spoof wifi connection")
 @Description("Spoofs an existing Wi-Fi connection.")
 @Version("0.0.1")
 @RequiresIntegrations

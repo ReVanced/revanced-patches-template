@@ -5,7 +5,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.jf.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
-@Name("open-links-externally")
+@Name("Open links externally")
 @Description("Open links outside of the app directly in your browser.")
 @OpenLinksExternallyCompatibility
 @Version("0.0.1")
@@ -49,7 +49,8 @@ class OpenLinksExternallyPatch : BytecodePatch(
             with(result.mutableMethod) {
                 val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA
                 addInstructions(
-                    insertIndex, """
+                    insertIndex,
+                    """
                         invoke-static {v$register}, Lapp/revanced/integrations/patches/OpenLinksExternallyPatch;->enableExternalBrowser(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$register
                     """

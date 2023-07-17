@@ -10,33 +10,21 @@ import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Patch(false)
-@Name("enable-android-debugging")
+@Name("Enable android debugging")
 @Description("Enables Android debugging capabilities.")
 @Version("0.0.1")
 class EnableAndroidDebuggingPatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
-        if (debuggable == true) {
-            context.manifestEditor().use { dom ->
-                val applicationNode = dom
-                    .file
-                    .getElementsByTagName("application")
-                    .item(0) as Element
+        context.manifestEditor().use { dom ->
+            val applicationNode = dom
+                .file
+                .getElementsByTagName("application")
+                .item(0) as Element
 
-                // set application as debuggable
-                applicationNode.setAttribute("android:debuggable", "true")
-            }
+            // set application as debuggable
+            applicationNode.setAttribute("android:debuggable", "true")
         }
 
     }
 
-    companion object : OptionsContainer() {
-        var debuggable: Boolean? by option(
-            PatchOption.BooleanOption(
-                key = "debuggable",
-                default = false,
-                title = "App debugging",
-                description = "Whether to make the app debuggable on Android.",
-            )
-        )
-    }
 }

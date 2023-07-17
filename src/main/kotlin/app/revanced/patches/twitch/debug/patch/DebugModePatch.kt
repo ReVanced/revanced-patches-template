@@ -1,10 +1,11 @@
 package app.revanced.patches.twitch.debug.patch
 
+import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -19,7 +20,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch(false)
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("debug-mode")
+@Name("Debug mode")
 @Description("Enables Twitch's internal debugging mode.")
 @DebugModeCompatibility
 @Version("0.0.1")
@@ -36,18 +37,16 @@ class DebugModePatch : BytecodePatch(
             IsOmVerificationEnabledFingerprint,
             ShouldShowDebugOptionsFingerprint
         ).forEach {
-            with(it.result!!) {
-                with(mutableMethod) {
-                    addInstructions(
-                        0,
-                        """
-                             invoke-static {}, Lapp/revanced/twitch/patches/DebugModePatch;->isDebugModeEnabled()Z
-                             move-result v0
-                             return v0
-                          """
-                    )
-                }
-            }
+            it.result?.mutableMethod?.apply {
+                addInstructions(
+                    0,
+                    """
+                         invoke-static {}, Lapp/revanced/twitch/patches/DebugModePatch;->isDebugModeEnabled()Z
+                         move-result v0
+                         return v0
+                      """
+                )
+            } ?: it.error()
         }
 
         SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(

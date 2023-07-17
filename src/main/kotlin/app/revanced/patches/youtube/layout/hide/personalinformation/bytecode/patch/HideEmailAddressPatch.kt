@@ -5,8 +5,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,7 +18,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, HideEmailAddressResourcePatch::class])
-@Name("hide-email-address")
+@Name("Hide email address")
 @Description("Hides the email address in the account switcher.")
 @HideEmailAddressCompatibility
 @Version("0.0.1")
@@ -33,7 +33,7 @@ class HideEmailAddressPatch : BytecodePatch(
                 val setVisibilityConstIndex = it.scanResult.patternScanResult!!.endIndex
 
                 val setVisibilityConstRegister =
-                    instruction<OneRegisterInstruction>(setVisibilityConstIndex - 2).registerA
+                    getInstruction<OneRegisterInstruction>(setVisibilityConstIndex - 2).registerA
 
                 addInstructions(
                     setVisibilityConstIndex,

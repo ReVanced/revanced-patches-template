@@ -4,8 +4,9 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -23,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, HideInfocardsResourcePatch::class])
-@Name("hide-info-cards")
+@Name("Hide info cards")
 @Description("Hides info cards in videos.")
 @HideInfocardsCompatibility
 @Version("0.0.1")
@@ -42,29 +43,28 @@ class HideInfoCardsPatch : BytecodePatch(
                         ((it as ReferenceInstruction).reference.toString() == "Landroid/view/View;->setVisibility(I)V")
             }
 
-            addInstructions(
-                invokeInstructionIndex,
-                "invoke-static {v${instruction<FiveRegisterInstruction>(invokeInstructionIndex).registerC}}," +
-                        " Lapp/revanced/integrations/patches/HideInfoCardsPatch;->hideInfoCardsIncognito(Landroid/view/View;)V"
-            )
+           addInstruction(
+               invokeInstructionIndex,
+               "invoke-static {v${getInstruction<FiveRegisterInstruction>(invokeInstructionIndex).registerC}}," +
+                       " Lapp/revanced/integrations/patches/HideInfoCardsPatch;->hideInfoCardsIncognito(Landroid/view/View;)V"
+           )
         }
 
         with(InfocardsMethodCallFingerprint.result!!) {
-            val hideInfocardsCallMethod = mutableMethod
+            val hideInfoCardsCallMethod = mutableMethod
 
             val invokeInterfaceIndex = scanResult.patternScanResult!!.endIndex
-            val toggleRegister = hideInfocardsCallMethod.implementation!!.registerCount - 1
+            val toggleRegister = hideInfoCardsCallMethod.implementation!!.registerCount - 1
 
-            hideInfocardsCallMethod.addInstructions(
-                invokeInterfaceIndex, """
+            hideInfoCardsCallMethod.addInstructionsWithLabels(
+                invokeInterfaceIndex,
+                """
                     invoke-static {}, Lapp/revanced/integrations/patches/HideInfoCardsPatch;->hideInfoCardsMethodCall()Z
                     move-result v$toggleRegister
                     if-nez v$toggleRegister, :hide_info_cards
                 """,
-                listOf(
-                    ExternalLabel(
-                        "hide_info_cards", hideInfocardsCallMethod.instruction(invokeInterfaceIndex + 1)
-                    )
+                ExternalLabel(
+                    "hide_info_cards", hideInfoCardsCallMethod.getInstruction(invokeInterfaceIndex + 1)
                 )
             )
         }

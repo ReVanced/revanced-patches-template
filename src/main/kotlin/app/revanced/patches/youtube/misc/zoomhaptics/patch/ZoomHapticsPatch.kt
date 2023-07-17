@@ -4,8 +4,8 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.misc.zoomhaptics.annotations.ZoomHapticsComp
 import app.revanced.patches.youtube.misc.zoomhaptics.fingerprints.ZoomHapticsFingerprint
 
 @Patch
-@Name("disable-zoom-haptics")
+@Name("Disable zoom haptics")
 @Description("Disables haptics when zooming.")
 @DependsOn([SettingsPatch::class])
 @ZoomHapticsCompatibility
@@ -37,13 +37,15 @@ class ZoomHapticsPatch : BytecodePatch(
 
         val zoomHapticsFingerprintMethod = ZoomHapticsFingerprint.result!!.mutableMethod
 
-        zoomHapticsFingerprintMethod.addInstructions(
-            0, """
+        zoomHapticsFingerprintMethod.addInstructionsWithLabels(
+            0,
+            """
                 invoke-static { }, Lapp/revanced/integrations/patches/ZoomHapticsPatch;->shouldVibrate()Z
                 move-result v0
                 if-nez v0, :vibrate
                 return-void
-            """, listOf(ExternalLabel("vibrate", zoomHapticsFingerprintMethod.instruction(0)))
+            """,
+            ExternalLabel("vibrate", zoomHapticsFingerprintMethod.getInstruction(0))
         )
 
     }

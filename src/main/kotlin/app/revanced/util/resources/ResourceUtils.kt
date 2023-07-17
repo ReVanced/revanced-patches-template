@@ -11,6 +11,7 @@ import app.revanced.arsc.resource.Resource
 import app.revanced.arsc.resource.StringResource
 import app.revanced.arsc.resource.color
 import app.revanced.arsc.resource.reference
+import app.revanced.patcher.apk.ApkBundle
 
 internal object ResourceUtils {
     internal fun ResourceContext.mergeStrings(resources: Map<String, String>) =
@@ -38,7 +39,7 @@ internal object ResourceUtils {
     )
 
     internal fun ResourceContainer.setString(name: String, value: String) =
-        set("string", name, StringResource(value))
+        getOrCreateResource("string", name, StringResource(value))
 
     internal fun ResourceContainer.setStrings(resources: Map<String, String>) =
         setGroup("string", resources.mapValues {
@@ -66,9 +67,7 @@ internal object ResourceUtils {
             resourceGroup.resources.forEach { resource ->
                 val resourceFile = "${resourceGroup.resourceDirectoryName}/$resource"
                 openFile("res/$resourceFile").use { file ->
-                    file.outputStream().use {
-                        classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.copyTo(it)
-                    }
+                    file.contents = classLoader.getResourceAsStream("$sourceResourceDirectory/$resourceFile")!!.readAllBytes()
                 }
             }
         }
@@ -79,6 +78,8 @@ internal object ResourceUtils {
         null
     } else this
 
+    fun ApkBundle.query(config: String) = splits?.get(config)?.resources ?: base.resources
+
     internal fun ResourceContext.resourceIdOf(type: String, name: String) =
         apkBundle.resources.resolveLocal(type, name).toLong()
 
@@ -86,7 +87,7 @@ internal object ResourceUtils {
 
     internal val ResourceContext.resourceTable get() = apkBundle.resources
 
-    internal fun ResourceContext.manifestEditor() = base.openXmlFile(Apk.manifest)
+    internal fun ResourceContext.manifestEditor() = base.openXmlFile(Apk.MANIFEST_FILE_NAME)
 
     /**
      * Resource names mapped to their corresponding resource data.

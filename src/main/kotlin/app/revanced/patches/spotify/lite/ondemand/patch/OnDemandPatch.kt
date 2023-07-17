@@ -5,14 +5,14 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.lite.ondemand.annotations.OnDemandCompatibility
 import app.revanced.patches.spotify.lite.ondemand.fingerprints.OnDemandFingerprint
 
 @Patch
-@Name("enable-on-demand")
+@Name("Enable on demand")
 @Description("Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. This does not remove ads.")
 @OnDemandCompatibility
 @Version("0.0.1")

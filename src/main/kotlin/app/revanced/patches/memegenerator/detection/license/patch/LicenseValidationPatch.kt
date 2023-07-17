@@ -4,7 +4,7 @@ import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.replaceInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.memegenerator.detection.license.fingerprint.LicenseValidationFingerprint
 
@@ -22,6 +22,6 @@ class LicenseValidationPatch : BytecodePatch(
                     return  p0
                 """
             )
-        } ?: throw LicenseValidationFingerprint.error()
+        } ?: LicenseValidationFingerprint.error()
     }
 }

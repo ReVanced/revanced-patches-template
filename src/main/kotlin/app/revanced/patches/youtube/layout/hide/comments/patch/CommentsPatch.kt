@@ -7,21 +7,23 @@ import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.comments.annotations.HideCommentsCompatibility
+import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@Name("comments")
+@Name("Comments")
 @Description("Hides components related to comments.")
 @HideCommentsCompatibility
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class, LithoFilterPatch::class])
 @Version("0.0.1")
 class CommentsPatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_comments_preference_screen",
@@ -43,5 +45,9 @@ class CommentsPatch : ResourcePatch {
                 StringResource("revanced_comments_preference_screen_summary", "Manage the visibility of comments section components")
             )
         )
+    }
+    
+    private companion object {
+        const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/CommentsFilter;"
     }
 }

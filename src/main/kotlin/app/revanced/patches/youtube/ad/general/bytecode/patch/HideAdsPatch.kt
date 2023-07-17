@@ -17,7 +17,6 @@ import app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch.FixBackToEx
 import org.jf.dexlib2.iface.instruction.formats.Instruction31i
 import org.jf.dexlib2.iface.instruction.formats.Instruction35c
 
-
 @Patch
 @DependsOn(
     [
@@ -27,7 +26,7 @@ import org.jf.dexlib2.iface.instruction.formats.Instruction35c
         FixBackToExitGesturePatch::class
     ]
 )
-@Name("hide-ads")
+@Name("Hide ads")
 @Description("Removes general ads.")
 @HideAdsCompatibility
 @Version("0.0.1")

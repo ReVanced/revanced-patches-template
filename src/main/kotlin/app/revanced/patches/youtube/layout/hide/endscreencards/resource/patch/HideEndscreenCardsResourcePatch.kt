@@ -1,20 +1,14 @@
 package app.revanced.patches.youtube.layout.hide.endscreencards.resource.patch
 
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.endscreencards.annotations.HideEndscreenCardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
-@Name("hide-endscreen-cards-resource-patch")
-@HideEndscreenCardsCompatibility
 @DependsOn([SettingsPatch::class])
-@Version("0.0.1")
 class HideEndscreenCardsResourcePatch : ResourcePatch {
     internal companion object {
         var layoutCircle: Long = -1

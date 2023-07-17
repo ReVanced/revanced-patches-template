@@ -5,7 +5,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
@@ -24,13 +24,13 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("tablet-mini-player")
+@Name("Tablet mini player")
 @Description("Enables the tablet mini player layout.")
 @TabletMiniPlayerCompatibility
 @Version("0.0.1")
 class TabletMiniPlayerPatch : BytecodePatch(
     listOf(
-        MiniPlayerDimensionsCalculatorFingerprint,
+        MiniPlayerDimensionsCalculatorParentFingerprint,
         MiniPlayerResponseModelSizeCheckFingerprint,
         MiniPlayerOverrideParentFingerprint
     )
@@ -46,7 +46,8 @@ class TabletMiniPlayerPatch : BytecodePatch(
         )
 
         // First resolve the fingerprints via the parent fingerprint.
-        val miniPlayerClass = MiniPlayerDimensionsCalculatorFingerprint.result!!.classDef
+        MiniPlayerDimensionsCalculatorParentFingerprint.result ?: MiniPlayerDimensionsCalculatorParentFingerprint.error()
+        val miniPlayerClass = MiniPlayerDimensionsCalculatorParentFingerprint.result!!.classDef
 
         /*
          * No context parameter method.
@@ -111,7 +112,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
                 """
                     invoke-static {v$overrideRegister}, Lapp/revanced/integrations/patches/TabletMiniPlayerOverridePatch;->getTabletMiniPlayerOverride(Z)Z
                     move-result v$overrideRegister
-                    """
+                """
             )
         }
 

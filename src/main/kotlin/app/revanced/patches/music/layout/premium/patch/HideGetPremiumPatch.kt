@@ -4,24 +4,22 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.replaceInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.layout.premium.annotations.HideGetPremiumCompatibility
+import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumFingerprint
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumParentFingerprint
 
 @Patch
-@Name("hide-get-premium")
+@Name("Hide get premium")
 @Description("Removes all \"Get Premium\" evidences from the avatar menu.")
-@HideGetPremiumCompatibility
+@MusicCompatibility
 @Version("0.0.1")
 class HideGetPremiumPatch : BytecodePatch(
-    listOf(
-        HideGetPremiumParentFingerprint
-    )
+    listOf(HideGetPremiumParentFingerprint)
 ) {
     override suspend fun execute(context: BytecodeContext) {
         val parentResult = HideGetPremiumParentFingerprint.result!!
@@ -31,17 +29,19 @@ class HideGetPremiumPatch : BytecodePatch(
 
         val parentMethod = parentResult.mutableMethod
         parentMethod.replaceInstruction(
-            startIndex, """
-            const/4 v1, 0x0
-        """
+            startIndex,
+            """
+                const/4 v1, 0x0
+            """
         )
 
         val result = HideGetPremiumFingerprint.result!!
         val method = result.mutableMethod
-        method.addInstructions(
-            startIndex, """
-            const/16 v0, 0x8
-        """
+        method.addInstruction(
+            startIndex,
+            """
+                const/16 v0, 0x8
+            """
         )
 
     }

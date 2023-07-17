@@ -5,9 +5,9 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -23,7 +23,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 
 @Patch(false)
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("sim-spoof")
+@Name("Sim spoof")
 @Description("Spoofs the information which is retrieved from the sim-card.")
 @SpoofSimCompatibility
 @Version("0.0.1")
@@ -94,14 +94,14 @@ class SpoofSimPatch : BytecodePatch() {
 
     // Patch Android API and return fake sim information
     private fun MutableMethod.replaceReference(index: Int, replacement: String) {
-        val resultReg = instruction<OneRegisterInstruction>(index + 1).registerA
+        val resultReg = getInstruction<OneRegisterInstruction>(index + 1).registerA
 
         addInstructions(
             index + 2,
-        """
-                 invoke-static {v$resultReg}, Lapp/revanced/tiktok/spoof/sim/SpoofSimPatch;->$replacement(Ljava/lang/String;)Ljava/lang/String;
-                 move-result-object v$resultReg
-             """
+            """
+                invoke-static {v$resultReg}, Lapp/revanced/tiktok/spoof/sim/SpoofSimPatch;->$replacement(Ljava/lang/String;)Ljava/lang/String;
+                move-result-object v$resultReg
+            """
         )
     }
 }

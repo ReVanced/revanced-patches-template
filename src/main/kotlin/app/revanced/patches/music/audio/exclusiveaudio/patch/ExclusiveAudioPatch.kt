@@ -4,22 +4,20 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.replaceInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.audio.exclusiveaudio.annotations.ExclusiveAudioCompatibility
+import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.audio.exclusiveaudio.fingerprints.AudioOnlyEnablerFingerprint
 
 @Patch
-@Name("exclusive-audio-playback")
+@Name("Exclusive audio playback")
 @Description("Enables the option to play music without video.")
-@ExclusiveAudioCompatibility
+@MusicCompatibility
 @Version("0.0.1")
 class ExclusiveAudioPatch : BytecodePatch(
-    listOf(
-        AudioOnlyEnablerFingerprint
-    )
+    listOf(AudioOnlyEnablerFingerprint)
 ) {
     override suspend fun execute(context: BytecodeContext) {
         val method = AudioOnlyEnablerFingerprint.result!!.mutableMethod

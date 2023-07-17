@@ -4,8 +4,8 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -19,7 +19,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("block-audio-ads")
+@Name("Block audio ads")
 @Description("Blocks audio ads in streams and VODs.")
 @AudioAdsCompatibility
 @Version("0.0.1")
@@ -29,7 +29,7 @@ class AudioAdsPatch : BytecodePatch(
     override suspend fun execute(context: BytecodeContext) {
         // Block playAds call
         with(AudioAdsPresenterPlayFingerprint.result!!) {
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     invoke-static { }, Lapp/revanced/twitch/patches/AudioAdsPatch;->shouldBlockAudioAds()Z
@@ -37,7 +37,7 @@ class AudioAdsPatch : BytecodePatch(
                     if-eqz v0, :show_audio_ads
                     return-void
                 """,
-                listOf(ExternalLabel("show_audio_ads", mutableMethod.instruction(0)))
+                ExternalLabel("show_audio_ads", mutableMethod.getInstruction(0))
             )
         }
 

@@ -4,8 +4,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.*
@@ -16,7 +16,7 @@ import app.revanced.patches.twitter.misc.hook.json.fingerprints.LoganSquareFinge
 import java.io.Closeable
 import java.io.InvalidClassException
 
-@Name("json-hook")
+@Name("Json hook")
 @Description("Hooks the stream which reads JSON responses.")
 @Version("0.0.1")
 @RequiresIntegrations

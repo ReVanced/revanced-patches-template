@@ -11,7 +11,7 @@ import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Patch(false)
-@Name("remove-broadcasts-restriction")
+@Name("Remove broadcasts restriction")
 @Description("Enables starting/stopping NetGuard via broadcasts.")
 @RemoveBroadcastsRestrictionCompatibility
 @Version("0.0.1")

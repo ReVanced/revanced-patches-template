@@ -4,7 +4,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.misc.login.disablerequirement.annotations.DisableLoginRequirementCompatibility
@@ -12,7 +12,7 @@ import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.Ma
 import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint2
 
 @Patch
-@Name("disable-login-requirement")
+@Name("Disable login requirement")
 @Description("Do not force login.")
 @DisableLoginRequirementCompatibility
 @Version("0.0.1")

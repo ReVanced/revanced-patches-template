@@ -4,21 +4,19 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.premium.backgroundplay.annotations.BackgroundPlayCompatibility
+import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.premium.backgroundplay.fingerprints.BackgroundPlaybackDisableFingerprint
 
 @Patch
-@Name("background-play")
+@Name("Background play")
 @Description("Enables playing music in the background.")
-@BackgroundPlayCompatibility
+@MusicCompatibility
 @Version("0.0.1")
 class BackgroundPlayPatch : BytecodePatch(
-    listOf(
-        BackgroundPlaybackDisableFingerprint
-    )
+    listOf(BackgroundPlaybackDisableFingerprint)
 ) {
     override suspend fun execute(context: BytecodeContext) {
         BackgroundPlaybackDisableFingerprint.result!!.mutableMethod.addInstructions(

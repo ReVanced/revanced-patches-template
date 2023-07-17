@@ -5,35 +5,35 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.trakt.annotations.UnlockProCompatibility
 import app.revanced.patches.trakt.fingerprints.IsVIPEPFingerprint
 import app.revanced.patches.trakt.fingerprints.IsVIPFingerprint
-import app.revanced.patches.trakt.fingerprints.RealmUserSettingsFingerprint
+import app.revanced.patches.trakt.fingerprints.RemoteUserFingerprint
 
 @Patch
-@Name("unlock-pro")
+@Name("Unlock pro")
 @Description("Unlocks pro features.")
 @UnlockProCompatibility
 @Version("0.0.1")
 class UnlockProPatch : BytecodePatch(
-    listOf(RealmUserSettingsFingerprint)
+    listOf(RemoteUserFingerprint)
 ) {
     override suspend fun execute(context: BytecodeContext) {
-        RealmUserSettingsFingerprint.result?.classDef?.let { realUserSettingsClass ->
+        RemoteUserFingerprint.result?.classDef?.let { remoteUserClass ->
             arrayOf(IsVIPFingerprint, IsVIPEPFingerprint).onEach { fingerprint ->
                 // Resolve both fingerprints on the same class.
-                if (!fingerprint.resolve(context, realUserSettingsClass))
+                if (!fingerprint.resolve(context, remoteUserClass))
                     fingerprint.error()
             }.forEach { fingerprint ->
                 // Return true for both VIP check methods.
                 fingerprint.result?.mutableMethod?.addInstructions(0, RETURN_TRUE_INSTRUCTIONS)
                     ?: fingerprint.error()
             }
-        } ?: RealmUserSettingsFingerprint.error()
+        } ?: RemoteUserFingerprint.error()
     }
 
     private companion object {

@@ -4,22 +4,20 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.layout.compactheader.annotations.CompactHeaderCompatibility
+import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.layout.compactheader.fingerprints.CompactHeaderConstructorFingerprint
 import org.jf.dexlib2.builder.instruction.BuilderInstruction11x
 
 @Patch(false)
-@Name("compact-header")
+@Name("Compact header")
 @Description("Hides the music category bar at the top of the homepage.")
-@CompactHeaderCompatibility
+@MusicCompatibility
 @Version("0.0.1")
 class CompactHeaderPatch : BytecodePatch(
-    listOf(
-        CompactHeaderConstructorFingerprint
-    )
+    listOf(CompactHeaderConstructorFingerprint)
 ) {
     override suspend fun execute(context: BytecodeContext) {
         val result = CompactHeaderConstructorFingerprint.result!!

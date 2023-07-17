@@ -4,7 +4,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,7 +18,7 @@ import org.jf.dexlib2.Opcode
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("hide-captions-button")
+@Name("Hide captions button")
 @Description("Hides the captions button on video player.")
 @HideCaptionsButtonCompatibility
 @Version("0.0.1")
@@ -42,8 +42,9 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
             it.opcode == Opcode.IGET_BOOLEAN
         }
 
-        subtitleButtonControllerMethod.addInstructions(
-            igetBooleanIndex + 1, """
+        subtitleButtonControllerMethod.addInstruction(
+            igetBooleanIndex + 1,
+            """
                 invoke-static {v0}, Lapp/revanced/integrations/patches/HideCaptionsButtonPatch;->hideCaptionsButton(Landroid/widget/ImageView;)V
             """
         )

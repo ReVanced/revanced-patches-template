@@ -12,7 +12,6 @@ import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.splashScreenBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.resourceTable
@@ -34,21 +33,29 @@ class ThemeResourcePatch : ResourcePatch {
 
         // Edit theme colors via resources.
         with(context.base) {
-            darkThemeBackgroundColor?.let { setMultiple("color", dark, it.toColorResource(context.resourceTable)) }
-            lightThemeBackgroundColor?.let { setMultiple("color", light, it.toColorResource(context.resourceTable)) }
+            darkThemeBackgroundColor?.toColorResource(context.resourceTable)?.let {
+                setMultiple("color", dark, it)
+                getOrCreateResource("color", SPLASH_BACKGROUND_COLOR, it, qualifiers = "-night")
+            }
+            lightThemeBackgroundColor?.toColorResource(context.resourceTable)?.let {
+                setMultiple("color", light, it)
+                getOrCreateResource("color", SPLASH_BACKGROUND_COLOR, it)
+            }
 
             // Edit splash screen background color.
+            // TODO: figure out of this is old stuff or not
+            /*
             splashScreenBackgroundColor?.let {
-                val colorResourceId = set("color", COLOR_NAME, it.toColorResource(context.resourceTable))
+                val colorResourceId = getOrCreateResource("color", COLOR_NAME, it.toColorResource(context.resourceTable))
 
                 // change the splash screen color
-                set(
+                getOrCreateResource(
                     "style", LAUNCHER_STYLE_NAME, Style(
                         mapOf(
                             "android:windowSplashScreenBackground" to reference(colorResourceId),
                         ),
                         parent = "@style/Theme.AppCompat.NoActionBar"
-                    ), configuration = "-night-v31"
+                    ), qualifiers = "-night-v31"
                 )
 
                 // Point to the splash screen background color.
@@ -60,9 +67,31 @@ class ThemeResourcePatch : ResourcePatch {
                         setAttribute("android:drawable", "@color/$COLOR_NAME")
                     }
                 }
+            }*/
+        }
+
+        // Edit splash screen files and change the background color.
+        val splashScreenResourceFiles = listOf(
+            "res/drawable/quantum_launchscreen_youtube.xml",
+            "res/drawable-sw600dp/quantum_launchscreen_youtube.xml")
+
+         splashScreenResourceFiles.forEach editSplashScreen@ { resourceFile ->
+            context.base.openXmlFile(resourceFile).use {
+                val layerList = it.file.getElementsByTagName("layer-list").item(0) as Element
+
+                val childNodes = layerList.childNodes
+                for (i in 0 until childNodes.length) {
+                    val node = childNodes.item(i)
+                    if (node is Element && node.hasAttribute("android:drawable")) {
+                        node.setAttribute("android:drawable", "@color/$SPLASH_BACKGROUND_COLOR")
+                        return@editSplashScreen
+                    }
+                }
+                throw PatchException("Failed to modify launch screen")
             }
         }
     }
+
     private companion object {
         val dark = listOf(
             "yt_black0", "yt_black1", "yt_black1_opacity95", "yt_black1_opacity98", "yt_black2", "yt_black3",
@@ -77,5 +106,6 @@ class ThemeResourcePatch : ResourcePatch {
 
         private const val LAUNCHER_STYLE_NAME = "Base.Theme.YouTube.Launcher"
         private const val COLOR_NAME = "splash_background_color"
+        private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
     }
 }

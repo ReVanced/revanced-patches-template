@@ -1,11 +1,14 @@
 package app.revanced.patches.twitch.ad.video.patch
 
+import app.revanced.extensions.error
+
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -21,7 +24,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("block-video-ads")
+@Name("Block video ads")
 @Description("Blocks video ads in streams and VODs.")
 @VideoAdsCompatibility
 @Version("0.0.1")
@@ -83,8 +86,8 @@ class VideoAdsPatch : AbstractAdPatch(
         )
 
         // Pretend our player is ineligible for all ads
-        with(CheckAdEligibilityLambdaFingerprint.result!!) {
-            mutableMethod.addInstructions(
+        CheckAdEligibilityLambdaFingerprint.result?.apply {
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     ${createConditionInstructions()}
@@ -93,13 +96,13 @@ class VideoAdsPatch : AbstractAdPatch(
                     move-result-object p0
                     return-object p0
                 """,
-                listOf(ExternalLabel(skipLabelName, mutableMethod.instruction(0)))
+                ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        }
+        } ?: CheckAdEligibilityLambdaFingerprint.error()
 
-        with(GetReadyToShowAdFingerprint.result!!) {
+        GetReadyToShowAdFingerprint.result?.apply {
             val adFormatDeclined = "Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter\$Action\$AdFormatDeclined;"
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     ${createConditionInstructions()}
@@ -108,21 +111,20 @@ class VideoAdsPatch : AbstractAdPatch(
                     move-result-object p1
                     return-object p1
                 """,
-                listOf(ExternalLabel(skipLabelName, mutableMethod.instruction(0)))
+                ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        }
+        } ?: GetReadyToShowAdFingerprint.error()
 
         // Spoof showAds JSON field
-        with(ContentConfigShowAdsFingerprint.result!!) {
-            mutableMethod.addInstructions(
-                0, """
+        ContentConfigShowAdsFingerprint.result?.apply {
+            mutableMethod.addInstructions(0, """
                     ${createConditionInstructions()}
                     const/4 v0, 0
                     :$skipLabelName
                     return v0
                 """
             )
-        }
+        }  ?: ContentConfigShowAdsFingerprint.error()
 
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(

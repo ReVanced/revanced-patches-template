@@ -4,8 +4,8 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.removeInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.ticktick.misc.themeunlock.annotations.UnlockThemesCompatibility
@@ -13,7 +13,7 @@ import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.CheckLockedTh
 import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.SetThemeFingerprint
 
 @Patch
-@Name("unlock-themes")
+@Name("Unlock themes")
 @Description("Unlocks all themes that are inaccessible until a certain level is reached.")
 @UnlockThemesCompatibility
 @Version("0.0.1")

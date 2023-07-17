@@ -5,7 +5,7 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -21,7 +21,7 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([VideoAdsPatch::class, IntegrationsPatch::class, SettingsPatch::class])
-@Name("block-embedded-ads")
+@Name("Block embedded ads")
 @Description("Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.")
 @EmbeddedAdsCompatibility
 @Version("0.0.1")

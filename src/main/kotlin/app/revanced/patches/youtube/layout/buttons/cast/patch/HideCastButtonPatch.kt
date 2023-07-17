@@ -4,7 +4,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("hide-cast-button")
+@Name("Hide cast button")
 @Description("Hides the cast button in the video player.")
 @CastButtonCompatibility
 @Version("0.0.1")
@@ -32,22 +32,18 @@ class HideCastButtonPatch : BytecodePatch() {
             )
         )
 
-        with(
-            context.classes.findClassProxied("MediaRouteButton")
-                ?: throw PatchException("MediaRouteButton class not found.")
-        ) {
-            with(
-                mutableClass.methods.find { it.name == "setVisibility" }
-                    ?: throw PatchException("setVisibility method not found.")
-            ) {
-                addInstructions(
-                    0, """
-                            invoke-static {p1}, Lapp/revanced/integrations/patches/HideCastButtonPatch;->getCastButtonOverrideV2(I)I
-                            move-result p1
-                        """
-                )
-            }
-        }
+        val buttonClass = context.classes.findClassProxied("MediaRouteButton")
+            ?: throw PatchException("MediaRouteButton class not found.")
+
+        buttonClass.mutableClass.methods.find { it.name == "setVisibility" }?.apply {
+            addInstructions(
+                0,
+                """
+                    invoke-static {p1}, Lapp/revanced/integrations/patches/HideCastButtonPatch;->getCastButtonOverrideV2(I)I
+                    move-result p1
+                """
+            )
+        } ?: throw PatchException("setVisibility method not found.")
 
     }
 }

@@ -13,7 +13,7 @@ import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Element
 
 @Patch(false)
-@Name("change-package-name")
+@Name("Change package name")
 @Description("Changes the package name.")
 @Version("0.0.1")
 class ChangePackageNamePatch : ResourcePatch {

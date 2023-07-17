@@ -9,7 +9,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.util.resources.ResourceUtils.manifestEditor
 
 @Patch(false)
-@Name("export-all-activities")
+@Name("Export all activities")
 @Description("Makes all app activities exportable.")
 @Version("0.0.1")
 class ExportAllActivitiesPatch : ResourcePatch {

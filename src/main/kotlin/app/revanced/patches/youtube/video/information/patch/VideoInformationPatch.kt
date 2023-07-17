@@ -5,11 +5,10 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -31,7 +30,7 @@ import org.jf.dexlib2.immutable.ImmutableMethod
 import org.jf.dexlib2.immutable.ImmutableMethodParameter
 import org.jf.dexlib2.util.MethodUtil
 
-@Name("video-information")
+@Name("Video information")
 @Description("Hooks YouTube to get information about the current playing video.")
 @VideoInformationCompatibility
 @Version("0.0.1")
@@ -41,7 +40,6 @@ class VideoInformationPatch : BytecodePatch(
         PlayerInitFingerprint,
         CreateVideoPlayerSeekbarFingerprint,
         PlayerControllerSetTimeReferenceFingerprint,
-        VideoTimeFingerprint,
         OnPlaybackSpeedItemClickFingerprint,
     )
 ) {
@@ -73,11 +71,11 @@ class VideoInformationPatch : BytecodePatch(
             seekHelperMethod.addInstructions(
                 0,
                 """
-                sget-object v0, $seekSourceEnumType->a:$seekSourceEnumType
-                invoke-virtual {p0, p1, p2, v0}, ${seekFingerprintResultMethod.definingClass}->${seekFingerprintResultMethod.name}(J$seekSourceEnumType)Z
-                move-result p1
-                return p1
-            """
+                    sget-object v0, $seekSourceEnumType->a:$seekSourceEnumType
+                    invoke-virtual {p0, p1, p2, v0}, ${seekFingerprintResultMethod.definingClass}->${seekFingerprintResultMethod.name}(J$seekSourceEnumType)Z
+                    move-result p1
+                    return p1
+                """
             )
 
             // add the seekTo method to the class for the integrations to call
@@ -89,7 +87,7 @@ class VideoInformationPatch : BytecodePatch(
 
             with(videoLengthMethodResult.mutableMethod) {
                 val videoLengthRegisterIndex = videoLengthMethodResult.scanResult.patternScanResult!!.endIndex - 2
-                val videoLengthRegister = instruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
+                val videoLengthRegister = getInstruction<OneRegisterInstruction>(videoLengthRegisterIndex).registerA
                 val dummyRegisterForLong = videoLengthRegister + 1 // required for long values since they are wide
 
                 addInstruction(
@@ -116,17 +114,9 @@ class VideoInformationPatch : BytecodePatch(
         }
 
         /*
-         * Set the high precision video time method
-         */
-        highPrecisionTimeMethod =
-            (object : MethodFingerprint("V", null, listOf("J", "J", "J", "J", "I", "L"), null) {}).also {
-                it.resolve(context, VideoTimeFingerprint.result!!.classDef)
-            }.result!!.mutableMethod
-
-        /*
          * Hook the methods which set the time
          */
-        highPrecisionTimeHook(INTEGRATIONS_CLASS_DESCRIPTOR, "setVideoTimeHighPrecision")
+        videoTimeHook(INTEGRATIONS_CLASS_DESCRIPTOR, "setVideoTime")
 
 
         /*
@@ -136,7 +126,7 @@ class VideoInformationPatch : BytecodePatch(
             speedSelectionInsertMethod = mutableMethod
             speedSelectionInsertIndex = scanResult.patternScanResult!!.startIndex - 3
             speedSelectionValueRegister =
-                mutableMethod.instruction<FiveRegisterInstruction>(speedSelectionInsertIndex).registerD
+                mutableMethod.getInstruction<FiveRegisterInstruction>(speedSelectionInsertIndex).registerD
 
             val speedSelectionMethodInstructions = mutableMethod.implementation!!.instructions
             setPlaybackSpeedContainerClassFieldReference =
@@ -159,9 +149,6 @@ class VideoInformationPatch : BytecodePatch(
 
         private lateinit var timeMethod: MutableMethod
         private var timeInitInsertIndex = 2
-
-        private lateinit var highPrecisionTimeMethod: MutableMethod
-        private var highPrecisionInsertIndex = 0
 
         private fun MutableMethod.insert(insertIndex: Int, register: String, descriptor: String) =
             addInstruction(insertIndex, "invoke-static { $register }, $descriptor")
@@ -195,20 +182,6 @@ class VideoInformationPatch : BytecodePatch(
         internal fun videoTimeHook(targetMethodClass: String, targetMethodName: String) =
             timeMethod.insertTimeHook(
                 timeInitInsertIndex++,
-                "$targetMethodClass->$targetMethodName(J)V"
-            )
-
-        /**
-         * Hook the high precision video time.
-         * The hooks is called extremely often (10 to 15 times a seconds), so use with caution.
-         * Note: the hook is usually called _off_ the main thread
-         *
-         * @param targetMethodClass The descriptor for the static method to invoke when the player controller is created.
-         * @param targetMethodName The name of the static method to invoke when the player controller is created.
-         */
-        internal fun highPrecisionTimeHook(targetMethodClass: String, targetMethodName: String) =
-            highPrecisionTimeMethod.insertTimeHook(
-                highPrecisionInsertIndex++,
                 "$targetMethodClass->$targetMethodName(J)V"
             )
 

@@ -4,14 +4,14 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.idaustria.detection.shared.annotations.DetectionCompatibility
 import app.revanced.patches.idaustria.detection.signature.fingerprints.SpoofSignatureFingerprint
 
 @Patch
-@Name("spoof-signature")
+@Name("Spoof signature")
 @Description("Spoofs the signature of the app.")
 @DetectionCompatibility
 @Version("0.0.1")

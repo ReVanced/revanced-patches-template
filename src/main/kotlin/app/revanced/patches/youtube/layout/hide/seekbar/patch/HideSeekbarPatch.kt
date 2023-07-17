@@ -4,7 +4,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -28,7 +28,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
     // Used to add preferences to the seekbar settings menu.
     SeekbarPreferencesPatch::class
 ])
-@Name("hide-seekbar")
+@Name("Hide seekbar")
 @Description("Hides the seekbar.")
 @HideSeekbarCompatibility
 @Version("0.0.1")
@@ -53,16 +53,17 @@ class HideSeekbarPatch : BytecodePatch(
 
         SeekbarFingerprint.result!!.let {
             SeekbarOnDrawFingerprint.apply { resolve(context, it.mutableClass) }
-        }.result!!.mutableMethod.addInstructions(
-            0, """
-            const/4 v0, 0x0
-            invoke-static { }, Lapp/revanced/integrations/patches/HideSeekbarPatch;->hideSeekbar()Z
-            move-result v0
-            if-eqz v0, :hide_seekbar
-            return-void
-            :hide_seekbar
-            nop
-        """
+        }.result!!.mutableMethod.addInstructionsWithLabels(
+            0,
+            """
+                const/4 v0, 0x0
+                invoke-static { }, Lapp/revanced/integrations/patches/HideSeekbarPatch;->hideSeekbar()Z
+                move-result v0
+                if-eqz v0, :hide_seekbar
+                return-void
+                :hide_seekbar
+                nop
+            """
         )
 
     }

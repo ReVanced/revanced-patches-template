@@ -4,8 +4,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.instruction
-import app.revanced.patcher.extensions.replaceInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.photomath.detection.signature.fingerprints.CheckSignatureFingerprint
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
@@ -19,11 +19,11 @@ class SignatureDetectionPatch : BytecodePatch(
 ) {
     override suspend fun execute(context: BytecodeContext) {
         CheckSignatureFingerprint.result?.apply {
-            val signatureCheckInstruction = mutableMethod.instruction(scanResult.patternScanResult!!.endIndex)
+            val signatureCheckInstruction = mutableMethod.getInstruction(scanResult.patternScanResult!!.endIndex)
             val checkRegister = (signatureCheckInstruction as OneRegisterInstruction).registerA
 
             mutableMethod.replaceInstruction(signatureCheckInstruction.location.index, "const/4 v$checkRegister, 0x1")
-        } ?: throw CheckSignatureFingerprint.error()
+        } ?: CheckSignatureFingerprint.error()
 
     }
 

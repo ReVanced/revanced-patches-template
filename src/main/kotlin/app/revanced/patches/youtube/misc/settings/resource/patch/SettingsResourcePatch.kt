@@ -2,9 +2,6 @@ package app.revanced.patches.youtube.misc.settings.resource.patch
 
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.openXmlFile
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.*
@@ -19,9 +16,6 @@ import app.revanced.util.resources.ResourceUtils.resourceIdOf
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
-@Name("settings-resource-patch")
-@Description("Applies mandatory patches to implement ReVanced settings into the application.")
-@Version("0.0.1")
 class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "settings"

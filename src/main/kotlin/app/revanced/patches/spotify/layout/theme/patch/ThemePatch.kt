@@ -13,7 +13,7 @@ import app.revanced.util.resources.ResourceUtils.setMultiple
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
 @Patch
-@Name("spotify-theme")
+@Name("Spotify theme")
 @Description("Applies a custom theme.")
 @ThemeCompatibility
 @Version("0.0.1")

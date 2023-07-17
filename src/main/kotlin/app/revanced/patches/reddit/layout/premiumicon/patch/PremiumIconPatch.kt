@@ -4,14 +4,14 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.reddit.layout.premiumicon.annotations.PremiumIconCompatibility
 import app.revanced.patches.reddit.layout.premiumicon.fingerprints.PremiumIconFingerprint
 
 @Patch
-@Name("premium-icon-reddit")
+@Name("Premium icon reddit")
 @Description("Unlocks premium Reddit app icons.")
 @PremiumIconCompatibility
 @Version("0.0.1")

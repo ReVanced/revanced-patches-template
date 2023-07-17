@@ -11,7 +11,7 @@ import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHe
 import app.revanced.util.resources.ResourceUtils.resourceTable
 
 @Patch
-@Name("premium-heading")
+@Name("Premium heading")
 @Description("Shows premium branding on the home screen.")
 @PremiumHeadingCompatibility
 @Version("0.0.1")

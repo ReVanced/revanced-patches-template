@@ -2,25 +2,24 @@ package app.revanced.patches.youtube.misc.playercontrols.resource.patch
 
 import app.revanced.patcher.DomFileEditor
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patches.youtube.misc.playercontrols.annotation.PlayerControlsCompatibility
 import app.revanced.util.resources.ResourceUtils.base
+import app.revanced.util.resources.ResourceUtils.resourceIdOf
+import java.io.Closeable
 
-@Name("bottom-controls-resource-patch")
-@Description("Manages the resources for the bottom controls of the YouTube player.")
-@PlayerControlsCompatibility
-@Version("0.0.1")
-class BottomControlsResourcePatch : ResourcePatch {
+class BottomControlsResourcePatch : ResourcePatch, Closeable {
     override suspend fun execute(context: ResourceContext) {
         resourceContext = context
+
         targetXmlEditor = context.base.openXmlFile(TARGET_RESOURCE)
+
+        bottomUiContainerResourceId = context.resourceIdOf("id", "bottom_ui_container_stub")
     }
 
     companion object {
+        internal var bottomUiContainerResourceId : Long = -1
+
         internal const val TARGET_RESOURCE_NAME = "youtube_controls_bottom_ui_container.xml"
         private const val TARGET_RESOURCE = "res/layout/$TARGET_RESOURCE_NAME"
 
@@ -29,8 +28,6 @@ class BottomControlsResourcePatch : ResourcePatch {
 
         // The element to which to add the new elements to
         private var lastLeftOf = "fullscreen_button"
-
-
 
         /**
          * Add new controls to the bottom of the YouTube player.

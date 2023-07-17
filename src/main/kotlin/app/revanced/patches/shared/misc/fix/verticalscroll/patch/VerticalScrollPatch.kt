@@ -4,8 +4,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.misc.fix.verticalscroll.annotations.VerticalScrollCompatibility
 import app.revanced.patches.shared.misc.fix.verticalscroll.fingerprints.CanScrollVerticallyFingerprint
@@ -21,7 +21,7 @@ class VerticalScrollPatch : BytecodePatch(
         CanScrollVerticallyFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveResultIndex = it.scanResult.patternScanResult!!.endIndex
-                val moveResultRegister = instruction<OneRegisterInstruction>(moveResultIndex).registerA
+                val moveResultRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
 
                 val insertIndex = moveResultIndex + 1
                 addInstruction(

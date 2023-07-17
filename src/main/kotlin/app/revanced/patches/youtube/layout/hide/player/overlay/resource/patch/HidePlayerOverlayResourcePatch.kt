@@ -5,14 +5,10 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HidePlayerOverlayPatchCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.resourceIdOf
-import jdk.jfr.Name
 
-@Name("hide-player-overlay-resource-patch")
 @DependsOn([SettingsPatch::class])
-@HidePlayerOverlayPatchCompatibility
 class HidePlayerOverlayResourcePatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

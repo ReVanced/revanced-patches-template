@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([LithoFilterPatch::class])
-@Name("hide-video-action-buttons")
+@Name("Hide video action buttons")
 @Description("Adds the options to hide action buttons under a video.")
 @HideButtonsCompatibility
 @Version("0.0.1")
@@ -63,5 +63,12 @@ class HideButtonsPatch : ResourcePatch {
                 StringResource("revanced_hide_buttons_preference_screen_summary", "Hide or show buttons under videos")
             )
         )
+
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+    }
+
+    private companion object {
+        private const val FILTER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/components/ButtonsFilter;"
     }
 }

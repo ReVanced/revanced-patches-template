@@ -5,8 +5,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -17,13 +17,13 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.video.speed.custom.patch.CustomVideoSpeedPatch
+import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeedPatch
 import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 
-@Name("remember-playback-speed")
-@Description("Adds the ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomVideoSpeedPatch::class])
+@Name("Remember playback speed")
+@Description("Adds the ability to remember the playback speed you chose in the playback speed flyout.")
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class])
 @Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
@@ -77,10 +77,10 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
         InitializePlaybackSpeedValuesFingerprint.result?.apply {
             // Infer everything necessary for calling the method setPlaybackSpeed().
             val onItemClickListenerClassFieldReference =
-                mutableMethod.instruction<ReferenceInstruction>(0).reference
+                mutableMethod.getInstruction<ReferenceInstruction>(0).reference
 
             // Registers are not used at index 0, so they can be freely used.
-            mutableMethod.addInstructions(
+            mutableMethod.addInstructionsWithLabels(
                 0,
                 """
                     invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->getPlaybackSpeedOverride()F
@@ -102,7 +102,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                     # Invoke setPlaybackSpeed on that class.
                     invoke-virtual {v2, v0}, ${VideoInformationPatch.setPlaybackSpeedMethodReference}
                 """.trimIndent(),
-                listOf(ExternalLabel("do_not_override", mutableMethod.instruction(0)))
+                ExternalLabel("do_not_override", mutableMethod.getInstruction(0))
             )
         } ?: InitializePlaybackSpeedValuesFingerprint.error()
 

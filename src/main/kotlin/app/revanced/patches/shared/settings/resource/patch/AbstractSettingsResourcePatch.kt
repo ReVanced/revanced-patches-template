@@ -15,6 +15,7 @@ import app.revanced.util.resources.ResourceUtils.base
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.manifestEditor
 import org.w3c.dom.Node
+import java.io.Closeable
 
 /**
  * Abstract settings resource patch
@@ -25,7 +26,7 @@ import org.w3c.dom.Node
 abstract class AbstractSettingsResourcePatch(
     private val preferenceFileName: String,
     private val sourceDirectory: String,
-) : ResourcePatch {
+) : ResourcePatch, Closeable {
     override suspend fun execute(context: ResourceContext) {
         /*
          * used for self-restart
@@ -94,7 +95,7 @@ abstract class AbstractSettingsResourcePatch(
          * @throws IllegalArgumentException if the resource already exists.
          */
         internal fun IResource.include() {
-            base!!.set(type, name, patcherValue)
+            base!!.getOrCreateResource(type, name, patcherValue)
         }
 
         internal fun DomFileEditor?.getNode(tagName: String) = this!!.file.getElementsByTagName(tagName).item(0)

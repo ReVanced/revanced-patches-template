@@ -6,18 +6,13 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.openXmlFile
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.reddit.ad.banner.annotations.HideBannerCompatibility
 import app.revanced.util.resources.ResourceUtils.base
 
-@Patch
-@Name("hide-subreddit-banner")
+@Name("Hide subreddit banner")
 @Description("Hides banner ads from comments on subreddits.")
-@HideBannerCompatibility
 @Version("0.0.1")
 class HideBannerPatch : ResourcePatch {
     override suspend fun execute(context: ResourceContext) {
-
         context.base.openXmlFile(RESOURCE_FILE_PATH).use {
             it.file.getElementsByTagName("merge").item(0).childNodes.apply {
                 val attributes = arrayOf("height", "width")

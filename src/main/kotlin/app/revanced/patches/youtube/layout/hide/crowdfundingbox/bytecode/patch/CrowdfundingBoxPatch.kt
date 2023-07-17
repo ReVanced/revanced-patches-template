@@ -5,8 +5,8 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,7 +18,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, CrowdfundingBoxResourcePatch::class])
-@Name("hide-crowdfunding-box")
+@Name("Hide crowdfunding box")
 @Description("Hides the crowdfunding box between the player and video description.")
 @CrowdfundingBoxCompatibility
 @Version("0.0.1")
@@ -31,7 +31,7 @@ class CrowdfundingBoxPatch : BytecodePatch(
         CrowdfundingBoxFingerprint.result?.let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.endIndex
-                val objectRegister = instruction<TwoRegisterInstruction>(insertIndex).registerA
+                val objectRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 addInstruction(insertIndex, "invoke-static {v$objectRegister}, $INTEGRATIONS_METHOD_DESCRIPTOR")
             }

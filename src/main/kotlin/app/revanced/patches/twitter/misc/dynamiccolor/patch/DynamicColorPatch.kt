@@ -14,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.resourceTable
 import app.revanced.util.resources.ResourceUtils.toColorResource
 
 @Patch
-@Name("dynamic-color")
+@Name("Dynamic color")
 @Description("Replaces the default Twitter Blue with the users Material You palette.")
 @DynamicColorCompatibility
 @Version("0.0.1")

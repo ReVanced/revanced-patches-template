@@ -5,8 +5,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,7 +18,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, BreakingNewsResourcePatch::class])
-@Name("hide-breaking-news-shelf")
+@Name("Hide breaking news shelf")
 @Description("Hides the breaking news shelf on the homepage tab.")
 @BreakingNewsCompatibility
 @Version("0.0.1")
@@ -31,7 +31,7 @@ class BreakingNewsPatch : BytecodePatch(
             val moveResultIndex = insertIndex - 1
 
             it.mutableMethod.apply {
-                val breakingNewsViewRegister = instruction<OneRegisterInstruction>(moveResultIndex).registerA
+                val breakingNewsViewRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
 
                 addInstruction(
                     insertIndex,

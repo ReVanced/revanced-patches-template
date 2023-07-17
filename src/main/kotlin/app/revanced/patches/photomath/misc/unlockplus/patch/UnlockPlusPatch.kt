@@ -5,7 +5,7 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -14,7 +14,7 @@ import app.revanced.patches.photomath.misc.unlockplus.annotations.UnlockPlusComp
 import app.revanced.patches.photomath.misc.unlockplus.fingerprints.IsPlusUnlockedFingerprint
 
 @Patch
-@Name("unlock-plus")
+@Name("Unlock plus")
 @DependsOn([SignatureDetectionPatch::class])
 @Description("Unlocks plus features.")
 @UnlockPlusCompatibilty
@@ -29,9 +29,9 @@ class UnlockPlusPatch : BytecodePatch(
             addInstructions(
                 0,
                 """
-                const/4 v0, 0x1
-                return v0
-            """
+                    const/4 v0, 0x1
+                    return v0
+                """
             )
         } ?: IsPlusUnlockedFingerprint.error()
 

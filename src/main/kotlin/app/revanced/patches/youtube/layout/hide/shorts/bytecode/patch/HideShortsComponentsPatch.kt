@@ -7,8 +7,8 @@ import app.revanced.patcher.BytecodeContext
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -33,7 +33,7 @@ import org.jf.dexlib2.iface.instruction.TwoRegisterInstruction
         ResourceMappingPatch::class
     ]
 )
-@Name("hide-shorts-components")
+@Name("Hide Shorts components")
 @Description("Hides components from YouTube Shorts.")
 @HideShortsComponentsCompatibility
 @Version("0.0.1")
@@ -47,17 +47,19 @@ class HideShortsComponentsPatch : BytecodePatch(
     )
 ) {
     override suspend fun execute(context: BytecodeContext) {
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
         // region Hide the Shorts shelf.
 
         ReelConstructorFingerprint.result?.let {
             it.mutableMethod.apply {
                 val insertIndex = it.scanResult.patternScanResult!!.startIndex + 2
-                val viewRegister = instruction<TwoRegisterInstruction>(insertIndex).registerA
+                val viewRegister = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 injectHideViewCall(
                     insertIndex,
                     viewRegister,
-                    CLASS_DESCRIPTOR,
+                    FILTER_CLASS_DESCRIPTOR,
                     "hideShortsShelf"
                 )
             }
@@ -84,10 +86,10 @@ class HideShortsComponentsPatch : BytecodePatch(
             SetPivotBarVisibilityFingerprint.result!!.let { result ->
                 result.mutableMethod.apply {
                     val checkCastIndex = result.scanResult.patternScanResult!!.endIndex
-                    val viewRegister = instruction<OneRegisterInstruction>(checkCastIndex).registerA
+                    val viewRegister = getInstruction<OneRegisterInstruction>(checkCastIndex).registerA
                     addInstruction(
                         checkCastIndex + 1,
-                        "sput-object v$viewRegister, $CLASS_DESCRIPTOR->pivotBar:" +
+                        "sput-object v$viewRegister, $FILTER_CLASS_DESCRIPTOR->pivotBar:" +
                                 "Lcom/google/android/libraries/youtube/rendering/ui/pivotbar/PivotBar;"
                     )
                 }
@@ -100,7 +102,7 @@ class HideShortsComponentsPatch : BytecodePatch(
                 RenderBottomNavigationBarFingerprint.error()
 
             RenderBottomNavigationBarFingerprint.result!!.mutableMethod.apply {
-                addInstruction(0, "invoke-static { }, $CLASS_DESCRIPTOR->hideNavigationBar()V")
+                addInstruction(0, "invoke-static { }, $FILTER_CLASS_DESCRIPTOR->hideNavigationBar()V")
             }
         } ?: RenderBottomNavigationBarParentFingerprint.error()
 
@@ -108,12 +110,12 @@ class HideShortsComponentsPatch : BytecodePatch(
         BottomNavigationBarFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveResultIndex = it.scanResult.patternScanResult!!.startIndex
-                val viewRegister = instruction<OneRegisterInstruction>(moveResultIndex).registerA
+                val viewRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
                 val insertIndex = moveResultIndex + 1
 
                 addInstruction(
                     insertIndex,
-                    "invoke-static { v$viewRegister }, $CLASS_DESCRIPTOR->" +
+                    "invoke-static { v$viewRegister }, $FILTER_CLASS_DESCRIPTOR->" +
                             "hideNavigationBar(Landroid/view/View;)Landroid/view/View;"
                 )
             }
@@ -123,7 +125,7 @@ class HideShortsComponentsPatch : BytecodePatch(
     }
 
     private companion object {
-        private const val CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
+        private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
 
         private enum class ShortsButtons(private val resourceName: String, private val methodName: String) {
             COMMENTS("reel_dyn_comment", "hideShortsCommentsButton"),
@@ -134,8 +136,8 @@ class HideShortsComponentsPatch : BytecodePatch(
                 val referencedIndex = method.findIndexForIdResource(resourceName)
 
                 val setIdIndex = referencedIndex + 1
-                val viewRegister = method.instruction<FiveRegisterInstruction>(setIdIndex).registerC
-                method.injectHideViewCall(setIdIndex, viewRegister, CLASS_DESCRIPTOR, methodName)
+                val viewRegister = method.getInstruction<FiveRegisterInstruction>(setIdIndex).registerC
+                method.injectHideViewCall(setIdIndex, viewRegister, FILTER_CLASS_DESCRIPTOR, methodName)
             }
         }
     }

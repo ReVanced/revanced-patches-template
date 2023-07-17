@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.editText
 import java.io.File
 
 @Patch
-@Name("custom-branding")
+@Name("Custom branding")
 @Description("Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).")
 @CustomBrandingCompatibility
 @Version("0.0.1")

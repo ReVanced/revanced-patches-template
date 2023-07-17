@@ -1,15 +1,9 @@
 package app.revanced.patches.shared.mapping.misc.patch
 
 import app.revanced.patcher.ResourceContext
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.util.resources.ResourceUtils.resourceIdOf
 
-@Name("resource-mapping")
-@Description("Creates a map of public resources.")
-@Version("0.0.1")
 class ResourceMappingPatch : ResourcePatch {
     companion object {
         private var resourceContext: ResourceContext? = null
@@ -26,6 +20,5 @@ class ResourceMappingPatch : ResourcePatch {
 
     override suspend fun execute(context: ResourceContext) {
         resourceContext = context
-
     }
 }

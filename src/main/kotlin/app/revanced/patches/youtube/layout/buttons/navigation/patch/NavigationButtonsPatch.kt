@@ -5,8 +5,8 @@ import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.BytecodeContext
-import app.revanced.patcher.extensions.addInstructions
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
@@ -31,7 +31,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
         ResolvePivotBarFingerprintsPatch::class,
     ]
 )
-@Name("navigation-buttons")
+@Name("Navigation buttons")
 @Description("Adds options to hide or change navigation buttons.")
 @NavigationButtonsCompatibility
 @Version("0.0.1")
@@ -40,7 +40,7 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",
-                StringResource("revanced_navigation_buttons_preference_screen_title", "Navigation button settings"),
+                StringResource("revanced_navigation_buttons_preference_screen_title", "Navigation buttons"),
                 listOf(
                     SwitchPreference(
                         "revanced_hide_home_button",
@@ -50,7 +50,7 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                     ),
                     SwitchPreference(
                         "revanced_hide_shorts_button",
-                        StringResource("revanced_hide_shorts_button_title", "Hide shorts button"),
+                        StringResource("revanced_hide_shorts_button_title", "Hide Shorts button"),
                         StringResource("revanced_hide_shorts_button_summary_on", "Shorts button is hidden"),
                         StringResource("revanced_hide_shorts_button_summary_off", "Shorts button is shown")
                     ),
@@ -142,7 +142,7 @@ class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerpri
                 }!!.index
 
                 val conditionalCheckIndex = stringIndex - 1
-                val conditionRegister = instruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
+                val conditionRegister = getInstruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
 
                 addInstructions(
                     conditionalCheckIndex,

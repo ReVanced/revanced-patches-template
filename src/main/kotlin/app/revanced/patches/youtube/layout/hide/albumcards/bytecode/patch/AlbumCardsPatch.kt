@@ -5,8 +5,8 @@ import app.revanced.extensions.error
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
-import app.revanced.patcher.extensions.addInstruction
-import app.revanced.patcher.extensions.instruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -18,7 +18,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, AlbumCardsResourcePatch::class])
-@Name("hide-album-cards")
+@Name("Hide album cards")
 @Description("Hides the album cards below the artist description.")
 @AlbumCardsCompatibility
 @Version("0.0.1")
@@ -33,14 +33,14 @@ class AlbumCardsPatch : BytecodePatch(
                 val checkCastAnchorIndex = it.scanResult.patternScanResult!!.endIndex
                 val insertIndex = checkCastAnchorIndex + 1
 
-                val albumCardViewRegister = instruction<OneRegisterInstruction>(checkCastAnchorIndex).registerA
+                val albumCardViewRegister = getInstruction<OneRegisterInstruction>(checkCastAnchorIndex).registerA
 
                 addInstruction(
                     insertIndex,
                     "invoke-static {v$albumCardViewRegister}, " +
                             "Lapp/revanced/integrations/patches/HideAlbumCardsPatch;" +
                             "->" +
-                            "hideAlbumCards(Landroid/view/View;)V"
+                            "hideAlbumCard(Landroid/view/View;)V"
                 )
             }
         } ?: AlbumCardsFingerprint.error()
