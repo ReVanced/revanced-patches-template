@@ -6,12 +6,14 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.*
@@ -42,10 +44,10 @@ class SettingsPatch : BytecodePatch(
         // Create a settings entry for 'revanced settings' and add it to settings fragment
         AddSettingsEntryFingerprint.result?.apply {
             scanResult.patternScanResult?.startIndex?.let {
-                val settingsEntries = this.mutableMethod.getInstruction(it + 3)
-                val addEntry = this.mutableMethod.getInstruction(it + 5)
+                val settingsEntries = mutableMethod.getInstruction(it + 3)
+                val addEntry = mutableMethod.getInstruction(it + 5)
                 // Add the settings entry created to the settings fragment
-                this.mutableMethod.addInstructions(
+                mutableMethod.addInstructions(
                     it + 6,
                     listOf(
                         settingsEntries,
@@ -53,7 +55,7 @@ class SettingsPatch : BytecodePatch(
                     )
                 )
                 // These instructions call a method that create a settings entry use reflection base on the class name of classes that construct settings entry
-                this.mutableMethod.addInstructions(
+                mutableMethod.addInstructions(
                     it + 6,
                     """
                         const-string v1, "$settingsButtonClass"
@@ -73,12 +75,15 @@ class SettingsPatch : BytecodePatch(
 
             val thisRegister = getInstruction<FiveRegisterInstruction>(initializeSettingsIndex - 1).registerC
 
-            addInstructions(
+            addInstructionsWithLabels(
                 initializeSettingsIndex,
                 """
                     invoke-static {v$thisRegister}, $INITIALIZE_SETTINGS_METHOD_DESCRIPTOR
+                    move-result v0
+                    if-eqz v0, :notrevanced
                     return-void
-                """
+                """,
+                ExternalLabel("notrevanced", getInstruction(initializeSettingsIndex))
             )
         } ?: return AdPersonalizationActivityOnCreateFingerprint.toErrorResult()
 
@@ -86,7 +91,7 @@ class SettingsPatch : BytecodePatch(
     }
 
     private fun String.toClassName(): String {
-        return this.substring(1, this.length - 1).replace("/", ".")
+        return substring(1, this.length - 1).replace("/", ".")
     }
 
     private companion object {
@@ -96,7 +101,7 @@ class SettingsPatch : BytecodePatch(
         private const val INITIALIZE_SETTINGS_METHOD_DESCRIPTOR =
             "$INTEGRATIONS_CLASS_DESCRIPTOR->initializeSettings(" +
                     "Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;" +
-                    ")V"
+                    ")Z"
         private const val CREATE_SETTINGS_ENTRY_METHOD_DESCRIPTOR =
             "$INTEGRATIONS_CLASS_DESCRIPTOR->createSettingsEntry(" +
                     "Ljava/lang/String;" +
