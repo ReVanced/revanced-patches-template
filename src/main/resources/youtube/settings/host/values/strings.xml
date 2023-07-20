@@ -340,9 +340,12 @@
     <string name="revanced_remember_video_quality_mobile">mobile</string>
     <string name="revanced_remember_video_quality_wifi">wifi</string>
     <string name="revanced_ryd_settings_summary">Settings for Return YouTube Dislike</string>
-    <string name="revanced_seekbar_color_summary">The color of the seekbar</string>
-    <string name="revanced_seekbar_color_title">Seekbar color</string>
-    <string name="revanced_seekbar_color_invalid">Invalid seekbar color value. Using default value.</string>
+    <string name="revanced_seekbar_custom_color_title">Enable custom seekbar color</string>
+    <string name="revanced_seekbar_custom_color_summary_on">Custom seekbar color is shown</string>
+    <string name="revanced_seekbar_custom_color_summary_off">Original seekbar color is shown</string>
+    <string name="revanced_seekbar_custom_color_value_title">Custom seekbar color</string>
+    <string name="revanced_seekbar_custom_color_value_summary">The color of the seekbar</string>
+    <string name="revanced_seekbar_custom_color_invalid">Invalid seekbar color value. Using default value.</string>
     <string name="revanced_seekbar_preference_screen_title">Seekbar settings</string>
     <string name="revanced_seekbar_tapping_summary_off">Seekbar tapping is disabled</string>
     <string name="revanced_seekbar_tapping_summary_on">Seekbar tapping is enabled</string>

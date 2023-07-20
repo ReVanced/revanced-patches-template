@@ -6,28 +6,20 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
 class SpoofSignatureVerificationResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_signature_verification",
-                StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
-                StringResource("revanced_spoof_signature_verification_summary_on",
-                    "App signature spoofed\\n\\n"
-                        + "Side effects include:\\n"
-                        + "• Ambient mode may not work\\n"
-                        + "• Seekbar thumbnails are hidden\\n"
-                        + "• Downloading videos may not work"),
-                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed"),
-                StringResource("revanced_spoof_signature_verification_user_dialog_message",
-                    "Turning off this setting may cause playback issues.")
+                "revanced_spoof_signature_verification_title",
+                "revanced_spoof_signature_verification_summary_on",
+                "revanced_spoof_signature_verification_summary_off"
             )
         )
 
