@@ -14,6 +14,9 @@ class SeekbarColorResourcePatch : ResourcePatch {
         // For that the resource id is used in a bytecode patch to change the color.
 
         val seekbarErrorMessage = "Could not find seekbar resource"
+        reelTimeBarPlayedColorId = ResourceMappingPatch.resourceMappings
+            .find { it.name == "reel_time_bar_played_color" }?.id
+            ?: return PatchResultError(seekbarErrorMessage)
         inlineTimeBarColorizedBarPlayedColorDarkId = ResourceMappingPatch.resourceMappings
             .find { it.name == "inline_time_bar_colorized_bar_played_color_dark" }?.id
             ?: return PatchResultError(seekbarErrorMessage)
@@ -39,6 +42,7 @@ class SeekbarColorResourcePatch : ResourcePatch {
     }
 
     companion object {
+        internal var reelTimeBarPlayedColorId = -1L
         internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
         internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
     }
