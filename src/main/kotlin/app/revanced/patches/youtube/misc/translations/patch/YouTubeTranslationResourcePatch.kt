@@ -15,8 +15,8 @@ import app.revanced.patches.youtube.misc.translations.annotation.YouTubeTranslat
 import app.revanced.util.resources.ResourceUtils
 
 //@Patch // TODO: release this after translations are usable
-@Name("translations")
-@Description("Adds translations to YouTube.")
+@Name("Translations")
+@Description("Adds translations to ReVanced.")
 @YouTubeTranslationCompatibility
 @DependsOn([YouTubeSettingsPatch::class])
 @Version("0.0.1")

@@ -15,8 +15,8 @@ import app.revanced.patches.twitch.misc.translations.annotation.TwitchTranslatio
 import app.revanced.util.resources.ResourceUtils
 
 //@Patch // TODO: release this after translations are usable
-@Name("translations")
-@Description("Adds translations to Twitch.")
+@Name("Translations")
+@Description("Adds translations to ReVanced.")
 @TwitchTranslationCompatibility
 @DependsOn([TwitchSettingsResourcePatch::class])
 @Version("0.0.1")
