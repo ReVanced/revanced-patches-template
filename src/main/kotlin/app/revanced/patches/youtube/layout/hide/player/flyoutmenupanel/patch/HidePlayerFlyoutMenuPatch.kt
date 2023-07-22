@@ -17,7 +17,7 @@ import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@Name("player-flyout-menu")
+@Name("Player flyout menu")
 @Description("Hides player flyout menu items.")
 @DependsOn([LithoFilterPatch::class, SettingsPatch::class])
 @HidePlayerFlyoutMenuItemsCompatibility
