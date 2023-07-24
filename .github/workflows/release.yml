@@ -36,9 +36,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew generateMeta
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Release
+          path: |
+            build/libs/*.jar
       - name: Setup semantic-release
         run: npm install
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.REPOSITORY_PUSH_ACCESS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm exec semantic-release
