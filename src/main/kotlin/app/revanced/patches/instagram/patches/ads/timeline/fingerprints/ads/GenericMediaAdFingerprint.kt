@@ -4,8 +4,7 @@ import org.jf.dexlib2.Opcode
 
 object GenericMediaAdFingerprint : MediaAdFingerprint(
     opcodes = listOf(
-        Opcode.INVOKE_INTERFACE,
-        Opcode.MOVE_RESULT_OBJECT,
+        Opcode.IGET_OBJECT,
         Opcode.INVOKE_INTERFACE,
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CONST_4,

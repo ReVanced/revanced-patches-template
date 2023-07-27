@@ -9,7 +9,7 @@ object PaidPartnershipAdFingerprint : MediaAdFingerprint(
     null,
     listOf("L", "L"),
     listOf(
-        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT,
         Opcode.IPUT_BOOLEAN,
         Opcode.IPUT_BOOLEAN

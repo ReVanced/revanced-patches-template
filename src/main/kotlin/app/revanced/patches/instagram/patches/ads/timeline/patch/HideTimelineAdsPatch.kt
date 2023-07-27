@@ -24,7 +24,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @Name("Hide timeline ads")
 @Description("Removes ads from the timeline.")
-@Compatibility([Package("com.instagram.android", arrayOf("275.0.0.27.98"))])
+@Compatibility([Package("com.instagram.android", arrayOf("293.0.2.28.93"))])
 @Version("0.0.1")
 class HideTimelineAdsPatch : BytecodePatch(
     listOf(
@@ -61,7 +61,7 @@ class HideTimelineAdsPatch : BytecodePatch(
             val returnFalseLabel = "an_ad"
 
             val checkForAdInstructions =
-                listOf(GenericMediaAdFingerprint, PaidPartnershipAdFingerprint, ShoppingAdFingerprint)
+                listOf(GenericMediaAdFingerprint, ShoppingAdFingerprint)
                     .map(MediaAdFingerprint::toString)
                     .joinToString("\n") {
                         """ 
@@ -69,7 +69,10 @@ class HideTimelineAdsPatch : BytecodePatch(
                             move-result v$freeRegister
                             if-nez v$freeRegister, :$returnFalseLabel
                         """.trimIndent()
-                    }.let { "$it\nconst/4 v0, 0x1\nreturn v0" }
+                    }.let { "$it\n" +
+                            "invoke-static {v$mediaInstanceRegister}, ${PaidPartnershipAdFingerprint.toString()}\n" +
+                            "move-result v$freeRegister\n" +
+                            "if-nez v$freeRegister, :$returnFalseLabel\nconst/4 v0, 0x1\nreturn v0" }
 
             // endregion
 
