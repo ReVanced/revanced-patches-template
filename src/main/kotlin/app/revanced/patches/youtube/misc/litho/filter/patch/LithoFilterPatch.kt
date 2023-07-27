@@ -187,7 +187,7 @@ class LithoFilterPatch : BytecodePatch(
     }
 
     override fun close() = LithoFilterFingerprint.result!!
-        .mutableMethod.replaceInstruction(0, "const/4 v0, $filterCount")
+        .mutableMethod.replaceInstruction(0, "const/16 v0, $filterCount")
 
     companion object {
         private val MethodFingerprint.patternScanResult
