@@ -85,9 +85,9 @@ class HidePlayerFlyoutMenuPatch : ResourcePatch {
                     ),
                     SwitchPreference(
                         "${KEY}_watch_in_vr",
-                        StringResource("${KEY}_watch_in_vr_title", "Hide WatchInVr menu"),
-                        StringResource("${KEY}_watch_in_vr_on", "WatchInVr menu item is hidden"),
-                        StringResource("${KEY}_watch_in_vr_off", "WatchInVr menu item is shown")
+                        StringResource("${KEY}_watch_in_vr_title", "Hide Watch in VR menu"),
+                        StringResource("${KEY}_watch_in_vr_on", "Watch in VR menu item is hidden"),
+                        StringResource("${KEY}_watch_in_vr_off", "Watch in VR menu item is shown")
                     ),
                 ),
                 StringResource("${KEY}_summary", "Manage the visibility of player flyout menu items")
