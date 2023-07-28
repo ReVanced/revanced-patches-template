@@ -1,3 +1,24 @@
+# [2.187.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.2...v2.187.0-dev.3) (2023-07-26)
+
+
+### Bug Fixes
+
+* **YouTube - Spoof App Version:** Remove 17.30.35 target (version no longer works correctly) ([#2703](https://github.com/ReVanced/revanced-patches/issues/2703)) ([210108b](https://github.com/ReVanced/revanced-patches/commit/210108bd8f86f583f5cd5d5538480b76d51d7776))
+
+# [2.187.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.1...v2.187.0-dev.2) (2023-07-26)
+
+
+### Features
+
+* **YouTube - Hide layout components:** Hide `chips shelf` ([#2699](https://github.com/ReVanced/revanced-patches/issues/2699)) ([8e6058b](https://github.com/ReVanced/revanced-patches/commit/8e6058b62350b3d14d79e6fe52b0ad781b66b5de))
+
+# [2.187.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.186.1-dev.1...v2.187.0-dev.1) (2023-07-24)
+
+
+### Features
+
+* **Sync for Reddit:** add `Disable Sync for Lemmy bottom sheet` patch ([56b535b](https://github.com/ReVanced/revanced-patches/commit/56b535b2a136d4b0afbddf2c8e251889c2555056))
+
 ## [2.186.1-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.186.0...v2.186.1-dev.1) (2023-07-21)
 
 
