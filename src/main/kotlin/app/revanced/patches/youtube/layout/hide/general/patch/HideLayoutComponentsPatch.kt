@@ -167,9 +167,9 @@ class HideLayoutComponentsPatch : BytecodePatch(
             ),
             SwitchPreference(
                 "revanced_hide_chips_shelf",
-                StringResource("revanced_hide_chips_shelf_title", "Hide chips shelf"),
-                StringResource("revanced_hide_chips_shelf_on", "Chips shelf is hidden"),
-                StringResource("revanced_hide_chips_shelf_off", "Chips shelf is shown")
+                "revanced_hide_chips_shelf_title",
+                "revanced_hide_chips_shelf_on",
+                "revanced_hide_chips_shelf_off",
             ),
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
                 "revanced_custom_filter_preference_screen",

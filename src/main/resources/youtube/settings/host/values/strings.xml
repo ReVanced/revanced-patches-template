@@ -125,6 +125,9 @@
     <string name="revanced_hide_chapters_summary_off">Chapters are shown</string>
     <string name="revanced_hide_chapters_summary_on">Chapters are hidden</string>
     <string name="revanced_hide_chapters_title">Hide chapters in the video description</string>
+    <string name="revanced_hide_chips_shelf_title">Hide chips shelf</string>
+    <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden</string>
+    <string name="revanced_hide_chips_shelf_off">Chips shelf is shown</string>
     <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
     <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
     <string name="revanced_hide_clip_button_title">Hide clip button</string>
