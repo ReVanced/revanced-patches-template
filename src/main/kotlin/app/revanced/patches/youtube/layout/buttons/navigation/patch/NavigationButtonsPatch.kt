@@ -3,7 +3,6 @@ package app.revanced.patches.youtube.layout.buttons.navigation.patch
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -35,7 +34,6 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @Name("Navigation buttons")
 @Description("Adds options to hide or change navigation buttons.")
 @NavigationButtonsCompatibility
-@Version("0.0.1")
 class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

@@ -3,7 +3,6 @@ package app.revanced.patches.youtube.misc.settings.bytecode.patch
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -27,7 +26,6 @@ import java.io.Closeable
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsResourcePatch::class])
 @Name("Settings")
 @Description("Adds settings for ReVanced to YouTube.")
-@Version("0.0.1")
 class YouTubeSettingsPatch : BytecodePatch(
     listOf(LicenseActivityFingerprint, SetThemeFingerprint)
 ), Closeable {

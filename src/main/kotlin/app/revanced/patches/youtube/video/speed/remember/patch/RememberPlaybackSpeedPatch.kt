@@ -3,7 +3,6 @@ package app.revanced.patches.youtube.video.speed.remember.patch
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -24,7 +23,6 @@ import org.jf.dexlib2.iface.instruction.ReferenceInstruction
 @Name("Remember playback speed")
 @Description("Adds the ability to remember the playback speed you chose in the playback speed flyout.")
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class])
-@Version("0.0.1")
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
         InitializePlaybackSpeedValuesFingerprint

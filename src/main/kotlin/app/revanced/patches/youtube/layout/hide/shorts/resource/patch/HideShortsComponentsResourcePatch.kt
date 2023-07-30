@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.layout.hide.shorts.resource.patch
 
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -12,7 +11,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
-@Version("0.0.1")
 class HideShortsComponentsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
