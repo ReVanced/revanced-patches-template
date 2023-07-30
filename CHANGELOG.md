@@ -1,3 +1,19 @@
+# [2.187.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.5...v2.187.0-dev.6) (2023-07-30)
+
+# [2.187.0-dev.5](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.4...v2.187.0-dev.5) (2023-07-28)
+
+
+### Bug Fixes
+
+* **YouTube - Spoof app version:** Fix grammar in description ([#2711](https://github.com/ReVanced/revanced-patches/issues/2711)) ([dd249e6](https://github.com/ReVanced/revanced-patches/commit/dd249e62243e57733a6ff4d3a17d30db0e08a84d))
+
+# [2.187.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.3...v2.187.0-dev.4) (2023-07-28)
+
+
+### Bug Fixes
+
+* Remove version numbers from individual patches ([#2709](https://github.com/ReVanced/revanced-patches/issues/2709)) ([7a828ea](https://github.com/ReVanced/revanced-patches/commit/7a828ea8826864505fac9b2bdb3a1261d9f4dc35))
+
 # [2.187.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.187.0-dev.2...v2.187.0-dev.3) (2023-07-26)
 
 
