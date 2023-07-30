@@ -2,7 +2,6 @@ package app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Version
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
@@ -10,87 +9,85 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuItemsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
 @Name("Player flyout menu")
 @Description("Hides player flyout menu items.")
-@DependsOn([LithoFilterPatch::class, SettingsPatch::class])
+@DependsOn([LithoFilterPatch::class, YouTubeSettingsPatch::class])
 @HidePlayerFlyoutMenuItemsCompatibility
-@Version("0.0.1")
 class HidePlayerFlyoutMenuPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                KEY,
-                StringResource("${KEY}_title", "Player flyout menu items"),
+                "revanced_hide_player_flyout",
+                "revanced_hide_player_flyout_title",
                 listOf(
                     SwitchPreference(
-                        "${KEY}_quality",
-                        StringResource("${KEY}_quality_title", "Hide Quality menu"),
-                        StringResource("${KEY}_quality_on", "Quality menu item is hidden"),
-                        StringResource("${KEY}_quality_off", "Quality menu item is shown")
+                        "revanced_hide_player_flyout_quality",
+                        "revanced_hide_player_flyout_quality_title",
+                        "revanced_hide_player_flyout_quality_on",
+                        "revanced_hide_player_flyout_quality_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_captions",
-                        StringResource("${KEY}_captions_title", "Hide Captions menu"),
-                        StringResource("${KEY}_captions_on", "Captions menu item is hidden"),
-                        StringResource("${KEY}_captions_off", "Captions menu item is shown")
+                        "revanced_hide_player_flyout_captions",
+                        "revanced_hide_player_flyout_captions_title",
+                        "revanced_hide_player_flyout_captions_on",
+                        "revanced_hide_player_flyout_captions_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_loop_video",
-                        StringResource("${KEY}_loop_video_title", "Hide Loop video menu"),
-                        StringResource("${KEY}_loop_video_on", "Loop video menu item is hidden"),
-                        StringResource("${KEY}_loop_video_off", "Loop video menu item is shown")
+                        "revanced_hide_player_flyout_loop_video",
+                        "revanced_hide_player_flyout_loop_video_title",
+                        "revanced_hide_player_flyout_loop_video_on",
+                        "revanced_hide_player_flyout_loop_video_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_ambient_mode",
-                        StringResource("${KEY}_ambient_mode_title", "Hide Ambient mode menu"),
-                        StringResource("${KEY}_ambient_mode_on", "Ambient mode menu item is hidden"),
-                        StringResource("${KEY}_ambient_mode_off", "Ambient mode menu item is shown")
+                        "revanced_hide_player_flyout_ambient_mode",
+                        "revanced_hide_player_flyout_ambient_mode_title",
+                        "revanced_hide_player_flyout_ambient_mode_on",
+                        "revanced_hide_player_flyout_ambient_mode_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_report",
-                        StringResource("${KEY}_report_title", "Hide Report menu"),
-                        StringResource("${KEY}_report_on", "Report menu item is hidden"),
-                        StringResource("${KEY}_report_off", "Report menu item is shown")
+                        "revanced_hide_player_flyout_report",
+                        "revanced_hide_player_flyout_report_title",
+                        "revanced_hide_player_flyout_report_on",
+                        "revanced_hide_player_flyout_report_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_help",
-                        StringResource("${KEY}_help_title", "Hide Help menu"),
-                        StringResource("${KEY}_help_on", "Help menu item is hidden"),
-                        StringResource("${KEY}_help_off", "Help menu item is shown")
+                        "revanced_hide_player_flyout_help",
+                        "revanced_hide_player_flyout_help_title",
+                        "revanced_hide_player_flyout_help_on",
+                        "revanced_hide_player_flyout_help_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_speed",
-                        StringResource("${KEY}_speed_title", "Hide Speed menu"),
-                        StringResource("${KEY}_speed_on", "Speed menu item is hidden"),
-                        StringResource("${KEY}_speed_off", "Speed menu item is shown")
+                        "revanced_hide_player_flyout_speed",
+                        "revanced_hide_player_flyout_speed_title",
+                        "revanced_hide_player_flyout_speed_on",
+                        "revanced_hide_player_flyout_speed_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_more_info",
-                        StringResource("${KEY}_more_info_title", "Hide More info menu"),
-                        StringResource("${KEY}_more_info_on", "More info menu item is hidden"),
-                        StringResource("${KEY}_more_info_off", "More info menu item is shown")
+                        "revanced_hide_player_flyout_more_info",
+                        "revanced_hide_player_flyout_more_info_title",
+                        "revanced_hide_player_flyout_more_info_on",
+                        "revanced_hide_player_flyout_more_info_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_audio_track",
-                        StringResource("${KEY}_audio_track_title", "Hide Audio track menu"),
-                        StringResource("${KEY}_audio_track_on", "Audio track menu item is hidden"),
-                        StringResource("${KEY}_audio_track_off", "Audio track menu item is shown")
+                        "revanced_hide_player_flyout_audio_track",
+                        "revanced_hide_player_flyout_audio_track_title",
+                        "revanced_hide_player_flyout_audio_track_on",
+                        "revanced_hide_player_flyout_audio_track_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_watch_in_vr",
-                        StringResource("${KEY}_watch_in_vr_title", "Hide Watch in VR menu"),
-                        StringResource("${KEY}_watch_in_vr_on", "Watch in VR menu item is hidden"),
-                        StringResource("${KEY}_watch_in_vr_off", "Watch in VR menu item is shown")
+                        "revanced_hide_player_flyout_watch_in_vr",
+                        "revanced_hide_player_flyout_watch_in_vr_title",
+                        "revanced_hide_player_flyout_watch_in_vr_on",
+                        "revanced_hide_player_flyout_watch_in_vr_off",
                     ),
                 ),
-                StringResource("${KEY}_summary", "Manage the visibility of player flyout menu items")
+                "revanced_hide_player_flyout_summary",
             )
         )
 
@@ -100,8 +97,6 @@ class HidePlayerFlyoutMenuPatch : ResourcePatch {
     }
 
     private companion object {
-        const val KEY = "revanced_hide_player_flyout"
-
         const val FILTER_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
     }
