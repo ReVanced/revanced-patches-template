@@ -237,7 +237,7 @@
     <string name="revanced_hide_player_flyout_quality_title">Hide Quality menu</string>
     <string name="revanced_hide_player_flyout_quality_on">Quality menu item is hidden</string>
     <string name="revanced_hide_player_flyout_quality_off">Quality menu item is shown</string>
-    <string name="revanced_hide_player_flyout_captions">Hide Captions menu</string>
+    <string name="revanced_hide_player_flyout_captions_title">Hide Captions menu</string>
     <string name="revanced_hide_player_flyout_captions_on">Captions menu item is hidden</string>
     <string name="revanced_hide_player_flyout_captions_off">Captions menu item is shown</string>
     <string name="revanced_hide_player_flyout_loop_video_title">Hide Loop video menu</string>
