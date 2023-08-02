@@ -72,7 +72,8 @@ class LithoFilterPatch : BytecodePatch(
             }
         }?.let { bytesToComponentContextMethod ->
 
-            // Pass the buffer into Integrations.
+            // region Pass the buffer into Integrations.
+
             ProtobufBufferReferenceFingerprint.result
                 ?.mutableMethod?.addInstruction(0,
                     " invoke-static { p2 }, $INTEGRATIONS_CLASS_DESCRIPTOR->setProtoBuffer(Ljava/nio/ByteBuffer;)V")
