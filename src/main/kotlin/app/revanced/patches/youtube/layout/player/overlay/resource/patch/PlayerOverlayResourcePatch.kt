@@ -25,12 +25,6 @@ class PlayerOverlayResourcePatch : ResourcePatch {
                         StringResource("revanced_hide_player_overlay_summary_on", "Background overlay is hidden"),
                         StringResource("revanced_hide_player_overlay_summary_off", "Background overlay is shown")
                     ),
-                    SwitchPreference(
-                        "revanced_player_overlay_opacity",
-                        StringResource("revanced_player_overlay_opacity_title", "Use custom opacity value"),
-                        StringResource("revanced_player_overlay_opacity_on", "Using custom overlay opacity value"),
-                        StringResource("revanced_player_overlay_opacity_off", "Using default overlay opacity value")
-                    ),
                     TextPreference(
                         "revanced_player_overlay_opacity_value",
                         StringResource("revanced_player_overlay_opacity_value_title", "Change overlay opacity"),
