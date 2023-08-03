@@ -10,16 +10,16 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.lightroom.misc.premium.annotations.UnlockPremiumCompatibility
-import app.revanced.patches.lightroom.misc.premium.fingerprint.UnlockPremiumFingerprint
+import app.revanced.patches.lightroom.misc.premium.fingerprint.HasPurchasedFingerprint
 
 @Patch
 @Name("Unlock premium")
 @Description("Unlocks premium features.")
 @UnlockPremiumCompatibility
-class UnlockPremiumPatch : BytecodePatch(listOf(UnlockPremiumFingerprint)) {
+class UnlockPremiumPatch : BytecodePatch(listOf(HasPurchasedFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        UnlockPremiumFingerprint.result?.mutableMethod?.replaceInstruction(2, "const/4 v2, 0x1")
-            ?: throw UnlockPremiumFingerprint.toErrorResult()
+        HasPurchasedFingerprint.result?.mutableMethod?.replaceInstruction(2, "const/4 v2, 0x1")
+            ?: throw HasPurchasedFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
