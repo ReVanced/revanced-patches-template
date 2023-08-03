@@ -119,7 +119,7 @@ class LithoFilterPatch : BytecodePatch(
                 // region Patch the method.
 
                 // Insert the instructions that are responsible
-                // to return an EmptyComponent instead of the original component if the filter method returns false.
+                // to return an EmptyComponent instead of the original component if the filter method returns true.
                 addInstructionsWithLabels(
                     insertHookIndex,
                     """
