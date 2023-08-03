@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object BypassLoginFingerprint : MethodFingerprint(
+object DisableMandatoryLoginFingerprint : MethodFingerprint(
     returnType = "Z",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.STATIC or AccessFlags.FINAL,
     opcodes = listOf(

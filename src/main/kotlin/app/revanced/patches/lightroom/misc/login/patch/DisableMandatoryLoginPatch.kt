@@ -10,18 +10,19 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.lightroom.misc.login.annotations.BypassLoginCompatibility
-import app.revanced.patches.lightroom.misc.login.fingerprint.BypassLoginFingerprint
+import app.revanced.patches.lightroom.misc.login.fingerprint.DisableMandatoryLoginFingerprint
 
 @Patch
-@Name("Bypass login")
-@Description("Bypasses the requirement to login.")
+@Name("Disable mandatory login")
+@Description("Skips the requirement to login.")
 @BypassLoginCompatibility
-class BypassLoginPatch : BytecodePatch(listOf(BypassLoginFingerprint)) {
+class DisableMandatoryLoginPatch : BytecodePatch(listOf(DisableMandatoryLoginFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        BypassLoginFingerprint.result?.mutableMethod?.apply {
+        DisableMandatoryLoginFingerprint.result?.mutableMethod?.apply {
+//          override the boolean that checks if user is logged in.
             val index = implementation!!.instructions.lastIndex - 1
             replaceInstruction(index, "const/4 v0, 0x1")
-        } ?: throw BypassLoginFingerprint.toErrorResult()
+        } ?: throw DisableMandatoryLoginFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
