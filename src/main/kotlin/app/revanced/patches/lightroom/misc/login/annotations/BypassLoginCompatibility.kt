@@ -1,4 +1,4 @@
-package app.revanced.patches.lightroom.misc.bypasslogin.annotations
+package app.revanced.patches.lightroom.misc.login.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

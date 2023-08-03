@@ -1,4 +1,4 @@
-package app.revanced.patches.lightroom.misc.pro.patch
+package app.revanced.patches.lightroom.misc.premium.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -9,26 +9,17 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.lightroom.misc.pro.annotations.UnlockPremiumCompatibility
-import app.revanced.patches.lightroom.misc.pro.fingerprint.UnlockPremiumFingerprint
+import app.revanced.patches.lightroom.misc.premium.annotations.UnlockPremiumCompatibility
+import app.revanced.patches.lightroom.misc.premium.fingerprint.UnlockPremiumFingerprint
 
 @Patch
 @Name("Unlock premium")
 @Description("Unlocks premium features.")
 @UnlockPremiumCompatibility
-class UnlockPremiumVersionPatch : BytecodePatch(
-    listOf(
-        UnlockPremiumFingerprint
-    )
-) {
+class UnlockPremiumPatch : BytecodePatch(listOf(UnlockPremiumFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        UnlockPremiumFingerprint.result?.apply {
-            mutableMethod.replaceInstruction(2,
-                """
-                    const/4 v2, 0x1
-                """
-            )
-        } ?: throw UnlockPremiumFingerprint.toErrorResult()
+        UnlockPremiumFingerprint.result?.mutableMethod?.replaceInstruction(2, "const/4 v2, 0x1")
+            ?: throw UnlockPremiumFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

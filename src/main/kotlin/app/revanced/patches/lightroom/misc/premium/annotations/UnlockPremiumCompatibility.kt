@@ -1,4 +1,4 @@
-package app.revanced.patches.lightroom.misc.pro.annotations
+package app.revanced.patches.lightroom.misc.premium.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package

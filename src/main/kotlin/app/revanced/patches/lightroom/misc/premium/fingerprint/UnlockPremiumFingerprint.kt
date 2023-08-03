@@ -1,4 +1,4 @@
-package app.revanced.patches.lightroom.misc.pro.fingerprint
+package app.revanced.patches.lightroom.misc.premium.fingerprint
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
