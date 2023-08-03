@@ -18,7 +18,7 @@ import app.revanced.patches.lightroom.misc.premium.fingerprint.HasPurchasedFinge
 @UnlockPremiumCompatibility
 class UnlockPremiumPatch : BytecodePatch(listOf(HasPurchasedFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-//        overrides the boolean that checks if premium features should be allowed.
+         // Set hasPremium = true.
         HasPurchasedFingerprint.result?.mutableMethod?.replaceInstruction(2, "const/4 v2, 0x1")
             ?: throw HasPurchasedFingerprint.toErrorResult()
 
