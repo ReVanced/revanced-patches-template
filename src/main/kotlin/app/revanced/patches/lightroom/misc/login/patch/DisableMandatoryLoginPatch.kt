@@ -9,18 +9,18 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.lightroom.misc.login.annotations.DisableMandatoryLoginCompatibility
-import app.revanced.patches.lightroom.misc.login.fingerprint.DisableMandatoryLoginFingerprint
+import app.revanced.patches.lightroom.misc.login.fingerprint.IsLoggedInFingerprint
 
 @Patch
 @Name("Disable mandatory login")
 @DisableMandatoryLoginCompatibility
-class DisableMandatoryLoginPatch : BytecodePatch(listOf(DisableMandatoryLoginFingerprint)) {
+class DisableMandatoryLoginPatch : BytecodePatch(listOf(IsLoggedInFingerprint)) {
     override fun execute(context: BytecodeContext): PatchResult {
-        DisableMandatoryLoginFingerprint.result?.mutableMethod?.apply {
+        IsLoggedInFingerprint.result?.mutableMethod?.apply {
             val index = implementation!!.instructions.lastIndex - 1
             // Set isLoggedIn = true.
             replaceInstruction(index, "const/4 v0, 0x1")
-        } ?: throw DisableMandatoryLoginFingerprint.toErrorResult()
+        } ?: throw IsLoggedInFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
