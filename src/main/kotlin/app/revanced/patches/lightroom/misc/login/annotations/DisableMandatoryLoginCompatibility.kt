@@ -5,4 +5,4 @@ import app.revanced.patcher.annotation.Package
 
 @Compatibility([Package("com.adobe.lrmobile",)])
 @Target(AnnotationTarget.CLASS)
-internal annotation class BypassLoginCompatibility
+internal annotation class DisableMandatoryLoginCompatibility
