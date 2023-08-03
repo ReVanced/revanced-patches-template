@@ -60,7 +60,7 @@ class SpoofClientPatch : AbstractSpoofClientPatch(
     override fun List<MethodFingerprintResult>.patchUserAgent(context: BytecodeContext): PatchResult {
         // Use a random user agent.
         val randomName = (0..100000).random()
-        val userAgent = "android:app.revanced.$randomName:v1.0.0 (by /u/revanced)"
+        val userAgent = "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.$randomName Mobile Safari/537.36"
 
         first().mutableMethod.addInstructions(
             0,
