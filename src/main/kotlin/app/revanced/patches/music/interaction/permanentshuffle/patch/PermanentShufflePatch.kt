@@ -11,21 +11,18 @@ import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.interaction.permanentshuffle.fingerprints.DisableShuffleFingerprint
-import app.revanced.patcher.util.smali.ExternalLabel
 
 @Patch(false)
 @Name("Permanent shuffle")
-@Description("Permanently remember your shuffle preference even if the playlist ends or another track is played.")
+@Description("Permanently remember your shuffle preference " +
+        "even if the playlist ends or another track is played.")
 @MusicCompatibility
 class PermanentShuffleTogglePatch : BytecodePatch(
     listOf(DisableShuffleFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        DisableShuffleFingerprint.result?.let {
-            it.mutableMethod.also {
-                it.addInstruction(0, "return-void")
-            }
-        } ?: return DisableShuffleFingerprint.toErrorResult()
+        DisableShuffleFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")
+            ?: return DisableShuffleFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
