@@ -10,30 +10,30 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.annotations.MusicCompatibility
-import app.revanced.patches.music.interaction.permanentrepeat.fingerprints.PermanentRepeatFingerprint
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.music.annotations.MusicCompatibility
+import app.revanced.patches.music.interaction.permanentrepeat.fingerprints.RepeatTrackFingerprint
 
 @Patch(false)
 @Name("Permanent repeat")
 @Description("Permanently remember your repeating preference even if the playlist ends or another track is played.")
 @MusicCompatibility
 class PermanentRepeatPatch : BytecodePatch(
-    listOf(PermanentRepeatFingerprint)
+    listOf(RepeatTrackFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        PermanentRepeatFingerprint.result?.let {
-            val startIndex = it.scanResult.patternScanResult!!.endIndex;
-            val repeatIndex = startIndex + 3;
+        RepeatTrackFingerprint.result?.let {
+            val startIndex = it.scanResult.patternScanResult!!.endIndex
+            val repeatIndex = startIndex + 3
 
-            it.mutableMethod.also {
-                it.addInstructionsWithLabels(
+            it.mutableMethod.apply {
+                addInstructionsWithLabels(
                     startIndex,
                     "goto :repeat",
-                    ExternalLabel("repeat", it.getInstruction(repeatIndex))
+                    ExternalLabel("repeat", getInstruction(repeatIndex))
                 )
             }
-        } ?: return PermanentRepeatFingerprint.toErrorResult()
+        } ?: return RepeatTrackFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
