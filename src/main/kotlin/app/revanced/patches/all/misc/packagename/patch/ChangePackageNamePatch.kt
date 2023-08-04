@@ -9,7 +9,7 @@ import org.w3c.dom.Element
 
 @Patch(false)
 @Name("Change package name")
-@Description("Changes the package name.")
+@Description("Changes the package name. Appends \".revanced\" to the package name by default.")
 class ChangePackageNamePatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         val packageNameToUse = packageName ?: getDefaultPackageName(context)
