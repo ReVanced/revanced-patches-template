@@ -125,7 +125,7 @@ class LithoFilterPatch : BytecodePatch(
                     """
                         # Invoke the filter method.
                       
-                        invoke-static { v$stringBuilderRegister, v$identifierRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->filter(Ljava/lang/StringBuilder;Ljava/lang/String;)Z
+                        invoke-static { v$identifierRegister, v$stringBuilderRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->filter(Ljava/lang/String;Ljava/lang/StringBuilder;)Z
                         move-result v$free1
                        
                         if-eqz v$free1, :unfiltered
