@@ -1,3 +1,39 @@
+# [2.188.0-dev.5](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.4...v2.188.0-dev.5) (2023-08-04)
+
+
+### Features
+
+* **YouTube Music:** Add `Permanent repeat` patch ([#2722](https://github.com/ReVanced/revanced-patches/issues/2722)) ([506d49c](https://github.com/ReVanced/revanced-patches/commit/506d49c82a68faee25aede8194e7884191c0f271))
+
+# [2.188.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.3...v2.188.0-dev.4) (2023-08-03)
+
+
+### Bug Fixes
+
+* improve wording ([26f9b05](https://github.com/ReVanced/revanced-patches/commit/26f9b0514fda9434b2a36d2f9e5ad6a4f5bb94bd))
+* **Tiktok - Show seekbar:** Bump compatibility ([#2737](https://github.com/ReVanced/revanced-patches/issues/2737)) ([08413bd](https://github.com/ReVanced/revanced-patches/commit/08413bdc97aef892f7372c585d1d792eb95e30f4))
+
+
+### Features
+
+* **Lightroom:** Add `Disable mandatory login` patch ([#2738](https://github.com/ReVanced/revanced-patches/issues/2738)) ([896a713](https://github.com/ReVanced/revanced-patches/commit/896a71308f1084d7f941c5b59610e40ea5d53009))
+* **Lightroom:** Add `Unlock premium` patch ([#2740](https://github.com/ReVanced/revanced-patches/issues/2740)) ([e18a9bc](https://github.com/ReVanced/revanced-patches/commit/e18a9bcb50705d374ccbf03cd6ab9a140a2f23ec))
+* **YouTube Music:** Add `Permanent Shuffle` patch ([#2730](https://github.com/ReVanced/revanced-patches/issues/2730)) ([86a271c](https://github.com/ReVanced/revanced-patches/commit/86a271cd7cc3d1d2a11ff9ebe962574368b93f4f))
+
+# [2.188.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.2...v2.188.0-dev.3) (2023-08-03)
+
+
+### Bug Fixes
+
+* remove newline ([545388b](https://github.com/ReVanced/revanced-patches/commit/545388b3b21cabb485c4d2025756c48984548d6b))
+
+# [2.188.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.1...v2.188.0-dev.2) (2023-08-03)
+
+
+### Bug Fixes
+
+* **Reddit is Fun - Spoof client:** Use a more convincing user agent ([236a18f](https://github.com/ReVanced/revanced-patches/commit/236a18f9356cede156417c0d55a876d25a98cd4d))
+
 # [2.188.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.187.0...v2.188.0-dev.1) (2023-08-03)
 
 
