@@ -398,10 +398,10 @@
     <string name="revanced_spoof_app_version_target_title">Spoof app version target</string>
     <string name="revanced_spoof_app_version_title">Spoof app version</string>
     <string name="revanced_spoof_app_version_user_dialog_message">App version will be spoofed to an older version of YouTube.\n\nThis will change the appearance and features of the app, but unknown side effects may occur.\n\nIf later turned off, the old UI may remain until the app data is cleared.</string>
-    <string name="revanced_spoof_signature_verification_summary_off">App signature not spoofed</string>
-    <string name="revanced_spoof_signature_verification_summary_on">App signature spoofed\n\nSide effects include:\n• Ambient mode may not work\n• Seekbar thumbnails are hidden</string>
+    <string name="revanced_spoof_signature_verification_summary_off">App signature not spoofed\n\nVideo playback may not work</string>
+    <string name="revanced_spoof_signature_verification_summary_on">App signature spoofed\n\nSide effects include:\n• Ambient mode may not work\n• Downloading videos may not work\n• Seekbar thumbnails are always hidden</string>
     <string name="revanced_spoof_signature_verification_title">Spoof app signature</string>
-    <string name="revanced_spoof_signature_verification_user_dialog_message">Turning off this setting may cause playback issues.</string>
+    <string name="revanced_spoof_signature_verification_user_dialog_message">If you do not have a YouTube Premium subscription,\n\nthen turning off this setting will cause video playback issues.</string>
     <string name="revanced_swipe_brightness_summary_off">Brightness swipe is disabled</string>
     <string name="revanced_swipe_brightness_summary_on">Brightness swipe is enabled</string>
     <string name="revanced_swipe_brightness_title">Enable brightness gesture</string>
