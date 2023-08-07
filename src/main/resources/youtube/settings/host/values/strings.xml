@@ -54,6 +54,9 @@
     <string name="revanced_custom_playback_speeds_parse_exception">Invalid custom playback speeds. Using default values.</string>
     <string name="revanced_debug_preference_screen_summary">Enable or disable debugging options</string>
     <string name="revanced_debug_preference_screen_title">Debugging</string>
+    <string name="revanced_debug_protobuffer_summary_off">Debug logs do not include proto buffer</string>
+    <string name="revanced_debug_protobuffer_summary_on">Debug logs include proto buffer</string>
+    <string name="revanced_debug_protobuffer_title">Log protocol buffer</string>
     <string name="revanced_debug_stacktrace_summary_off">Debug logs do not include stack trace</string>
     <string name="revanced_debug_stacktrace_summary_on">Debug logs include stack trace</string>
     <string name="revanced_debug_stacktrace_title">Log stack traces</string>
