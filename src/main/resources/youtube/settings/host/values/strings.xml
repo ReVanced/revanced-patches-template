@@ -87,9 +87,33 @@
     <string name="revanced_hdr_auto_brightness_summary_off">Auto HDR brightness is disabled</string>
     <string name="revanced_hdr_auto_brightness_summary_on">Auto HDR brightness is enabled</string>
     <string name="revanced_hdr_auto_brightness_title">Enable auto HDR brightness</string>
-    <string name="revanced_hide_action_buttons_summary_off">Share, remix, thanks, shop, live chat buttons are shown</string>
-    <string name="revanced_hide_action_buttons_summary_on">Share, remix, thanks, shop, live chat buttons are hidden</string>
-    <string name="revanced_hide_action_buttons_title">Hide all other action buttons</string>
+
+    <!-- Hide action buttons -->
+    <string name="revanced_hide_live_chat_button_summary_off">Live chat button is shown</string>
+    <string name="revanced_hide_live_chat_button_summary_on">Live chat button is hidden</string>
+    <string name="revanced_hide_live_chat_button_title">Hide live chat button</string>
+    <string name="revanced_hide_share_button_title">Hide share button</string>
+    <string name="revanced_hide_share_button_summary_on">Share button is hidden</string>
+    <string name="revanced_hide_share_button_summary_off">Share button is shown</string>
+    <string name="revanced_hide_report_button_title">Hide report button</string>
+    <string name="revanced_hide_report_button_summary_on">Report button is hidden</string>
+    <string name="revanced_hide_report_button_summary_off">Report button is shown</string>
+    <string name="revanced_hide_remix_button_title">Hide remix button</string>
+    <string name="revanced_hide_remix_button_summary_on">Remix button is hidden</string>
+    <string name="revanced_hide_remix_button_summary_off">Remix button is shown</string>
+    <string name="revanced_hide_clip_button_title">Hide clip button</string>
+    <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
+    <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
+    <string name="revanced_hide_thanks_button_title">Hide thanks button</string>
+    <string name="revanced_hide_thanks_button_summary_on">Thanks button is hidden</string>
+    <string name="revanced_hide_thanks_button_summary_off">Thanks button is shown</string>
+    <string name="revanced_hide_playlist_button_title">Hide playlist button</string>
+    <string name="revanced_hide_playlist_button_summary_on">Playlist button is hidden</string>
+    <string name="revanced_hide_playlist_button_summary_off">Playlist button is shown</string>
+    <string name="revanced_hide_shop_button_title">Hide shop button</string>
+    <string name="revanced_hide_shop_button_summary_on">Shop button is hidden</string>
+    <string name="revanced_hide_shop_button_summary_off">Shop button is shown</string>
+
     <string name="revanced_hide_album_cards_summary_off">Album cards are shown</string>
     <string name="revanced_hide_album_cards_summary_on">Album cards are hidden</string>
     <string name="revanced_hide_album_cards_title">Hide album cards</string>
