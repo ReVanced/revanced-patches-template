@@ -89,6 +89,11 @@
     <string name="revanced_hdr_auto_brightness_title">Enable auto HDR brightness</string>
 
     <!-- Hide action buttons -->
+    <string name="revanced_hide_buttons_preference_screen_title">Hide action buttons</string>
+    <string name="revanced_hide_buttons_preference_screen_summary">Hide or show buttons under videos</string>
+    <string name="revanced_hide_like_dislike_button_summary_off">Like and dislike buttons are shown</string>
+    <string name="revanced_hide_like_dislike_button_summary_on">Like and dislike buttons are hidden</string>
+    <string name="revanced_hide_like_dislike_button_title">Hide like and dislike buttons</string>
     <string name="revanced_hide_live_chat_button_summary_off">Live chat button is shown</string>
     <string name="revanced_hide_live_chat_button_summary_on">Live chat button is hidden</string>
     <string name="revanced_hide_live_chat_button_title">Hide live chat button</string>
@@ -113,6 +118,12 @@
     <string name="revanced_hide_shop_button_title">Hide shop button</string>
     <string name="revanced_hide_shop_button_summary_on">Shop button is hidden</string>
     <string name="revanced_hide_shop_button_summary_off">Shop button is shown</string>
+    <string name="revanced_hide_download_button_summary_off">Download button is shown</string>
+    <string name="revanced_hide_download_button_summary_on">Download button is hidden</string>
+    <string name="revanced_hide_download_button_title">Hide download button</string>
+    <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
+    <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
+    <string name="revanced_hide_clip_button_title">Hide clip button</string>
 
     <string name="revanced_hide_album_cards_summary_off">Album cards are shown</string>
     <string name="revanced_hide_album_cards_summary_on">Album cards are hidden</string>
@@ -132,8 +143,6 @@
     <string name="revanced_hide_buttoned_ads_summary_off">Buttoned ads are shown</string>
     <string name="revanced_hide_buttoned_ads_summary_on">Buttoned ads are hidden</string>
     <string name="revanced_hide_buttoned_ads_title">Hide buttoned ad</string>
-    <string name="revanced_hide_buttons_preference_screen_summary">Hide or show buttons under videos</string>
-    <string name="revanced_hide_buttons_preference_screen_title">Hide action buttons</string>
     <string name="revanced_hide_captions_button_summary_off">Captions button is shown</string>
     <string name="revanced_hide_captions_button_summary_on">Captions button is hidden</string>
     <string name="revanced_hide_captions_button_title">Hide captions button</string>
@@ -155,10 +164,6 @@
     <string name="revanced_hide_chips_shelf_title">Hide chips shelf</string>
     <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden</string>
     <string name="revanced_hide_chips_shelf_off">Chips shelf is shown</string>
-    <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
-    <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
-    <string name="revanced_hide_clip_button_title">Hide clip button</string>
-    <string name="revanced_hide_clip_button_user_dialog_message">Hiding the clip button might not work reliably. In the case it does not work, it can only be hidden by enabling \'Hide all other action buttons\'</string>
     <string name="revanced_hide_comments_section_summary_off">Comment section is shown</string>
     <string name="revanced_hide_comments_section_summary_on">Comment section is hidden</string>
     <string name="revanced_hide_comments_section_title">Hide comments section</string>
@@ -177,9 +182,6 @@
     <string name="revanced_hide_crowdfunding_box_summary_off">Crowdfunding box is shown</string>
     <string name="revanced_hide_crowdfunding_box_summary_on">Crowdfunding box is hidden</string>
     <string name="revanced_hide_crowdfunding_box_title">Hide crowdfunding box</string>
-    <string name="revanced_hide_download_button_summary_off">Download button is shown</string>
-    <string name="revanced_hide_download_button_summary_on">Download button is hidden</string>
-    <string name="revanced_hide_download_button_title">Hide download button</string>
     <string name="revanced_hide_email_address_summary_off">Email address is shown</string>
     <string name="revanced_hide_email_address_summary_on">Email address is hidden</string>
     <string name="revanced_hide_email_address_title">Hide email in account switcher</string>
@@ -236,9 +238,6 @@
     <string name="revanced_hide_latest_posts_ads_summary_off">Latest posts are shown</string>
     <string name="revanced_hide_latest_posts_ads_summary_on">Latest posts are hidden</string>
     <string name="revanced_hide_latest_posts_ads_title">Hide latest posts</string>
-    <string name="revanced_hide_like_dislike_button_summary_off">Like and dislike buttons are shown</string>
-    <string name="revanced_hide_like_dislike_button_summary_on">Like and dislike buttons are hidden</string>
-    <string name="revanced_hide_like_dislike_button_title">Hide like and dislike buttons</string>
     <string name="revanced_hide_load_more_button_summary_off">Load More button is shown</string>
     <string name="revanced_hide_load_more_button_summary_on">Load More button is hidden</string>
     <string name="revanced_hide_load_more_button_title">Hide Load More button</string>
@@ -298,9 +297,6 @@
     <string name="revanced_hide_player_popup_panels_summary_off">Player popup panels are shown</string>
     <string name="revanced_hide_player_popup_panels_summary_on">Player popup panels are hidden</string>
     <string name="revanced_hide_player_popup_panels_title">Hide player popup panels</string>
-    <string name="revanced_hide_playlist_button_summary_off">Playlist button is shown</string>
-    <string name="revanced_hide_playlist_button_summary_on">Playlist button is hidden</string>
-    <string name="revanced_hide_playlist_button_title">Hide playlist button</string>
     <string name="revanced_hide_preview_comment_off">Preview comment is shown</string>
     <string name="revanced_hide_preview_comment_on">Preview comment is hidden</string>
     <string name="revanced_hide_preview_comment_title">Hide preview comment</string>
