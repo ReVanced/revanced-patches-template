@@ -55,7 +55,7 @@ class LithoFilterPatch : BytecodePatch(
      *
      *    public ComponentContext parseBytesToComponentContext(...) {
      *        ...
-     *        if (filter(identifier, pathBuilder)); // Inserted by this patch.
+     *        if (IntegrationsClass.filter(identifier, pathBuilder)); // Inserted by this patch.
      *            return emptyComponent;
      *        ...
      *    }
