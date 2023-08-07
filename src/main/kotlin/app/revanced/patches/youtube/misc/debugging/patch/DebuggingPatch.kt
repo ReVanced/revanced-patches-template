@@ -32,6 +32,15 @@ class DebuggingPatch : ResourcePatch {
                         "revanced_debug_summary_off"
                     ),
                     SwitchPreference(
+                        "revanced_debug_protobuffer",
+                        StringResource(
+                            "revanced_debug_protobuffer_title",
+                            "Log protocol buffer"
+                        ),
+                        StringResource("revanced_debug_protobuffer_summary_on", "Debug logs include proto buffer"),
+                        StringResource("revanced_debug_protobuffer_summary_off", "Debug logs do not include proto buffer")
+                    ),
+                    SwitchPreference(
                         "revanced_debug_stacktrace",
                         "revanced_debug_stacktrace_title",
                         "revanced_debug_stacktrace_summary_on",
