@@ -62,8 +62,7 @@ class MitmProxyPatch : ResourcePatch {
 
         }
 
-        // Check and Create the "network_security_config.xml" file in the res/xml directory with the following contents:
-
+        // Check and create the "network_security_config.xml" file in the res/xml directory with the following contents:
         val networkSecurityConfigFile = File(resXmlDirectory, "network_security_config.xml")
 
         if (!networkSecurityConfigFile.exists()) {
@@ -92,13 +91,13 @@ class MitmProxyPatch : ResourcePatch {
                 """.trimIndent()
             )
         } else {
-            // Open the "network_security_config.xml" file and <certificates src="system" /> and <certificates src="user" /> to the trust-anchors node
+            // If the file already exists, open the "network_security_config.xml" file and <certificates src="system" /> and <certificates src="user" overridePins="true" /> to the trust-anchors node
             networkSecurityConfigFile.readText().let { fileContents ->
                 if (!fileContents.contains("<certificates src=\"user\" />")) {
                     networkSecurityConfigFile.writeText(
                         fileContents.replace(
                             "<trust-anchors>",
-                            "<trust-anchors>\n<certificates src=\"user\" />\n<certificates src=\"system\" />"
+                            "<trust-anchors>\n<certificates src=\"user\" overridePins=\"true\" />\n<certificates src=\"system\" />"
                         )
                     )
                 }
