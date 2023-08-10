@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.breakingnews.patch
+package app.revanced.patches.youtube.layout.hide.suggestionsshelf.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.breakingnews.annotations.BreakingNewsCompatibility
+import app.revanced.patches.youtube.layout.hide.suggestionsshelf.annotations.SuggestionsShelfCompatibility
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.patch.NavBarIndexHookPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @DependsOn([LithoFilterPatch::class, NavBarIndexHookPatch::class])
 @Name("Hide Suggestions shelf")
 @Description("Hides suggestions shelves on the homepage tab.")
-@BreakingNewsCompatibility
+@SuggestionsShelfCompatibility
 class SuggestionsShelfPatch : ResourcePatch {
     override fun execute(context: ResourceContext): PatchResult {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
