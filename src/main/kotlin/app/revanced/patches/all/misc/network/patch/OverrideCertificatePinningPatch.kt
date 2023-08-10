@@ -13,7 +13,7 @@ import java.io.File
 
 @Patch(false)
 @Name("Override certificate pinning")
-@Description("Mitm proxy to inspect HTTPS traffic.")
+@Description("Overrides certificate pinning, allowing to inspect traffic via a proxy.")
 @Version("0.0.1")
 @DependsOn([EnableAndroidDebuggingPatch::class])
 class OverrideCertificatePinningPatch : ResourcePatch {
@@ -24,26 +24,21 @@ class OverrideCertificatePinningPatch : ResourcePatch {
         // Add android:networkSecurityConfig="@xml/network_security_config" and the "networkSecurityConfig" attribute if it does not exist.
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             val document = editor.file
-            val applicationNode = document
-                .getElementsByTagName("application")
-                .item(0) as Element
+            val applicationNode = document.getElementsByTagName("application").item(0) as Element
 
             if (!applicationNode.hasAttribute("networkSecurityConfig")) {
                 document.createAttribute("android:networkSecurityConfig")
-                    .apply { value = "@xml/network_security_config" }
-                    .let(applicationNode.attributes::setNamedItem)
+                    .apply { value = "@xml/network_security_config" }.let(applicationNode.attributes::setNamedItem)
             }
-
         }
 
-//        In case the file does not exist create the "network_security_config.xml" file.
-        val networkSecurityConfigFile = File(resXmlDirectory, "network_security_config.xml")
-
-        if (!networkSecurityConfigFile.exists()) {
-            networkSecurityConfigFile.createNewFile()
-            networkSecurityConfigFile.writeText(
-                """
-                <?xml version="1.0" encoding="utf-8"?>
+        // In case the file does not exist create the "network_security_config.xml" file.
+        File(resXmlDirectory, "network_security_config.xml").apply {
+            if (!exists()) {
+                createNewFile()
+                writeText(
+                    """
+                    <?xml version="1.0" encoding="utf-8"?>
                     <network-security-config>
                         <base-config cleartextTrafficPermitted="true">
                             <trust-anchors>
@@ -62,19 +57,19 @@ class OverrideCertificatePinningPatch : ResourcePatch {
                             </trust-anchors>
                         </debug-overrides>
                     </network-security-config>
-                """
-            )
-        } else {
-
-            // If the file already exists.
-            networkSecurityConfigFile.readText().let { fileContents ->
-                if (!fileContents.contains("<certificates src=\"user\" />")) {
-                    networkSecurityConfigFile.writeText(
-                        fileContents.replace(
-                            "<trust-anchors>",
-                            "<trust-anchors>\n<certificates src=\"user\" overridePins=\"true\" />\n<certificates src=\"system\" />"
+                    """
+                )
+            } else {
+                // If the file already exists.
+                readText().apply {
+                    if (!contains("<certificates src=\"user\" />")) {
+                        writeText(
+                            replace(
+                                "<trust-anchors>",
+                                "<trust-anchors>\n<certificates src=\"user\" overridePins=\"true\" />\n<certificates src=\"system\" />"
+                            )
                         )
-                    )
+                    }
                 }
             }
         }
