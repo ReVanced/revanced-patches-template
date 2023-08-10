@@ -61,15 +61,13 @@ class OverrideCertificatePinningPatch : ResourcePatch {
                 )
             } else {
                 // If the file already exists.
-                readText().apply {
-                    if (!contains("<certificates src=\"user\" />")) {
-                        writeText(
-                            replace(
-                                "<trust-anchors>",
-                                "<trust-anchors>\n<certificates src=\"user\" overridePins=\"true\" />\n<certificates src=\"system\" />"
-                            )
+                if (!readText().contains("<certificates src=\"user\" />")) {
+                    writeText(
+                        readText().replace(
+                            "<trust-anchors>",
+                            "<trust-anchors>\n<certificates src=\"user\" overridePins=\"true\" />\n<certificates src=\"system\" />"
                         )
-                    }
+                    )
                 }
             }
         }
