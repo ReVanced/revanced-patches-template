@@ -14,7 +14,6 @@ import java.io.File
 @Patch(false)
 @Name("Override certificate pinning")
 @Description("Overrides certificate pinning, allowing to inspect traffic via a proxy.")
-@Version("0.0.1")
 @DependsOn([EnableAndroidDebuggingPatch::class])
 class OverrideCertificatePinningPatch : ResourcePatch {
 
