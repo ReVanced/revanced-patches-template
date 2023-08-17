@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.dearrow.bytecode.patch
+package app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.patch
 
 import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
@@ -19,12 +19,12 @@ import app.revanced.patches.shared.settings.preference.impl.NonInteractivePrefer
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.dearrow.annotations.AlternativeThumbnailsCompatibility
-import app.revanced.patches.youtube.layout.dearrow.bytecode.fingerprints.CronetURLRequestCallbackOnFailureFingerprint
-import app.revanced.patches.youtube.layout.dearrow.bytecode.fingerprints.CronetURLRequestCallbackOnResponseStartedFingerprint
-import app.revanced.patches.youtube.layout.dearrow.bytecode.fingerprints.CronetURLRequestCallbackOnSucceededFingerprint
-import app.revanced.patches.youtube.layout.dearrow.bytecode.fingerprints.MessageDigestImageUrlFingerprint
-import app.revanced.patches.youtube.layout.dearrow.bytecode.fingerprints.MessageDigestImageUrlParentFingerprint
+import app.revanced.patches.youtube.layout.alternativethumbnails.annotations.AlternativeThumbnailsCompatibility
+import app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.fingerprints.CronetURLRequestCallbackOnFailureFingerprint
+import app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.fingerprints.CronetURLRequestCallbackOnResponseStartedFingerprint
+import app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.fingerprints.CronetURLRequestCallbackOnSucceededFingerprint
+import app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.fingerprints.MessageDigestImageUrlFingerprint
+import app.revanced.patches.youtube.layout.alternativethumbnails.bytecode.fingerprints.MessageDigestImageUrlParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 

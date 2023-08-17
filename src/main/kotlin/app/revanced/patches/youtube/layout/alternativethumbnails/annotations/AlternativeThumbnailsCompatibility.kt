@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.dearrow.annotations
+package app.revanced.patches.youtube.layout.alternativethumbnails.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
