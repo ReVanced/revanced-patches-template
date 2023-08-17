@@ -40,7 +40,7 @@ class AlternateThumbnailsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",
-                StringResource("revanced_alt_thumbnails_preference_screen_title", "Alternate thumbnails"),
+                StringResource("revanced_alt_thumbnails_preference_screen_title", "Alternative thumbnails"),
                 listOf(
                     SwitchPreference(
                         "revanced_alt_thumbnail",
