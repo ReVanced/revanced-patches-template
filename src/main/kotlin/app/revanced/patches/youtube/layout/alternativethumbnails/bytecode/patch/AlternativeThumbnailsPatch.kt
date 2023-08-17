@@ -44,13 +44,13 @@ class AlternativeThumbnailsPatch : BytecodePatch(
                 listOf(
                     SwitchPreference(
                         "revanced_alt_thumbnail",
-                        StringResource("revanced_alt_thumbnail_title", "Enable alternative YouTube thumbnails"),
-                        StringResource("revanced_alt_thumbnail_summary_on", "Stills from YouTube videos shown"),
+                        StringResource("revanced_alt_thumbnail_title", "Enable alternative thumbnails"),
+                        StringResource("revanced_alt_thumbnail_summary_on", "YouTube video stills shown"),
                         StringResource("revanced_alt_thumbnail_summary_off", "Original YouTube thumbnails shown")
                     ),
                     ListPreference(
                         "revanced_alt_thumbnail_type",
-                        StringResource("revanced_alt_thumbnail_type_title", "Time in the video to take the still from"),
+                        StringResource("revanced_alt_thumbnail_type_title", "Video time to take the still from"),
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entries",
                             listOf(
