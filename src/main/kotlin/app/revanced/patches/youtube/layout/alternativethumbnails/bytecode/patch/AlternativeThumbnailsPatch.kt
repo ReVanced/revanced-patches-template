@@ -70,9 +70,9 @@ class AlternativeThumbnailsPatch : BytecodePatch(
                     ),
                     SwitchPreference(
                         "revanced_alt_thumbnail_fast_quality",
-                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Load alternative thumbnails fast"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Use medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Use high quality stills")
+                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Use fast alternative thumbnails"),
+                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
+                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using high quality stills")
                     ),
                     NonInteractivePreference(
                         StringResource("revanced_alt_thumbnail_about_title", "About"),
