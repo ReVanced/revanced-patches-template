@@ -18,9 +18,9 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.SetThemeFingerprint
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.util.MethodUtil
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.util.MethodUtil
 import java.io.Closeable
 
 @DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
@@ -123,7 +123,7 @@ class SettingsPatch : BytecodePatch(
     /**
      * Preference screens patches should add their settings to.
      */
-    internal object PreferenceScreen : AbstractPreferenceScreen() {
+    object PreferenceScreen : AbstractPreferenceScreen() {
         val ADS = Screen("ads", "Ads", "Ad related settings")
         val INTERACTIONS = Screen("interactions", "Interaction", "Settings related to interactions")
         val LAYOUT = Screen("layout", "Layout", "Settings related to the layout")
