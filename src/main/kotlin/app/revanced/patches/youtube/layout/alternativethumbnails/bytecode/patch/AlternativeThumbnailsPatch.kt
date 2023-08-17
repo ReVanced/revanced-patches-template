@@ -118,7 +118,7 @@ class AlternativeThumbnailsPatch : BytecodePatch(
 
     internal companion object {
         private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/AlternateThumbnailsPatch;"
+            "Lapp/revanced/integrations/patches/AlternativeThumbnailsPatch;"
 
         private lateinit var loadImageUrlMethod: MutableMethod
         private var loadImageUrlIndex = 0
