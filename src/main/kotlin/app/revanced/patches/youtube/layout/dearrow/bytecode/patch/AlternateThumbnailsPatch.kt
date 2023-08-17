@@ -44,13 +44,13 @@ class AlternateThumbnailsPatch : BytecodePatch(
                 listOf(
                     SwitchPreference(
                         "revanced_alt_thumbnail",
-                        StringResource("revanced_alt_thumbnail_title", "Use alternate YouTube thumbnails"),
-                        StringResource("revanced_alt_thumbnail_summary_on", "YouTube video stills shown as thumbnails"),
+                        StringResource("revanced_alt_thumbnail_title", "Enable alternative YouTube thumbnails"),
+                        StringResource("revanced_alt_thumbnail_summary_on", "Stills from YouTube videos shown"),
                         StringResource("revanced_alt_thumbnail_summary_off", "Original YouTube thumbnails shown")
                     ),
                     ListPreference(
                         "revanced_alt_thumbnail_type",
-                        StringResource("revanced_alt_thumbnail_type_title", "Alternate thumbnail type"),
+                        StringResource("revanced_alt_thumbnail_type_title", "Time in the video to take the still from"),
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entries",
                             listOf(
@@ -70,13 +70,13 @@ class AlternateThumbnailsPatch : BytecodePatch(
                     ),
                     SwitchPreference(
                         "revanced_alt_thumbnail_fast_quality",
-                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Use fast alternate thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Using medium quality alternate thumbnails. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using higher quality alternate thumbnails")
+                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Load alternative thumbnails fast"),
+                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Use medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
+                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Use high quality stills")
                     ),
                     NonInteractivePreference(
                         StringResource("revanced_alt_thumbnail_about_title", "About"),
-                        StringResource("revanced_alt_thumbnail_about_summary", "Alternate thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube")
+                        StringResource("revanced_alt_thumbnail_about_summary", "Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube")
                     )
                 ),
                 StringResource("revanced_alt_thumbnails_preference_screen_summary", "Video thumbnail settings")
