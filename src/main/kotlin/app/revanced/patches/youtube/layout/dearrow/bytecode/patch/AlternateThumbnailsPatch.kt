@@ -30,7 +30,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Alternate thumbnails")
+@Name("Alternative thumbnails")
 @AlternativeThumbnailsCompatibility
 @Description("Adds an option to replace video thumbnails with still image captures of the video.")
 class AlternateThumbnailsPatch : BytecodePatch(
