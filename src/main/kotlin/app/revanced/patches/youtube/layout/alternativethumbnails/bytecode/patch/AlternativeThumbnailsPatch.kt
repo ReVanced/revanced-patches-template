@@ -33,7 +33,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Name("Alternative thumbnails")
 @AlternativeThumbnailsCompatibility
 @Description("Adds an option to replace video thumbnails with still image captures of the video.")
-class AlternateThumbnailsPatch : BytecodePatch(
+class AlternativeThumbnailsPatch : BytecodePatch(
     listOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
