@@ -19,9 +19,9 @@ package app.revanced.patches.ads.patch
 class DisableAdsPatch : BytecodePatch(
     listOf(LoadAdsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = LoadAdsFingerprint.result
-            ?: return PatchResultError("LoadAdsFingerprint not found")
+            ?: throw PatchException("LoadAdsFingerprint not found")
 
         result.mutableMethod.replaceInstructions(
                 0,
@@ -30,15 +30,13 @@ class DisableAdsPatch : BytecodePatch(
                     return v0
                 """
         )
-
-        return PatchResultSuccess()
     }
 }
 ```
 
 ## 🔎 Dissecting the example patch
 
-Lets start with understanding, how a patch is structured. A patch is mainly built out of three components:
+Let's start with understanding, how a patch is structured. A patch is mainly built out of three components:
 
 1. 📝 Patch annotations
 
@@ -62,7 +60,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 
    - Patches can be annotated with `@DependsOn`. If the current patch depends on other patches, it can declare them as dependencies.
 
-     Example: _The patch to remove ads needs to patch the bytecode. Additionally it makes use of a second patch, to get rid of resource files in the app which show ads in the app._
+     Example: _The patch to remove ads needs to patch the bytecode. Additionally, it makes use of a second patch, to get rid of resource files in the app which show ads in the app._
 
    - **All patches** should be annotated with `@Compatibility`. This annotation is the most complex, but **most important** one and serves the purpose of constraining a patch to a package. Every patch is compatible with usually one or more packages. Additionally, the constraint can optionally be extended to versions of the package to discourage the use of the patch with versions outside of the constraint.
 
@@ -99,7 +97,7 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
 3. 🏁 The `execute` method
 
    ```kt
-   override fun execute(context: BytecodeContext): PatchResult {
+   override fun execute(context: BytecodeContext) {
      // ...
    }
    ```
@@ -107,26 +105,26 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
    The `execute` method is declared in the `Patch` interface and therefore part of any patch:
 
    ```kt
-   fun execute(context: /* Omitted */ T): PatchResult
+   fun execute(context: /* Omitted */ T)
    ```
 
    It is the **first** method executed when running the patch. The current example extends off `BytecodePatch`. Since patches that extend on it can interact with the bytecode, the signature for the execute method when implemented requires a [BytecodeContext](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/data/Context.kt#L23) as a parameter:
 
    ```kt
-   override fun execute(context: BytecodeContext): PatchResult {
+   override fun execute(context: BytecodeContext) {
      // ...
    }
    ```
 
    The `BytecodeContext` contains everything necessary related to bytecode for patches, including every class of the app on which the patch will be applied. Likewise, a `ResourcePatch` will require a [ResourceContext](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/data/Context.kt#L89) parameter and provide the patch with everything necessary to patch resources.
 
-   The `execute` method has to be returned with [PatchResult](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/PatchResult.kt#L3). Patches may return early with `PatchResultError` if something went wrong. If this patch is used as a dependency for other patches, those patches will not execute subsequently. If a patch succeeds, `PatchResultSuccess` must be returned.
+   Patches may throw `PatchException` if something went wrong. If this patch is used as a dependency for other patches, those patches will not execute subsequently.
 
    In the current example the `execute` method runs the following code to replace instructions at the index `0` of the methods instruction list:
 
    ```kt
    val result = LoadAdsFingerprint.result
-     ?: return PatchResultError("LoadAdsFingerprint not found")
+     ?: throw PatchException("LoadAdsFingerprint not found")
 
    result.mutableMethod.replaceInstructions(
            0,
@@ -135,7 +133,6 @@ Lets start with understanding, how a patch is structured. A patch is mainly buil
                return v0
            """
    )
-   return PatchResultSuccess()
    ```
 
 > **Note**: Details of this implementation and what exactly `Fingerprints` are will be introduced properly on another page.
@@ -152,11 +149,8 @@ package app.revanced.patches.examples.minimal.patch
 @Description("Demonstrates a minimal implementation of a patch.")
 @Compatibility([Package("com.some.app")])
 class MinimalExamplePatch : BytecodePatch() {
-    override fun execute(context: BytecodeContext) {
-      println("${MinimalExamplePatch::class.patchName} is being executed." )
-
-      return PatchResultSuccess()
-    }
+    override fun execute(context: BytecodeContext) =
+        println("${MinimalExamplePatch::class.patchName} is being executed." )
 }
 ```
 

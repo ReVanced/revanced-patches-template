@@ -87,9 +87,9 @@ The fingerprint can now be used in the patch by accessing [`MethodFingerprint.re
 class DisableAdsPatch : BytecodePatch(
     listOf(LoadAdsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = LoadAdsFingerprint.result
-            ?: return PatchResultError("LoadAdsFingerprint not found")
+            ?: throw PatchException("LoadAdsFingerprint not found")
 
         // ...
     }
@@ -130,9 +130,9 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
   class DisableAdsPatch : BytecodePatch(
       /* listOf(LoadAdsFingerprint) */
   ) {
-      override fun execute(context: BytecodeContext): PatchResult {
+      override fun execute(context: BytecodeContext) {
           val result = LoadAdsFingerprint.also { it.resolve(context, context.classes) }.result
-              ?: return PatchResultError("LoadAdsFingerprint not found")
+              ?: throw PatchException("LoadAdsFingerprint not found")
 
           // ...
       }
@@ -147,11 +147,11 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
    class DisableAdsPatch : BytecodePatch(
       listOf(LoadAdsFingerprint)
   ) {
-      override fun execute(context: BytecodeContext): PatchResult {
+      override fun execute(context: BytecodeContext) {
           val adsLoaderClass = context.classes.single { it.name == "Lcom/some/app/ads/Loader;" }
 
           val result = LoadAdsFingerprint.also { it.resolve(context, adsLoaderClass) }.result
-              ?: return PatchResultError("LoadAdsFingerprint not found")
+              ?: throw PatchException("LoadAdsFingerprint not found")
 
           // ...
       }
@@ -166,10 +166,10 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
   class DisableAdsPatch : BytecodePatch(
       /* listOf(LoadAdsFingerprint) */
   ) {
-      override fun execute(context: BytecodeContext): PatchResult {
+      override fun execute(context: BytecodeContext) {
           // Make sure this fingerprint succeeds as the result is required
           val adsFingerprintResult = LoadAdsFingerprint.result
-              ?: return PatchResultError("LoadAdsFingerprint not found")
+              ?: throw PatchException("LoadAdsFingerprint not found")
 
           // Additional fingerprint to get the indices of two strings
           val proStringsFingerprint = object : MethodFingerprint(
@@ -185,9 +185,7 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
                       println("The index of the string '${match.string}' is ${match.index}")
                   }
 
-          } ?: return PatchResultError("pro strings fingerprint not found")
-
-          return PatchResultSuccess
+          } ?: throw PatchException("pro strings fingerprint not found")
       }
   }
   ```

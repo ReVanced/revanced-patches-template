@@ -34,8 +34,6 @@
     // Code
   
     classProxy.mutableClass.fields.add(someField)
-  
-    return PatchResultSuccess()
   }
   ```
   > **Note**: The mutable clone will now be used for every future modification on the class, even in other patches,
