@@ -26,20 +26,16 @@ class UnlockPremiumPatch : BytecodePatch(
         IsPremiumFingerprint.result?.let { result ->
             println("Found fingerprint!")
 
-            /* 
-            val registerIndex = result.scanResult.patternScanResult!!.endIndex - 1
-
             result.mutableMethod.apply {
-                val register = getInstruction<OneRegisterInstruction>(registerIndex).registerA
                 addInstruction(
-                    result.scanResult.patternScanResult!!.endIndex,
+                    0,
                     """
                         const/4 v0, 0x1
                         return v0                    
                     """
                 )
             }
-            */
+            
 
         } ?: return IsPremiumFingerprint.toErrorResult()
 
