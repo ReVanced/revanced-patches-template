@@ -1,3 +1,24 @@
+# [2.188.0-dev.18](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.17...v2.188.0-dev.18) (2023-08-23)
+
+
+### Features
+
+* **YouTube:** Support version `18.29.38` ([c1b9eef](https://github.com/ReVanced/revanced-patches/commit/c1b9eefa280b980d08a571e1ce205dc71ccde3b6))
+
+# [2.188.0-dev.17](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.16...v2.188.0-dev.17) (2023-08-21)
+
+
+### Features
+
+* **YouTube:** Add `Alternative thumbnails` patch ([#2834](https://github.com/ReVanced/revanced-patches/issues/2834)) ([8a4277c](https://github.com/ReVanced/revanced-patches/commit/8a4277c486d995f57cde3a56274979c4a7b42bf6))
+
+# [2.188.0-dev.16](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.15...v2.188.0-dev.16) (2023-08-19)
+
+
+### Bug Fixes
+
+* **YouTube Music - Remove upgrade button:** Remove the correct navigation bar item ([fd3813f](https://github.com/ReVanced/revanced-patches/commit/fd3813f66ededdae1e52bf021a3de9d818f65096))
+
 # [2.188.0-dev.15](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.14...v2.188.0-dev.15) (2023-08-14)
 
 # [2.188.0-dev.14](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.13...v2.188.0-dev.14) (2023-08-13)

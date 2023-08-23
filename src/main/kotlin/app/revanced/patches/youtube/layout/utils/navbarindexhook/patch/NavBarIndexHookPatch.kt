@@ -6,19 +6,16 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.annotations.NavBarIndexHookCompatibility
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.NavBarBuilderFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.TopBarButtonFingerprint
-import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.ReferenceInstruction
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
-import org.jf.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Name("Hook NavBar index")
 @NavBarIndexHookCompatibility
@@ -29,7 +26,7 @@ class NavBarIndexHookPatch : BytecodePatch(
         TopBarButtonFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         /**
          *  Reset the NavBar index value when exiting the WatchWhileActivity
          */
@@ -89,15 +86,13 @@ class NavBarIndexHookPatch : BytecodePatch(
                     break
                 }
             }
-        } ?: return NavBarBuilderFingerprint.toErrorResult()
+        } ?: throw NavBarBuilderFingerprint.toErrorResult()
 
         /**
          * Initialize NavBar Index
          */
 
         context.initializeIndex(INTEGRATIONS_CLASS_DESCRIPTOR, "initializeIndex")
-
-        return PatchResultSuccess()
     }
 
     private companion object {

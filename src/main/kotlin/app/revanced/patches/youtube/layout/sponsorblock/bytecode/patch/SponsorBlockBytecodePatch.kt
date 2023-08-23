@@ -4,19 +4,17 @@ import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.data.toMethodWalker
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
@@ -59,23 +57,16 @@ class SponsorBlockBytecodePatch : BytecodePatch(
     listOf(
         SeekbarFingerprint,
         AppendTimeFingerprint,
-        ControlsOverlayFingerprint,
+        LayoutConstructorFingerprint,
         AutoRepeatParentFingerprint,
     )
 ) {
+    override fun execute(context: BytecodeContext) {
+        LayoutConstructorFingerprint.result?.let {
+            if (!ControlsOverlayFingerprint.resolve(context, it.classDef))
+                throw ControlsOverlayFingerprint.toErrorResult()
+        } ?: throw LayoutConstructorFingerprint.toErrorResult()
 
-    private companion object {
-        const val INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/SegmentPlaybackController;"
-        const val INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/ui/CreateSegmentButtonController;"
-        const val INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/ui/VotingButtonController;"
-        const val INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/sponsorblock/ui/SponsorBlockViewController;"
-    }
-
-    override fun execute(context: BytecodeContext): PatchResult {
         /*
          * Hook the video time methods
          */
@@ -228,7 +219,7 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                     "invoke-static {v$frameLayoutRegister}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->initialize(Landroid/view/ViewGroup;)V"
                 )
             }
-        }  ?: return ControlsOverlayFingerprint.toErrorResult()
+        }  ?: throw ControlsOverlayFingerprint.toErrorResult()
 
         // get rectangle field name
         RectangleFieldInvalidatorFingerprint.resolve(context, seekbarSignatureResult.classDef)
@@ -261,22 +252,31 @@ class SponsorBlockBytecodePatch : BytecodePatch(
                         )
                     }
                 }
-            } ?: return PatchResultError("Could not find the method which contains the replaceMeWith* strings")
+            } ?: throw PatchException("Could not find the method which contains the replaceMeWith* strings")
 
 
         // The vote and create segment buttons automatically change their visibility when appropriate,
         // but if buttons are showing when the end of the video is reached then they will not automatically hide.
         // Add a hook to forcefully hide when the end of the video is reached.
-        AutoRepeatParentFingerprint.result ?: return AutoRepeatParentFingerprint.toErrorResult()
+        AutoRepeatParentFingerprint.result ?: throw AutoRepeatParentFingerprint.toErrorResult()
         AutoRepeatFingerprint.also {
             it.resolve(context, AutoRepeatParentFingerprint.result!!.classDef)
         }.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, $INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR->endOfVideoReached()V"
-        ) ?: return AutoRepeatFingerprint.toErrorResult()
+        ) ?: throw AutoRepeatFingerprint.toErrorResult()
 
         // TODO: isSBChannelWhitelisting implementation
+    }
 
-        return PatchResultSuccess()
+    private companion object {
+        const val INTEGRATIONS_SEGMENT_PLAYBACK_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/SegmentPlaybackController;"
+        const val INTEGRATIONS_CREATE_SEGMENT_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/CreateSegmentButtonController;"
+        const val INTEGRATIONS_VOTING_BUTTON_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/VotingButtonController;"
+        const val INTEGRATIONS_SPONSORBLOCK_VIEW_CONTROLLER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/sponsorblock/ui/SponsorBlockViewController;"
     }
 }
