@@ -8,21 +8,19 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.autoplay.annotations.AutoplayButtonCompatibility
-import app.revanced.patches.youtube.layout.buttons.autoplay.fingerprints.LayoutConstructorFingerprint
+import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import org.jf.dexlib2.iface.instruction.Instruction
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
-import org.jf.dexlib2.iface.instruction.ReferenceInstruction
-import org.jf.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.iface.instruction.Instruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class, ResourceMappingPatch::class])
@@ -32,7 +30,7 @@ import org.jf.dexlib2.iface.reference.MethodReference
 class HideAutoplayButtonPatch : BytecodePatch(
     listOf(LayoutConstructorFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",
@@ -69,8 +67,6 @@ class HideAutoplayButtonPatch : BytecodePatch(
                 """,
                 ExternalLabel("hidden", jumpInstruction)
             )
-        } ?: return LayoutConstructorFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: throw LayoutConstructorFingerprint.toErrorResult()
     }
 }

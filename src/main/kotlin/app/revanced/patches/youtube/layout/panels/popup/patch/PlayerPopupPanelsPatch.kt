@@ -6,8 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
@@ -26,7 +24,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         EngagementPanelControllerFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_popup_panels",
@@ -37,7 +35,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
         )
 
         val engagementPanelControllerMethod = EngagementPanelControllerFingerprint
-            .result?.mutableMethod ?: return EngagementPanelControllerFingerprint.toErrorResult()
+            .result?.mutableMethod ?: throw EngagementPanelControllerFingerprint.toErrorResult()
 
         engagementPanelControllerMethod.addInstructionsWithLabels(
             0,
@@ -52,7 +50,5 @@ class PlayerPopupPanelsPatch : BytecodePatch(
                 nop
             """
         )
-
-        return PatchResultSuccess()
     }
 }

@@ -12,7 +12,7 @@ import org.w3c.dom.Document
  * @param summaryKey The summary of the text preference.
  * @param intent The intent of the preference.
  */
-internal class Preference(
+class Preference(
     key: String,
     titleKey: String,
     summaryKey: String,
@@ -34,7 +34,7 @@ internal class Preference(
             })
         }
 
-    internal class Intent(
+    class Intent(
         internal val targetPackage: String,
         internal val data: String,
         internal val targetClass: String

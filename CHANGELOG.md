@@ -1,3 +1,61 @@
+# [2.188.0-dev.18](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.17...v2.188.0-dev.18) (2023-08-23)
+
+
+### Features
+
+* **YouTube:** Support version `18.29.38` ([c1b9eef](https://github.com/ReVanced/revanced-patches/commit/c1b9eefa280b980d08a571e1ce205dc71ccde3b6))
+
+# [2.188.0-dev.17](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.16...v2.188.0-dev.17) (2023-08-21)
+
+
+### Features
+
+* **YouTube:** Add `Alternative thumbnails` patch ([#2834](https://github.com/ReVanced/revanced-patches/issues/2834)) ([8a4277c](https://github.com/ReVanced/revanced-patches/commit/8a4277c486d995f57cde3a56274979c4a7b42bf6))
+
+# [2.188.0-dev.16](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.15...v2.188.0-dev.16) (2023-08-19)
+
+
+### Bug Fixes
+
+* **YouTube Music - Remove upgrade button:** Remove the correct navigation bar item ([fd3813f](https://github.com/ReVanced/revanced-patches/commit/fd3813f66ededdae1e52bf021a3de9d818f65096))
+
+# [2.188.0-dev.15](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.14...v2.188.0-dev.15) (2023-08-14)
+
+# [2.188.0-dev.14](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.13...v2.188.0-dev.14) (2023-08-13)
+
+
+### Bug Fixes
+
+* allow using `PreferenceScreen` outside of current module ([fe94013](https://github.com/ReVanced/revanced-patches/commit/fe94013a2235953b32fed6e0710a252698a264b3))
+
+# [2.188.0-dev.13](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.12...v2.188.0-dev.13) (2023-08-13)
+
+
+### Features
+
+* **YouTube - External downloads:** Recommend Seal instead of PowerTube ([#2803](https://github.com/ReVanced/revanced-patches/issues/2803)) ([082e067](https://github.com/ReVanced/revanced-patches/commit/082e067338026d05046ed5f398a1261aa20d3cb3))
+
+# [2.188.0-dev.12](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.11...v2.188.0-dev.12) (2023-08-10)
+
+
+### Features
+
+* Add `Override certificate pinning` patch ([#2781](https://github.com/ReVanced/revanced-patches/issues/2781)) ([94ed738](https://github.com/ReVanced/revanced-patches/commit/94ed738515aa6e1a1d346b85b54805e68e36f94c))
+
+# [2.188.0-dev.11](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.10...v2.188.0-dev.11) (2023-08-09)
+
+
+### Bug Fixes
+
+* **Client spoof:** Remove exception from option ([9c69f87](https://github.com/ReVanced/revanced-patches/commit/9c69f876902496c101eac295e581c15e02bfaf29))
+
+# [2.188.0-dev.10](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.9...v2.188.0-dev.10) (2023-08-09)
+
+
+### Features
+
+* **Tasker:** Remove `Unlock trial` patch ([8354a87](https://github.com/ReVanced/revanced-patches/commit/8354a879cfc6028820e2bb0e01d6f607e145c0f6))
+
 # [2.188.0-dev.9](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.8...v2.188.0-dev.9) (2023-08-07)
 
 

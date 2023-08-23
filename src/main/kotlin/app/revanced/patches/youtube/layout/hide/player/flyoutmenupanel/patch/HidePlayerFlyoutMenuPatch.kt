@@ -3,8 +3,6 @@ package app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.patch
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
@@ -20,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 @DependsOn([LithoFilterPatch::class, YouTubeSettingsPatch::class])
 @HidePlayerFlyoutMenuItemsCompatibility
 class HidePlayerFlyoutMenuPatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_player_flyout",
@@ -92,8 +90,6 @@ class HidePlayerFlyoutMenuPatch : ResourcePatch {
         )
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
-
-        return PatchResultSuccess()
     }
 
     private companion object {

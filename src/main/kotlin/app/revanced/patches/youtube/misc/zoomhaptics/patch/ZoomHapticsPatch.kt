@@ -6,8 +6,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -24,7 +22,7 @@ import app.revanced.patches.youtube.misc.zoomhaptics.fingerprints.ZoomHapticsFin
 class ZoomHapticsPatch : BytecodePatch(
     listOf(ZoomHapticsFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_disable_zoom_haptics",
@@ -46,7 +44,5 @@ class ZoomHapticsPatch : BytecodePatch(
             """,
             ExternalLabel("vibrate", zoomHapticsFingerprintMethod.getInstruction(0))
         )
-
-        return PatchResultSuccess()
     }
 }

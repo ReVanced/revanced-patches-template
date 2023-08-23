@@ -8,14 +8,12 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.player.overlay.annotations.HidePlayerOverlayPatchCompatibility
 import app.revanced.patches.youtube.layout.hide.player.overlay.bytecode.fingerprints.CreatePlayerOverviewFingerprint
 import app.revanced.patches.youtube.layout.hide.player.overlay.resource.patch.HidePlayerOverlayResourcePatch
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @Name("Hide player overlay")
@@ -23,7 +21,7 @@ import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 @DependsOn([HidePlayerOverlayResourcePatch::class])
 @HidePlayerOverlayPatchCompatibility
 class HidePlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerprint)) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         CreatePlayerOverviewFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val viewRegisterIndex =
@@ -37,9 +35,7 @@ class HidePlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerpr
                             "$INTEGRATIONS_CLASS_DESCRIPTOR->hidePlayerOverlay(Landroid/widget/ImageView;)V"
                 )
             }
-        } ?: return CreatePlayerOverviewFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: throw CreatePlayerOverviewFingerprint.toErrorResult()
     }
 
     private companion object {

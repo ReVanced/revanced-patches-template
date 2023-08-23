@@ -11,11 +11,9 @@ import java.io.Closeable
 
 @DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
 class SeekbarPreferencesPatch : ResourcePatch, Closeable {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
 
         // Nothing to do here. All work is done in close method.
-
-        return PatchResultSuccess()
     }
 
     override fun close() {

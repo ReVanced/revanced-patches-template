@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.interaction.downloads.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.*
@@ -14,7 +12,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @DependsOn([BottomControlsResourcePatch::class, YouTubeSettingsPatch::class])
 class ExternalDownloadsResourcePatch : ResourcePatch {
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         YouTubeSettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_external_downloader_preference_screen",
@@ -28,8 +26,8 @@ class ExternalDownloadsResourcePatch : ResourcePatch {
                     ),
                     TextPreference(
                         "revanced_external_downloader_name",
-                        "revanced_external_downloader_name_title",
-                        "revanced_external_downloader_name_summary",
+                        StringResource("revanced_external_downloader_name_title", "Downloader package name"),
+                        StringResource("revanced_external_downloader_name_summary", "Package name of your installed external downloader app, such as NewPipe or PowerTube"),
                         InputType.TEXT
                     )
                 ),
@@ -45,7 +43,5 @@ class ExternalDownloadsResourcePatch : ResourcePatch {
 
         // Add download button node
         BottomControlsResourcePatch.addControls("youtube/downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
-
-        return PatchResultSuccess()
     }
 }

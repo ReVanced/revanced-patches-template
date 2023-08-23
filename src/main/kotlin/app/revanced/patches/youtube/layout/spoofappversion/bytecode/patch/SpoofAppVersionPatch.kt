@@ -6,8 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
@@ -17,7 +15,7 @@ import app.revanced.patches.youtube.layout.spoofappversion.annotations.SpoofAppV
 import app.revanced.patches.youtube.layout.spoofappversion.bytecode.fingerprints.SpoofAppVersionFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
@@ -29,7 +27,7 @@ class SpoofAppVersionPatch : BytecodePatch(
         SpoofAppVersionFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",
@@ -72,9 +70,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                     move-result-object v$buildOverrideNameRegister
                 """
             )
-        } ?: return SpoofAppVersionFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: throw SpoofAppVersionFingerprint.toErrorResult()
     }
 
     private companion object {

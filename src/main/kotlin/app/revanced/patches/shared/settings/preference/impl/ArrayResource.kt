@@ -11,7 +11,7 @@ import org.w3c.dom.Document
  *  @param literalValues If the values are to be used exactly as is.
  *                       If false, the values are treated as Strings.xml entries.
  */
-internal class ArrayResource(
+class ArrayResource(
     name: String,
     val items: Iterable<String>,
     val literalValues : Boolean = false

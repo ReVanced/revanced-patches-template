@@ -16,7 +16,7 @@ import org.w3c.dom.Element
  * @param summaryOffKey The summary to show when the preference is disabled.
  * @param default The default value of the switch.
  */
-internal class SwitchPreference(
+class SwitchPreference(
     key: String,
     titleKey: String,
     val summaryOnKey: String,

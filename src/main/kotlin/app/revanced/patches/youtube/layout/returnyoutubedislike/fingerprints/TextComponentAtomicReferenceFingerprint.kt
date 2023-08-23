@@ -2,8 +2,8 @@ package app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
 /**
  * Resolves against the same method that [TextComponentContextFingerprint] resolves to.
@@ -15,7 +15,7 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.MOVE_OBJECT_FROM16, // available unused register
         Opcode.MOVE_OBJECT_FROM16,
-        Opcode.MOVE_OBJECT_FROM16,
+        null, // move-object/from16 or move/from16
         Opcode.MOVE_OBJECT_FROM16,
         Opcode.INVOKE_VIRTUAL, // CharSequence atomic reference
         Opcode.MOVE_RESULT_OBJECT,

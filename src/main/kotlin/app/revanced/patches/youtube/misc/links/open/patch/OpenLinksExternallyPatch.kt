@@ -6,8 +6,6 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.links.open.annotations.OpenLinksExternallyCompatibility
@@ -15,7 +13,7 @@ import app.revanced.patches.youtube.misc.links.open.fingerprints.BindSessionServ
 import app.revanced.patches.youtube.misc.links.open.fingerprints.GetCustomTabPackageNameFingerprint
 import app.revanced.patches.youtube.misc.links.open.fingerprints.InitializeCustomTabSupportFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import org.jf.dexlib2.iface.instruction.formats.Instruction21c
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
 @Name("Open links externally")
@@ -28,7 +26,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
         InitializeCustomTabSupportFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_external_browser",
@@ -43,7 +41,7 @@ class OpenLinksExternallyPatch : BytecodePatch(
             BindSessionServiceFingerprint,
             InitializeCustomTabSupportFingerprint
         ).forEach {
-            val result = it.result ?: return it.toErrorResult()
+            val result = it.result ?: throw it.toErrorResult()
             val insertIndex = result.scanResult.patternScanResult!!.endIndex + 1
             with(result.mutableMethod) {
                 val register = (implementation!!.instructions[insertIndex - 1] as Instruction21c).registerA
@@ -56,7 +54,5 @@ class OpenLinksExternallyPatch : BytecodePatch(
                 )
             }
         }
-
-        return PatchResultSuccess()
     }
 }

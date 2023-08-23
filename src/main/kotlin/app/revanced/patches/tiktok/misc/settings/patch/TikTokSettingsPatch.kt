@@ -8,17 +8,15 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.*
-import org.jf.dexlib2.Opcode
-import org.jf.dexlib2.builder.instruction.BuilderInstruction35c
-import org.jf.dexlib2.iface.instruction.formats.Instruction35c
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 
 @Patch
 @DependsOn([TikTokIntegrationsPatch::class])
@@ -33,12 +31,12 @@ class TikTokSettingsPatch : BytecodePatch(
         SettingsEntryInfoFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Find the class name of classes which construct a settings entry
         val settingsButtonClass = SettingsEntryFingerprint.result?.classDef?.type?.toClassName()
-            ?: return SettingsEntryFingerprint.toErrorResult()
+            ?: throw SettingsEntryFingerprint.toErrorResult()
         val settingsButtonInfoClass = SettingsEntryInfoFingerprint.result?.classDef?.type?.toClassName()
-            ?: return SettingsEntryInfoFingerprint.toErrorResult()
+            ?: throw SettingsEntryInfoFingerprint.toErrorResult()
 
         // Create a settings entry for 'revanced settings' and add it to settings fragment
         AddSettingsEntryFingerprint.result?.apply {
@@ -66,7 +64,7 @@ class TikTokSettingsPatch : BytecodePatch(
                     """
                 )
             }
-        } ?: return AddSettingsEntryFingerprint.toErrorResult()
+        } ?: throw AddSettingsEntryFingerprint.toErrorResult()
 
         // Initialize the settings menu once the replaced setting entry is clicked.
         AdPersonalizationActivityOnCreateFingerprint.result?.mutableMethod?.apply {
@@ -87,9 +85,7 @@ class TikTokSettingsPatch : BytecodePatch(
                 """,
                 ExternalLabel("notrevanced", getInstruction(initializeSettingsIndex))
             )
-        } ?: return AdPersonalizationActivityOnCreateFingerprint.toErrorResult()
-
-        return PatchResultSuccess()
+        } ?: throw AdPersonalizationActivityOnCreateFingerprint.toErrorResult()
     }
 
     private fun String.toClassName(): String {

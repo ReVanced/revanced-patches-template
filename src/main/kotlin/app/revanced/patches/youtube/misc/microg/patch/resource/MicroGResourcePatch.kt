@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.misc.microg.patch.resource
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.Preference
@@ -19,7 +17,7 @@ import app.revanced.util.microg.MicroGResourceHelper
 
 @DependsOn([YouTubeSettingsResourcePatch::class])
 class MicroGResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         YouTubeSettingsPatch.addPreference(
             Preference(
                 "revanced_microg_settings_title",
@@ -43,7 +41,5 @@ class MicroGResourcePatch : ResourcePatch {
             SPOOFED_PACKAGE_NAME,
             SPOOFED_PACKAGE_SIGNATURE
         )
-
-        return PatchResultSuccess()
     }
 }

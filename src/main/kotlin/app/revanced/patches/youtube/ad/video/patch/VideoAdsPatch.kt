@@ -6,8 +6,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -27,7 +25,7 @@ class VideoAdsPatch : BytecodePatch(
         LoadVideoAdsFingerprint,
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         YouTubeSettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_ads",
@@ -48,7 +46,5 @@ class VideoAdsPatch : BytecodePatch(
             """,
             ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.getInstruction(0))
         )
-
-        return PatchResultSuccess()
     }
 }

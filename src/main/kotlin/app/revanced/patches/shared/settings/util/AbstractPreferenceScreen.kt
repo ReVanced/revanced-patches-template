@@ -5,7 +5,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import java.io.Closeable
 
-internal abstract class AbstractPreferenceScreen(
+abstract class AbstractPreferenceScreen(
     private val root: MutableList<Screen> = mutableListOf()
 ) : Closeable {
 

@@ -8,8 +8,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
@@ -40,7 +38,7 @@ class ShowDeletedMessagesPatch : BytecodePatch(
         if-eqz $register, :no_spoiler
     """
 
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         // Spoiler mode: Force set hasModAccess member to true in constructor
         DeletedMessageClickableSpanCtorFingerprint.result?.mutableMethod?.apply {
             addInstructionsWithLabels(
@@ -52,11 +50,11 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 """,
                 ExternalLabel("no_spoiler", getInstruction(implementation!!.instructions.lastIndex))
             )
-        } ?: return DeletedMessageClickableSpanCtorFingerprint.toErrorResult()
+        } ?: throw DeletedMessageClickableSpanCtorFingerprint.toErrorResult()
 
         // Spoiler mode: Disable setHasModAccess setter
         SetHasModAccessFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")
-            ?: return SetHasModAccessFingerprint.toErrorResult()
+            ?: throw SetHasModAccessFingerprint.toErrorResult()
 
         // Cross-out mode: Reformat span of deleted message
         ChatUtilCreateDeletedSpanFingerprint.result?.mutableMethod?.apply {
@@ -70,7 +68,7 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 """,
                 ExternalLabel("no_reformat", getInstruction(0))
             )
-        }  ?: return ChatUtilCreateDeletedSpanFingerprint.toErrorResult()
+        }  ?: throw ChatUtilCreateDeletedSpanFingerprint.toErrorResult()
 
         TwitchSettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             ListPreference(
@@ -96,6 +94,6 @@ class ShowDeletedMessagesPatch : BytecodePatch(
             )
         )
 
-        return PatchResultSuccess()
+        SettingsPatch.addString("revanced_deleted_msg", "message deleted")
     }
 }

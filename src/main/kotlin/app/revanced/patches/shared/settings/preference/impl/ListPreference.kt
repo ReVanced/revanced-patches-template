@@ -15,7 +15,7 @@ import org.w3c.dom.Document
  * @param summaryKey The summary of the list preference.
  * @param default The default entry value of the list preference.
  */
-internal class ListPreference(
+class ListPreference(
     key: String,
     titleKey: String,
     val entries: ArrayResource?,

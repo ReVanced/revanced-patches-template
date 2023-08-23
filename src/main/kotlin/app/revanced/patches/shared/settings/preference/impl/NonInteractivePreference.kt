@@ -15,11 +15,10 @@ import org.w3c.dom.Element
  * @param titleKey The title of the preference.
  * @param summaryKey The summary of the text preference.
  */
-internal class NonInteractivePreference(
+class NonInteractivePreference(
     titleKey: String,
     summaryKey: String,
 ) : BasePreference(null, titleKey, summaryKey, "Preference") {
-
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
             addSummary(summaryKey?.also {

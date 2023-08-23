@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.interaction.copyvideourl.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
@@ -14,7 +12,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 
 @DependsOn([BottomControlsResourcePatch::class, YouTubeSettingsPatch::class])
 class CopyVideoUrlResourcePatch : ResourcePatch {
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         YouTubeSettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_copy_video_url_preference_screen",
@@ -47,7 +45,5 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
         )
 
         BottomControlsResourcePatch.addControls("youtube/copyvideourl/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
-
-        return PatchResultSuccess()
     }
 }

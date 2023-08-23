@@ -1,8 +1,8 @@
 
 package app.revanced.util.resources
 
-import app.revanced.patcher.data.DomFileEditor
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
 import org.w3c.dom.Node
