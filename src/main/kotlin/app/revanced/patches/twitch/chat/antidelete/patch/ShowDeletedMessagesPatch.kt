@@ -93,7 +93,5 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 default = "cross-out"
             )
         )
-
-        SettingsPatch.addString("revanced_deleted_msg", "message deleted")
     }
 }

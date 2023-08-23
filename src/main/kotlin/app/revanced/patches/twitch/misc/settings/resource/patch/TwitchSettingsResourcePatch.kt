@@ -2,8 +2,6 @@
 package app.revanced.patches.twitch.misc.settings.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
@@ -14,12 +12,10 @@ class TwitchSettingsResourcePatch : AbstractSettingsResourcePatch(
     "twitch/settings"
 ) {
 
-    override fun execute(context: ResourceContext): PatchResult {
+    override fun execute(context: ResourceContext) {
         super.execute(context)
 
         context.mergeStrings("twitch/settings/host/values/strings.xml")
-
-        return PatchResultSuccess()
     }
 
     internal companion object {

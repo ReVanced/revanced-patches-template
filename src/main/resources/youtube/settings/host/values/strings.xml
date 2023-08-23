@@ -26,6 +26,20 @@
     <string name="revanced_settings_import_success">Imported %d settings</string>
     <string name="revanced_settings_import_failure_parse">Import failed: %s</string>
 
+    <string name="revanced_alt_thumbnails_preference_screen_title">Alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_title">Enable alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_summary_on">YouTube video stills shown</string>
+    <string name="revanced_alt_thumbnail_summary_off">Original YouTube thumbnails shown</string>
+    <string name="revanced_alt_thumbnail_type_title">Video time to take the still from</string>
+    <string name="revanced_alt_thumbnail_type_entry_1">Beginning of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_2">Middle of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_3">End of video</string>
+    <string name="revanced_alt_thumbnail_fast_quality_title">Use fast alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_on">Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_off">Using high quality stills</string>
+    <string name="revanced_alt_thumbnail_about_title">About</string>
+    <string name="revanced_alt_thumbnail_about_summary">Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube</string>
+    <string name="revanced_alt_thumbnails_preference_screen_summary">Video thumbnail settings</string>
     <string name="revanced_auto_captions_summary_off">Auto captions are enabled</string>
     <string name="revanced_auto_captions_summary_on">Auto captions are disabled</string>
     <string name="revanced_auto_captions_title">Disable auto captions</string>
@@ -76,7 +90,7 @@
     <string name="revanced_external_browser_summary_off">Opening links in app</string>
     <string name="revanced_external_browser_summary_on">Opening links externally</string>
     <string name="revanced_external_browser_title">Open links in browser</string>
-    <string name="revanced_external_downloader_name_summary">Package name of your installed external downloader app, such as NewPipe or PowerTube</string>
+    <string name="revanced_external_downloader_name_summary">Package name of your installed external downloader app, such as NewPipe or Seal</string>
     <string name="revanced_external_downloader_name_title">Downloader package name</string>
     <string name="revanced_external_downloader_not_installed_warning">%s is not installed. Please install it.</string>
     <string name="revanced_external_downloader_preference_screen_summary">Settings for using an external downloader</string>
@@ -424,7 +438,7 @@
     <string name="revanced_spoof_signature_verification_summary_off">App signature not spoofed\n\nVideo playback may not work</string>
     <string name="revanced_spoof_signature_verification_summary_on">App signature spoofed\n\nSide effects include:\n• Ambient mode may not work\n• Downloading videos may not work\n• Seekbar thumbnails are always hidden</string>
     <string name="revanced_spoof_signature_verification_title">Spoof app signature</string>
-    <string name="revanced_spoof_signature_verification_user_dialog_message">If you do not have a YouTube Premium subscription,\n\nthen turning off this setting will cause video playback issues.</string>
+    <string name="revanced_spoof_signature_verification_user_dialog_message">Turning off this setting will cause video playback issues.</string>
     <string name="revanced_swipe_brightness_summary_off">Brightness swipe is disabled</string>
     <string name="revanced_swipe_brightness_summary_on">Brightness swipe is enabled</string>
     <string name="revanced_swipe_brightness_title">Enable brightness gesture</string>

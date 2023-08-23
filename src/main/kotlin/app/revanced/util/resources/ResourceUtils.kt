@@ -2,8 +2,8 @@
 package app.revanced.util.resources
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
-import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
 import org.w3c.dom.Node
 import java.nio.file.Files
@@ -85,7 +85,7 @@ internal object ResourceUtils {
                     foundElements = true
                 }
             }
-            if (!foundElements) throw PatchResultError("could not find translated string files")
+            if (!foundElements) throw PatchException("could not find translated string files")
         } finally {
             jf?.close()
         }

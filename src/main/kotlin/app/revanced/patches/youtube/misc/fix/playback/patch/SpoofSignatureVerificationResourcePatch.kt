@@ -14,16 +14,9 @@ class SpoofSignatureVerificationResourcePatch : ResourcePatch {
         YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_signature_verification",
-                StringResource("revanced_spoof_signature_verification_title", "Spoof app signature"),
-                StringResource("revanced_spoof_signature_verification_summary_on",
-                    "App signature spoofed\\n\\n"
-                        + "Side effects include:\\n"
-                        + "• Ambient mode may not work\\n"
-                        + "• Downloading videos may not work\\n"
-                        + "• Seekbar thumbnails are always hidden"),
-                StringResource("revanced_spoof_signature_verification_summary_off", "App signature not spoofed\\n\\nVideo playback may not work"),
-                StringResource("revanced_spoof_signature_verification_user_dialog_message",
-                    "If you do not have a YouTube Premium subscription,\\n\\nthen turning off this setting will cause video playback issues.")
+                "revanced_spoof_signature_verification_title",
+                "revanced_spoof_signature_verification_summary_on",
+                "revanced_spoof_signature_verification_summary_off",
             )
         )
 

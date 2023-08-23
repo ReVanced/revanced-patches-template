@@ -15,10 +15,10 @@ import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.annotations.AlternativeThumbnailsCompatibility
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Alternative thumbnails")
 @AlternativeThumbnailsCompatibility
 @Description("Adds options to replace video thumbnails with still image captures of the video.")
@@ -26,49 +26,50 @@ class AlternativeThumbnailsPatch : BytecodePatch(
     listOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",
-                StringResource("revanced_alt_thumbnails_preference_screen_title", "Alternative thumbnails"),
+                "revanced_alt_thumbnails_preference_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_alt_thumbnail",
-                        StringResource("revanced_alt_thumbnail_title", "Enable alternative thumbnails"),
-                        StringResource("revanced_alt_thumbnail_summary_on", "YouTube video stills shown"),
-                        StringResource("revanced_alt_thumbnail_summary_off", "Original YouTube thumbnails shown")
+                        "revanced_alt_thumbnail_title",
+                        "revanced_alt_thumbnail_summary_on",
+                        "revanced_alt_thumbnail_summary_off",
                     ),
                     ListPreference(
                         "revanced_alt_thumbnail_type",
-                        StringResource("revanced_alt_thumbnail_type_title", "Video time to take the still from"),
+                        "revanced_alt_thumbnail_type_title",
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entries",
                             listOf(
-                                StringResource("revanced_alt_thumbnail_type_entry_1", "Beginning of video"),
-                                StringResource("revanced_alt_thumbnail_type_entry_2", "Middle of video"),
-                                StringResource("revanced_alt_thumbnail_type_entry_3", "End of video"),
+                                "revanced_alt_thumbnail_type_entry_1",
+                                "revanced_alt_thumbnail_type_entry_2",
+                                "revanced_alt_thumbnail_type_entry_3",
                             )
                         ),
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entry_values",
                             listOf(
-                                StringResource("revanced_alt_thumbnail_type_entry_value_1", "1"),
-                                StringResource("revanced_alt_thumbnail_type_entry_value_2", "2"),
-                                StringResource("revanced_alt_thumbnail_type_entry_value_3", "3"),
-                            )
+                                "1",
+                                "2",
+                                "3",
+                            ),
+                            literalValues = true
                         )
                     ),
                     SwitchPreference(
                         "revanced_alt_thumbnail_fast_quality",
-                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Use fast alternative thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using high quality stills")
+                        "revanced_alt_thumbnail_fast_quality_title",
+                        "revanced_alt_thumbnail_fast_quality_summary_on",
+                        "revanced_alt_thumbnail_fast_quality_summary_off",
                     ),
                     NonInteractivePreference(
-                        StringResource("revanced_alt_thumbnail_about_title", "About"),
-                        StringResource("revanced_alt_thumbnail_about_summary", "Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube")
+                        "revanced_alt_thumbnail_about_title",
+                        "revanced_alt_thumbnail_about_summary",
                     )
                 ),
-                StringResource("revanced_alt_thumbnails_preference_screen_summary", "Video thumbnail settings")
+                "revanced_alt_thumbnails_preference_screen_summary",
             )
         )
 
