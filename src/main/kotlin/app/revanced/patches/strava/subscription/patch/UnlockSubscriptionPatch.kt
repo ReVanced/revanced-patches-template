@@ -12,8 +12,8 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFingerprint
 
 @Patch
-@Name("Subscription features")
-@Description("Enables Matched Runs and Segment Efforts.")
+@Name("Unlock subscription features")
+@Description("Unlocks \"Matched Runs\" and \"Segment Efforts\".")
 @Compatibility([Package("com.strava", ["320.12"])])
 class UnlockSubscriptionPatch : BytecodePatch(
     listOf(GetSubscribedFingerprint)
