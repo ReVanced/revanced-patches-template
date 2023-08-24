@@ -1,4 +1,4 @@
-package app.revanced.patches.strava.patch
+package app.revanced.patches.strava.subscription.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.strava.fingerprints.GetSubscribedFingerprint
+import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFingerprint
 
 @Patch
 @Name("Subscription features")

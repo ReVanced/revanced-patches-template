@@ -1,4 +1,4 @@
-package app.revanced.patches.strava.fingerprints
+package app.revanced.patches.strava.subscription.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.Opcode
