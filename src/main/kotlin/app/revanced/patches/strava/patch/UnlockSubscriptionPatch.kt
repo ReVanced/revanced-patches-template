@@ -17,7 +17,7 @@ import app.revanced.patches.strava.fingerprints.SubscriptionFingerprint
 @Name("Subscription features")
 @Description("Enables Matched Runs and Segment Efforts.")
 @Compatibility([Package("com.strava", ["320.12"])])
-class SubscriptionPatch : BytecodePatch(
+class UnlockSubscriptionPatch : BytecodePatch(
     listOf(SubscriptionFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
