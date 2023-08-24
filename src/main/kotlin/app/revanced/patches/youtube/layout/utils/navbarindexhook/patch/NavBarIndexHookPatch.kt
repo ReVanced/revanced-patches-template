@@ -6,7 +6,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.NavBarBuilderFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -17,23 +16,10 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 @Name("Hook NavBar index")
 class NavBarIndexHookPatch : BytecodePatch(
     listOf(
-        NavBarBuilderFingerprint,
-        OnBackPressedFingerprint
+        NavBarBuilderFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        /**
-         *  Reset the NavBar index value when exiting the WatchWhileActivity
-         */
-        OnBackPressedFingerprint.result?.let {
-            it.mutableMethod.apply {
-                addInstruction(
-                    0,
-                    "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setLastNavBarIndex()V"
-                )
-            }
-        } ?: throw OnBackPressedFingerprint.toErrorResult()
-
         /**
          * Change NavBar Index value according to selected Tab
          */
