@@ -69,7 +69,6 @@ class NavBarIndexHookPatch : BytecodePatch(
         /**
          * Initialize NavBar Index
          */
-
         context.initializeIndex(INTEGRATIONS_CLASS_DESCRIPTOR, "initializeIndex")
     }
 
