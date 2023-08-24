@@ -13,16 +13,13 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.interaction.seekbar.annotation.SeekbarTappingCompatibility
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.OnTouchEventHandlerFingerprint
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import com.android.tools.smali.dexlib2.Opcode
-import com.android.tools.smali.dexlib2.iface.Method
-import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch
-@DependsOn([IntegrationsPatch::class, EnableSeekbarTappingResourcePatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, EnableSeekbarTappingResourcePatch::class])
 @Name("Seekbar tapping")
 @Description("Enables tap-to-seek on the seekbar of the video player.")
 @SeekbarTappingCompatibility

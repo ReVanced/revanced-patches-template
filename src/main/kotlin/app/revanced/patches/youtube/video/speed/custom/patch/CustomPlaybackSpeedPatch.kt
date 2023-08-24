@@ -17,7 +17,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMut
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.bottomsheet.hook.patch.BottomSheetHookPatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.GetOldPlaybackSpeedsFingerprint
@@ -35,7 +35,7 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
 @Name("Custom playback speed")
 @Description("Adds custom playback speed options.")
-@DependsOn([IntegrationsPatch::class, LithoFilterPatch::class, YouTubeSettingsPatch::class, BottomSheetHookPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, LithoFilterPatch::class, YouTubeSettingsPatch::class, BottomSheetHookPatch::class])
 class CustomPlaybackSpeedPatch : BytecodePatch(
     listOf(
         SpeedArrayGeneratorFingerprint,

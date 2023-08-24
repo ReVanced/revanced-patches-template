@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.video.information.annotation.VideoInformationCompatibility
 import app.revanced.patches.youtube.video.information.fingerprints.*
 import app.revanced.patches.youtube.video.speed.remember.patch.RememberPlaybackSpeedPatch
@@ -32,7 +32,7 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 @Name("Video information")
 @Description("Hooks YouTube to get information about the current playing video.")
 @VideoInformationCompatibility
-@DependsOn([IntegrationsPatch::class, VideoIdPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, VideoIdPatch::class])
 class VideoInformationPatch : BytecodePatch(
     listOf(
         PlayerInitFingerprint,

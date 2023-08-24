@@ -13,7 +13,7 @@ import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.patches.youtube.interaction.swipecontrols.annotation.SwipeControlsCompatibility
 import app.revanced.patches.youtube.interaction.swipecontrols.fingerprints.SwipeControlsHostActivityFingerprint
 import app.revanced.patches.youtube.interaction.swipecontrols.patch.resource.SwipeControlsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
@@ -24,7 +24,7 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 @SwipeControlsCompatibility
 @DependsOn(
     [
-        IntegrationsPatch::class,
+        YouTubeIntegrationsPatch::class,
         PlayerTypeHookPatch::class,
         SwipeControlsResourcePatch::class
     ]

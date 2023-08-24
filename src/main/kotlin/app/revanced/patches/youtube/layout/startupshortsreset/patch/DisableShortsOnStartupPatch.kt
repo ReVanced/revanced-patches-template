@@ -10,11 +10,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.startupshortsreset.annotations.StartupShortsResetCompatibility
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.UserWasInShortsFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Disable Shorts on startup")
 @Description("Disables playing YouTube Shorts when launching YouTube.")
 @StartupShortsResetCompatibility

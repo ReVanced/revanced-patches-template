@@ -13,11 +13,11 @@ import app.revanced.patches.youtube.layout.autocaptions.fingerprints.StartVideoI
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleButtonControllerFingerprint
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleTrackFingerprint
 import app.revanced.patches.youtube.layout.buttons.captions.annotations.HideCaptionsButtonCompatibility
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Disable auto captions")
 @Description("Disable forced captions from being automatically enabled.")
 @HideCaptionsButtonCompatibility

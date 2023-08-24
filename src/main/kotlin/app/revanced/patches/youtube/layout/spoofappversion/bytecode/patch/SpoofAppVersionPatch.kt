@@ -13,12 +13,12 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.spoofappversion.annotations.SpoofAppVersionCompatibility
 import app.revanced.patches.youtube.layout.spoofappversion.bytecode.fingerprints.SpoofAppVersionFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Spoof app version")
 @Description("Tricks YouTube into thinking you are running an older version of the app. One of the side effects also includes restoring the old UI.")
 @SpoofAppVersionCompatibility

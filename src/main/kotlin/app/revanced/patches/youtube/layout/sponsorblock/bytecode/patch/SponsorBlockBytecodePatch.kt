@@ -25,7 +25,7 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.Re
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
@@ -40,7 +40,7 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 @Patch
 @DependsOn(
     [
-        IntegrationsPatch::class,
+        YouTubeIntegrationsPatch::class,
         VideoIdPatch::class,
         // Required to skip segments on time.
         VideoInformationPatch::class,

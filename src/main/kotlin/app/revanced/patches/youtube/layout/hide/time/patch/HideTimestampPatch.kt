@@ -11,11 +11,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.time.annotations.HideTimeCompatibility
 import app.revanced.patches.youtube.layout.hide.time.fingerprints.TimeCounterFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Hide timestamp")
 @Description("Hides timestamp in video player.")
 @HideTimeCompatibility

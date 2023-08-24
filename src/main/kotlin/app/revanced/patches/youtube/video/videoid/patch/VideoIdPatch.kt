@@ -10,7 +10,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.video.videoid.annotation.VideoIdCompatibility
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprint
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprintBackgroundPlay
@@ -19,7 +19,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Name("Video id hook")
 @Description("Hooks to detect when the video id changes")
 @VideoIdCompatibility
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class])
 class VideoIdPatch : BytecodePatch(
     listOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
 ) {

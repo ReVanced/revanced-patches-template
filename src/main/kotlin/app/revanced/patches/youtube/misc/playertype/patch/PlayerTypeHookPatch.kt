@@ -9,14 +9,14 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.fingerprint.PlayerTypeFingerprint
 import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("Player type hook")
 @Description("Hook to get the current player type and video playback state.")
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class])
 class PlayerTypeHookPatch : BytecodePatch(
     listOf(PlayerTypeFingerprint, VideoStateFingerprint)
 ) {

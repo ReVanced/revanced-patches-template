@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeedPatch
@@ -20,7 +20,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("Remember playback speed")
 @Description("Adds the ability to remember the playback speed you chose in the playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class])
 class RememberPlaybackSpeedPatch : BytecodePatch(
     listOf(
         InitializePlaybackSpeedValuesFingerprint

@@ -16,11 +16,11 @@ import app.revanced.patches.twitch.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.twitch.ad.video.fingerprints.CheckAdEligibilityLambdaFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.ContentConfigShowAdsFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.GetReadyToShowAdFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.twitch.misc.integrations.patch.TwitchIntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
+@DependsOn([TwitchIntegrationsPatch::class, TwitchSettingsPatch::class])
 @Name("Block video ads")
 @Description("Blocks video ads in streams and VODs.")
 @VideoAdsCompatibility

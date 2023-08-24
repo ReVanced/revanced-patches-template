@@ -12,11 +12,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.albumcards.annotations.AlbumCardsCompatibility
 import app.revanced.patches.youtube.layout.hide.albumcards.bytecode.fingerprints.AlbumCardsFingerprint
 import app.revanced.patches.youtube.layout.hide.albumcards.resource.patch.AlbumCardsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([IntegrationsPatch::class, AlbumCardsResourcePatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, AlbumCardsResourcePatch::class])
 @Name("Hide album cards")
 @Description("Hides the album cards below the artist description.")
 @AlbumCardsCompatibility

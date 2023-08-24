@@ -12,11 +12,11 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.audio.annotations.AudioAdsCompatibility
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.twitch.misc.integrations.patch.TwitchIntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, TwitchSettingsPatch::class])
+@DependsOn([TwitchIntegrationsPatch::class, TwitchSettingsPatch::class])
 @Name("Block audio ads")
 @Description("Blocks audio ads in streams and VODs.")
 @AudioAdsCompatibility

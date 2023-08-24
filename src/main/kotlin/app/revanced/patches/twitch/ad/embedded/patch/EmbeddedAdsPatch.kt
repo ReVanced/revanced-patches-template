@@ -14,11 +14,11 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.twitch.ad.embedded.annotations.EmbeddedAdsCompatibility
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
 import app.revanced.patches.twitch.ad.video.patch.VideoAdsPatch
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.twitch.misc.integrations.patch.TwitchIntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
 
 @Patch
-@DependsOn([VideoAdsPatch::class, IntegrationsPatch::class, TwitchSettingsPatch::class])
+@DependsOn([VideoAdsPatch::class, TwitchIntegrationsPatch::class, TwitchSettingsPatch::class])
 @Name("Block embedded ads")
 @Description("Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.")
 @EmbeddedAdsCompatibility

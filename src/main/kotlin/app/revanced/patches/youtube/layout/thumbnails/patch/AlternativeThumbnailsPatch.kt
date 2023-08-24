@@ -14,11 +14,11 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.annotations.AlternativeThumbnailsCompatibility
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 @Name("Alternative thumbnails")
 @AlternativeThumbnailsCompatibility
 @Description("Adds options to replace video thumbnails with still image captures of the video.")

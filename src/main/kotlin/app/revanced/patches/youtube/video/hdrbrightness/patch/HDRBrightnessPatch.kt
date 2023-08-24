@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import app.revanced.patches.youtube.video.hdrbrightness.annotations.HDRBrightnessCompatibility
 import app.revanced.patches.youtube.video.hdrbrightness.fingerprints.HDRBrightnessFingerprint
@@ -20,7 +20,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 @Name("HDR auto brightness")
 @Description("Makes the brightness of HDR videos follow the system default.")
 @HDRBrightnessCompatibility
-@DependsOn([IntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
 class HDRBrightnessPatch : BytecodePatch(
     listOf(HDRBrightnessFingerprint)
 ) {

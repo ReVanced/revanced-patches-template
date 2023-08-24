@@ -17,7 +17,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.hide.shorts.annotations.HideShortsComponentsCompatibility
 import app.revanced.patches.youtube.layout.hide.shorts.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.hide.shorts.resource.patch.HideShortsComponentsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -26,7 +26,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 @Patch
 @DependsOn(
     [
-        IntegrationsPatch::class,
+        YouTubeIntegrationsPatch::class,
         LithoFilterPatch::class,
         HideShortsComponentsResourcePatch::class,
         ResourceMappingPatch::class

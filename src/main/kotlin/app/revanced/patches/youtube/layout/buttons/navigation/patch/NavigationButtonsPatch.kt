@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.annotations.Naviga
 import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -24,7 +24,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch
 @DependsOn(
     [
-        IntegrationsPatch::class,
+        YouTubeIntegrationsPatch::class,
         YouTubeSettingsPatch::class,
         ResolvePivotBarFingerprintsPatch::class,
     ]

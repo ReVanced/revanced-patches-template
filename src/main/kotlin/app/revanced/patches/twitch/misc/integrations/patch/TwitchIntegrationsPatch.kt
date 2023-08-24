@@ -7,7 +7,7 @@ import app.revanced.patches.twitch.misc.integrations.fingerprints.InitFingerprin
 
 @Name("Integrations")
 @RequiresIntegrations
-class IntegrationsPatch : AbstractIntegrationsPatch(
+class TwitchIntegrationsPatch : AbstractIntegrationsPatch(
     "Lapp/revanced/twitch/utils/ReVancedTwitchUtils;",
     listOf(InitFingerprint)
 )
