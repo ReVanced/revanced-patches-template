@@ -11,17 +11,17 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultError
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.strava.fingerprints.SubscriptionFingerprint
+import app.revanced.patches.strava.fingerprints.GetSubscribedFingerprint
 
 @Patch
 @Name("Subscription features")
 @Description("Enables Matched Runs and Segment Efforts.")
 @Compatibility([Package("com.strava", ["320.12"])])
 class UnlockSubscriptionPatch : BytecodePatch(
-    listOf(SubscriptionFingerprint)
+    listOf(GetSubscribedFingerprint)
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        val result = SubscriptionFingerprint.result
+        val result = GetSubscribedFingerprint.result
             ?: return PatchResultError("Fingerprint not found")
         val patternScanResult = result.scanResult.patternScanResult
             ?: return PatchResultError("Fingerprint pattern not found")
