@@ -4,13 +4,11 @@ import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.annotations.NavBarIndexHookCompatibility
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.NavBarBuilderFingerprint
-import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.TopBarButtonFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -22,8 +20,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 class NavBarIndexHookPatch : BytecodePatch(
     listOf(
         NavBarBuilderFingerprint,
-        OnBackPressedFingerprint,
-        TopBarButtonFingerprint
+        OnBackPressedFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -39,21 +36,6 @@ class NavBarIndexHookPatch : BytecodePatch(
                 )
             }
         }
-
-        /**
-         * Set NavBar index to zero on HomeTab
-         */
-
-        TopBarButtonFingerprint.result?.let {
-            it.mutableMethod.apply {
-                addInstructions(
-                    0, """
-                        const/4 v0, 0x0
-                        invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentNavBarIndex(I)V
-                        """
-                )
-            }
-        } ?: throw TopBarButtonFingerprint.toErrorResult()
 
         /**
          * Change NavBar Index value according to selected Tab
