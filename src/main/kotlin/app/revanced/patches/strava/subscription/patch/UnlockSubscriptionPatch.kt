@@ -7,9 +7,7 @@ import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultError
-import app.revanced.patcher.patch.PatchResultSuccess
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFingerprint
 
@@ -20,14 +18,12 @@ import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFinger
 class UnlockSubscriptionPatch : BytecodePatch(
     listOf(GetSubscribedFingerprint)
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
         val result = GetSubscribedFingerprint.result
-            ?: return PatchResultError("Fingerprint not found")
+            ?: throw PatchException("Fingerprint not found")
         val patternScanResult = result.scanResult.patternScanResult
-            ?: return PatchResultError("Fingerprint pattern not found")
+            ?: throw PatchException("Fingerprint pattern not found")
 
         result.mutableMethod.replaceInstruction(patternScanResult.startIndex, "const/4 v0, 0x1")
-
-        return PatchResultSuccess()
     }
 }
