@@ -1,0 +1,77 @@
+package app.revanced.patches.youtube.layout.utils.navbarindexhook.patch
+
+import app.revanced.extensions.exception
+import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patches.youtube.layout.utils.navbarindexhook.annotations.NavBarIndexHookCompatibility
+import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.OnClickFingerprint
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+
+@Name("Hook NavBar index")
+@NavBarIndexHookCompatibility
+class NavBarIndexHookPatch : BytecodePatch(
+    listOf(
+        OnClickFingerprint
+    )
+) {
+    override fun execute(context: BytecodeContext) {
+        /**
+         * Change NavBar Index value according to selected Tab
+         */
+        OnClickFingerprint.result?.let {
+            val targetIndex = it.scanResult.patternScanResult!!.endIndex - 1
+            it.mutableMethod.apply {
+                val instruction = getInstruction(targetIndex)
+                if (((instruction as Instruction35c).reference as MethodReference).name != "indexOf") throw OnClickFingerprint.exception
+                val indexRegister =
+                    getInstruction<OneRegisterInstruction>(targetIndex + 1).registerA
+
+                addInstruction(
+                    targetIndex + 2,
+                    "invoke-static {v$indexRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentNavBarIndex(I)V"
+                )
+            }
+        } ?: throw OnClickFingerprint.exception
+
+        /**
+         * Initialize NavBar Index
+         */
+        context.initializeNavBarIndex(INTEGRATIONS_CLASS_DESCRIPTOR, "initializeIndex")
+    }
+
+    private companion object {
+        const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/utils/NavBarIndexHook;"
+
+        /**
+         * Initialize NavBar Index while creating WatchWhileActivity.
+         *
+         * @param classDescriptor target class for initializing the NavBar index.
+         * @param methodDescriptor target method for initializing the NavBar index.
+         */
+        fun BytecodeContext.initializeNavBarIndex(
+            classDescriptor: String,
+            methodDescriptor: String
+        ) {
+            this.classes.forEach { classDef ->
+                if (classDef.type.endsWith("/WatchWhileActivity;")) {
+                    val onCreateMethod = classDef.methods.single { it.name == "onCreate" }
+
+                    onCreateMethod.apply {
+                        proxy(classDef).mutableClass.methods.first { it.name == "onCreate" }.also {
+                            it.addInstruction(
+                                2,
+                                "invoke-static/range {p0 .. p0}, $classDescriptor->$methodDescriptor(Landroid/content/Context;)V"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
