@@ -6,14 +6,12 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.youtube.layout.utils.navbarindexhook.annotations.NavBarIndexHookCompatibility
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.OnClickFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Name("Hook NavBar index")
-@NavBarIndexHookCompatibility
 class NavBarIndexHookPatch : BytecodePatch(
     listOf(
         OnClickFingerprint
