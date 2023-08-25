@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.layout.player.overlay.resource.patch.PlayerO
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name(" Custom Player overlay")
+@Name("Custom Player overlay")
 @Description("Manages the transparency of dark background overlay on the player when player controls are visible.")
 @DependsOn([PlayerOverlayResourcePatch::class])
 @PlayerOverlayPatchCompatibility
