@@ -2,8 +2,8 @@ package app.revanced.patches.youtube.layout.hide.suggestionsshelf.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -18,10 +18,8 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Name("Hide Suggestions shelf")
 @Description("Hides suggestions shelf on the homepage tab.")
 @SuggestionsShelfCompatibility
-class SuggestionsShelfPatch : BytecodePatch(
-    listOf()
-) {
-    override fun execute(context: BytecodeContext) {
+class SuggestionsShelfPatch : ResourcePatch {
+    override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_suggestions_shelf",
