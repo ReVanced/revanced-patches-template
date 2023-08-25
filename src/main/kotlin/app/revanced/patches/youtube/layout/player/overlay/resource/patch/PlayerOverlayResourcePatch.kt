@@ -15,24 +15,11 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 class PlayerOverlayResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
-            PreferenceScreen(
-                "revanced_player_overlay",
-                StringResource("revanced_player_overlay_title", "Player background overlay"),
-                listOf(
-                    SwitchPreference(
-                        "revanced_hide_player_overlay",
-                        StringResource("revanced_hide_player_overlay_title", "Hide background overlay in player"),
-                        StringResource("revanced_hide_player_overlay_summary_on", "Background overlay is hidden"),
-                        StringResource("revanced_hide_player_overlay_summary_off", "Background overlay is shown")
-                    ),
-                    TextPreference(
-                        "revanced_player_overlay_opacity_value",
-                        StringResource("revanced_player_overlay_opacity_value_title", "Change overlay opacity"),
-                        StringResource("revanced_player_overlay_opacity_value_summary", "Enter opacity value from 0-100, where 0 is transparent"),
-                        InputType.NUMBER
-                    )
-                ),
-                StringResource("revanced_player_overlay_summary", "Player background overlay settings")
+            TextPreference(
+                "revanced_player_overlay_opacity_value",
+                StringResource("revanced_player_overlay_opacity_value_title", "Change overlay opacity"),
+                StringResource("revanced_player_overlay_opacity_value_summary", "Enter opacity value from 0-100, where 0 is transparent"),
+                InputType.NUMBER
             )
         )
 
