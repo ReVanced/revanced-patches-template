@@ -17,11 +17,11 @@ class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
                 "revanced_player_overlay_opacity_value",
                 StringResource(
                     "revanced_player_overlay_opacity_value_title",
-                    "Change overlay opacity"
+                    "Player overlay opacity"
                 ),
                 StringResource(
                     "revanced_player_overlay_opacity_value_summary",
-                    "Enter opacity value from 0-100, where 0 is transparent"
+                    "Opacity value between 0-100, where 0 is transparent"
                 ),
                 InputType.NUMBER
             )
