@@ -11,13 +11,14 @@ import java.nio.file.StandardCopyOption
 import java.util.jar.JarFile
 import java.util.regex.Pattern
 
-internal object ResourceUtils {
+@Suppress("MemberVisibilityCanBePrivate")
+object ResourceUtils {
 
     /**
      * Merge strings in the default Strings.xml file
      * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
      */
-    internal fun ResourceContext.mergeStrings(host: String) {
+    fun ResourceContext.mergeStrings(host: String) {
         this.iterateXmlNodeChildren(host, "resources") {
             // TODO: figure out why this is needed
             if (!it.hasAttributes()) return@iterateXmlNodeChildren
@@ -34,13 +35,14 @@ internal object ResourceUtils {
 
     /**
      * Copy resources from the current class loader to the resource directory.
+     *
      * @param sourceResourceDirectory The source resource directory name.
      * @param resources The resources to copy.
      * @param replaceDestinationFiles If any existing destination files should be replaced.
      *                                If set to false, an exception is thrown if any source file
      *                                would overwrite an existing file.
      */
-    internal fun ResourceContext.copyResources(
+    fun ResourceContext.copyResources(
         sourceResourceDirectory: String,
         vararg resources: ResourceGroup,
         replaceDestinationFiles: Boolean = true
@@ -97,7 +99,7 @@ internal object ResourceUtils {
      * @param resourceDirectoryName The name of the directory of the resource.
      * @param resources A list of resource names.
      */
-    internal class ResourceGroup(val resourceDirectoryName: String, vararg val resources: String)
+    class ResourceGroup(val resourceDirectoryName: String, vararg val resources: String)
 
     /**
      * Iterate through the children of a node by its tag.
@@ -105,7 +107,7 @@ internal object ResourceUtils {
      * @param targetTag The target xml node.
      * @param callback The callback to call when iterating over the nodes.
      */
-    internal fun ResourceContext.iterateXmlNodeChildren(
+    fun ResourceContext.iterateXmlNodeChildren(
         resource: String,
         targetTag: String,
         callback: (node: Node) -> Unit

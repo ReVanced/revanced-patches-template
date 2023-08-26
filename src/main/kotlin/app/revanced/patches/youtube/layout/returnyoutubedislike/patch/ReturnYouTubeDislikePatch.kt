@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
@@ -83,50 +83,61 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         // since the underlying (likes only) text did not change.
         // This hook handles all situations, as it's where the created Spans are stored and later reused.
         TextComponentContextFingerprint.also {
-            it.resolve(
-                context,
-                TextComponentConstructorFingerprint.result!!.classDef
-            )
+            if (!it.resolve(context, TextComponentConstructorFingerprint.result!!.classDef))
+                throw it.exception
         }.result?.also { result ->
             if (!TextComponentAtomicReferenceFingerprint.resolve(context, result.method, result.classDef))
-                throw TextComponentAtomicReferenceFingerprint.toErrorResult()
+                throw TextComponentAtomicReferenceFingerprint.exception
         }?.let { textComponentContextFingerprintResult ->
             val conversionContextIndex = textComponentContextFingerprintResult
                 .scanResult.patternScanResult!!.startIndex
             val atomicReferenceStartIndex = TextComponentAtomicReferenceFingerprint.result!!
                 .scanResult.patternScanResult!!.startIndex
 
-            val insertIndex = atomicReferenceStartIndex + 7
+            val insertIndex = atomicReferenceStartIndex + 6
 
             textComponentContextFingerprintResult.mutableMethod.apply {
                 // Get the conversion context obfuscated field name, and the registers for the AtomicReference and CharSequence
                 val conversionContextFieldReference =
                     getInstruction<ReferenceInstruction>(conversionContextIndex).reference
 
-                // any free register
-                val contextRegister =
+                // Reuse the free register to make room for the atomic reference register.
+                val freeRegister =
                     getInstruction<TwoRegisterInstruction>(atomicReferenceStartIndex).registerB
 
                 val atomicReferenceRegister =
-                    getInstruction<FiveRegisterInstruction>(atomicReferenceStartIndex + 4).registerC
+                    getInstruction<FiveRegisterInstruction>(atomicReferenceStartIndex + 1).registerC
 
-                val moveCharSequenceInstruction = getInstruction<TwoRegisterInstruction>(insertIndex)
-                val charSequenceRegister = moveCharSequenceInstruction.registerB
+                val moveCharSequenceInstruction = getInstruction<TwoRegisterInstruction>(insertIndex - 1)
+                val charSequenceSourceRegister = moveCharSequenceInstruction.registerB
+                val charSequenceTargetRegister = moveCharSequenceInstruction.registerA
 
-                // Insert as first instructions at the control flow label.
-                // Must replace the existing instruction to preserve the label, and then insert the remaining instructions.
-                replaceInstruction(insertIndex, "move-object/from16 v$contextRegister, p0")
+                // In order to preserve the atomic reference register, because it is overwritten,
+                // use another free register to store it.
+                replaceInstruction(
+                    atomicReferenceStartIndex + 2,
+                    "move-result-object v$freeRegister"
+                )
+                replaceInstruction(
+                    atomicReferenceStartIndex + 3,
+                    "move-object v$charSequenceSourceRegister, v$freeRegister"
+                )
+
+                // Move the current instance to the free register, and get the conversion context from it.
+                replaceInstruction(insertIndex - 1, "move-object/from16 v$freeRegister, p0")
                 addInstructions(
-                    insertIndex + 1,
+                    insertIndex,
                     """
-                        iget-object v$contextRegister, v$contextRegister, $conversionContextFieldReference  # copy obfuscated context field into free register
-                        invoke-static {v$contextRegister, v$atomicReferenceRegister, v$charSequenceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
-                        move-result-object v$charSequenceRegister
-                        move-object v${moveCharSequenceInstruction.registerA}, v${charSequenceRegister}  # original instruction at the insertion point
+                        # Move context to free register
+                        iget-object v$freeRegister, v$freeRegister, $conversionContextFieldReference 
+                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        move-result-object v$freeRegister
+                        # Replace the original char sequence with the modified one.
+                        move-object v${charSequenceTargetRegister}, v${freeRegister}
                     """
                 )
             }
-        } ?: throw TextComponentContextFingerprint.toErrorResult()
+        } ?: throw TextComponentContextFingerprint.exception
 
         // endregion
 
@@ -166,7 +177,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                 )
             }
-        } ?: throw ShortsTextViewFingerprint.toErrorResult()
+        } ?: throw ShortsTextViewFingerprint.exception
 
         // endregion
 
@@ -184,7 +195,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                     "invoke-static {v$resourceIdentifierRegister, v$textViewRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setOldUILayoutDislikes(ILandroid/widget/TextView;)V"
                 )
             }
-        } ?: throw DislikesOldLayoutTextViewFingerprint.toErrorResult()
+        } ?: throw DislikesOldLayoutTextViewFingerprint.exception
 
         // endregion
     }

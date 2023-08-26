@@ -1,6 +1,6 @@
 package app.revanced.patches.twitch.ad.video.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
@@ -94,7 +94,7 @@ class VideoAdsPatch : AbstractAdPatch(
                 """,
                 ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        } ?: throw CheckAdEligibilityLambdaFingerprint.toErrorResult()
+        } ?: throw CheckAdEligibilityLambdaFingerprint.exception
 
         GetReadyToShowAdFingerprint.result?.apply {
             val adFormatDeclined = "Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter\$Action\$AdFormatDeclined;"
@@ -109,7 +109,7 @@ class VideoAdsPatch : AbstractAdPatch(
                 """,
                 ExternalLabel(skipLabelName, mutableMethod.getInstruction(0))
             )
-        } ?: throw GetReadyToShowAdFingerprint.toErrorResult()
+        } ?: throw GetReadyToShowAdFingerprint.exception
 
         // Spoof showAds JSON field
         ContentConfigShowAdsFingerprint.result?.apply {
@@ -120,7 +120,7 @@ class VideoAdsPatch : AbstractAdPatch(
                     return v0
                 """
             )
-        }  ?: throw ContentConfigShowAdsFingerprint.toErrorResult()
+        }  ?: throw ContentConfigShowAdsFingerprint.exception
 
         TwitchSettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(

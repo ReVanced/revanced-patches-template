@@ -1,6 +1,6 @@
 package app.revanced.patches.twitch.chat.antidelete.patch
 
-import app.revanced.extensions.toErrorResult
+import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
@@ -50,11 +50,11 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 """,
                 ExternalLabel("no_spoiler", getInstruction(implementation!!.instructions.lastIndex))
             )
-        } ?: throw DeletedMessageClickableSpanCtorFingerprint.toErrorResult()
+        } ?: throw DeletedMessageClickableSpanCtorFingerprint.exception
 
         // Spoiler mode: Disable setHasModAccess setter
         SetHasModAccessFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")
-            ?: throw SetHasModAccessFingerprint.toErrorResult()
+            ?: throw SetHasModAccessFingerprint.exception
 
         // Cross-out mode: Reformat span of deleted message
         ChatUtilCreateDeletedSpanFingerprint.result?.mutableMethod?.apply {
@@ -68,7 +68,7 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 """,
                 ExternalLabel("no_reformat", getInstruction(0))
             )
-        }  ?: throw ChatUtilCreateDeletedSpanFingerprint.toErrorResult()
+        }  ?: throw ChatUtilCreateDeletedSpanFingerprint.exception
 
         TwitchSettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             ListPreference(

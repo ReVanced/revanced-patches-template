@@ -1,3 +1,67 @@
+# [2.188.0-dev.28](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.27...v2.188.0-dev.28) (2023-08-26)
+
+
+### Features
+
+* **YouTube:** Add `Enable tablet layout` patch ([3ac68b3](https://github.com/ReVanced/revanced-patches/commit/3ac68b3c6ef0d568780855003217fc3e904d789b))
+
+# [2.188.0-dev.27](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.26...v2.188.0-dev.27) (2023-08-26)
+
+
+### Features
+
+* **YouTube Music - Exclusive audio playback:** Support latest version ([bfa379a](https://github.com/ReVanced/revanced-patches/commit/bfa379a398bce8d635043eb2d4f81c4ed7440101))
+
+# [2.188.0-dev.26](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.25...v2.188.0-dev.26) (2023-08-26)
+
+
+### Features
+
+* **YouTube:** Support version `18.32.39` ([7b503e2](https://github.com/ReVanced/revanced-patches/commit/7b503e2336dd4d330b651bf7c168d95a38e8c777))
+
+# [2.188.0-dev.25](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.24...v2.188.0-dev.25) (2023-08-26)
+
+
+### Features
+
+* **YouTube:** Add `Custom player overlay opacity` patch ([#2721](https://github.com/ReVanced/revanced-patches/issues/2721)) ([2622b00](https://github.com/ReVanced/revanced-patches/commit/2622b008ab78b15aa3c28a13b38e63041f29c9ea))
+
+# [2.188.0-dev.24](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.23...v2.188.0-dev.24) (2023-08-25)
+
+
+### Features
+
+* Exclude `Custom branding` patch by default ([d6de957](https://github.com/ReVanced/revanced-patches/commit/d6de957f4efce11d9a709d4c8f500b039166fc2f))
+
+# [2.188.0-dev.23](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.22...v2.188.0-dev.23) (2023-08-25)
+
+
+### Features
+
+* **Strava:** Add `Subscription features` patch ([#2872](https://github.com/ReVanced/revanced-patches/issues/2872)) ([387eb29](https://github.com/ReVanced/revanced-patches/commit/387eb29e7ed45169c89a03513af64104d0082f28))
+
+# [2.188.0-dev.22](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.21...v2.188.0-dev.22) (2023-08-24)
+
+
+### Features
+
+* Publicize resource utility functions ([20aff26](https://github.com/ReVanced/revanced-patches/commit/20aff26784296517257ea19d66ffd3bdfe6b06fa))
+* Use an extension property to create new exception when failing to resolve a fingerprint ([47eac14](https://github.com/ReVanced/revanced-patches/commit/47eac14f039dc466c1957470d82255bfa2c06ff0))
+
+# [2.188.0-dev.21](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.20...v2.188.0-dev.21) (2023-08-24)
+
+
+### Features
+
+* **Duolingo:** Add `Unlock Duolingo Super` patch ([#2862](https://github.com/ReVanced/revanced-patches/issues/2862)) ([61a7533](https://github.com/ReVanced/revanced-patches/commit/61a7533136f38d7a308e31c9f250baad00515d6a))
+
+# [2.188.0-dev.20](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.19...v2.188.0-dev.20) (2023-08-24)
+
+
+### Bug Fixes
+
+* **Enable android debugging:** Update patch description ([#2869](https://github.com/ReVanced/revanced-patches/issues/2869)) ([d9f0d08](https://github.com/ReVanced/revanced-patches/commit/d9f0d08498662e7aa18edb5201a5d60f3738e4e4))
+
 # [2.188.0-dev.19](https://github.com/ReVanced/revanced-patches/compare/v2.188.0-dev.18...v2.188.0-dev.19) (2023-08-24)
 
 
