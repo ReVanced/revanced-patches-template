@@ -93,13 +93,7 @@ class TwitchSettingsPatch : BytecodePatch(
                 """,
                 ExternalLabel("no_rv_settings_onclick", mutableMethod.getInstruction(insertIndex))
             )
-        }  ?: throw MenuGroupsOnClickFingerprint.toErrorResult()
-
-        fixme
-        addString("revanced_settings", "ReVanced Settings", false)
-        addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?", false)
-        addString("revanced_reboot", "Restart", false)
-        addString("revanced_cancel", "Cancel", false)
+        }  ?: throw MenuGroupsOnClickFingerprint.exception
     }
 
     internal companion object {

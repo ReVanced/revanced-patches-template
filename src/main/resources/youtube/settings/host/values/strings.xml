@@ -395,6 +395,8 @@
     <string name="revanced_misc_summary">Miscellaneous patches</string>
     <string name="revanced_misc_title">Misc</string>
     <string name="revanced_navigation_buttons_preference_screen_title">Navigation buttons</string>
+    <string name="revanced_player_overlay_opacity_title">Player overlay opacity</string>
+    <string name="revanced_player_overlay_opacity_summary">Opacity value between 0-100, where 0 is transparent</string>
     <string name="revanced_playback_speed_default_title">Default playback speed</string>
     <string name="revanced_pref_import_export_summary">Import / Export ReVanced settings</string>
     <string name="revanced_pref_import_export_title">Import / Export</string>
@@ -470,6 +472,10 @@
     <string name="revanced_tablet_miniplayer_summary_off">Mini player is disabled</string>
     <string name="revanced_tablet_miniplayer_summary_on">Mini player is enabled</string>
     <string name="revanced_tablet_miniplayer_title">Enable tablet mini player</string>
+    <string name="revanced_tablet_layout_enabled_title">Enable tablet layout</string>
+    <string name="revanced_tablet_layout_summary_on">Tablet layout is enabled</string>
+    <string name="revanced_tablet_layout_summary_off">Tablet layout is disabled</string>
+    <string name="revanced_tablet_layout_user_dialog_message">Community posts do not show up on tablet layouts</string>
     <string name="revanced_video_quality_automatic">Automatic quality</string>
     <string name="revanced_video_quality_default_mobile_title">Default video quality on mobile network</string>
     <string name="revanced_video_quality_default_wifi_title">Default video quality on Wi-Fi network</string>
