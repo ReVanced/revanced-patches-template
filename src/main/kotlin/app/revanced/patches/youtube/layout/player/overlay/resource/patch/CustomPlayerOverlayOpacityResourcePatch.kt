@@ -14,13 +14,13 @@ class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             TextPreference(
-                "revanced_player_overlay_opacity_value",
+                "revanced_player_overlay_opacity",
                 StringResource(
-                    "revanced_player_overlay_opacity_value_title",
+                    "revanced_player_overlay_opacity_title",
                     "Player overlay opacity"
                 ),
                 StringResource(
-                    "revanced_player_overlay_opacity_value_summary",
+                    "revanced_player_overlay_opacity_summary",
                     "Opacity value between 0-100, where 0 is transparent"
                 ),
                 InputType.NUMBER
