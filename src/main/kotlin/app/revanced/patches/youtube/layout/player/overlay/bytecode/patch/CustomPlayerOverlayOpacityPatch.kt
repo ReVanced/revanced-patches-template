@@ -12,34 +12,34 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.player.overlay.annotations.PlayerOverlayPatchCompatibility
 import app.revanced.patches.youtube.layout.player.overlay.bytecode.fingerprints.CreatePlayerOverviewFingerprint
-import app.revanced.patches.youtube.layout.player.overlay.resource.patch.PlayerOverlayResourcePatch
+import app.revanced.patches.youtube.layout.player.overlay.resource.patch.CustomPlayerOverlayOpacityResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("Custom Player overlay")
-@Description("Manages the transparency of dark background overlay on the player when player controls are visible.")
-@DependsOn([PlayerOverlayResourcePatch::class])
+@Name("Custom player overlay opacity")
+@Description("Change the opacity of the player background, when player controls are visible.")
+@DependsOn([CustomPlayerOverlayOpacityResourcePatch::class])
 @PlayerOverlayPatchCompatibility
-class PlayerOverlayPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerprint)) {
+class CustomPlayerOverlayOpacityPatch : BytecodePatch(listOf(CreatePlayerOverviewFingerprint)) {
     override fun execute(context: BytecodeContext) {
         CreatePlayerOverviewFingerprint.result?.let { result ->
             result.mutableMethod.apply {
                 val viewRegisterIndex =
-                    indexOfFirstConstantInstructionValue(PlayerOverlayResourcePatch.scrimOverlayId) + 3
-                val viewRegister = getInstruction<OneRegisterInstruction>(viewRegisterIndex).registerA
+                    indexOfFirstConstantInstructionValue(CustomPlayerOverlayOpacityResourcePatch.scrimOverlayId) + 3
+                val viewRegister =
+                    getInstruction<OneRegisterInstruction>(viewRegisterIndex).registerA
 
                 val insertIndex = viewRegisterIndex + 1
                 addInstruction(
                     insertIndex,
-                    """
-                       invoke-static { v$viewRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->changePlayerOverlay(Landroid/widget/ImageView;)V
-                    """
+                    "invoke-static { v$viewRegister }, " +
+                            "$INTEGRATIONS_CLASS_DESCRIPTOR->changeOpacity(Landroid/widget/ImageView;)V"
                 )
             }
         } ?: throw CreatePlayerOverviewFingerprint.exception
     }
 
     private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/PlayerOverlayPatch;"
+        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/CustomPlayerOverlayOpacityPatch;"
     }
 }
