@@ -49,7 +49,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                 ArrayResource(
                     "revanced_spoof_app_version_target_entry_values",
                     listOf(
-                        "17.01.35",
+                        "17.08.35",
                         "16.08.35",
                         "16.01.35",
                     ),
