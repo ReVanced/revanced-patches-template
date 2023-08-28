@@ -8,17 +8,13 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.photomath.misc.bookpoint.fingerprints.IsBookpointEnabledFingerprint
 
 @Description("Enables textbook access")
-class EnableBookpointPatch : BytecodePatch(
-    listOf(IsBookpointEnabledFingerprint)
-) {
-    override fun execute(context: BytecodeContext) {
-        IsBookpointEnabledFingerprint.result?.apply {
-            mutableMethod.replaceInstructions(
-                0, """
+class EnableBookpointPatch : BytecodePatch(listOf(IsBookpointEnabledFingerprint)) {
+    override fun execute(context: BytecodeContext) =
+        IsBookpointEnabledFingerprint.result?.mutableMethod?.replaceInstructions(
+            0,
+            """
                 const/4 v0, 0x1
                 return v0
-            """.trimIndent()
-            )
-        } ?: throw IsBookpointEnabledFingerprint.exception
-    }
+            """
+        ) ?: throw IsBookpointEnabledFingerprint.exception
 }

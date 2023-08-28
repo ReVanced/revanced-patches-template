@@ -17,20 +17,16 @@ import kotlin.random.Random
 @Patch
 @DependsOn([SignatureDetectionPatch::class])
 @Name("Spoof device ID")
-@Description("Spoofs device ID - may prevent manual bans by developers.")
+@Description("Spoofs device ID to mitigate manual bans by developers.")
 @Compatibility([Package("com.microblink.photomath")])
 class SpoofDeviceIdPatch : BytecodePatch(
     listOf(GetDeviceIdFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
-        GetDeviceIdFingerprint.result?.apply {
-            val fakeId = Random.nextLong().toString(16)
-            mutableMethod.replaceInstructions(
-                0, """
-                const-string v0, "$fakeId"
-                return-object v0
-            """.trimIndent()
-            )
-        } ?: throw GetDeviceIdFingerprint.exception
-    }
+    override fun execute(context: BytecodeContext) = GetDeviceIdFingerprint.result?.mutableMethod?.replaceInstructions(
+        0,
+        """
+            const-string v0, "${Random.nextLong().toString(16)}"
+            return-object v0
+        """
+    ) ?: throw GetDeviceIdFingerprint.exception
 }
