@@ -3,20 +3,22 @@ package app.revanced.patches.photomath.misc.unlockplus.patch
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
+import app.revanced.patcher.annotation.Compatibility
+import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.photomath.detection.signature.patch.SignatureDetectionPatch
-import app.revanced.patches.photomath.misc.unlockplus.annotations.UnlockPlusCompatibilty
+import app.revanced.patches.photomath.misc.bookpoint.patch.EnableBookpointPatch
 import app.revanced.patches.photomath.misc.unlockplus.fingerprints.IsPlusUnlockedFingerprint
 
 @Patch
 @Name("Unlock plus")
-@DependsOn([SignatureDetectionPatch::class])
+@DependsOn([SignatureDetectionPatch::class, EnableBookpointPatch::class])
 @Description("Unlocks plus features.")
-@UnlockPlusCompatibilty
+@Compatibility([Package("com.microblink.photomath")])
 class UnlockPlusPatch : BytecodePatch(
     listOf(
         IsPlusUnlockedFingerprint
