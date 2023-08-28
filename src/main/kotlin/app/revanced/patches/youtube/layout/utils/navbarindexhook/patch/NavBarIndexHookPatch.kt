@@ -22,15 +22,15 @@ class NavBarIndexHookPatch : BytecodePatch(
          * Change NavBar Index value according to selected Tab
          */
         OnClickFingerprint.result?.let {
-            val targetIndex = it.scanResult.patternScanResult!!.endIndex - 1
+            val insertIndex = it.scanResult.patternScanResult!!.endIndex + 1
             it.mutableMethod.apply {
-                val instruction = getInstruction(targetIndex)
+                val instruction = getInstruction(insertIndex - 2)
                 if (((instruction as Instruction35c).reference as MethodReference).name != "indexOf") throw OnClickFingerprint.exception
                 val indexRegister =
-                    getInstruction<OneRegisterInstruction>(targetIndex + 1).registerA
+                    getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
 
                 addInstruction(
-                    targetIndex + 2,
+                    insertIndex,
                     "invoke-static {v$indexRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentNavBarIndex(I)V"
                 )
             }
