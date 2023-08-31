@@ -27,7 +27,7 @@ import app.revanced.patches.grindr.ConfigFingerprint
 import app.revanced.util.microg.MicroGBytecodeHelper
 
 @Patch
-@DependsOn([MicroGResourcePatch::class, lyImgPatch::class, GooglePlayServicesManifestResourcePatch::class, GooglePlayServicesManifestValueExceptionPatch::class, FirebaseGetCertPatch::class, GetPackageNamePatch::class])
+@DependsOn([MicroGResourcePatch::class, lyImgPatch::class, GooglePlayServicesManifestResourcePatch::class, GooglePlayServicesManifestValueExceptionPatch::class, FirebaseGetCertPatch::class, GetPackageNamePatch::class, OpenHttpURLConnectionPatch::class])
 @Name("Vanced MicroG support")
 @Description("Allows Grindr ReVanced to run without root and under a different package name with Vanced MicroG.")
 @MicroGPatchCompatibility

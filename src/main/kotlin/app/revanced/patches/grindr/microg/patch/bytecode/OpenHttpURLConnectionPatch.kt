@@ -10,30 +10,28 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.extensions.toErrorResult
 
-import app.revanced.patches.grindr.microg.fingerprints.GetPackageNameFingerprint
+import app.revanced.patches.grindr.microg.fingerprints.OpenHttpURLConnectionFingerprint
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 
-import app.revanced.patches.grindr.microg.Constants.PACKAGE_NAME
-class GetPackageNamePatch : BytecodePatch(
+class OpenHttpURLConnectionPatch : BytecodePatch(
     listOf(
-        GetPackageNameFingerprint,
+        OpenHttpURLConnectionFingerprint,
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        GetPackageNameFingerprint.result?.let { result ->
-            println("Found GetPackageName fingerprint!")
+        OpenHttpURLConnectionFingerprint.result?.let { result ->
+            println("Found fingerprint!")
 
             result.mutableMethod.apply {
-                addInstructions(
-                    0,
+                replaceInstructions(
+                    23,
                     """
-                        const-string v0, "${PACKAGE_NAME}"
-                        return-object v0
+                        const-string v2, "com.grindrapp.android"
                     """
                 )
             }
-        } ?: return GetPackageNameFingerprint.toErrorResult()
+        } ?: return OpenHttpURLConnectionFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }
