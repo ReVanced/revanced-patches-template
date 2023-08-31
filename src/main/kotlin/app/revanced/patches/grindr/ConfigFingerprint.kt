@@ -5,4 +5,7 @@ import org.jf.dexlib2.Opcode
 
 object ConfigFingerprint : MethodFingerprint(
     strings = listOf("com.grindrapp.android"),
+    customFingerprint = { methodDef, _ ->
+        !methodDef.name.contains("zzb")
+    }
 )

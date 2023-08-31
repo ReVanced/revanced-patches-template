@@ -27,44 +27,9 @@ import app.revanced.patches.grindr.ConfigFingerprint
 import app.revanced.util.microg.MicroGBytecodeHelper
 
 @Patch
-@DependsOn([MicroGResourcePatch::class, lyImgPatch::class, GooglePlayServicesManifestResourcePatch::class, GooglePlayServicesManifestValueExceptionPatch::class, FirebaseGetCertPatch::class, GetPackageNamePatch::class, OpenHttpURLConnectionPatch::class])
-@Name("Vanced MicroG support")
+//@DependsOn([MicroGResourcePatch::class, lyImgPatch::class, GooglePlayServicesManifestResourcePatch::class, GooglePlayServicesManifestValueExceptionPatch::class, FirebaseGetCertPatch::class, GetPackageNamePatch::class, OpenHttpURLConnectionPatch::class])
+//@DependsOn([FirebaseGetCertPatch::class, GetPackageNamePatch::class, OpenHttpURLConnectionPatch::class])
+@DependsOn([FirebaseGetCertPatch::class])
+@Name("Firebase patch")
 @Description("Allows Grindr ReVanced to run without root and under a different package name with Vanced MicroG.")
 @MicroGPatchCompatibility
-class MicroGBytecodePatch : BytecodePatch(
-    listOf(
-        ServiceCheckFingerprint,
-        ConfigFingerprint,
-        GooglePlayUtilityFingerprint,
-        OnChangedFingerprint,
-        GoogleApiAvailabilityFingerprint
-    )
-) {
-    override fun execute(context: BytecodeContext): PatchResult {
-        println(PACKAGE_NAME)
-
-        println("patching microg bytecode")
-
-        // apply common microG patch
-        MicroGBytecodeHelper.patchBytecode(
-            context, arrayOf(
-                MicroGBytecodeHelper.packageNameTransform(
-                    PACKAGE_NAME,
-                    REVANCED_PACKAGE_NAME
-                )
-            ),  
-            MicroGBytecodeHelper.PrimeMethodTransformationData(
-                ConfigFingerprint,
-                PACKAGE_NAME,
-                REVANCED_PACKAGE_NAME
-            ),
-            listOf(
-                ServiceCheckFingerprint,
-                GooglePlayUtilityFingerprint,
-                OnChangedFingerprint,
-            )
-        )
-
-        return PatchResultSuccess()
-    }
-}

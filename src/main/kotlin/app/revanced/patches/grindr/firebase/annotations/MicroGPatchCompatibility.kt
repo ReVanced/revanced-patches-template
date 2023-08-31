@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.microg.annotations
+package app.revanced.patches.grindr.firebase.annotations
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Package
