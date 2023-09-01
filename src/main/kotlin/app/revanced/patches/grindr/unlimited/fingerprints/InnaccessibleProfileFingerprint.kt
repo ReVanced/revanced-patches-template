@@ -22,6 +22,7 @@ object InnaccessibleProfileFingerprint : MethodFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.SGET_OBJECT,
         Opcode.IF_EQ,
+        Opcode.CONST_4
         Opcode.GOTO,
         Opcode.CONST_4,
         Opcode.RETURN
