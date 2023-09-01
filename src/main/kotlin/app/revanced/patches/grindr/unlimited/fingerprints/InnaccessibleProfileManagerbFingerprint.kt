@@ -3,8 +3,8 @@ package app.revanced.patches.grindr.unlimited.fingerprints
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.annotation.FuzzyPatternScanMethod
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
 //b
 
@@ -27,19 +27,4 @@ object InnaccessibleProfileManagerbFingerprint : MethodFingerprint(
         Opcode.CONST_4,
         Opcode.RETURN
     ),
-)
-
-@FuzzyPatternScanMethod(2)
-object InnaccessibleProfileManagerdFingerprint : MethodFingerprint(
-    "Z",
-    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
-    opcodes = listOf(
-        Opcode.INVOKE_VIRTUAL,
-        Opcode.MOVE_RESULT,
-        Opcode.XOR_INT_LIT8,
-        Opcode.RETURN,
-    ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("d")
-    }
 )

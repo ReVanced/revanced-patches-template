@@ -1,20 +1,20 @@
 package app.revanced.patches.grindr.unlimited.patch
 
-import app.revanced.extensions.toErrorResult
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.extensions.exception
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.grindr.unlimited.annotations.UnlockUnlimitedCompatibility
 import app.revanced.patches.grindr.unlimited.fingerprints.*
-import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 
 import app.revanced.patches.grindr.patch.bytecode.FirebaseGetCertPatch
@@ -37,7 +37,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
         InnaccessibleProfileManagerdFingerprint
     )
 ) {
-    override fun execute(context: BytecodeContext): PatchResult {
+    override fun execute(context: BytecodeContext) {
 
         val _true = """
             const/4 v0, 0x1
@@ -58,49 +58,51 @@ class UnlockUnlimitedPatch : BytecodePatch(
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return HasFeatureFingerprint.toErrorResult()
+        } ?: throw HasFeatureFingerprint.exception
 
         IsFreeFingerprint.result?.let { result ->
             println("Found IsFreeFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(0, _false)
+                addInstruction(3, """
+                    xor-int/lit8 v0, v0, 0x1
+                """.trimIndent())
             }
-        } ?: return IsFreeFingerprint.toErrorResult()
+        } ?: throw IsFreeFingerprint.exception
 
         IsNoPlusUpsellFingerprint.result?.let { result ->
             println("Found IsNoPlusUpsellFingerprint!")
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return IsNoPlusUpsellFingerprint.toErrorResult()
+        } ?: throw IsNoPlusUpsellFingerprint.exception
 
         IsNoXtraUpsellFingerprint.result?.let { result ->
             println("Found IsNoXtraUpsellFingerprint!")
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return IsNoXtraUpsellFingerprint.toErrorResult()
+        } ?: throw IsNoXtraUpsellFingerprint.exception
 
         IsPlusFingerprint.result?.let { result ->
             println("Found IsPlusFingerprint!")
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return IsPlusFingerprint.toErrorResult()
+        } ?: throw IsPlusFingerprint.exception
 
         IsUnlimitedFingerprint.result?.let { result ->
             println("Found IsUnlimitedFingerprint!")
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return IsUnlimitedFingerprint.toErrorResult()
+        } ?: throw IsUnlimitedFingerprint.exception
 
         IsXtraFingerprint.result?.let { result ->
             println("Found IsXtraFingerprint!")
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return IsXtraFingerprint.toErrorResult()
+        } ?: throw IsXtraFingerprint.exception
 
         //this must always be true
         InnaccessibleProfileManagerbFingerprint.result?.let { result ->
@@ -108,17 +110,14 @@ class UnlockUnlimitedPatch : BytecodePatch(
             result.mutableMethod.apply {
                 replaceInstructions(0, _true)
             }
-        } ?: return InnaccessibleProfileManagerbFingerprint.toErrorResult()
+        } ?: throw InnaccessibleProfileManagerbFingerprint.exception
 
         //this must always be false (the opposite of InnaccessibleProfileManagerbFingerprint)
         InnaccessibleProfileManagerdFingerprint.result?.let { result ->
             println("Found InnaccessibleProfileManagerdFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(0, _false)
+                replaceInstructions(2, _false)
             }
-        } ?: return InnaccessibleProfileManagerdFingerprint.toErrorResult()
-
-        
-        return PatchResultSuccess()
+        } ?: throw InnaccessibleProfileManagerdFingerprint.exception
     }
 }

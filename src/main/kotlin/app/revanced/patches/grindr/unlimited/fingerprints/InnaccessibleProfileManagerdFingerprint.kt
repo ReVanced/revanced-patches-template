@@ -6,8 +6,10 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object IsFreeFingerprint : MethodFingerprint(
+//d
+
+object InnaccessibleProfileManagerdFingerprint : MethodFingerprint(
     customFingerprint = { methodDef, _ ->
-        methodDef.name == "r" && methodDef.definingClass.endsWith("storage/s0;")
+        methodDef.name == "d" && methodDef.definingClass.contains("InaccessibleProfileManager")
     }
 )
