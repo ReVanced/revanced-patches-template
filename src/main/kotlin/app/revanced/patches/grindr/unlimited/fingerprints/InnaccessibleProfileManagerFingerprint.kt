@@ -6,10 +6,10 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-//A
+//b
 
 @FuzzyPatternScanMethod(2)
-object InnaccessibleProfileFingerprint : MethodFingerprint(
+object InnaccessibleProfileManagerbFingerprint : MethodFingerprint(
     "Z",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
@@ -27,4 +27,19 @@ object InnaccessibleProfileFingerprint : MethodFingerprint(
         Opcode.CONST_4,
         Opcode.RETURN
     ),
+)
+
+@FuzzyPatternScanMethod(2)
+object InnaccessibleProfileManagerdFingerprint : MethodFingerprint(
+    "Z",
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
+    opcodes = listOf(
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT,
+        Opcode.XOR_INT_LIT8,
+        Opcode.RETURN,
+    ),
+    customFingerprint = { methodDef, _ ->
+        methodDef.name.contains("d")
+    }
 )
