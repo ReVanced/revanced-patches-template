@@ -32,7 +32,8 @@ class UnlockUnlimitedPatch : BytecodePatch(
         IsNoXtraUpsellFingerprint,
         IsPlusFingerprint,
         IsUnlimitedFingerprint,
-        IsXtraFingerprint
+        IsXtraFingerprint,
+        InnaccessibleProfileFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
@@ -100,6 +101,14 @@ class UnlockUnlimitedPatch : BytecodePatch(
             }
         } ?: return IsXtraFingerprint.toErrorResult()
 
+        InnaccessibleProfileFingerprint.result?.let { result ->
+            println("Found InnaccessibleProfileFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
+        } ?: return InnaccessibleProfileFingerprint.toErrorResult()
+
+        
         return PatchResultSuccess()
     }
 }
