@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.microg
+package app.revanced.patches.grindr
 
 internal object Constants {
     const val REVANCED_APP_NAME = "grindrReVanced"

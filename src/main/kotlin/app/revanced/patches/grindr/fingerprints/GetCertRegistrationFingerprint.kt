@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.microg.fingerprints
+package app.revanced.patches.grindr.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
