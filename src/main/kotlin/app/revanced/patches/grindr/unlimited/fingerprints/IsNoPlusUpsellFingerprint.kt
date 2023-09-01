@@ -6,17 +6,26 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object IsFreeFingerprint : MethodFingerprint(
+//A
+
+@FuzzyPatternScanMethod(2)
+object IsNoPlusUpsellFingerprint : MethodFingerprint(
     "Z",
     accessFlags = AccessFlags.PUBLIC.value,
     opcodes = listOf(
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_INTERFACE,
+        Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT,
+        Opcode.IF_NEZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT,
+        Opcode.IF_NEZ,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.MOVE_RESULT,
+        Opcode.IF_EQZ,
+        Opcode.GOTO,
+        Opcode.CONST_4,
+        Opcode.GOTO,
+        Opcode.CONST_4,
         Opcode.RETURN
     ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("r")
-    }
-    
 )

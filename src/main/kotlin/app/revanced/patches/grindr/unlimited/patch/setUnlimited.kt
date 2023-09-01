@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patcher.patch.PatchResultSuccess
 import app.revanced.patches.grindr.unlimited.annotations.UnlockUnlimitedCompatibility
-import app.revanced.patches.grindr.unlimited.fingerprints.IsUnlimitedFingerprint
+import app.revanced.patches.grindr.unlimited.fingerprints.*
 import org.jf.dexlib2.iface.instruction.OneRegisterInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
@@ -25,25 +25,80 @@ import app.revanced.patches.grindr.patch.bytecode.FirebaseGetCertPatch
 @UnlockUnlimitedCompatibility
 @DependsOn([FirebaseGetCertPatch::class])
 class UnlockUnlimitedPatch : BytecodePatch(
-    listOf(IsUnlimitedFingerprint)
+    listOf(
+        HasFeatureFingerprint,
+        IsFreeFingerprint,
+        IsNoPlusUpsellFingerprint,
+        IsNoXtraUpsellFingerprint,
+        IsPlusFingerprint,
+        IsUnlimitedFingerprint,
+        IsXtraFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext): PatchResult {
-        println("Unlocking unlimited features...")
-        IsUnlimitedFingerprint.result?.let { result ->
-            println("Found fingerprint!")
 
+        val _true = """
+            const/4 v0, 0x1
+            return v0
+        """.trimIndent()
+
+        val _false = """
+            const/4 v0, 0x0
+            return v0
+        """.trimIndent()
+
+        /*
+            Based on: https://github.com/ElJaviLuki/GrindrPlus
+         */
+
+        HasFeatureFingerprint.result?.let { result ->
+            println("Found HasFeatureFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(
-                    0,
-                    """
-                        const/4 v0, 0x1
-                        return v0                    
-                    """
-                )
+                replaceInstructions(0, _true)
             }
-            
+        } ?: return HasFeatureFingerprint.toErrorResult()
 
+        IsFreeFingerprint.result?.let { result ->
+            println("Found IsFreeFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _false)
+            }
+        } ?: return IsFreeFingerprint.toErrorResult()
+
+        IsNoPlusUpsellFingerprint.result?.let { result ->
+            println("Found IsNoPlusUpsellFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
+        } ?: return IsNoPlusUpsellFingerprint.toErrorResult()
+
+        IsNoXtraUpsellFingerprint.result?.let { result ->
+            println("Found IsNoXtraUpsellFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
+        } ?: return IsNoXtraUpsellFingerprint.toErrorResult()
+
+        IsPlusFingerprint.result?.let { result ->
+            println("Found IsPlusFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
+        } ?: return IsPlusFingerprint.toErrorResult()
+
+        IsUnlimitedFingerprint.result?.let { result ->
+            println("Found IsUnlimitedFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
         } ?: return IsUnlimitedFingerprint.toErrorResult()
+
+        IsXtraFingerprint.result?.let { result ->
+            println("Found IsXtraFingerprint!")
+            result.mutableMethod.apply {
+                replaceInstructions(0, _true)
+            }
+        } ?: return IsXtraFingerprint.toErrorResult()
 
         return PatchResultSuccess()
     }

@@ -6,17 +6,13 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import org.jf.dexlib2.AccessFlags
 import org.jf.dexlib2.Opcode
 
-object IsFreeFingerprint : MethodFingerprint(
+//a
+
+@FuzzyPatternScanMethod(2)
+object HasFeatureFingerprint : MethodFingerprint(
     "Z",
-    accessFlags = AccessFlags.PUBLIC.value,
-    opcodes = listOf(
-        Opcode.IGET_OBJECT,
-        Opcode.INVOKE_INTERFACE,
-        Opcode.MOVE_RESULT,
-        Opcode.RETURN
-    ),
+    parameters = listOf("Lcom/grindrapp/android/model/Feature;"),
     customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("r")
+        methodDef.name.contains("a")
     }
-    
 )

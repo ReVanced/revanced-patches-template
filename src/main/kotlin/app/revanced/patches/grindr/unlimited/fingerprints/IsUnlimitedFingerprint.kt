@@ -8,13 +8,23 @@ import org.jf.dexlib2.Opcode
 
 object IsUnlimitedFingerprint : MethodFingerprint(
     "Z",
+    accessFlags = AccessFlags.PUBLIC.value,
     opcodes = listOf(
-        Opcode.INVOKE_DIRECT,
+        Opcode.IGET_OBJECT,
+        Opcode.CHECK_CAST,
+        Opcode.CONST_4,
+        Opcode.NEW_ARRAY,
+        Opcode.CONST_4,
+        Opcode.SGET_OBJECT,
+        Opcode.APUT_OBJECT,
+        Opcode.CONST_4,
+        Opcode.SGET_OBJECT,
+        Opcode.APUT_OBJECT,
+        Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT,
         Opcode.RETURN
     ),
     customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("isUnlimited")
+        methodDef.name.contains("x")
     }
-    
 )
