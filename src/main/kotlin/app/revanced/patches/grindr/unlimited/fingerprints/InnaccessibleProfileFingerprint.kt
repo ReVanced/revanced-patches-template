@@ -11,7 +11,7 @@ import org.jf.dexlib2.Opcode
 @FuzzyPatternScanMethod(2)
 object InnaccessibleProfileFingerprint : MethodFingerprint(
     "Z",
-    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_VIRTUAL,
