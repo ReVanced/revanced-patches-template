@@ -8,7 +8,6 @@ import com.android.tools.smali.dexlib2.Opcode
 
 //A
 
-@FuzzyPatternScanMethod(2)
 object IsNoPlusUpsellFingerprint : MethodFingerprint(
     "Z",
     accessFlags = AccessFlags.PUBLIC.value,

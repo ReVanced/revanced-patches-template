@@ -64,7 +64,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
             println("Found IsFreeFingerprint!")
             result.mutableMethod.apply {
                 addInstruction(3, """
-                    xor-int/lit8 v0, v0, 0x1
+                    const/4 v0, 0x0
                 """.trimIndent())
             }
         } ?: throw IsFreeFingerprint.exception
@@ -86,7 +86,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
         IsPlusFingerprint.result?.let { result ->
             println("Found IsPlusFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(0, _true)
+                replaceInstructions(0, _false)
             }
         } ?: throw IsPlusFingerprint.exception
 
@@ -100,7 +100,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
         IsXtraFingerprint.result?.let { result ->
             println("Found IsXtraFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(0, _true)
+                replaceInstructions(0, _false)
             }
         } ?: throw IsXtraFingerprint.exception
 
@@ -116,7 +116,9 @@ class UnlockUnlimitedPatch : BytecodePatch(
         InnaccessibleProfileManagerdFingerprint.result?.let { result ->
             println("Found InnaccessibleProfileManagerdFingerprint!")
             result.mutableMethod.apply {
-                replaceInstructions(2, _false)
+                addInstruction(3, """
+                    const/4 v0, 0x0
+                """.trimIndent())
             }
         } ?: throw InnaccessibleProfileManagerdFingerprint.exception
     }

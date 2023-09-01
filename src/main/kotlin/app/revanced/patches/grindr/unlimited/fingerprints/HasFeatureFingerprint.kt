@@ -8,7 +8,6 @@ import com.android.tools.smali.dexlib2.Opcode
 
 //a
 
-@FuzzyPatternScanMethod(2)
 object HasFeatureFingerprint : MethodFingerprint(
     "Z",
     parameters = listOf("Lcom/grindrapp/android/model/Feature;"),
