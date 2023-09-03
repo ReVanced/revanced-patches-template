@@ -59,30 +59,30 @@ class UnlockUnlimitedPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
 
-        val _true = """
+        val TRUE_BYTECODE = """
             const/4 v0, 0x1
             return v0
         """.trimIndent()
 
-        val _false = """
+        val FALSE_BYTECODE = """
             const/4 v0, 0x0
             return v0
         """.trimIndent()
 
         /*
             Based on: https://github.com/ElJaviLuki/GrindrPlus
-         */
+        */
 
         val features = arrayOf(
-            Feature(HasFeatureFingerprint, _true),
-            Feature(IsFreeFingerprint, _false),
-            Feature(IsNoPlusUpsellFingerprint, _true),
-            Feature(IsNoXtraUpsellFingerprint, _true),
-            Feature(IsPlusFingerprint, _false),
-            Feature(IsUnlimitedFingerprint, _true),
-            Feature(IsXtraFingerprint, _false),
-            Feature(InnaccessibleProfileManagerbFingerprint, _true),
-            Feature(InnaccessibleProfileManagerdFingerprint, _false)
+            Feature(HasFeatureFingerprint, TRUE_BYTECODE),
+            Feature(IsFreeFingerprint, FALSE_BYTECODE),
+            Feature(IsNoPlusUpsellFingerprint, TRUE_BYTECODE),
+            Feature(IsNoXtraUpsellFingerprint, TRUE_BYTECODE),
+            Feature(IsPlusFingerprint, FALSE_BYTECODE),
+            Feature(IsUnlimitedFingerprint, TRUE_BYTECODE),
+            Feature(IsXtraFingerprint, FALSE_BYTECODE),
+            Feature(InnaccessibleProfileManagerbFingerprint, TRUE_BYTECODE),
+            Feature(InnaccessibleProfileManagerdFingerprint, FALSE_BYTECODE)
         )
 
         for (feature in features) {
