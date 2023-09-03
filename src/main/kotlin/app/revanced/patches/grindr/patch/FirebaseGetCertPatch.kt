@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.patch.bytecode
+package app.revanced.patches.grindr.patch
 
 import app.revanced.patcher.patch.annotations.DependsOn
 
