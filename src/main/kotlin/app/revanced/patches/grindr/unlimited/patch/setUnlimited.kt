@@ -6,16 +6,20 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.extensions.exception
 
+
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patches.grindr.unlimited.annotations.UnlockUnlimitedCompatibility
+import app.revanced.patches.grindr.annotations.GrindrPatchCompatibility
+
 import app.revanced.patches.grindr.unlimited.fingerprints.*
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
 import app.revanced.patches.grindr.patch.bytecode.FirebaseGetCertPatch
 
@@ -24,6 +28,8 @@ import app.revanced.patches.grindr.patch.bytecode.FirebaseGetCertPatch
 @Description("Unlocks unlimited features.")
 @UnlockUnlimitedCompatibility
 @DependsOn([FirebaseGetCertPatch::class])
+@GrindrPatchCompatibility
+
 class UnlockUnlimitedPatch : BytecodePatch(
     listOf(
         HasFeatureFingerprint,
@@ -37,6 +43,20 @@ class UnlockUnlimitedPatch : BytecodePatch(
         InnaccessibleProfileManagerdFingerprint
     )
 ) {
+
+    class Feature(val feature: MethodFingerprint, val bytecode: String, val offset: Int = 0) {
+
+        fun execute(context: BytecodeContext) {
+            feature.result?.let { result ->
+                result.mutableMethod.apply {
+                    replaceInstructions(offset, bytecode)
+                }
+            } ?: throw feature.exception
+        }
+
+    }
+
+
     override fun execute(context: BytecodeContext) {
 
         val _true = """
@@ -53,73 +73,21 @@ class UnlockUnlimitedPatch : BytecodePatch(
             Based on: https://github.com/ElJaviLuki/GrindrPlus
          */
 
-        HasFeatureFingerprint.result?.let { result ->
-            println("Found HasFeatureFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _true)
-            }
-        } ?: throw HasFeatureFingerprint.exception
+        val features = arrayOf(
+            Feature(HasFeatureFingerprint, _true),
+            Feature(IsFreeFingerprint, _false),
+            Feature(IsNoPlusUpsellFingerprint, _true),
+            Feature(IsNoXtraUpsellFingerprint, _true),
+            Feature(IsPlusFingerprint, _false),
+            Feature(IsUnlimitedFingerprint, _true),
+            Feature(IsXtraFingerprint, _false),
+            Feature(InnaccessibleProfileManagerbFingerprint, _true),
+            Feature(InnaccessibleProfileManagerdFingerprint, _false)
+        )
 
-        IsFreeFingerprint.result?.let { result ->
-            println("Found IsFreeFingerprint!")
-            result.mutableMethod.apply {
-                addInstruction(3, """
-                    const/4 v0, 0x0
-                """.trimIndent())
-            }
-        } ?: throw IsFreeFingerprint.exception
-
-        IsNoPlusUpsellFingerprint.result?.let { result ->
-            println("Found IsNoPlusUpsellFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _true)
-            }
-        } ?: throw IsNoPlusUpsellFingerprint.exception
-
-        IsNoXtraUpsellFingerprint.result?.let { result ->
-            println("Found IsNoXtraUpsellFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _true)
-            }
-        } ?: throw IsNoXtraUpsellFingerprint.exception
-
-        IsPlusFingerprint.result?.let { result ->
-            println("Found IsPlusFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _false)
-            }
-        } ?: throw IsPlusFingerprint.exception
-
-        IsUnlimitedFingerprint.result?.let { result ->
-            println("Found IsUnlimitedFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _true)
-            }
-        } ?: throw IsUnlimitedFingerprint.exception
-
-        IsXtraFingerprint.result?.let { result ->
-            println("Found IsXtraFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _false)
-            }
-        } ?: throw IsXtraFingerprint.exception
-
-        //this must always be true
-        InnaccessibleProfileManagerbFingerprint.result?.let { result ->
-            println("Found InnaccessibleProfileManagerbFingerprint!")
-            result.mutableMethod.apply {
-                replaceInstructions(0, _true)
-            }
-        } ?: throw InnaccessibleProfileManagerbFingerprint.exception
-
-        //this must always be false (the opposite of InnaccessibleProfileManagerbFingerprint)
-        InnaccessibleProfileManagerdFingerprint.result?.let { result ->
-            println("Found InnaccessibleProfileManagerdFingerprint!")
-            result.mutableMethod.apply {
-                addInstruction(3, """
-                    const/4 v0, 0x0
-                """.trimIndent())
-            }
-        } ?: throw InnaccessibleProfileManagerdFingerprint.exception
+        for (feature in features) {
+            feature.execute(context)
+        }
     }
+    
 }

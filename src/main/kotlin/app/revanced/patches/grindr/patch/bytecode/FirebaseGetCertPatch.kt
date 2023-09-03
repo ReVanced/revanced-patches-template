@@ -1,9 +1,6 @@
 package app.revanced.patches.grindr.patch.bytecode
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -12,13 +9,6 @@ import app.revanced.patcher.patch.PatchResult
 import app.revanced.patches.grindr.fingerprints.GetMessagingCertFingerprint
 import app.revanced.patches.grindr.fingerprints.GetReqistrationCertFingerprint
 import app.revanced.patches.grindr.Constants.SPOOFED_PACKAGE_SIGNATURE
-
-import app.revanced.patches.grindr.annotations.GrindrPatchCompatibility
-
-@Patch
-@Name("Firebase patch")
-@Description("Allows Grindr to run after being modified by ReVanced.")
-@GrindrPatchCompatibility
 
 class FirebaseGetCertPatch : BytecodePatch(
     listOf(
