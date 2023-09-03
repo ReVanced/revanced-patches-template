@@ -21,7 +21,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
-import app.revanced.patches.grindr.patch.bytecode.FirebaseGetCertPatch
+import app.revanced.patches.grindr.patch.FirebaseGetCertPatch
 
 @Patch
 @Name("Unlock unlimited")
