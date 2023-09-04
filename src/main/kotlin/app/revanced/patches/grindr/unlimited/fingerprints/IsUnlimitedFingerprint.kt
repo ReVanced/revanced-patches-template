@@ -25,6 +25,6 @@ object IsUnlimitedFingerprint : MethodFingerprint(
         Opcode.RETURN
     ),
     customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("x")
+        methodDef.name == "x"
     }
 )

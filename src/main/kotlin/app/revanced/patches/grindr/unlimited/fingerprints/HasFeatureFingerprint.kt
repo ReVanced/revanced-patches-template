@@ -6,12 +6,21 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-//a
-
 object HasFeatureFingerprint : MethodFingerprint(
     "Z",
     parameters = listOf("Lcom/grindrapp/android/model/Feature;"),
-    customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("a")
-    }
+    opcodes = listOf(
+        Opcode.CONST_STRING,
+        Opcode.INVOKE_STATIC,
+        Opcode.INVOKE_STATIC,
+        Opcode.MOVE_RESULT,
+        Opcode.CONST_4,
+        Opcode.IF_LEZ,
+        Opcode.IGET_OBJECT,
+        Opcode.NEW_INSTANCE,
+        Opcode.INVOKE_DIRECT,
+        Opcode.CONST_STRING,
+        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL
+    ),
 )

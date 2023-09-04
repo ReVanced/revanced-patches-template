@@ -20,8 +20,5 @@ object IsNoXtraUpsellFingerprint : MethodFingerprint(
         Opcode.GOTO,
         Opcode.CONST_4,
         Opcode.RETURN
-    ),
-    customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("h")
-    }
+    )
 )

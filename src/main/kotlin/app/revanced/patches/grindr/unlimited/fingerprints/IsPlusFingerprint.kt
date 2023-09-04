@@ -25,6 +25,6 @@ object IsPlusFingerprint : MethodFingerprint(
         Opcode.RETURN
     ),
     customFingerprint = { methodDef, _ ->
-        methodDef.name.contains("y")
+        methodDef.name == "y"
     }
 )

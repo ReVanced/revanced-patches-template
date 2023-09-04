@@ -6,8 +6,6 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-//b
-
 @FuzzyPatternScanMethod(2)
 object InnaccessibleProfileManagerbFingerprint : MethodFingerprint(
     "Z",

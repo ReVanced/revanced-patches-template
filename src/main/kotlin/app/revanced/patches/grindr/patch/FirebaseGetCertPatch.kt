@@ -7,12 +7,12 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patches.grindr.fingerprints.GetMessagingCertFingerprint
-import app.revanced.patches.grindr.fingerprints.GetReqistrationCertFingerprint
+import app.revanced.patches.grindr.fingerprints.GetRegistrationCertFingerprint
 import app.revanced.patches.grindr.Constants.SPOOFED_PACKAGE_SIGNATURE
 
 class FirebaseGetCertPatch : BytecodePatch(
     listOf(
-        GetReqistrationCertFingerprint,
+        GetRegistrationCertFingerprint,
         GetMessagingCertFingerprint
     )
 ) {
@@ -24,7 +24,7 @@ class FirebaseGetCertPatch : BytecodePatch(
                 return-object v0
             """
 
-        val registrationCertMethod = GetReqistrationCertFingerprint.result!!.mutableMethod
+        val registrationCertMethod = GetRegistrationCertFingerprint.result!!.mutableMethod
         val messagingCertMethod = GetMessagingCertFingerprint.result!!.mutableMethod
 
         registrationCertMethod.addInstructions(
