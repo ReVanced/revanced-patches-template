@@ -11,7 +11,6 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
 import app.revanced.patches.grindr.unlimited.annotations.UnlockUnlimitedCompatibility
-import app.revanced.patches.grindr.annotations.GrindrPatchCompatibility
 
 import app.revanced.patches.grindr.unlimited.fingerprints.*
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -28,7 +27,6 @@ import app.revanced.patches.grindr.patch.FirebaseGetCertPatch
 @Description("Unlocks unlimited features.")
 @UnlockUnlimitedCompatibility
 @DependsOn([FirebaseGetCertPatch::class])
-@GrindrPatchCompatibility
 
 class UnlockUnlimitedPatch : BytecodePatch(
     listOf(
