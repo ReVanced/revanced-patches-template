@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.fingerprints
+package app.revanced.patches.grindr.firebase.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 

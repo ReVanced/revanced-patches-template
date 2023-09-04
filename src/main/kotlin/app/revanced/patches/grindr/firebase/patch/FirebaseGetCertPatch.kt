@@ -1,4 +1,4 @@
-package app.revanced.patches.grindr.patch
+package app.revanced.patches.grindr.firebase.patch
 
 import app.revanced.patcher.patch.annotations.DependsOn
 
@@ -6,8 +6,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchResult
-import app.revanced.patches.grindr.fingerprints.GetMessagingCertFingerprint
-import app.revanced.patches.grindr.fingerprints.GetRegistrationCertFingerprint
+import app.revanced.patches.grindr.firebase.fingerprints.GetMessagingCertFingerprint
+import app.revanced.patches.grindr.firebase.fingerprints.GetRegistrationCertFingerprint
 import app.revanced.patches.grindr.Constants.SPOOFED_PACKAGE_SIGNATURE
 
 class FirebaseGetCertPatch : BytecodePatch(

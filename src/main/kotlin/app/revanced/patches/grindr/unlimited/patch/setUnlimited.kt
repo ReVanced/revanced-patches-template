@@ -19,72 +19,82 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 
-import app.revanced.patches.grindr.patch.FirebaseGetCertPatch
+import app.revanced.patches.grindr.firebase.patch.FirebaseGetCertPatch
 
 @Patch
 @Name("Unlock unlimited")
 @Description("Unlocks unlimited features.")
 @UnlockUnlimitedCompatibility
 @DependsOn([FirebaseGetCertPatch::class])
-
 class UnlockUnlimitedPatch : BytecodePatch(
     listOf(
         HasFeatureFingerprint,
         IsFreeFingerprint,
         IsNoPlusUpsellFingerprint,
         IsNoXtraUpsellFingerprint,
-        IsPlusFingerprint,
-        IsUnlimitedFingerprint,
-        IsXtraFingerprint,
         InnaccessibleProfileManagerbFingerprint,
         InnaccessibleProfileManagerdFingerprint
     )
 ) {
 
-    class Feature(val feature: MethodFingerprint, val bytecode: String, val offset: Int = 0) {
+    interface BytecodePatchable {
+        fun execute(context: BytecodeContext)
+    }
 
-        fun execute(context: BytecodeContext) {
-            feature.result?.let { result ->
+    class Patch(val target: MethodFingerprint, val bytecode: String, val offset: Int = 0) : BytecodePatchable {
+        override fun execute(context: BytecodeContext) {
+            target.result?.let { result ->
                 result.mutableMethod.apply {
                     replaceInstructions(offset, bytecode)
                 }
-            } ?: throw feature.exception
+            } ?: throw target.exception
         }
-
     }
 
+    class PatchMutableMethod(val target: MutableMethod, val bytecode: String, val offset: Int = 0 ) : BytecodePatchable {
+        override fun execute(context: BytecodeContext) {
+            target.apply {
+                replaceInstructions(offset, bytecode)
+            }
+        }
+    }
 
     override fun execute(context: BytecodeContext) {
 
-        val TRUE_BYTECODE = """
+        val trueBytecode = """
             const/4 v0, 0x1
             return v0
-        """.trimIndent()
+        """
 
-        val FALSE_BYTECODE = """
+        val falseBytecode = """
             const/4 v0, 0x0
             return v0
-        """.trimIndent()
+        """
+
+        val IsPlus = context.toMethodWalker(IsNoPlusUpsellFingerprint.result!!.method).nextMethod(0, true).getMethod() as MutableMethod
+        val IsXtra = context.toMethodWalker(IsNoPlusUpsellFingerprint.result!!.method).nextMethod(3, true).getMethod() as MutableMethod
+        val IsUnlimited = context.toMethodWalker(IsNoPlusUpsellFingerprint.result!!.method).nextMethod(6, true).getMethod() as MutableMethod
 
         /*
             Based on: https://github.com/ElJaviLuki/GrindrPlus
         */
 
-        val features = arrayOf(
-            Feature(HasFeatureFingerprint, TRUE_BYTECODE),
-            Feature(IsFreeFingerprint, FALSE_BYTECODE),
-            Feature(IsNoPlusUpsellFingerprint, TRUE_BYTECODE),
-            Feature(IsNoXtraUpsellFingerprint, TRUE_BYTECODE),
-            Feature(IsPlusFingerprint, FALSE_BYTECODE),
-            Feature(IsUnlimitedFingerprint, TRUE_BYTECODE),
-            Feature(IsXtraFingerprint, FALSE_BYTECODE),
-            Feature(InnaccessibleProfileManagerbFingerprint, TRUE_BYTECODE),
-            Feature(InnaccessibleProfileManagerdFingerprint, FALSE_BYTECODE)
+        val patches = arrayOf(
+            Patch(HasFeatureFingerprint, trueBytecode),
+            Patch(IsFreeFingerprint, falseBytecode),
+            Patch(IsNoPlusUpsellFingerprint, trueBytecode),
+            Patch(IsNoXtraUpsellFingerprint, trueBytecode),
+            PatchMutableMethod(IsPlus, falseBytecode),
+            PatchMutableMethod(IsUnlimited, trueBytecode),
+            PatchMutableMethod(IsXtra, falseBytecode),
+            Patch(InnaccessibleProfileManagerbFingerprint, trueBytecode),
+            Patch(InnaccessibleProfileManagerdFingerprint, falseBytecode)
         )
 
-        for (feature in features) {
-            feature.execute(context)
+        for (patch in patches) {
+            patch.execute(context)
         }
     }
     
