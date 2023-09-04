@@ -16,6 +16,6 @@ object IsFreeFingerprint : MethodFingerprint(
         Opcode.RETURN
     ),
     customFingerprint = { methodDef, _ ->
-        methodDef.name == "r" && methodDef.definingClass.contains("storage")
+        methodDef.definingClass.contains("storage")
     }
 )
