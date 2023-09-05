@@ -6,16 +6,16 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import app.revanced.patches.youtube.misc.translations.annotation.YouTubeTranslationCompatibility
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.translations.annotation.TranslationCompatibility
 import app.revanced.util.resources.ResourceUtils
 
 //@Patch // TODO: release this after translations are usable
 @Name("Translations")
 @Description("Adds translations to ReVanced.")
-@YouTubeTranslationCompatibility
-@DependsOn([YouTubeSettingsPatch::class])
-class YouTubeTranslationResourcePatch : ResourcePatch {
+@TranslationCompatibility
+@DependsOn([SettingsPatch::class])
+class TranslationResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext) {
         // Look in the jar file and find the paths of the translation string files.

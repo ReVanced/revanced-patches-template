@@ -16,12 +16,12 @@ import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.ShortsS
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch.Companion.lithoColorOverrideHook
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Description("Hide or set a custom seekbar color")
-@DependsOn([YouTubeIntegrationsPatch::class, LithoColorHookPatch::class, SeekbarColorResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, LithoColorHookPatch::class, SeekbarColorResourcePatch::class])
 @SeekbarColorCompatibility
 class SeekbarColorBytecodePatch : BytecodePatch(
     listOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)

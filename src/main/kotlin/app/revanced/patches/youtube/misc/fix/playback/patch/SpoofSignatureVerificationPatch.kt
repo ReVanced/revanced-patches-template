@@ -15,17 +15,17 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParam
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPreviewLayoutFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("Spoof signature verification")
 @Description("Spoofs the client to prevent playback issues.")
 @DependsOn([
     SpoofSignatureVerificationResourcePatch::class,
-    YouTubeIntegrationsPatch::class,
-    YouTubeSettingsPatch::class,
+    IntegrationsPatch::class,
+    SettingsPatch::class,
     PlayerTypeHookPatch::class,
 ])
 class SpoofSignatureVerificationPatch : BytecodePatch(

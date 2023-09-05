@@ -14,13 +14,13 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([
-    YouTubeIntegrationsPatch::class,
-    YouTubeSettingsPatch::class,
+    IntegrationsPatch::class,
+    SettingsPatch::class,
     // Does not alter the behavior of the seek bar by default.
     SeekbarColorBytecodePatch::class,
     // Used to add preferences to the seekbar settings menu.

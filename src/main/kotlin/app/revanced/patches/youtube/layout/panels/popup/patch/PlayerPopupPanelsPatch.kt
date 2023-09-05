@@ -11,11 +11,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.panels.popup.annotations.PlayerPopupPanelsCompatibility
 import app.revanced.patches.youtube.layout.panels.popup.fingerprints.EngagementPanelControllerFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Disable player popup panels")
 @Description("Disables panels from appearing automatically when going into fullscreen (playlist or live chat).")
 @PlayerPopupPanelsCompatibility
@@ -25,7 +25,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_popup_panels",
                 "revanced_hide_player_popup_panels_title",

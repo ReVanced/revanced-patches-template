@@ -14,11 +14,11 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.searchbar.annotations.WideSearchbarCompatibility
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.SetWordmarkHeaderFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Wide searchbar")
 @Description("Replaces the search icon with a wide search bar. This will hide the YouTube logo when active.")
 @WideSearchbarCompatibility
@@ -28,7 +28,7 @@ class WideSearchbarPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_wide_searchbar",
                 "revanced_wide_searchbar_enabled_title",

@@ -14,11 +14,11 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.watermark.annotations.HideWatermarkCompatibility
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkFingerprint
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Hide watermark")
 @Description("Hides creator's watermarks on videos.")
 @HideWatermarkCompatibility
@@ -28,7 +28,7 @@ class HideWatermarkPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_watermark",
                 "revanced_hide_video_watermark_title",

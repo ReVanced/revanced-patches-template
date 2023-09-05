@@ -13,18 +13,18 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.tablet.annotations.EnableTabletLayoutCompatibility
 import app.revanced.patches.youtube.layout.tablet.fingerprints.GetFormFactorFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Enable tablet layout")
 @Description("Spoofs the device form factor to a tablet which enables the tablet layout.")
 @EnableTabletLayoutCompatibility
 class EnableTabletLayoutPatch : BytecodePatch(listOf(GetFormFactorFingerprint)) {
 
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_layout",
                 "revanced_tablet_layout_enabled_title",

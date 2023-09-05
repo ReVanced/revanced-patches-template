@@ -1,13 +1,13 @@
-package app.revanced.patches.twitch.misc.integrations.patch
+package app.revanced.patches.tiktok.misc.integrations.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch
-import app.revanced.patches.twitch.misc.integrations.fingerprints.InitFingerprint
+import app.revanced.patches.tiktok.misc.integrations.fingerprints.InitFingerprint
 
 @Name("Integrations")
 @RequiresIntegrations
-class TwitchIntegrationsPatch : AbstractIntegrationsPatch(
-    "Lapp/revanced/twitch/utils/ReVancedTwitchUtils;",
+class IntegrationsPatch : AbstractIntegrationsPatch(
+    "Lapp/revanced/tiktok/utils/TikTokUtils;",
     listOf(InitFingerprint)
 )

@@ -12,11 +12,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.crowdfundingbox.annotations.CrowdfundingBoxCompatibility
 import app.revanced.patches.youtube.layout.hide.crowdfundingbox.bytecode.fingerprints.CrowdfundingBoxFingerprint
 import app.revanced.patches.youtube.layout.hide.crowdfundingbox.resource.patch.CrowdfundingBoxResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, CrowdfundingBoxResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, CrowdfundingBoxResourcePatch::class])
 @Name("Hide crowdfunding box")
 @Description("Hides the crowdfunding box between the player and video description.")
 @CrowdfundingBoxCompatibility

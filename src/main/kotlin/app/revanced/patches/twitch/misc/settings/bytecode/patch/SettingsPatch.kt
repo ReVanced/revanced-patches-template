@@ -17,22 +17,22 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch.Companion.addPreference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
-import app.revanced.patches.twitch.misc.settings.annotations.TwitchSettingsCompatibility
+import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsUpdatedFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsActivityOnCreateFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEnumFingerprint
-import app.revanced.patches.twitch.misc.settings.resource.patch.TwitchSettingsResourcePatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import java.io.Closeable
 
 @Patch
-@DependsOn([TwitchSettingsResourcePatch::class])
+@DependsOn([SettingsResourcePatch::class])
 @Name("Settings")
 @Description("Adds settings menu to Twitch.")
-@TwitchSettingsCompatibility
-class TwitchSettingsPatch : BytecodePatch(
+@SettingsCompatibility
+class SettingsPatch : BytecodePatch(
     listOf(
         SettingsActivityOnCreateFingerprint,
         SettingsMenuItemEnumFingerprint,

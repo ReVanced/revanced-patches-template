@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.misc.integrations.fingerprints.StandalonePla
 
 @Name("Integrations")
 @RequiresIntegrations
-class YouTubeIntegrationsPatch : AbstractIntegrationsPatch(
+class IntegrationsPatch : AbstractIntegrationsPatch(
     "Lapp/revanced/integrations/utils/ReVancedUtils;",
     listOf(
         ApplicationInitFingerprint,

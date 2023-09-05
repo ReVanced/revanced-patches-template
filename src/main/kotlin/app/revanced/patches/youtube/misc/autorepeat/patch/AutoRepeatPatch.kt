@@ -14,11 +14,11 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.autorepeat.annotations.AutoRepeatCompatibility
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class])
 @Name("Always autorepeat")
 @Description("Always repeats the playing video again.")
 @AutoRepeatCompatibility
@@ -28,7 +28,7 @@ class AutoRepeatPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_auto_repeat",
                 "revanced_auto_repeat_title",

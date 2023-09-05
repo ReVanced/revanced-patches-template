@@ -16,16 +16,16 @@ import app.revanced.patches.youtube.layout.buttons.navigation.annotations.Naviga
 import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
 @DependsOn(
     [
-        YouTubeIntegrationsPatch::class,
-        YouTubeSettingsPatch::class,
+        IntegrationsPatch::class,
+        SettingsPatch::class,
         ResolvePivotBarFingerprintsPatch::class,
     ]
 )
@@ -34,7 +34,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @NavigationButtonsCompatibility
 class NavigationButtonsPatch : BytecodePatch(listOf(AddCreateButtonViewFingerprint)) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",
                 "revanced_navigation_buttons_preference_screen_title",

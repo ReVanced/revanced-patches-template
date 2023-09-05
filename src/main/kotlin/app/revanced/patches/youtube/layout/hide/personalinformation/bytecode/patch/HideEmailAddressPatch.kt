@@ -12,11 +12,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.personalinformation.annotations.HideEmailAddressCompatibility
 import app.revanced.patches.youtube.layout.hide.personalinformation.bytecode.fingerprints.AccountSwitcherAccessibilityLabelFingerprint
 import app.revanced.patches.youtube.layout.hide.personalinformation.resource.patch.HideEmailAddressResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, HideEmailAddressResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, HideEmailAddressResourcePatch::class])
 @Name("Hide email address")
 @Description("Hides the email address in the account switcher.")
 @HideEmailAddressCompatibility

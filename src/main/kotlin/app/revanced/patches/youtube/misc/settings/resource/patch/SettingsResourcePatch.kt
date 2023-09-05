@@ -7,7 +7,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
@@ -15,7 +15,7 @@ import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 @DependsOn([ResourceMappingPatch::class])
-class YouTubeSettingsResourcePatch : AbstractSettingsResourcePatch(
+class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "youtube/settings"
 ) {
@@ -67,15 +67,15 @@ class YouTubeSettingsResourcePatch : AbstractSettingsResourcePatch(
 
 
         // Add the ReVanced settings to the YouTube settings
-        YouTubeSettingsPatch.addPreference(
+        SettingsPatch.addPreference(
             Preference(
                 "revanced_settings_title",
                 "revanced_settings_summary",
-                YouTubeSettingsPatch.createReVancedSettingsIntent("revanced_settings_intent")
+                SettingsPatch.createReVancedSettingsIntent("revanced_settings_intent")
             )
         )
 
-        YouTubeSettingsPatch.PreferenceScreen.MISC.addPreferences(
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
             TextPreference(
                 key = null,
                 titleKey = "revanced_pref_import_export_title",

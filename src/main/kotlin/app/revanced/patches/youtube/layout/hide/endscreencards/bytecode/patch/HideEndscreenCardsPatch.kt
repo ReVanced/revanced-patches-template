@@ -15,11 +15,11 @@ import app.revanced.patches.youtube.layout.hide.endscreencards.bytecode.fingerpr
 import app.revanced.patches.youtube.layout.hide.endscreencards.bytecode.fingerprints.LayoutIconFingerprint
 import app.revanced.patches.youtube.layout.hide.endscreencards.bytecode.fingerprints.LayoutVideoFingerprint
 import app.revanced.patches.youtube.layout.hide.endscreencards.resource.patch.HideEndscreenCardsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, HideEndscreenCardsResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, HideEndscreenCardsResourcePatch::class])
 @Name("Hide endscreen cards")
 @Description("Hides the suggested video cards at the end of a video in fullscreen.")
 @HideEndscreenCardsCompatibility

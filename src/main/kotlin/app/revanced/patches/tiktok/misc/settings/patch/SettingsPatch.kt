@@ -11,19 +11,19 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
-import app.revanced.patches.tiktok.misc.settings.annotations.TikTokSettingsCompatibility
+import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.tiktok.misc.settings.fingerprints.*
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 
 @Patch
-@DependsOn([TikTokIntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class])
 @Name("Settings")
 @Description("Adds ReVanced settings to TikTok.")
-@TikTokSettingsCompatibility
-class TikTokSettingsPatch : BytecodePatch(
+@SettingsCompatibility
+class SettingsPatch : BytecodePatch(
     listOf(
         AdPersonalizationActivityOnCreateFingerprint,
         AddSettingsEntryFingerprint,

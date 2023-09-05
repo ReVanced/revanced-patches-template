@@ -6,12 +6,12 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class OldVideoQualityMenuResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.PreferenceScreen.VIDEO.addPreferences(
+        SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_show_old_video_quality_menu",
                 "revanced_show_old_video_quality_menu_title",

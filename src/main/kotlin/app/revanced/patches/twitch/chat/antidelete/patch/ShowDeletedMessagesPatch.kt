@@ -17,11 +17,11 @@ import app.revanced.patches.twitch.chat.antidelete.annotations.ShowDeletedMessag
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.ChatUtilCreateDeletedSpanFingerprint
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.DeletedMessageClickableSpanCtorFingerprint
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.SetHasModAccessFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.TwitchIntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.TwitchSettingsPatch
+import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([TwitchIntegrationsPatch::class, TwitchSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Show deleted messages")
 @Description("Shows deleted chat messages behind a clickable spoiler.")
 @ShowDeletedMessagesCompatibility
@@ -70,7 +70,7 @@ class ShowDeletedMessagesPatch : BytecodePatch(
             )
         }  ?: throw ChatUtilCreateDeletedSpanFingerprint.exception
 
-        TwitchSettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
+        SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             ListPreference(
                 "revanced_show_deleted_messages",
                 "revanced_show_deleted_messages_title",

@@ -11,7 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.action.annotations.HideButtonsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class])
@@ -20,7 +20,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettings
 @HideButtonsCompatibility
 class HideButtonsPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons_preference_screen",
                 "revanced_hide_buttons_preference_screen_title",

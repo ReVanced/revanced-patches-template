@@ -11,9 +11,9 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.tiktok.misc.integrations.patch.TikTokIntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.patch.TikTokSettingsPatch
+import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
 import app.revanced.patches.tiktok.misc.spoof.sim.annotations.SpoofSimCompatibility
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -21,7 +21,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(false)
-@DependsOn([TikTokIntegrationsPatch::class, TikTokSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Sim spoof")
 @Description("Spoofs the information which is retrieved from the sim-card.")
 @SpoofSimCompatibility

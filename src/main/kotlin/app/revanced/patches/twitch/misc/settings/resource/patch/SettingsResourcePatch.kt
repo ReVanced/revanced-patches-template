@@ -7,7 +7,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
-class TwitchSettingsResourcePatch : AbstractSettingsResourcePatch(
+class SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
     "twitch/settings"
 ) {

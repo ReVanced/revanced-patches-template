@@ -5,9 +5,9 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([YouTubeSettingsPatch::class, ResourceMappingPatch::class])
+@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideEndscreenCardsResourcePatch : ResourcePatch {
     internal companion object {
         var layoutCircle: Long = -1
@@ -16,7 +16,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
     }
 
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_endscreen_cards",
                 "revanced_hide_endscreen_cards_title",

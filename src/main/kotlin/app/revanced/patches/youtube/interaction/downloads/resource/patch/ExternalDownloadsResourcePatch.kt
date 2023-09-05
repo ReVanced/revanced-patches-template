@@ -5,15 +5,15 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
-@DependsOn([BottomControlsResourcePatch::class, YouTubeSettingsPatch::class])
+@DependsOn([BottomControlsResourcePatch::class, SettingsPatch::class])
 class ExternalDownloadsResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
+        SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_external_downloader_preference_screen",
                 "revanced_external_downloader_preference_screen_title",

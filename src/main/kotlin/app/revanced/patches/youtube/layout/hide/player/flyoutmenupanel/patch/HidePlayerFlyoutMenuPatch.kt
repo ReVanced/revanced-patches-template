@@ -10,16 +10,16 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuItemsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
 @Name("Player flyout menu")
 @Description("Hides player flyout menu items.")
-@DependsOn([LithoFilterPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([LithoFilterPatch::class, SettingsPatch::class])
 @HidePlayerFlyoutMenuItemsCompatibility
 class HidePlayerFlyoutMenuPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_player_flyout",
                 "revanced_hide_player_flyout_title",

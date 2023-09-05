@@ -9,23 +9,23 @@ import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NA
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_SIGNATURE
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.YouTubeSettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
 import app.revanced.util.microg.MicroGResourceHelper
 
-@DependsOn([YouTubeSettingsResourcePatch::class])
+@DependsOn([SettingsResourcePatch::class])
 class MicroGResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.addPreference(
+        SettingsPatch.addPreference(
             Preference(
                 "revanced_microg_settings_title",
                 "revanced_microg_settings_summary",
                 Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
             )
         )
-        YouTubeSettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
+        SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
 
         // update manifest
         MicroGResourceHelper.patchManifest(

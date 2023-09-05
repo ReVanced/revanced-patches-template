@@ -14,11 +14,11 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.annotations.AlternativeThumbnailsCompatibility
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, YouTubeSettingsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Alternative thumbnails")
 @AlternativeThumbnailsCompatibility
 @Description("Adds options to replace video thumbnails with still image captures of the video.")
@@ -26,7 +26,7 @@ class AlternativeThumbnailsPatch : BytecodePatch(
     listOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        YouTubeSettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",
                 "revanced_alt_thumbnails_preference_screen_title",

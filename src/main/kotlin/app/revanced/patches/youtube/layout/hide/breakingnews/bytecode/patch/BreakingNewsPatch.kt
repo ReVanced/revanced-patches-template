@@ -12,11 +12,11 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.breakingnews.annotations.BreakingNewsCompatibility
 import app.revanced.patches.youtube.layout.hide.breakingnews.bytecode.fingerprints.BreakingNewsFingerprint
 import app.revanced.patches.youtube.layout.hide.breakingnews.resource.patch.BreakingNewsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([YouTubeIntegrationsPatch::class, BreakingNewsResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, BreakingNewsResourcePatch::class])
 @Name("Hide breaking news shelf")
 @Description("Hides the breaking news shelf on the homepage tab.")
 @BreakingNewsCompatibility

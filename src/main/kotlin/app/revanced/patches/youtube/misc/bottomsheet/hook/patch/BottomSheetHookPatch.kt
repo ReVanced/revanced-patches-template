@@ -7,10 +7,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints.CreateBottomSheetFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.YouTubeIntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@DependsOn([YouTubeIntegrationsPatch::class, BottomSheetHookResourcePatch::class])
+@DependsOn([IntegrationsPatch::class, BottomSheetHookResourcePatch::class])
 class BottomSheetHookPatch : BytecodePatch(
     listOf(CreateBottomSheetFingerprint)
 ) {

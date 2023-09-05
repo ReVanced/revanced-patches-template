@@ -5,20 +5,20 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.YouTubeSettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([YouTubeSettingsPatch::class])
+@DependsOn([SettingsPatch::class])
 class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
     companion object {
         internal var oldUIDislikeId: Long = -1
     }
 
     override fun execute(context: ResourceContext) {
-        YouTubeSettingsPatch.addPreference(
+        SettingsPatch.addPreference(
             Preference(
                 "revanced_ryd_settings_title",
                 "revanced_ryd_settings_summary",
-                YouTubeSettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
+                SettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
             )
         )
 
