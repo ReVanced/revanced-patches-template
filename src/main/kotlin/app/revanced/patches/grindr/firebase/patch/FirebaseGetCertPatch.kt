@@ -1,6 +1,7 @@
 package app.revanced.patches.grindr.firebase.patch
 
 import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patches.warnwetter.misc.firebasegetcert.patch.FirebaseGetCertPatch
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -10,31 +11,21 @@ import app.revanced.patches.grindr.firebase.fingerprints.GetMessagingCertFingerp
 import app.revanced.patches.grindr.firebase.fingerprints.GetRegistrationCertFingerprint
 import app.revanced.patches.grindr.Constants.SPOOFED_PACKAGE_SIGNATURE
 
-class FirebaseGetCertPatch : BytecodePatch(
+class FirebaseGetCertPatchGrindr : BytecodePatch(
     listOf(
         GetRegistrationCertFingerprint,
         GetMessagingCertFingerprint
     )
 ) {
+
+    val delegate = FirebaseGetCertPatch()
+
     override fun execute(context: BytecodeContext) {
-
-        val spoofedInstruction =
-            """
-                const-string v0, "$SPOOFED_PACKAGE_SIGNATURE"
-                return-object v0
-            """
-
         val registrationCertMethod = GetRegistrationCertFingerprint.result!!.mutableMethod
         val messagingCertMethod = GetMessagingCertFingerprint.result!!.mutableMethod
 
-        registrationCertMethod.addInstructions(
-            0,
-            spoofedInstruction
-        )
-        messagingCertMethod.addInstructions(
-            0,
-            spoofedInstruction
-        )
+        val mutableMethods = arrayOf(registrationCertMethod, messagingCertMethod)
 
+        delegate.patchPackageSignature(SPOOFED_PACKAGE_SIGNATURE, mutableMethods)
     }
 }
