@@ -1,20 +1,20 @@
 package app.revanced.patches.all.misc.network.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.all.misc.debugging.patch.EnableAndroidDebuggingPatch
 import org.w3c.dom.Element
 import java.io.File
 
-@Patch(false)
-@Name("Override certificate pinning")
-@Description("Overrides certificate pinning, allowing to inspect traffic via a proxy.")
-@DependsOn([EnableAndroidDebuggingPatch::class])
-class OverrideCertificatePinningPatch : ResourcePatch {
+@Patch(
+    name = "Override certificate pinning",
+    description = "Overrides certificate pinning, allowing to inspect traffic via a proxy.",
+    dependencies = [EnableAndroidDebuggingPatch::class],
+    use = false
+)
+@Suppress("unused")
+class OverrideCertificatePinningPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         val resXmlDirectory = context["res/xml"]
 
