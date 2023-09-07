@@ -1,40 +1,38 @@
-package app.revanced.patches.reddit.customclients.syncforreddit.api.patch
+package app.revanced.patches.reddit.customclients.syncforreddit.api
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
-import app.revanced.patches.reddit.customclients.SpoofClientAnnotation
 import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.GetAuthorizationStringFingerprint
 import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.GetBearerTokenFingerprint
-import app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.patch.DisablePiracyDetectionPatch
+import app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.DisablePiracyDetectionPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import java.util.*
 
-@SpoofClientAnnotation
-@Description("Spoofs the client in order to allow logging in. " +
-        "The OAuth application type has to be \"Installed app\" " +
-        "and the redirect URI has to be set to \"http://redditsync/auth\".")
-@Compatibility(
-    [
-        Package("com.laurencedawson.reddit_sync"),
-        Package("com.laurencedawson.reddit_sync.pro"),
-        Package("com.laurencedawson.reddit_sync.dev")
+
+@Patch(
+    name = "Spoof client",
+    description = "Spoofs the client in order to allow logging in. " +
+            "The OAuth application type has to be \"Installed app\" " +
+            "and the redirect URI has to be set to \"http://redditsync/auth\".",
+    dependencies = [DisablePiracyDetectionPatch::class],
+    compatiblePackages =  [
+        CompatiblePackage("com.laurencedawson.reddit_sync"),
+        CompatiblePackage("com.laurencedawson.reddit_sync.pro"),
+        CompatiblePackage("com.laurencedawson.reddit_sync.dev")
     ]
 )
-@DependsOn([DisablePiracyDetectionPatch::class])
 class SpoofClientPatch : AbstractSpoofClientPatch(
-    "http://redditsync/auth", Options, listOf(GetAuthorizationStringFingerprint)
+    "http://redditsync/auth", listOf(GetAuthorizationStringFingerprint)
 ) {
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach { fingerprintResult ->
@@ -70,6 +68,4 @@ class SpoofClientPatch : AbstractSpoofClientPatch(
             }
         }
     }
-
-    companion object Options : AbstractSpoofClientPatch.Options.SpoofClientOptionsContainer()
 }
