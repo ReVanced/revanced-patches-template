@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.settings.resource
+package app.revanced.patches.shared.settings
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
