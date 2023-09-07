@@ -1,13 +1,11 @@
-package app.revanced.patches.music.layout.upgradebutton.patch
+package app.revanced.patches.music.layout.upgradebutton
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.toInstructions
-import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.layout.upgradebutton.fingerprints.PivotBarConstructorFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction22t
@@ -15,12 +13,13 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction22c
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 
 
-@Patch
-@Name("Remove upgrade button")
-@Description("Removes the upgrade tab from the pivot bar.")
-@MusicCompatibility
-class RemoveUpgradeButtonPatch : BytecodePatch(
-    listOf(PivotBarConstructorFingerprint)
+@Patch(
+    name = "Remove upgrade button",
+    description = "Removes the upgrade tab from the pivot bar.",
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
+)
+object RemoveUpgradeButtonPatch : BytecodePatch(
+    setOf(PivotBarConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val result = PivotBarConstructorFingerprint.result!!
