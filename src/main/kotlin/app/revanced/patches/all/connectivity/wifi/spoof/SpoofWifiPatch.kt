@@ -1,4 +1,4 @@
-package app.revanced.patches.all.connectivity.wifi.spoof.patch
+package app.revanced.patches.all.connectivity.wifi.spoof
 
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
@@ -10,7 +10,6 @@ import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 
-
 @Patch(
     name = "Spoof wifi connection",
     description = "Spoofs an existing Wi-Fi connection.",
@@ -20,7 +19,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 @Suppress("unused")
 object SpoofWifiPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>() {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX = "Lapp/revanced/all/connectivity/wifi/spoof/SpoofWifiPatch"
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "${INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX};"
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "$INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX;"
 
     override fun filterMap(
         classDef: ClassDef,
