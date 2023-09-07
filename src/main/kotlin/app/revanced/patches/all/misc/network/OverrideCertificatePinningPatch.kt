@@ -1,4 +1,4 @@
-package app.revanced.patches.all.misc.network.patch
+package app.revanced.patches.all.misc.network
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
