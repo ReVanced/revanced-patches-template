@@ -86,9 +86,6 @@
     <string name="revanced_hide_artist_cards_off">Amakhadi omculi ayaboniswa</string>
     <string name="revanced_hide_artist_cards_on">Amakhadi omculi afihliwe</string>
     <string name="revanced_hide_artist_cards_title">Fihla amakhadi omculi</string>
-    <string name="revanced_hide_audio_track_button_off">Inkinobho yethrekhi yomsindo iyaboniswa</string>
-    <string name="revanced_hide_audio_track_button_on">Inkinobho yengoma yomsindo ifihliwe</string>
-    <string name="revanced_hide_audio_track_button_title">Fihla inkinobho yengoma yomsindo</string>
     <string name="revanced_hide_autoplay_button_summary_off">Inkinobho yokuzidlalela iyaboniswa</string>
     <string name="revanced_hide_autoplay_button_summary_on">Inkinobho yokuzidlalela ifihliwe</string>
     <string name="revanced_hide_autoplay_button_title">Fihla inkinobho yokudlala ngokuzenzakalela</string>

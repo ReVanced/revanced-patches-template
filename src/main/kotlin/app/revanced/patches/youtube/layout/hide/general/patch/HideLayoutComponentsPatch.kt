@@ -140,12 +140,6 @@ class HideLayoutComponentsPatch : BytecodePatch(
                 "revanced_hide_image_shelf_summary_off",
             ),
             SwitchPreference(
-                "revanced_hide_audio_track_button",
-                "revanced_hide_audio_track_button_title",
-                "revanced_hide_audio_track_button_on",
-                "revanced_hide_audio_track_button_off",
-            ),
-            SwitchPreference(
                 "revanced_hide_latest_posts_ads",
                 "revanced_hide_latest_posts_ads_title",
                 "revanced_hide_latest_posts_ads_summary_on",

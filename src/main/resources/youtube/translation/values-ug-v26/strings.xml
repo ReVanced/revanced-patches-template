@@ -87,9 +87,6 @@
     <string name="revanced_hide_artist_cards_off">سەنئەتكار كارتىلىرى كۆرسىتىلدى</string>
     <string name="revanced_hide_artist_cards_on">سەنئەتكار كارتىلىرى يوشۇرۇنغان</string>
     <string name="revanced_hide_artist_cards_title">سەنئەتكار كارتىلىرىنى يوشۇرۇش</string>
-    <string name="revanced_hide_audio_track_button_off">ئاۋاز يولى كۇنۇپكىسى كۆرسىتىلدى</string>
-    <string name="revanced_hide_audio_track_button_on">ئاۋاز يولى كۇنۇپكىسى يوشۇرۇنغان</string>
-    <string name="revanced_hide_audio_track_button_title">ئاۋاز يولى كۇنۇپكىسىنى يوشۇرۇش</string>
     <string name="revanced_hide_autoplay_button_summary_off">ئاپتوماتىك كۇنۇپكا كۆرسىتىلدى</string>
     <string name="revanced_hide_autoplay_button_summary_on">ئاپتۇماتىك كۇنۇپكا يوشۇرۇنغان</string>
     <string name="revanced_hide_autoplay_button_title">ئاپتوماتىك ھەيدەش كۇنۇپكىسىنى يوشۇرۇش</string>

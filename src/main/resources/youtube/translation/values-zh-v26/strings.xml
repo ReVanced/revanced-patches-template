@@ -86,9 +86,6 @@
     <string name="revanced_hide_artist_cards_off">显示艺术家卡片</string>
     <string name="revanced_hide_artist_cards_on">艺术家卡片已隐藏</string>
     <string name="revanced_hide_artist_cards_title">隐藏艺术家名片</string>
-    <string name="revanced_hide_audio_track_button_off">显示音轨按钮</string>
-    <string name="revanced_hide_audio_track_button_on">音轨按钮被隐藏</string>
-    <string name="revanced_hide_audio_track_button_title">隐藏音轨按钮</string>
     <string name="revanced_hide_autoplay_button_summary_off">显示自动播放按钮</string>
     <string name="revanced_hide_autoplay_button_summary_on">自动播放按钮被隐藏</string>
     <string name="revanced_hide_autoplay_button_title">隐藏自动播放按钮</string>

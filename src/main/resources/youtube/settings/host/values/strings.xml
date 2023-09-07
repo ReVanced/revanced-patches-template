@@ -145,9 +145,6 @@
     <string name="revanced_hide_artist_cards_off">Artist cards is shown</string>
     <string name="revanced_hide_artist_cards_on">Artist cards is hidden</string>
     <string name="revanced_hide_artist_cards_title">Hide artist cards</string>
-    <string name="revanced_hide_audio_track_button_off">Audio track button is shown</string>
-    <string name="revanced_hide_audio_track_button_on">Audio track button is hidden</string>
-    <string name="revanced_hide_audio_track_button_title">Hide audio track button</string>
     <string name="revanced_hide_autoplay_button_summary_off">Autoplay button is shown</string>
     <string name="revanced_hide_autoplay_button_summary_on">Autoplay button is hidden</string>
     <string name="revanced_hide_autoplay_button_title">Hide autoplay button</string>

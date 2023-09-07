@@ -86,9 +86,6 @@
     <string name="revanced_hide_artist_cards_off">מוצגים כרטיסי אמן</string>
     <string name="revanced_hide_artist_cards_on">כרטיסי אמן מוסתרים</string>
     <string name="revanced_hide_artist_cards_title">הסתר כרטיסי אמן</string>
-    <string name="revanced_hide_audio_track_button_off">לחצן רצועת אודיו מוצג</string>
-    <string name="revanced_hide_audio_track_button_on">לחצן רצועת השמע מוסתר</string>
-    <string name="revanced_hide_audio_track_button_title">כפתור הסתר רצועת אודיו</string>
     <string name="revanced_hide_autoplay_button_summary_off">לחצן הפעלה אוטומטית מוצג</string>
     <string name="revanced_hide_autoplay_button_summary_on">לחצן ההפעלה האוטומטית מוסתר</string>
     <string name="revanced_hide_autoplay_button_title">הסתר כפתור ההפעלה האוטומטית</string>
