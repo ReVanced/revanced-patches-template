@@ -16,7 +16,7 @@ import app.revanced.patches.twitch.ad.embedded.annotations.EmbeddedAdsCompatibil
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
 import app.revanced.patches.twitch.ad.video.patch.VideoAdsPatch
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch
 @DependsOn([VideoAdsPatch::class, IntegrationsPatch::class, SettingsPatch::class])

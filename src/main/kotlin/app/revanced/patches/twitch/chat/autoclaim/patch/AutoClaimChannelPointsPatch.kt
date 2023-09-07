@@ -14,7 +14,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.chat.autoclaim.annotations.AutoClaimChannelPointsCompatibility
 import app.revanced.patches.twitch.chat.autoclaim.fingerprints.CommunityPointsButtonViewDelegateFingerprint
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch
 @DependsOn([SettingsPatch::class])
