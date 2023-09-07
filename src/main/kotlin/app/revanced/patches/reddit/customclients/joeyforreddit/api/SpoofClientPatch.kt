@@ -25,8 +25,6 @@ import app.revanced.patches.reddit.customclients.joeyforreddit.detection.piracy.
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "https://127.0.0.1:65023/authorize_callback", listOf(GetClientIdFingerprint)
 ) {
-    private val clientId by clientIdOption
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         first().mutableMethod.addInstructions(
             0,

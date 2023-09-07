@@ -22,8 +22,6 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
     "infinity://localhost",
     listOf(GetHttpBasicAuthHeaderFingerprint, LoginActivityOnCreateFingerprint)
 ) {
-    private val clientId by clientIdOption
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach {
             // First is index of the clientId string.

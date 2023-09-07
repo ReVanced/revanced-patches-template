@@ -25,8 +25,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://baconreader.com/auth", listOf(GetAuthorizationUrlFingerprint, RequestTokenFingerprint)
 ) {
-    private val clientId by clientIdOption
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         fun MethodFingerprintResult.patch(replacementString: String) {
             val clientIdIndex = scanResult.stringsScanResult!!.matches.first().index

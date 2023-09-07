@@ -29,8 +29,6 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
     listOf(BuildAuthorizationStringFingerprint, BasicAuthorizationFingerprint),
     listOf(GetUserAgentFingerprint)
 ) {
-    private val clientId by clientIdOption
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         /**
          * Replaces a one register instruction with a const-string instruction

@@ -18,7 +18,7 @@ abstract class AbstractSpoofClientPatch(
     addAll(clientIdFingerprints)
     userAgentFingerprints?.let(::addAll)
 }) {
-    var clientIdOption = stringPatchOption(
+    var clientId by stringPatchOption(
         "client-id",
         null,
         "OAuth client ID",
@@ -26,7 +26,7 @@ abstract class AbstractSpoofClientPatch(
     )
 
     override fun execute(context: BytecodeContext) {
-        if (clientIdOption.value == null) {
+        if (clientId == null) {
             // Ensure device runs Android.
             try {
                 Class.forName("android.os.Environment")
@@ -47,7 +47,7 @@ abstract class AbstractSpoofClientPatch(
                 """.trimIndent()
 
                 throw PatchException(error)
-            }.let { clientIdOption.value = it.readText().trim() }
+            }.let { clientId = it.readText().trim() }
         }
 
         fun List<MethodFingerprint>?.executePatch(

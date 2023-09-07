@@ -19,8 +19,6 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://rubenmayayo.com", listOf(GetClientIdFingerprint)
 ) {
-    private val clientId by clientIdOption
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         first().mutableMethod.addInstructions(
             0,
