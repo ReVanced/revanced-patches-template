@@ -24,8 +24,6 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
 ) {
     private val clientId by clientIdOption
 
-    init { options.register(clientIdOption) }
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach {
             // First is index of the clientId string.

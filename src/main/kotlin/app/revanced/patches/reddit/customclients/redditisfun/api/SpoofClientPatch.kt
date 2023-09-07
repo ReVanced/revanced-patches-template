@@ -31,8 +31,6 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
 ) {
     private val clientId by clientIdOption
 
-    init { options.register(clientIdOption) }
-
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         /**
          * Replaces a one register instruction with a const-string instruction
