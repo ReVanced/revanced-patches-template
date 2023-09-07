@@ -1,17 +1,13 @@
-package app.revanced.patches.reddit.ad.general.patch
+package app.revanced.patches.reddit.ad.general
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.annotations.RequiresIntegrations
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.ad.banner.patch.HideBannerPatch
 import app.revanced.patches.reddit.ad.comments.patch.HideCommentAdsPatch
-import app.revanced.patches.reddit.ad.general.annotations.HideAdsCompatibility
 import app.revanced.patches.reddit.ad.general.fingerprints.AdPostFingerprint
 import app.revanced.patches.reddit.ad.general.fingerprints.NewAdPostFingerprint
 import com.android.tools.smali.dexlib2.Opcode
@@ -20,15 +16,18 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction22c
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch
-@Name("Hide ads")
-@Description("Removes ads from the Reddit.")
-@DependsOn([HideBannerPatch::class, HideCommentAdsPatch::class])
-@HideAdsCompatibility
-@RequiresIntegrations
-class HideAdsPatch : BytecodePatch(
-    listOf(AdPostFingerprint, NewAdPostFingerprint)
-) {
+
+@Patch(
+    name = "Hide ads",
+    dependencies = [HideBannerPatch::class, HideCommentAdsPatch::class],
+    compatiblePackages = [CompatiblePackage("com.reddit.frontpage")],
+    requiresIntegrations = true,
+)
+object HideAdsPatch : BytecodePatch(setOf(AdPostFingerprint, NewAdPostFingerprint)) {
+    private const val FILTER_METHOD_DESCRIPTOR =
+        "Lapp/revanced/reddit/patches/FilterPromotedLinksPatch;" +
+                "->filterChildren(Ljava/lang/Iterable;)Ljava/util/List;"
+
     override fun execute(context: BytecodeContext) {
         // region Filter promoted ads (does not work in popular or latest feed)
 
@@ -76,11 +75,5 @@ class HideAdsPatch : BytecodePatch(
         }
 
         // endregion
-    }
-
-    private companion object {
-        private const val FILTER_METHOD_DESCRIPTOR =
-            "Lapp/revanced/reddit/patches/FilterPromotedLinksPatch;" +
-                    "->filterChildren(Ljava/lang/Iterable;)Ljava/util/List;"
     }
 }
