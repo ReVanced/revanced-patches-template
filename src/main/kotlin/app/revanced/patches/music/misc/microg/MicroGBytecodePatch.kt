@@ -1,26 +1,24 @@
-package app.revanced.patches.music.misc.microg.patch.bytecode
+package app.revanced.patches.music.misc.microg
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.annotations.MusicCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.misc.microg.fingerprints.*
-import app.revanced.patches.music.misc.microg.patch.resource.MicroGResourcePatch
 import app.revanced.patches.music.misc.microg.shared.Constants.MUSIC_PACKAGE_NAME
 import app.revanced.patches.music.misc.microg.shared.Constants.REVANCED_MUSIC_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants
 import app.revanced.util.microg.MicroGBytecodeHelper
 
-@Patch
-@DependsOn([MicroGResourcePatch::class])
-@Name("Vanced MicroG support")
-@Description("Allows YouTube Music ReVanced to run without root and under a different package name.")
-@MusicCompatibility
-class MicroGBytecodePatch : BytecodePatch(
-    listOf(
+
+@Patch(
+    name = "MicroG support",
+    description = "Allows YouTube Music ReVanced to run without root and under a different package name.",
+    dependencies = [MicroGResourcePatch::class],
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
+)
+object MicroGBytecodePatch : BytecodePatch(
+    setOf(
         ServiceCheckFingerprint,
         GooglePlayUtilityFingerprint,
         CastDynamiteModuleFingerprint,
