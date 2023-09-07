@@ -1,24 +1,21 @@
-package app.revanced.patches.music.layout.premium.patch
+package app.revanced.patches.music.layout.premium
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.annotations.MusicCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumFingerprint
 import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumParentFingerprint
 
-@Patch
-@Name("Hide get premium")
-@Description("Removes all \"Get Premium\" evidences from the avatar menu.")
-@MusicCompatibility
-class HideGetPremiumPatch : BytecodePatch(
-    listOf(HideGetPremiumParentFingerprint)
-) {
+@Patch(
+    name = "Hide get premium",
+    description = "Removes all \"Get Premium\" evidences from the avatar menu.",
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
+)
+object HideGetPremiumPatch : BytecodePatch(setOf(HideGetPremiumParentFingerprint)) {
     override fun execute(context: BytecodeContext) {
         val parentResult = HideGetPremiumParentFingerprint.result!!
         HideGetPremiumFingerprint.resolve(context, parentResult.classDef)
