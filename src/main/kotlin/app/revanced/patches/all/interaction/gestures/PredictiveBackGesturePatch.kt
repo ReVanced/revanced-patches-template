@@ -1,9 +1,8 @@
-package app.revanced.patches.all.interaction.gestures.patch
+package app.revanced.patches.all.interaction.gestures
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
-
 
 @Patch(
     name = "Predictive back gesture",
