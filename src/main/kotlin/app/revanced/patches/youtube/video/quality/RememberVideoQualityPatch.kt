@@ -1,8 +1,6 @@
-package app.revanced.patches.youtube.video.quality.patch
+package app.revanced.patches.youtube.video.quality
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -10,8 +8,8 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -19,7 +17,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
-import app.revanced.patches.youtube.video.quality.annotations.RememberVideoQualityCompatibility
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint
 import app.revanced.patches.youtube.video.quality.fingerprints.SetQualityByIndexMethodClassFieldReferenceFingerprint
 import app.revanced.patches.youtube.video.quality.fingerprints.VideoQualityItemOnClickParentFingerprint
@@ -28,18 +25,25 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
-@Patch
-@DependsOn([IntegrationsPatch::class, VideoInformationPatch::class, SettingsPatch::class])
-@Name("Remember video quality")
-@Description("Adds the ability to remember the video quality you chose in the video quality flyout.")
-@RememberVideoQualityCompatibility
-class RememberVideoQualityPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Remember video quality",
+    description = "Adds the ability to remember the video quality you chose in the video quality flyout.",
+    dependencies = [IntegrationsPatch::class, VideoInformationPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+    ]
+)
+@Suppress("unused")
+object RememberVideoQualityPatch : BytecodePatch(
+    setOf(
         VideoQualitySetterFingerprint,
         VideoQualityItemOnClickParentFingerprint,
         NewVideoQualityChangedFingerprint
     )
 ) {
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
+
     override fun execute(context: BytecodeContext) {
         // This is bloated as each value has it's own String key/value
         // ideally the entries would be raw values (and not a key to a String resource)
@@ -189,10 +193,5 @@ class RememberVideoQualityPatch : BytecodePatch(
             }
         } ?: throw NewVideoQualityChangedFingerprint.exception
 
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
     }
 }
