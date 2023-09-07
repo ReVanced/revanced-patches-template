@@ -20,7 +20,7 @@ import app.revanced.patches.tiktok.interaction.downloads.fingerprints.ACLCommonS
 import app.revanced.patches.tiktok.interaction.downloads.fingerprints.DownloadPathParentFingerprint
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
+import app.revanced.patches.tiktok.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
