@@ -1,15 +1,17 @@
-package app.revanced.patches.all.activity.exportall.patch
+package app.revanced.patches.all.activity.exportall
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.Patch
 
-@Patch(false)
-@Name("Export all activities")
-@Description("Makes all app activities exportable.")
-class ExportAllActivitiesPatch : ResourcePatch {
+@Patch(
+    name = "Export all activities",
+    description = "Makes all app activities exportable.",
+    use = false
+)
+object ExportAllActivitiesPatch : ResourcePatch() {
+    const val EXPORTED_FLAG = "android:exported"
+
     override fun execute(context: ResourceContext) {
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             val document = editor.file
@@ -31,9 +33,5 @@ class ExportAllActivitiesPatch : ResourcePatch {
                 }
             }
         }
-    }
-
-    private companion object {
-        const val EXPORTED_FLAG = "android:exported"
     }
 }
