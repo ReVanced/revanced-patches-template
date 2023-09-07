@@ -1,16 +1,23 @@
-package app.revanced.patches.youtube.layout.hide.filterbar.patch
+package app.revanced.patches.youtube.layout.hide.filterbar
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class HideFilterBarResourcePatch : ResourcePatch {
+@Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+object HideFilterBarResourcePatch : ResourcePatch() {
+    var filterBarHeightId = -1L
+    var relatedChipCloudMarginId = -1L
+    var barContainerHeightId = -1L
+
+    private fun String.layoutResourceId(type: String = "dimen") =
+        ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
+
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -76,14 +83,5 @@ class HideFilterBarResourcePatch : ResourcePatch {
         relatedChipCloudMarginId = "related_chip_cloud_reduced_margins".layoutResourceId("layout")
         filterBarHeightId = "filter_bar_height".layoutResourceId()
         barContainerHeightId = "bar_container_height".layoutResourceId()
-    }
-
-    internal companion object {
-        var filterBarHeightId = -1L
-        var relatedChipCloudMarginId = -1L
-        var barContainerHeightId = -1L
-
-        private fun String.layoutResourceId(type: String = "dimen") =
-            ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
     }
 }
