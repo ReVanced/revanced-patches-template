@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.settings.resource.patch
+package app.revanced.patches.shared.settings.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
@@ -23,7 +23,7 @@ import java.io.Closeable
 abstract class AbstractSettingsResourcePatch(
     private val preferenceFileName: String,
     private val sourceDirectory: String,
-) : ResourcePatch, Closeable {
+) : ResourcePatch(), Closeable {
     override fun execute(context: ResourceContext) {
         /*
          * used for self-restart
