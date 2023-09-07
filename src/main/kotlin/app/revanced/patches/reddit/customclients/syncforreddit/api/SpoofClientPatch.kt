@@ -18,7 +18,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import java.util.*
 
-
 @Patch(
     name = "Spoof client",
     description = "Spoofs the client in order to allow logging in. " +
@@ -31,7 +30,8 @@ import java.util.*
         CompatiblePackage("com.laurencedawson.reddit_sync.dev")
     ]
 )
-class SpoofClientPatch : AbstractSpoofClientPatch(
+@Suppress("unused")
+object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://redditsync/auth", listOf(GetAuthorizationStringFingerprint)
 ) {
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
