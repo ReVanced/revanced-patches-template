@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.misc.autorepeat.annotations.AutoRepeatCompat
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class])

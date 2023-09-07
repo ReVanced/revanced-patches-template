@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.layout.hide.watermark.annotations.HideWaterm
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkFingerprint
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
