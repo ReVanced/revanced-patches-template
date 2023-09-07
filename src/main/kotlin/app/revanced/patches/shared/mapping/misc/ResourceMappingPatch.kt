@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.mapping.misc.patch
+package app.revanced.patches.shared.mapping.misc
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
@@ -8,14 +8,12 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-class ResourceMappingPatch : ResourcePatch {
-    companion object {
-        internal lateinit var resourceMappings: List<ResourceElement>
-            private set
+object ResourceMappingPatch : ResourcePatch() {
+    internal lateinit var resourceMappings: List<ResourceElement>
+        private set
 
-        private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
-        private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
-    }
+    private val THREAD_COUNT = Runtime.getRuntime().availableProcessors()
+    private val threadPoolExecutor = Executors.newFixedThreadPool(THREAD_COUNT)
 
     override fun execute(context: ResourceContext) {
         // save the file in memory to concurrently read from
@@ -34,7 +32,7 @@ class ResourceMappingPatch : ResourcePatch {
                     val batchStart = jobSize * threadIndex
                     val batchEnd = jobSize * (threadIndex + 1)
                     element@ for (i in batchStart until batchEnd) {
-                        // make sure to not to go out of bounds when rounding errors occur at calculating the jobSize
+                        // make sure to not go out of bounds when rounding errors occur at calculating the jobSize
                         if (i >= resourcesLength) return@thread
 
                         val node = resources.item(i)
@@ -46,6 +44,7 @@ class ResourceMappingPatch : ResourcePatch {
                         if (node.nodeName != "public" || nameAttribute.startsWith("APKTOOL")) continue
 
                         val id = node.getAttribute("id").substring(2).toLong(16)
+
                         mappings.add(ResourceElement(typeAttribute, nameAttribute, id))
                     }
                 }
@@ -58,6 +57,6 @@ class ResourceMappingPatch : ResourcePatch {
 
         resourceMappings = mappings
     }
-}
 
-data class ResourceElement(val type: String, val name: String, val id: Long)
+    data class ResourceElement(val type: String, val name: String, val id: Long)
+}
