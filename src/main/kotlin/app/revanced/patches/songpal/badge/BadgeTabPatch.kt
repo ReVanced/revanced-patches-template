@@ -1,23 +1,23 @@
-package app.revanced.patches.songpal.badge.patch
+package app.revanced.patches.songpal.badge
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.songpal.badge.annotations.BadgeCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.songpal.badge.fingerprints.CreateTabsFingerprint
 
-@Patch
-@Name("Remove badge tab")
-@Description("Removes the badge tab from the activity tab.")
-@BadgeCompatibility
-class BadgeTabPatch : BytecodePatch(
-    listOf(CreateTabsFingerprint)
-) {
+@Patch(
+    name = "Remove badge tab",
+    description = "Removes the badge tab from the activity tab.",
+    compatiblePackages = [CompatiblePackage("com.sony.songpal.mdr")]
+)
+object BadgeTabPatch : BytecodePatch(setOf(CreateTabsFingerprint)) {
+    const val ACTIVITY_TAB_DESCRIPTOR = "Ljp/co/sony/vim/framework/ui/yourheadphones/YhContract\$Tab;"
+    private val arrayTabs = listOf("Log", "HealthCare")
+
     override fun execute(context: BytecodeContext) {
         CreateTabsFingerprint.result?.mutableMethod?.apply {
             removeInstructions(0, 2)
@@ -51,10 +51,5 @@ class BadgeTabPatch : BytecodePatch(
             )
 
         } ?: throw CreateTabsFingerprint.exception
-    }
-
-    companion object {
-        const val ACTIVITY_TAB_DESCRIPTOR = "Ljp/co/sony/vim/framework/ui/yourheadphones/YhContract\$Tab;"
-        val arrayTabs = listOf("Log", "HealthCare")
     }
 }
