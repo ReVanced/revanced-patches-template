@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.ad.banner.patch.HideBannerPatch
-import app.revanced.patches.reddit.ad.comments.patch.HideCommentAdsPatch
+import app.revanced.patches.reddit.ad.comments.HideCommentAdsPatch
 import app.revanced.patches.reddit.ad.general.fingerprints.AdPostFingerprint
 import app.revanced.patches.reddit.ad.general.fingerprints.NewAdPostFingerprint
 import com.android.tools.smali.dexlib2.Opcode
