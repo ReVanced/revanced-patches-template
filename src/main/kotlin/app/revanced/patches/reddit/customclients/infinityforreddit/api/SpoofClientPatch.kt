@@ -1,28 +1,31 @@
-package app.revanced.patches.reddit.customclients.infinityforreddit.api.patch
+package app.revanced.patches.reddit.customclients.infinityforreddit.api
 
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
-import app.revanced.patches.reddit.customclients.SpoofClientAnnotation
 import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.GetHttpBasicAuthHeaderFingerprint
 import app.revanced.patches.reddit.customclients.infinityforreddit.api.fingerprints.LoginActivityOnCreateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@SpoofClientAnnotation
-@Description("Spoofs the client in order to allow logging in. " +
-        "The OAuth application type has to be \"Installed app\" " +
-        "and the redirect URI has to be set to \"infinity://localhost\".")
-@Compatibility([Package("ml.docilealligator.infinityforreddit")])
-class SpoofClientPatch : AbstractSpoofClientPatch(
+@Patch(
+    name = "Spoof client",
+    description = "Spoofs the client in order to allow logging in. " +
+            "The OAuth application type has to be \"Installed app\" " +
+            "and the redirect URI has to be set to \"infinity://localhost\".",
+    compatiblePackages = [CompatiblePackage("ml.docilealligator.infinityforreddit")]
+)
+object SpoofClientPatch : AbstractSpoofClientPatch(
     "infinity://localhost",
-    Options,
     listOf(GetHttpBasicAuthHeaderFingerprint, LoginActivityOnCreateFingerprint)
 ) {
+    private val clientId by clientIdOption
+
+    init { options.register(clientIdOption) }
+
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach {
             // First is index of the clientId string.
@@ -37,6 +40,4 @@ class SpoofClientPatch : AbstractSpoofClientPatch(
             }
         }
     }
-
-    companion object Options : AbstractSpoofClientPatch.Options.SpoofClientOptionsContainer()
 }
