@@ -1,13 +1,16 @@
-package app.revanced.patches.reddit.ad.banner.patch
+package app.revanced.patches.reddit.ad.banner
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
+import app.revanced.patcher.patch.annotation.Patch
 
-@Name("Hide subreddit banner")
-@Description("Hides banner ads from comments on subreddits.")
-class HideBannerPatch : ResourcePatch {
+@Patch(
+    name = "Hide subreddit banner",
+    description = "Hides banner ads from comments on subreddits."
+)
+object HideBannerPatch : ResourcePatch() {
+    private const val RESOURCE_FILE_PATH = "res/layout/merge_listheader_link_detail.xml"
+
     override fun execute(context: ResourceContext) {
         context.xmlEditor[RESOURCE_FILE_PATH].use {
             it.file.getElementsByTagName("merge").item(0).childNodes.apply {
@@ -28,10 +31,6 @@ class HideBannerPatch : ResourcePatch {
                 }
             }
         }
-    }
-
-    private companion object {
-        const val RESOURCE_FILE_PATH = "res/layout/merge_listheader_link_detail.xml"
     }
 }
 
