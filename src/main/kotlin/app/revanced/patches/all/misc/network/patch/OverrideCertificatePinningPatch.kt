@@ -3,7 +3,7 @@ package app.revanced.patches.all.misc.network.patch
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.all.misc.debugging.patch.EnableAndroidDebuggingPatch
+import app.revanced.patches.all.misc.debugging.EnableAndroidDebuggingPatch
 import org.w3c.dom.Element
 import java.io.File
 
