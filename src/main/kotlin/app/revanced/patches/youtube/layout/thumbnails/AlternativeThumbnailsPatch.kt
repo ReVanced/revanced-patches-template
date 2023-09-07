@@ -1,30 +1,77 @@
-package app.revanced.patches.youtube.layout.thumbnails.patch
+package app.revanced.patches.youtube.layout.thumbnails
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.layout.thumbnails.annotations.AlternativeThumbnailsCompatibility
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Alternative thumbnails")
-@AlternativeThumbnailsCompatibility
-@Description("Adds options to replace video thumbnails with still image captures of the video.")
-class AlternativeThumbnailsPatch : BytecodePatch(
-    listOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
+@Patch(
+    name = "Alternative thumbnails",
+    description = "Adds options to replace video thumbnails with still image captures of the video.",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+    ]
+)
+@Suppress("unused")
+object AlternativeThumbnailsPatch : BytecodePatch(
+    setOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/AlternativeThumbnailsPatch;"
+
+    private lateinit var loadImageUrlMethod: MutableMethod
+    private var loadImageUrlIndex = 0
+
+    private lateinit var loadImageSuccessCallbackMethod: MutableMethod
+    private var loadImageSuccessCallbackIndex = 0
+
+    private lateinit var loadImageErrorCallbackMethod: MutableMethod
+    private var loadImageErrorCallbackIndex = 0
+
+    /**
+     * @param highPriority If the hook should be called before all other hooks.
+     */
+    fun addImageUrlHook(targetMethodClass: String, highPriority: Boolean) {
+        loadImageUrlMethod.addInstructions(
+            if (highPriority) 0 else loadImageUrlIndex, """
+                    invoke-static { p1 }, $targetMethodClass->overrideImageURL(Ljava/lang/String;)Ljava/lang/String;
+                    move-result-object p1
+                """
+        )
+        loadImageUrlIndex += 2
+    }
+
+    /**
+     * If a connection completed, which includes normal 200 responses but also includes
+     * status 404 and other error like http responses.
+     */
+    fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
+        loadImageSuccessCallbackMethod.addInstruction(
+            loadImageSuccessCallbackIndex++,
+            "invoke-static { p2 }, $targetMethodClass->handleCronetSuccess(Lorg/chromium/net/UrlResponseInfo;)V"
+        )
+    }
+
+    /**
+     * If a connection outright failed to complete any connection.
+     */
+    fun addImageUrlErrorCallbackHook(targetMethodClass: String) {
+        loadImageErrorCallbackMethod.addInstruction(
+            loadImageErrorCallbackIndex++,
+            "invoke-static { p2, p3 }, $targetMethodClass->handleCronetFailure(Lorg/chromium/net/UrlResponseInfo;Ljava/io/IOException;)V"
+        )
+    }
+
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -100,54 +147,5 @@ class AlternativeThumbnailsPatch : BytecodePatch(
         CronetURLRequestCallbackOnFailureFingerprint.result?.apply {
             loadImageErrorCallbackMethod = mutableMethod
         } ?: throw CronetURLRequestCallbackOnFailureFingerprint.exception
-    }
-
-    internal companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/AlternativeThumbnailsPatch;"
-
-        private lateinit var loadImageUrlMethod: MutableMethod
-        private var loadImageUrlIndex = 0
-
-        private lateinit var loadImageSuccessCallbackMethod: MutableMethod
-        private var loadImageSuccessCallbackIndex = 0
-
-        private lateinit var loadImageErrorCallbackMethod: MutableMethod
-        private var loadImageErrorCallbackIndex = 0
-
-        /**
-         * @param highPriority If the hook should be called before all other hooks.
-         */
-        fun addImageUrlHook(targetMethodClass: String, highPriority: Boolean) {
-            loadImageUrlMethod.addInstructions(
-                if (highPriority) 0 else loadImageUrlIndex, """
-                    invoke-static { p1 }, $targetMethodClass->overrideImageURL(Ljava/lang/String;)Ljava/lang/String;
-                    move-result-object p1
-                """
-            )
-            loadImageUrlIndex += 2
-        }
-
-        /**
-         * If a connection completed, which includes normal 200 responses but also includes
-         * status 404 and other error like http responses.
-         */
-        fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
-            loadImageSuccessCallbackMethod.addInstruction(
-                loadImageSuccessCallbackIndex++,
-                "invoke-static { p2 }, $targetMethodClass->handleCronetSuccess(Lorg/chromium/net/UrlResponseInfo;)V"
-            )
-        }
-
-        /**
-         * If a connection outright failed to complete any connection.
-         */
-        fun addImageUrlErrorCallbackHook(targetMethodClass: String) {
-            loadImageErrorCallbackMethod.addInstruction(
-                loadImageErrorCallbackIndex++,
-                "invoke-static { p2, p3 }, $targetMethodClass->handleCronetFailure(Lorg/chromium/net/UrlResponseInfo;Ljava/io/IOException;)V"
-            )
-        }
-
     }
 }
