@@ -1,23 +1,40 @@
-package app.revanced.patches.youtube.layout.branding.icon.patch
+package app.revanced.patches.youtube.layout.branding
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.OptionsContainer
-import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.branding.icon.annotations.CustomBrandingCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import java.io.File
 import java.nio.file.Files
 
-@Patch(false)
-@Name("Custom branding")
-@Description("Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).")
-@CustomBrandingCompatibility
-class CustomBrandingPatch : ResourcePatch {
+@Patch(
+    name = "Custom branding",
+    description = "Changes the YouTube launcher icon and name to your choice (defaults to ReVanced).",
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube")
+    ],
+    use = false
+)
+@Suppress("unused")
+object CustomBrandingPatch : ResourcePatch() {
+    private var appName by stringPatchOption(
+        key = "appName",
+        default = "YouTube ReVanced",
+        title = "Application Name",
+        description = "The name of the application it will show on your home screen.",
+        required = true
+    )
+
+    private var iconPath by stringPatchOption(
+        key = "iconPath",
+        default = null,
+        title = "App Icon Path",
+        description = "A path containing mipmap resource folders with icons."
+    )
+
     override fun execute(context: ResourceContext) {
         fun copyResources(resourceGroups: List<ResourceUtils.ResourceGroup>) {
             iconPath?.let { iconPathString ->
@@ -63,27 +80,6 @@ class CustomBrandingPatch : ResourcePatch {
                     "android:label=\"@string/application_name",
                     "android:label=\"$appName"
                 )
-        )
-    }
-
-    companion object : OptionsContainer() {
-        private var appName: String? by option(
-            PatchOption.StringOption(
-                key = "appName",
-                default = "YouTube ReVanced",
-                title = "Application Name",
-                description = "The name of the application it will show on your home screen.",
-                required = true
-            )
-        )
-
-        private var iconPath: String? by option(
-            PatchOption.StringOption(
-                key = "iconPath",
-                default = null,
-                title = "App Icon Path",
-                description = "A path containing mipmap resource folders with icons."
-            )
         )
     }
 }
