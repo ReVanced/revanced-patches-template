@@ -1,24 +1,18 @@
-package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
+package app.revanced.patches.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
-import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
@@ -27,20 +21,22 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "Return YouTube Dislike",
+    description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
+    dependencies = [
         IntegrationsPatch::class,
         VideoIdPatch::class,
         ReturnYouTubeDislikeResourcePatch::class,
         PlayerTypeHookPatch::class,
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.32.39"])
     ]
 )
-@Name("Return YouTube Dislike")
-@Description("Shows the dislike count of videos using the Return YouTube Dislike API.")
-@ReturnYouTubeDislikeCompatibility
-class ReturnYouTubeDislikePatch : BytecodePatch(
-    listOf(
+@Suppress("unused")
+object ReturnYouTubeDislikePatch : BytecodePatch(
+    setOf(
         TextComponentConstructorFingerprint,
         ShortsTextViewFingerprint,
         DislikesOldLayoutTextViewFingerprint,
@@ -49,6 +45,17 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         RemoveLikeFingerprint,
     )
 ) {
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
+
+    private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
+    private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
+    private enum class Vote(val value: Int) {
+        LIKE(1),
+        DISLIKE(-1),
+        REMOVE_LIKE(0)
+    }
+
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
 
@@ -71,7 +78,7 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
                         invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->sendVote(I)V
                     """
                 )
-            } ?: throw PatchException("Failed to find ${fingerprint.name} method.")
+            } ?: throw fingerprint.exception
         }
 
         // endregion
@@ -198,18 +205,5 @@ class ReturnYouTubeDislikePatch : BytecodePatch(
         } ?: throw DislikesOldLayoutTextViewFingerprint.exception
 
         // endregion
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
-
-        private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
-        private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
-        private enum class Vote(val value: Int) {
-            LIKE(1),
-            DISLIKE(-1),
-            REMOVE_LIKE(0)
-        }
     }
 }
