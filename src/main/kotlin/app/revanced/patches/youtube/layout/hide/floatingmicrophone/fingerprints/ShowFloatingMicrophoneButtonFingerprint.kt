@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.hide.floatingmicrophone.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.util.patch.LiteralValueFingerprint
-import app.revanced.patches.youtube.layout.hide.floatingmicrophone.patch.HideFloatingMicrophoneButtonResourcePatch
+import app.revanced.patches.youtube.layout.hide.floatingmicrophone.HideFloatingMicrophoneButtonResourcePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

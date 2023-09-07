@@ -1,26 +1,29 @@
-package app.revanced.patches.youtube.layout.hide.floatingmicrophone.patch
+package app.revanced.patches.youtube.layout.hide.floatingmicrophone
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.hide.floatingmicrophone.annotations.HideFloatingMicrophoneButtonCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.hide.floatingmicrophone.fingerprints.ShowFloatingMicrophoneButtonFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@Name("Hide floating microphone button")
-@Description("Hides the floating microphone button which appears in search.")
-@DependsOn([HideFloatingMicrophoneButtonResourcePatch::class])
-@HideFloatingMicrophoneButtonCompatibility
-class HideFloatingMicrophoneButtonPatch : BytecodePatch(
-    listOf(ShowFloatingMicrophoneButtonFingerprint)
+@Patch(
+    name = "Hide floating microphone button",
+    description = "Hides the floating microphone button which appears in search.",
+    dependencies = [HideFloatingMicrophoneButtonResourcePatch::class],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+    ]
+)
+@Suppress("unused")
+object HideFloatingMicrophoneButtonPatch : BytecodePatch(
+    setOf(ShowFloatingMicrophoneButtonFingerprint)
 ) {
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/HideFloatingMicrophoneButtonPatch;"
     override fun execute(context: BytecodeContext) {
         ShowFloatingMicrophoneButtonFingerprint.result?.let { result ->
             with(result.mutableMethod) {
@@ -36,10 +39,5 @@ class HideFloatingMicrophoneButtonPatch : BytecodePatch(
                 )
             }
         } ?: throw ShowFloatingMicrophoneButtonFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/HideFloatingMicrophoneButtonPatch;"
     }
 }
