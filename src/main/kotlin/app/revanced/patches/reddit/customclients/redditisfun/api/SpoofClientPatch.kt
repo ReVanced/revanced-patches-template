@@ -1,32 +1,38 @@
-package app.revanced.patches.reddit.customclients.redditisfun.api.patch
+package app.revanced.patches.reddit.customclients.redditisfun.api
 
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult.MethodFingerprintScanResult.StringsScanResult.StringMatch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
-import app.revanced.patches.reddit.customclients.SpoofClientAnnotation
 import app.revanced.patches.reddit.customclients.redditisfun.api.fingerprints.BasicAuthorizationFingerprint
 import app.revanced.patches.reddit.customclients.redditisfun.api.fingerprints.BuildAuthorizationStringFingerprint
 import app.revanced.patches.reddit.customclients.redditisfun.api.fingerprints.GetUserAgentFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@SpoofClientAnnotation
-@Description("Spoofs the client in order to allow logging in. " +
-        "The OAuth application type has to be \"Installed app\" " +
-        "and the redirect URI has to be set to \"redditisfun://auth\".")
-@Compatibility([Package("com.andrewshu.android.reddit"), Package("com.andrewshu.android.redditdonation")])
-class SpoofClientPatch : AbstractSpoofClientPatch(
+@Patch(
+    name = "Spoof client",
+    description = "Spoofs the client in order to allow logging in. " +
+            "The OAuth application type has to be \"Installed app\" " +
+            "and the redirect URI has to be set to \"redditisfun://auth\".",
+    compatiblePackages = [
+        CompatiblePackage("com.andrewshu.android.reddit"),
+        CompatiblePackage("com.andrewshu.android.redditdonation")
+    ]
+)
+object SpoofClientPatch : AbstractSpoofClientPatch(
     "redditisfun://auth",
-    Options,
     listOf(BuildAuthorizationStringFingerprint, BasicAuthorizationFingerprint),
     listOf(GetUserAgentFingerprint)
 ) {
+    private val clientId by clientIdOption
+
+    init { options.register(clientIdOption) }
+
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         /**
          * Replaces a one register instruction with a const-string instruction
@@ -66,6 +72,4 @@ class SpoofClientPatch : AbstractSpoofClientPatch(
             """
         )
     }
-
-    companion object Options : AbstractSpoofClientPatch.Options.SpoofClientOptionsContainer()
 }
