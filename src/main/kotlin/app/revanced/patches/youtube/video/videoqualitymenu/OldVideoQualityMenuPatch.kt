@@ -1,33 +1,40 @@
-package app.revanced.patches.youtube.video.videoqualitymenu.patch
+package app.revanced.patches.youtube.video.videoqualitymenu
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.misc.bottomsheet.hook.patch.BottomSheetHookPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.video.videoqualitymenu.annotations.OldVideoQualityMenuCompatibility
 import app.revanced.patches.youtube.video.videoqualitymenu.fingerprints.VideoQualityMenuViewInflateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@DependsOn([
-    IntegrationsPatch::class,
-    OldVideoQualityMenuResourcePatch::class,
-    LithoFilterPatch::class,
-    BottomSheetHookPatch::class
-])
-@Name("Old video quality menu")
-@Description("Shows the old video quality with the advanced video quality options instead of the new one.")
-@OldVideoQualityMenuCompatibility
-class OldVideoQualityMenuPatch : BytecodePatch(
-    listOf(VideoQualityMenuViewInflateFingerprint)
+@Patch(
+    name = "Old video quality menu",
+    description = "Shows the old video quality with the advanced video quality options instead of the new one.",
+    dependencies = [
+        IntegrationsPatch::class,
+        OldVideoQualityMenuResourcePatch::class,
+        LithoFilterPatch::class,
+        BottomSheetHookPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+    ]
+)
+@Suppress("unused")
+object OldVideoQualityMenuPatch : BytecodePatch(
+    setOf(VideoQualityMenuViewInflateFingerprint)
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/components/VideoQualityMenuFilterPatch;"
+
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+            "Lapp/revanced/integrations/patches/playback/quality/OldVideoQualityMenuPatch;"
+
     override fun execute(context: BytecodeContext) {
         // region Patch for the old type of the video quality menu.
 
@@ -55,13 +62,5 @@ class OldVideoQualityMenuPatch : BytecodePatch(
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         // endregion
-    }
-
-    private companion object {
-        private const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/VideoQualityMenuFilterPatch;"
-
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/quality/OldVideoQualityMenuPatch;"
     }
 }

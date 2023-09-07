@@ -1,16 +1,20 @@
-package app.revanced.patches.youtube.video.videoqualitymenu.patch
+package app.revanced.patches.youtube.video.videoqualitymenu
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class OldVideoQualityMenuResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [SettingsPatch::class, ResourceMappingPatch::class]
+)
+object OldVideoQualityMenuResourcePatch : ResourcePatch() {
+    var videoQualityBottomSheetListFragmentTitle = -1L
+
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
@@ -26,9 +30,5 @@ class OldVideoQualityMenuResourcePatch : ResourcePatch {
 
         // Used for the old type of the video quality menu.
         videoQualityBottomSheetListFragmentTitle = findResource("video_quality_bottom_sheet_list_fragment_title")
-    }
-
-    internal companion object {
-        var videoQualityBottomSheetListFragmentTitle = -1L
     }
 }
