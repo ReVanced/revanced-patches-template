@@ -15,7 +15,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.twitch.ad.embedded.annotations.EmbeddedAdsCompatibility
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
 import app.revanced.patches.twitch.ad.video.patch.VideoAdsPatch
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch
