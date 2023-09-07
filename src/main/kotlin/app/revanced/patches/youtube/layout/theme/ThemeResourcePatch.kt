@@ -1,22 +1,26 @@
-package app.revanced.patches.youtube.layout.theme.resource
+package app.revanced.patches.youtube.layout.theme
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
+import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.darkThemeBackgroundColor
+import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import org.w3c.dom.Element
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class, SeekbarPreferencesPatch::class])
-class ThemeResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [SettingsPatch::class, ResourceMappingPatch::class, SeekbarPreferencesPatch::class]
+)
+object ThemeResourcePatch : ResourcePatch() {
+    private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
+
     override fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
@@ -106,9 +110,5 @@ class ThemeResourcePatch : ResourcePatch {
                     textContent = colorValue
                 })
         }
-    }
-
-    private companion object {
-        private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
     }
 }
