@@ -16,7 +16,7 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPrevi
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
+import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Name("Spoof signature verification")

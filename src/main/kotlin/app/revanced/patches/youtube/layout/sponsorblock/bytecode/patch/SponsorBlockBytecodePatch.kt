@@ -27,7 +27,7 @@ import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFinge
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
-import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
+import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
 import com.android.tools.smali.dexlib2.Opcode
