@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.getpremium.bytecode.fingerprints
+package app.revanced.patches.youtube.ad.getpremium.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint

@@ -1,24 +1,30 @@
-package app.revanced.patches.youtube.ad.getpremium.bytecode.patch
+package app.revanced.patches.youtube.ad.getpremium
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.ad.getpremium.annotations.HideGetPremiumCompatibility
-import app.revanced.patches.youtube.ad.getpremium.bytecode.fingerprints.GetPremiumViewFingerprint
+import app.revanced.patches.youtube.ad.getpremium.fingerprints.GetPremiumViewFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Hide get premium")
-@HideGetPremiumCompatibility
-class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint)) {
+@Patch(
+    name = "Hide get premium",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube", ["18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+    ]
+)
+object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/HideGetPremiumPatch;"
+
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
@@ -63,10 +69,5 @@ class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint)) {
                 )
             }
         } ?: throw GetPremiumViewFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/HideGetPremiumPatch;"
     }
 }
