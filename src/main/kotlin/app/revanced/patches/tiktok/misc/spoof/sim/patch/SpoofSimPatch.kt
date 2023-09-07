@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.tiktok.misc.settings.SettingsPatch
 import app.revanced.patches.tiktok.misc.spoof.sim.annotations.SpoofSimCompatibility

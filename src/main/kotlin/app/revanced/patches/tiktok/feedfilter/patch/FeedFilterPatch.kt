@@ -9,7 +9,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibility
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.tiktok.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode

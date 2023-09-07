@@ -9,7 +9,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AdPersonalizationActivityOnCreateFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.AddSettingsEntryFingerprint
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsEntryFingerprint
