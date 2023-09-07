@@ -1,20 +1,20 @@
-package app.revanced.patches.reddit.customclients.syncforreddit.ads.patch
+package app.revanced.patches.reddit.customclients.syncforreddit.ads
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.syncforreddit.ads.fingerprints.IsAdsEnabledFingerprint
-import app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.patch.DisablePiracyDetectionPatch
+import app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.DisablePiracyDetectionPatch
 
-@Patch
-@Name("Disable ads")
-@DependsOn([DisablePiracyDetectionPatch::class])
-@Compatibility([Package("com.laurencedawson.reddit_sync")])
-class DisableAdsPatch : BytecodePatch(listOf(IsAdsEnabledFingerprint)) {
+@Patch(
+    name = "Disable ads",
+    dependencies = [DisablePiracyDetectionPatch::class],
+    compatiblePackages = [CompatiblePackage("com.laurencedawson.reddit_sync")]
+)
+object DisableAdsPatch : BytecodePatch(setOf(IsAdsEnabledFingerprint)) {
     override fun execute(context: BytecodeContext) {
         IsAdsEnabledFingerprint.result?.mutableMethod?.apply {
             addInstructions(
@@ -26,5 +26,4 @@ class DisableAdsPatch : BytecodePatch(listOf(IsAdsEnabledFingerprint)) {
             )
         } ?: throw IsAdsEnabledFingerprint.exception
     }
-
 }
