@@ -1,8 +1,8 @@
-package app.revanced.patches.all.screencapture.removerestriction.bytecode.patch
+package app.revanced.patches.all.screencapture.removerestriction.bytecode
 
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.all.screencapture.removerestriction.resource.patch.RemoveCaptureRestrictionResourcePatch
+import app.revanced.patches.all.screencapture.removerestriction.resource.RemoveCaptureRestrictionResourcePatch
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
 import app.revanced.util.patch.IMethodCall
 import app.revanced.util.patch.Instruction35cInfo
@@ -10,7 +10,6 @@ import app.revanced.util.patch.filterMapInstruction35c
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
-
 
 @Patch(
     name = "Remove screen capture restriction",
