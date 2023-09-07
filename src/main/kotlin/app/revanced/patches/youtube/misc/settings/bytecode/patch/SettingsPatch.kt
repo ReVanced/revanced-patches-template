@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.SetThemeFingerprint
 import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch

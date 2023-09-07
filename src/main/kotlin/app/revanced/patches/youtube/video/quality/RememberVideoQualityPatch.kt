@@ -14,7 +14,7 @@ import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint

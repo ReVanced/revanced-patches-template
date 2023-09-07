@@ -1,12 +1,13 @@
-package app.revanced.patches.youtube.misc.integrations.patch
+package app.revanced.patches.youtube.misc.integrations
 
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.patch.annotations.RequiresIntegrations
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch
 import app.revanced.patches.youtube.misc.integrations.fingerprints.*
 
-@Name("Integrations")
-@RequiresIntegrations
+@Patch(
+    name = "Integrations",
+    requiresIntegrations = true
+)
 class IntegrationsPatch : AbstractIntegrationsPatch(
     "Lapp/revanced/integrations/utils/ReVancedUtils;",
     listOf(

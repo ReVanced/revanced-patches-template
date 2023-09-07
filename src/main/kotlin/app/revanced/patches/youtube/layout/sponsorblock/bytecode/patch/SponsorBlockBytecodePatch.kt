@@ -25,7 +25,7 @@ import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.Re
 import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch

@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParam
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPreviewLayoutFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 

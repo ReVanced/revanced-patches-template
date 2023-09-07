@@ -7,7 +7,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.fingerprint.PlayerTypeFingerprint
 import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
