@@ -1,4 +1,4 @@
-package app.revanced.patches.all.screenshot.removerestriction.patch
+package app.revanced.patches.all.screenshot.removerestriction
 
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
