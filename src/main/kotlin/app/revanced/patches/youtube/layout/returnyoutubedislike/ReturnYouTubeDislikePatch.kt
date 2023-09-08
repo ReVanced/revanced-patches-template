@@ -45,16 +45,8 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         RemoveLikeFingerprint,
     )
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
-
-    private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
-    private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
-    private enum class Vote(val value: Int) {
-        LIKE(1),
-        DISLIKE(-1),
-        REMOVE_LIKE(0)
-    }
 
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
@@ -205,5 +197,13 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         } ?: throw DislikesOldLayoutTextViewFingerprint.exception
 
         // endregion
+    }
+
+    private fun MethodFingerprint.toPatch(voteKind: Vote) = VotePatch(this, voteKind)
+    private data class VotePatch(val fingerprint: MethodFingerprint, val voteKind: Vote)
+    private enum class Vote(val value: Int) {
+        LIKE(1),
+        DISLIKE(-1),
+        REMOVE_LIKE(0)
     }
 }

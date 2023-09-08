@@ -10,7 +10,6 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerprint
 
 @Patch(
-    name = "Litho color hook",
     description = "Adds a hook to set color of Litho components.",
     compatiblePackages = [
         CompatiblePackage("com.google.android.youtube"),

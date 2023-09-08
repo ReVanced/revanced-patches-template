@@ -30,7 +30,7 @@ object HideFilterBarPatch : BytecodePatch(
         FilterBarHeightFingerprint
     )
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/HideFilterBarPatch;"
 
     /**

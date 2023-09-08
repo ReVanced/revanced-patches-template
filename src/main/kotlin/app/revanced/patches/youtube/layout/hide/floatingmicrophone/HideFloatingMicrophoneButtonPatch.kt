@@ -22,7 +22,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 object HideFloatingMicrophoneButtonPatch : BytecodePatch(
     setOf(ShowFloatingMicrophoneButtonFingerprint)
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/HideFloatingMicrophoneButtonPatch;"
     override fun execute(context: BytecodeContext) {
         ShowFloatingMicrophoneButtonFingerprint.result?.let { result ->

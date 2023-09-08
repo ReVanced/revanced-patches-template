@@ -41,7 +41,7 @@ object RememberVideoQualityPatch : BytecodePatch(
         NewVideoQualityChangedFingerprint
     )
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
             "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
 
     override fun execute(context: BytecodeContext) {

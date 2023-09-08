@@ -22,7 +22,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     ]
 )
 object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/HideGetPremiumPatch;"
 
     override fun execute(context: BytecodeContext) {

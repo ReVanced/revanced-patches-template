@@ -10,7 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
     use = false
 )
 object ExportAllActivitiesPatch : ResourcePatch() {
-    const val EXPORTED_FLAG = "android:exported"
+    private const val EXPORTED_FLAG = "android:exported"
 
     override fun execute(context: ResourceContext) {
         context.xmlEditor["AndroidManifest.xml"].use { editor ->

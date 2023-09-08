@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     dependencies = [SettingsPatch::class, ResourceMappingPatch::class]
 )
 object OldVideoQualityMenuResourcePatch : ResourcePatch() {
-    var videoQualityBottomSheetListFragmentTitle = -1L
+    internal var videoQualityBottomSheetListFragmentTitle = -1L
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(

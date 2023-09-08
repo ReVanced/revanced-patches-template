@@ -24,7 +24,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
     internal var appearanceStringId = -1L
 
     // if this is not null, all intents will be renamed to this
-    var overrideIntentsTargetPackage: String? = null
+    internal var overrideIntentsTargetPackage: String? = null
 
     private var preferencesNode: Node? = null
 
