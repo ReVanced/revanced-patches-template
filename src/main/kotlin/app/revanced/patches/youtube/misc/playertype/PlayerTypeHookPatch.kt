@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.misc.playertype.fingerprint.VideoStateFinger
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
-    name = "Player type hook",
     description = "Hook to get the current player type and video playback state.",
     dependencies = [IntegrationsPatch::class]
 )
