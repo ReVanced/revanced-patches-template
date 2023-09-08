@@ -1,3 +1,17 @@
+## [2.190.1-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.190.1-dev.3...v2.190.1-dev.4) (2023-09-07)
+
+
+### Bug Fixes
+
+* **YouTube - Custom filter:** Use new lines between components instead of commas ([#2952](https://github.com/ReVanced/revanced-patches/issues/2952)) ([ecb2e32](https://github.com/ReVanced/revanced-patches/commit/ecb2e32b1e296590d150bdd3f8bea2665b19a84d))
+
+## [2.190.1-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.190.1-dev.2...v2.190.1-dev.3) (2023-09-07)
+
+
+### Bug Fixes
+
+* **Infinity for Reddit - Spoof client:** Constrain patch to last working versions ([#2944](https://github.com/ReVanced/revanced-patches/issues/2944)) ([ee975de](https://github.com/ReVanced/revanced-patches/commit/ee975dea846c77af0efe608e647075f4055af320))
+
 ## [2.190.1-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.190.1-dev.1...v2.190.1-dev.2) (2023-09-07)
 
 

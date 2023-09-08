@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.hide.general.annotations.HideLayoutComponentsCompatibility
@@ -178,6 +179,7 @@ class HideLayoutComponentsPatch : BytecodePatch(
                         "revanced_custom_filter_strings",
                         "revanced_custom_filter_strings_title",
                         "revanced_custom_filter_strings_summary",
+                        inputType = InputType.TEXT_MULTI_LINE
                     )
                 )
             )
