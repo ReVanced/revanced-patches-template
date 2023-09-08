@@ -19,7 +19,6 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 import java.io.Closeable
 
 @Patch(
-    name = "Settings",
     description = "Adds settings for ReVanced to YouTube.",
     dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class]
 )
