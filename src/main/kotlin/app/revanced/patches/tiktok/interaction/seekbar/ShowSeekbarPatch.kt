@@ -1,22 +1,25 @@
-package app.revanced.patches.tiktok.interaction.seekbar.patch
+package app.revanced.patches.tiktok.interaction.seekbar
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.interaction.seekbar.annotations.ShowSeekbarCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.interaction.seekbar.fingerprints.SetSeekBarShowTypeFingerprint
 import app.revanced.patches.tiktok.interaction.seekbar.fingerprints.ShouldShowSeekBarFingerprint
 
-@Patch
-@Name("Show seekbar")
-@Description("Shows progress bar for all video.")
-@ShowSeekbarCompatibility
-class ShowSeekbarPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Show seekbar",
+    description = "Shows progress bar for all video.",
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object ShowSeekbarPatch : BytecodePatch(
+    setOf(
         SetSeekBarShowTypeFingerprint,
         ShouldShowSeekBarFingerprint,
     )
@@ -42,5 +45,4 @@ class ShowSeekbarPatch : BytecodePatch(
             )
         } ?: throw SetSeekBarShowTypeFingerprint.exception
     }
-
 }
