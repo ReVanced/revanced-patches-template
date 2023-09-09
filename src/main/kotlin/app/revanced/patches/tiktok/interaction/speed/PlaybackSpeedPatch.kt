@@ -1,22 +1,25 @@
-package app.revanced.patches.tiktok.interaction.speed.patch
+package app.revanced.patches.tiktok.interaction.speed
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.tiktok.interaction.speed.annotations.PlaybackSpeedCompatibility
 import app.revanced.patches.tiktok.interaction.speed.fingerprints.SpeedControlParentFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-@Patch
-@Name("Playback speed")
-@Description("Enables the playback speed option for all videos.")
-@PlaybackSpeedCompatibility
-class PlaybackSpeedPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Playback speed",
+    description = "Enables the playback speed option for all videos.",
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object PlaybackSpeedPatch : BytecodePatch(
+    setOf(
         SpeedControlParentFingerprint
     )
 ) {
