@@ -1,20 +1,22 @@
-package app.revanced.patches.twitter.misc.dynamiccolor.patch
+package app.revanced.patches.twitter.misc.dynamiccolor
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.twitter.misc.dynamiccolor.annotations.DynamicColorCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import java.io.FileWriter
 import java.nio.file.Files
 
-@Patch
-@Name("Dynamic color")
-@Description("Replaces the default Twitter Blue with the users Material You palette.")
-@DynamicColorCompatibility
-class DynamicColorPatch : ResourcePatch {
+@Patch(
+    name = "Dynamic color",
+    description = "Replaces the default Twitter Blue with the users Material You palette.",
+    compatiblePackages = [
+        CompatiblePackage("com.twitter.android")
+    ]
+)
+@Suppress("unused")
+object DynamicColorPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         val resDirectory = context["res"]
         if (!resDirectory.isDirectory) throw PatchException("The res folder can not be found.")
