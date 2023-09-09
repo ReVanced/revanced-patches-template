@@ -1,29 +1,34 @@
-package app.revanced.patches.twitch.debug.patch
+package app.revanced.patches.twitch.debug
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.twitch.debug.annotations.DebugModeCompatibility
 import app.revanced.patches.twitch.debug.fingerprints.IsDebugConfigEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch(false)
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Debug mode")
-@Description("Enables Twitch's internal debugging mode.")
-@DebugModeCompatibility
-class DebugModePatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Debug mode",
+    description = "Enables Twitch's internal debugging mode.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("tv.twitch.android.app")
+    ],
+    use = false
+)
+@Suppress("unused")
+object DebugModePatch : BytecodePatch(
+    setOf(
         IsDebugConfigEnabledFingerprint,
         IsOmVerificationEnabledFingerprint,
         ShouldShowDebugOptionsFingerprint
