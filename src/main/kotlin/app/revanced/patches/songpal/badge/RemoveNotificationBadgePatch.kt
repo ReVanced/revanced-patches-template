@@ -13,6 +13,7 @@ import app.revanced.patches.songpal.badge.fingerprints.ShowNotificationFingerpri
     description = "Removes the red notification badge from the activity tab.",
     compatiblePackages = [CompatiblePackage("com.sony.songpal.mdr")]
 )
+@Suppress("unused")
 object RemoveNotificationBadgePatch : BytecodePatch(setOf(ShowNotificationFingerprint)) {
     override fun execute(context: BytecodeContext) {
         ShowNotificationFingerprint.result?.mutableMethod?.addInstructions(0, "return-void")
