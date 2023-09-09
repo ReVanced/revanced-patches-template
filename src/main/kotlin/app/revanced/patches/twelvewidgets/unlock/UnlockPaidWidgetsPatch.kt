@@ -1,20 +1,26 @@
-package app.revanced.patches.twelvewidgets.unlock.patch
+package app.revanced.patches.twelvewidgets.unlock
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.twelvewidgets.unlock.fingerprints.*
 
-@Patch
-@Name("Unlock paid widgets")
-@Description("Unlocks paid widgets of the app")
-@Compatibility([Package("com.dci.dev.androidtwelvewidgets")])
-class UnlockPaidWidgetsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Unlock paid widgets",
+    description = "Unlocks paid widgets of the app",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.dci.dev.androidtwelvewidgets"
+        )
+    ]
+)
+@Suppress("unused")
+object UnlockPaidWidgetsPatch : BytecodePatch(
+    setOf(
         AgendaDaysWidgetUnlockFingerprint,
         CalendarBigWidgetUnlockFingerprint,
         CalendarWideDayEventsWidgetUnlockFingerprint,
