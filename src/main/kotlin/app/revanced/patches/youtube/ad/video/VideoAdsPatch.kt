@@ -1,30 +1,42 @@
-package app.revanced.patches.youtube.ad.video.patch
+package app.revanced.patches.youtube.ad.video
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Video ads")
-@Description("Removes ads in the video player.")
-@VideoAdsCompatibility
-class VideoAdsPatch : BytecodePatch(
-    listOf(
-        LoadVideoAdsFingerprint,
-    )
+@Patch(
+    name = "Video ads",
+    description = "Removes ads in the video player.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            arrayOf(
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            )
+        )
+    ]
+)
+@Suppress("unused")
+object VideoAdsPatch : BytecodePatch(
+    setOf(LoadVideoAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
