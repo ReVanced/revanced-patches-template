@@ -1,13 +1,11 @@
-package app.revanced.patches.tiktok.ad.patch
+package app.revanced.patches.tiktok.ad
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.ad.annotations.HideAdsCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.ad.fingerprints.ConvertHelpFeedItemListFingerprint
 import app.revanced.patches.tiktok.ad.fingerprints.FeedItemListCloneFingerprint
 import com.android.tools.smali.dexlib2.Opcode
@@ -15,12 +13,17 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
-@Patch
-@Name("Hide ads")
-@Description("Removes ads from TikTok.")
-@HideAdsCompatibility
-class HideAdsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Hide ads",
+    description = "Removes ads from TikTok.",
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object HideAdsPatch : BytecodePatch(
+    setOf(
         FeedItemListCloneFingerprint,
         ConvertHelpFeedItemListFingerprint
     )
