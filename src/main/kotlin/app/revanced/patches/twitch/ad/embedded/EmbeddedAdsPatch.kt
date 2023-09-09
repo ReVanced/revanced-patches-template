@@ -1,33 +1,43 @@
-package app.revanced.patches.twitch.ad.embedded.patch
+package app.revanced.patches.twitch.ad.embedded
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
+import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.twitch.ad.embedded.annotations.EmbeddedAdsCompatibility
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
-import app.revanced.patches.twitch.ad.video.patch.VideoAdsPatch
+import app.revanced.patches.twitch.ad.video.VideoAdsPatch
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([VideoAdsPatch::class, IntegrationsPatch::class, SettingsPatch::class])
-@Name("Block embedded ads")
-@Description("Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.")
-@EmbeddedAdsCompatibility
-class EmbeddedAdsPatch : BytecodePatch(
-    listOf(CreateUsherClientFingerprint)
+@Patch(
+    name = "Block embedded ads",
+    description = "Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.",
+    dependencies = [
+        VideoAdsPatch::class,
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "tv.twitch.android.app",
+            arrayOf(
+                "15.4.1",
+                "16.1.0"
+            )
+        )
+    ]
+)
+@Suppress("unused")
+object EmbeddedAdsPatch : BytecodePatch(
+    setOf(CreateUsherClientFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        val result = CreateUsherClientFingerprint.result ?: throw PatchException("${CreateUsherClientFingerprint.name} not found")
+        val result = CreateUsherClientFingerprint.result ?: throw CreateUsherClientFingerprint.exception
 
         // Inject OkHttp3 application interceptor
         result.mutableMethod.addInstructions(
