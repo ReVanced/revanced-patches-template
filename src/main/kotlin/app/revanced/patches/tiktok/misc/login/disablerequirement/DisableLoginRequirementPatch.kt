@@ -1,21 +1,24 @@
-package app.revanced.patches.tiktok.misc.login.disablerequirement.patch
+package app.revanced.patches.tiktok.misc.login.disablerequirement
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.login.disablerequirement.annotations.DisableLoginRequirementCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint
 import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.MandatoryLoginServiceFingerprint2
 
-@Patch
-@Name("Disable login requirement")
-@Description("Do not force login.")
-@DisableLoginRequirementCompatibility
-class DisableLoginRequirementPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Disable login requirement",
+    description = "Do not force login.",
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object DisableLoginRequirementPatch : BytecodePatch(
+    setOf(
         MandatoryLoginServiceFingerprint,
         MandatoryLoginServiceFingerprint2
     )
