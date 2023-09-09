@@ -1,28 +1,37 @@
-package app.revanced.patches.twitch.chat.autoclaim.patch
+package app.revanced.patches.twitch.chat.autoclaim
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.twitch.chat.autoclaim.annotations.AutoClaimChannelPointsCompatibility
 import app.revanced.patches.twitch.chat.autoclaim.fingerprints.CommunityPointsButtonViewDelegateFingerprint
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([SettingsPatch::class])
-@Name("Auto claim channel points")
-@Description("Automatically claim Channel Points.")
-@AutoClaimChannelPointsCompatibility
-class AutoClaimChannelPointPatch : BytecodePatch(
-    listOf(CommunityPointsButtonViewDelegateFingerprint)
+@Patch(
+    name = "Auto claim channel points",
+    description = "Automatically claim Channel Points.",
+    dependencies = [
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "tv.twitch.android.app",
+            arrayOf(
+                "15.4.1",
+                "16.1.0"
+            )
+        )
+    ]
+)
+@Suppress("unused")
+object AutoClaimChannelPointPatch : BytecodePatch(
+    setOf(CommunityPointsButtonViewDelegateFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
