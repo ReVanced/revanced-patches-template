@@ -1,34 +1,42 @@
-package app.revanced.patches.twitch.ad.video.patch
+package app.revanced.patches.twitch.ad.video
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.shared.util.AbstractAdPatch
-import app.revanced.patches.twitch.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.twitch.ad.video.fingerprints.CheckAdEligibilityLambdaFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.ContentConfigShowAdsFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.GetReadyToShowAdFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Block video ads")
-@Description("Blocks video ads in streams and VODs.")
-@VideoAdsCompatibility
-class VideoAdsPatch : AbstractAdPatch(
+@Patch(
+    name = "Block video ads",
+    description = "Blocks video ads in streams and VODs.",
+    dependencies = [
+        IntegrationsPatch::class, SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "tv.twitch.android.app",
+            arrayOf(
+                "15.4.1",
+                "16.1.0"
+            )
+        )
+    ]
+)
+object VideoAdsPatch : AbstractAdPatch(
     "Lapp/revanced/twitch/patches/VideoAdsPatch;->shouldBlockVideoAds()Z",
     "show_video_ads",
-    listOf(
+    setOf(
         ContentConfigShowAdsFingerprint,
         CheckAdEligibilityLambdaFingerprint,
         GetReadyToShowAdFingerprint
