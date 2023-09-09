@@ -1,25 +1,28 @@
-package app.revanced.patches.youtube.ad.general.resource.patch
+package app.revanced.patches.youtube.ad.general
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
 
-@DependsOn(
-    [
+@Patch(
+    dependencies = [
         LithoFilterPatch::class,
         SettingsPatch::class,
         ResourceMappingPatch::class
     ]
 )
-@HideAdsCompatibility
-class HideAdsResourcePatch : ResourcePatch {
+object HideAdsResourcePatch : ResourcePatch() {
+    var adAttributionId: Long = -1
+
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/AdsFilter;"
+
     override fun execute(context: ResourceContext) {
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
@@ -69,12 +72,5 @@ class HideAdsResourcePatch : ResourcePatch {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         adAttributionId = ResourceMappingPatch.resourceMappings.single { it.name == "ad_attribution" }.id
-    }
-
-    internal companion object {
-        var adAttributionId: Long = -1
-
-        private const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/AdsFilter;"
     }
 }

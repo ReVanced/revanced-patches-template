@@ -1,36 +1,43 @@
-package app.revanced.patches.youtube.ad.general.bytecode.patch
+package app.revanced.patches.youtube.ad.general
 
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.extensions.injectHideViewCall
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
-import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
-import app.revanced.patches.youtube.ad.general.resource.patch.HideAdsResourcePatch
 import app.revanced.patches.youtube.ad.getpremium.bytecode.patch.HideGetPremiumPatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch.FixBackToExitGesturePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 
-
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "Hide ads",
+    description = "Removes general ads.",
+    dependencies = [
         HideGetPremiumPatch::class,
         HideAdsResourcePatch::class,
         VerticalScrollPatch::class,
         FixBackToExitGesturePatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            arrayOf(
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            )
+        )
     ]
 )
-@Name("Hide ads")
-@Description("Removes general ads.")
-@HideAdsCompatibility
-class HideAdsPatch : BytecodePatch() {
+@Suppress("unused")
+object HideAdsPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
         context.classes.forEach { classDef ->
             classDef.methods.forEach { method ->
