@@ -2,7 +2,7 @@ package app.revanced.patches.twitter.misc.hook.patch.recommendation
 
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.twitter.misc.hook.json.patch.JsonHookPatch
+import app.revanced.patches.twitter.misc.hook.json.JsonHookPatch
 import app.revanced.patches.twitter.misc.hook.patch.BaseHookPatchPatch
 
 @Patch(

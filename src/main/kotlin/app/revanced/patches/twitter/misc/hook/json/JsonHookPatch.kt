@@ -1,7 +1,5 @@
-package app.revanced.patches.twitter.misc.hook.json.patch
+package app.revanced.patches.twitter.misc.hook.json
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
@@ -9,19 +7,33 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.RequiresIntegrations
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.twitter.misc.hook.json.fingerprints.JsonHookPatchFingerprint
 import app.revanced.patches.twitter.misc.hook.json.fingerprints.JsonInputStreamFingerprint
 import app.revanced.patches.twitter.misc.hook.json.fingerprints.LoganSquareFingerprint
 import java.io.Closeable
 import java.io.InvalidClassException
 
-@Name("Json hook")
-@Description("Hooks the stream which reads JSON responses.")
-@RequiresIntegrations
-class JsonHookPatch : BytecodePatch(
-    listOf(LoganSquareFingerprint)
+@Patch(
+    name = "Json hook",
+    description = "Hooks the stream which reads JSON responses.",
+    requiresIntegrations = true
+)
+object JsonHookPatch : BytecodePatch(
+    setOf(LoganSquareFingerprint)
 ), Closeable {
+    private const val JSON_HOOK_CLASS_NAMESPACE = "app/revanced/twitter/patches/hook/json"
+    private const val JSON_HOOK_PATCH_CLASS_DESCRIPTOR = "L$JSON_HOOK_CLASS_NAMESPACE/JsonHookPatch;"
+    private const val BASE_PATCH_CLASS_NAME = "BaseJsonHook"
+    private const val JSON_HOOK_CLASS_DESCRIPTOR = "L$JSON_HOOK_CLASS_NAMESPACE/$BASE_PATCH_CLASS_NAME;"
+
+    /**
+     * The [JsonHookPatchHook] of the [JsonHookPatch].
+     *
+     * @see JsonHookPatchHook
+     */
+    internal lateinit var hooks: JsonHookPatchHook
+
     override fun execute(context: BytecodeContext) {
         JsonHookPatchFingerprint.also {
             // Make sure the integrations are present.
@@ -126,22 +138,5 @@ class JsonHookPatch : BytecodePatch(
     }
 
     override fun close() = hooks.close()
-
-    internal companion object {
-        private const val JSON_HOOK_CLASS_NAMESPACE = "app/revanced/twitter/patches/hook/json"
-
-        private const val JSON_HOOK_PATCH_CLASS_DESCRIPTOR = "L$JSON_HOOK_CLASS_NAMESPACE/JsonHookPatch;"
-
-        private const val BASE_PATCH_CLASS_NAME = "BaseJsonHook"
-
-        private const val JSON_HOOK_CLASS_DESCRIPTOR = "L$JSON_HOOK_CLASS_NAMESPACE/$BASE_PATCH_CLASS_NAME;"
-
-        /**
-         * The [JsonHookPatchHook] of the [JsonHookPatch].
-         *
-         * @see JsonHookPatchHook
-         */
-        internal lateinit var hooks: JsonHookPatchHook
-    }
 
 }
