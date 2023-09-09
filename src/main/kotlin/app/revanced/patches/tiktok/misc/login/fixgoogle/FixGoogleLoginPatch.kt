@@ -1,21 +1,24 @@
-package app.revanced.patches.tiktok.misc.login.fixgoogle.patch
+package app.revanced.patches.tiktok.misc.login.fixgoogle
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.misc.login.fixgoogle.annotations.FixGoogleLoginCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.misc.login.fixgoogle.fingerprints.GoogleAuthAvailableFingerprint
 import app.revanced.patches.tiktok.misc.login.fixgoogle.fingerprints.GoogleOneTapAuthAvailableFingerprint
 
-@Patch
-@Name("Fix google login")
-@Description("Allows logging in with a Google account.")
-@FixGoogleLoginCompatibility
-class FixGoogleLoginPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Fix google login",
+    description = "Allows logging in with a Google account.",
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object FixGoogleLoginPatch : BytecodePatch(
+    setOf(
         GoogleOneTapAuthAvailableFingerprint,
         GoogleAuthAvailableFingerprint
     )
