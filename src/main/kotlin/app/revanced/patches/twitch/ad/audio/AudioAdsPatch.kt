@@ -1,28 +1,38 @@
-package app.revanced.patches.twitch.ad.audio.patch
+package app.revanced.patches.twitch.ad.audio
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.twitch.ad.audio.annotations.AudioAdsCompatibility
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Block audio ads")
-@Description("Blocks audio ads in streams and VODs.")
-@AudioAdsCompatibility
-class AudioAdsPatch : BytecodePatch(
-    listOf(AudioAdsPresenterPlayFingerprint)
+@Patch(
+    name = "Block audio ads",
+    description = "Blocks audio ads in streams and VODs.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "tv.twitch.android.app",
+            arrayOf(
+                "15.4.1",
+                "16.1.0"
+            )
+        )
+    ],
+)
+@Suppress("unused")
+object AudioAdsPatch : BytecodePatch(
+    setOf(AudioAdsPresenterPlayFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         // Block playAds call
