@@ -1,33 +1,43 @@
-package app.revanced.patches.twitch.chat.antidelete.patch
+package app.revanced.patches.twitch.chat.antidelete
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.twitch.chat.antidelete.annotations.ShowDeletedMessagesCompatibility
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.ChatUtilCreateDeletedSpanFingerprint
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.DeletedMessageClickableSpanCtorFingerprint
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.SetHasModAccessFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Show deleted messages")
-@Description("Shows deleted chat messages behind a clickable spoiler.")
-@ShowDeletedMessagesCompatibility
-class ShowDeletedMessagesPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Show deleted messages",
+    description = "Shows deleted chat messages behind a clickable spoiler.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "tv.twitch.android.app",
+            arrayOf(
+                "15.4.1",
+                "16.1.0"
+            )
+        )
+    ]
+)
+@Suppress("unused")
+object ShowDeletedMessagesPatch : BytecodePatch(
+    setOf(
         SetHasModAccessFingerprint,
         DeletedMessageClickableSpanCtorFingerprint,
         ChatUtilCreateDeletedSpanFingerprint
