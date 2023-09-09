@@ -18,10 +18,10 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.P
     ]
 )
 object HideAdsResourcePatch : ResourcePatch() {
-    var adAttributionId: Long = -1
-
     private const val FILTER_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/components/AdsFilter;"
+
+    internal var adAttributionId: Long = -1
 
     override fun execute(context: ResourceContext) {
         PreferenceScreen.ADS.addPreferences(

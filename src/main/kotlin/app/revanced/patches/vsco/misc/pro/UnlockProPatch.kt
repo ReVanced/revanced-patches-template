@@ -11,9 +11,7 @@ import app.revanced.patches.vsco.misc.pro.fingerprints.RevCatSubscriptionFingerp
 @Patch(
     name = "Unlock pro",
     description = "Unlocks pro features.",
-    compatiblePackages = [
-        CompatiblePackage("com.vsco.cam")
-    ]
+    compatiblePackages = [CompatiblePackage("com.vsco.cam")]
 )
 object UnlockProPatch : BytecodePatch(
     setOf(RevCatSubscriptionFingerprint)

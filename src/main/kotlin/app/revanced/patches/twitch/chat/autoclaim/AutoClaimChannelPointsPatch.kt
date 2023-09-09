@@ -16,18 +16,8 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 @Patch(
     name = "Auto claim channel points",
     description = "Automatically claim Channel Points.",
-    dependencies = [
-        SettingsPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "tv.twitch.android.app",
-            arrayOf(
-                "15.4.1",
-                "16.1.0"
-            )
-        )
-    ]
+    dependencies = [SettingsPatch::class],
+    compatiblePackages = [CompatiblePackage("tv.twitch.android.app", ["15.4.1", "16.1.0"])]
 )
 @Suppress("unused")
 object AutoClaimChannelPointPatch : BytecodePatch(

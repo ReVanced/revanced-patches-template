@@ -17,20 +17,8 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 @Patch(
     name = "Block embedded ads",
     description = "Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.",
-    dependencies = [
-        VideoAdsPatch::class,
-        IntegrationsPatch::class,
-        SettingsPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "tv.twitch.android.app",
-            arrayOf(
-                "15.4.1",
-                "16.1.0"
-            )
-        )
-    ]
+    dependencies = [VideoAdsPatch::class, IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [CompatiblePackage("tv.twitch.android.app", ["15.4.1", "16.1.0"])]
 )
 @Suppress("unused")
 object EmbeddedAdsPatch : BytecodePatch(

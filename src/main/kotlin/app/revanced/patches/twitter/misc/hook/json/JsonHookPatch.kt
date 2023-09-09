@@ -15,7 +15,6 @@ import java.io.Closeable
 import java.io.InvalidClassException
 
 @Patch(
-    name = "Json hook",
     description = "Hooks the stream which reads JSON responses.",
     requiresIntegrations = true
 )

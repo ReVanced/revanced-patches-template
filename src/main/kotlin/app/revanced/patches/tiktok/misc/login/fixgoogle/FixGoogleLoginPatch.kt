@@ -18,10 +18,7 @@ import app.revanced.patches.tiktok.misc.login.fixgoogle.fingerprints.GoogleOneTa
 )
 @Suppress("unused")
 object FixGoogleLoginPatch : BytecodePatch(
-    setOf(
-        GoogleOneTapAuthAvailableFingerprint,
-        GoogleAuthAvailableFingerprint
-    )
+    setOf(GoogleOneTapAuthAvailableFingerprint, GoogleAuthAvailableFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         listOf(

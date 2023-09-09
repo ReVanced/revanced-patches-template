@@ -11,9 +11,7 @@ import app.revanced.patches.warnwetter.misc.firebasegetcert.fingerprints.GetReqi
 @Patch(
     name = "Spoof cert patch",
     description = "Spoofs the X-Android-Cert header.",
-    compatiblePackages = [
-        CompatiblePackage("de.dwd.warnapp")
-    ]
+    compatiblePackages = [CompatiblePackage("de.dwd.warnapp")]
 )
 object FirebaseGetCertPatch : BytecodePatch(
     setOf(

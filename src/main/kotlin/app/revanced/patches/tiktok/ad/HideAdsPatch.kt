@@ -23,10 +23,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 )
 @Suppress("unused")
 object HideAdsPatch : BytecodePatch(
-    setOf(
-        FeedItemListCloneFingerprint,
-        ConvertHelpFeedItemListFingerprint
-    )
+    setOf(FeedItemListCloneFingerprint, ConvertHelpFeedItemListFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         listOf(

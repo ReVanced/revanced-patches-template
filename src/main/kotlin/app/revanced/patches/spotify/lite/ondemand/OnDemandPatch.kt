@@ -11,14 +11,10 @@ import app.revanced.patches.spotify.lite.ondemand.fingerprints.OnDemandFingerpri
 @Patch(
     name = "Enable on demand",
     description = "Enables listening to songs on-demand, allowing to play any song from playlists, albums or artists without limitations. This does not remove ads.",
-    compatiblePackages = [
-        CompatiblePackage("com.spotify.lite")
-    ]
+    compatiblePackages = [CompatiblePackage("com.spotify.lite")]
 )
 @Suppress("unused")
-object OnDemandPatch : BytecodePatch(
-    setOf(OnDemandFingerprint)
-) {
+object OnDemandPatch : BytecodePatch(setOf(OnDemandFingerprint)) {
     override fun execute(context: BytecodeContext) {
         OnDemandFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.endIndex - 1

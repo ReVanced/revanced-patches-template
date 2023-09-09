@@ -26,10 +26,7 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 @Patch(
     name = "Downloads",
     description = "Removes download restrictions and changes the default path to download to.",
-    dependencies = [
-        IntegrationsPatch::class,
-        SettingsPatch::class
-    ],
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
         CompatiblePackage("com.zhiliaoapp.musically")

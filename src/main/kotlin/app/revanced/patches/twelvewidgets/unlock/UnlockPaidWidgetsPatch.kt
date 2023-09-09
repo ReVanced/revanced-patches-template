@@ -12,11 +12,7 @@ import app.revanced.patches.twelvewidgets.unlock.fingerprints.*
 @Patch(
     name = "Unlock paid widgets",
     description = "Unlocks paid widgets of the app",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.dci.dev.androidtwelvewidgets"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.dci.dev.androidtwelvewidgets")]
 )
 @Suppress("unused")
 object UnlockPaidWidgetsPatch : BytecodePatch(

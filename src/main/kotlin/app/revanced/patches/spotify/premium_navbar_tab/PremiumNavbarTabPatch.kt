@@ -15,17 +15,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 @Patch(
     name = "Hide premium navbar",
     description = "Removes the premium tab from the navbar.",
-    dependencies = [
-        ResourceMappingPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage("com.spotify.music")
-    ]
+    dependencies = [ResourceMappingPatch::class],
+    compatiblePackages = [CompatiblePackage("com.spotify.music")]
 )
 @Suppress("unused")
-object PremiumNavbarTabPatch : BytecodePatch(
-    setOf(AddPremiumNavbarTabParentFingerprint)
-) {
+object PremiumNavbarTabPatch : BytecodePatch(setOf(AddPremiumNavbarTabParentFingerprint)) {
     override fun execute(context: BytecodeContext) {
         val parentResult = AddPremiumNavbarTabParentFingerprint.result!!
         AddPremiumNavbarTabFingerprint.resolve(context, parentResult.classDef)

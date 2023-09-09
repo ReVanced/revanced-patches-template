@@ -20,10 +20,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 @Patch(
     name = "Sim spoof",
     description = "Spoofs the information which is retrieved from the sim-card.",
-    dependencies = [
-        IntegrationsPatch::class,
-        SettingsPatch::class
-    ],
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
         CompatiblePackage("com.zhiliaoapp.musically")

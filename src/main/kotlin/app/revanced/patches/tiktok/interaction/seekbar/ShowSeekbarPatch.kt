@@ -18,12 +18,7 @@ import app.revanced.patches.tiktok.interaction.seekbar.fingerprints.ShouldShowSe
     ]
 )
 @Suppress("unused")
-object ShowSeekbarPatch : BytecodePatch(
-    setOf(
-        SetSeekBarShowTypeFingerprint,
-        ShouldShowSeekBarFingerprint,
-    )
-) {
+object ShowSeekbarPatch : BytecodePatch(setOf(SetSeekBarShowTypeFingerprint, ShouldShowSeekBarFingerprint)) {
     override fun execute(context: BytecodeContext) {
         ShouldShowSeekBarFingerprint.result?.mutableMethod?.apply {
             addInstructions(

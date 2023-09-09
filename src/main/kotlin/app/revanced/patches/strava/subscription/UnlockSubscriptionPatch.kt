@@ -11,14 +11,7 @@ import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFinger
 @Patch(
     name = "Unlock subscription features",
     description = "Unlocks \"Matched Runs\" and \"Segment Efforts\".",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.strava",
-            arrayOf(
-                "320.12"
-            )
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.strava", ["320.12"])]
 )
 @Suppress("unused")
 object UnlockSubscriptionPatch : BytecodePatch(setOf(GetSubscribedFingerprint)) {

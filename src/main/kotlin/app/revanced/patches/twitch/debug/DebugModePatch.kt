@@ -17,13 +17,8 @@ import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
 @Patch(
     name = "Debug mode",
     description = "Enables Twitch's internal debugging mode.",
-    dependencies = [
-        IntegrationsPatch::class,
-        SettingsPatch::class
-    ],
-    compatiblePackages = [
-        CompatiblePackage("tv.twitch.android.app")
-    ],
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [CompatiblePackage("tv.twitch.android.app")],
     use = false
 )
 @Suppress("unused")

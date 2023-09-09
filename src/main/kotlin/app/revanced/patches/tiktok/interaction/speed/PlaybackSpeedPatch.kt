@@ -18,11 +18,7 @@ import com.android.tools.smali.dexlib2.Opcode
     ]
 )
 @Suppress("unused")
-object PlaybackSpeedPatch : BytecodePatch(
-    setOf(
-        SpeedControlParentFingerprint
-    )
-) {
+object PlaybackSpeedPatch : BytecodePatch(setOf(SpeedControlParentFingerprint)) {
     override fun execute(context: BytecodeContext) {
         val parentMethod = SpeedControlParentFingerprint.result!!.mutableMethod
         val parentMethodInstructions = parentMethod.implementation!!.instructions
