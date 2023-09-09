@@ -1,41 +1,45 @@
-package app.revanced.patches.tiktok.misc.spoof.sim.patch
+package app.revanced.patches.tiktok.misc.spoof.sim
 
 import app.revanced.extensions.findMutableMethodOf
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
 import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
-import app.revanced.patches.tiktok.misc.spoof.sim.annotations.SpoofSimCompatibility
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch(false)
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Sim spoof")
-@Description("Spoofs the information which is retrieved from the sim-card.")
-@SpoofSimCompatibility
-class SpoofSimPatch : BytecodePatch() {
-    private companion object {
-        val replacements = hashMapOf(
-            "getSimCountryIso" to "getCountryIso",
-            "getNetworkCountryIso" to "getCountryIso",
-            "getSimOperator" to "getOperator",
-            "getNetworkOperator" to "getOperator",
-            "getSimOperatorName" to "getOperatorName",
-            "getNetworkOperatorName" to "getOperatorName"
-        )
-    }
+@Patch(
+    name = "Sim spoof",
+    description = "Spoofs the information which is retrieved from the sim-card.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ],
+    use = false
+)
+@Suppress("unused")
+object SpoofSimPatch : BytecodePatch() {
+    private val replacements = hashMapOf(
+        "getSimCountryIso" to "getCountryIso",
+        "getNetworkCountryIso" to "getCountryIso",
+        "getSimOperator" to "getOperator",
+        "getNetworkOperator" to "getOperator",
+        "getSimOperatorName" to "getOperatorName",
+        "getNetworkOperatorName" to "getOperatorName"
+    )
 
     override fun execute(context: BytecodeContext) {
         // Find all api call to check sim information
