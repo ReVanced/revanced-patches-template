@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.crowdfundingbox.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.youtube.layout.hide.crowdfundingbox.resource.patch.CrowdfundingBoxResourcePatch
+import app.revanced.patches.youtube.layout.hide.crowdfundingbox.resource.CrowdfundingBoxResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode

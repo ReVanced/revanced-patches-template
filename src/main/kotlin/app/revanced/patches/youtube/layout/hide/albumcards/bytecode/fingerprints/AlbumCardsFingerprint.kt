@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.albumcards.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.youtube.layout.hide.albumcards.resource.patch.AlbumCardsResourcePatch
+import app.revanced.patches.youtube.layout.hide.albumcards.resource.AlbumCardsResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode

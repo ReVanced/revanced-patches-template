@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.hide.endscreencards.bytecode.fingerprints
 
-import app.revanced.patches.youtube.layout.hide.endscreencards.resource.patch.HideEndscreenCardsResourcePatch
+import app.revanced.patches.youtube.layout.hide.endscreencards.resource.HideEndscreenCardsResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
