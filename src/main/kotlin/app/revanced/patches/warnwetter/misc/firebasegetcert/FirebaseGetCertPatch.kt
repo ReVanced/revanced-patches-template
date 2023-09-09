@@ -1,19 +1,22 @@
-package app.revanced.patches.warnwetter.misc.firebasegetcert.patch
+package app.revanced.patches.warnwetter.misc.firebasegetcert
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.warnwetter.misc.firebasegetcert.annotations.FirebaseGetCertPatchCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.warnwetter.misc.firebasegetcert.fingerprints.GetMessagingCertFingerprint
 import app.revanced.patches.warnwetter.misc.firebasegetcert.fingerprints.GetReqistrationCertFingerprint
 
-@Name("Spoof cert patch")
-@Description("Spoofs the X-Android-Cert header.")
-@FirebaseGetCertPatchCompatibility
-class FirebaseGetCertPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Spoof cert patch",
+    description = "Spoofs the X-Android-Cert header.",
+    compatiblePackages = [
+        CompatiblePackage("de.dwd.warnapp")
+    ]
+)
+object FirebaseGetCertPatch : BytecodePatch(
+    setOf(
         GetReqistrationCertFingerprint,
         GetMessagingCertFingerprint
     )
