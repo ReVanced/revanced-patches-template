@@ -1,22 +1,24 @@
-package app.revanced.patches.ticktick.misc.themeunlock.patch
+package app.revanced.patches.ticktick.misc.themeunlock
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.ticktick.misc.themeunlock.annotations.UnlockThemesCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.CheckLockedThemesFingerprint
 import app.revanced.patches.ticktick.misc.themeunlock.fingerprints.SetThemeFingerprint
 
-@Patch
-@Name("Unlock themes")
-@Description("Unlocks all themes that are inaccessible until a certain level is reached.")
-@UnlockThemesCompatibility
-class UnlockProPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Unlock themes",
+    description = "Unlocks all themes that are inaccessible until a certain level is reached.",
+    compatiblePackages = [
+        CompatiblePackage("com.ticktick.task")
+    ]
+)
+@Suppress("unused")
+object UnlockProPatch : BytecodePatch(
+    setOf(
         CheckLockedThemesFingerprint,
         SetThemeFingerprint
     )
