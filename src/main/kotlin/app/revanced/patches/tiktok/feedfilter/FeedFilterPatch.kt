@@ -1,13 +1,10 @@
-package app.revanced.patches.tiktok.feedfilter.patch
+package app.revanced.patches.tiktok.feedfilter
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.tiktok.feedfilter.annotations.FeedFilterCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
 import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
@@ -15,13 +12,21 @@ import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Feed filter")
-@Description("Filters tiktok videos: removing ads, removing livestreams.")
-@FeedFilterCompatibility
-class FeedFilterPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Feed filter",
+    description = "Filters tiktok videos: removing ads, removing livestreams.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.ss.android.ugc.trill"),
+        CompatiblePackage("com.zhiliaoapp.musically")
+    ]
+)
+@Suppress("unused")
+object FeedFilterPatch : BytecodePatch(
+    setOf(
         FeedApiServiceLIZFingerprint,
         SettingsStatusLoadFingerprint
     )
