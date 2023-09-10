@@ -1,16 +1,21 @@
-package app.revanced.patches.youtube.layout.hide.shorts.resource.patch
+package app.revanced.patches.youtube.layout.hide.shorts.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class HideShortsComponentsResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
+)
+object HideShortsComponentsResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(

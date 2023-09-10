@@ -1,15 +1,20 @@
-package app.revanced.patches.youtube.layout.player.overlay.resource.patch
+package app.revanced.patches.youtube.layout.player.overlay.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
+)
 class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

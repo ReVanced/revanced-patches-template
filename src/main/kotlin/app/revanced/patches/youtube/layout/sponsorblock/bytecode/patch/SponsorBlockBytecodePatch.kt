@@ -1,24 +1,21 @@
-package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
+package app.revanced.patches.youtube.layout.sponsorblock.bytecode
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.youtube.layout.sponsorblock.annotations.SponsorBlockCompatibility
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.AppendTimeFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ControlsOverlayFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.RectangleFieldInvalidatorFingerprint
@@ -30,16 +27,17 @@ import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerCon
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.*
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
+import com.android.tools.smali.dexlib2.Opcode
 
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "SponsorBlock",
+    description = "Integrates SponsorBlock which allows skipping video segments such as sponsored content.",
+    dependencies = [
         IntegrationsPatch::class,
         VideoIdPatch::class,
         // Required to skip segments on time.
@@ -48,13 +46,16 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
         PlayerTypeHookPatch::class,
         PlayerControlsBytecodePatch::class,
         SponsorBlockResourcePatch::class,
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
     ]
 )
-@Name("SponsorBlock")
-@Description("Integrates SponsorBlock which allows skipping video segments such as sponsored content.")
-@SponsorBlockCompatibility
-class SponsorBlockBytecodePatch : BytecodePatch(
-    listOf(
+object SponsorBlockBytecodePatch : BytecodePatch(
+    setOf(
         SeekbarFingerprint,
         AppendTimeFingerprint,
         LayoutConstructorFingerprint,

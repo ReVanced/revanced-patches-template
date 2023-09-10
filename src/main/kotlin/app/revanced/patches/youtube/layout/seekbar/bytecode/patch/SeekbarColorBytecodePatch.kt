@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.seekbar.bytecode.patch
+package app.revanced.patches.youtube.layout.seekbar.bytecode
 
 import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.extensions.exception
@@ -9,7 +9,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.layout.seekbar.annotations.SeekbarColorCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.PlayerSeekbarColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.ShortsSeekbarColorFingerprint
@@ -20,11 +19,21 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Description("Hide or set a custom seekbar color")
-@DependsOn([IntegrationsPatch::class, LithoColorHookPatch::class, SeekbarColorResourcePatch::class])
-@SeekbarColorCompatibility
-class SeekbarColorBytecodePatch : BytecodePatch(
-    listOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)
+@Patch(
+    description = "Hide or set a custom seekbar color",
+    dependencies = [
+        IntegrationsPatch::class,
+        LithoColorHookPatch::class,
+        SeekbarColorResourcePatch::class
+    ]
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube"
+        )
+    ]
+)
+object SeekbarColorBytecodePatch : BytecodePatch(
+    setOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         fun MutableMethod.addColorChangeInstructions(resourceId: Long) {

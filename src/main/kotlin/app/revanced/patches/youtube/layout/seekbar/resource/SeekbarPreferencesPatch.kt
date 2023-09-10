@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.seekbar.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.*
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
@@ -10,8 +10,13 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import java.io.Closeable
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class SeekbarPreferencesPatch : ResourcePatch, Closeable {
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
+)
+object SeekbarPreferencesPatch : ResourcePatch, Closeable {
     override fun execute(context: ResourceContext) {
 
         // Nothing to do here. All work is done in close method.

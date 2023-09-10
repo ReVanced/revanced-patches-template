@@ -1,27 +1,35 @@
-package app.revanced.patches.youtube.layout.hide.time.patch
+package app.revanced.patches.youtube.layout.hide.time
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.time.annotations.HideTimeCompatibility
 import app.revanced.patches.youtube.layout.hide.time.fingerprints.TimeCounterFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Hide timestamp")
-@Description("Hides timestamp in video player.")
-@HideTimeCompatibility
-class HideTimestampPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Hide timestamp",
+    description = "Hides timestamp in video player.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
+)
+object HideTimestampPatch : BytecodePatch(
+    setOf(
         TimeCounterFingerprint
     )
 ) {

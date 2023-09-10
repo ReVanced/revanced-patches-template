@@ -1,15 +1,20 @@
-package app.revanced.patches.youtube.layout.hide.personalinformation.resource.patch
+package app.revanced.patches.youtube.layout.hide.personalinformation.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class HideEmailAddressResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
+)
+object HideEmailAddressResourcePatch : ResourcePatch {
     companion object {
         internal var accountSwitcherAccessibilityLabelId: Long = -1
     }

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.searchbar.patch
+package app.revanced.patches.youtube.layout.searchbar
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
@@ -6,23 +6,31 @@ import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.searchbar.annotations.WideSearchbarCompatibility
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.SetWordmarkHeaderFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Wide searchbar")
-@Description("Replaces the search icon with a wide search bar. This will hide the YouTube logo when active.")
-@WideSearchbarCompatibility
+@Patch(
+    name = "Wide searchbar",
+    description = "Replaces the search icon with a wide search bar. This will hide the YouTube logo when active.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ]
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
+)
 class WideSearchbarPatch : BytecodePatch(
     listOf(
         SetWordmarkHeaderFingerprint, CreateSearchSuggestionsFingerprint

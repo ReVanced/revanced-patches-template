@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
+package app.revanced.patches.youtube.layout.sponsorblock.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -12,8 +12,13 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class SponsorBlockResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
+)
+object SponsorBlockResourcePatch : ResourcePatch {
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(

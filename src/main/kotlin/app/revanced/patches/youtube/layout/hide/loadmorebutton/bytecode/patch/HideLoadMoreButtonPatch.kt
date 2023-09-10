@@ -1,25 +1,31 @@
-package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.patch
+package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints.HideLoadMoreButtonFingerprint
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.annotations.HideLoadMoreButtonCompatibility
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@Name("Hide load more button")
-@Description("Hides the button under videos that loads similar videos.")
-@DependsOn([HideLoadMoreButtonResourcePatch::class])
+@Patch(
+    name = "Hide load more button",
+    description = "Hides the button under videos that loads similar videos.",
+    dependencies = [
+        HideLoadMoreButtonResourcePatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
+)
 @HideLoadMoreButtonCompatibility
-class HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
+object HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
     override fun execute(context: BytecodeContext) {
         HideLoadMoreButtonFingerprint.result?.let {
             it.mutableMethod.apply {

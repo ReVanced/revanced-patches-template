@@ -1,16 +1,20 @@
-package app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch
+package app.revanced.patches.youtube.layout.returnyoutubedislike.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
-@DependsOn([SettingsPatch::class])
-class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
+@Patch(
+    dependencies = [
+        SettingsPatch::class
+    ]
+)
+object ReturnYouTubeDislikeResourcePatch : ResourcePatch {
     companion object {
         internal var oldUIDislikeId: Long = -1
     }

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
+package app.revanced.patches.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
@@ -12,11 +12,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.layout.returnyoutubedislike.annotations.ReturnYouTubeDislikeCompatibility
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
@@ -27,20 +26,24 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "Return YouTube Dislike",
+    description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
+    dependencies = [
         IntegrationsPatch::class,
         VideoIdPatch::class,
         ReturnYouTubeDislikeResourcePatch::class,
-        PlayerTypeHookPatch::class,
+        PlayerTypeHookPatch::class
+    ]
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.32.39")
+        )
     ]
 )
-@Name("Return YouTube Dislike")
-@Description("Shows the dislike count of videos using the Return YouTube Dislike API.")
-@ReturnYouTubeDislikeCompatibility
-class ReturnYouTubeDislikePatch : BytecodePatch(
-    listOf(
+object ReturnYouTubeDislikePatch : BytecodePatch(
+    setOf(
         TextComponentConstructorFingerprint,
         ShortsTextViewFingerprint,
         DislikesOldLayoutTextViewFingerprint,

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.seekbar.patch
+package app.revanced.patches.youtube.layout.hide.seekbar
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
@@ -6,32 +6,39 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.hide.seekbar.annotations.HideSeekbarCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
-@Patch
-@DependsOn([
-    IntegrationsPatch::class,
-    SettingsPatch::class,
-    // Does not alter the behavior of the seek bar by default.
-    SeekbarColorBytecodePatch::class,
-    // Used to add preferences to the seekbar settings menu.
-    SeekbarPreferencesPatch::class
-])
-@Name("Hide seekbar")
-@Description("Hides the seekbar.")
-@HideSeekbarCompatibility
-class HideSeekbarPatch : BytecodePatch(
-    listOf(SeekbarFingerprint)
+@Patch(
+    name = "Hide seekbar",
+    description = "Hides the seekbar.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class,
+        // Does not alter the behavior of the seek bar by default.
+        SeekbarColorBytecodePatch::class,
+        // Used to add preferences to the seekbar settings menu.
+        SeekbarPreferencesPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
+)
+object HideSeekbarPatch : BytecodePatch(
+    setOf(
+        SeekbarFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
         SeekbarPreferencesPatch.addPreferences(
