@@ -1,17 +1,23 @@
-package app.revanced.patches.messenger.ads.inbox.patch
+package app.revanced.patches.messenger.ads.inbox
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.messenger.ads.inbox.fingerprints.LoadInboxAdsFingerprint
 
-@Patch
-@Name("Hide inbox ads")
-@Description("Hides ads in inbox.")
-@Compatibility([Package("com.facebook.orca")])
+@Patch(
+    name = "Hide inbox ads",
+    description = "Hides ads in inbox.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.facebook.orca",
+        )
+    ]
+)
 class HideInboxAdsPatch : BytecodePatch(
     listOf(LoadInboxAdsFingerprint)
 ) {
