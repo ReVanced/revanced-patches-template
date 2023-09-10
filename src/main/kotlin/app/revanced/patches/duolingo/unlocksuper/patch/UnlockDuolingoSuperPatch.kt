@@ -1,29 +1,34 @@
-package app.revanced.patches.duolingo.unlocksuper.patch
+package app.revanced.patches.duolingo.unlocksuper
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.duolingo.unlocksuper.fingerprints.IsUserSuperMethodFingerprint
 import app.revanced.patches.duolingo.unlocksuper.fingerprints.UserSerializationMethodFingerprint
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction22c
 import com.android.tools.smali.dexlib2.iface.reference.Reference
+import com.android.tools.smali.dexlib2.Opcode
 
-@Patch
-@Name("Unlock Duolingo Super")
-@Description("Unlocks Duolingo Super features.")
-@Compatibility([Package("com.duolingo")])
-class UnlockDuolingoSuperPatch : BytecodePatch(
-    listOf(UserSerializationMethodFingerprint, IsUserSuperMethodFingerprint)
+@Patch(
+    name = "Unlock Duolingo Super",
+    description = "Unlocks Duolingo Super features.",
+    compatiblePackages = [
+        compatiblePackages(
+            "com.duolingo"
+        )
+    ]
+)
+object UnlockDuolingoSuperPatch : BytecodePatch(
+    setOf(
+        UserSerializationMethodFingerprint,
+        IsUserSuperMethodFingerprint
+    )
 ) {
 
     /* First find the reference to the isUserSuper field, then patch the instruction that assigns it to false.
