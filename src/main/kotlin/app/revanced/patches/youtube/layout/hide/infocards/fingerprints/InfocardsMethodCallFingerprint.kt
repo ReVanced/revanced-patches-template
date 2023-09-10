@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.infocards.fingerprints
 
 import app.revanced.util.patch.LiteralValueFingerprint
-import app.revanced.patches.youtube.layout.hide.infocards.resource.HideInfocardsResourcePatch
+import app.revanced.patches.youtube.layout.hide.infocards.HideInfocardsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 
 object InfocardsMethodCallFingerprint : LiteralValueFingerprint(
