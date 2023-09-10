@@ -1,20 +1,23 @@
-package app.revanced.patches.iconpackstudio.misc.pro.patch
+package app.revanced.patches.iconpackstudio.misc.pro
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.iconpackstudio.misc.pro.annotations.UnlockProCompatibility
 import app.revanced.patches.iconpackstudio.misc.pro.fingerprints.CheckProFingerprint
 
-@Patch
-@Name("Unlock pro")
-@Description("Unlocks all pro features.")
-@UnlockProCompatibility
-class UnlockProPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Unlock pro",
+    description = "Unlocks all pro features.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "ginlemon.iconpackstudio"
+        )
+    ]
+)
+object UnlockProPatch : BytecodePatch(
+    setOf(
         CheckProFingerprint
     )
 ) {
