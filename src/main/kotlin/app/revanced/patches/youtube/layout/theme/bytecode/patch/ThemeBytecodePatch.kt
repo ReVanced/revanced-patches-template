@@ -1,21 +1,26 @@
-package app.revanced.patches.youtube.layout.theme.bytecode.patch
+package app.revanced.patches.youtube.layout.theme.bytecode
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.*
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 
-@Patch
-@Name("Theme")
-@Description("Applies a custom theme.")
-@DependsOn([LithoColorHookPatch::class, SeekbarColorBytecodePatch::class, ThemeResourcePatch::class])
-@ThemeCompatibility
-class ThemeBytecodePatch : BytecodePatch() {
+@Patch(
+    name = "Theme",
+    description = "Applies a custom theme.",
+    dependencies = [
+        LithoColorHookPatch::class,
+        SeekbarColorBytecodePatch::class,
+        ThemeResourcePatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube")
+    ]
+)
+object ThemeBytecodePatch : BytecodePatch() {
 
     override fun execute(context: BytecodeContext) {
         LithoColorHookPatch.lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getValue")

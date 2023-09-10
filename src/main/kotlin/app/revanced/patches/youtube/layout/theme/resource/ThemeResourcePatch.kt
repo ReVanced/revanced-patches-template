@@ -1,9 +1,9 @@
 package app.revanced.patches.youtube.layout.theme.resource
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -15,7 +15,14 @@ import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePat
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import org.w3c.dom.Element
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class, SeekbarPreferencesPatch::class])
+@Patch(
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class,
+        SeekbarPreferencesPatch::class
+    ],
+)
+@DependsOn()
 class ThemeResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(
