@@ -78,4 +78,15 @@ tasks {
         description = "Dummy task"
         dependsOn(named("generateBundle"), named("generateMeta"))
     }
+    register<JavaExec>("generateMergedStrings") {
+        description = "Generate a merged English strings.xml file, used for crowdin translations"
+        dependsOn(build)
+
+        classpath = sourceSets["main"].runtimeClasspath
+        mainClass = "app.revanced.util.resources.ResourceUtils"
+        args = listOf(
+            "src/main/resources/youtube/settings/host/values/",
+            "src/main/resources/youtube/settings/raw/strings.xml"
+        )
+    }
 }

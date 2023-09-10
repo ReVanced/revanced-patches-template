@@ -5,12 +5,18 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import org.w3c.dom.Node
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.util.jar.JarFile
 import java.util.regex.Pattern
+import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
+import javax.xml.transform.stream.StreamResult
+
 
 @Suppress("MemberVisibilityCanBePrivate")
 object ResourceUtils {
@@ -94,6 +100,49 @@ object ResourceUtils {
         }
     }
 
+    /**
+     * Used by Gradle task to merge the English patch strings into a single file for translations.
+     */
+    @JvmStatic
+    fun main(args: Array<String>) {
+        mergeXMLFiles(args[0], args[1])
+    }
+
+    internal fun mergeXMLFiles(sourcePath: String, outputFilePath: String) {
+        val sourceDirectory = File(sourcePath)
+        val outputFile = File(outputFilePath)
+
+        val builder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+
+        // Create a new Document to hold the merged content
+        val mergedDocument = builder.newDocument()
+
+        // Create the root element for the merged XML
+        val rootElement = mergedDocument.createElement("root")
+        mergedDocument.appendChild(rootElement)
+
+        // Loop through XML files in the source directory
+        sourceDirectory.listFiles { _, name -> name.endsWith(".xml") }?.forEach { file ->
+            val xmlDoc = builder.parse(file)
+            val root = xmlDoc.documentElement
+
+            // Merge the child nodes of the current XML file into the mergedDocument.
+            val childNodes = root.childNodes
+            for (i in 0 until childNodes.length) {
+                val child = childNodes.item(i)
+                val importedNode = rootElement.ownerDocument.importNode(child, true)
+                rootElement.appendChild(importedNode)
+            }
+        }
+
+        // Save the merged XML to the output file.
+        val transformer = TransformerFactory.newInstance().newTransformer()
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes")
+        val source = DOMSource(mergedDocument)
+        val result = StreamResult(outputFile)
+        transformer.transform(source, result)
+        println("Merged XML saved to: ${outputFile.absolutePath}")
+    }
 
     /**
      * Resource names mapped to their corresponding resource data.
