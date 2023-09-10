@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.video.speed.custom.patch
+package app.revancedes.youtube.video.speed.custom
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

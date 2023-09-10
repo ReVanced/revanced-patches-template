@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.settings.resource.patch
+package app.revancedes.youtube.misc.settings.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotations.DependsOn

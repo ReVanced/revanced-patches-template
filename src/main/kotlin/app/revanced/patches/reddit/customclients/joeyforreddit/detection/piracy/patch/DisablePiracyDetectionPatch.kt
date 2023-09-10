@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.joeyforreddit.detection.piracy.patch
+package app.revancedes.reddit.customclients.joeyforreddit.detection.piracy
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext

@@ -1,4 +1,4 @@
-package app.revanced.patches.music.layout.minimizedplayback.patch
+package app.revancedes.music.layout.minimizedplayback
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.links.patch
+package app.revancedes.youtube.misc.links
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

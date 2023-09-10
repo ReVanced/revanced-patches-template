@@ -1,4 +1,4 @@
-package app.revanced.patches.photomath.detection.deviceid.patch
+package app.revancedes.photomath.detection.deviceid
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

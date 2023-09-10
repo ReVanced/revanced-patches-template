@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.autocaptions.patch
+package app.revancedes.youtube.layout.autocaptions
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

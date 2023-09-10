@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.zoomhaptics.patch
+package app.revancedes.youtube.misc.zoomhaptics
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

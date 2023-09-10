@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.tabletminiplayer.patch
+package app.revancedes.youtube.layout.tabletminiplayer
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.music.audio.codecs.patch
+package app.revancedes.music.audio.codecs
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

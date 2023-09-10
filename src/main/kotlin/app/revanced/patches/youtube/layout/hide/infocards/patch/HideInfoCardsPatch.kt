@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.infocards.patch
+package app.revancedes.youtube.layout.hide.infocards
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.myexpenses.misc.pro.patch
+package app.revancedes.myexpenses.misc.pro
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

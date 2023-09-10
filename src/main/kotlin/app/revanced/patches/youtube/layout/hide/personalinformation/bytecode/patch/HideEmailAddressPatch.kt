@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.personalinformation.bytecode.patch
+package app.revancedes.youtube.layout.hide.personalinformationpatch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.music.premium.backgroundplay.patch
+package app.revancedes.music.premium.backgroundplay
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

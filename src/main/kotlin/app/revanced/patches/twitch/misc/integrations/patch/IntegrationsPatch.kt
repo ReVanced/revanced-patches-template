@@ -1,4 +1,4 @@
-package app.revanced.patches.twitch.misc.integrations.patch
+package app.revancedes.twitch.misc.integrations
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations

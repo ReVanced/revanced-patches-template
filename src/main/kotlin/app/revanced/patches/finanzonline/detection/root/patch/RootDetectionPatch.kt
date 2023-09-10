@@ -1,4 +1,4 @@
-package app.revanced.patches.finanzonline.detection.root.patch
+package app.revancedes.finanzonline.detection.root
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

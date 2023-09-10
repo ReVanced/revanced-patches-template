@@ -1,4 +1,4 @@
-package app.revanced.patches.spotify.lite.ondemand.patch
+package app.revancedes.spotify.lite.ondemand
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

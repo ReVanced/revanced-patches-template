@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.thumbnails.patch
+package app.revancedes.youtube.layout.thumbnails
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

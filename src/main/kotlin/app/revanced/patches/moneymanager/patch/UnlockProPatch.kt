@@ -1,4 +1,4 @@
-package app.revanced.patches.moneymanager.patch
+package app.revancedes.moneymanager
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

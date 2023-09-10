@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.fix.playback.patch
+package app.revancedes.youtube.misc.fix.playback
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

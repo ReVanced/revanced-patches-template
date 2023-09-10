@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.minimizedplayback.patch
+package app.revancedes.youtube.misc.minimizedplayback
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

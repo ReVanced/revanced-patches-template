@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.syncforreddit.ads.patch
+package app.revancedes.reddit.customclients.syncforreddit.ads
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*

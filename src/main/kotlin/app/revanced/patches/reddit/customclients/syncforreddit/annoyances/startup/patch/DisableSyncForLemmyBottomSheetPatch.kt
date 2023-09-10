@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.syncforreddit.annoyances.startup.patch
+package app.revancedes.reddit.customclients.syncforreddit.annoyances.startup
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

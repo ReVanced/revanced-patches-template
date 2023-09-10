@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.buttons.action.patch
+package app.revancedes.youtube.layout.buttons.action
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

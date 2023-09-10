@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.general.bytecode.patch
+package app.revancedes.youtube.ad.generalpatch
 
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.extensions.injectHideViewCall

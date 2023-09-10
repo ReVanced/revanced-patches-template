@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.seekbar.bytecode.patch
+package app.revancedes.youtube.layout.seekbarpatch
 
 import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.extensions.exception

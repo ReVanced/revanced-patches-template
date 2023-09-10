@@ -1,4 +1,4 @@
-package app.revanced.patches.netguard.broadcasts.removerestriction.resource.patch
+package app.revancedes.netguard.broadcasts.removerestriction.resource
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

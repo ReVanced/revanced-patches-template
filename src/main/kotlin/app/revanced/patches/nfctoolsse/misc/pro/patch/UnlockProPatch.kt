@@ -1,4 +1,4 @@
-package app.revanced.patches.nfctoolsse.misc.pro.patch
+package app.revancedes.nfctoolsse.misc.pro
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

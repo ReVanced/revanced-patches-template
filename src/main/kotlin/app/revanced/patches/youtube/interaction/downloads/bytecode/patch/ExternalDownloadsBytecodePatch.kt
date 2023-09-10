@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.downloads.bytecode.patch
+package app.revancedes.youtube.interaction.downloadspatch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

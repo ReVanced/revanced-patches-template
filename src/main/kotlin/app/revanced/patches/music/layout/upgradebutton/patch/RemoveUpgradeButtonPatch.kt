@@ -1,4 +1,4 @@
-package app.revanced.patches.music.layout.upgradebutton.patch
+package app.revancedes.music.layout.upgradebutton
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.warnwetter.misc.promocode.patch
+package app.revancedes.warnwetter.misc.promocode
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

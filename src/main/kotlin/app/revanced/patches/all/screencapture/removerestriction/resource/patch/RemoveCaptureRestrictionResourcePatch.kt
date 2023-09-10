@@ -1,4 +1,4 @@
-package app.revanced.patches.all.screencapture.removerestriction.resource.patch
+package app.revancedes.all.screencapture.removerestriction.resource
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.ResourceContext

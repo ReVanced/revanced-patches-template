@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.litho.filter.patch
+package app.revancedes.youtube.misc.litho.filter
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

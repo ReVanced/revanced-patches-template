@@ -1,4 +1,4 @@
-package app.revanced.patches.twitch.chat.antidelete.patch
+package app.revancedes.twitch.chat.antidelete
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

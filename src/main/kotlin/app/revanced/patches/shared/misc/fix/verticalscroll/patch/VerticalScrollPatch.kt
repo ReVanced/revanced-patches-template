@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.misc.fix.verticalscroll.patch
+package app.revancedes.shared.misc.fix.verticalscroll
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.shared.integrations.patch
+package app.revancedes.shared.integrations
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.BytecodeContext

@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.ad.banner.patch
+package app.revancedes.reddit.ad.banner
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

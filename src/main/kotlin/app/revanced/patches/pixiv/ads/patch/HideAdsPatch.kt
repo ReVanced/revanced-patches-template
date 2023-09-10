@@ -1,4 +1,4 @@
-package app.revanced.patches.pixiv.ads.patch
+package app.revancedes.pixiv.ads
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*

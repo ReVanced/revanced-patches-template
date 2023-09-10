@@ -1,4 +1,4 @@
-package app.revanced.patches.spotify.layout.theme.patch
+package app.revancedes.spotify.layout.theme
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

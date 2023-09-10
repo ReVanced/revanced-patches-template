@@ -1,4 +1,4 @@
-package app.revanced.patches.photomath.detection.signature.patch
+package app.revancedes.photomath.detection.signature
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

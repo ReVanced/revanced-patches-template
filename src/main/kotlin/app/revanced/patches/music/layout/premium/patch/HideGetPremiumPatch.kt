@@ -1,4 +1,4 @@
-package app.revanced.patches.music.layout.premium.patch
+package app.revancedes.music.layout.premium
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.twitch.chat.autoclaim.patch
+package app.revancedes.twitch.chat.autoclaim
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

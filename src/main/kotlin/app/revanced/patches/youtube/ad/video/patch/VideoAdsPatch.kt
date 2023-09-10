@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.ad.video.patch
+package app.revancedes.youtube.ad.video
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.settings.patch
+package app.revancedes.tiktok.misc.settings
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

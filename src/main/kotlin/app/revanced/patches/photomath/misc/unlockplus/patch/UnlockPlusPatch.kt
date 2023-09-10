@@ -1,4 +1,4 @@
-package app.revanced.patches.photomath.misc.unlockplus.patch
+package app.revancedes.photomath.misc.unlockplus
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

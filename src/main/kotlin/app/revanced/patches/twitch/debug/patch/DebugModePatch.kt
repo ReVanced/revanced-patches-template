@@ -1,4 +1,4 @@
-package app.revanced.patches.twitch.debug.patch
+package app.revancedes.twitch.debug
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

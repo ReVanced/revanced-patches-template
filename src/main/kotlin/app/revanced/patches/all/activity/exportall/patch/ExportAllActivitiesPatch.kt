@@ -1,4 +1,4 @@
-package app.revanced.patches.all.activity.exportall.patch
+package app.revancedes.all.activity.exportall
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

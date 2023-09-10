@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.returnyoutubedislike.patch
+package app.revancedes.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

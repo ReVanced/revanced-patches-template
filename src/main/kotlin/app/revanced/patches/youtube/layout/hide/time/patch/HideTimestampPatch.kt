@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.time.patch
+package app.revancedes.youtube.layout.hide.time
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

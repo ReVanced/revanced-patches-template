@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.misc.login.disablerequirement.patch
+package app.revancedes.tiktok.misc.login.disablerequirement
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

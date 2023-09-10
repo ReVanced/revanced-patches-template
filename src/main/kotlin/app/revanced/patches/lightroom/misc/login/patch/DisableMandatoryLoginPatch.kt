@@ -1,4 +1,4 @@
-package app.revanced.patches.lightroom.misc.login.patch
+package app.revancedes.lightroom.misc.login
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Name

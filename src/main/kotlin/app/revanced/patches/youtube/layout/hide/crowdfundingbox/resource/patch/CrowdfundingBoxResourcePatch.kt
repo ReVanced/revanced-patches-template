@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.crowdfundingbox.resource.patch
+package app.revancedes.youtube.layout.hide.crowdfundingbox.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

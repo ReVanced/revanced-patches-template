@@ -1,4 +1,4 @@
-package app.revanced.patches.songpal.badge.patch
+package app.revancedes.songpal.badge
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

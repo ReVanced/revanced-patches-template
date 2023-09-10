@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.endscreencards.bytecode.patch
+package app.revancedes.youtube.layout.hide.endscreencardspatch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

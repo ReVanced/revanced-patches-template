@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.branding.header.patch
+package app.revancedes.youtube.layout.branding.header
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

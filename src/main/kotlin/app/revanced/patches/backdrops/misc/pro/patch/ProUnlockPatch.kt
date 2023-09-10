@@ -1,4 +1,4 @@
-package app.revanced.patches.backdrops.misc.pro.patch
+package app.revancedes.backdrops.misc.pro
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

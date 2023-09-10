@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.panels.popup.patch
+package app.revancedes.youtube.layout.panels.popup
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.strava.subscription.patch
+package app.revancedes.strava.subscription
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

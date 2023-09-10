@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.baconreader.api.patch
+package app.revancedes.reddit.customclients.baconreader.api
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

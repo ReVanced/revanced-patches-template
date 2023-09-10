@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.joeyforreddit.ads.patch
+package app.revancedes.reddit.customclients.joeyforreddit.ads
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.buttons.navigation.patch
+package app.revancedes.youtube.layout.buttons.navigation
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.memegenerator.detection.license.patch
+package app.revancedes.memegenerator.detection.license
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

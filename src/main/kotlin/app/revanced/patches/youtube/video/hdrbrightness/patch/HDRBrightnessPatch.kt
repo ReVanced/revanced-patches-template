@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.video.hdrbrightness.patch
+package app.revancedes.youtube.video.hdrbrightness
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

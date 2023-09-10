@@ -1,4 +1,4 @@
-package app.revanced.patches.all.connectivity.wifi.spoof.patch
+package app.revancedes.all.connectivity.wifi.spoof
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revanced.patches.twitter.misc.hook.patch.recommendation.patch
+package app.revancedes.twitter.misc.hook.recommendation
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

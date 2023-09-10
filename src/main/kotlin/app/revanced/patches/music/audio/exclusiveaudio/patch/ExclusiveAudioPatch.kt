@@ -1,4 +1,4 @@
-package app.revanced.patches.music.audio.exclusiveaudio.patch
+package app.revancedes.music.audio.exclusiveaudio
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

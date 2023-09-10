@@ -1,4 +1,4 @@
-package app.revanced.patches.tiktok.ad.patch
+package app.revancedes.tiktok.ad
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

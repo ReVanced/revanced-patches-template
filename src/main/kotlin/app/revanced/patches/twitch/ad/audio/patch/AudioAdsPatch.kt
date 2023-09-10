@@ -1,4 +1,4 @@
-package app.revanced.patches.twitch.ad.audio.patch
+package app.revancedes.twitch.ad.audio
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

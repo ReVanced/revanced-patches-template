@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.floatingmicrophone.patch
+package app.revancedes.youtube.layout.hide.floatingmicrophone
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.spoofappversion.bytecode.patch
+package app.revancedes.youtube.layout.spoofappversionpatch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch
+package app.revancedes.youtube.misc.fix.backtoexitgesture
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

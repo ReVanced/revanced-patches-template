@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.seekbar.patch
+package app.revancedes.youtube.layout.hide.seekbar
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

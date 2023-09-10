@@ -1,4 +1,4 @@
-package app.revanced.patches.iconpackstudio.misc.pro.patch
+package app.revancedes.iconpackstudio.misc.pro
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

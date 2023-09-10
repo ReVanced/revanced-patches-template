@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.interaction.copyvideourl.bytecode.patch
+package app.revancedes.youtube.interaction.copyvideourlpatch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

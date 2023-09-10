@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch
+package app.revancedes.youtube.layout.returnyoutubedislike.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

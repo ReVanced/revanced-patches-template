@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.searchbar.patch
+package app.revancedes.youtube.layout.searchbar
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
