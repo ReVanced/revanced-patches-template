@@ -1,23 +1,29 @@
-package app.revanced.patches.music.interaction.permanentrepeat.patch
+package app.revanced.patches.music.interaction.permanentrepeat
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.interaction.permanentrepeat.fingerprints.RepeatTrackFingerprint
 
-@Patch(false)
-@Name("Permanent repeat")
-@Description("Permanently remember your repeating preference even if the playlist ends or another track is played.")
-@MusicCompatibility
-class PermanentRepeatPatch : BytecodePatch(
-    listOf(RepeatTrackFingerprint)
+@Patch(
+    name = "Permanent repeat",
+    description = "Permanently remember your repeating preference even if the playlist ends or another track is played.",
+    use = false,
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+        )
+    ]
+)
+object PermanentRepeatPatch : BytecodePatch(
+    setOf(
+        RepeatTrackFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
         RepeatTrackFingerprint.result?.let {

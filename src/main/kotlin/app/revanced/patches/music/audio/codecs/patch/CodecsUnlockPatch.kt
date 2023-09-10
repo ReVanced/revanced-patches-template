@@ -1,23 +1,28 @@
-package app.revanced.patches.music.audio.codecs.patch
+package app.revanced.patches.music.audio.codecs
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.toInstruction
 import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.audio.codecs.fingerprints.AllCodecsReferenceFingerprint
 import app.revanced.patches.music.audio.codecs.fingerprints.CodecsLockFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-@Patch
-@Name("Codecs unlock")
-@Description("Adds more audio codec options. The new audio codecs usually result in better audio quality.")
-@MusicCompatibility
-class CodecsUnlockPatch : BytecodePatch(
-    listOf(
-        CodecsLockFingerprint, AllCodecsReferenceFingerprint
+@Patch(
+    name = "Codecs unlock",
+    description = "Adds more audio codec options. The new audio codecs usually result in better audio quality.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+        )
+    ]
+)
+object CodecsUnlockPatch : BytecodePatch(
+    setOf(
+        CodecsLockFingerprint,
+        AllCodecsReferenceFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {

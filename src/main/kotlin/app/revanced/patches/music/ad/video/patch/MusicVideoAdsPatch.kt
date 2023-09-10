@@ -1,22 +1,24 @@
-package app.revanced.patches.music.ad.video.patch
+package app.revanced.patches.music.ad.video
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
-import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.music.ad.video.fingerprints.ShowMusicVideoAdsConstructorFingerprint
 import app.revanced.patches.music.ad.video.fingerprints.ShowMusicVideoAdsFingerprint
-import app.revanced.patches.music.annotations.MusicCompatibility
 
-@Patch
-@Name("Music video ads")
-@Description("Removes ads in the music player.")
-@MusicCompatibility
-class MusicVideoAdsPatch : BytecodePatch(
-    listOf(ShowMusicVideoAdsConstructorFingerprint)
+@Patch(
+    name = "Music video ads",
+    description = "Removes ads in the music player.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+        )
+    ]
+)
+object MusicVideoAdsPatch : BytecodePatch(
+    setOf(ShowMusicVideoAdsConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         ShowMusicVideoAdsFingerprint.resolve(context, ShowMusicVideoAdsConstructorFingerprint.result!!.classDef)

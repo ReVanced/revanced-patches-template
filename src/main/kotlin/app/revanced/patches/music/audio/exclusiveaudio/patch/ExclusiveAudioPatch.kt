@@ -1,21 +1,26 @@
-package app.revanced.patches.music.audio.exclusiveaudio.patch
+package app.revanced.patches.music.audio.exclusiveaudio
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.audio.exclusiveaudio.fingerprints.AllowExclusiveAudioPlaybackFingerprint
 
-@Patch
-@Name("Exclusive audio playback")
-@Description("Enables the option to play audio without video.")
-@MusicCompatibility
-class ExclusiveAudioPatch : BytecodePatch(
-    listOf(AllowExclusiveAudioPlaybackFingerprint)
+@Patch(
+    name = "Exclusive audio playback",
+    description = "Enables the option to play audio without video.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.apps.youtube.music",
+        )
+    ]
+)
+object ExclusiveAudioPatch : BytecodePatch(
+    setOf(
+        AllowExclusiveAudioPlaybackFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
         AllowExclusiveAudioPlaybackFingerprint.result?.mutableMethod?.apply {
