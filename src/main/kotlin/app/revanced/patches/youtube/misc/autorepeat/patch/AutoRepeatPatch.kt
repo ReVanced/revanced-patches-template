@@ -21,8 +21,15 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Patch(
     name = "Always autorepeat",
     description = "Always repeats the playing video again.",
-    dependencies = [IntegrationsPatch::class],
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube", arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"))]
+    dependencies = [
+        IntegrationsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
 )
 object AutoRepeatPatch : BytecodePatch(
     setOf(

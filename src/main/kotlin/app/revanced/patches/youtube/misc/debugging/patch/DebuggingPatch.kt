@@ -15,8 +15,13 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 @Patch(
     name = "Enable debugging",
     description = "Adds debugging options.",
-    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube")
+    ]
 )
 class DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {

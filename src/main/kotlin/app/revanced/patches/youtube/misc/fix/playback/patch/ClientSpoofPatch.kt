@@ -15,8 +15,15 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 @Patch(
     name = "Client spoof",
     description = "Spoofs the client to allow playback.",
-    dependencies = [SpoofSignatureVerificationPatch::class],
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube", arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"))]
+    dependencies = [
+        SpoofSignatureVerificationPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
 )
 object ClientSpoofPatch : BytecodePatch(
     setOf(UserAgentHeaderBuilderFingerprint)

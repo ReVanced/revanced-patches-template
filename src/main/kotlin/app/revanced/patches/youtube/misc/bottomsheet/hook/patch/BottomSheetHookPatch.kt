@@ -11,7 +11,10 @@ import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
-    dependencies = [IntegrationsPatch::class, BottomSheetHookResourcePatch::class]
+    dependencies = [
+        IntegrationsPatch::class,
+        BottomSheetHookResourcePatch::class
+    ]
 )
 object BottomSheetHookPatch : BytecodePatch(
     setOf(CreateBottomSheetFingerprint)

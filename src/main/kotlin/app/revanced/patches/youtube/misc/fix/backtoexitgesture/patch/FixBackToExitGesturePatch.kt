@@ -16,7 +16,12 @@ import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.Recy
 
 @Patch(
     description = "Fixes the swipe back to exit gesture.",
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube", arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"))]
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", 
+            arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39")
+        )
+    ]
 )
 object FixBackToExitGesturePatch : BytecodePatch(
     setOf(

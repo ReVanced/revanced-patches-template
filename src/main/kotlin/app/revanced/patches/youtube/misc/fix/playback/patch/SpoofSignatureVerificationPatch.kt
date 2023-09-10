@@ -22,7 +22,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 @Patch(
     name = "Spoof signature verification",
     description = "Spoofs the client to prevent playback issues.",
-    dependencies = [SpoofSignatureVerificationResourcePatch::class, IntegrationsPatch::class, PlayerTypeHookPatch::class]
+    dependencies = [
+        SpoofSignatureVerificationResourcePatch::class,
+        IntegrationsPatch::class,
+        PlayerTypeHookPatch::class
+    ]
 )
 object SpoofSignatureVerificationPatch : BytecodePatch(
     setOf(

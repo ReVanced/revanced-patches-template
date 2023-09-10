@@ -9,7 +9,10 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 
 @Patch(
-    dependencies = [SettingsPatch::class, ResourceMappingPatch::class]
+    dependencies = [
+        SettingsPatch::class,
+        ResourceMappingPatch::class
+    ]
 )
 object SpoofSignatureVerificationResourcePatch : ResourcePatch {
 
