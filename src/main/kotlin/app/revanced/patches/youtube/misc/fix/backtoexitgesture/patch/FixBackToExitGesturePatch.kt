@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch
+package app.revanced.patches.youtube.misc.fix.backtoexitgesture
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
@@ -7,16 +7,19 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.youtube.misc.fix.backtoexitgesture.annotation.FixBackToExitGestureCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewScrollingFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingParentFingerprint
 
-@Description("Fixes the swipe back to exit gesture.")
-@FixBackToExitGestureCompatibility
-class FixBackToExitGesturePatch : BytecodePatch(
-    listOf(
+@Patch(
+    description = "Fixes the swipe back to exit gesture.",
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube", arrayOf("18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"))]
+)
+object FixBackToExitGesturePatch : BytecodePatch(
+    setOf(
         RecyclerViewTopScrollingParentFingerprint,
         RecyclerViewScrollingFingerprint,
         OnBackPressedFingerprint,

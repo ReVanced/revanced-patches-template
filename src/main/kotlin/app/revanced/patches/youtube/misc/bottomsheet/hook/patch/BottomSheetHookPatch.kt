@@ -5,14 +5,16 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints.CreateBottomSheetFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@DependsOn([IntegrationsPatch::class, BottomSheetHookResourcePatch::class])
-class BottomSheetHookPatch : BytecodePatch(
-    listOf(CreateBottomSheetFingerprint)
+@Patch(
+    dependencies = [IntegrationsPatch::class, BottomSheetHookResourcePatch::class]
+)
+object BottomSheetHookPatch : BytecodePatch(
+    setOf(CreateBottomSheetFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         CreateBottomSheetFingerprint.result?.let {
