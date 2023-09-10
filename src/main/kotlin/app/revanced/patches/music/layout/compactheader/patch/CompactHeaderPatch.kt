@@ -1,21 +1,23 @@
-package app.revanced.patches.music.layout.compactheader.patch
+package app.revanced.patches.music.layout.compactheader
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.music.annotations.MusicCompatibility
 import app.revanced.patches.music.layout.compactheader.fingerprints.CompactHeaderConstructorFingerprint
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
 
-@Patch(false)
-@Name("Compact header")
-@Description("Hides the music category bar at the top of the homepage.")
-@MusicCompatibility
-class CompactHeaderPatch : BytecodePatch(
-    listOf(CompactHeaderConstructorFingerprint)
+@Patch(
+    name = "Compact header",
+    description = "Hides the music category bar at the top of the homepage.",
+    use = false,
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.apps.youtube.music")
+    ]
+)
+object CompactHeaderPatch : BytecodePatch(
+    setOf(CompactHeaderConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val result = CompactHeaderConstructorFingerprint.result!!
