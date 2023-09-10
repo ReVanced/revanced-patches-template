@@ -1,20 +1,25 @@
-package app.revanced.patches.idaustria.detection.signature.patch
+package app.revanced.patches.idaustria.detection.signature
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.idaustria.detection.shared.annotations.DetectionCompatibility
 import app.revanced.patches.idaustria.detection.signature.fingerprints.SpoofSignatureFingerprint
 
-@Patch
-@Name("Spoof signature")
-@Description("Spoofs the signature of the app.")
-@DetectionCompatibility
-class SpoofSignaturePatch : BytecodePatch(
-    listOf(SpoofSignatureFingerprint)
+@Patch(
+    name = "Spoof signature",
+    description = "Spoofs the signature of the app.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "at.gv.oe.app"
+        )
+    ]
+)
+object SpoofSignaturePatch : BytecodePatch(
+    setOf(
+        SpoofSignatureFingerprint
+    )
 ) {
     companion object {
         const val EXPECTED_SIGNATURE = "OpenSSLRSAPublicKey{modulus=ac3e6fd6050aa7e0d6010ae58190404cd89a56935b44f6fee" +
