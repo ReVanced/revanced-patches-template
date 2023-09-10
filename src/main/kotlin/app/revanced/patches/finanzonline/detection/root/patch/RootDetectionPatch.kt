@@ -1,21 +1,26 @@
-package app.revanced.patches.finanzonline.detection.root.patch
+package app.revanced.patches.finanzonline.detection.root
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.finanzonline.detection.root.fingerprints.RootDetectionFingerprint
-import app.revanced.patches.finanzonline.detection.shared.annotations.DetectionCompatibility
 
-@Patch
-@Name("Remove root detection")
-@Description("Removes the check for root permissions.")
-@DetectionCompatibility
-class RootDetectionPatch : BytecodePatch(
-    listOf(RootDetectionFingerprint)
+@Patch(
+    name = "Remove root detection",
+    description = "Removes the check for root permissions.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "at.gv.bmf.bmf2go"
+        )
+    ]
+)
+object RootDetectionPatch : BytecodePatch(
+    setOf(
+        RootDetectionFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
         RootDetectionFingerprint.result?.mutableMethod?.addInstructions(
