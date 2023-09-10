@@ -14,6 +14,7 @@ import app.revanced.patches.youtube.layout.buttons.player.hide.annotations.HideP
 import app.revanced.patches.youtube.layout.buttons.player.hide.fingerprints.PlayerControlsVisibilityModelFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction3rc
 
 @Patch
@@ -38,6 +39,7 @@ class HidePlayerButtonsPatch : BytecodePatch(
                 "revanced_hide_player_buttons_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HidePlayerButtons")
 
         PlayerControlsVisibilityModelFingerprint.result?.apply {
             val callIndex = scanResult.patternScanResult!!.endIndex

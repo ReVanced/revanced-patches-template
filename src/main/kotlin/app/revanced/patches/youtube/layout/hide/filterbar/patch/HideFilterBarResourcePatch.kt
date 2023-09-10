@@ -7,14 +7,15 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideFilterBarResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                "revanced_hide_filter_bar_preference",
-                "revanced_hide_filter_bar_preference_title",
+                "revanced_hide_filter_bar_screen",
+                "revanced_hide_filter_bar_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_hide_filter_bar_feed_in_feed",
@@ -35,9 +36,10 @@ class HideFilterBarResourcePatch : ResourcePatch {
                         "revanced_hide_filter_bar_feed_in_related_videos_summary_off"
                     ),
                 ),
-                "revanced_hide_filter_bar_preference_summary"
+                "revanced_hide_filter_bar_screen_summary"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideFilterBar")
 
         relatedChipCloudMarginId = "related_chip_cloud_reduced_margins".layoutResourceId("layout")
         filterBarHeightId = "filter_bar_height".layoutResourceId()

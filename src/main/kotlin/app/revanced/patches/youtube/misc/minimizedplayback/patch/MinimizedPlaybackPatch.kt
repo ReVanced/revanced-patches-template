@@ -20,6 +20,7 @@ import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.Minimize
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
@@ -39,10 +40,11 @@ class MinimizedPlaybackPatch : BytecodePatch(
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
-                "revanced_minimized_playback_enabled_title",
-                "revanced_minimized_playback_summary_on"
+                "revanced_minimized_playback_title",
+                "revanced_minimized_playback_summary"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("MinimizedPlayback")
 
         MinimizedPlaybackManagerFingerprint.result?.apply {
             mutableMethod.addInstructions(

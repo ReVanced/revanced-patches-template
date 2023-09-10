@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="revanced_player_overlay_opacity_title">Player overlay opacity</string>
+    <string name="revanced_player_overlay_opacity_summary">Opacity value between 0-100, where 0 is transparent</string>
+</resources>

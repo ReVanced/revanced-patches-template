@@ -15,6 +15,7 @@ import app.revanced.patches.youtube.layout.tablet.annotations.EnableTabletLayout
 import app.revanced.patches.youtube.layout.tablet.fingerprints.GetFormFactorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -32,6 +33,7 @@ class EnableTabletLayoutPatch : BytecodePatch(listOf(GetFormFactorFingerprint)) 
                 "revanced_tablet_layout_summary_off",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("EnableTabletLayout")
 
         GetFormFactorFingerprint.result?.let {
             it.mutableMethod.apply {

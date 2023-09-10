@@ -15,6 +15,7 @@ import app.revanced.patches.youtube.layout.spoofappversion.annotations.SpoofAppV
 import app.revanced.patches.youtube.layout.spoofappversion.bytecode.fingerprints.SpoofAppVersionFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
@@ -57,6 +58,7 @@ class SpoofAppVersionPatch : BytecodePatch(
                 )
             )
         )
+        SettingsResourcePatch.mergePatchStrings("SpoofAppVersion")
 
         SpoofAppVersionFingerprint.result?.apply {
             val insertIndex = scanResult.patternScanResult!!.startIndex + 1

@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWater
 import app.revanced.patches.youtube.layout.hide.watermark.fingerprints.HideWatermarkParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -36,6 +37,7 @@ class HideWatermarkPatch : BytecodePatch(
                 "revanced_hide_video_watermark_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideWatermark")
 
         HideWatermarkFingerprint.resolve(context, HideWatermarkParentFingerprint.result!!.classDef)
         val result = HideWatermarkFingerprint.result

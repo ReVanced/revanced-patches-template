@@ -7,6 +7,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
@@ -45,5 +46,7 @@ class CopyVideoUrlResourcePatch : ResourcePatch {
         )
 
         BottomControlsResourcePatch.addControls("youtube/copyvideourl/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
+
+        SettingsResourcePatch.mergePatchStrings("CopyVideoUrl")
     }
 }

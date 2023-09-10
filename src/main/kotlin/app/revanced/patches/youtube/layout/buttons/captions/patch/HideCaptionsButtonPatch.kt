@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleBut
 import app.revanced.patches.youtube.layout.buttons.captions.annotations.HideCaptionsButtonCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 
 @Patch
@@ -31,6 +32,7 @@ class HideCaptionsButtonPatch : BytecodePatch(listOf(
                 "revanced_hide_captions_button_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideCaptionsButton")
 
         val subtitleButtonControllerMethod = SubtitleButtonControllerFingerprint.result!!.mutableMethod
 

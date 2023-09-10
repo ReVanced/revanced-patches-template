@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
@@ -85,5 +86,7 @@ class SwipeControlsResourcePatch : ResourcePatch {
                 "revanced_ic_sc_volume_normal.xml"
             )
         )
+
+        SettingsResourcePatch.mergePatchStrings("SwipeControls")
     }
 }

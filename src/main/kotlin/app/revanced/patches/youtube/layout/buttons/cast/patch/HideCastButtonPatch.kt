@@ -12,6 +12,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.cast.annotations.CastButtonCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -28,6 +29,7 @@ class HideCastButtonPatch : BytecodePatch() {
                 "revanced_hide_cast_button_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideCastButton")
 
         val buttonClass = context.findClass("MediaRouteButton")
             ?: throw PatchException("MediaRouteButton class not found.")

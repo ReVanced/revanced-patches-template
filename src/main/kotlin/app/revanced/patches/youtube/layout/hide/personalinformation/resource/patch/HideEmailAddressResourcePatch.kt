@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideEmailAddressResourcePatch : ResourcePatch {
@@ -22,6 +23,7 @@ class HideEmailAddressResourcePatch : ResourcePatch {
                 "revanced_hide_email_address_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideEmailAddress")
 
         accountSwitcherAccessibilityLabelId = ResourceMappingPatch.resourceMappings.single {
             it.type == "string" && it.name == "account_switcher_accessibility_label"

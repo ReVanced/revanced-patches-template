@@ -25,6 +25,8 @@ class MicroGResourcePatch : ResourcePatch {
                 Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
             )
         )
+        SettingsResourcePatch.mergePatchStrings("MicroG")
+
         SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
 
         // update manifest

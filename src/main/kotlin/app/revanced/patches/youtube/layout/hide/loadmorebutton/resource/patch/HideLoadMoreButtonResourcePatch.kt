@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideLoadMoreButtonResourcePatch : ResourcePatch {
@@ -18,6 +19,7 @@ class HideLoadMoreButtonResourcePatch : ResourcePatch {
                 "revanced_hide_load_more_button_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideLoadMoreButton")
 
         expandButtonDownId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "expand_button_down"

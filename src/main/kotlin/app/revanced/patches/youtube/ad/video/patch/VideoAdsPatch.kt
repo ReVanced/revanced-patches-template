@@ -14,6 +14,7 @@ import app.revanced.patches.youtube.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -46,5 +47,7 @@ class VideoAdsPatch : BytecodePatch(
             """,
             ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.getInstruction(0))
         )
+
+        SettingsResourcePatch.mergePatchStrings("VideoAds")
     }
 }

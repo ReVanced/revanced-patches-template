@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.layout.panels.popup.annotations.PlayerPopupP
 import app.revanced.patches.youtube.layout.panels.popup.fingerprints.EngagementPanelControllerFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -33,6 +34,7 @@ class PlayerPopupPanelsPatch : BytecodePatch(
                 "revanced_hide_player_popup_panels_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("PlayerPopupPanels")
 
         val engagementPanelControllerMethod = EngagementPanelControllerFingerprint
             .result?.mutableMethod ?: throw EngagementPanelControllerFingerprint.exception

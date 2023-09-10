@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class AlbumCardsResourcePatch : ResourcePatch {
@@ -22,6 +23,7 @@ class AlbumCardsResourcePatch : ResourcePatch {
                 "revanced_hide_album_cards_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("AlbumCards")
 
         albumCardId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "album_card"

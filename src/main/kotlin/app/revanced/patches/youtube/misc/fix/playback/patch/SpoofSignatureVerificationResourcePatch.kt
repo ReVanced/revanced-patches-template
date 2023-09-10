@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class SpoofSignatureVerificationResourcePatch : ResourcePatch {
@@ -19,6 +20,7 @@ class SpoofSignatureVerificationResourcePatch : ResourcePatch {
                 "revanced_spoof_signature_verification_summary_off",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("SpoofSignatureVerification")
 
         scrubbedPreviewThumbnailResourceId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "thumbnail"

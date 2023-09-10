@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.patches.youtube.video.hdrbrightness.annotations.HDRBrightnessCompatibility
 import app.revanced.patches.youtube.video.hdrbrightness.fingerprints.HDRBrightnessFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -33,6 +34,7 @@ class HDRBrightnessPatch : BytecodePatch(
                 "revanced_hdr_auto_brightness_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HDRBrightness")
 
         val method = HDRBrightnessFingerprint.result!!.mutableMethod
 

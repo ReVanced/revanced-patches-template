@@ -20,6 +20,7 @@ import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPla
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPlayerResponseModelSizeCheckFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -44,6 +45,7 @@ class TabletMiniPlayerPatch : BytecodePatch(
                 "revanced_tablet_miniplayer_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("TabletMiniPlayer")
 
         // First resolve the fingerprints via the parent fingerprint.
         MiniPlayerDimensionsCalculatorParentFingerprint.result ?: throw MiniPlayerDimensionsCalculatorParentFingerprint.exception

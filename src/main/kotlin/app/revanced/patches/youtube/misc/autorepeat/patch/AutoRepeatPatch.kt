@@ -16,9 +16,10 @@ import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFinge
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
-@DependsOn([IntegrationsPatch::class])
+@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
 @Name("Always autorepeat")
 @Description("Always repeats the playing video again.")
 @AutoRepeatCompatibility
@@ -36,6 +37,7 @@ class AutoRepeatPatch : BytecodePatch(
                 "revanced_auto_repeat_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("AutoRepeat")
 
         //Get Result from the ParentFingerprint which is the playMethod we need to get.
         val parentResult = AutoRepeatParentFingerprint.result

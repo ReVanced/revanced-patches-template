@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="revanced_hide_video_watermark_title">Hide creator watermark on videos</string>
+    <string name="revanced_hide_video_watermark_summary_off">Watermark is shown</string>
+    <string name="revanced_hide_video_watermark_summary_on">Watermark is hidden</string>
+</resources>

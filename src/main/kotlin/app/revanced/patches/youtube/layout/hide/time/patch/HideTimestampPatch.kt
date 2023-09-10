@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.layout.hide.time.annotations.HideTimeCompati
 import app.revanced.patches.youtube.layout.hide.time.fingerprints.TimeCounterFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -33,6 +34,7 @@ class HideTimestampPatch : BytecodePatch(
                 "revanced_hide_timestamp_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideTimestamp")
 
         TimeCounterFingerprint.result?.apply {
             mutableMethod.addInstructionsWithLabels(

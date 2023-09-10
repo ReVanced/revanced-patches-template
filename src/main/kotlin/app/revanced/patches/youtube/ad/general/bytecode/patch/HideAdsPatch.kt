@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
 import app.revanced.patches.youtube.ad.general.resource.patch.HideAdsResourcePatch
 import app.revanced.patches.youtube.ad.getpremium.bytecode.patch.HideGetPremiumPatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch.FixBackToExitGesturePatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c

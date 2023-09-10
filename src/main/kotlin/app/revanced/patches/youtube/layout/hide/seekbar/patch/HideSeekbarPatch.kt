@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBy
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([
@@ -47,6 +48,7 @@ class HideSeekbarPatch : BytecodePatch(
                 "revanced_hide_seekbar_thumbnail_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideSeekbar")
 
         SeekbarFingerprint.result!!.let {
             SeekbarOnDrawFingerprint.apply { resolve(context, it.mutableClass) }

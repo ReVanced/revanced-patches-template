@@ -9,6 +9,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.links.annotations.OpenLinksExternallyCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
@@ -56,6 +57,7 @@ class OpenLinksExternallyPatch : AbstractTransformInstructionsPatch<Pair<Int, In
                 "revanced_external_browser_summary_off",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("OpenLinksExternally")
 
         super.execute(context)
     }

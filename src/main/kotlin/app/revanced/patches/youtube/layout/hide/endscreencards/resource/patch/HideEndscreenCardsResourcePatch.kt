@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideEndscreenCardsResourcePatch : ResourcePatch {
@@ -24,6 +25,7 @@ class HideEndscreenCardsResourcePatch : ResourcePatch {
                 "revanced_hide_endscreen_cards_summary_off"
             ),
         )
+        SettingsResourcePatch.mergePatchStrings("HideEndscreenCards")
 
         fun findEndscreenResourceId(name: String) = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "endscreen_element_layout_$name"

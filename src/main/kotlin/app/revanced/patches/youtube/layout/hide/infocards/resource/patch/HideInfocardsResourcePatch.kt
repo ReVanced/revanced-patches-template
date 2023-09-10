@@ -7,6 +7,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.infocards.annotations.HideInfocardsCompatibility
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @HideInfocardsCompatibility
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
@@ -24,6 +25,7 @@ class HideInfocardsResourcePatch : ResourcePatch {
                 "revanced_hide_info_cards_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideInfocards")
 
         drawerResourceId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "info_cards_drawer_header"

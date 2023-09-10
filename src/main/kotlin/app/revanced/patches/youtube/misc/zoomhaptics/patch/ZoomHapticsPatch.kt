@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.patches.youtube.misc.zoomhaptics.annotations.ZoomHapticsCompatibility
 import app.revanced.patches.youtube.misc.zoomhaptics.fingerprints.ZoomHapticsFingerprint
 
@@ -31,6 +32,7 @@ class ZoomHapticsPatch : BytecodePatch(
                 "revanced_disable_zoom_haptics_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("ZoomHaptics")
 
         val zoomHapticsFingerprintMethod = ZoomHapticsFingerprint.result!!.mutableMethod
 

@@ -7,6 +7,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class OldVideoQualityMenuResourcePatch : ResourcePatch {
@@ -19,6 +20,7 @@ class OldVideoQualityMenuResourcePatch : ResourcePatch {
                 "revanced_show_old_video_quality_menu_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("OldVideoQualityMenu")
 
         fun findResource(name: String) = ResourceMappingPatch.resourceMappings.find { it.name == name }?.id
             ?: throw PatchException("Could not find resource")

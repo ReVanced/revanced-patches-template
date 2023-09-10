@@ -10,6 +10,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.debugging.annotations.DebuggingCompatibility
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @Name("Enable debugging")
@@ -51,5 +52,6 @@ class DebuggingPatch : ResourcePatch {
                 "revanced_debug_preference_screen_summary"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("Debugging")
     }
 }

@@ -12,9 +12,10 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.buttons.action.annotations.HideButtonsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
-@DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class])
+@DependsOn([ResourceMappingPatch::class, LithoFilterPatch::class, SettingsPatch::class])
 @Name("Hide video action buttons")
 @Description("Adds the options to hide action buttons under a video.")
 @HideButtonsCompatibility
@@ -89,6 +90,8 @@ class HideButtonsPatch : ResourcePatch {
                 "revanced_hide_buttons_preference_screen_summary"
             )
         )
+
+        SettingsResourcePatch.mergePatchStrings("HideButtons")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }

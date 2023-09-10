@@ -22,6 +22,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
     override fun execute(context: ResourceContext) {
         super.execute(context)
 
+        resourceContext = context
+
         // Used for a fingerprint from SettingsPatch.
         appearanceStringId = ResourceMappingPatch.resourceMappings.find {
             it.type == "string" && it.name == "app_theme_appearance_dark"
@@ -85,13 +87,8 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
             )
         )
 
-        // Strings that are the same for all languages.
-        context.mergeStrings("youtube/settings/host/values/universal_strings.xml")
-
-        // English strings.
-        context.mergeStrings("youtube/settings/host/values/strings.xml")
+        mergePatchStrings("Settings")
     }
-
 
     internal companion object {
         // Used for a fingerprint from SettingsPatch.
@@ -101,6 +98,11 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         var overrideIntentsTargetPackage: String? = null
 
         private var preferencesNode: Node? = null
+
+        /**
+         * Used to merge the strings in [mergePatchStrings].
+         */
+        private lateinit var resourceContext : ResourceContext
 
         private var preferencesEditor: DomFileEditor? = null
             set(value) {
@@ -131,7 +133,17 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
          * @param preferenceScreen The name of the preference screen.
          */
         fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
+
+        /**
+         * Merge the English strings for a given patch.
+         *
+         * @param patchName Name of the patch strings xml file.
+         */
+        fun mergePatchStrings(patchName: String)  {
+            resourceContext.mergeStrings("youtube/settings/host/values/$patchName.xml")
+        }
     }
+
 
     override fun close() {
         super.close()
@@ -162,5 +174,6 @@ class SettingsResourcePatch : AbstractSettingsResourcePatch(
         }
 
         preferencesEditor?.close()
+
     }
 }

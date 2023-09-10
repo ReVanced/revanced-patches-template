@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.layout.startupshortsreset.annotations.Startu
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.UserWasInShortsFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -32,6 +33,7 @@ class DisableShortsOnStartupPatch : BytecodePatch(
                 "revanced_disable_resuming_shorts_player_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("DisableShortsOnStartup")
 
         val userWasInShortsResult = UserWasInShortsFingerprint.result!!
         val userWasInShortsMethod = userWasInShortsResult.mutableMethod

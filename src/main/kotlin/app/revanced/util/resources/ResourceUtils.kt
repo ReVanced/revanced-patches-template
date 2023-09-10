@@ -5,6 +5,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import org.w3c.dom.Node
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
@@ -111,11 +112,14 @@ object ResourceUtils {
         resource: String,
         targetTag: String,
         callback: (node: Node) -> Unit
-    ) =
-        xmlEditor[ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)!!].use {
+    ) {
+        val resourceAsStream = ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)
+            ?: throw PatchException("Could not find resource file: $resource")
+        xmlEditor[resourceAsStream].use {
             val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
             for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))
         }
+    }
 
 
     /**

@@ -13,6 +13,7 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeedPatch
 import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
@@ -42,6 +43,7 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 null
             )
         )
+        SettingsResourcePatch.mergePatchStrings("RememberPlaybackSpeed")
 
         VideoInformationPatch.onCreateHook(INTEGRATIONS_CLASS_DESCRIPTOR, "newVideoStarted")
         VideoInformationPatch.userSelectedPlaybackSpeedHook(

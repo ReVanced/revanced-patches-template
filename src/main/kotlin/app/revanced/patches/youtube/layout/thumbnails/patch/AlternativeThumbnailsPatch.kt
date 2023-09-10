@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.layout.thumbnails.annotations.AlternativeThu
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -72,6 +73,7 @@ class AlternativeThumbnailsPatch : BytecodePatch(
                 "revanced_alt_thumbnails_preference_screen_summary",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("AlternativeThumbnails")
 
         MessageDigestImageUrlParentFingerprint.result
             ?: throw MessageDigestImageUrlParentFingerprint.exception

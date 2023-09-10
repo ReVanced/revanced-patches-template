@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.ad.getpremium.annotations.HideGetPremiumComp
 import app.revanced.patches.youtube.ad.getpremium.bytecode.fingerprints.GetPremiumViewFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -53,6 +54,8 @@ class HideGetPremiumPatch : BytecodePatch(listOf(GetPremiumViewFingerprint)) {
                 )
             }
         } ?: throw GetPremiumViewFingerprint.exception
+
+        SettingsResourcePatch.mergePatchStrings("HideGetPremium")
     }
 
     private companion object {

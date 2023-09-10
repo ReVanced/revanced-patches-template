@@ -17,6 +17,7 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 import app.revanced.patches.youtube.video.quality.annotations.RememberVideoQualityCompatibility
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint
@@ -86,6 +87,7 @@ class RememberVideoQualityPatch : BytecodePatch(
                 ArrayResource("revanced_video_quality_default_mobile_values", entryValues, literalValues = true)
             )
         )
+        SettingsResourcePatch.mergePatchStrings("RememberVideoQuality")
 
         /*
          * The following code works by hooking the method which is called when the user selects a video quality

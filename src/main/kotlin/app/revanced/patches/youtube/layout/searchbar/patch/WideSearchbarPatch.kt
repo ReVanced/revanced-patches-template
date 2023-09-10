@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSu
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.SetWordmarkHeaderFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -36,6 +37,7 @@ class WideSearchbarPatch : BytecodePatch(
                 "revanced_wide_searchbar_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("WideSearchbar")
 
         val result = CreateSearchSuggestionsFingerprint.result ?: throw CreateSearchSuggestionsFingerprint.exception
 

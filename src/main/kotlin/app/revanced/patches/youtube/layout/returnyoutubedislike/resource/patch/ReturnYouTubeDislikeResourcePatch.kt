@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class])
 class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
@@ -21,6 +22,7 @@ class ReturnYouTubeDislikeResourcePatch : ResourcePatch {
                 SettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
             )
         )
+        SettingsResourcePatch.mergePatchStrings("ReturnYouTubeDislike")
 
         oldUIDislikeId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "dislike_button"

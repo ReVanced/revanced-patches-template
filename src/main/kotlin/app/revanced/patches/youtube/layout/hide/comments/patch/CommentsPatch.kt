@@ -11,6 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.comments.annotations.HideCommentsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @Name("Comments")
@@ -42,6 +43,7 @@ class CommentsPatch : ResourcePatch {
                 "revanced_comments_preference_screen_summary"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("Comments")
     }
 
     private companion object {

@@ -7,6 +7,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
@@ -20,6 +21,7 @@ class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
                 InputType.NUMBER
             )
         )
+        SettingsResourcePatch.mergePatchStrings("CustomPlayerOverlayOpacity")
 
         scrimOverlayId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "scrim_overlay"

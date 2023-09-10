@@ -17,6 +17,7 @@ import app.revanced.patches.youtube.layout.buttons.autoplay.annotations.Autoplay
 import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -39,6 +40,7 @@ class HideAutoplayButtonPatch : BytecodePatch(
                 "revanced_hide_autoplay_button_summary_off"
             ),
         )
+        SettingsResourcePatch.mergePatchStrings("HideAutoplayButton")
 
         LayoutConstructorFingerprint.result?.mutableMethod?.apply {
             val layoutGenMethodInstructions = implementation!!.instructions

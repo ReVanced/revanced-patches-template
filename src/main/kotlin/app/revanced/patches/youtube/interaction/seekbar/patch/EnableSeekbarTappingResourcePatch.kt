@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class])
 class EnableSeekbarTappingResourcePatch : ResourcePatch {
@@ -17,5 +18,7 @@ class EnableSeekbarTappingResourcePatch : ResourcePatch {
                 "revanced_seekbar_tapping_summary_off"
             )
         )
+
+        SettingsResourcePatch.mergePatchStrings("EnableSeekbarTapping")
     }
 }

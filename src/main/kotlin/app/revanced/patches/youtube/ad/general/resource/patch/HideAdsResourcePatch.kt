@@ -9,6 +9,7 @@ import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn(
     [
@@ -68,6 +69,8 @@ class HideAdsResourcePatch : ResourcePatch {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         adAttributionId = ResourceMappingPatch.resourceMappings.single { it.name == "ad_attribution" }.id
+
+        SettingsResourcePatch.mergePatchStrings("HideAds")
     }
 
     internal companion object {

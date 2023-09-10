@@ -11,6 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuItemsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @Name("Player flyout menu")
@@ -21,8 +22,8 @@ class HidePlayerFlyoutMenuPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
-                "revanced_hide_player_flyout",
-                "revanced_hide_player_flyout_title",
+                "revanced_hide_player_flyout_screen",
+                "revanced_hide_player_flyout_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_hide_player_flyout_quality",
@@ -85,9 +86,10 @@ class HidePlayerFlyoutMenuPatch : ResourcePatch {
                         "revanced_hide_player_flyout_watch_in_vr_off",
                     ),
                 ),
-                "revanced_hide_player_flyout_summary",
+                "revanced_hide_player_flyout_screen_summary",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HidePlayerFlyoutMenu")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="revanced_spoof_signature_verification_title">Spoof app signature</string>
+    <string name="revanced_spoof_signature_verification_summary_off">App signature not spoofed\n\nVideo playback may not work</string>
+    <string name="revanced_spoof_signature_verification_summary_on">App signature spoofed\n\nSide effects include:\n• Ambient mode may not work\n• Downloading videos may not work\n• Seekbar thumbnails are always hidden</string>
+    <string name="revanced_spoof_signature_verification_user_dialog_message">Turning off this setting will cause video playback issues.</string>
+</resources>

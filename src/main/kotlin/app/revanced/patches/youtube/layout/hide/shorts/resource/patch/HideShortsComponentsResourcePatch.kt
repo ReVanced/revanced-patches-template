@@ -7,6 +7,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class HideShortsComponentsResourcePatch : ResourcePatch {
@@ -86,6 +87,7 @@ class HideShortsComponentsResourcePatch : ResourcePatch {
                 "revanced_shorts_preference_screen_summary"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideShortsComponents")
 
         fun String.getId() = ResourceMappingPatch.resourceMappings.single { it.name == this }.id
 

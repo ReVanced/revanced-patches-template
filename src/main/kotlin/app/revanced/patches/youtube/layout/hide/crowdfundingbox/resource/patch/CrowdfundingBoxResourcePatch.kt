@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
 class CrowdfundingBoxResourcePatch : ResourcePatch {
@@ -22,6 +23,7 @@ class CrowdfundingBoxResourcePatch : ResourcePatch {
                 "revanced_hide_crowdfunding_box_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("CrowdfundingBox")
 
         crowdfundingBoxId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "donation_companion"

@@ -19,6 +19,7 @@ import app.revanced.patches.youtube.layout.hide.general.fingerprints.ParseElemen
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
@@ -136,7 +137,7 @@ class HideLayoutComponentsPatch : BytecodePatch(
             ),
             SwitchPreference(
                 "revanced_hide_image_shelf",
-                "revanced_hide_image_shelf",
+                "revanced_hide_image_shelf_title",
                 "revanced_hide_image_shelf_summary_on",
                 "revanced_hide_image_shelf_summary_off",
             ),
@@ -184,6 +185,7 @@ class HideLayoutComponentsPatch : BytecodePatch(
                 )
             )
         )
+        SettingsResourcePatch.mergePatchStrings("HideLayoutComponents")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="revanced_alt_thumbnails_preference_screen_title">Alternative thumbnails</string>
+    <string name="revanced_alt_thumbnails_preference_screen_summary">Video thumbnail settings</string>
+
+    <string name="revanced_alt_thumbnail_title">Enable alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_summary_on">YouTube video stills shown</string>
+    <string name="revanced_alt_thumbnail_summary_off">Original YouTube thumbnails shown</string>
+
+    <string name="revanced_alt_thumbnail_type_title">Video time to take the still from</string>
+    <string name="revanced_alt_thumbnail_type_entry_1">Beginning of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_2">Middle of video</string>
+    <string name="revanced_alt_thumbnail_type_entry_3">End of video</string>
+
+    <string name="revanced_alt_thumbnail_fast_quality_title">Use fast alternative thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_on">Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails</string>
+    <string name="revanced_alt_thumbnail_fast_quality_summary_off">Using high quality stills</string>
+
+    <string name="revanced_alt_thumbnail_about_title">About</string>
+    <string name="revanced_alt_thumbnail_about_summary">Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube</string>
+</resources>

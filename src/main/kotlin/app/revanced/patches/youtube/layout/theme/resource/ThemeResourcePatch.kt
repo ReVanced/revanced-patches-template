@@ -12,6 +12,7 @@ import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPa
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import org.w3c.dom.Element
 
 @DependsOn([SettingsPatch::class, ResourceMappingPatch::class, SeekbarPreferencesPatch::class])
@@ -31,6 +32,7 @@ class ThemeResourcePatch : ResourcePatch {
                 InputType.TEXT_CAP_CHARACTERS
             )
         )
+        SettingsResourcePatch.mergePatchStrings("Theme")
 
         // Edit theme colors via resources.
         context.xmlEditor["res/values/colors.xml"].use { editor ->
