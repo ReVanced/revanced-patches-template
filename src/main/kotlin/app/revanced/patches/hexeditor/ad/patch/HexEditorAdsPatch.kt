@@ -1,20 +1,23 @@
-package app.revanced.patches.hexeditor.ad.patch
+package app.revanced.patches.hexeditor.ad
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.hexeditor.ad.annotations.HexEditorAdsCompatibility
 import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
 
-@Patch
-@Name("Disable ads")
-@Description("Disables ads in HexEditor.")
-@HexEditorAdsCompatibility
-class HexEditorAdsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Disable ads",
+    description = "Disables ads in HexEditor.",
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.myprog.hexedit"
+        )
+    ]
+)
+object HexEditorAdsPatch : BytecodePatch(
+    setOf(
         PrimaryAdsFingerprint
     )
 ) {
