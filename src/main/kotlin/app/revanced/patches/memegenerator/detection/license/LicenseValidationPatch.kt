@@ -1,20 +1,18 @@
-package app.revanced.patches.memegenerator.detection.signature
+package app.revanced.patches.memegenerator.detection.license
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.memegenerator.detection.signature.fingerprint.VerifySignatureFingerprint
+import app.revanced.patches.memegenerator.detection.license.fingerprint.LicenseValidationFingerprint
 
-@Patch(
-    description = "Disables detection of incorrect signature."
-)
-object SignatureVerificationPatch : BytecodePatch(
-    setOf(VerifySignatureFingerprint)
+@Patch(description = "Disables Firebase license validation.")
+object LicenseValidationPatch : BytecodePatch(
+    setOf(LicenseValidationFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        VerifySignatureFingerprint.result?.apply {
+        LicenseValidationFingerprint.result?.apply {
             mutableMethod.replaceInstructions(
                 0,
                 """
@@ -22,6 +20,6 @@ object SignatureVerificationPatch : BytecodePatch(
                     return  p0
                 """
             )
-        } ?: throw VerifySignatureFingerprint.exception
+        } ?: throw LicenseValidationFingerprint.exception
     }
 }

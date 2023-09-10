@@ -12,14 +12,10 @@ import app.revanced.patches.messenger.ads.inbox.fingerprints.LoadInboxAdsFingerp
 @Patch(
     name = "Hide inbox ads",
     description = "Hides ads in inbox.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.facebook.orca",
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.facebook.orca",)]
 )
-class HideInboxAdsPatch : BytecodePatch(
-    listOf(LoadInboxAdsFingerprint)
+object HideInboxAdsPatch : BytecodePatch(
+    setOf(LoadInboxAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         LoadInboxAdsFingerprint.result?.mutableMethod?.apply {

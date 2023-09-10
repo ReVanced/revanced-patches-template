@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.util.patch.LiteralValueFingerprint
-import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
+import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.ReturnYouTubeDislikeResourcePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

@@ -27,9 +27,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
     ]
 )
 object PlayerPopupPanelsPatch : BytecodePatch(
-    setOf(
-        EngagementPanelControllerFingerprint
-    )
+    setOf(EngagementPanelControllerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

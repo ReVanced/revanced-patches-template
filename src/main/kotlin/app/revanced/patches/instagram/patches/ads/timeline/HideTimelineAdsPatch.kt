@@ -29,8 +29,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         )
     ]
 )
-class HideTimelineAdsPatch : BytecodePatch(
-    listOf(
+object HideTimelineAdsPatch : BytecodePatch(
+    setOf(
         ShowAdFingerprint,
         MediaFingerprint,
         PaidPartnershipAdFingerprint // Unlike the other ads this one is resolved from all classes.

@@ -29,9 +29,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
     ]
 )
 object HideTimestampPatch : BytecodePatch(
-    setOf(
-        TimeCounterFingerprint
-    )
+    setOf(TimeCounterFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

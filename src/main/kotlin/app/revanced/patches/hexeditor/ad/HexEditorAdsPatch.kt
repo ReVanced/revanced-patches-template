@@ -10,16 +10,10 @@ import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
 @Patch(
     name = "Disable ads",
     description = "Disables ads in HexEditor.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.myprog.hexedit"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.myprog.hexedit")]
 )
 object HexEditorAdsPatch : BytecodePatch(
-    setOf(
-        PrimaryAdsFingerprint
-    )
+    setOf(PrimaryAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val method = PrimaryAdsFingerprint.result!!.mutableMethod

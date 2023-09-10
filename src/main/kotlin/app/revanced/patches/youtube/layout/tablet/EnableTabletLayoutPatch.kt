@@ -11,8 +11,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.tablet.fingerprints.GetFormFactorFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Enable tablet layout",
@@ -21,11 +21,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
         IntegrationsPatch::class,
         SettingsPatch::class
     ],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube",
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
 )
 object EnableTabletLayoutPatch : BytecodePatch(
     setOf(GetFormFactorFingerprint)

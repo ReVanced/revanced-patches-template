@@ -10,16 +10,10 @@ import app.revanced.patches.iconpackstudio.misc.pro.fingerprints.CheckProFingerp
 @Patch(
     name = "Unlock pro",
     description = "Unlocks all pro features.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "ginlemon.iconpackstudio"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("ginlemon.iconpackstudio")]
 )
 object UnlockProPatch : BytecodePatch(
-    setOf(
-        CheckProFingerprint
-    )
+    setOf(CheckProFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val method = CheckProFingerprint.result!!.mutableMethod

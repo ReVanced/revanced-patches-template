@@ -12,9 +12,7 @@ import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
     name = "Compact header",
     description = "Hides the music category bar at the top of the homepage.",
     use = false,
-    compatiblePackages = [
-        CompatiblePackage("com.google.android.apps.youtube.music")
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
 object CompactHeaderPatch : BytecodePatch(
     setOf(CompactHeaderConstructorFingerprint)

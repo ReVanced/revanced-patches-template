@@ -4,15 +4,15 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.layout.theme.bytecode.ThemeBytecodePatch.Companion.darkThemeBackgroundColor
+import app.revanced.patches.youtube.layout.theme.bytecode.ThemeBytecodePatch.Companion.lightThemeBackgroundColor
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 import org.w3c.dom.Element
 
 @Patch(
@@ -23,7 +23,7 @@ import org.w3c.dom.Element
     ],
 )
 @DependsOn()
-class ThemeResourcePatch : ResourcePatch {
+object ThemeResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(

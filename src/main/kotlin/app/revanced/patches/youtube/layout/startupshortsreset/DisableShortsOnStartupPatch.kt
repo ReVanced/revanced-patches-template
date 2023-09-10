@@ -8,8 +8,8 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.UserWasInShortsFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Disable Shorts on startup",
@@ -26,9 +26,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
     ]
 )
 class DisableShortsOnStartupPatch : BytecodePatch(
-    setOf(
-        UserWasInShortsFingerprint
-    )
+    setOf(UserWasInShortsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

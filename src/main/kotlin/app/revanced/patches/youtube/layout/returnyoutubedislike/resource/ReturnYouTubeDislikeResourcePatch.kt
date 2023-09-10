@@ -9,11 +9,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
-@Patch(
-    dependencies = [
-        SettingsPatch::class
-    ]
-)
+@Patch(dependencies = [SettingsPatch::class])
 object ReturnYouTubeDislikeResourcePatch : ResourcePatch {
     companion object {
         internal var oldUIDislikeId: Long = -1

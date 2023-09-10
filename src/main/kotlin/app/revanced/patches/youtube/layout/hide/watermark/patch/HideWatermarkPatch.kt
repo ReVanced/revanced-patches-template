@@ -30,9 +30,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
     ]
 )
 object HideWatermarkPatch : BytecodePatch(
-    setOf(
-        HideWatermarkParentFingerprint
-    )
+    setOf(HideWatermarkParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

@@ -13,11 +13,7 @@ import com.android.tools.smali.dexlib2.Opcode
 @Patch(
     name = "Codecs unlock",
     description = "Adds more audio codec options. The new audio codecs usually result in better audio quality.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music",)]
 )
 object CodecsUnlockPatch : BytecodePatch(
     setOf(

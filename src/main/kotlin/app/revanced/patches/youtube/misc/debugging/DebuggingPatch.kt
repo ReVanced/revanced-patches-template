@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Enable debugging",
@@ -17,11 +17,9 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
         IntegrationsPatch::class,
         SettingsPatch::class
     ],
-    compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube")
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
 )
-class DebuggingPatch : ResourcePatch {
+object DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(

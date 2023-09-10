@@ -31,7 +31,8 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 )
 object WideSearchbarPatch : BytecodePatch(
     setOf(
-        SetWordmarkHeaderFingerprint, CreateSearchSuggestionsFingerprint
+        SetWordmarkHeaderFingerprint, 
+        CreateSearchSuggestionsFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {

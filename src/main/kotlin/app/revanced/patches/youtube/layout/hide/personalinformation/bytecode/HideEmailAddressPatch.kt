@@ -29,9 +29,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     ]
 )
 object HideEmailAddressPatch : BytecodePatch(
-    setOf(
-        AccountSwitcherAccessibilityLabelFingerprint
-    )
+    setOf(AccountSwitcherAccessibilityLabelFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         AccountSwitcherAccessibilityLabelFingerprint.result?.let {

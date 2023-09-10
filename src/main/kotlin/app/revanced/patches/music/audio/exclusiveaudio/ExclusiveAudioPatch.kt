@@ -11,16 +11,10 @@ import app.revanced.patches.music.audio.exclusiveaudio.fingerprints.AllowExclusi
 @Patch(
     name = "Exclusive audio playback",
     description = "Enables the option to play audio without video.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.apps.youtube.music",
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music",)]
 )
 object ExclusiveAudioPatch : BytecodePatch(
-    setOf(
-        AllowExclusiveAudioPlaybackFingerprint
-    )
+    setOf(AllowExclusiveAudioPlaybackFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         AllowExclusiveAudioPlaybackFingerprint.result?.mutableMethod?.apply {

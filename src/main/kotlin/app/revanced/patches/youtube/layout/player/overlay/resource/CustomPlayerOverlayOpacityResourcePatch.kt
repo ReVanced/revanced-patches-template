@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         ResourceMappingPatch::class
     ]
 )
-class CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
+object CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             TextPreference(

@@ -34,7 +34,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     ]
 )
 object SeekbarColorBytecodePatch : BytecodePatch(
-    setOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)
+    setOf(
+        PlayerSeekbarColorFingerprint,
+        ShortsSeekbarColorFingerprint,
+        SetSeekbarClickedColorFingerprint
+    )
 ) {
     override fun execute(context: BytecodeContext) {
         fun MutableMethod.addColorChangeInstructions(resourceId: Long) {

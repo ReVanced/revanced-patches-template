@@ -10,16 +10,10 @@ import app.revanced.patches.idaustria.detection.root.fingerprints.RootDetectionF
 @Patch(
     name = "Remove root detection",
     description = "Removes the check for root permissions.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "at.gv.oe.app"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("at.gv.oe.app")]
 )
 object RootDetectionPatch : BytecodePatch(
-    setOf(
-        RootDetectionFingerprint
-    )
+    setOf(RootDetectionFingerprint)
 ) {
     override fun execute(context: BytecodeContext) =
         RootDetectionFingerprint.result!!.mutableMethod.addInstruction(0, "return-void")

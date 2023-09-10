@@ -12,11 +12,7 @@ import app.revanced.patches.finanzonline.detection.bootloader.fingerprints.Creat
 @Patch(
     name = "Remove bootloader detection",
     description = "Removes the check for an unlocked bootloader.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "at.gv.bmf.bmf2go"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("at.gv.bmf.bmf2go")]
 )
 object BootloaderDetectionPatch : BytecodePatch(
     setOf(

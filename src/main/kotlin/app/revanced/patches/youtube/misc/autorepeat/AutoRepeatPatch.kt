@@ -13,15 +13,13 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.autorepeat.annotations.AutoRepeatCompatibility
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Always autorepeat",
     description = "Always repeats the playing video again.",
-    dependencies = [
-        IntegrationsPatch::class
-    ],
+    dependencies = [IntegrationsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube",
@@ -30,9 +28,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
     ]
 )
 object AutoRepeatPatch : BytecodePatch(
-    setOf(
-        AutoRepeatParentFingerprint
-    )
+    setOf(AutoRepeatParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(

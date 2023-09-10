@@ -11,16 +11,10 @@ import app.revanced.patches.finanzonline.detection.root.fingerprints.RootDetecti
 @Patch(
     name = "Remove root detection",
     description = "Removes the check for root permissions.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "at.gv.bmf.bmf2go"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("at.gv.bmf.bmf2go")]
 )
 object RootDetectionPatch : BytecodePatch(
-    setOf(
-        RootDetectionFingerprint
-    )
+    setOf(RootDetectionFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         RootDetectionFingerprint.result?.mutableMethod?.addInstructions(

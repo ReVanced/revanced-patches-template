@@ -10,16 +10,10 @@ import app.revanced.patches.moneymanager.fingerprints.UnlockProFingerprint
 @Patch(
     name = "Unlock pro",
     description = "Unlocks pro features.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.ithebk.expensemanager"
-        )
-    ]
+    compatiblePackages = [CompatiblePackage("com.ithebk.expensemanager")]
 )
 object UnlockProPatch : BytecodePatch(
-    setOf(
-        UnlockProFingerprint
-    )
+    setOf(UnlockProFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
        UnlockProFingerprint.result!!.mutableMethod.addInstructions(

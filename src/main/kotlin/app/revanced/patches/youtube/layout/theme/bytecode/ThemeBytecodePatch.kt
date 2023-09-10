@@ -15,9 +15,7 @@ import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
         SeekbarColorBytecodePatch::class,
         ThemeResourcePatch::class
     ],
-    compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube")
-    ]
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
 )
 object ThemeBytecodePatch : BytecodePatch() {
 
