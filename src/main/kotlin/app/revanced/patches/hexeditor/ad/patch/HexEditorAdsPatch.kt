@@ -1,4 +1,4 @@
-package app.revancedes.hexeditor.ad
+package app.revanced.patches.hexeditor.ad.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

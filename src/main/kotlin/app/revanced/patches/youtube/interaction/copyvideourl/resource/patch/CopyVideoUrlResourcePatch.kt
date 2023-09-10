@@ -1,4 +1,4 @@
-package app.revancedes.youtube.interaction.copyvideourl.resource
+package app.revanced.patches.youtube.interaction.copyvideourl.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

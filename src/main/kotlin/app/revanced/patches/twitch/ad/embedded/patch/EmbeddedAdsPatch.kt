@@ -1,4 +1,4 @@
-package app.revancedes.twitch.ad.embedded
+package app.revanced.patches.twitch.ad.embedded.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

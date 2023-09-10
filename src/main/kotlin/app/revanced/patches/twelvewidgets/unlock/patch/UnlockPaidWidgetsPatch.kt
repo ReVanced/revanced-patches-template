@@ -1,4 +1,4 @@
-package app.revancedes.twelvewidgets.unlock
+package app.revanced.patches.twelvewidgets.unlock.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*

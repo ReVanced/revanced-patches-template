@@ -1,4 +1,4 @@
-package app.revancedes.trakt
+package app.revanced.patches.trakt.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

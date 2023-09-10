@@ -1,4 +1,4 @@
-package app.revancedes.all.screenshot.removerestriction
+package app.revanced.patches.all.screenshot.removerestriction.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

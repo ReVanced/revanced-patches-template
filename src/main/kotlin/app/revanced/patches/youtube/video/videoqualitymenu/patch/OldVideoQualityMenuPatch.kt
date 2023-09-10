@@ -1,4 +1,4 @@
-package app.revancedes.youtube.video.videoqualitymenu
+package app.revanced.patches.youtube.video.videoqualitymenu.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.infinityforreddit.api
+package app.revanced.patches.reddit.customclients.infinityforreddit.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

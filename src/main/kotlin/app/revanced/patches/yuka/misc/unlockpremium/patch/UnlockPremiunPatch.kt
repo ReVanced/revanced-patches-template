@@ -1,4 +1,4 @@
-package app.revancedes.yuka.misc.unlockpremium
+package app.revanced.patches.yuka.misc.unlockpremium.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

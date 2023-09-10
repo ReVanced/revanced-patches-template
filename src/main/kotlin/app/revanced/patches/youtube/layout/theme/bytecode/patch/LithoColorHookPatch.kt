@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.themepatch
+package app.revanced.patches.youtube.layout.theme.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

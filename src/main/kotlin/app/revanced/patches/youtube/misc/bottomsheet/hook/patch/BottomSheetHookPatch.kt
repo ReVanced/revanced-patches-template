@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.bottomsheet.hook
+package app.revanced.patches.youtube.misc.bottomsheet.hook.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext

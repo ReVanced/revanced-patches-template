@@ -1,4 +1,4 @@
-package app.revancedes.twitch.misc.settings.resource
+package app.revanced.patches.twitch.misc.settings.resource.patch
 
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen

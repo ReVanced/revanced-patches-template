@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.sponsorblock.resource
+package app.revanced.patches.youtube.layout.sponsorblock.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

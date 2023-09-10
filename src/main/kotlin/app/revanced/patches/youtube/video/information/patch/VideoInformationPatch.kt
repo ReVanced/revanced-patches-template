@@ -1,4 +1,4 @@
-package app.revancedes.youtube.video.information
+package app.revanced.patches.youtube.video.information.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

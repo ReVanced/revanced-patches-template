@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.settingspatch
+package app.revanced.patches.youtube.misc.settings.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

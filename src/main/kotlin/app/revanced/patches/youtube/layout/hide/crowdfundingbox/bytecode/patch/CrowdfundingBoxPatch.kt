@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.hide.crowdfundingboxpatch
+package app.revanced.patches.youtube.layout.hide.crowdfundingbox.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

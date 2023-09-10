@@ -1,4 +1,4 @@
-package app.revancedes.ticktick.misc.themeunlock
+package app.revanced.patches.ticktick.misc.themeunlock.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

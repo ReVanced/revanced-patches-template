@@ -1,4 +1,4 @@
-package app.revancedes.music.layout.compactheader
+package app.revanced.patches.music.layout.compactheader.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

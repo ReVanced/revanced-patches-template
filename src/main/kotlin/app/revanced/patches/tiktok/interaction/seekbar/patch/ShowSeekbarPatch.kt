@@ -1,4 +1,4 @@
-package app.revancedes.tiktok.interaction.seekbar
+package app.revanced.patches.tiktok.interaction.seekbar.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

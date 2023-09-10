@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.relayforreddit.api
+package app.revanced.patches.reddit.customclients.relayforreddit.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

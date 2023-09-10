@@ -1,4 +1,4 @@
-package app.revancedes.twitter.misc.hook.ads
+package app.revanced.patches.twitter.misc.hook.patch.ads.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

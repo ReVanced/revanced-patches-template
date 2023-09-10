@@ -1,4 +1,4 @@
-package app.revancedes.irplus.ad
+package app.revanced.patches.irplus.ad.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

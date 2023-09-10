@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.boostforreddit.api
+package app.revanced.patches.reddit.customclients.boostforreddit.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

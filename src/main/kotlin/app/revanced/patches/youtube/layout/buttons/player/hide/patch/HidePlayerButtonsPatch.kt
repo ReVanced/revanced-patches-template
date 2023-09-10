@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.buttons.player.hide
+package app.revanced.patches.youtube.layout.buttons.player.hide.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

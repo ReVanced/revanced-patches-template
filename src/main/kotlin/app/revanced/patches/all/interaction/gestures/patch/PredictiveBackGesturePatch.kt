@@ -1,4 +1,4 @@
-package app.revancedes.all.interaction.gestures
+package app.revanced.patches.all.interaction.gestures.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

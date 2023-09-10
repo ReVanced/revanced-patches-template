@@ -1,4 +1,4 @@
-package app.revancedes.reddit.misc.tracking.url
+package app.revanced.patches.reddit.misc.tracking.url.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

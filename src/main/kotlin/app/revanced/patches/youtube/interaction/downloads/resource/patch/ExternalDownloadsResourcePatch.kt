@@ -1,4 +1,4 @@
-package app.revancedes.youtube.interaction.downloads.resource
+package app.revanced.patches.youtube.interaction.downloads.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

@@ -1,4 +1,4 @@
-package app.revancedes.candylinkvpn
+package app.revanced.patches.candylinkvpn.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revancedes.twitch.misc.settingspatch
+package app.revanced.patches.twitch.misc.settings.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

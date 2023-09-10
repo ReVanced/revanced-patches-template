@@ -1,4 +1,4 @@
-package app.revancedes.messenger.inputfield
+package app.revanced.patches.messenger.inputfield.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

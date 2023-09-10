@@ -1,4 +1,4 @@
-package app.revancedes.googlerecorder.restrictions
+package app.revanced.patches.googlerecorder.restrictions.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

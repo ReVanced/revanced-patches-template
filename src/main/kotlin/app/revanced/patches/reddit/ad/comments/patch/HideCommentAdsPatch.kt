@@ -1,4 +1,4 @@
-package app.revancedes.reddit.ad.comments
+package app.revanced.patches.reddit.ad.comments.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.fix.playback
+package app.revanced.patches.youtube.misc.fix.playback.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.sponsorblockpatch
+package app.revanced.patches.youtube.layout.sponsorblock.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

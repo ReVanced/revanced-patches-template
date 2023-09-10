@@ -1,4 +1,4 @@
-package app.revancedes.duolingo.unlocksuper
+package app.revanced.patches.duolingo.unlocksuper.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

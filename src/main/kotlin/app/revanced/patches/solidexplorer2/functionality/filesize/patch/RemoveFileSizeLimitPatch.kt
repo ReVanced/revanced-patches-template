@@ -1,4 +1,4 @@
-package app.revancedes.solidexplorer2.functionality.filesize
+package app.revanced.patches.solidexplorer2.functionality.filesize.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility

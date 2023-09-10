@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.hide.shortspatch
+package app.revanced.patches.youtube.layout.hide.shorts.bytecode.patch
 
 import app.revanced.extensions.findIndexForIdResource
 import app.revanced.extensions.injectHideViewCall

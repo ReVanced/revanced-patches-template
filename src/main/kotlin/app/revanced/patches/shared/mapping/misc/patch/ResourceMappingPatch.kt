@@ -1,4 +1,4 @@
-package app.revancedes.shared.mapping.misc
+package app.revanced.patches.shared.mapping.misc.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

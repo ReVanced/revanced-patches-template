@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.syncforreddit.detection.piracy
+package app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.BytecodeContext

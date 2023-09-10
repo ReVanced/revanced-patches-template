@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.playertype
+package app.revanced.patches.youtube.misc.playertype.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

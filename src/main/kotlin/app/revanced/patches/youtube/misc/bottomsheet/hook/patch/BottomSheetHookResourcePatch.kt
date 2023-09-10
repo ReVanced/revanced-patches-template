@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.bottomsheet.hook
+package app.revanced.patches.youtube.misc.bottomsheet.hook.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException

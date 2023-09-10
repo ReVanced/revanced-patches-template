@@ -1,4 +1,4 @@
-package app.revancedes.tiktok.misc.login.fixgoogle
+package app.revanced.patches.tiktok.misc.login.fixgoogle.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

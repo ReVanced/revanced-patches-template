@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.redditisfun.api
+package app.revanced.patches.reddit.customclients.redditisfun.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

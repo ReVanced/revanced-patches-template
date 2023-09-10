@@ -1,4 +1,4 @@
-package app.revancedes.memegenerator.detection.signature
+package app.revanced.patches.memegenerator.detection.signature.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

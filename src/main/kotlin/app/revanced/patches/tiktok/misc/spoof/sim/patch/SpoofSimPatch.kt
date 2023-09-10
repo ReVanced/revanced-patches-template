@@ -1,4 +1,4 @@
-package app.revancedes.tiktok.misc.spoof.sim
+package app.revanced.patches.tiktok.misc.spoof.sim.patch
 
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.patcher.annotation.Description

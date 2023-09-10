@@ -1,4 +1,4 @@
-package app.revancedes.photomath.misc.bookpoint
+package app.revanced.patches.photomath.misc.bookpoint.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

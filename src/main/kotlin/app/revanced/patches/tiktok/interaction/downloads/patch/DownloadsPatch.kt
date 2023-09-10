@@ -1,4 +1,4 @@
-package app.revancedes.tiktok.interaction.downloads
+package app.revanced.patches.tiktok.interaction.downloads.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revancedes.spotify.premium_navbar_tab
+package app.revanced.patches.spotify.premium_navbar_tab.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

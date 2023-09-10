@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.hide.filterbar
+package app.revanced.patches.youtube.layout.hide.filterbar.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

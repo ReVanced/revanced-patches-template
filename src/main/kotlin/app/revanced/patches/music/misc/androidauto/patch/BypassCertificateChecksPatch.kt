@@ -1,4 +1,4 @@
-package app.revancedes.music.misc.androidauto
+package app.revanced.patches.music.misc.androidauto.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

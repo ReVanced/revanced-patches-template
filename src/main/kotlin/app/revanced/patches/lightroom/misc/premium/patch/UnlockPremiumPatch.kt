@@ -1,4 +1,4 @@
-package app.revancedes.lightroom.misc.premium
+package app.revanced.patches.lightroom.misc.premium.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

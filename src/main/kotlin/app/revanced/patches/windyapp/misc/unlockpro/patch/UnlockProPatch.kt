@@ -1,4 +1,4 @@
-package app.revancedes.windyapp.misc.unlockpro
+package app.revanced.patches.windyapp.misc.unlockpro.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

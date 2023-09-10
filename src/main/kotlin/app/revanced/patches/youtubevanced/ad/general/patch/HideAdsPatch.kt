@@ -1,4 +1,4 @@
-package app.revancedes.youtubevanced.ad.general
+package app.revanced.patches.youtubevanced.ad.general.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

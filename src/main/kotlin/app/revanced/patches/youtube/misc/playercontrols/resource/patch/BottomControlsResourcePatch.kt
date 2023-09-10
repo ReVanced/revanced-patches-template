@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.playercontrols.resource
+package app.revanced.patches.youtube.misc.playercontrols.resource.patch
 
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patcher.data.ResourceContext

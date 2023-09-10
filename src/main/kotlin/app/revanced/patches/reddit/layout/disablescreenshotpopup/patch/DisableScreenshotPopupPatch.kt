@@ -1,4 +1,4 @@
-package app.revancedes.reddit.layout.disablescreenshotpopup
+package app.revanced.patches.reddit.layout.disablescreenshotpopup.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

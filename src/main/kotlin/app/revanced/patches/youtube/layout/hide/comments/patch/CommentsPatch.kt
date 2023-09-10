@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.hide.comments
+package app.revanced.patches.youtube.layout.hide.comments.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

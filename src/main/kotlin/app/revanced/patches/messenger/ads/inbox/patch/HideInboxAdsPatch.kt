@@ -1,4 +1,4 @@
-package app.revancedes.messenger.ads.inbox
+package app.revanced.patches.messenger.ads.inbox.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*

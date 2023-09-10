@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.integrations
+package app.revanced.patches.youtube.misc.integrations.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations

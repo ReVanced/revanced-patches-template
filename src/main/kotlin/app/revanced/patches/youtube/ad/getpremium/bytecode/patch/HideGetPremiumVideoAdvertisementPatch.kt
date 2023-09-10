@@ -1,4 +1,4 @@
-package app.revancedes.youtube.ad.getpremiumpatch
+package app.revanced.patches.youtube.ad.getpremium.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Name

@@ -1,4 +1,4 @@
-package app.revancedes.reddit.layout.premiumicon
+package app.revanced.patches.reddit.layout.premiumicon.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

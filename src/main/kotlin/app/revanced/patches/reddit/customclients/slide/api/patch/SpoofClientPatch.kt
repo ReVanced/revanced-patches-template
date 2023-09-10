@@ -1,4 +1,4 @@
-package app.revancedes.reddit.customclients.slide.api
+package app.revanced.patches.reddit.customclients.slide.api.patch
 
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description

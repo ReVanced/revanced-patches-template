@@ -1,4 +1,4 @@
-package app.revancedes.twitter.misc.dynamiccolor
+package app.revanced.patches.twitter.misc.dynamiccolor.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

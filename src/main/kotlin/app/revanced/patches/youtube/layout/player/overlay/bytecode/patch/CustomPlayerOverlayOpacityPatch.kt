@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.player.overlaypatch
+package app.revanced.patches.youtube.layout.player.overlay.bytecode.patch
 
 import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.extensions.exception

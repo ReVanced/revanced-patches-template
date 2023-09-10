@@ -1,4 +1,4 @@
-package app.revancedes.music.ad.video
+package app.revanced.patches.music.ad.video.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

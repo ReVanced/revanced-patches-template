@@ -1,4 +1,4 @@
-package app.revancedes.warnwetter.misc.firebasegetcert
+package app.revanced.patches.warnwetter.misc.firebasegetcert.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

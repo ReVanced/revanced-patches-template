@@ -1,4 +1,4 @@
-package app.revancedes.youtube.misc.debugging
+package app.revanced.patches.youtube.misc.debugging.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

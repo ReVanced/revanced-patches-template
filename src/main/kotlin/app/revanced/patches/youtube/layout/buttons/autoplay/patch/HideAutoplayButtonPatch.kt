@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.buttons.autoplay
+package app.revanced.patches.youtube.layout.buttons.autoplay.patch
 
 import app.revanced.extensions.findIndexForIdResource
 import app.revanced.extensions.exception

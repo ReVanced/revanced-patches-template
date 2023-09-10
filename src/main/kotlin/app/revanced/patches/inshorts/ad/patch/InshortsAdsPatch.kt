@@ -1,4 +1,4 @@
-package app.revancedes.inshorts.ad
+package app.revanced.patches.inshorts.ad.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext

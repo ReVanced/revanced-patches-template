@@ -1,4 +1,4 @@
-package app.revancedes.nyx.misc.pro
+package app.revanced.patches.nyx.misc.pro.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

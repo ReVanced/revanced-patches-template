@@ -1,4 +1,4 @@
-package app.revancedes.twitch.ad.video
+package app.revanced.patches.twitch.ad.video.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

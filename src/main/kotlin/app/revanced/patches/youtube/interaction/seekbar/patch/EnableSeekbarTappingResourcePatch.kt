@@ -1,4 +1,4 @@
-package app.revancedes.youtube.interaction.seekbar
+package app.revanced.patches.youtube.interaction.seekbar.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch

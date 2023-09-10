@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.hide.loadmorebuttonpatch
+package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revancedes.memegenerator.misc.pro
+package app.revanced.patches.memegenerator.misc.pro.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revancedes.tiktok.misc.integrations
+package app.revanced.patches.tiktok.misc.integrations.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations

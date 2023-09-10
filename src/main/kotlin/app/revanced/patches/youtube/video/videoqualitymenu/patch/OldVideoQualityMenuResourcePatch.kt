@@ -1,4 +1,4 @@
-package app.revancedes.youtube.video.videoqualitymenu
+package app.revanced.patches.youtube.video.videoqualitymenu.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException

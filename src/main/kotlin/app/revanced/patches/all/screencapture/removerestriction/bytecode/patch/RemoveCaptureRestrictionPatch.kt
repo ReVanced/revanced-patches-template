@@ -1,4 +1,4 @@
-package app.revancedes.all.screencapture.removerestrictionpatch
+package app.revanced.patches.all.screencapture.removerestriction.bytecode.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

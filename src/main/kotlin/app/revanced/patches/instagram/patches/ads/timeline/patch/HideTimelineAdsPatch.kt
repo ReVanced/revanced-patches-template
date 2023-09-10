@@ -1,4 +1,4 @@
-package app.revancedes.instagrames.ads.timeline
+package app.revanced.patches.instagram.patches.ads.timeline.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.*

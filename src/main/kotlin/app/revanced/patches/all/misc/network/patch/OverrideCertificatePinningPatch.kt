@@ -1,4 +1,4 @@
-package app.revancedes.all.misc.network
+package app.revanced.patches.all.misc.network.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

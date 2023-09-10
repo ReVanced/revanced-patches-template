@@ -1,4 +1,4 @@
-package app.revancedes.idaustria.detection.root
+package app.revanced.patches.idaustria.detection.root.patch
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name

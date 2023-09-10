@@ -1,4 +1,4 @@
-package app.revancedes.youtube.layout.tablet
+package app.revanced.patches.youtube.layout.tablet.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description

@@ -1,4 +1,4 @@
-package app.revancedes.youtube.ad.general.resource
+package app.revanced.patches.youtube.ad.general.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
