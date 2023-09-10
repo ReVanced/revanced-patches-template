@@ -1,12 +1,12 @@
 package app.revanced.patches.all.screencapture.removerestriction.resource.patch
 
-import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
+import app.revanced.patcher.patch.annotation.Patch
 import org.w3c.dom.Element
 
-@Description("Sets allowAudioPlaybackCapture in manifest to true.")
-internal class RemoveCaptureRestrictionResourcePatch : ResourcePatch {
+@Patch(description = "Sets allowAudioPlaybackCapture in manifest to true.",)
+object RemoveCaptureRestrictionResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         // create an xml editor instance
         context.xmlEditor["AndroidManifest.xml"].use { dom ->

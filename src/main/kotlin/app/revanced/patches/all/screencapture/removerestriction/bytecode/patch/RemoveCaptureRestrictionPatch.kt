@@ -1,10 +1,6 @@
 package app.revanced.patches.all.screencapture.removerestriction.bytecode.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patcher.patch.annotations.RequiresIntegrations
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.all.screencapture.removerestriction.resource.patch.RemoveCaptureRestrictionResourcePatch
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
@@ -15,12 +11,19 @@ import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 
-@Patch(false)
-@Name("Remove screen capture restriction")
-@Description("Removes the restriction of capturing audio from apps that normally wouldn't allow it.")
-@DependsOn([RemoveCaptureRestrictionResourcePatch::class])
-@RequiresIntegrations
-class RemoveCaptureRestrictionPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>() {
+
+@Patch(
+    name = "Remove screen capture restriction",
+    description = "Removes the restriction of capturing audio from apps that normally wouldn't allow it.",
+    dependencies = [RemoveCaptureRestrictionResourcePatch::class],
+    use = false,
+    requiresIntegrations = true
+)
+@Suppress("unused")
+object RemoveCaptureRestrictionPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>() {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX =
+        "Lapp/revanced/all/screencapture/removerestriction/RemoveScreencaptureRestrictionPatch"
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "$INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX;"
     // Information about method calls we want to replace
     enum class MethodCall(
         override val definedClassName: String,
@@ -57,11 +60,5 @@ class RemoveCaptureRestrictionPatch : AbstractTransformInstructionsPatch<Instruc
     override fun transform(mutableMethod: MutableMethod, entry: Instruction35cInfo) {
         val (methodType, instruction, instructionIndex) = entry
         methodType.replaceInvokeVirtualWithIntegrations(INTEGRATIONS_CLASS_DESCRIPTOR, mutableMethod, instruction, instructionIndex)
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX =
-            "Lapp/revanced/all/screencapture/removerestriction/RemoveScreencaptureRestrictionPatch"
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "$INTEGRATIONS_CLASS_DESCRIPTOR_PREFIX;"
     }
 }

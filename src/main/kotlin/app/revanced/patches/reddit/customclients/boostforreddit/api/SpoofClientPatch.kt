@@ -1,4 +1,4 @@
-package app.revanced.patches.reddit.customclients.slide.api.patch
+package app.revanced.patches.reddit.customclients.boostforreddit.api
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -8,23 +8,24 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
 import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints.GetClientIdFingerprint
 
+
 @Patch(
-    name = "Slide client spoof",
+    name = "Spoof client",
     description = "Spoofs the client in order to allow logging in. " +
             "The OAuth application type has to be \"Installed app\" " +
-            "and the redirect URI has to be set to \"http://www.ccrama.me\".",
-    compatiblePackages = [CompatiblePackage("me.ccrama.redditslide")]
+            "and the redirect URI has to be set to \"http://rubenmayayo.com\".",
+    compatiblePackages = [CompatiblePackage("com.rubenmayayo.reddit")]
 )
 object SpoofClientPatch : AbstractSpoofClientPatch(
-    "http://www.ccrama.me", listOf(GetClientIdFingerprint)
+    "http://rubenmayayo.com", listOf(GetClientIdFingerprint)
 ) {
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         first().mutableMethod.addInstructions(
             0,
-    """
-                     const-string v0, "$clientId"
-                     return-object v0
-                """
+            """
+                 const-string v0, "$clientId"
+                 return-object v0
+            """
         )
     }
 }

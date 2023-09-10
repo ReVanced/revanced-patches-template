@@ -1,16 +1,26 @@
 package app.revanced.patches.all.misc.packagename.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.*
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.ResourcePatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 import org.w3c.dom.Element
 
-@Patch(false)
-@Name("Change package name")
-@Description("Changes the package name. Appends \".revanced\" to the package name by default.")
-class ChangePackageNamePatch : ResourcePatch {
+@Patch(
+    name = "Change package name",
+    description = "Changes the package name. Appends \".revanced\" to the package name by default.",
+    use = false
+)
+@Suppress("unused")
+object ChangePackageNamePatch : ResourcePatch() {
+    private var packageName by stringPatchOption(
+        key = "packageName",
+        default = null,
+        title = "Package name",
+        description = "The name of the package to rename the app to.",
+    )
+
     override fun execute(context: ResourceContext) {
         val packageNameToUse = packageName ?: getDefaultPackageName(context)
 
@@ -35,16 +45,5 @@ class ChangePackageNamePatch : ResourcePatch {
             val manifest = editor.file.getElementsByTagName("manifest").item(0) as Element
             return manifest.getAttribute("package")
         }
-    }
-
-    companion object : OptionsContainer() {
-        var packageName: String? by option(
-            PatchOption.StringOption(
-                key = "packageName",
-                default = null,
-                title = "Package name",
-                description = "The name of the package to rename the app to.",
-            )
-        )
     }
 }
