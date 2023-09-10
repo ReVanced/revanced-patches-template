@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.misc.autorepeat.patch
+package app.revanced.patches.youtube.misc.autorepeat
 
 import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.annotation.Name
