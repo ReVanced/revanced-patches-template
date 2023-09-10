@@ -21,7 +21,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         IntegrationsPatch::class,
         SettingsPatch::class
     ],
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
+    compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
 object EnableTabletLayoutPatch : BytecodePatch(
     setOf(GetFormFactorFingerprint)

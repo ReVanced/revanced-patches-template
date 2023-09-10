@@ -10,7 +10,7 @@ import app.revanced.patches.iconpackstudio.misc.pro.fingerprints.CheckProFingerp
 @Patch(
     name = "Unlock pro",
     description = "Unlocks all pro features.",
-    compatiblePackages = [CompatiblePackage("ginlemon.iconpackstudio")]
+    compatiblePackages = [ CompatiblePackage("ginlemon.iconpackstudio") ]
 )
 object UnlockProPatch : BytecodePatch(
     setOf(CheckProFingerprint)

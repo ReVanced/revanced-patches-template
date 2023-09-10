@@ -6,7 +6,9 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 
-@Patch(dependencies = [ResourceMappingPatch::class])
+@Patch(
+    dependencies = [ ResourceMappingPatch::class ]
+)
 object BottomSheetHookResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         bottomSheetMargins =  ResourceMappingPatch.resourceMappings.find { it.name == "bottom_sheet_margins" }?.id

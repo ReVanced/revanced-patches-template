@@ -22,7 +22,6 @@ import org.w3c.dom.Element
         SeekbarPreferencesPatch::class
     ],
 )
-@DependsOn()
 object ThemeResourcePatch : ResourcePatch {
     override fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(

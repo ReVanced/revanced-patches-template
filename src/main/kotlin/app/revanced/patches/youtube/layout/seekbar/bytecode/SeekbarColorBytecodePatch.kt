@@ -27,11 +27,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         LithoColorHookPatch::class,
         SeekbarColorResourcePatch::class
     ]
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube"
-        )
-    ]
+    compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
 object SeekbarColorBytecodePatch : BytecodePatch(
     setOf(

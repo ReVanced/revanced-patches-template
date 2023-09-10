@@ -7,7 +7,9 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.memegenerator.detection.signature.fingerprint.VerifySignatureFingerprint
 
-@Patch(description = "Disables detection of incorrect signature.")
+@Patch(
+    description = "Disables detection of incorrect signature."
+)
 object SignatureVerificationPatch : BytecodePatch(
     setOf(VerifySignatureFingerprint)
 ) {

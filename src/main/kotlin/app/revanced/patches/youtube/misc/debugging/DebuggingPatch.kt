@@ -17,7 +17,9 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         IntegrationsPatch::class,
         SettingsPatch::class
     ],
-    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
+    compatiblePackages = [
+        CompatiblePackage("com.google.android.youtube")
+    ]
 )
 object DebuggingPatch : ResourcePatch {
     override fun execute(context: ResourceContext) {

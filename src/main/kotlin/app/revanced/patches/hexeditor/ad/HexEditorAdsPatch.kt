@@ -10,7 +10,7 @@ import app.revanced.patches.hexeditor.ad.fingerprints.PrimaryAdsFingerprint
 @Patch(
     name = "Disable ads",
     description = "Disables ads in HexEditor.",
-    compatiblePackages = [CompatiblePackage("com.myprog.hexedit")]
+    compatiblePackages = [ CompatiblePackage("com.myprog.hexedit") ]
 )
 object HexEditorAdsPatch : BytecodePatch(
     setOf(PrimaryAdsFingerprint)

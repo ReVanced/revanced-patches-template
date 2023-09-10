@@ -12,12 +12,10 @@ import app.revanced.patches.inshorts.ad.fingerprints.InshortsAdsFingerprint
 @Patch(
     name = "Hide ads",
     description = "Removes ads from Inshorts.",
-    compatiblePackages = [CompatiblePackage("com.nis.app")]
+    compatiblePackages = [ CompatiblePackage("com.nis.app") ]
 )
 object HideAdsPatch : BytecodePatch(
-    setOf(
-        InshortsAdsFingerprint
-    )
+    setOf(InshortsAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         InshortsAdsFingerprint.result?.let { result ->

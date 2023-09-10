@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 @Patch(
     name = "Always autorepeat",
     description = "Always repeats the playing video again.",
-    dependencies = [IntegrationsPatch::class],
+    dependencies = [ IntegrationsPatch::class ],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube",

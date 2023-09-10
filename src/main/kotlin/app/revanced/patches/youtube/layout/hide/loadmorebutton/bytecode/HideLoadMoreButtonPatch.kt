@@ -14,9 +14,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch(
     name = "Hide load more button",
     description = "Hides the button under videos that loads similar videos.",
-    dependencies = [
-        HideLoadMoreButtonResourcePatch::class
-    ],
+    dependencies = [ HideLoadMoreButtonResourcePatch::class ],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube", 
