@@ -7,8 +7,8 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Player flyout menu",

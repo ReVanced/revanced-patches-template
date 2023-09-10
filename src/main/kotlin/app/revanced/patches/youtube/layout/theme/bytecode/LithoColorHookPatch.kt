@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.LithoThemeFingerprint
 
 @Patch(
@@ -17,7 +16,7 @@ import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.LithoThem
         CompatiblePackage("com.google.android.youtube")
     ]
 )
-object LithoColorHookPatch : BytecodePatch(listOf(LithoThemeFingerprint)) {
+object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
     override fun execute(context: BytecodeContext) {
         LithoThemeFingerprint.result?.let {
             insertionIndex = it.scanResult.patternScanResult!!.endIndex - 1

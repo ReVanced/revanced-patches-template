@@ -19,7 +19,7 @@ import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.AppendTimeFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.ControlsOverlayFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.bytecode.fingerprints.RectangleFieldInvalidatorFingerprint
-import app.revanced.patches.youtube.layout.sponsorblock.resource.patch.SponsorBlockResourcePatch
+import app.revanced.patches.youtube.layout.sponsorblock.resource.SponsorBlockResourcePatch
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFingerprint
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch

@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.youtube.misc.bottomsheet.hook.patch.BottomSheetHookResourcePatch
+import app.revanced.patches.youtube.misc.bottomsheet.hook.BottomSheetHookResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 

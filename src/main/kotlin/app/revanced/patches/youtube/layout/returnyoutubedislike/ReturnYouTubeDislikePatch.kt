@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -17,10 +15,10 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
-import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
+import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.ReturnYouTubeDislikeResourcePatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction

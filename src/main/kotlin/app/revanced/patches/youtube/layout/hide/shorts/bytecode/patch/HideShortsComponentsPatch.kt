@@ -13,18 +13,18 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.hide.shorts.bytecode.fingerprints.*
-import app.revanced.patches.youtube.layout.hide.shorts.resource.patch.HideShortsComponentsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
+import app.revanced.patches.youtube.layout.hide.shorts.resource.HideShortsComponentsResourcePatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch(
     name = "Hide Shorts components",
-    description = "Hides components from YouTube Shorts."
+    description = "Hides components from YouTube Shorts.",
     dependencies = [
         IntegrationsPatch::class,
         LithoFilterPatch::class,

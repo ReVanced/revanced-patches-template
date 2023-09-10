@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.personalinformation.bytecode.patch
+package app.revanced.patches.youtube.layout.hide.personalinformation.bytecode
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Description
@@ -10,8 +10,8 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hide.personalinformation.bytecode.fingerprints.AccountSwitcherAccessibilityLabelFingerprint
-import app.revanced.patches.youtube.layout.hide.personalinformation.resource.patch.HideEmailAddressResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.layout.hide.personalinformation.resource.HideEmailAddressResourcePatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(

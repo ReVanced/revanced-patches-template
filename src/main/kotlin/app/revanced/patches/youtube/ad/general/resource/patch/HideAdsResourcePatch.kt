@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.ad.general.resource.patch
+package app.revanced.patches.youtube.ad.general.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.general.annotation.HideAdsCompatibility
-import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch.PreferenceScreen
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.Settings.PreferenceScreen
 
 @DependsOn(
     [

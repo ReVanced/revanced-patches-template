@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.shorts.bytecode.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.youtube.layout.hide.shorts.resource.patch.HideShortsComponentsResourcePatch
+import app.revanced.patches.youtube.layout.hide.shorts.resource.HideShortsComponentsResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 

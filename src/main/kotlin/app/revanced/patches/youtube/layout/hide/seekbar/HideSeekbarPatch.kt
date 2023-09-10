@@ -1,7 +1,5 @@
 package app.revanced.patches.youtube.layout.hide.seekbar
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
@@ -12,10 +10,10 @@ import app.revanced.patches.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
+import app.revanced.patches.youtube.layout.seekbar.bytecode.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Hide seekbar",

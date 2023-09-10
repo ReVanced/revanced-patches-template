@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints.HideLoadMoreButtonFingerprint
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
+import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.HideLoadMoreButtonResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -24,7 +24,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         )
     ]
 )
-@HideLoadMoreButtonCompatibility
 object HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
     override fun execute(context: BytecodeContext) {
         HideLoadMoreButtonFingerprint.result?.let {

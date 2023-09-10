@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.layout.searchbar
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
@@ -14,8 +12,8 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.SetWordmarkHeaderFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     name = "Wide searchbar",
@@ -31,8 +29,8 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
         )
     ]
 )
-class WideSearchbarPatch : BytecodePatch(
-    listOf(
+object WideSearchbarPatch : BytecodePatch(
+    setOf(
         SetWordmarkHeaderFingerprint, CreateSearchSuggestionsFingerprint
     )
 ) {

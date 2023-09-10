@@ -1,7 +1,5 @@
 package app.revanced.patches.youtube.layout.startupshortsreset
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.patch.annotation.CompatiblePackage

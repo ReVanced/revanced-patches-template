@@ -4,8 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.*
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
-import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
+import app.revanced.patches.youtube.layout.seekbar.bytecode.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
 
 @Patch(

@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.hide.loadmorebutton.bytecode.fingerprints
 
-import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.patch.HideLoadMoreButtonResourcePatch
+import app.revanced.patches.youtube.layout.hide.loadmorebutton.resource.HideLoadMoreButtonResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 

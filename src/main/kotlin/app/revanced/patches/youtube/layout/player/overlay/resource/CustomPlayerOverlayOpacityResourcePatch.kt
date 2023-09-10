@@ -3,11 +3,11 @@ package app.revanced.patches.youtube.layout.player.overlay.resource
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
 
 @Patch(
     dependencies = [
