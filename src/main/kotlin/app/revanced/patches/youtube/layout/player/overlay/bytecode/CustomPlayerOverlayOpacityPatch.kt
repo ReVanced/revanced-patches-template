@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.player.overlay.bytecode.fingerprints.CreatePlayerOverviewFingerprint
-import app.revanced.patches.youtube.layout.player.overlay.resource.patch.CustomPlayerOverlayOpacityResourcePatch
+import app.revanced.patches.youtube.layout.player.overlay.resource.CustomPlayerOverlayOpacityResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(

@@ -14,9 +14,9 @@ import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.PlayerS
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.ShortsSeekbarColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch
-import app.revanced.patches.youtube.layout.theme.bytecode.patch.LithoColorHookPatch.Companion.lithoColorOverrideHook
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.layout.theme.bytecode.LithoColorHookPatch
+import app.revanced.patches.youtube.layout.theme.bytecode.LithoColorHookPatch.Companion.lithoColorOverrideHook
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
