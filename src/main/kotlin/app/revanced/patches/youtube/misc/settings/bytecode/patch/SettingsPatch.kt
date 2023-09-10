@@ -15,7 +15,7 @@ import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.bytecode.fingerprints.SetThemeFingerprint
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.resource.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.util.MethodUtil

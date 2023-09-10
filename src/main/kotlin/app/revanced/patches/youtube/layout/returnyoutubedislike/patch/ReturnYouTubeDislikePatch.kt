@@ -21,7 +21,7 @@ import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.layout.returnyoutubedislike.resource.patch.ReturnYouTubeDislikeResourcePatch
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.patch.PlayerTypeHookPatch
-import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction

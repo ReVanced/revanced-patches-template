@@ -16,8 +16,8 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMu
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.video.information.annotation.VideoInformationCompatibility
 import app.revanced.patches.youtube.video.information.fingerprints.*
-import app.revanced.patches.youtube.video.speed.remember.patch.RememberPlaybackSpeedPatch
-import app.revanced.patches.youtube.video.videoid.patch.VideoIdPatch
+import app.revanced.patches.youtube.video.speed.remember.RememberPlaybackSpeedPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.BuilderInstruction

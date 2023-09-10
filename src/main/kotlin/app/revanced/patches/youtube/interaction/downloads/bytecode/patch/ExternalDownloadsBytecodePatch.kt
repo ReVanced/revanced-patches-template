@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.interaction.downloads.annotation.ExternalDownloadsCompatibility
 import app.revanced.patches.youtube.interaction.downloads.resource.patch.ExternalDownloadsResourcePatch
-import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
+import app.revanced.patches.youtube.misc.playercontrols.bytecode.PlayerControlsBytecodePatch
 import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
 
 @Patch

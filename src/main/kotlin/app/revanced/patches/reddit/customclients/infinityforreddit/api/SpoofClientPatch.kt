@@ -18,6 +18,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
             "and the redirect URI has to be set to \"infinity://localhost\".",
     compatiblePackages = [CompatiblePackage("ml.docilealligator.infinityforreddit")]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "infinity://localhost",
     listOf(GetHttpBasicAuthHeaderFingerprint, LoginActivityOnCreateFingerprint)

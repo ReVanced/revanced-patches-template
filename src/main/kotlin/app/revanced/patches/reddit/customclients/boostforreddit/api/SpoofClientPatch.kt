@@ -16,6 +16,7 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
             "and the redirect URI has to be set to \"http://rubenmayayo.com\".",
     compatiblePackages = [CompatiblePackage("com.rubenmayayo.reddit")]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://rubenmayayo.com", listOf(GetClientIdFingerprint)
 ) {

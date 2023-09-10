@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.misc.integrations.patch
 
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.patch.annotations.RequiresIntegrations
-import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch
+import app.revanced.patches.shared.integrations.AbstractIntegrationsPatch
 import app.revanced.patches.youtube.misc.integrations.fingerprints.*
 
 @Name("Integrations")

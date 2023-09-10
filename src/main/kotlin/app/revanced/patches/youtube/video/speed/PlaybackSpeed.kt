@@ -1,20 +1,19 @@
 package app.revanced.patches.youtube.video.speed
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeedPatch
-import app.revanced.patches.youtube.video.speed.remember.patch.RememberPlaybackSpeedPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.youtube.video.speed.custom.CustomPlaybackSpeedPatch
+import app.revanced.patches.youtube.video.speed.remember.RememberPlaybackSpeedPatch
 
-@Patch
-@Name("Playback speed")
-@Description("Adds custom playback speeds and ability to remember the playback speed you chose in the video playback speed flyout.")
-@DependsOn([CustomPlaybackSpeedPatch::class, RememberPlaybackSpeedPatch::class])
+@Patch(
+    name = "Playback speed",
+    description = "Adds custom playback speeds and ability to remember the playback speed you chose in the video playback speed flyout.",
+    dependencies = [CustomPlaybackSpeedPatch::class, RememberPlaybackSpeedPatch::class]
+)
 @PlaybackSpeedCompatibility
-class PlaybackSpeed : BytecodePatch() {
+@Suppress("unused")
+object PlaybackSpeed : BytecodePatch() {
     override fun execute(context: BytecodeContext) { // All patches this patch depends on succeed.
     }
 }
