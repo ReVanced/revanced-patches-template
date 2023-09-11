@@ -27,56 +27,58 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 class ShowOnLockscreenPatch : BytecodePatch(
     listOf(BrightnessFingerprint)
 ) {
+    override fun execute(context: BytecodeContext) {
+        BrightnessFingerprint.result?.mutableMethod?.apply {
+            val brightnessInstruction = implementation!!.instructions.firstNotNullOf { instruction ->
+                if (instruction.opcode != Opcode.IGET_OBJECT) return@firstNotNullOf null
+
+                val getInstruction = instruction as Instruction22c
+                val fieldReference = getInstruction.reference as FieldReference
+
+                if (fieldReference.type != "Ljava/lang/Float;") return@firstNotNullOf null
+
+                instruction
+            }
+
+            val (windowIndex, activityRegister) = implementation!!.instructions.withIndex()
+                .firstNotNullOf { (index, instruction) ->
+                    if (instruction.opcode != Opcode.INVOKE_VIRTUAL)
+                        return@firstNotNullOf null
+
+                    val invokeInstruction = instruction as Instruction35c
+                    val methodRef = invokeInstruction.reference as MethodReference
+
+                    if (methodRef.name != "getWindow" || methodRef.returnType != "Landroid/view/Window;")
+                        return@firstNotNullOf null
+
+                    Pair(index, invokeInstruction.registerC)
+                }
+
+            val brightnessRegister = brightnessInstruction.registerA
+
+            replaceInstruction(
+                windowIndex,
+                "invoke-static { v$activityRegister, v$brightnessRegister }, " +
+                        "$INTEGRATIONS_CLASS_DESCRIPTOR->" +
+                        "getWindow" +
+                        "(Landroidx/appcompat/app/AppCompatActivity;F)" +
+                        "Landroid/view/Window;"
+            )
+
+            addInstructions(
+                windowIndex,
+                """
+                    invoke-virtual { v$brightnessRegister }, Ljava/lang/Float;->floatValue()F
+                    move-result v$brightnessRegister
+                """
+            )
+
+            addInstruction(windowIndex, brightnessInstruction)
+
+        } ?: throw BrightnessFingerprint.exception
+    }
 
     private companion object {
         const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/tudortmund/lockscreen/ShowOnLockscreenPatch;"
     }
-
-    override fun execute(context: BytecodeContext) {
-        val result = BrightnessFingerprint.result ?: throw BrightnessFingerprint.exception
-        val method = result.mutableMethod
-
-        val brightnessInstruction = method.implementation!!.instructions.firstNotNullOf { instruction ->
-            if (instruction.opcode != Opcode.IGET_OBJECT)
-                return@firstNotNullOf null
-
-            val getInstruction = instruction as Instruction22c
-            val fieldReference = getInstruction.reference as FieldReference
-
-            if (fieldReference.type != "Ljava/lang/Float;")
-                return@firstNotNullOf null
-
-            instruction
-        }
-
-        val (windowIndex, activityRegister) = method.implementation!!.instructions.withIndex().firstNotNullOf { (index, instruction) ->
-            if (instruction.opcode != Opcode.INVOKE_VIRTUAL)
-                return@firstNotNullOf null
-
-            val invokeInstruction = instruction as Instruction35c
-            val methodRef = invokeInstruction.reference as MethodReference
-
-            if (methodRef.name != "getWindow" || methodRef.returnType != "Landroid/view/Window;")
-                return@firstNotNullOf null
-
-            Pair(index, invokeInstruction.registerC)
-        }
-
-        val brightnessRegister = brightnessInstruction.registerA
-
-        method.replaceInstruction(
-            windowIndex,
-            "invoke-static { v$activityRegister, v$brightnessRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getWindow(Landroidx/appcompat/app/AppCompatActivity;F)Landroid/view/Window;"
-        )
-
-        method.addInstruction(windowIndex, brightnessInstruction)
-        method.addInstructions(
-            windowIndex + 1,
-            """
-                invoke-virtual { v$brightnessRegister }, Ljava/lang/Float;->floatValue()F
-                move-result v$brightnessRegister
-            """
-        )
-    }
-
 }
