@@ -16,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 )
 object HideInfocardsResourcePatch : ResourcePatch() {
     internal var drawerResourceId: Long = -1
+
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(

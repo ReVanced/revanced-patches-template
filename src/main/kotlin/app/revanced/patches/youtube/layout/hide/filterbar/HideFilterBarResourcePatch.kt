@@ -16,6 +16,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
     internal var filterBarHeightId = -1L
     internal var relatedChipCloudMarginId = -1L
     internal var barContainerHeightId = -1L
+
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(

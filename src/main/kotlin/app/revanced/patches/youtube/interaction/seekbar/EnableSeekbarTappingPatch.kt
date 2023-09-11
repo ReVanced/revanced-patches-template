@@ -11,8 +11,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.OnTouchEventHandlerFingerprint
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
@@ -25,14 +25,14 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube",
-            arrayOf(
+            [
                 "18.16.37",
                 "18.19.35",
                 "18.20.39",
                 "18.23.35",
                 "18.29.38",
                 "18.32.39"
-            )
+            ]
         )
     ]
 )

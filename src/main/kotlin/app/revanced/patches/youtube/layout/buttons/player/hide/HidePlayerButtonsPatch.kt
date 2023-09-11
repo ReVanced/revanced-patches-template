@@ -9,6 +9,8 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.layout.buttons.player.hide.HidePlayerButtonsPatch.ParameterOffsets.HAS_NEXT
+import app.revanced.patches.youtube.layout.buttons.player.hide.HidePlayerButtonsPatch.ParameterOffsets.HAS_PREVIOUS
 import app.revanced.patches.youtube.layout.buttons.player.hide.fingerprints.PlayerControlsVisibilityModelFingerprint
 import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
@@ -24,14 +26,14 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction3rc
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube",
-            arrayOf(
+            [
                 "18.16.37",
                 "18.19.35",
                 "18.20.39",
                 "18.23.35",
                 "18.29.38",
                 "18.32.39"
-            )
+            ]
         )
     ]
 )
@@ -39,9 +41,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction3rc
 object HidePlayerButtonsPatch : BytecodePatch(
     setOf(PlayerControlsVisibilityModelFingerprint)
 ) {
-    private const val HAS_NEXT = 5
-    private const val HAS_PREVIOUS = 6
-
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
@@ -80,5 +79,10 @@ object HidePlayerButtonsPatch : BytecodePatch(
                 """
             )
         } ?: throw PlayerControlsVisibilityModelFingerprint.exception
+    }
+
+    private object ParameterOffsets {
+        const val HAS_NEXT = 5
+        const val HAS_PREVIOUS = 6
     }
 }
