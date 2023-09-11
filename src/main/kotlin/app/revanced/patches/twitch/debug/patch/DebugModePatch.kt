@@ -14,8 +14,8 @@ import app.revanced.patches.twitch.debug.annotations.DebugModeCompatibility
 import app.revanced.patches.twitch.debug.fingerprints.IsDebugConfigEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFingerprint
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch(false)
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])

@@ -11,7 +11,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.hide.endscreencards.fingerprints.LayoutCircleFingerprint
 import app.revanced.patches.youtube.layout.hide.endscreencards.fingerprints.LayoutIconFingerprint
 import app.revanced.patches.youtube.layout.hide.endscreencards.fingerprints.LayoutVideoFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 
 @Patch(

@@ -17,8 +17,8 @@ import app.revanced.patches.twitch.ad.video.annotations.VideoAdsCompatibility
 import app.revanced.patches.twitch.ad.video.fingerprints.CheckAdEligibilityLambdaFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.ContentConfigShowAdsFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.GetReadyToShowAdFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])

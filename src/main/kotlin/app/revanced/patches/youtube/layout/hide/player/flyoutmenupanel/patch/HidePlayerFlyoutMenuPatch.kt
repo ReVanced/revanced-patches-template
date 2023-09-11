@@ -11,7 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.player.flyoutmenupanel.annotations.HidePlayerFlyoutMenuItemsCompatibility
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch
 @Name("Player flyout menu")

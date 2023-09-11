@@ -6,6 +6,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.OptionsContainer
 import app.revanced.patcher.patch.PatchOption
 import app.revanced.patcher.patch.ResourcePatch
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.spotify.layout.theme.annotations.ThemeCompatibility
 import org.w3c.dom.Element
