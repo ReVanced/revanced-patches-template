@@ -9,9 +9,9 @@ import app.revanced.patcher.patch.annotation.Patch
     description = "Makes all app activities exportable.",
     use = false
 )
+@Suppress("unused")
 object ExportAllActivitiesPatch : ResourcePatch() {
     private const val EXPORTED_FLAG = "android:exported"
-
     override fun execute(context: ResourceContext) {
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             val document = editor.file

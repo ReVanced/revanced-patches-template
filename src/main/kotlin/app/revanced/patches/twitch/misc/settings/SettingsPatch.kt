@@ -41,13 +41,6 @@ object SettingsPatch : BytecodePatch(
         MenuGroupsOnClickFingerprint
     )
 ), Closeable {
-    fun addString(identifier: String, value: String, formatted: Boolean = true) =
-        SettingsResourcePatch.addString(identifier, value, formatted)
-
-    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
-
-    /* Private members */
     private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
     private const val REVANCED_SETTINGS_MENU_ITEM_ID = 0x7
     private const val REVANCED_SETTINGS_MENU_ITEM_TITLE_RES = "revanced_settings"
@@ -59,44 +52,6 @@ object SettingsPatch : BytecodePatch(
     private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
     private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/SettingsHooks;"
     private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedUtils;"
-
-    private fun MethodFingerprintResult.injectMenuItem(
-        name: String,
-        value: Int,
-        titleResourceName: String,
-        iconResourceName: String
-    ) {
-        // Add new static enum member field
-        mutableClass.staticFields.add(
-            ImmutableField(
-                mutableMethod.definingClass,
-                name,
-                MENU_ITEM_ENUM_CLASS,
-                AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.ENUM or AccessFlags.STATIC,
-                null,
-                null,
-                null
-            ).toMutable()
-        )
-
-        // Add initializer for the new enum member
-        mutableMethod.addInstructions(
-            mutableMethod.implementation!!.instructions.size - 4,
-            """   
-                new-instance        v0, $MENU_ITEM_ENUM_CLASS
-                const-string        v1, "$titleResourceName"
-                invoke-static       {v1}, $REVANCED_UTILS_CLASS->getStringId(Ljava/lang/String;)I
-                move-result         v1
-                const-string        v3, "$iconResourceName"
-                invoke-static       {v3}, $REVANCED_UTILS_CLASS->getDrawableId(Ljava/lang/String;)I
-                move-result         v3
-                const-string        v4, "$name"
-                const/4             v5, $value
-                invoke-direct       {v0, v4, v5, v1, v3}, $MENU_ITEM_ENUM_CLASS-><init>(Ljava/lang/String;III)V 
-                sput-object         v0, $MENU_ITEM_ENUM_CLASS->$name:$MENU_ITEM_ENUM_CLASS
-            """
-        )
-    }
 
     override fun execute(context: BytecodeContext) {
         // Hook onCreate to handle fragment creation
@@ -157,6 +112,50 @@ object SettingsPatch : BytecodePatch(
         addString("revanced_reboot_message", "Twitch needs to restart to apply your changes. Restart now?", false)
         addString("revanced_reboot", "Restart", false)
         addString("revanced_cancel", "Cancel", false)
+    }
+
+    fun addString(identifier: String, value: String, formatted: Boolean = true) =
+        SettingsResourcePatch.addString(identifier, value, formatted)
+
+    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
+        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+
+    private fun MethodFingerprintResult.injectMenuItem(
+        name: String,
+        value: Int,
+        titleResourceName: String,
+        iconResourceName: String
+    ) {
+        // Add new static enum member field
+        mutableClass.staticFields.add(
+            ImmutableField(
+                mutableMethod.definingClass,
+                name,
+                MENU_ITEM_ENUM_CLASS,
+                AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.ENUM or AccessFlags.STATIC,
+                null,
+                null,
+                null
+            ).toMutable()
+        )
+
+        // Add initializer for the new enum member
+        mutableMethod.addInstructions(
+            mutableMethod.implementation!!.instructions.size - 4,
+            """   
+                new-instance        v0, $MENU_ITEM_ENUM_CLASS
+                const-string        v1, "$titleResourceName"
+                invoke-static       {v1}, $REVANCED_UTILS_CLASS->getStringId(Ljava/lang/String;)I
+                move-result         v1
+                const-string        v3, "$iconResourceName"
+                invoke-static       {v3}, $REVANCED_UTILS_CLASS->getDrawableId(Ljava/lang/String;)I
+                move-result         v3
+                const-string        v4, "$name"
+                const/4             v5, $value
+                invoke-direct       {v0, v4, v5, v1, v3}, $MENU_ITEM_ENUM_CLASS-><init>(Ljava/lang/String;III)V 
+                sput-object         v0, $MENU_ITEM_ENUM_CLASS->$name:$MENU_ITEM_ENUM_CLASS
+            """
+        )
     }
 
     /**

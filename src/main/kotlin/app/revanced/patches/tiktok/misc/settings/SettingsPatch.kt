@@ -40,13 +40,14 @@ object SettingsPatch : BytecodePatch(
 
     private const val INITIALIZE_SETTINGS_METHOD_DESCRIPTOR =
         "$INTEGRATIONS_CLASS_DESCRIPTOR->initializeSettings(" +
-            "Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;" +
-            ")Z"
+                "Lcom/bytedance/ies/ugc/aweme/commercialize/compliance/personalization/AdPersonalizationActivity;" +
+                ")Z"
+
     private const val CREATE_SETTINGS_ENTRY_METHOD_DESCRIPTOR =
         "$INTEGRATIONS_CLASS_DESCRIPTOR->createSettingsEntry(" +
-            "Ljava/lang/String;" +
-            "Ljava/lang/String;" +
-            ")Ljava/lang/Object;"
+                "Ljava/lang/String;" +
+                "Ljava/lang/String;" +
+                ")Ljava/lang/Object;"
 
     override fun execute(context: BytecodeContext) {
         // Find the class name of classes which construct a settings entry

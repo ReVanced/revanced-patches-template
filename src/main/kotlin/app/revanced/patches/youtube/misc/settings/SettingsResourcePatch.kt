@@ -4,9 +4,9 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.shared.settings.resource.AbstractSettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.mergeStrings
@@ -33,40 +33,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
             field = value
             preferencesNode = value.getNode("PreferenceScreen")
         }
-
-    /* Companion delegates */
-
-    /**
-     * Add a preference fragment to the main preferences.
-     *
-     * @param preference The preference to add.
-     */
-    fun addPreference(preference: Preference) =
-        preferencesNode!!.addPreference(preference) { it.include() }
-
-    /**
-     * Add a new string to the resources.
-     *
-     * @param identifier The key of the string.
-     * @param value The value of the string.
-     * @throws IllegalArgumentException if the string already exists.
-     */
-    fun addString(identifier: String, value: String, formatted: Boolean) =
-        AbstractSettingsResourcePatch.addString(identifier, value, formatted)
-
-    /**
-     * Add an array to the resources.
-     *
-     * @param arrayResource The array resource to add.
-     */
-    fun addArray(arrayResource: ArrayResource) = AbstractSettingsResourcePatch.addArray(arrayResource)
-
-    /**
-     * Add a preference to the settings.
-     *
-     * @param preferenceScreen The name of the preference screen.
-     */
-    fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
 
     override fun execute(context: ResourceContext) {
         super.execute(context)
@@ -167,4 +133,36 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
 
         preferencesEditor?.close()
     }
+
+    /**
+     * Add a preference fragment to the main preferences.
+     *
+     * @param preference The preference to add.
+     */
+    internal fun addPreference(preference: Preference) =
+        preferencesNode!!.addPreference(preference) { it.include() }
+
+    /**
+     * Add a new string to the resources.
+     *
+     * @param identifier The key of the string.
+     * @param value The value of the string.
+     * @throws IllegalArgumentException if the string already exists.
+     */
+    internal fun addString(identifier: String, value: String, formatted: Boolean) =
+        AbstractSettingsResourcePatch.addString(identifier, value, formatted)
+
+    /**
+     * Add an array to the resources.
+     *
+     * @param arrayResource The array resource to add.
+     */
+    internal fun addArray(arrayResource: ArrayResource) = AbstractSettingsResourcePatch.addArray(arrayResource)
+
+    /**
+     * Add a preference to the settings.
+     *
+     * @param preferenceScreen The name of the preference screen.
+     */
+    internal fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
 }

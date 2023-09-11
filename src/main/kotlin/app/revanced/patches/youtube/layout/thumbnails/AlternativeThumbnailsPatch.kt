@@ -19,7 +19,15 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     description = "Adds options to replace video thumbnails with still image captures of the video.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube", ["18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
     ]
 )
 @Suppress("unused")
@@ -41,7 +49,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     /**
      * @param highPriority If the hook should be called before all other hooks.
      */
-    fun addImageUrlHook(targetMethodClass: String, highPriority: Boolean) {
+    private fun addImageUrlHook(targetMethodClass: String, highPriority: Boolean) {
         loadImageUrlMethod.addInstructions(
             if (highPriority) 0 else loadImageUrlIndex, """
                     invoke-static { p1 }, $targetMethodClass->overrideImageURL(Ljava/lang/String;)Ljava/lang/String;
@@ -55,7 +63,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
      * If a connection completed, which includes normal 200 responses but also includes
      * status 404 and other error like http responses.
      */
-    fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
+    private fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
         loadImageSuccessCallbackMethod.addInstruction(
             loadImageSuccessCallbackIndex++,
             "invoke-static { p2 }, $targetMethodClass->handleCronetSuccess(Lorg/chromium/net/UrlResponseInfo;)V"
@@ -107,12 +115,18 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                     SwitchPreference(
                         "revanced_alt_thumbnail_fast_quality",
                         StringResource("revanced_alt_thumbnail_fast_quality_title", "Use fast alternative thumbnails"),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_on", "Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"),
+                        StringResource(
+                            "revanced_alt_thumbnail_fast_quality_summary_on",
+                            "Using medium quality stills. Thumbnails will load faster, but live streams, unreleased, or very old videos may show blank thumbnails"
+                        ),
                         StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using high quality stills")
                     ),
                     NonInteractivePreference(
                         StringResource("revanced_alt_thumbnail_about_title", "About"),
-                        StringResource("revanced_alt_thumbnail_about_summary", "Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube")
+                        StringResource(
+                            "revanced_alt_thumbnail_about_summary",
+                            "Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube"
+                        )
                     )
                 ),
                 StringResource("revanced_alt_thumbnails_preference_screen_summary", "Video thumbnail settings")

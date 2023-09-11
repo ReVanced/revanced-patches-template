@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.theme
 
 import app.revanced.patcher.data.BytecodeContext
-import app.revanced.patcher.patch.*
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
@@ -17,16 +17,17 @@ import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBy
 )
 @Suppress("unused")
 object ThemeBytecodePatch : BytecodePatch() {
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/ThemeLithoComponentsPatch;"
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/theme/ThemeLithoComponentsPatch;"
 
-    var darkThemeBackgroundColor by stringPatchOption(
+    internal val darkThemeBackgroundColor by stringPatchOption(
         key = "darkThemeBackgroundColor",
         default = "@android:color/black",
         title = "Background color for the dark theme",
         description = "The background color of the dark theme. Can be a hex color or a resource reference.",
     )
 
-    var lightThemeBackgroundColor by stringPatchOption(
+    internal val lightThemeBackgroundColor by stringPatchOption(
         key = "lightThemeBackgroundColor",
         default = "@android:color/white",
         title = "Background color for the light theme",

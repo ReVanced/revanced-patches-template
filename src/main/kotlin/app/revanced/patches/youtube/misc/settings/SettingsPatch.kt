@@ -30,27 +30,6 @@ object SettingsPatch : BytecodePatch(
     private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
     private const val SET_THEME_METHOD_NAME = "setTheme"
 
-    fun addString(identifier: String, value: String, formatted: Boolean = true) =
-        SettingsResourcePatch.addString(identifier, value, formatted)
-
-    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
-
-    fun addPreference(preference: Preference) = SettingsResourcePatch.addPreference(preference)
-
-    fun renameIntentsTargetPackage(newPackage: String) {
-        SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
-    }
-
-    /**
-     * Creates an intent to open ReVanced settings of the given name
-     */
-    fun createReVancedSettingsIntent(settingsName: String) = Preference.Intent(
-        "com.google.android.youtube",
-        settingsName,
-        "com.google.android.libraries.social.licenses.LicenseActivity"
-    )
-
     override fun execute(context: BytecodeContext) {
         // TODO: Remove this when it is only required at one place.
         fun getSetThemeInstructionString(
@@ -111,6 +90,27 @@ object SettingsPatch : BytecodePatch(
         }
 
     }
+
+    fun addString(identifier: String, value: String, formatted: Boolean = true) =
+        SettingsResourcePatch.addString(identifier, value, formatted)
+
+    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
+        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+
+    fun addPreference(preference: Preference) = SettingsResourcePatch.addPreference(preference)
+
+    fun renameIntentsTargetPackage(newPackage: String) {
+        SettingsResourcePatch.overrideIntentsTargetPackage = newPackage
+    }
+
+    /**
+     * Creates an intent to open ReVanced settings of the given name
+     */
+    fun createReVancedSettingsIntent(settingsName: String) = Preference.Intent(
+        "com.google.android.youtube",
+        settingsName,
+        "com.google.android.libraries.social.licenses.LicenseActivity"
+    )
 
     /**
      * Preference screens patches should add their settings to.

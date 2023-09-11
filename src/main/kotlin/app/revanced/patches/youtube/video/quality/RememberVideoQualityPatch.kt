@@ -30,7 +30,15 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
     description = "Adds the ability to remember the video quality you chose in the video quality flyout.",
     dependencies = [IntegrationsPatch::class, VideoInformationPatch::class, SettingsPatch::class],
     compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube", ["18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
     ]
 )
 @Suppress("unused")
@@ -192,6 +200,5 @@ object RememberVideoQualityPatch : BytecodePatch(
                 )
             }
         } ?: throw NewVideoQualityChangedFingerprint.exception
-
     }
 }

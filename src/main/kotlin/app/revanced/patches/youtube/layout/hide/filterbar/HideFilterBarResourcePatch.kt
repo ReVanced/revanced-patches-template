@@ -11,12 +11,9 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
 object HideFilterBarResourcePatch : ResourcePatch() {
-    var filterBarHeightId = -1L
-    var relatedChipCloudMarginId = -1L
-    var barContainerHeightId = -1L
-
-    private fun String.layoutResourceId(type: String = "dimen") =
-        ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
+    internal var filterBarHeightId = -1L
+    internal var relatedChipCloudMarginId = -1L
+    internal var barContainerHeightId = -1L
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
@@ -84,4 +81,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
         filterBarHeightId = "filter_bar_height".layoutResourceId()
         barContainerHeightId = "bar_container_height".layoutResourceId()
     }
+
+    private fun String.layoutResourceId(type: String = "dimen") =
+        ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
 }

@@ -15,7 +15,17 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     description = "Hides the floating microphone button which appears in search.",
     dependencies = [HideFloatingMicrophoneButtonResourcePatch::class],
     compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube", ["18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
     ]
 )
 @Suppress("unused")
@@ -24,6 +34,7 @@ object HideFloatingMicrophoneButtonPatch : BytecodePatch(
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/HideFloatingMicrophoneButtonPatch;"
+
     override fun execute(context: BytecodeContext) {
         ShowFloatingMicrophoneButtonFingerprint.result?.let { result ->
             with(result.mutableMethod) {
