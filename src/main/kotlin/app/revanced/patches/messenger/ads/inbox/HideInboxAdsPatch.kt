@@ -11,7 +11,7 @@ import app.revanced.patches.messenger.ads.inbox.fingerprints.LoadInboxAdsFingerp
 @Patch(
     name = "Hide inbox ads",
     description = "Hides ads in inbox.",
-    compatiblePackages = [ CompatiblePackage("com.facebook.orca") ]
+    compatiblePackages = [CompatiblePackage("com.facebook.orca")]
 )
 @Suppress("unused")
 object HideInboxAdsPatch : BytecodePatch(

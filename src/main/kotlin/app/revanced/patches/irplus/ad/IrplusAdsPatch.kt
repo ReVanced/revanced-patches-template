@@ -2,16 +2,16 @@ package app.revanced.patches.irplus.ad
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.irplus.ad.fingerprints.IrplusAdsFingerprint
 
 
 @Patch(
     name = "Remove ads",
     description = "Removes all ads from the app.",
-    compatiblePackages = [ CompatiblePackage("net.binarymode.android.irplus") ]
+    compatiblePackages = [CompatiblePackage("net.binarymode.android.irplus")]
 )
 @Suppress("unused")
 object IrplusAdsPatch : BytecodePatch(

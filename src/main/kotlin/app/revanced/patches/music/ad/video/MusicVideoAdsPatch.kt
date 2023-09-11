@@ -12,7 +12,7 @@ import app.revanced.patches.music.ad.video.fingerprints.ShowMusicVideoAdsFingerp
 @Patch(
     name = "Music video ads",
     description = "Removes ads in the music player.",
-    compatiblePackages = [ CompatiblePackage("com.google.android.apps.youtube.music") ]
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
 object MusicVideoAdsPatch : BytecodePatch(
     setOf(ShowMusicVideoAdsConstructorFingerprint)

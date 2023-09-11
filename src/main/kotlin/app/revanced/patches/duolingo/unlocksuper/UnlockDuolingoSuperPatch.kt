@@ -18,7 +18,7 @@ import com.android.tools.smali.dexlib2.Opcode
 @Patch(
     name = "Unlock Duolingo Super",
     description = "Unlocks Duolingo Super features.",
-    compatiblePackages = [ CompatiblePackage("com.duolingo") ]
+    compatiblePackages = [CompatiblePackage("com.duolingo")]
 )
 @Suppress("unused")
 object UnlockDuolingoSuperPatch : BytecodePatch(

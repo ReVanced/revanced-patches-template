@@ -32,7 +32,7 @@ import java.io.Closeable
         IntegrationsPatch::class,
         SettingsResourcePatch::class
     ],
-    compatiblePackages = [ CompatiblePackage("tv.twitch.android.app") ]
+    compatiblePackages = [CompatiblePackage("tv.twitch.android.app")]
 )
 object SettingsPatch : BytecodePatch(
     setOf(

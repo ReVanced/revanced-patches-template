@@ -9,7 +9,7 @@ import app.revanced.patches.twitter.misc.hook.BaseHookPatchPatch
     name = "Hide recommended users",
     description = "Hides recommended users.",
     dependencies = [ JsonHookPatch::class ],
-    compatiblePackages = [ CompatiblePackage("com.twitter.android") ]
+    compatiblePackages = [CompatiblePackage("com.twitter.android")]
 )
 @Suppress("unused")
 class HideRecommendedUsersPatch : BaseHookPatchPatch(
