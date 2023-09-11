@@ -36,6 +36,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         )
     ]
 )
+@Suppress("unused")
 object HideShortsComponentsPatch : BytecodePatch(
     setOf(
         CreateShortsButtonsFingerprint,

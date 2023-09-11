@@ -25,6 +25,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 class DisableShortsOnStartupPatch : BytecodePatch(
     setOf(UserWasInShortsFingerprint)
 ) {

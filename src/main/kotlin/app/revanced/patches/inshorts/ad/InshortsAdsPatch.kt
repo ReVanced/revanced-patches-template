@@ -13,6 +13,7 @@ import app.revanced.patches.inshorts.ad.fingerprints.InshortsAdsFingerprint
     description = "Removes ads from Inshorts.",
     compatiblePackages = [ CompatiblePackage("com.nis.app") ]
 )
+@Suppress("unused")
 object HideAdsPatch : BytecodePatch(
     setOf(InshortsAdsFingerprint)
 ) {

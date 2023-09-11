@@ -14,6 +14,7 @@ import app.revanced.patches.music.layout.minimizedplayback.fingerprints.Minimize
     description = "Enables minimized playback on Kids music.",
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
+@Suppress("unused")
 object MinimizedPlaybackPatch : BytecodePatch(setOf(MinimizedPlaybackManagerFingerprint)) {
     override fun execute(context: BytecodeContext) =
         MinimizedPlaybackManagerFingerprint.result?.mutableMethod?.addInstruction(

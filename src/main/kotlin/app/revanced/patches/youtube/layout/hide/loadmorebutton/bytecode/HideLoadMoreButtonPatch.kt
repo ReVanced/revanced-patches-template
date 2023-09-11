@@ -22,6 +22,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         )
     ]
 )
+@Suppress("unused")
 object HideLoadMoreButtonPatch : BytecodePatch(
     setOf(HideLoadMoreButtonFingerprint)
 ) {

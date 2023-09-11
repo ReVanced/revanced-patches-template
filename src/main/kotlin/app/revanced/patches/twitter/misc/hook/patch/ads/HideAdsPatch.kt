@@ -11,4 +11,5 @@ import app.revanced.patches.twitter.misc.hook.BaseHookPatchPatch
     dependencies = [ JsonHookPatch::class ],
     compatiblePackages = [ CompatiblePackage("com.twitter.android") ]
 )
+@Suppress("unused")
 class HideAdsPatch : BaseHookPatchPatch("Lapp/revanced/twitter/patches/hook/patch/ads/AdsHook;")

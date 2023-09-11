@@ -13,6 +13,7 @@ import app.revanced.patches.lightroom.misc.login.fingerprint.IsLoggedInFingerpri
     description = "Unlocks pro features.",
     compatiblePackages = [ CompatiblePackage("com.adobe.lrmobile") ]
 )
+@Suppress("unused")
 object DisableMandatoryLoginPatch : BytecodePatch(
     setOf(IsLoggedInFingerprint)
 ) {

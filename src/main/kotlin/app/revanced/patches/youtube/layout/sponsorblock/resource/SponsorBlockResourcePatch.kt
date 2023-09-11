@@ -18,6 +18,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
         ResourceMappingPatch::class
     ]
 )
+@Suppress("unused")
 object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {

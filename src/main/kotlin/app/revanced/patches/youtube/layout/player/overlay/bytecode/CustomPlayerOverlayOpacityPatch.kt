@@ -18,6 +18,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     dependencies = [ CustomPlayerOverlayOpacityResourcePatch::class ],
     compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
+@Suppress("unused")
 object CustomPlayerOverlayOpacityPatch : BytecodePatch(
     setOf(CreatePlayerOverviewFingerprint)
 ) {

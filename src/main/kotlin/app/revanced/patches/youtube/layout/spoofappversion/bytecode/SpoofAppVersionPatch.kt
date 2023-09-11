@@ -29,6 +29,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         )
     ]
 )
+@Suppress("unused")
 object SpoofAppVersionPatch : BytecodePatch(
     setOf(SpoofAppVersionFingerprint)
 ) {

@@ -13,6 +13,7 @@ import app.revanced.patches.irplus.ad.fingerprints.IrplusAdsFingerprint
     description = "Removes all ads from the app.",
     compatiblePackages = [ CompatiblePackage("net.binarymode.android.irplus") ]
 )
+@Suppress("unused")
 object IrplusAdsPatch : BytecodePatch(
     setOf(IrplusAdsFingerprint)
 ) {

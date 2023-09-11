@@ -24,6 +24,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object HidePlayerFlyoutMenuPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

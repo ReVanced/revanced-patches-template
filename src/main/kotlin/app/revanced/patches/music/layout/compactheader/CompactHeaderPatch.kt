@@ -14,6 +14,7 @@ import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
     use = false,
     compatiblePackages = [ CompatiblePackage("com.google.android.apps.youtube.music") ] 
 )
+@Suppress("unused")
 object CompactHeaderPatch : BytecodePatch(
     setOf(CompactHeaderConstructorFingerprint)
 ) {

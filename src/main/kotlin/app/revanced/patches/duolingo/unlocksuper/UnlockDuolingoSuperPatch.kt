@@ -20,6 +20,7 @@ import com.android.tools.smali.dexlib2.Opcode
     description = "Unlocks Duolingo Super features.",
     compatiblePackages = [ CompatiblePackage("com.duolingo") ]
 )
+@Suppress("unused")
 object UnlockDuolingoSuperPatch : BytecodePatch(
     setOf(
         UserSerializationMethodFingerprint,

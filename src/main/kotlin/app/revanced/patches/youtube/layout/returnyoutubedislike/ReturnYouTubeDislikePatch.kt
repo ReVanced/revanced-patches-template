@@ -38,6 +38,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         )
     ]
 )
+@Suppress("unused")
 object ReturnYouTubeDislikePatch : BytecodePatch(
     setOf(
         TextComponentConstructorFingerprint,

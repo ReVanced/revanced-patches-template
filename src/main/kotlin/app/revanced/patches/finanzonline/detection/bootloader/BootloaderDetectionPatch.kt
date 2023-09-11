@@ -14,6 +14,7 @@ import app.revanced.patches.finanzonline.detection.bootloader.fingerprints.Creat
     description = "Removes the check for an unlocked bootloader.",
     compatiblePackages = [ CompatiblePackage("at.gv.bmf.bmf2go") ]
 )
+@Suppress("unused")
 object BootloaderDetectionPatch : BytecodePatch(
     setOf(
         CreateKeyFingerprint,

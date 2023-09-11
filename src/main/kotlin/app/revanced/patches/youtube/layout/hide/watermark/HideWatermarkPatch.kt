@@ -29,6 +29,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object HideWatermarkPatch : BytecodePatch(
     setOf(HideWatermarkParentFingerprint)
 ) {

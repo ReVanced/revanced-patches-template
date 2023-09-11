@@ -54,6 +54,7 @@ import com.android.tools.smali.dexlib2.Opcode
         )
     ]
 )
+@Suppress("unused")
 object SponsorBlockBytecodePatch : BytecodePatch(
     setOf(
         SeekbarFingerprint,

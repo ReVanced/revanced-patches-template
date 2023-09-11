@@ -26,6 +26,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object HideTimestampPatch : BytecodePatch(
     setOf(TimeCounterFingerprint)
 ) {

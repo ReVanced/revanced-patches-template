@@ -16,6 +16,7 @@ import app.revanced.patches.music.interaction.permanentrepeat.fingerprints.Repea
     use = false,
     compatiblePackages = [ CompatiblePackage("com.google.android.apps.youtube.music") ]
 )
+@Suppress("unused")
 object PermanentRepeatPatch : BytecodePatch(
     setOf(RepeatTrackFingerprint)
 ) {

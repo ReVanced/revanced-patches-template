@@ -13,6 +13,7 @@ import app.revanced.patches.finanzonline.detection.root.fingerprints.RootDetecti
     description = "Removes the check for root permissions.",
     compatiblePackages = [ CompatiblePackage("at.gv.bmf.bmf2go") ]
 )
+@Suppress("unused")
 object RootDetectionPatch : BytecodePatch(
     setOf(RootDetectionFingerprint)
 ) {
