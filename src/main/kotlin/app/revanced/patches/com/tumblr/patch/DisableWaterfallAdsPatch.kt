@@ -3,6 +3,7 @@ package app.revanced.patches.com.tumblr.patch
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility
 import app.revanced.patcher.annotation.Description
+import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -11,7 +12,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.com.tumblr.fingerprints.AdWaterfallFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
-import jdk.jfr.Name
 
 // Tested on 31.1.0.110, but this patch should be resilient enough to last a loong time
 @Patch
