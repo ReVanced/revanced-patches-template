@@ -82,6 +82,6 @@ object HideFilterBarResourcePatch : ResourcePatch() {
         barContainerHeightId = "bar_container_height".layoutResourceId()
     }
 
-    private fun String.layoutResourceId(type: String = "dimen") =
-        ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
+        private fun String.layoutResourceId(type: String = "dimen") =
+            ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
 }

@@ -43,30 +43,6 @@ object HideFilterBarPatch : BytecodePatch(
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/HideFilterBarPatch;"
 
-    /**
-     * Patch a [MethodFingerprint] with a given [instructions].
-     *
-     * @param RegisterInstruction The type of instruction to get the register from.
-     * @param insertIndexOffset The offset to add to the end index of the [MethodFingerprint].
-     * @param hookRegisterOffset The offset to add to the register of the hook.
-     * @param instructions The instructions to add with the register as a parameter.
-     */
-    private fun <RegisterInstruction: OneRegisterInstruction> MethodFingerprint.patch(
-        insertIndexOffset: Int = 0,
-        hookRegisterOffset: Int = 0,
-        instructions: (Int) -> String
-    ) =
-        result?.let {
-            it.mutableMethod.apply {
-                val endIndex = it.scanResult.patternScanResult!!.endIndex
-
-                val insertIndex = endIndex + insertIndexOffset
-                val register = getInstruction<RegisterInstruction>(endIndex + hookRegisterOffset).registerA
-
-                addInstructions(insertIndex, instructions(register))
-            }
-        } ?: throw exception
-
     override fun execute(context: BytecodeContext) {
         FilterBarHeightFingerprint.patch<TwoRegisterInstruction> { register ->
             """
@@ -87,4 +63,29 @@ object HideFilterBarPatch : BytecodePatch(
             """
         }
     }
+
+    /**
+     * Patch a [MethodFingerprint] with a given [instructions].
+     *
+     * @param RegisterInstruction The type of instruction to get the register from.
+     * @param insertIndexOffset The offset to add to the end index of the [MethodFingerprint].
+     * @param hookRegisterOffset The offset to add to the register of the hook.
+     * @param instructions The instructions to add with the register as a parameter.
+     */
+    private fun <RegisterInstruction : OneRegisterInstruction> MethodFingerprint.patch(
+        insertIndexOffset: Int = 0,
+        hookRegisterOffset: Int = 0,
+        instructions: (Int) -> String
+    ) =
+        result?.let {
+            it.mutableMethod.apply {
+                val endIndex = it.scanResult.patternScanResult!!.endIndex
+
+                val insertIndex = endIndex + insertIndexOffset
+                val register =
+                    getInstruction<RegisterInstruction>(endIndex + hookRegisterOffset).registerA
+
+                addInstructions(insertIndex, instructions(register))
+            }
+        } ?: throw exception
 }
