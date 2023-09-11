@@ -5,16 +5,15 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.backdrops.misc.pro.annotations.ProUnlockCompatibility
 import app.revanced.patches.backdrops.misc.pro.fingerprints.ProUnlockFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     name = "Pro unlock",
-    description = "Unlocks pro-only functions."
+    compatiblePackages = [CompatiblePackage("com.backdrops.wallpapers", ["4.52"])]
 )
-@ProUnlockCompatibility
 @Suppress("unused")
 object ProUnlockPatch : BytecodePatch(
     setOf(ProUnlockFingerprint)

@@ -9,6 +9,8 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.annotations.ThemeCompatibility
 import app.revanced.patches.youtube.layout.theme.resource.ThemeResourcePatch
+import jdk.jfr.Description
+import jdk.jfr.Name
 
 @Patch
 @Name("Theme")
