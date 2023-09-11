@@ -20,12 +20,10 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
         CompatiblePackage("com.zhiliaoapp.musically")
-    ],
+    ]
 )
 @Suppress("unused")
-object FeedFilterPatch : BytecodePatch(
-    setOf(FeedApiServiceLIZFingerprint, SettingsStatusLoadFingerprint)
-) {
+object FeedFilterPatch : BytecodePatch(setOf(FeedApiServiceLIZFingerprint, SettingsStatusLoadFingerprint)) {
     override fun execute(context: BytecodeContext) {
         val method = FeedApiServiceLIZFingerprint.result!!.mutableMethod
         for ((index, instruction) in method.implementation!!.instructions.withIndex()) {
