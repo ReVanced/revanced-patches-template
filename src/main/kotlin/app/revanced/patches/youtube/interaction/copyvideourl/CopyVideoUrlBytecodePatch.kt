@@ -38,7 +38,6 @@ object CopyVideoUrlBytecodePatch : BytecodePatch() {
     )
 
     override fun execute(context: BytecodeContext) {
-
         // Initialize buttons and inject visibility control
         BUTTONS_DESCRIPTORS.forEach { descriptor ->
             PlayerControlsBytecodePatch.initializeControl("$descriptor->initializeButton(Landroid/view/View;)V")

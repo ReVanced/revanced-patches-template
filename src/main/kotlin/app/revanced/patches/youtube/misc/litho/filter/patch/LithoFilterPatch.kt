@@ -14,7 +14,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.fingerprints.*
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction

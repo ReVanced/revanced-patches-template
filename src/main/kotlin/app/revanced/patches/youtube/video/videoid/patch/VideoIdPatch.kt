@@ -10,7 +10,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.video.videoid.annotation.VideoIdCompatibility
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprint
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprintBackgroundPlay

@@ -10,8 +10,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
     name = "Video ads",

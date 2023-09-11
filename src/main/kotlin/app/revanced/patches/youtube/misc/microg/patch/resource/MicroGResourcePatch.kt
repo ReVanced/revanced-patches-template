@@ -10,8 +10,8 @@ import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NA
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.SPOOFED_PACKAGE_SIGNATURE
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
 import app.revanced.util.microg.MicroGResourceHelper

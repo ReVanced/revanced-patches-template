@@ -7,7 +7,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
-import app.revanced.patches.youtube.ad.getpremium.bytecode.patch.HideGetPremiumPatch
+import app.revanced.patches.youtube.ad.getpremium.HideGetPremiumPatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.patch.FixBackToExitGesturePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i

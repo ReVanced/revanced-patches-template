@@ -10,8 +10,8 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
-import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch(
     name = "Block audio ads",

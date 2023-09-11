@@ -1,14 +1,15 @@
 package app.revanced.patches.tiktok.feedfilter
 
+import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFingerprint
-import app.revanced.patches.tiktok.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.integrations.IntegrationsPatch
+import app.revanced.patches.tiktok.misc.settings.SettingsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
-import app.revanced.patches.tiktok.misc.settings.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -34,10 +35,10 @@ object FeedFilterPatch : BytecodePatch(setOf(FeedApiServiceLIZFingerprint, Setti
             )
             break
         }
-        val method2 = SettingsStatusLoadFingerprint.result!!.mutableMethod
-        method2.addInstruction(
+
+        SettingsStatusLoadFingerprint.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, Lapp/revanced/tiktok/settingsmenu/SettingsStatus;->enableFeedFilter()V"
-        )
+        ) ?: throw SettingsStatusLoadFingerprint.exception
     }
 }
