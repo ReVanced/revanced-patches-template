@@ -22,7 +22,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         )
     ]
 )
-object HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerprint)) {
+object HideLoadMoreButtonPatch : BytecodePatch(
+    setOf(HideLoadMoreButtonFingerprint)
+) {
     override fun execute(context: BytecodeContext) {
         HideLoadMoreButtonFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -39,8 +41,6 @@ object HideLoadMoreButtonPatch : BytecodePatch(listOf(HideLoadMoreButtonFingerpr
         } ?: throw HideLoadMoreButtonFingerprint.exception
     }
 
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/HideLoadMoreButtonPatch;"
-    }
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/HideLoadMoreButtonPatch;"
 }

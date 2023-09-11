@@ -1,7 +1,6 @@
 package app.revanced.patches.messenger.ads.inbox
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.annotation.CompatiblePackage
@@ -23,4 +22,3 @@ object HideInboxAdsPatch : BytecodePatch(
         } ?: throw LoadInboxAdsFingerprint.exception
     }
 }
-

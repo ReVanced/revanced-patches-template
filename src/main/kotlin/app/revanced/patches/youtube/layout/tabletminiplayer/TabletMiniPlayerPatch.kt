@@ -104,32 +104,30 @@ object TabletMiniPlayerPatch : BytecodePatch(
     }
 
     // Helper methods.
-    private companion object {
-        fun MethodFingerprint.addProxyCall(): Triple<MutableMethod, Int, Int> {
-            val (method, scanIndex, parameterRegister) = this.unwrap()
-            method.insertOverride(scanIndex, parameterRegister)
+    fun MethodFingerprint.addProxyCall(): Triple<MutableMethod, Int, Int> {
+        val (method, scanIndex, parameterRegister) = this.unwrap()
+        method.insertOverride(scanIndex, parameterRegister)
 
-            return Triple(method, scanIndex, parameterRegister)
-        }
+        return Triple(method, scanIndex, parameterRegister)
+    }
 
-        fun MutableMethod.insertOverride(index: Int, overrideRegister: Int) {
-            this.addInstructions(
-                index,
-                """
-                    invoke-static {v$overrideRegister}, Lapp/revanced/integrations/patches/TabletMiniPlayerOverridePatch;->getTabletMiniPlayerOverride(Z)Z
-                    move-result v$overrideRegister
-                """
-            )
-        }
+    fun MutableMethod.insertOverride(index: Int, overrideRegister: Int) {
+        this.addInstructions(
+            index,
+            """
+                invoke-static {v$overrideRegister}, Lapp/revanced/integrations/patches/TabletMiniPlayerOverridePatch;->getTabletMiniPlayerOverride(Z)Z
+                move-result v$overrideRegister
+            """
+        )
+    }
 
-        fun MethodFingerprint.unwrap(): Triple<MutableMethod, Int, Int> {
-            val result = this.result!!
-            val scanIndex = result.scanResult.patternScanResult!!.endIndex
-            val method = result.mutableMethod
-            val instructions = method.implementation!!.instructions
-            val parameterRegister = (instructions[scanIndex] as OneRegisterInstruction).registerA
+    fun MethodFingerprint.unwrap(): Triple<MutableMethod, Int, Int> {
+        val result = this.result!!
+        val scanIndex = result.scanResult.patternScanResult!!.endIndex
+        val method = result.mutableMethod
+        val instructions = method.implementation!!.instructions
+        val parameterRegister = (instructions[scanIndex] as OneRegisterInstruction).registerA
 
-            return Triple(method, scanIndex, parameterRegister)
-        }
+        return Triple(method, scanIndex, parameterRegister)
     }
 }

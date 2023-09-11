@@ -14,13 +14,13 @@ import org.w3c.dom.Element
         ResourceMappingPatch::class
     ]
 )
-object SeekbarColorResourcePatch : ResourcePatch {
+object SeekbarColorResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         fun findColorResource(resourceName: String): Long {
             return ResourceMappingPatch.resourceMappings
                 .find { it.type == "color" && it.name == resourceName }?.id
-            ?: throw PatchException("Could not find color resource: $resourceName")
+                ?: throw PatchException("Could not find color resource: $resourceName")
         }
 
         reelTimeBarPlayedColorId =
@@ -40,14 +40,14 @@ object SeekbarColorResourcePatch : ResourcePatch {
             val scaleNode = progressNode.getElementsByTagName("scale").item(0) as Element
             val shapeNode = scaleNode.getElementsByTagName("shape").item(0) as Element
             val replacementNode = editor.file.createElement(
-                "app.revanced.integrations.patches.theme.ProgressBarDrawable")
+                "app.revanced.integrations.patches.theme.ProgressBarDrawable"
+            )
             scaleNode.replaceChild(replacementNode, shapeNode)
         }
     }
 
-    companion object {
-        internal var reelTimeBarPlayedColorId = -1L
-        internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
-        internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
-    }
+    internal var reelTimeBarPlayedColorId = -1L
+    internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
+    internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
 }
+

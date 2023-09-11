@@ -11,7 +11,7 @@ import app.revanced.patches.youtube.layout.theme.bytecode.fingerprints.LithoThem
 
 @Patch(
     name = "Litho color hook",
-    description = "Adds a hook to set color of Litho components."
+    description = "Adds a hook to set color of Litho components.",
     compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
 object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
@@ -22,21 +22,18 @@ object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
             insertionMethod = it.mutableMethod
         } ?: throw LithoThemeFingerprint.exception
     }
-    companion object {
         private var insertionIndex : Int = -1
         private lateinit var colorRegister : String
         private lateinit var insertionMethod : MutableMethod
 
-        internal fun lithoColorOverrideHook(targetMethodClass: String, targetMethodName: String)  {
-            insertionMethod.addInstructions(
-                insertionIndex,
-                """
-                    invoke-static {$colorRegister}, $targetMethodClass->$targetMethodName(I)I
-                    move-result $colorRegister
-                """
-            )
-            insertionIndex += 2
-        }
+    internal fun lithoColorOverrideHook(targetMethodClass: String, targetMethodName: String)  {
+        insertionMethod.addInstructions(
+            insertionIndex,
+            """
+                invoke-static {$colorRegister}, $targetMethodClass->$targetMethodName(I)I
+                move-result $colorRegister
+            """
+        )
+        insertionIndex += 2
     }
-
 }

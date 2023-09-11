@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         ResourceMappingPatch::class
     ]
 )
-object HideShortsComponentsResourcePatch : ResourcePatch {
+object HideShortsComponentsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -99,8 +99,6 @@ object HideShortsComponentsResourcePatch : ResourcePatch {
         reelPlayerRightCellButtonHeight = "reel_player_right_cell_button_height".getId()
     }
 
-    companion object {
-        var reelMultipleItemShelfId = -1L
-        var reelPlayerRightCellButtonHeight = -1L
-    }
+    var reelMultipleItemShelfId = -1L
+    var reelPlayerRightCellButtonHeight = -1L
 }

@@ -18,7 +18,7 @@ import com.android.tools.smali.dexlib2.Opcode
 @Patch(
     name = "Unlock Duolingo Super",
     description = "Unlocks Duolingo Super features.",
-    compatiblePackages = [ compatiblePackages("com.duolingo") ]
+    compatiblePackages = [ CompatiblePackage("com.duolingo") ]
 )
 object UnlockDuolingoSuperPatch : BytecodePatch(
     setOf(
@@ -54,12 +54,10 @@ object UnlockDuolingoSuperPatch : BytecodePatch(
             ?: throw UserSerializationMethodFingerprint.exception
     }
 
-    private companion object {
-        private fun MutableMethod.indexOfReference(reference: Reference) = getInstructions()
-            .filterIsInstance<BuilderInstruction22c>()
-            .filter { it.opcode == Opcode.IPUT_BOOLEAN }.indexOfFirst { it.reference == reference }.let {
-                if (it == -1) throw PatchException("Could not find index of instruction with supplied reference.")
-                else it
-            }
-    }
+    private fun MutableMethod.indexOfReference(reference: Reference) = getInstructions()
+        .filterIsInstance<BuilderInstruction22c>()
+        .filter { it.opcode == Opcode.IPUT_BOOLEAN }.indexOfFirst { it.reference == reference }.let {
+            if (it == -1) throw PatchException("Could not find index of instruction with supplied reference.")
+            else it
+        }
 }

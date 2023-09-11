@@ -9,13 +9,11 @@ import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 @Patch(
     dependencies = [ ResourceMappingPatch::class ]
 )
-object BottomSheetHookResourcePatch : ResourcePatch {
+object BottomSheetHookResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         bottomSheetMargins =  ResourceMappingPatch.resourceMappings.find { it.name == "bottom_sheet_margins" }?.id
             ?: throw PatchException("Could not find resource")
     }
 
-    internal companion object {
-        var bottomSheetMargins = -1L
-    }
+    var bottomSheetMargins = -1L
 }

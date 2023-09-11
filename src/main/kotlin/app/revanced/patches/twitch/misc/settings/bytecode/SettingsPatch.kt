@@ -1,40 +1,41 @@
-package app.revanced.patches.twitch.misc.settings.bytecode.patch
+package app.revanced.patches.twitch.misc.settings.bytecode
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.annotations.SettingsCompatibility
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsUpdatedFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsActivityOnCreateFingerprint
 import app.revanced.patches.twitch.misc.settings.fingerprints.SettingsMenuItemEnumFingerprint
-import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.twitch.misc.settings.resource.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import java.io.Closeable
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsResourcePatch::class])
-@Name("Settings")
-@Description("Adds settings menu to Twitch.")
-@SettingsCompatibility
-class SettingsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Settings",
+    description = "Adds settings menu to Twitch.",
+    dependencies = [
+        IntegrationsPatch::class,
+        SettingsResourcePatch::class
+    ],
+    compatiblePackages = [ CompatiblePackage("tv.twitch.android.app") ]
+)
+object SettingsPatch : BytecodePatch(
+    setOf(
         SettingsActivityOnCreateFingerprint,
         SettingsMenuItemEnumFingerprint,
         MenuGroupsUpdatedFingerprint,
@@ -102,64 +103,63 @@ class SettingsPatch : BytecodePatch(
         addString("revanced_cancel", "Cancel", false)
     }
 
-    internal companion object {
-        fun addString(identifier: String, value: String, formatted: Boolean = true) =
-            SettingsResourcePatch.addString(identifier, value, formatted)
+    fun addString(identifier: String, value: String, formatted: Boolean = true) =
+        SettingsResourcePatch.addString(identifier, value, formatted)
 
-        fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-            SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
+    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
+        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
 
-        /* Private members */
-        private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
-        private const val REVANCED_SETTINGS_MENU_ITEM_ID = 0x7
-        private const val REVANCED_SETTINGS_MENU_ITEM_TITLE_RES = "revanced_settings"
-        private const val REVANCED_SETTINGS_MENU_ITEM_ICON_RES = "ic_settings"
+    /* Private members */
+    private const val REVANCED_SETTINGS_MENU_ITEM_NAME = "RevancedSettings"
+    private const val REVANCED_SETTINGS_MENU_ITEM_ID = 0x7
+    private const val REVANCED_SETTINGS_MENU_ITEM_TITLE_RES = "revanced_settings"
+    private const val REVANCED_SETTINGS_MENU_ITEM_ICON_RES = "ic_settings"
 
-        private const val MENU_ITEM_ENUM_CLASS = "Ltv/twitch/android/feature/settings/menu/SettingsMenuItem;"
-        private const val MENU_DISMISS_EVENT_CLASS = "Ltv/twitch/android/feature/settings/menu/SettingsMenuViewDelegate\$Event\$OnDismissClicked;"
+    private const val MENU_ITEM_ENUM_CLASS = "Ltv/twitch/android/feature/settings/menu/SettingsMenuItem;"
+    private const val MENU_DISMISS_EVENT_CLASS = "Ltv/twitch/android/feature/settings/menu/SettingsMenuViewDelegate\$Event\$OnDismissClicked;"
 
-        private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
-        private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/SettingsHooks;"
-        private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedUtils;"
+    private const val INTEGRATIONS_PACKAGE = "app/revanced/twitch"
+    private const val SETTINGS_HOOKS_CLASS = "L$INTEGRATIONS_PACKAGE/settingsmenu/SettingsHooks;"
+    private const val REVANCED_UTILS_CLASS = "L$INTEGRATIONS_PACKAGE/utils/ReVancedUtils;"
 
-        private fun MethodFingerprintResult.injectMenuItem(
-            name: String,
-            value: Int,
-            titleResourceName: String,
-            iconResourceName: String
-        ) {
-            // Add new static enum member field
-            mutableClass.staticFields.add(
-                ImmutableField(
-                    mutableMethod.definingClass,
-                    name,
-                    MENU_ITEM_ENUM_CLASS,
-                    AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.ENUM or AccessFlags.STATIC,
-                    null,
-                    null,
-                    null
-                ).toMutable()
-            )
+    private fun MethodFingerprintResult.injectMenuItem(
+        name: String,
+        value: Int,
+        titleResourceName: String,
+        iconResourceName: String
+    ) {
+        // Add new static enum member field
+        mutableClass.staticFields.add(
+            ImmutableField(
+                mutableMethod.definingClass,
+                name,
+                MENU_ITEM_ENUM_CLASS,
+                AccessFlags.PUBLIC or AccessFlags.FINAL or AccessFlags.ENUM or AccessFlags.STATIC,
+                null,
+                null,
+                null
+            ).toMutable()
+        )
 
-            // Add initializer for the new enum member
-            mutableMethod.addInstructions(
-                mutableMethod.implementation!!.instructions.size - 4,
-                """   
-                new-instance        v0, $MENU_ITEM_ENUM_CLASS
-                const-string        v1, "$titleResourceName"
-                invoke-static       {v1}, $REVANCED_UTILS_CLASS->getStringId(Ljava/lang/String;)I
-                move-result         v1
-                const-string        v3, "$iconResourceName"
-                invoke-static       {v3}, $REVANCED_UTILS_CLASS->getDrawableId(Ljava/lang/String;)I
-                move-result         v3
-                const-string        v4, "$name"
-                const/4             v5, $value
-                invoke-direct       {v0, v4, v5, v1, v3}, $MENU_ITEM_ENUM_CLASS-><init>(Ljava/lang/String;III)V 
-                sput-object         v0, $MENU_ITEM_ENUM_CLASS->$name:$MENU_ITEM_ENUM_CLASS
-            """
-            )
-        }
+        // Add initializer for the new enum member
+        mutableMethod.addInstructions(
+            mutableMethod.implementation!!.instructions.size - 4,
+            """   
+            new-instance        v0, $MENU_ITEM_ENUM_CLASS
+            const-string        v1, "$titleResourceName"
+            invoke-static       {v1}, $REVANCED_UTILS_CLASS->getStringId(Ljava/lang/String;)I
+            move-result         v1
+            const-string        v3, "$iconResourceName"
+            invoke-static       {v3}, $REVANCED_UTILS_CLASS->getDrawableId(Ljava/lang/String;)I
+            move-result         v3
+            const-string        v4, "$name"
+            const/4             v5, $value
+            invoke-direct       {v0, v4, v5, v1, v3}, $MENU_ITEM_ENUM_CLASS-><init>(Ljava/lang/String;III)V 
+            sput-object         v0, $MENU_ITEM_ENUM_CLASS->$name:$MENU_ITEM_ENUM_CLASS
+        """
+        )
     }
+
 
     /**
      * Preference screens patches should add their settings to.

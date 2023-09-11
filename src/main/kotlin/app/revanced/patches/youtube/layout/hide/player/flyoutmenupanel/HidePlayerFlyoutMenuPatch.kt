@@ -24,7 +24,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         )
     ]
 )
-object HidePlayerFlyoutMenuPatch : ResourcePatch {
+object HidePlayerFlyoutMenuPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -99,10 +99,8 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }
 
-    private companion object {
-        const val KEY = "revanced_hide_player_flyout"
+    const val KEY = "revanced_hide_player_flyout"
 
-        const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
-    }
+    const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
 }

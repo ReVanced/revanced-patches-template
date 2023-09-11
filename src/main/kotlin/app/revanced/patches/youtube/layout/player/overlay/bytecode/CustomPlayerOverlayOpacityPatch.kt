@@ -2,8 +2,6 @@ package app.revanced.patches.youtube.layout.player.overlay.bytecode
 
 import app.revanced.extensions.exception
 import app.revanced.extensions.indexOfFirstConstantInstructionValue
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -17,7 +15,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch(
     name = "Custom player overlay opacity",
     description = "Change the opacity of the player background, when player controls are visible.",
-    dependencies = [ CustomPlayerOverlayOpacityResourcePatch::class ]
+    dependencies = [ CustomPlayerOverlayOpacityResourcePatch::class ],
     compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
 object CustomPlayerOverlayOpacityPatch : BytecodePatch(
@@ -41,7 +39,5 @@ object CustomPlayerOverlayOpacityPatch : BytecodePatch(
         } ?: throw CreatePlayerOverviewFingerprint.exception
     }
 
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/CustomPlayerOverlayOpacityPatch;"
-    }
+    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/CustomPlayerOverlayOpacityPatch;"
 }

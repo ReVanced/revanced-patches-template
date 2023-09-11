@@ -14,10 +14,8 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         ResourceMappingPatch::class
     ]
 )
-object HideEmailAddressResourcePatch : ResourcePatch {
-    companion object {
-        internal var accountSwitcherAccessibilityLabelId: Long = -1
-    }
+object HideEmailAddressResourcePatch : ResourcePatch() {
+    internal var accountSwitcherAccessibilityLabelId: Long = -1
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(

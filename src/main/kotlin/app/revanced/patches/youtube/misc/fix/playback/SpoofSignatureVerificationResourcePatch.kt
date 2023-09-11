@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         ResourceMappingPatch::class
     ]
 )
-object SpoofSignatureVerificationResourcePatch : ResourcePatch {
+object SpoofSignatureVerificationResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
@@ -38,7 +38,5 @@ object SpoofSignatureVerificationResourcePatch : ResourcePatch {
         }.id
     }
 
-    companion object {
-        var scrubbedPreviewThumbnailResourceId: Long = -1
-    }
+    var scrubbedPreviewThumbnailResourceId: Long = -1
 }

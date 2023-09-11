@@ -22,7 +22,7 @@ import org.w3c.dom.Element
         SeekbarPreferencesPatch::class
     ],
 )
-object ThemeResourcePatch : ResourcePatch {
+object ThemeResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
@@ -114,7 +114,5 @@ object ThemeResourcePatch : ResourcePatch {
         }
     }
 
-    private companion object {
-        private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
-    }
+    private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
 }

@@ -21,7 +21,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
     dependencies = [
         IntegrationsPatch::class,
         SettingsPatch::class
-    ]
+    ],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube", 
@@ -56,31 +56,29 @@ object WideSearchbarPatch : BytecodePatch(
         }
     }
 
-    private companion object {
-        /**
-         * Walk a fingerprints method at a given index mutably.
-         *
-         * @param index The index to walk at.
-         * @param fromFingerprint The fingerprint to walk the method on.
-         * @return The [MutableMethod] which was walked on.
-         */
-        fun BytecodeContext.walkMutable(index: Int, fromFingerprint: MethodFingerprint) =
-            fromFingerprint.result?.let {
-                toMethodWalker(it.method).nextMethod(index, true).getMethod() as MutableMethod
-            } ?: throw fromFingerprint.exception
+    /**
+     * Walk a fingerprints method at a given index mutably.
+     *
+     * @param index The index to walk at.
+     * @param fromFingerprint The fingerprint to walk the method on.
+     * @return The [MutableMethod] which was walked on.
+     */
+    fun BytecodeContext.walkMutable(index: Int, fromFingerprint: MethodFingerprint) =
+        fromFingerprint.result?.let {
+            toMethodWalker(it.method).nextMethod(index, true).getMethod() as MutableMethod
+        } ?: throw fromFingerprint.exception
 
 
-        /**
-         * Injects instructions required for certain methods.
-         */
-        fun MutableMethod.injectSearchBarHook() {
-            addInstructions(
-                implementation!!.instructions.size - 1,
-                """
-                    invoke-static {}, Lapp/revanced/integrations/patches/WideSearchbarPatch;->enableWideSearchbar()Z
-                    move-result p0
-                """
-            )
-        }
+    /**
+     * Injects instructions required for certain methods.
+     */
+    fun MutableMethod.injectSearchBarHook() {
+        addInstructions(
+            implementation!!.instructions.size - 1,
+            """
+                invoke-static {}, Lapp/revanced/integrations/patches/WideSearchbarPatch;->enableWideSearchbar()Z
+                move-result p0
+            """
+        )
     }
 }

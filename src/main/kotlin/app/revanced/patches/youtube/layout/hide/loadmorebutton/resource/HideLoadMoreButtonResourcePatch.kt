@@ -30,7 +30,5 @@ object HideLoadMoreButtonResourcePatch : ResourcePatch {
         }.id
     }
 
-    internal companion object {
-        var expandButtonDownId: Long = -1
-    }
+    var expandButtonDownId: Long = -1
 }

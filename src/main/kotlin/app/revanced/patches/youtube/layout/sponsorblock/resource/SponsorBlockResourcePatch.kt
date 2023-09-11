@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
         ResourceMappingPatch::class
     ]
 )
-object SponsorBlockResourcePatch : ResourcePatch {
+object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(

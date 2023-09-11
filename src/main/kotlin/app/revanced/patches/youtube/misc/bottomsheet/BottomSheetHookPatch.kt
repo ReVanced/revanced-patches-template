@@ -37,8 +37,6 @@ object BottomSheetHookPatch : BytecodePatch(
         } ?: throw CreateBottomSheetFingerprint.exception
     }
 
-    internal companion object {
-        internal lateinit var addHook: (String) -> Unit
-            private set
-    }
+    internal lateinit var addHook: (String) -> Unit
+        private set
 }

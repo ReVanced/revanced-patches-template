@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeek
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.ShortsSeekbarColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
 import app.revanced.patches.youtube.layout.theme.bytecode.LithoColorHookPatch
-import app.revanced.patches.youtube.layout.theme.bytecode.LithoColorHookPatch.Companion.lithoColorOverrideHook
+import app.revanced.patches.youtube.layout.theme.bytecode.LithoColorHookPatch.lithoColorOverrideHook
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -26,7 +26,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         IntegrationsPatch::class,
         LithoColorHookPatch::class,
         SeekbarColorResourcePatch::class
-    ]
+    ],
     compatiblePackages = [ CompatiblePackage("com.google.android.youtube") ]
 )
 object SeekbarColorBytecodePatch : BytecodePatch(
@@ -82,7 +82,5 @@ object SeekbarColorBytecodePatch : BytecodePatch(
         lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getLithoColor")
     }
 
-    private companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/SeekbarColorPatch;"
-    }
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/SeekbarColorPatch;"
 }

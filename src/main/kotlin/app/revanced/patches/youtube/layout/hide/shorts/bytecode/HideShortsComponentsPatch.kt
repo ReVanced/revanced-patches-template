@@ -3,8 +3,6 @@ package app.revanced.patches.youtube.layout.hide.shorts.bytecode
 import app.revanced.extensions.exception
 import app.revanced.extensions.findIndexForIdResource
 import app.revanced.extensions.injectHideViewCall
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
@@ -125,21 +123,19 @@ object HideShortsComponentsPatch : BytecodePatch(
         // endregion
     }
 
-    private companion object {
-        private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
+    private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
 
-        private enum class ShortsButtons(private val resourceName: String, private val methodName: String) {
-            COMMENTS("reel_dyn_comment", "hideShortsCommentsButton"),
-            REMIX("reel_dyn_remix", "hideShortsRemixButton"),
-            SHARE("reel_dyn_share", "hideShortsShareButton");
+    private enum class ShortsButtons(private val resourceName: String, private val methodName: String) {
+        COMMENTS("reel_dyn_comment", "hideShortsCommentsButton"),
+        REMIX("reel_dyn_remix", "hideShortsRemixButton"),
+        SHARE("reel_dyn_share", "hideShortsShareButton");
 
-            fun injectHideCall(method: MutableMethod) {
-                val referencedIndex = method.findIndexForIdResource(resourceName)
+        fun injectHideCall(method: MutableMethod) {
+            val referencedIndex = method.findIndexForIdResource(resourceName)
 
-                val setIdIndex = referencedIndex + 1
-                val viewRegister = method.getInstruction<FiveRegisterInstruction>(setIdIndex).registerC
-                method.injectHideViewCall(setIdIndex, viewRegister, FILTER_CLASS_DESCRIPTOR, methodName)
-            }
+            val setIdIndex = referencedIndex + 1
+            val viewRegister = method.getInstruction<FiveRegisterInstruction>(setIdIndex).registerC
+            method.injectHideViewCall(setIdIndex, viewRegister, FILTER_CLASS_DESCRIPTOR, methodName)
         }
     }
 }

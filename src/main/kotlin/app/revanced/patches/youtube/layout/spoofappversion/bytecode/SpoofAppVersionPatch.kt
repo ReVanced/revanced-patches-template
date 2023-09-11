@@ -84,7 +84,5 @@ object SpoofAppVersionPatch : BytecodePatch(
         } ?: throw SpoofAppVersionFingerprint.exception
     }
 
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch"
-    }
+    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch"
 }

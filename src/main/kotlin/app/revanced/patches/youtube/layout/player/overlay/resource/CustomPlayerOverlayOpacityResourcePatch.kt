@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.settings.bytecode.SettingsPatch
         ResourceMappingPatch::class
     ]
 )
-object CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
+object CustomPlayerOverlayOpacityResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             TextPreference(
@@ -37,7 +37,5 @@ object CustomPlayerOverlayOpacityResourcePatch : ResourcePatch {
         }.id
     }
 
-    internal companion object {
-        var scrimOverlayId = -1L
-    }
+    var scrimOverlayId = -1L
 }

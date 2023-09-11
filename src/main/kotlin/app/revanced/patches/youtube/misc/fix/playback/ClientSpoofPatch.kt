@@ -36,7 +36,5 @@ object ClientSpoofPatch : BytecodePatch(
         } ?: throw UserAgentHeaderBuilderFingerprint.exception
     }
 
-    private companion object {
-        private const val ORIGINAL_PACKAGE_NAME = "com.google.android.youtube"
-    }
+    private const val ORIGINAL_PACKAGE_NAME = "com.google.android.youtube"
 }

@@ -13,7 +13,9 @@ import app.revanced.patches.lightroom.misc.login.fingerprint.IsLoggedInFingerpri
     description = "Unlocks pro features.",
     compatiblePackages = [ CompatiblePackage("com.adobe.lrmobile") ]
 )
-object DisableMandatoryLoginPatch : BytecodePatch(listOf(IsLoggedInFingerprint)) {
+object DisableMandatoryLoginPatch : BytecodePatch(
+    setOf(IsLoggedInFingerprint)
+) {
     override fun execute(context: BytecodeContext) {
         IsLoggedInFingerprint.result?.mutableMethod?.apply {
             val index = implementation!!.instructions.lastIndex - 1

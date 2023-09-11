@@ -32,11 +32,9 @@ object SeekbarPreferencesPatch : ResourcePatch, Closeable {
         )
     }
 
-    companion object {
-        private val seekbarPreferences = mutableListOf<BasePreference>()
+    private val seekbarPreferences = mutableListOf<BasePreference>()
 
-        internal fun addPreferences(vararg preferencesToAdd: BasePreference) {
-            seekbarPreferences.addAll(preferencesToAdd)
-        }
+    internal fun addPreferences(vararg preferencesToAdd: BasePreference) {
+        seekbarPreferences.addAll(preferencesToAdd)
     }
 }
