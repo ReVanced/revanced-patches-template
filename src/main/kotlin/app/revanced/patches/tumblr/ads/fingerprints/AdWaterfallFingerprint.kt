@@ -1,4 +1,4 @@
-package app.revanced.patches.com.tumblr.fingerprints
+package app.revanced.patches.tumblr.ads.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 

@@ -1,4 +1,4 @@
-package app.revanced.patches.com.tumblr.patch
+package app.revanced.patches.tumblr.ads.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility
@@ -10,7 +10,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.com.tumblr.fingerprints.AdWaterfallFingerprint
+import app.revanced.patches.tumblr.ads.fingerprints.AdWaterfallFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
