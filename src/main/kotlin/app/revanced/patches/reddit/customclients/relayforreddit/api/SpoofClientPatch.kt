@@ -13,7 +13,6 @@ import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints
 import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.LoginActivityClientIdFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-
 @Patch(
     name = "Spoof client",
     description = "Spoofs the client in order to allow logging in. " +
@@ -24,6 +23,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         CompatiblePackage("reddit.news")
     ]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "dbrady://relay",
     listOf(

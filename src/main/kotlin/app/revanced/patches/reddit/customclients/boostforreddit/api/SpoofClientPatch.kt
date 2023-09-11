@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
 import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints.GetClientIdFingerprint
 
-
 @Patch(
     name = "Spoof client",
     description = "Spoofs the client in order to allow logging in. " +
@@ -16,6 +15,7 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
             "and the redirect URI has to be set to \"http://rubenmayayo.com\".",
     compatiblePackages = [CompatiblePackage("com.rubenmayayo.reddit")]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://rubenmayayo.com", listOf(GetClientIdFingerprint)
 ) {

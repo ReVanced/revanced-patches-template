@@ -12,7 +12,7 @@ import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.youtube.layout.hide.breakingnews.annotations.BreakingNewsCompatibility
 import app.revanced.patches.youtube.layout.hide.breakingnews.bytecode.fingerprints.BreakingNewsFingerprint
 import app.revanced.patches.youtube.layout.hide.breakingnews.resource.patch.BreakingNewsResourcePatch
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch

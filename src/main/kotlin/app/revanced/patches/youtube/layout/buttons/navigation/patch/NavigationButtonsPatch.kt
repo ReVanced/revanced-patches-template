@@ -17,8 +17,8 @@ import app.revanced.patches.youtube.layout.buttons.navigation.annotations.Naviga
 import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
-import app.revanced.patches.youtube.misc.integrations.patch.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
