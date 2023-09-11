@@ -16,7 +16,7 @@ import java.io.Closeable
         ResourceMappingPatch::class
     ]
 )
-object SeekbarPreferencesPatch : ResourcePatch, Closeable {
+object SeekbarPreferencesPatch : ResourcePatch(), Closeable {
     override fun execute(context: ResourceContext) {
 
         // Nothing to do here. All work is done in close method.
