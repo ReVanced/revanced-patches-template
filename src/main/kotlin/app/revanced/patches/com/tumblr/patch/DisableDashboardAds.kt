@@ -14,10 +14,10 @@ import app.revanced.patches.com.tumblr.fingerprints.AdWaterfallFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@Name("Disable ads")
-@Description("Disables ads in the dashboard")
+@Name("Disable dashboard ads")
+@Description("Disables ads in the dashboard.")
 @Compatibility([Package("com.tumblr")])
-class DisableWaterfallAdsPatch : BytecodePatch(
+class DisableDashboardAds : BytecodePatch(
     listOf(AdWaterfallFingerprint)
 ) {
     override fun execute(context: BytecodeContext) = AdWaterfallFingerprint.result?.let {
