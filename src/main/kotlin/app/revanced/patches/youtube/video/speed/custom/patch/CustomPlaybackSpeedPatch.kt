@@ -1,8 +1,6 @@
 package app.revanced.patches.youtube.video.speed.custom.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -12,7 +10,7 @@ import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
@@ -30,17 +28,24 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
-@Name("Custom playback speed")
-@Description("Adds custom playback speed options.")
-@DependsOn([IntegrationsPatch::class, LithoFilterPatch::class, SettingsPatch::class, BottomSheetHookPatch::class])
-class CustomPlaybackSpeedPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Custom playback speed",
+    description = "Adds custom playback speed options.",
+    dependencies = [IntegrationsPatch::class, LithoFilterPatch::class, SettingsPatch::class, BottomSheetHookPatch::class]
+)
+object CustomPlaybackSpeedPatch : BytecodePatch(
+    setOf(
         SpeedArrayGeneratorFingerprint,
         SpeedLimiterFingerprint,
         GetOldPlaybackSpeedsFingerprint,
         ShowOldPlaybackSpeedMenuIntegrationsFingerprint
     )
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/PlaybackSpeedMenuFilterPatch;"
+
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/playback/speed/CustomPlaybackSpeedPatch;"
 
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
@@ -175,14 +180,5 @@ class CustomPlaybackSpeedPatch : BytecodePatch(
         } ?: throw GetOldPlaybackSpeedsFingerprint.exception
 
         // endregion
-    }
-
-    private companion object {
-        private const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/PlaybackSpeedMenuFilterPatch;"
-
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/CustomPlaybackSpeedPatch;"
-
     }
 }

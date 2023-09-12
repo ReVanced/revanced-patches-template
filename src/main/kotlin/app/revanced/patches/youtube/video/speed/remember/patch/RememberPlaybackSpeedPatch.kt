@@ -1,13 +1,11 @@
 package app.revanced.patches.youtube.video.speed.remember.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
@@ -20,14 +18,17 @@ import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeed
 import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializePlaybackSpeedValuesFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Name("Remember playback speed")
-@Description("Adds the ability to remember the playback speed you chose in the playback speed flyout.")
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class])
-class RememberPlaybackSpeedPatch : BytecodePatch(
-    listOf(
-        InitializePlaybackSpeedValuesFingerprint
-    )
-) {
+@Patch(
+    name = "Remember playback speed",
+    description = "Adds the ability to remember the playback speed you chose in the playback speed flyout.",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class]
+)
+object RememberPlaybackSpeedPatch : BytecodePatch(
+    setOf(InitializePlaybackSpeedValuesFingerprint)
+){
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
+
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
@@ -104,10 +105,5 @@ class RememberPlaybackSpeedPatch : BytecodePatch(
                 ExternalLabel("do_not_override", mutableMethod.getInstruction(0))
             )
         } ?: throw InitializePlaybackSpeedValuesFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
     }
 }
