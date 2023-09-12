@@ -1,34 +1,41 @@
 package app.revanced.patches.youtube.misc.microg.patch.bytecode
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
-import app.revanced.patches.youtube.layout.buttons.cast.patch.HideCastButtonPatch
+import app.revanced.patches.youtube.layout.buttons.cast.HideCastButtonPatch
 import app.revanced.patches.youtube.misc.fix.playback.patch.ClientSpoofPatch
-import app.revanced.patches.youtube.misc.microg.annotations.MicroGPatchCompatibility
 import app.revanced.patches.youtube.misc.microg.fingerprints.*
 import app.revanced.patches.youtube.misc.microg.patch.resource.MicroGResourcePatch
 import app.revanced.patches.youtube.misc.microg.shared.Constants.PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
 import app.revanced.util.microg.MicroGBytecodeHelper
 
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "Vanced MicroG support",
+    description = "Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG.",
+    dependencies = [
         MicroGResourcePatch::class,
         HideCastButtonPatch::class,
         ClientSpoofPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
     ]
 )
-@Name("Vanced MicroG support")
-@Description("Allows YouTube ReVanced to run without root and under a different package name with Vanced MicroG.")
-@MicroGPatchCompatibility
-class MicroGBytecodePatch : BytecodePatch(
-    listOf(
+object MicroGBytecodePatch : BytecodePatch(
+    setOf(
         ServiceCheckFingerprint,
         GooglePlayUtilityFingerprint,
         CastDynamiteModuleFingerprint,
