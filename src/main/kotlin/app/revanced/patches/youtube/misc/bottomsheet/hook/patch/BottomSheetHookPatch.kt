@@ -5,15 +5,23 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints.CreateBottomSheetFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@DependsOn([IntegrationsPatch::class, BottomSheetHookResourcePatch::class])
-class BottomSheetHookPatch : BytecodePatch(
-    listOf(CreateBottomSheetFingerprint)
+@Patch(
+    name = "Remove root detection",
+    description = "Removes the check for root permissions.",
+    dependencies = [IntegrationsPatch::class, BottomSheetHookResourcePatch::class]
+)
+@Suppress("unused")
+object BottomSheetHookPatch : BytecodePatch(
+    setOf(CreateBottomSheetFingerprint)
 ) {
+    internal lateinit var addHook: (String) -> Unit
+        private set
+
     override fun execute(context: BytecodeContext) {
         CreateBottomSheetFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -30,10 +38,5 @@ class BottomSheetHookPatch : BytecodePatch(
                 }
             }
         } ?: throw CreateBottomSheetFingerprint.exception
-    }
-
-    internal companion object {
-        internal lateinit var addHook: (String) -> Unit
-            private set
     }
 }
