@@ -5,7 +5,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
-import app.revanced.patches.youtube.layout.seekbar.bytecode.patch.SeekbarColorBytecodePatch
+import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
 
 @Patch(
     name = "Theme",

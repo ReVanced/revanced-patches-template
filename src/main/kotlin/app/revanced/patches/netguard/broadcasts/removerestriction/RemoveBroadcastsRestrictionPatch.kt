@@ -13,6 +13,7 @@ import org.w3c.dom.Element
     compatiblePackages = [CompatiblePackage("eu.faircode.netguard")],
     use = false
 )
+@Suppress("unused")
 object RemoveBroadcastsRestrictionPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         context.xmlEditor["AndroidManifest.xml"].use { dom ->

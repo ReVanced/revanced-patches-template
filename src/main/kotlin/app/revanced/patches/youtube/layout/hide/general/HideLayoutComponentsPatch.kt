@@ -13,7 +13,7 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ParseElementFromBufferFingerprint
-import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
 import com.android.tools.smali.dexlib2.Opcode

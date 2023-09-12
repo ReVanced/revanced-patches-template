@@ -1,6 +1,6 @@
 package app.revanced.patches.twitch.misc.integrations.fingerprints
 
-import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint
+import app.revanced.patches.shared.integrations.AbstractIntegrationsPatch.IntegrationsFingerprint
 
 object InitFingerprint : IntegrationsFingerprint(
     customFingerprint = { methodDef, _ ->

@@ -12,6 +12,7 @@ import app.revanced.patches.nyx.misc.pro.fingerprints.CheckProFingerprint
     name = "Unlock pro",
     compatiblePackages = [CompatiblePackage("com.awedea.nyx")]
 )
+@Suppress("unused")
 object UnlockProPatch : BytecodePatch(setOf(CheckProFingerprint)) {
     override fun execute(context: BytecodeContext) = CheckProFingerprint.result?.mutableMethod?.addInstructions(
             0,

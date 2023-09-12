@@ -12,6 +12,7 @@ import app.revanced.patches.myexpenses.misc.pro.fingerprints.IsEnabledFingerprin
     name = "Unlock pro",
     compatiblePackages = [CompatiblePackage("org.totschnig.myexpenses", ["3.4.9"])]
 )
+@Suppress("unused")
 object UnlockProPatch : BytecodePatch(setOf(IsEnabledFingerprint)) {
     override fun execute(context: BytecodeContext) = IsEnabledFingerprint.result?.mutableMethod?.addInstructions(
         0,

@@ -9,7 +9,7 @@ import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
-import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarPreferencesPatch
+import app.revanced.patches.youtube.layout.seekbar.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.SettingsPatch

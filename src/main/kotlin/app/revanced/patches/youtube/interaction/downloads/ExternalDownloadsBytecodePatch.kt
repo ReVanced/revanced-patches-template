@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.misc.playercontrols.bytecode.patch.PlayerControlsBytecodePatch
-import app.revanced.patches.youtube.video.information.patch.VideoInformationPatch
+import app.revanced.patches.youtube.misc.playercontrols.PlayerControlsBytecodePatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 
 @Patch(
     name = "External downloads",

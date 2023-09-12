@@ -14,6 +14,7 @@ import app.revanced.patches.reddit.misc.tracking.url.fingerprints.ShareLinkForma
     description = "Removes (tracking) query parameters from the URLs when sharing links.",
     compatiblePackages = [CompatiblePackage("com.reddit.frontpage")]
 )
+@Suppress("unused")
 object SanitizeUrlQueryPatch : BytecodePatch(setOf(ShareLinkFormatterFingerprint)) {
     override fun execute(context: BytecodeContext) {
 

@@ -4,8 +4,8 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.video.speed.custom.patch.CustomPlaybackSpeedPatch
-import app.revanced.patches.youtube.video.speed.remember.patch.RememberPlaybackSpeedPatch
+import app.revanced.patches.youtube.video.speed.custom.CustomPlaybackSpeedPatch
+import app.revanced.patches.youtube.video.speed.remember.RememberPlaybackSpeedPatch
 
 @Patch(
     name = "Playback speed",

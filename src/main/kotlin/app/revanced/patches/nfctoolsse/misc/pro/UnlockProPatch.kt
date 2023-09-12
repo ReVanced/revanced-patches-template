@@ -13,6 +13,7 @@ import app.revanced.patches.nfctoolsse.misc.pro.fingerprints.IsLicenseRegistered
     name = "Unlock pro",
     compatiblePackages = [CompatiblePackage("com.wakdev.apps.nfctools.se")]
 )
+@Suppress("unused")
 object UnlockProPatch : BytecodePatch(setOf(IsLicenseRegisteredFingerprint)) {
     override fun execute(context: BytecodeContext) = IsLicenseRegisteredFingerprint.result?.mutableMethod
         ?.addInstructions(
