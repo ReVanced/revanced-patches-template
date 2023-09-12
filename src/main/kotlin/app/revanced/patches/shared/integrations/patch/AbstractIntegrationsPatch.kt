@@ -1,20 +1,22 @@
 package app.revanced.patches.shared.integrations.patch
 
-import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.integrations.patch.AbstractIntegrationsPatch.IntegrationsFingerprint.RegisterResolver
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 
-@Description("Applies mandatory patches to implement the ReVanced integrations into the application.")
+@Patch(
+    description = "Applies mandatory patches to implement the ReVanced integrations into the application.",
+)
 abstract class AbstractIntegrationsPatch(
     private val integrationsDescriptor: String,
-    private val hooks: Iterable<IntegrationsFingerprint>
+    private val hooks: Set<IntegrationsFingerprint>
 ) : BytecodePatch(hooks) {
     /**
      * [MethodFingerprint] for integrations.
