@@ -1,27 +1,26 @@
 package app.revanced.patches.youtube.misc.zoomhaptics.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.zoomhaptics.annotations.ZoomHapticsCompatibility
 import app.revanced.patches.youtube.misc.zoomhaptics.fingerprints.ZoomHapticsFingerprint
 
-@Patch
-@Name("Disable zoom haptics")
-@Description("Disables haptics when zooming.")
-@DependsOn([SettingsPatch::class])
-@ZoomHapticsCompatibility
-class ZoomHapticsPatch : BytecodePatch(
-    listOf(ZoomHapticsFingerprint)
+@Patch(
+    name = "Disable zoom haptics",
+    description = "Disables haptics when zooming.",
+    dependencies = [SettingsPatch::class],
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
+)
+@Suppress("unused")
+object ZoomHapticsPatch : BytecodePatch(
+    setOf(ZoomHapticsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
