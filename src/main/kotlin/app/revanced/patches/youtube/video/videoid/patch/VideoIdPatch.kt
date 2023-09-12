@@ -1,28 +1,46 @@
 package app.revanced.patches.youtube.video.videoid.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.video.videoid.annotation.VideoIdCompatibility
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprint
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprintBackgroundPlay
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Name("Video id hook")
-@Description("Hooks to detect when the video id changes")
-@VideoIdCompatibility
-@DependsOn([IntegrationsPatch::class])
-class VideoIdPatch : BytecodePatch(
-    listOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
+@Patch(
+    description = "Hooks to detect when the video id changes",
+    dependencies = [IntegrationsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
+    ]
+)
+object VideoIdPatch : BytecodePatch(
+    setOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
 ) {
+    private var videoIdRegister = 0
+    private var insertIndex = 0
+    private lateinit var insertMethod: MutableMethod
+
+    private var backgroundPlaybackVideoIdRegister = 0
+    private var backgroundPlaybackInsertIndex = 0
+    private lateinit var backgroundPlaybackMethod: MutableMethod
+
     override fun execute(context: BytecodeContext) {
         /**
          * Supplies the method and register index of the video id register.
@@ -53,16 +71,8 @@ class VideoIdPatch : BytecodePatch(
         }
     }
 
-    companion object {
-        private var videoIdRegister = 0
-        private var insertIndex = 0
-        private lateinit var insertMethod: MutableMethod
 
-        private var backgroundPlaybackVideoIdRegister = 0
-        private var backgroundPlaybackInsertIndex = 0
-        private lateinit var backgroundPlaybackMethod: MutableMethod
-
-        /**
+    /**
          * Adds an invoke-static instruction, called with the new id when the video changes.
          *
          * Supports all videos (regular videos, Shorts and Stories).
@@ -97,7 +107,6 @@ class VideoIdPatch : BytecodePatch(
         ) = backgroundPlaybackMethod.addInstruction(
             backgroundPlaybackInsertIndex++, // move-result-object offset
                 "invoke-static {v$backgroundPlaybackVideoIdRegister}, $methodDescriptor"
-            )
-    }
+        )
 }
 
