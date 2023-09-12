@@ -1,22 +1,19 @@
 package app.revanced.patches.iconpackstudio.misc.pro.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.iconpackstudio.misc.pro.annotations.UnlockProCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.iconpackstudio.misc.pro.fingerprints.CheckProFingerprint
 
-@Patch
-@Name("Unlock pro")
-@Description("Unlocks all pro features.")
-@UnlockProCompatibility
-class UnlockProPatch : BytecodePatch(
-    listOf(
-        CheckProFingerprint
-    )
+@Patch(
+    name = "Unlock pro",
+    compatiblePackages = [CompatiblePackage("ginlemon.iconpackstudio")]
+)
+@Suppress("unused")
+object UnlockProPatch : BytecodePatch(
+    setOf(CheckProFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val method = CheckProFingerprint.result!!.mutableMethod
