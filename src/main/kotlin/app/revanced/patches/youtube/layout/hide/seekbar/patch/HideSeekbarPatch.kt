@@ -37,6 +37,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object HideSeekbarPatch : BytecodePatch(
     setOf(SeekbarFingerprint)
 ) {
