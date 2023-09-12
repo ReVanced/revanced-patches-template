@@ -1,7 +1,6 @@
 package app.revanced.patches.youtube.misc.litho.filter.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -12,7 +11,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.fingerprints.*
@@ -22,11 +21,29 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import java.io.Closeable
 
-@DependsOn([IntegrationsPatch::class])
-@Description("Hooks the method which parses the bytes into a ComponentContext to filter components.")
-class LithoFilterPatch : BytecodePatch(
-    listOf(ComponentContextParserFingerprint, LithoFilterFingerprint, ProtobufBufferReferenceFingerprint)
+@Patch(
+    description = "Hooks the method which parses the bytes into a ComponentContext to filter components.",
+    dependencies = [IntegrationsPatch::class]
+)
+object LithoFilterPatch : BytecodePatch(
+    setOf(ComponentContextParserFingerprint, LithoFilterFingerprint, ProtobufBufferReferenceFingerprint)
 ), Closeable {
+    private val MethodFingerprint.patternScanResult
+        get() = result!!.scanResult.patternScanResult!!
+
+    private val MethodFingerprint.patternScanEndIndex
+        get() = patternScanResult.endIndex
+
+    private val Instruction.descriptor
+        get() = (this as ReferenceInstruction).reference.toString()
+
+    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/LithoFilterPatch;"
+
+    internal lateinit var addFilter: (String) -> Unit
+        private set
+
+    private var filterCount = 0
+
     /**
      * The following patch inserts a hook into the method that parses the bytes into a ComponentContext.
      * This method contains a StringBuilder object that represents the pathBuilder of the component.
@@ -162,22 +179,4 @@ class LithoFilterPatch : BytecodePatch(
 
     override fun close() = LithoFilterFingerprint.result!!
         .mutableMethod.replaceInstruction(0, "const/16 v0, $filterCount")
-
-    companion object {
-        private val MethodFingerprint.patternScanResult
-            get() = result!!.scanResult.patternScanResult!!
-
-        private val MethodFingerprint.patternScanEndIndex
-            get() = patternScanResult.endIndex
-
-        private val Instruction.descriptor
-            get() = (this as ReferenceInstruction).reference.toString()
-
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/LithoFilterPatch;"
-
-        internal lateinit var addFilter: (String) -> Unit
-            private set
-
-        private var filterCount = 0
-    }
 }
