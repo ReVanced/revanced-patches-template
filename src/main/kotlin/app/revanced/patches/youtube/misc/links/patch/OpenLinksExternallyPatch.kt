@@ -1,14 +1,12 @@
 package app.revanced.patches.youtube.misc.links.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.links.annotations.OpenLinksExternallyCompatibility
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
 import com.android.tools.smali.dexlib2.iface.ClassDef
@@ -18,11 +16,13 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
-@Patch
-@Name("Open links externally")
-@Description("Open links outside of the app directly in your browser.")
-@OpenLinksExternallyCompatibility
-class OpenLinksExternallyPatch : AbstractTransformInstructionsPatch<Pair<Int, Int>>(
+@Patch(
+    name = "Open links externally",
+    description = "Open links outside of the app directly in your browser.",
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube", ["18.16.37", "18.19.35", "18.20.39", "18.23.35", "18.29.38", "18.32.39"])]
+)
+@Suppress("unused")
+object OpenLinksExternallyPatch : AbstractTransformInstructionsPatch<Pair<Int, Int>>(
 ) {
     override fun filterMap(
         classDef: ClassDef, method: Method, instruction: Instruction, instructionIndex: Int
