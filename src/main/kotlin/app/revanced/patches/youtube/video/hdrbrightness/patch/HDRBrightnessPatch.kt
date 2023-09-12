@@ -1,29 +1,38 @@
 package app.revanced.patches.youtube.video.hdrbrightness.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.video.hdrbrightness.annotations.HDRBrightnessCompatibility
 import app.revanced.patches.youtube.video.hdrbrightness.fingerprints.HDRBrightnessFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
-@Patch
-@Name("HDR auto brightness")
-@Description("Makes the brightness of HDR videos follow the system default.")
-@HDRBrightnessCompatibility
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-class HDRBrightnessPatch : BytecodePatch(
-    listOf(HDRBrightnessFingerprint)
+@Patch(
+    name = "HDR auto brightness",
+    description = "Makes the brightness of HDR videos follow the system default.",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
+    ]
+)
+object HDRBrightnessPatch : BytecodePatch(
+    setOf(HDRBrightnessFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
