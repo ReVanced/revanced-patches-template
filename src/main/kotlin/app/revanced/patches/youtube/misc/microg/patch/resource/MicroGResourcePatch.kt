@@ -2,7 +2,7 @@ package app.revanced.patches.youtube.misc.microg.patch.resource
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.microg.shared.Constants.PACKAGE_NAME
@@ -16,8 +16,8 @@ import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
 import app.revanced.util.microg.MicroGResourceHelper
 
-@DependsOn([SettingsResourcePatch::class])
-class MicroGResourcePatch : ResourcePatch {
+@Patch(dependencies = [SettingsResourcePatch::class])
+object MicroGResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(
             Preference(
