@@ -60,6 +60,7 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
         SponsorBlockResourcePatch::class
     ]
 )
+@Suppress("unused")
 object SponsorBlockBytecodePatch : BytecodePatch(
     setOf(
         SeekbarFingerprint,

@@ -15,6 +15,8 @@ import app.revanced.patches.youtube.misc.playercontrols.fingerprints.BottomContr
 import app.revanced.patches.youtube.misc.playercontrols.fingerprints.PlayerControlsVisibilityFingerprint
 import app.revanced.patches.youtube.misc.playercontrols.resource.patch.BottomControlsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import jdk.jfr.Description
+import jdk.jfr.Name
 
 @Name("Player controls bytecode patch")
 @DependsOn([BottomControlsResourcePatch::class])

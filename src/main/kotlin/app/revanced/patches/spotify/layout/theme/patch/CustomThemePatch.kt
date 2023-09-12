@@ -12,6 +12,7 @@ import org.w3c.dom.Element
     description = "Applies a custom theme.",
     compatiblePackages = [CompatiblePackage("com.spotify.music")]
 )
+@Suppress("unused")
 object CustomThemePatch : ResourcePatch() {
     private var backgroundColor by stringPatchOption(
         key = "backgroundColor",
