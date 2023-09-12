@@ -13,6 +13,7 @@ import app.revanced.patches.messenger.inputfield.fingerprints.SendTypingIndicato
     description = "Disables the indicator while typing a message.",
     compatiblePackages = [CompatiblePackage("com.facebook.orca")]
 )
+@Suppress("unused")
 object DisableTypingIndicatorPatch : BytecodePatch(
     setOf(SendTypingIndicatorFingerprint)
 ){

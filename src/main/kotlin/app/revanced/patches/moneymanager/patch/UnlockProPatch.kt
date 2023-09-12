@@ -11,6 +11,7 @@ import app.revanced.patches.moneymanager.fingerprints.UnlockProFingerprint
     name = "Unlock pro",
     compatiblePackages = [CompatiblePackage("com.ithebk.expensemanager")]
 )
+@Suppress("unused")
 object UnlockProPatch : BytecodePatch(
     setOf(UnlockProFingerprint)
 ){
