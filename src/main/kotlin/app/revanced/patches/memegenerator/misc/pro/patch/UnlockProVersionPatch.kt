@@ -1,30 +1,35 @@
 package app.revanced.patches.memegenerator.misc.pro.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.memegenerator.detection.license.patch.LicenseValidationPatch
 import app.revanced.patches.memegenerator.detection.signature.patch.SignatureVerificationPatch
-import app.revanced.patches.memegenerator.misc.pro.annotations.UnlockProCompatibility
 import app.revanced.patches.memegenerator.misc.pro.fingerprint.IsFreeVersionFingerprint
 
-@Patch
-@Name("Unlock pro")
-@Description("Unlocks pro features.")
-@DependsOn([
-    SignatureVerificationPatch::class,
-    LicenseValidationPatch::class
-])
-@UnlockProCompatibility
-class UnlockProVersionPatch : BytecodePatch(
-    listOf(
-        IsFreeVersionFingerprint
-    )
+@Patch(
+    name = "Unlock pro",
+    dependencies = [
+        SignatureVerificationPatch::class,
+        LicenseValidationPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.zombodroid.MemeGenerator", [
+                "4.6364",
+                "4.6370",
+                "4.6375",
+                "4.6377"
+            ]
+        )
+    ]
+)
+@Suppress("unused")
+object UnlockProVersionPatch : BytecodePatch(
+    setOf(IsFreeVersionFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         IsFreeVersionFingerprint.result?.apply {
