@@ -1,20 +1,17 @@
 package app.revanced.patches.youtube.layout.hide.shorts.bytecode.patch
 
+import app.revanced.extensions.exception
 import app.revanced.extensions.findIndexForIdResource
 import app.revanced.extensions.injectHideViewCall
-import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import app.revanced.patches.youtube.layout.hide.shorts.annotations.HideShortsComponentsCompatibility
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.hide.shorts.bytecode.fingerprints.*
 import app.revanced.patches.youtube.layout.hide.shorts.resource.patch.HideShortsComponentsResourcePatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
@@ -23,20 +20,31 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Patch
-@DependsOn(
-    [
+@Patch(
+    name = "Hide Shorts components",
+    description = "Hides components from YouTube Shorts.",
+    dependencies = [
         IntegrationsPatch::class,
         LithoFilterPatch::class,
         HideShortsComponentsResourcePatch::class,
         ResourceMappingPatch::class
+    ],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
     ]
 )
-@Name("Hide Shorts components")
-@Description("Hides components from YouTube Shorts.")
-@HideShortsComponentsCompatibility
-class HideShortsComponentsPatch : BytecodePatch(
-    listOf(
+@Suppress("unused")
+object HideShortsComponentsPatch : BytecodePatch(
+    setOf(
         CreateShortsButtonsFingerprint,
         ReelConstructorFingerprint,
         BottomNavigationBarFingerprint,
@@ -44,6 +52,8 @@ class HideShortsComponentsPatch : BytecodePatch(
         SetPivotBarVisibilityParentFingerprint
     )
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
+
     override fun execute(context: BytecodeContext) {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
@@ -122,21 +132,18 @@ class HideShortsComponentsPatch : BytecodePatch(
         // endregion
     }
 
-    private companion object {
-        private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/ShortsFilter;"
 
-        private enum class ShortsButtons(private val resourceName: String, private val methodName: String) {
-            COMMENTS("reel_dyn_comment", "hideShortsCommentsButton"),
-            REMIX("reel_dyn_remix", "hideShortsRemixButton"),
-            SHARE("reel_dyn_share", "hideShortsShareButton");
+    private enum class ShortsButtons(private val resourceName: String, private val methodName: String) {
+        COMMENTS("reel_dyn_comment", "hideShortsCommentsButton"),
+        REMIX("reel_dyn_remix", "hideShortsRemixButton"),
+        SHARE("reel_dyn_share", "hideShortsShareButton");
 
-            fun injectHideCall(method: MutableMethod) {
-                val referencedIndex = method.findIndexForIdResource(resourceName)
+        fun injectHideCall(method: MutableMethod) {
+            val referencedIndex = method.findIndexForIdResource(resourceName)
 
-                val setIdIndex = referencedIndex + 1
-                val viewRegister = method.getInstruction<FiveRegisterInstruction>(setIdIndex).registerC
-                method.injectHideViewCall(setIdIndex, viewRegister, FILTER_CLASS_DESCRIPTOR, methodName)
-            }
+            val setIdIndex = referencedIndex + 1
+            val viewRegister = method.getInstruction<FiveRegisterInstruction>(setIdIndex).registerC
+            method.injectHideViewCall(setIdIndex, viewRegister, FILTER_CLASS_DESCRIPTOR, methodName)
         }
     }
 }

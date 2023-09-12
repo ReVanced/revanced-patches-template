@@ -2,15 +2,18 @@ package app.revanced.patches.youtube.layout.hide.shorts.resource.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class HideShortsComponentsResourcePatch : ResourcePatch {
+@Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+object HideShortsComponentsResourcePatch : ResourcePatch() {
+    internal var reelMultipleItemShelfId = -1L
+    internal var reelPlayerRightCellButtonHeight = -1L
+
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
@@ -92,10 +95,5 @@ class HideShortsComponentsResourcePatch : ResourcePatch {
 
         reelMultipleItemShelfId = "reel_multiple_items_shelf".getId()
         reelPlayerRightCellButtonHeight = "reel_player_right_cell_button_height".getId()
-    }
-
-    companion object {
-        var reelMultipleItemShelfId = -1L
-        var reelPlayerRightCellButtonHeight = -1L
     }
 }
