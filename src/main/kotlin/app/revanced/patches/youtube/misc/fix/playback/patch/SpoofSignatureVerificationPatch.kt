@@ -1,15 +1,13 @@
 package app.revanced.patches.youtube.misc.fix.playback.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParameterBuilderFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPreviewLayoutFingerprint
@@ -19,20 +17,24 @@ import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-@Name("Spoof signature verification")
-@Description("Spoofs the client to prevent playback issues.")
-@DependsOn([
-    SpoofSignatureVerificationResourcePatch::class,
-    IntegrationsPatch::class,
-    PlayerTypeHookPatch::class
-])
-class SpoofSignatureVerificationPatch : BytecodePatch(
-    listOf(
+@Patch(
+    description = "Spoofs the client to prevent playback issues.",
+    dependencies = [
+        SpoofSignatureVerificationResourcePatch::class,
+        IntegrationsPatch::class,
+        PlayerTypeHookPatch::class
+    ]
+)
+object SpoofSignatureVerificationPatch : BytecodePatch(
+    setOf(
         ProtobufParameterBuilderFingerprint,
         StoryboardThumbnailParentFingerprint,
-        ScrubbedPreviewLayoutFingerprint,
+        ScrubbedPreviewLayoutFingerprint
     )
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
+
     override fun execute(context: BytecodeContext) {
 
         // hook parameter
@@ -100,9 +102,5 @@ class SpoofSignatureVerificationPatch : BytecodePatch(
                 )
             }
         } ?: throw ScrubbedPreviewLayoutFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
     }
 }

@@ -2,14 +2,15 @@ package app.revanced.patches.youtube.misc.fix.playback.patch
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class SpoofSignatureVerificationResourcePatch : ResourcePatch {
+@Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+object SpoofSignatureVerificationResourcePatch : ResourcePatch() {
+    internal var scrubbedPreviewThumbnailResourceId: Long = -1
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
@@ -31,9 +32,5 @@ class SpoofSignatureVerificationResourcePatch : ResourcePatch {
         scrubbedPreviewThumbnailResourceId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "thumbnail"
         }.id
-    }
-
-    companion object {
-        var scrubbedPreviewThumbnailResourceId: Long = -1
     }
 }
