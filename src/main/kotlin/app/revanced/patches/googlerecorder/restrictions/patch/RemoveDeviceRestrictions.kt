@@ -1,25 +1,24 @@
 package app.revanced.patches.googlerecorder.restrictions.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.googlerecorder.restrictions.fingerprints.OnApplicationCreateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@Name("Remove device restrictions")
-@Description("Removes restrictions from using the app on any device.")
-@Compatibility([Package("com.google.android.apps.recorder")])
-class RemoveDeviceRestrictions : BytecodePatch(
-    listOf(OnApplicationCreateFingerprint)
+@Patch(
+    name = "Remove device restrictions",
+    description = "Removes restrictions from using the app on any device.",
+    compatiblePackages = [CompatiblePackage("com.google.android.apps.recorder")]
+)
+@Suppress("unused")
+object RemoveDeviceRestrictions : BytecodePatch(
+    setOf(OnApplicationCreateFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         OnApplicationCreateFingerprint.result?.let {
