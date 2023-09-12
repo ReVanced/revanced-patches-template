@@ -3,13 +3,16 @@ package app.revanced.patches.youtube.layout.seekbar.resource
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
+import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import org.w3c.dom.Element
 
-@DependsOn([SettingsPatch::class, ResourceMappingPatch::class])
-class SeekbarColorResourcePatch : ResourcePatch {
+@Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+object SeekbarColorResourcePatch : ResourcePatch(){
+    internal var reelTimeBarPlayedColorId = -1L
+    internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
+    internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
 
     override fun execute(context: ResourceContext) {
         fun findColorResource(resourceName: String): Long {
@@ -38,11 +41,5 @@ class SeekbarColorResourcePatch : ResourcePatch {
                 "app.revanced.integrations.patches.theme.ProgressBarDrawable")
             scaleNode.replaceChild(replacementNode, shapeNode)
         }
-    }
-
-    companion object {
-        internal var reelTimeBarPlayedColorId = -1L
-        internal var inlineTimeBarColorizedBarPlayedColorDarkId = -1L
-        internal var inlineTimeBarPlayedNotHighlightedColorId = -1L
     }
 }

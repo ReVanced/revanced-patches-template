@@ -1,35 +1,38 @@
 package app.revanced.patches.youtube.layout.seekbar.bytecode.patch
 
-import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
+import app.revanced.extensions.indexOfFirstConstantInstructionValue
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.layout.seekbar.annotations.SeekbarColorCompatibility
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.PlayerSeekbarColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.SetSeekbarClickedColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.bytecode.fingerprints.ShortsSeekbarColorFingerprint
 import app.revanced.patches.youtube.layout.seekbar.resource.SeekbarColorResourcePatch
 import app.revanced.patches.youtube.layout.theme.LithoColorHookPatch
-import app.revanced.patches.youtube.layout.theme.LithoColorHookPatch.Companion.lithoColorOverrideHook
+import app.revanced.patches.youtube.layout.theme.LithoColorHookPatch.lithoColorOverrideHook
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-@Description("Hide or set a custom seekbar color")
-@DependsOn([IntegrationsPatch::class, LithoColorHookPatch::class, SeekbarColorResourcePatch::class])
-@SeekbarColorCompatibility
-class SeekbarColorBytecodePatch : BytecodePatch(
-    listOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)
+@Patch(
+    description = "Hide or set a custom seekbar color",
+    dependencies = [IntegrationsPatch::class, LithoColorHookPatch::class, SeekbarColorResourcePatch::class],
+    compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
+)
+object SeekbarColorBytecodePatch : BytecodePatch(
+    setOf(PlayerSeekbarColorFingerprint, ShortsSeekbarColorFingerprint, SetSeekbarClickedColorFingerprint)
 ) {
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/SeekbarColorPatch;"
+
     override fun execute(context: BytecodeContext) {
         fun MutableMethod.addColorChangeInstructions(resourceId: Long) {
-            var registerIndex = indexOfFirstConstantInstructionValue(resourceId) + 2
-            var colorRegister = getInstruction<OneRegisterInstruction>(registerIndex).registerA
+            val registerIndex = indexOfFirstConstantInstructionValue(resourceId) + 2
+            val colorRegister = getInstruction<OneRegisterInstruction>(registerIndex).registerA
             addInstructions(
                 registerIndex + 1,
                 """
@@ -70,9 +73,5 @@ class SeekbarColorBytecodePatch : BytecodePatch(
         } ?: throw SetSeekbarClickedColorFingerprint.exception
 
         lithoColorOverrideHook(INTEGRATIONS_CLASS_DESCRIPTOR, "getLithoColor")
-    }
-
-    private companion object {
-        private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/theme/SeekbarColorPatch;"
     }
 }
