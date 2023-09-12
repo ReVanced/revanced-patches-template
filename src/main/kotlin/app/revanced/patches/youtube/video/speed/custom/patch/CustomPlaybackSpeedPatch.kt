@@ -29,7 +29,6 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableField
 
 @Patch(
-    name = "Custom playback speed",
     description = "Adds custom playback speed options.",
     dependencies = [IntegrationsPatch::class, LithoFilterPatch::class, SettingsPatch::class, BottomSheetHookPatch::class]
 )
