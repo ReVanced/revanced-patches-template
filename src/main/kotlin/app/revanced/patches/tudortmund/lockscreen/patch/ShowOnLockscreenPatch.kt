@@ -29,6 +29,7 @@ class ShowOnLockscreenPatch : BytecodePatch(
 ) {
     override fun execute(context: BytecodeContext) {
         BrightnessFingerprint.result?.mutableMethod?.apply {
+            // Find the instruction where the brightness value is loaded into a register
             val brightnessInstruction = implementation!!.instructions.firstNotNullOf { instruction ->
                 if (instruction.opcode != Opcode.IGET_OBJECT) return@firstNotNullOf null
 
@@ -40,6 +41,8 @@ class ShowOnLockscreenPatch : BytecodePatch(
                 instruction
             }
 
+            // Search for the instruction where we get the android.view.Window via the Activity.
+            // Gets the index of that instruction and the register of the Activity.
             val (windowIndex, activityRegister) = implementation!!.instructions.withIndex()
                 .firstNotNullOf { (index, instruction) ->
                     if (instruction.opcode != Opcode.INVOKE_VIRTUAL)
@@ -54,8 +57,10 @@ class ShowOnLockscreenPatch : BytecodePatch(
                     Pair(index, invokeInstruction.registerC)
                 }
 
+            // The register in which the brightness value is loaded
             val brightnessRegister = brightnessInstruction.registerA
 
+            // Replaces the getWindow call with our custom one to run the lockscreen code
             replaceInstruction(
                 windowIndex,
                 "invoke-static { v$activityRegister, v$brightnessRegister }, " +
@@ -65,6 +70,10 @@ class ShowOnLockscreenPatch : BytecodePatch(
                         "Landroid/view/Window;"
             )
 
+            // Normally, the brightness is loaded into a register after the getWindow call.
+            // In order to pass the brightness value to our custom getWindow implementation,
+            // we need to add the same instructions before the getWindow call.
+            // The Float object is loaded into the brightness register and gets converted to a float.
             addInstructions(
                 windowIndex,
                 """
