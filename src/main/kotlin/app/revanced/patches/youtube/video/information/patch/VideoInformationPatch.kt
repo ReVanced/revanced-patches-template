@@ -8,7 +8,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
@@ -28,18 +27,6 @@ import com.android.tools.smali.dexlib2.util.MethodUtil
 
 @Patch(
     description = "Hooks YouTube to get information about the current playing video.",
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube", [
-                "18.16.37",
-                "18.19.35",
-                "18.20.39",
-                "18.23.35",
-                "18.29.38",
-                "18.32.39"
-            ]
-        )
-    ],
     dependencies = [IntegrationsPatch::class, VideoIdPatch::class]
 )
 object VideoInformationPatch : BytecodePatch(

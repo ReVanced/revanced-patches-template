@@ -6,7 +6,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
@@ -17,18 +16,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch(
     description = "Hooks to detect when the video id changes",
     dependencies = [IntegrationsPatch::class],
-    compatiblePackages = [
-        CompatiblePackage(
-            "com.google.android.youtube", [
-                "18.16.37",
-                "18.19.35",
-                "18.20.39",
-                "18.23.35",
-                "18.29.38",
-                "18.32.39"
-            ]
-        )
-    ]
 )
 object VideoIdPatch : BytecodePatch(
     setOf(VideoIdFingerprint, VideoIdFingerprintBackgroundPlay)
