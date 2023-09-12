@@ -1,23 +1,23 @@
 package app.revanced.patches.idaustria.detection.signature.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
-import app.revanced.patches.idaustria.detection.shared.annotations.DetectionCompatibility
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.idaustria.detection.signature.fingerprints.SpoofSignatureFingerprint
 
-@Patch
-@Name("Spoof signature")
-@Description("Spoofs the signature of the app.")
-@DetectionCompatibility
-class SpoofSignaturePatch : BytecodePatch(
-    listOf(SpoofSignatureFingerprint)
+@Patch(
+    name = "Spoof signature",
+    description = "Spoofs the signature of the app.",
+    compatiblePackages = [CompatiblePackage("at.gv.oe.app")]
+)
+@Suppress("unused")
+object SpoofSignaturePatch : BytecodePatch(
+    setOf(SpoofSignatureFingerprint)
 ) {
-    companion object {
-        const val EXPECTED_SIGNATURE = "OpenSSLRSAPublicKey{modulus=ac3e6fd6050aa7e0d6010ae58190404cd89a56935b44f6fee" +
+    private const val EXPECTED_SIGNATURE =
+        "OpenSSLRSAPublicKey{modulus=ac3e6fd6050aa7e0d6010ae58190404cd89a56935b44f6fee" +
                 "067c149768320026e10b24799a1339e414605e448e3f264444a327b9ae292be2b62ad567dd1800dbed4a88f718a33dc6db6b" +
                 "f5178aa41aa0efff8a3409f5ca95dbfccd92c7b4298966df806ea7a0204a00f0e745f6d9f13bdf24f3df715d7b62c1600906" +
                 "15de1c8a956b9286764985a3b3c060963c435fb9481a5543aaf0671fc2dba6c5c2b17d1ef1d85137f14dc9bbdf3490288087" +
@@ -28,7 +28,6 @@ class SpoofSignaturePatch : BytecodePatch(
                 "0def55be2c1f6f9c72c92fb45d7e0a9ac571cb38f0a9a37bb33ea06f223fde8c7a92e8c47769e386f9799776e8f110c21df2" +
                 "77ef1be61b2c01ebdabddcbf53cc4b6fd9a3c445606ee77b3758162c80ad8f8137b3c6864e92db904807dcb2be9d7717dd21" +
                 "bf42c121d620ddfb7914f7a95c713d9e1c1b7bdb4a03d618e40cf7e9e235c0b5687e03b7ab3,publicExponent=10001}"
-    }
 
     override fun execute(context: BytecodeContext) {
         SpoofSignatureFingerprint.result!!.mutableMethod.addInstructions(
