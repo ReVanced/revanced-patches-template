@@ -25,6 +25,7 @@ import java.io.Closeable
     description = "Hooks the method which parses the bytes into a ComponentContext to filter components.",
     dependencies = [IntegrationsPatch::class]
 )
+@Suppress("unused")
 object LithoFilterPatch : BytecodePatch(
     setOf(ComponentContextParserFingerprint, LithoFilterFingerprint, ProtobufBufferReferenceFingerprint)
 ), Closeable {

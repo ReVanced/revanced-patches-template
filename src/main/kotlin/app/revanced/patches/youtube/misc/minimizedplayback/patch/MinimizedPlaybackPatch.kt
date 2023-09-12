@@ -39,6 +39,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
         )
     ]
 )
+@Suppress("unused")
 object MinimizedPlaybackPatch : BytecodePatch(
     setOf(
         MinimizedPlaybackManagerFingerprint,

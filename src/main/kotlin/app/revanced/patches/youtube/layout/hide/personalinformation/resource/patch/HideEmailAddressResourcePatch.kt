@@ -9,6 +9,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+@Suppress("unused")
 object HideEmailAddressResourcePatch : ResourcePatch() {
     internal var accountSwitcherAccessibilityLabelId: Long = -1
 
