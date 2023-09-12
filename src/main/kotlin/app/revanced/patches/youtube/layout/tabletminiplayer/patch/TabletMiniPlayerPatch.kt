@@ -1,20 +1,17 @@
 package app.revanced.patches.youtube.layout.tabletminiplayer.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.tabletminiplayer.annotations.TabletMiniPlayerCompatibility
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPlayerDimensionsCalculatorParentFingerprint
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPlayerOverrideFingerprint
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPlayerOverrideNoContextFingerprint
@@ -24,13 +21,26 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Tablet mini player")
-@Description("Enables the tablet mini player layout.")
-@TabletMiniPlayerCompatibility
-class TabletMiniPlayerPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Tablet mini player",
+    description = "Enables the tablet mini player layout.",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", arrayOf(
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            )
+        )
+    ]
+)
+@Suppress("unused")
+object TabletMiniPlayerPatch : BytecodePatch(
+    setOf(
         MiniPlayerDimensionsCalculatorParentFingerprint,
         MiniPlayerResponseModelSizeCheckFingerprint,
         MiniPlayerOverrideFingerprint
@@ -47,7 +57,8 @@ class TabletMiniPlayerPatch : BytecodePatch(
         )
 
         // First resolve the fingerprints via the parent fingerprint.
-        MiniPlayerDimensionsCalculatorParentFingerprint.result ?: throw MiniPlayerDimensionsCalculatorParentFingerprint.exception
+        MiniPlayerDimensionsCalculatorParentFingerprint.result
+            ?: throw MiniPlayerDimensionsCalculatorParentFingerprint.exception
         val miniPlayerClass = MiniPlayerDimensionsCalculatorParentFingerprint.result!!.classDef
 
         /*
@@ -98,32 +109,30 @@ class TabletMiniPlayerPatch : BytecodePatch(
     }
 
     // Helper methods.
-    private companion object {
-        fun MethodFingerprint.addProxyCall(): Triple<MutableMethod, Int, Int> {
-            val (method, scanIndex, parameterRegister) = this.unwrap()
-            method.insertOverride(scanIndex, parameterRegister)
+    private fun MethodFingerprint.addProxyCall(): Triple<MutableMethod, Int, Int> {
+        val (method, scanIndex, parameterRegister) = this.unwrap()
+        method.insertOverride(scanIndex, parameterRegister)
 
-            return Triple(method, scanIndex, parameterRegister)
-        }
+        return Triple(method, scanIndex, parameterRegister)
+    }
 
-        fun MutableMethod.insertOverride(index: Int, overrideRegister: Int) {
-            this.addInstructions(
-                index,
-                """
+    private fun MutableMethod.insertOverride(index: Int, overrideRegister: Int) {
+        this.addInstructions(
+            index,
+            """
                     invoke-static {v$overrideRegister}, Lapp/revanced/integrations/patches/TabletMiniPlayerOverridePatch;->getTabletMiniPlayerOverride(Z)Z
                     move-result v$overrideRegister
                 """
-            )
-        }
+        )
+    }
 
-        fun MethodFingerprint.unwrap(): Triple<MutableMethod, Int, Int> {
-            val result = this.result!!
-            val scanIndex = result.scanResult.patternScanResult!!.endIndex
-            val method = result.mutableMethod
-            val instructions = method.implementation!!.instructions
-            val parameterRegister = (instructions[scanIndex] as OneRegisterInstruction).registerA
+    fun MethodFingerprint.unwrap(): Triple<MutableMethod, Int, Int> {
+        val result = this.result!!
+        val scanIndex = result.scanResult.patternScanResult!!.endIndex
+        val method = result.mutableMethod
+        val instructions = method.implementation!!.instructions
+        val parameterRegister = (instructions[scanIndex] as OneRegisterInstruction).registerA
 
-            return Triple(method, scanIndex, parameterRegister)
-        }
+        return Triple(method, scanIndex, parameterRegister)
     }
 }
