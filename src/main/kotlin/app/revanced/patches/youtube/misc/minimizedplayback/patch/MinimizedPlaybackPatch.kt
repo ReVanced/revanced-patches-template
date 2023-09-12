@@ -1,20 +1,17 @@
 package app.revanced.patches.youtube.misc.minimizedplayback.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.NonInteractivePreference
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.misc.minimizedplayback.annotations.MinimizedPlaybackCompatibility
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
@@ -24,24 +21,42 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-@Patch
-@Name("Minimized playback")
-@Description("Enables minimized and background playback.")
-@DependsOn([IntegrationsPatch::class, PlayerTypeHookPatch::class, SettingsPatch::class])
-@MinimizedPlaybackCompatibility
-class MinimizedPlaybackPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Minimized playback",
+    description = "Enables minimized and background playback.",
+    dependencies = [IntegrationsPatch::class, PlayerTypeHookPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube",
+            [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
+    ]
+)
+object MinimizedPlaybackPatch : BytecodePatch(
+    setOf(
         MinimizedPlaybackManagerFingerprint,
         MinimizedPlaybackSettingsParentFingerprint,
         KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
+    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;"
+
     override fun execute(context: BytecodeContext) {
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
                 StringResource("revanced_minimized_playback_enabled_title", "Minimized playback"),
-                StringResource("revanced_minimized_playback_summary_on", "This setting can be found in Settings -> Background")
+                StringResource(
+                    "revanced_minimized_playback_summary_on",
+                    "This setting can be found in Settings -> Background"
+                )
             )
         )
 
@@ -58,7 +73,10 @@ class MinimizedPlaybackPatch : BytecodePatch(
 
         // Enable minimized playback option in YouTube settings
         MinimizedPlaybackSettingsParentFingerprint.result ?: throw MinimizedPlaybackSettingsParentFingerprint.exception
-        MinimizedPlaybackSettingsFingerprint.resolve(context, MinimizedPlaybackSettingsParentFingerprint.result!!.classDef)
+        MinimizedPlaybackSettingsFingerprint.resolve(
+            context,
+            MinimizedPlaybackSettingsParentFingerprint.result!!.classDef
+        )
         MinimizedPlaybackSettingsFingerprint.result?.apply {
             val booleanCalls = method.implementation!!.instructions.withIndex()
                 .filter { ((it.value as? ReferenceInstruction)?.reference as? MethodReference)?.returnType == "Z" }
@@ -85,9 +103,5 @@ class MinimizedPlaybackPatch : BytecodePatch(
                 "return-void"
             )
         } ?: throw KidsMinimizedPlaybackPolicyControllerFingerprint.exception
-    }
-
-    private companion object {
-        const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;"
     }
 }
