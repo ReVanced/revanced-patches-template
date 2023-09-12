@@ -1,28 +1,24 @@
 package app.revanced.patches.youtubevanced.ad.general.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.misc.fix.verticalscroll.patch.VerticalScrollPatch
-import app.revanced.patches.youtubevanced.ad.general.annotations.HideAdsCompatibility
 import app.revanced.patches.youtubevanced.ad.general.fingerprints.ContainsAdFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 
-@Patch
-@Name("Hide ads")
-@Description("Removes general ads.")
-@DependsOn([VerticalScrollPatch::class])
-@HideAdsCompatibility
-class HideAdsPatch : BytecodePatch(
-    listOf(
-        ContainsAdFingerprint
-    )
+@Patch(
+    name = "Hide ads",
+    description = "Removes general ads.",
+    dependencies = [VerticalScrollPatch::class],
+    compatiblePackages = [CompatiblePackage("com.vanced.android.youtube")]
+)
+object HideAdsPatch : BytecodePatch(
+    setOf(ContainsAdFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         ContainsAdFingerprint.result?.let { result ->
