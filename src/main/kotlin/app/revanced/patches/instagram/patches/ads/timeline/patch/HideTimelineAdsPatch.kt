@@ -1,14 +1,14 @@
 package app.revanced.patches.instagram.patches.ads.timeline.patch
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.*
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.instagram.patches.ads.timeline.fingerprints.MediaFingerprint
 import app.revanced.patches.instagram.patches.ads.timeline.fingerprints.ShowAdFingerprint
@@ -19,12 +19,14 @@ import app.revanced.patches.instagram.patches.ads.timeline.fingerprints.ads.Shop
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch
-@Name("Hide timeline ads")
-@Description("Removes ads from the timeline.")
-@Compatibility([Package("com.instagram.android", arrayOf("275.0.0.27.98"))])
-class HideTimelineAdsPatch : BytecodePatch(
-    listOf(
+@Patch(
+    name = "Hide timeline ads",
+    description = "Removes ads from the timeline.",
+    compatiblePackages = [CompatiblePackage("com.instagram.android", ["275.0.0.27.98"])]
+)
+@Suppress("unused")
+object HideTimelineAdsPatch : BytecodePatch(
+    setOf(
         ShowAdFingerprint,
         MediaFingerprint,
         PaidPartnershipAdFingerprint // Unlike the other ads this one is resolved from all classes.
