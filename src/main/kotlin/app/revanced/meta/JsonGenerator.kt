@@ -22,6 +22,7 @@ internal class JsonGenerator : PatchesFileGenerator {
         File("patches.json").writeText(GsonBuilder().serializeNulls().create().toJson(it))
     }
 
+    @Suppress("unused")
     private class JsonPatch(
         val name: String? = null,
         val description: String? = null,
@@ -33,7 +34,7 @@ internal class JsonGenerator : PatchesFileGenerator {
     ) {
         class Option(
             val key: String,
-            default: Any?,
+            val default: Any?,
             val title: String?,
             val description: String?,
             val required: Boolean,
