@@ -3,7 +3,6 @@ package app.revanced.patches.twitch.misc.settings
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
-import app.revanced.patches.shared.settings.resource.AbstractSettingsResourcePatch
 
 object SettingsResourcePatch : AbstractSettingsResourcePatch(
 "revanced_prefs",
