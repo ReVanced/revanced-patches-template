@@ -1,28 +1,36 @@
 package app.revanced.patches.youtube.layout.startupshortsreset.patch
 
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.DependsOn
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.layout.startupshortsreset.annotations.StartupShortsResetCompatibility
 import app.revanced.patches.youtube.layout.startupshortsreset.fingerprints.UserWasInShortsFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
-@Patch
-@DependsOn([IntegrationsPatch::class, SettingsPatch::class])
-@Name("Disable Shorts on startup")
-@Description("Disables playing YouTube Shorts when launching YouTube.")
-@StartupShortsResetCompatibility
-class DisableShortsOnStartupPatch : BytecodePatch(
-    listOf(
-        UserWasInShortsFingerprint
-    )
+@Patch(
+    name = "Disable Shorts on startup",
+    description = "Disables playing YouTube Shorts when launching YouTube.",
+    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    compatiblePackages = [
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.16.37",
+                "18.19.35",
+                "18.20.39",
+                "18.23.35",
+                "18.29.38",
+                "18.32.39"
+            ]
+        )
+    ]
+)
+@Suppress("unused")
+object DisableShortsOnStartupPatch : BytecodePatch(
+    setOf(UserWasInShortsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
