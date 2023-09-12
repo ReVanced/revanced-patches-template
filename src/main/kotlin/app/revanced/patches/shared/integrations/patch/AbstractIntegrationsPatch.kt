@@ -11,9 +11,6 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 
-@Patch(
-    description = "Applies mandatory patches to implement the ReVanced integrations into the application.",
-)
 abstract class AbstractIntegrationsPatch(
     private val integrationsDescriptor: String,
     private val hooks: Set<IntegrationsFingerprint>

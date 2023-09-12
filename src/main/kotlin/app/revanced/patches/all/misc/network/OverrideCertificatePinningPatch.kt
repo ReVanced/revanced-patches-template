@@ -14,7 +14,7 @@ import java.io.File
     use = false
 )
 @Suppress("unused")
-class OverrideCertificatePinningPatch : ResourcePatch() {
+object OverrideCertificatePinningPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         val resXmlDirectory = context["res/xml"]
 
