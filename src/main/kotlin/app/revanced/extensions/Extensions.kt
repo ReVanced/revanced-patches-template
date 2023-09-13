@@ -76,22 +76,21 @@ fun Method.findIndexForIdResource(resourceName: String): Int {
  *
  * @return the first constant instruction with the value, or -1 if not found.
  */
-fun Method.indexOfFirstConstantInstructionValue(constantValue: Long): Int {
-    return implementation?.let {
-        it.instructions.indexOfFirst { instruction ->
-            instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
-        }
-    } ?: -1
-}
+fun Method.indexOfFirstConstantInstructionValue(constantValue: Long) = implementation?.let {
+    it.instructions.indexOfFirst { instruction ->
+        instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
+    }
+} ?: -1
+
 
 /**
  * Check if the method contains a constant with the given value.
  *
  * @return if the method contains a constant with the given value.
  */
-fun Method.containsConstantInstructionValue(constantValue: Long): Boolean {
-    return indexOfFirstConstantInstructionValue(constantValue) >= 0
-}
+fun Method.containsConstantInstructionValue(constantValue: Long) =
+    indexOfFirstConstantInstructionValue(constantValue) >= 0
+
 
 /**
  * Traverse the class hierarchy starting from the given root class.

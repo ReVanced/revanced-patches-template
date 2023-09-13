@@ -1,8 +1,8 @@
 package app.revanced.patches.youtube.misc.settings.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.util.patch.LiteralValueFingerprint
 import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
+import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
