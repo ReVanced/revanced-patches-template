@@ -15,6 +15,7 @@ import app.revanced.patches.music.layout.premium.fingerprints.HideGetPremiumPare
     description = "Removes all \"Get Premium\" evidences from the avatar menu.",
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
+@Suppress("unused")
 object HideGetPremiumPatch : BytecodePatch(setOf(HideGetPremiumParentFingerprint)) {
     override fun execute(context: BytecodeContext) {
         val parentResult = HideGetPremiumParentFingerprint.result!!

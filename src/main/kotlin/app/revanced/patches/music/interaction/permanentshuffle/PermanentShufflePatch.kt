@@ -16,6 +16,7 @@ import app.revanced.patches.music.interaction.permanentshuffle.fingerprints.Disa
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")],
     use = false
 )
+@Suppress("unused")
 object PermanentShuffleTogglePatch : BytecodePatch(setOf(DisableShuffleFingerprint)) {
     override fun execute(context: BytecodeContext) {
         DisableShuffleFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")

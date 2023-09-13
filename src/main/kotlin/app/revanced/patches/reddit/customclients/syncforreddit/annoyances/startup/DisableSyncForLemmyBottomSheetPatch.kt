@@ -18,6 +18,7 @@ import app.revanced.patches.reddit.customclients.syncforreddit.annoyances.startu
         CompatiblePackage("com.laurencedawson.reddit_sync.dev") // Version unknown.
     ]
 )
+@Suppress("unused")
 object DisableSyncForLemmyBottomSheetPatch : BytecodePatch(setOf(MainActivityOnCreate)) {
     override fun execute(context: BytecodeContext) {
         MainActivityOnCreate.result?.mutableMethod?.apply {

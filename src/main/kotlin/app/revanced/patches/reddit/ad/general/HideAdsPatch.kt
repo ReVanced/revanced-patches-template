@@ -23,6 +23,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
     compatiblePackages = [CompatiblePackage("com.reddit.frontpage")],
     requiresIntegrations = true,
 )
+@Suppress("unused")
 object HideAdsPatch : BytecodePatch(setOf(AdPostFingerprint, NewAdPostFingerprint)) {
     private const val FILTER_METHOD_DESCRIPTOR =
         "Lapp/revanced/reddit/patches/FilterPromotedLinksPatch;" +

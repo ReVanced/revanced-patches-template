@@ -16,6 +16,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ThreeRegisterInstructio
     description = "Allows opening files larger than 2 MB in the text editor.",
     compatiblePackages = [CompatiblePackage("pl.solidexplorer2")]
 )
+@Suppress("unused")
 object RemoveFileSizeLimitPatch : BytecodePatch(setOf(OnReadyFingerprint)) {
     override fun execute(context: BytecodeContext) = OnReadyFingerprint.result?.let { result ->
         val cmpIndex = result.scanResult.patternScanResult!!.startIndex + 1

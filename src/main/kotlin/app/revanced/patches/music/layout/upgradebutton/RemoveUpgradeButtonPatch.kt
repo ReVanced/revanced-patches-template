@@ -18,6 +18,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
     description = "Removes the upgrade tab from the pivot bar.",
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
+@Suppress("unused")
 object RemoveUpgradeButtonPatch : BytecodePatch(
     setOf(PivotBarConstructorFingerprint)
 ) {

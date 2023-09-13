@@ -17,6 +17,7 @@ import app.revanced.util.microg.MicroGBytecodeHelper
     dependencies = [MicroGResourcePatch::class],
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
+@Suppress("unused")
 object MicroGBytecodePatch : BytecodePatch(
     setOf(
         ServiceCheckFingerprint,

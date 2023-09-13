@@ -6,8 +6,8 @@ import app.revanced.patcher.patch.annotation.Patch
 import org.w3c.dom.Element
 
 @Patch(
-    "Enable Android debugging",
-    "Enables Android debugging capabilities. This can slow down the app.",
+    name = "Enable Android debugging",
+    description = "Enables Android debugging capabilities. This can slow down the app.",
     use = false
 )
 @Suppress("unused")

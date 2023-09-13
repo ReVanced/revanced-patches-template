@@ -22,6 +22,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         CompatiblePackage("com.onelouder.baconreader.premium")
     ]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://baconreader.com/auth", listOf(GetAuthorizationUrlFingerprint, RequestTokenFingerprint)
 ) {

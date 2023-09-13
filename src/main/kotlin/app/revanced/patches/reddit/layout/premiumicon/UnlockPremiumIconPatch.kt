@@ -13,6 +13,7 @@ import app.revanced.patches.reddit.layout.premiumicon.fingerprints.HasPremiumIco
     name = "Unlock premium Reddit icons",
     compatiblePackages = [CompatiblePackage("com.reddit.frontpage")]
 )
+@Suppress("unused")
 object UnlockPremiumIconPatch : BytecodePatch(setOf(HasPremiumIconAccessFingerprint)) {
     override fun execute(context: BytecodeContext) {
         HasPremiumIconAccessFingerprint.result?.mutableMethod?.addInstructions(

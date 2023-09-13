@@ -15,6 +15,7 @@ import app.revanced.patches.reddit.customclients.boostforreddit.api.fingerprints
             "and the redirect URI has to be set to \"http://www.ccrama.me\".",
     compatiblePackages = [CompatiblePackage("me.ccrama.redditslide")]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "http://www.ccrama.me", listOf(GetClientIdFingerprint)
 ) {

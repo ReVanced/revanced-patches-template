@@ -24,6 +24,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         CompatiblePackage("com.andrewshu.android.redditdonation")
     ]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "redditisfun://auth",
     listOf(BuildAuthorizationStringFingerprint, BasicAuthorizationFingerprint),

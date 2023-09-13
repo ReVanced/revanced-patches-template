@@ -13,6 +13,7 @@ import app.revanced.patches.reddit.layout.disablescreenshotpopup.fingerprints.Di
     description = "Disables the popup that shows up when taking a screenshot.",
     compatiblePackages = [CompatiblePackage("com.reddit.frontpage")]
 )
+@Suppress("unused")
 object DisableScreenshotPopupPatch : BytecodePatch(setOf(DisableScreenshotPopupFingerprint)) {
     override fun execute(context: BytecodeContext) {
         DisableScreenshotPopupFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")

@@ -15,6 +15,7 @@ import app.revanced.patches.photomath.misc.unlockplus.fingerprints.IsPlusUnlocke
     dependencies = [SignatureDetectionPatch::class, EnableBookpointPatch::class],
     compatiblePackages = [CompatiblePackage("com.microblink.photomath")]
 )
+@Suppress("unused")
 object UnlockPlusPatch : BytecodePatch(
     setOf(IsPlusUnlockedFingerprint)
 ){
