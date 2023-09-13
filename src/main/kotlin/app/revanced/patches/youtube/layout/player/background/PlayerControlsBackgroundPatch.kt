@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.player.background.patch
+package app.revanced.patches.youtube.layout.player.background
 
 import app.revanced.extensions.doRecursively
 import app.revanced.patcher.data.ResourceContext
