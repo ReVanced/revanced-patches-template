@@ -13,5 +13,5 @@ object LayoutVideoFingerprint : LiteralValueFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
     ),
-    literal = HideEndscreenCardsResourcePatch.layoutVideo
+    literalSupplier = { HideEndscreenCardsResourcePatch.layoutVideo }
 )

@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.personalinformation.fingerprints
 
-import app.revanced.util.patch.LiteralValueFingerprint
 import app.revanced.patches.youtube.layout.hide.personalinformation.HideEmailAddressResourcePatch
+import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 object AccountSwitcherAccessibilityLabelFingerprint : LiteralValueFingerprint(
@@ -16,5 +16,5 @@ object AccountSwitcherAccessibilityLabelFingerprint : LiteralValueFingerprint(
         Opcode.APUT_OBJECT,
         Opcode.CONST,
     ),
-    literal = HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId
+    literalSupplier = { HideEmailAddressResourcePatch.accountSwitcherAccessibilityLabelId }
 )

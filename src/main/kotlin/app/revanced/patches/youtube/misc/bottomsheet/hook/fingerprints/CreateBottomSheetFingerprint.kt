@@ -9,5 +9,5 @@ object CreateBottomSheetFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("L"),
     returnType = "Landroid/widget/LinearLayout;",
-    literal = BottomSheetHookResourcePatch.bottomSheetMargins
+    literalSupplier = { BottomSheetHookResourcePatch.bottomSheetMargins }
 )

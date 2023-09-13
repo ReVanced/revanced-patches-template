@@ -14,5 +14,5 @@ object RelatedChipCloudFingerprint : LiteralValueFingerprint(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT
     ),
-    literal = HideFilterBarResourcePatch.relatedChipCloudMarginId
+    literalSupplier = { HideFilterBarResourcePatch.relatedChipCloudMarginId }
 )

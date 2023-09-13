@@ -26,5 +26,5 @@ object VideoQualityMenuViewInflateFingerprint : LiteralValueFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST
     ),
-    literal = OldVideoQualityMenuResourcePatch.videoQualityBottomSheetListFragmentTitle
+    literalSupplier = { OldVideoQualityMenuResourcePatch.videoQualityBottomSheetListFragmentTitle }
 )

@@ -16,5 +16,5 @@ object AlbumCardsFingerprint : LiteralValueFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
     ),
-    literal = AlbumCardsResourcePatch.albumCardId
+    literalSupplier = { AlbumCardsResourcePatch.albumCardId }
 )

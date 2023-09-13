@@ -13,5 +13,5 @@ object LayoutCircleFingerprint : LiteralValueFingerprint(
         Opcode.MOVE_RESULT_OBJECT,
         Opcode.CHECK_CAST,
     ),
-    literal = HideEndscreenCardsResourcePatch.layoutCircle
+    literalSupplier = { HideEndscreenCardsResourcePatch.layoutCircle }
 )

@@ -15,5 +15,5 @@ object FilterBarHeightFingerprint : LiteralValueFingerprint(
         Opcode.MOVE_RESULT,
         Opcode.IPUT
     ),
-    literal = HideFilterBarResourcePatch.filterBarHeightId
+    literalSupplier = { HideFilterBarResourcePatch.filterBarHeightId }
 )

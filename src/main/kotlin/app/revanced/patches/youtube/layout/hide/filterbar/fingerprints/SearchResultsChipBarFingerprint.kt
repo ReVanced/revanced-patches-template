@@ -16,5 +16,5 @@ object SearchResultsChipBarFingerprint : LiteralValueFingerprint(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT_OBJECT
     ),
-    literal = HideFilterBarResourcePatch.barContainerHeightId
+    literalSupplier = { HideFilterBarResourcePatch.barContainerHeightId }
 )

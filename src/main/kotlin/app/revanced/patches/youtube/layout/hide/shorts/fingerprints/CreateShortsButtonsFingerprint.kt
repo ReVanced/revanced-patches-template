@@ -9,5 +9,5 @@ object CreateShortsButtonsFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     returnType = "V",
     parameters = listOf("Z", "Z", "L"),
-    literal = HideShortsComponentsResourcePatch.reelPlayerRightCellButtonHeight
+    literalSupplier = { HideShortsComponentsResourcePatch.reelPlayerRightCellButtonHeight }
 )

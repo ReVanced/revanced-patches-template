@@ -9,5 +9,5 @@ object InitializeButtonsFingerprint : LiteralValueFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     returnType = "V",
     parameters = listOf(),
-    literal = ResolvePivotBarFingerprintsPatch.imageOnlyTabResourceId
+    literalSupplier = { ResolvePivotBarFingerprintsPatch.imageOnlyTabResourceId }
 )

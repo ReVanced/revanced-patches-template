@@ -11,5 +11,5 @@ object HideLoadMoreButtonFingerprint : LiteralValueFingerprint(
         Opcode.INVOKE_STATIC,
         Opcode.MOVE_RESULT_OBJECT
     ),
-    literal = HideLoadMoreButtonResourcePatch.expandButtonDownId
+    literalSupplier = { HideLoadMoreButtonResourcePatch.expandButtonDownId }
 )
