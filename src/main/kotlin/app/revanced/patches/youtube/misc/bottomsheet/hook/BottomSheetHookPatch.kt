@@ -10,11 +10,7 @@ import app.revanced.patches.youtube.misc.bottomsheet.hook.fingerprints.CreateBot
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-@Patch(
-    name = "Remove root detection",
-    description = "Removes the check for root permissions.",
-    dependencies = [IntegrationsPatch::class, BottomSheetHookResourcePatch::class]
-)
+@Patch(dependencies = [IntegrationsPatch::class, BottomSheetHookResourcePatch::class])
 @Suppress("unused")
 object BottomSheetHookPatch : BytecodePatch(
     setOf(CreateBottomSheetFingerprint)
