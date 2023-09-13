@@ -7,11 +7,10 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.ad.comments.fingerprints.HideCommentAdsFingerprint
 
-@Patch(
-    name = "Hide comment ads",
-    description = "Removes ads in the comments.",
-)
-object HideCommentAdsPatch : BytecodePatch(setOf(HideCommentAdsFingerprint)) {
+@Patch(description = "Removes ads in the comments.",)
+object HideCommentAdsPatch : BytecodePatch(
+    setOf(HideCommentAdsFingerprint)
+) {
     // Returns a blank object instead of the comment ad.
     override fun execute(context: BytecodeContext) = HideCommentAdsFingerprint.result?.mutableMethod?.addInstructions(
         0, """

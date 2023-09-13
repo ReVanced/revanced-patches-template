@@ -24,9 +24,9 @@ object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
         insertionMethod.addInstructions(
             insertionIndex,
             """
-                    invoke-static {$colorRegister}, $targetMethodClass->$targetMethodName(I)I
-                    move-result $colorRegister
-                """
+                invoke-static {$colorRegister}, $targetMethodClass->$targetMethodName(I)I
+                move-result $colorRegister
+            """
         )
         insertionIndex += 2
     }

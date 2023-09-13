@@ -4,10 +4,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 
-@Patch(
-    name = "Hide subreddit banner",
-    description = "Hides banner ads from comments on subreddits."
-)
+@Patch(description = "Hides banner ads from comments on subreddits.")
 object HideBannerPatch : ResourcePatch() {
     private const val RESOURCE_FILE_PATH = "res/layout/merge_listheader_link_detail.xml"
 
