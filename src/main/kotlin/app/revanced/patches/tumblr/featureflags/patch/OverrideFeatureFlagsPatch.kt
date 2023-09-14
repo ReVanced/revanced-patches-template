@@ -24,10 +24,10 @@ class OverrideFeatureFlagsPatch : BytecodePatch(
     listOf(GetFeatureValueFingerprint)
 ) {
     override fun execute(context: BytecodeContext) = GetFeatureValueFingerprint.result?.let {
-        // The method we want to inject into does not have enough registers,
-        // so instead of dealing with increasing the register count, we add a
-        // helper method "getValueOverride" to the class and pass it the feature object.
-        // If the helper returns null, we let the function run normally, otherwise we return the helper result value.
+        // The method we want to inject into does not have enough registers, so we inject a helper method
+        // and inject more instructions into it later, see addOverride.
+        // This is not in an integration since the unused variable would get compiled away and the method would
+        // get compiled to only have one register, which is not enough for our later injected instructions.
         val helperMethod = ImmutableMethod(
             it.method.definingClass,
             "getValueOverride",
@@ -38,9 +38,10 @@ class OverrideFeatureFlagsPatch : BytecodePatch(
             null,
             MutableMethodImplementation(4)
         ).toMutable().apply {
-            // At the start of the helper, we get the String representation of the enum once.
-            // At the end of the helper, we return null.
-            // Between these two, we will later insert the checks & returns for the overrides
+            // This is the equivalent of
+            //   String featureName = feature.toString()
+            //   <inject more instructions here later>
+            //   return null
             addInstructions(
                 0,
                 """
@@ -61,8 +62,10 @@ class OverrideFeatureFlagsPatch : BytecodePatch(
             it.mutableClass.methods.add(helperMethod)
         }
 
-
         // Here we actually insert the hook to call our helper method and return its value if it returns not null
+        // This is equivalent to
+        //   String forcedValue = getValueOverride(feature)
+        //   if (forcedValue != null) return forcedValue
         val getFeatureIndex = it.scanResult.patternScanResult!!.startIndex
         it.mutableMethod.addInstructionsWithLabels(
             getFeatureIndex,
@@ -85,6 +88,8 @@ class OverrideFeatureFlagsPatch : BytecodePatch(
         addOverride = { name, value ->
             // For every added override, we add a few instructions in the middle of the helper method
             // to check if the feature is the one we want and return the override value if it is.
+            // This is equivalent to
+            //   if (featureName == {name}) return {value}
             helperMethod.addInstructionsWithLabels(
                 helperInsertIndex,
                 """
