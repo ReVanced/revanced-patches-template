@@ -1,3 +1,26 @@
+# [2.191.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.2...v2.191.0-dev.3) (2023-09-14)
+
+
+### Features
+
+* **TU Dortmund:** Add `Show on lockscreen` patch ([#2947](https://github.com/ReVanced/revanced-patches/issues/2947)) ([9a18326](https://github.com/ReVanced/revanced-patches/commit/9a18326aeb68d7518594d0eab326ca845b9bdbdd))
+* **Tumblr:** Add `Disable blog notification reminder` patch ([29f19b9](https://github.com/ReVanced/revanced-patches/commit/29f19b9378c7e167137f38fa4517ae19382ca4f6))
+* **Tumblr:** Add `Disable gift message popup` patch ([a4d6b4e](https://github.com/ReVanced/revanced-patches/commit/a4d6b4e5ce6065d932f3895b4996e7dc1e5f7c67))
+
+# [2.191.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.1...v2.191.0-dev.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* Use consistent toggle description ([#2983](https://github.com/ReVanced/revanced-patches/issues/2983)) ([ceaa512](https://github.com/ReVanced/revanced-patches/commit/ceaa512f317fdd95dca37e425b389494a9b2e226))
+
+# [2.191.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.190.1-dev.4...v2.191.0-dev.1) (2023-09-11)
+
+
+### Features
+
+* **Tumblr:** Add `Disable dashboard ads` patch ([#2979](https://github.com/ReVanced/revanced-patches/issues/2979)) ([07c267a](https://github.com/ReVanced/revanced-patches/commit/07c267ad20afa1415d2dba31f0830d2dd5a34654))
+
 ## [2.190.1-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.190.1-dev.3...v2.190.1-dev.4) (2023-09-07)
 
 
