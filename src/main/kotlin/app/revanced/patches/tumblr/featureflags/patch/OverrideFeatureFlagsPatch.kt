@@ -1,4 +1,4 @@
-package app.revanced.patches.tumblr.featureoverride.patch
+package app.revanced.patches.tumblr.featureflags.patch
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Compatibility
@@ -11,25 +11,23 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.tumblr.featureoverride.fingerprints.GetFeatureValueFingerprint
+import app.revanced.patches.tumblr.featureflags.fingerprints.GetFeatureValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
-@Name("Feature Override")
-@Description("Forcibly set the value of A/B testing features of your choice")
+@Name("Override feature flags")
+@Description("Forcibly set the value of A/B testing features of your choice.")
 @Compatibility([Package("com.tumblr")])
-class FeatureOverridePatch : BytecodePatch(
+class OverrideFeatureFlagsPatch : BytecodePatch(
     listOf(GetFeatureValueFingerprint)
 ) {
     override fun execute(context: BytecodeContext) = GetFeatureValueFingerprint.result?.let {
-
         // The method we want to inject into does not have enough registers,
         // so instead of dealing with increasing the register count, we add a
         // helper method "getValueOverride" to the class and pass it the feature object.
         // If the helper returns null, we let the function run normally, otherwise we return the helper result value.
-
         val helperMethod = ImmutableMethod(
             it.method.definingClass,
             "getValueOverride",
@@ -39,13 +37,13 @@ class FeatureOverridePatch : BytecodePatch(
             null,
             null,
             MutableMethodImplementation(4)
-        ).toMutable()
-
-        // At the start of the helper, we get the String representation of the enum once.
-        // At the end of the helper, we return null.
-        // Between these two, we will later insert the checks & returns for the overrides
-        helperMethod.addInstructions(
-            0, """
+        ).toMutable().apply {
+            // At the start of the helper, we get the String representation of the enum once.
+            // At the end of the helper, we return null.
+            // Between these two, we will later insert the checks & returns for the overrides
+            addInstructions(
+                0,
+                """
                     # toString() the enum value
                     invoke-virtual {p1}, Lcom/tumblr/configuration/Feature;->toString()Ljava/lang/String;
                     move-result-object v0
@@ -58,16 +56,17 @@ class FeatureOverridePatch : BytecodePatch(
                     const/4 v0, 0x0
                     return-object v0
                 """
-        )
-        // This is where we insert the override code. Should we not hardcode this? Fingerprinting it seems silly.
-        val helperInsertIndex = 2
+            )
+        }.also { helperMethod ->
+            it.mutableClass.methods.add(helperMethod)
+        }
 
-        it.mutableClass.methods.add(helperMethod)
 
         // Here we actually insert the hook to call our helper method and return its value if it returns not null
         val getFeatureIndex = it.scanResult.patternScanResult!!.startIndex
         it.mutableMethod.addInstructionsWithLabels(
-            getFeatureIndex, """
+            getFeatureIndex,
+            """
                     # Call the Helper Method with the Feature
                     invoke-virtual {p0, p1}, Lcom/tumblr/configuration/Configuration;->getValueOverride(Lcom/tumblr/configuration/Feature;)Ljava/lang/String;
                     move-result-object v0
@@ -81,11 +80,14 @@ class FeatureOverridePatch : BytecodePatch(
                     nop
                 """
         )
+
+        val helperInsertIndex = 2
         addOverride = { name, value ->
             // For every added override, we add a few instructions in the middle of the helper method
             // to check if the feature is the one we want and return the override value if it is.
             helperMethod.addInstructionsWithLabels(
-                helperInsertIndex, """
+                helperInsertIndex,
+                """
                     # v0 is still the string name of the currently checked feature from above
                     # Compare the current string with the override string
                     const-string v1, "$name"
@@ -104,7 +106,13 @@ class FeatureOverridePatch : BytecodePatch(
     } ?: throw GetFeatureValueFingerprint.exception
 
     companion object {
-        internal lateinit var addOverride: (String, String) -> Unit
-            private set
+        /**
+         * Override a feature flag with a value.
+         *
+         * @param name The name of the feature flag to override.
+         * @param value The value to override the feature flag with.
+         */
+        @Suppress("KDocUnresolvedReference")
+        internal lateinit var addOverride: (name: String, value: String) -> Unit private set
     }
 }
