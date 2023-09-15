@@ -11,6 +11,7 @@ import app.revanced.patcher.patch.annotations.DependsOn
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
+import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.twitch.ad.embedded.annotations.EmbeddedAdsCompatibility
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
 import app.revanced.patches.twitch.ad.video.patch.VideoAdsPatch
@@ -41,25 +42,31 @@ class EmbeddedAdsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.ADS.SURESTREAM.addPreferences(
             ListPreference(
                 "revanced_block_embedded_ads",
+                StringResource(
                     "revanced_block_embedded_ads",
+                    "Block embedded video ads"
+                ),
                 ArrayResource(
                     "revanced_hls_proxies",
                     listOf(
-                        "revanced_proxy_disabled",
-                        "revanced_proxy_ttv_lol",
-                        "revanced_proxy_purpleadblock",
+                        StringResource("revanced_proxy_disabled", "Disabled"),
+                        StringResource("revanced_proxy_luminous", "Luminous proxy"),
+                        StringResource("revanced_proxy_purpleadblock", "PurpleAdBlock proxy"),
                     )
                 ),
                 ArrayResource(
                     "revanced_hls_proxies_values",
                     listOf(
-                        "key_revanced_proxy_disabled",
-                        "key_revanced_proxy_ttv_lol",
-                        "key_revanced_proxy_purpleadblock",
+                        StringResource("key_revanced_proxy_disabled", "disabled"),
+                        StringResource("key_revanced_proxy_luminous", "luminous"),
+                        StringResource("key_revanced_proxy_purpleadblock", "purpleadblock")
                     )
                 ),
                 default = "ttv-lol"
             )
         )
+
+        SettingsPatch.addString("revanced_embedded_ads_service_unavailable", "%s is unavailable. Ads may show. Try switching to another ad block service in settings.")
+        SettingsPatch.addString("revanced_embedded_ads_service_failed", "%s server returned an error. Ads may show. Try switching to another ad block service in settings.")
     }
 }
