@@ -19,6 +19,7 @@ import app.revanced.patches.twitch.chat.antidelete.fingerprints.DeletedMessageCl
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.SetHasModAccessFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -75,23 +76,25 @@ class ShowDeletedMessagesPatch : BytecodePatch(
                 "revanced_show_deleted_messages",
                 "revanced_show_deleted_messages_title",
                 ArrayResource(
-                    "revanced_deleted_messages",
+                    "revanced_deleted_messages_entries",
                     listOf(
-                        "revanced_deleted_messages_hide",
-                        "revanced_deleted_messages_spoiler",
-                        "revanced_deleted_messages_cross_out",
+                        "revanced_deleted_messages_entry_hide",
+                        "revanced_deleted_messages_entry_spoiler",
+                        "revanced_deleted_messages_entry_cross_out",
                     )
                 ),
                 ArrayResource(
                     "revanced_deleted_messages_values",
                     listOf(
-                        "key_revanced_deleted_messages_hide",
-                        "key_revanced_deleted_messages_spoiler",
-                        "key_revanced_deleted_messages_cross_out",
-                    )
+                        "hide",
+                        "spoiler",
+                        "cross-out",
+                    ),
+                    literalValues = true
                 ),
                 default = "cross-out"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("ShowDeletedMessages")
     }
 }

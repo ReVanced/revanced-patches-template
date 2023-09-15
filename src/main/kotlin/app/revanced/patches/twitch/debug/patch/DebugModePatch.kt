@@ -15,6 +15,7 @@ import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFin
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch(false)
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -49,11 +50,12 @@ class DebugModePatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
             SwitchPreference(
                 "revanced_debug_mode",
-                "revanced_debug_mode_enable",
+                "revanced_debug_mode_title",
                 "revanced_debug_mode_on",
                 "revanced_debug_mode_off",
                 default = false,
             )
         )
+        SettingsResourcePatch.mergePatchStrings("DebugMode")
     }
 }

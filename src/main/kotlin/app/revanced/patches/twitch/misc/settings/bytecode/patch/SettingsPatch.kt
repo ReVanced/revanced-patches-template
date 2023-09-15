@@ -94,6 +94,9 @@ class SettingsPatch : BytecodePatch(
                 ExternalLabel("no_rv_settings_onclick", mutableMethod.getInstruction(insertIndex))
             )
         }  ?: throw MenuGroupsOnClickFingerprint.exception
+
+
+        SettingsResourcePatch.mergePatchStrings("Settings")
     }
 
     internal companion object {
@@ -159,10 +162,10 @@ class SettingsPatch : BytecodePatch(
 
         internal class CustomScreen(key: String, titleKey: String, summaryKey: String) : Screen(key, titleKey, summaryKey) {
             /* Categories */
-            val GENERAL = CustomCategory("twitch_general","twitch_general_title")
-            val OTHER = CustomCategory("twitch_other", "twitch_other_title")
-            val CLIENT_SIDE = CustomCategory("twitch_client_ads", "twitch_client_ads_title")
-            val SURESTREAM = CustomCategory("twitch_surestream_ads","twitch_surestream_ads_title")
+            val GENERAL = CustomCategory("twitch_general","revanced_twitch_general_title")
+            val OTHER = CustomCategory("twitch_other", "revanced_twitch_other_title")
+            val CLIENT_SIDE = CustomCategory("twitch_client_ads", "revanced_twitch_client_ads_title")
+            val SURESTREAM = CustomCategory("twitch_surestream_ads","revanced_twitch_surestream_ads_title")
 
             internal inner class CustomCategory(key: String, title: String) : Screen.Category(key, title) {
 

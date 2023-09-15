@@ -14,6 +14,7 @@ import app.revanced.patches.twitch.ad.audio.annotations.AudioAdsCompatibility
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -47,5 +48,7 @@ class AudioAdsPatch : BytecodePatch(
                 default = true,
             )
         )
+
+        SettingsResourcePatch.mergePatchStrings("AudioAds")
     }
 }

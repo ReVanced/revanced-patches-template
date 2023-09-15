@@ -18,6 +18,7 @@ import app.revanced.patches.twitch.ad.video.fingerprints.ContentConfigShowAdsFin
 import app.revanced.patches.twitch.ad.video.fingerprints.GetReadyToShowAdFingerprint
 import app.revanced.patches.twitch.misc.integrations.patch.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([IntegrationsPatch::class, SettingsPatch::class])
@@ -131,5 +132,6 @@ class VideoAdsPatch : AbstractAdPatch(
                 default = true
             )
         )
+        SettingsResourcePatch.mergePatchStrings("VideoAds")
     }
 }

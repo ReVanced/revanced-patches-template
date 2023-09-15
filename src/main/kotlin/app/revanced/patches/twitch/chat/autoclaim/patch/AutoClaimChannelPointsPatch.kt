@@ -14,6 +14,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.chat.autoclaim.annotations.AutoClaimChannelPointsCompatibility
 import app.revanced.patches.twitch.chat.autoclaim.fingerprints.CommunityPointsButtonViewDelegateFingerprint
 import app.revanced.patches.twitch.misc.settings.bytecode.patch.SettingsPatch
+import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
 
 @Patch
 @DependsOn([SettingsPatch::class])
@@ -33,6 +34,7 @@ class AutoClaimChannelPointPatch : BytecodePatch(
                 default = true
             )
         )
+        SettingsResourcePatch.mergePatchStrings("AutoClaimChannelPoint")
 
         CommunityPointsButtonViewDelegateFingerprint.result?.mutableMethod?.apply {
             val lastIndex = implementation!!.instructions.lastIndex

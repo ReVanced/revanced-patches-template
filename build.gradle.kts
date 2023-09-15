@@ -85,8 +85,12 @@ tasks {
         classpath = sourceSets["main"].runtimeClasspath
         mainClass = "app.revanced.util.resources.ResourceUtils"
         args = listOf(
+            // YouTube
             "src/main/resources/youtube/settings/host/values/",
-            "src/main/resources/youtube/settings/raw/strings.xml"
+            "src/main/resources/youtube/settings/raw/strings.xml",
+            // Twitch
+            "src/main/resources/twitch/settings/host/values/",
+            "src/main/resources/twitch/settings/raw/strings.xml"
         )
     }
 }
