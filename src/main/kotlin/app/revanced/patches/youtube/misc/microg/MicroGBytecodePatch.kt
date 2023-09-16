@@ -33,6 +33,7 @@ import app.revanced.util.microg.MicroGBytecodeHelper
         )
     ]
 )
+@Suppress("unused")
 object MicroGBytecodePatch : BytecodePatch(
     setOf(
         ServiceCheckFingerprint,

@@ -17,6 +17,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
     dependencies = [VerticalScrollPatch::class],
     compatiblePackages = [CompatiblePackage("com.vanced.android.youtube")]
 )
+@Suppress("unused")
 object HideAdsPatch : BytecodePatch(
     setOf(ContainsAdFingerprint)
 ) {
