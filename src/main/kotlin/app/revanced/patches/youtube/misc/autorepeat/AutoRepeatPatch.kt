@@ -34,6 +34,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object AutoRepeatPatch : BytecodePatch(
     setOf(AutoRepeatParentFingerprint)
 ) {

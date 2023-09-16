@@ -10,7 +10,6 @@ import app.revanced.patches.tiktok.misc.login.disablerequirement.fingerprints.Ma
 
 @Patch(
     name = "Disable login requirement",
-    description = "Disables the requirement to login to use the app.",
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
         CompatiblePackage("com.zhiliaoapp.musically")

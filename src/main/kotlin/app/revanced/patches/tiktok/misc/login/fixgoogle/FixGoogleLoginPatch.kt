@@ -9,7 +9,7 @@ import app.revanced.patches.tiktok.misc.login.fixgoogle.fingerprints.GoogleAuthA
 import app.revanced.patches.tiktok.misc.login.fixgoogle.fingerprints.GoogleOneTapAuthAvailableFingerprint
 
 @Patch(
-    name = "Fix google login",
+    name = "Fix Google login",
     description = "Allows logging in with a Google account.",
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),

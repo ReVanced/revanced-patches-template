@@ -9,7 +9,7 @@ import org.w3c.dom.Element
 
 @Patch(
     name = "Change package name",
-    description = "Changes the package name. Appends \".revanced\" to the package name by default.",
+    description = "Appends \".revanced\" to the package name by default.",
     use = false
 )
 @Suppress("unused")

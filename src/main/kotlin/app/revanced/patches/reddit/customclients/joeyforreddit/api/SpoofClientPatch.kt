@@ -22,6 +22,7 @@ import app.revanced.patches.reddit.customclients.joeyforreddit.detection.piracy.
         CompatiblePackage("o.o.joey.dev")
     ]
 )
+@Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
     "https://127.0.0.1:65023/authorize_callback", listOf(GetClientIdFingerprint)
 ) {

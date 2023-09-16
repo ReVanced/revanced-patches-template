@@ -14,6 +14,7 @@ import app.revanced.patches.music.premium.backgroundplay.fingerprints.Background
     description = "Enables playing music in the background.",
     compatiblePackages = [CompatiblePackage("com.google.android.apps.youtube.music")]
 )
+@Suppress("unused")
 object BackgroundPlayPatch : BytecodePatch(setOf(BackgroundPlaybackDisableFingerprint)) {
     override fun execute(context: BytecodeContext) =
         BackgroundPlaybackDisableFingerprint.result?.mutableMethod?.addInstructions(

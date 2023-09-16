@@ -76,7 +76,8 @@ object JsonHookPatch : BytecodePatch(
      * @param descriptor The class descriptor of the hook.
      * @throws ClassNotFoundException If the class could not be found.
      */
-    internal class Hook(context: BytecodeContext, internal val descriptor: String) {
+    internal class
+    Hook(context: BytecodeContext, internal val descriptor: String) {
         internal var added = false
 
         init {

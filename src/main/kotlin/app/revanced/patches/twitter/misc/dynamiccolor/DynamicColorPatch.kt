@@ -10,7 +10,7 @@ import java.nio.file.Files
 
 @Patch(
     name = "Dynamic color",
-    description = "Replaces the default Twitter Blue with the users Material You palette.",
+    description = "Replaces the default Twitter Blue with the user's Material You palette.",
     compatiblePackages = [CompatiblePackage("com.twitter.android")]
 )
 @Suppress("unused")

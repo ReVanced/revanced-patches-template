@@ -11,7 +11,7 @@ import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 
 @Patch(
-    name = "Spoof wifi connection",
+    name = "Spoof Wi-Fi connection",
     description = "Spoofs an existing Wi-Fi connection.",
     use = false,
     requiresIntegrations = true

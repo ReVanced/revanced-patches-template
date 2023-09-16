@@ -31,6 +31,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
         )
     ]
 )
+@Suppress("unused")
 object HDRBrightnessPatch : BytecodePatch(
     setOf(HDRBrightnessFingerprint)
 ) {

@@ -15,6 +15,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [CompatiblePackage("com.google.android.youtube")]
 )
+@Suppress("unused")
 object DebuggingPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.MISC.addPreferences(

@@ -19,6 +19,7 @@ import com.android.tools.smali.dexlib2.iface.reference.Reference
     name = "Unlock Duolingo Super",
     compatiblePackages = [CompatiblePackage("com.duolingo")]
 )
+@Suppress("unused")
 object UnlockDuolingoSuperPatch : BytecodePatch(
     setOf(
         UserSerializationMethodFingerprint,

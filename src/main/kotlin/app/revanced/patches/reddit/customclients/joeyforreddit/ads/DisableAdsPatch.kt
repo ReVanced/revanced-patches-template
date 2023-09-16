@@ -14,6 +14,7 @@ import app.revanced.patches.reddit.customclients.joeyforreddit.detection.piracy.
     dependencies = [DisablePiracyDetectionPatch::class],
     compatiblePackages = [CompatiblePackage("o.o.joey")]
 )
+@Suppress("unused")
 object DisableAdsPatch : BytecodePatch(setOf(IsAdFreeUserFingerprint)) {
     override fun execute(context: BytecodeContext) {
         IsAdFreeUserFingerprint.result?.mutableMethod?.addInstructions(

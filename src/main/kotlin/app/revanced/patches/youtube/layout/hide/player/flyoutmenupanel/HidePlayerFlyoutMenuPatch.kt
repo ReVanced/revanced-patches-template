@@ -28,6 +28,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
         ])
     ]
 )
+@Suppress("unused")
 object HidePlayerFlyoutMenuPatch : ResourcePatch() {
     private const val KEY = "revanced_hide_player_flyout"
 

@@ -15,7 +15,6 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Patch(
     name = "Hide ads",
-    description = "Removes ads from TikTok.",
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
         CompatiblePackage("com.zhiliaoapp.musically")

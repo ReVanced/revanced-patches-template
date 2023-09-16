@@ -8,7 +8,6 @@ import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import java.io.Closeable
 
 @Patch(dependencies = [ResourceMappingPatch::class])
-@Suppress("unused")
 object BottomControlsResourcePatch : ResourcePatch(), Closeable {
     internal var bottomUiContainerResourceId: Long = -1
 

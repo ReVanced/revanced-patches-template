@@ -18,8 +18,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
-    name = "Sim spoof",
-    description = "Spoofs the information which is retrieved from the sim-card.",
+    name = "SIM spoof",
+    description = "Spoofs the information which is retrieved from the SIM card.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill"),
