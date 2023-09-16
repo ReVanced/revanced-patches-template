@@ -3,6 +3,7 @@ package app.revanced.patches.twitch.ad.embedded
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
@@ -16,7 +17,7 @@ import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch(
     name = "Block embedded ads",
-    description = "Blocks embedded stream ads using services like TTV.lol or PurpleAdBlocker.",
+    description = "Blocks embedded stream ads using services like Luminous or PurpleAdBlocker.",
     dependencies = [VideoAdsPatch::class, IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [CompatiblePackage("tv.twitch.android.app", ["15.4.1", "16.1.0"])]
 )
@@ -48,7 +49,7 @@ object EmbeddedAdsPatch : BytecodePatch(
                     "revanced_hls_proxies",
                     listOf(
                         StringResource("revanced_proxy_disabled", "Disabled"),
-                        StringResource("revanced_proxy_ttv_lol", "TTV LOL proxy"),
+                        StringResource("revanced_proxy_luminous", "Luminous proxy"),
                         StringResource("revanced_proxy_purpleadblock", "PurpleAdBlock proxy"),
                     )
                 ),
@@ -56,11 +57,11 @@ object EmbeddedAdsPatch : BytecodePatch(
                     "revanced_hls_proxies_values",
                     listOf(
                         StringResource("key_revanced_proxy_disabled", "disabled"),
-                        StringResource("key_revanced_proxy_ttv_lol", "ttv-lol"),
+                        StringResource("key_revanced_proxy_luminous", "luminous"),
                         StringResource("key_revanced_proxy_purpleadblock", "purpleadblock")
                     )
                 ),
-                default = "ttv-lol"
+                default = "luminous"
             )
         )
 
