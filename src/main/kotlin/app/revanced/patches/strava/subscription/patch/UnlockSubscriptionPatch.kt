@@ -12,7 +12,7 @@ import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFinger
 
 @Patch
 @Name("Unlock subscription features")
-@Description("Unlocks \"Matched Runs\" and \"Segment Efforts\".")
+@Description("Unlocks Routes, Matched Runs and Segment Efforts.")
 @StravaCompatibility
 class UnlockSubscriptionPatch : BytecodePatch(listOf(GetSubscribedFingerprint)) {
     override fun execute(context: BytecodeContext) = GetSubscribedFingerprint.result?.let { result ->
