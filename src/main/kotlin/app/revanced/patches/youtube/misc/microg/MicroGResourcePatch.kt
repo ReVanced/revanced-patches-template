@@ -16,7 +16,7 @@ import app.revanced.util.microg.Constants.MICROG_VENDOR
 import app.revanced.util.microg.MicroGManifestHelper
 import app.revanced.util.microg.MicroGResourceHelper
 
-@Patch(dependencies = [SettingsResourcePatch::class])
+@Patch(dependencies = [SettingsPatch::class])
 object MicroGResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(
