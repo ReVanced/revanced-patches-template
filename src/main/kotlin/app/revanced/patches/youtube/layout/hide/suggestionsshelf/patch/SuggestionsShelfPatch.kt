@@ -16,13 +16,14 @@ import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.suggestionsshelf.annotations.SuggestionsShelfCompatibility
 import app.revanced.patches.youtube.layout.hide.suggestionsshelf.fingerprints.BreakingNewsFingerprint
+import app.revanced.patches.youtube.layout.hide.suggestionsshelf.resource.patch.BreakingNewsResourcePatch
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.patch.NavBarIndexHookPatch
 import app.revanced.patches.youtube.misc.litho.filter.patch.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.bytecode.patch.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch
-@DependsOn([LithoFilterPatch::class, NavBarIndexHookPatch::class, ResourceMappingPatch::class])
+@DependsOn([LithoFilterPatch::class, NavBarIndexHookPatch::class, BreakingNewsResourcePatch::class])
 @Name("Hide Suggestions shelf")
 @Description("Hides suggestions shelf on the homepage tab.")
 @SuggestionsShelfCompatibility
@@ -56,16 +57,10 @@ class SuggestionsShelfPatch : BytecodePatch(
 
         } ?: throw BreakingNewsFingerprint.exception
 
-        horizontalCardListId = ResourceMappingPatch.resourceMappings.single {
-            it.type == "layout" && it.name == "horizontal_card_list"
-        }.id
-
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }
 
-    companion object {
-        private const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/SuggestionsShelfFilter;"
-
-        internal var horizontalCardListId = -1L
+    private companion object {
+        const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/SuggestionsShelfFilter;"
     }
 }

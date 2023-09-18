@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.hide.suggestionsshelf.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patches.youtube.layout.hide.suggestionsshelf.patch.SuggestionsShelfPatch
+import app.revanced.patches.youtube.layout.hide.suggestionsshelf.resource.patch.BreakingNewsResourcePatch
 import app.revanced.util.patch.LiteralValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -16,5 +16,5 @@ object BreakingNewsFingerprint : LiteralValueFingerprint(
         Opcode.CHECK_CAST,
         Opcode.IPUT_OBJECT,
     ),
-    literal = SuggestionsShelfPatch.horizontalCardListId
+    literal = BreakingNewsResourcePatch.horizontalCardListId
 )
