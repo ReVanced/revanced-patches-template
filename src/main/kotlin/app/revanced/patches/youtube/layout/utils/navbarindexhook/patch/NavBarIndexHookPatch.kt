@@ -4,10 +4,12 @@ import app.revanced.extensions.exception
 import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.NavButtonOnClickFingerprint
 import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
+import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.MobileTopBarButtonOnClickFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -16,7 +18,8 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 class NavBarIndexHookPatch : BytecodePatch(
     listOf(
         NavButtonOnClickFingerprint,
-        OnBackPressedFingerprint
+        OnBackPressedFingerprint,
+        MobileTopBarButtonOnClickFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -49,6 +52,19 @@ class NavBarIndexHookPatch : BytecodePatch(
                 )
             }
         } ?: throw OnBackPressedFingerprint.exception
+
+        /**
+         * Set Navbar index to zero on clicking MobileTopBarButton (May be you want to switch to Incognito mode while in Library Tab)
+         */
+        MobileTopBarButtonOnClickFingerprint.result?.let {
+            it.mutableMethod.addInstructions(
+                0,
+                """
+                     const/4 v0, 0x0
+                     invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentNavBarIndex(I)V
+                """
+            )
+        }
 
         /**
          * Initialize NavBar Index
