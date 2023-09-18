@@ -9,7 +9,7 @@ import app.revanced.patches.youtube.layout.hide.suggestionsshelf.patch.Suggestio
 @DependsOn([ResourceMappingPatch::class])
 class BreakingNewsResourcePatch: ResourcePatch {
     override fun execute(context: ResourceContext) {
-        SuggestionsShelfPatch.horizontalCardListId = ResourceMappingPatch.resourceMappings.single {
+        horizontalCardListId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "horizontal_card_list"
         }.id
     }
