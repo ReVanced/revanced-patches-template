@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUti
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 

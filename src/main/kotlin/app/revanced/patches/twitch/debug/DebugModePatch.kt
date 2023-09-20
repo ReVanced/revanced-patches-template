@@ -12,7 +12,7 @@ import app.revanced.patches.twitch.debug.fingerprints.IsOmVerificationEnabledFin
 import app.revanced.patches.twitch.debug.fingerprints.ShouldShowDebugOptionsFingerprint
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Debug mode",

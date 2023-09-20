@@ -9,7 +9,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.misc.fix.verticalscroll.VerticalScrollPatch
 import app.revanced.patches.youtube.ad.getpremium.HideGetPremiumPatch
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.FixBackToExitGesturePatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction31i
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c

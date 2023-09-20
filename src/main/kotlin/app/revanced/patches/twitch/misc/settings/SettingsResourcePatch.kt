@@ -1,36 +1,31 @@
 package app.revanced.patches.twitch.misc.settings
 
+import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
-import app.revanced.patches.shared.settings.preference.impl.ArrayResource
-import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
+import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 object SettingsResourcePatch : AbstractSettingsResourcePatch(
 "revanced_prefs",
 "twitch/settings"
 ) {
-    /* Companion delegates */
 
     /**
-     * Add a new string to the resources.
-     *
-     * @param identifier The key of the string.
-     * @param value The value of the string.
-     * @throws IllegalArgumentException if the string already exists.
+     * Used to merge the strings in [mergePatchStrings].
      */
-    fun addString(identifier: String, value: String, formatted: Boolean) =
-        AbstractSettingsResourcePatch.addString(identifier, value, formatted)
+    private lateinit var resourceContext : ResourceContext
+
+    override fun execute(context: ResourceContext) {
+        super.execute(context)
+
+        resourceContext = context
+    }
 
     /**
-     * Add an array to the resources.
+     * Merge the English strings for a given patch.
      *
-     * @param arrayResource The array resource to add.
+     * @param patchName Name of the patch strings xml file.
      */
-    fun addArray(arrayResource: ArrayResource) = AbstractSettingsResourcePatch.addArray(arrayResource)
-
-    /**
-     * Add a preference to the settings.
-     *
-     * @param preferenceScreen The name of the preference screen.
-     */
-    fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = AbstractSettingsResourcePatch.addPreference(preferenceScreen)
+    fun mergePatchStrings(patchName: String)  {
+        resourceContext.mergeStrings("twitch/settings/host/values/$patchName.xml")
+    }
 }

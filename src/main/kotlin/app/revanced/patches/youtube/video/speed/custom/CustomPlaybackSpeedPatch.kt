@@ -18,7 +18,7 @@ import app.revanced.patches.youtube.misc.recyclerviewtree.hook.RecyclerViewTreeH
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.GetOldPlaybackSpeedsFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldPlaybackSpeedMenuFingerprint
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.ShowOldPlaybackSpeedMenuIntegrationsFingerprint

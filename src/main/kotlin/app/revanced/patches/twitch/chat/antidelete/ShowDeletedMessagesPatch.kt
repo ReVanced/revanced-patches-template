@@ -16,7 +16,7 @@ import app.revanced.patches.twitch.chat.antidelete.fingerprints.DeletedMessageCl
 import app.revanced.patches.twitch.chat.antidelete.fingerprints.SetHasModAccessFingerprint
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Show deleted messages",

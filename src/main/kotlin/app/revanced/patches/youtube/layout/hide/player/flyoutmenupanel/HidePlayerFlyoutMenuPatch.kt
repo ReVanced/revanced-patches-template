@@ -8,6 +8,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Player flyout menu",
@@ -107,12 +108,5 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
         SettingsResourcePatch.mergePatchStrings("HidePlayerFlyoutMenu")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
-    }
-
-    private companion object {
-        const val KEY = "revanced_hide_player_flyout"
-
-        const val FILTER_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
     }
 }

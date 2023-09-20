@@ -4,9 +4,7 @@ package app.revanced.util.resources
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
-import app.revanced.patches.shared.settings.resource.patch.AbstractSettingsResourcePatch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
-import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import org.w3c.dom.Node
 import java.io.File
 import java.nio.file.Files

@@ -12,7 +12,7 @@ import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFin
 import app.revanced.patches.twitch.ad.video.VideoAdsPatch
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.resource.patch.SettingsResourcePatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Block embedded ads",
