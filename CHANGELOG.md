@@ -1,3 +1,28 @@
+# [2.191.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.5...v2.191.0-dev.6) (2023-09-20)
+
+# [2.191.0-dev.5](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.4...v2.191.0-dev.5) (2023-09-19)
+
+
+### Bug Fixes
+
+* **YouTube:** Restore functionality of `Old video quality menu` and `Custom speeds` on tablets ([#2999](https://github.com/ReVanced/revanced-patches/issues/2999)) ([238bed1](https://github.com/ReVanced/revanced-patches/commit/238bed12519ec61a53b1ee72da467830ef252154))
+
+# [2.191.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.3...v2.191.0-dev.4) (2023-09-14)
+
+
+### Features
+
+* **Twitch - Block embedded ads:** Switch from `ttv.lol` to `luminous.dev` ([0fe115e](https://github.com/ReVanced/revanced-patches/commit/0fe115e8f98ccdc86d318090fc92fe77cece1dd8))
+
+# [2.191.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.2...v2.191.0-dev.3) (2023-09-14)
+
+
+### Features
+
+* **TU Dortmund:** Add `Show on lockscreen` patch ([#2947](https://github.com/ReVanced/revanced-patches/issues/2947)) ([9a18326](https://github.com/ReVanced/revanced-patches/commit/9a18326aeb68d7518594d0eab326ca845b9bdbdd))
+* **Tumblr:** Add `Disable blog notification reminder` patch ([29f19b9](https://github.com/ReVanced/revanced-patches/commit/29f19b9378c7e167137f38fa4517ae19382ca4f6))
+* **Tumblr:** Add `Disable gift message popup` patch ([a4d6b4e](https://github.com/ReVanced/revanced-patches/commit/a4d6b4e5ce6065d932f3895b4996e7dc1e5f7c67))
+
 # [2.191.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.1...v2.191.0-dev.2) (2023-09-11)
 
 
