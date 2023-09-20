@@ -1,25 +1,30 @@
-package app.revanced.patches.strava.upselling.patch
+package app.revanced.patches.strava.upselling
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.annotations.Patch
+import app.revanced.patcher.patch.annotation.CompatiblePackage
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.strava.annotations.StravaCompatibility
 import app.revanced.patches.strava.upselling.fingerprints.GetModulesFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 
-@Patch
-@Name("Hide upselling")
-@Description("Hides suggestions to subscribe.")
-@StravaCompatibility
-class HideUpsellingPatch : BytecodePatch(listOf(GetModulesFingerprint)) {
+@Patch(
+    name = "Disable subscription suggestions",
+    compatiblePackages = [CompatiblePackage("com.strava", ["320.12"])]
+)
+@Suppress("unused")
+object DisableSubscriptionSuggestionsPatch : BytecodePatch(
+    setOf(GetModulesFingerprint)
+) {
+    private const val HELPER_METHOD_NAME = "getModulesIfNotUpselling"
+    private const val PAGE_SUFFIX = "_upsell"
+    private const val LABEL = "original"
+
     override fun execute(context: BytecodeContext) = GetModulesFingerprint.result?.let { result ->
         val className = result.classDef.type
         val originalMethod = result.mutableMethod
@@ -64,10 +69,4 @@ class HideUpsellingPatch : BytecodePatch(listOf(GetModulesFingerprint)) {
             )
         }
     } ?: throw GetModulesFingerprint.exception
-
-    private companion object {
-        const val HELPER_METHOD_NAME = "getModulesIfNotUpselling"
-        const val PAGE_SUFFIX = "_upsell"
-        const val LABEL = "original"
-    }
 }

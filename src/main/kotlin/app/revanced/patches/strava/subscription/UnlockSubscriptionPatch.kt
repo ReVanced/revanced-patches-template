@@ -1,19 +1,16 @@
 package app.revanced.patches.strava.subscription
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.strava.annotations.StravaCompatibility
 import app.revanced.patches.strava.subscription.fingerprints.GetSubscribedFingerprint
 
 @Patch(
     name = "Unlock subscription features",
-    description = "Unlocks \"Routes\", \"Matched Runs\ and \"Segment Efforts\".",
+    description = "Unlocks \"Routes\", \"Matched Runs\" and \"Segment Efforts\".",
     compatiblePackages = [CompatiblePackage("com.strava", ["320.12"])]
 )
 @Suppress("unused")
