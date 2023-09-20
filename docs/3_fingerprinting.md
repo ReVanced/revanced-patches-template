@@ -46,7 +46,12 @@ The example fingerprint called `LoadAdsFingerprint` which extends on [`MethodFin
 
 ## 🚀 How it works
 
-Each attribute of the fingerprint is responsible to describe a specific but distinct part of the method. The combination out of those should be and ideally remain unique to all methods in all classes. In the case of the example fingerprint, the `customFingerprint` attribute is responsible to find the class the method is defined in. This greatly increases the uniqueness of the fingerprint, because now the possible methods reduce down to that class. Adding the signature of the method and a string the method implementation refers to in combination now creates a unique fingerprint in the current example:
+Each attribute of the fingerprint is responsible to describe a specific but distinct part of the method.
+The combination out of those should be and ideally remain unique to all methods in all classes.
+In the case of the example fingerprint, the `customFingerprint` attribute is responsible to find the class
+the method is defined in. This greatly increases the uniqueness of the fingerprint, because now the possible methods
+reduce down to that class. Adding the signature of the method and a string the method implementation refers to in
+combination now creates a unique fingerprint in the current example:
 
 - Package & class (Line 4)
 
@@ -74,18 +79,19 @@ Each attribute of the fingerprint is responsible to describe a specific but dist
 After creating a fingerprint, add it to the constructor of the `BytecodePatch`:
 
 ```kt
-class DisableAdsPatch : BytecodePatch(
-    listOf(LoadAdsFingerprint)
+object DisableAdsPatch : BytecodePatch(
+    setOf(LoadAdsFingerprint)
 ) { /* .. */ }
 ```
 
-ReVanced Patcher will try to [resolve the fingerprint](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63) **before** it calls the `execute` method of the patch.
+ReVanced Patcher will try to [resolve the fingerprint](https://github.com/ReVanced/revanced-patcher/blob/67b7dff67a212b4fc30eb4f0cbe58f0ba09fb09a/revanced-patcher/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L182)
+**before** it calls the `execute` method of the patch.
 
-The fingerprint can now be used in the patch by accessing [`MethodFingerprint.result`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L227):
+The fingerprint can now be used in the patch by accessing [`MethodFingerprint.result`](https://github.com/ReVanced/revanced-patcher/blob/67b7dff67a212b4fc30eb4f0cbe58f0ba09fb09a/revanced-patcher/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L44):
 
 ```kt
-class DisableAdsPatch : BytecodePatch(
-    listOf(LoadAdsFingerprint)
+object DisableAdsPatch : BytecodePatch(
+  setOf(LoadAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         val result = LoadAdsFingerprint.result
@@ -96,7 +102,10 @@ class DisableAdsPatch : BytecodePatch(
 }
 ```
 
-> **Note**: `MethodFingerprint.result` **can be null** if the fingerprint does not match any method. In such case, the fingerprint needs to be fixed and made more resilient if the error is caused by a later version of an app which the fingerprint was not tested on. A fingerprint is good, if it is _light_, but still resilient - like Carbon fiber-reinforced polymers.
+> **Note**: `MethodFingerprint.result` **can be null** if the fingerprint does not match any method.
+> In such case, the fingerprint needs to be fixed and made more resilient if the error is caused by a later version
+> of an app which the fingerprint was not tested on. A fingerprint is good, if it is _light_,
+> but still resilient - like Carbon fiber-reinforced polymers.
 
 If the fingerprint resolved to a method, the following properties are now available:
 
@@ -118,17 +127,23 @@ data class MethodFingerprintResult(
 
 ## 🏹 Different ways to resolve a fingerprint
 
-Usually, fingerprints are mostly resolved by the patcher, but it is also possible to manually resolve a fingerprint in a patch. This can be quite useful in lots of situations. To resolve a fingerprint you need a `BytecodeContext` to resolve it on. This context contains classes and thus methods to which the fingerprint can be resolved against. Example: _You have a fingerprint which you manually want to resolve **without** the help of the patcher._
+Usually, fingerprints are mostly resolved by ReVanced Patcher, but it is also possible to manually resolve a
+fingerprint in a patch. This can be quite useful in lots of situations. To resolve a fingerprint you need
+a `BytecodeContext` to resolve it on. This context contains classes and thus methods to which the fingerprint
+can be resolved against. Example: _You have a fingerprint which you manually want to resolve
+**without** the help of ReVanced Patcher._
 
-> **Note**: A fingerprint should not be added to the constructor of `BytecodePatch` if manual resolution is intended, because the patcher would try resolve it before manual resolution.
+> **Note**: A fingerprint should not be added to the constructor of `BytecodePatch` if manual resolution is intended,
+> because ReVanced Patcher would try resolve it before manual resolution.
 
-- On a **list of classes** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L49)
+- On a **list of classes** using [`MethodFingerprint.resolve`](https://github.com/ReVanced/revanced-patcher/blob/67b7dff67a212b4fc30eb4f0cbe58f0ba09fb09a/revanced-patcher/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L263)
 
-  This can be useful, if a fingerprint should be resolved to a smaller subset of classes, otherwise the fingerprint can be resolved by the patcher automatically.
+  This can be useful, if a fingerprint should be resolved to a smaller subset of classes, 
+  otherwise the fingerprint can be resolved by ReVanced Patcher automatically.
 
   ```kt
-  class DisableAdsPatch : BytecodePatch(
-      /* listOf(LoadAdsFingerprint) */
+  object DisableAdsPatch : BytecodePatch(
+      /* setOf(LoadAdsFingerprint) */
   ) {
       override fun execute(context: BytecodeContext) {
           val result = LoadAdsFingerprint.also { it.resolve(context, context.classes) }.result
@@ -141,11 +156,11 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
 
 - On a **single class** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L63)
 
-  Sometimes you know a class but you need certain methods. In such case, you can resolve fingerprints on a class.
+  Sometimes you know a class, but you need certain methods. In such case, you can resolve fingerprints on a class.
 
   ```kt
-   class DisableAdsPatch : BytecodePatch(
-      listOf(LoadAdsFingerprint)
+   object DisableAdsPatch : BytecodePatch(
+      setOf(LoadAdsFingerprint)
   ) {
       override fun execute(context: BytecodeContext) {
           val adsLoaderClass = context.classes.single { it.name == "Lcom/some/app/ads/Loader;" }
@@ -160,7 +175,12 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
 
 - On a **method** using [`MethodFingerprint.resolve`](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/fingerprint/method/impl/MethodFingerprint.kt#L78)
 
-  Resolving a fingerprint on a method is mostly only useful if the fingerprint is used to resolve certain information about a method such as `MethodFingerprintResult.scanResult`. Example: _A fingerprint should be used to resolve the method which loads ads. For that the fingerprint is added to the constructor of `BytecodePatch`. An additional fingerprint is responsible for finding the indices of the instructions with certain string references in the implementation of the method the first fingerprint resolved to._
+  Resolving a fingerprint on a method is mostly only useful
+  if the fingerprint is used to resolve certain information about a method such as `MethodFingerprintResult.scanResult`.
+  Example: _A fingerprint should be used to resolve the method which loads ads.
+  For that the fingerprint is added to the constructor of `BytecodePatch`.
+  An additional fingerprint is responsible for finding the indices of the instructions with certain string references
+  in the implementation of the method the first fingerprint resolved to._
 
   ```kt
   class DisableAdsPatch : BytecodePatch(
@@ -192,7 +212,8 @@ Usually, fingerprints are mostly resolved by the patcher, but it is also possibl
 
 ## 🎯 The result of a fingerprint
 
-After a `MethodFingerprint` resolves successfully, its result can be used. The result contains mutable and immutable references to the method and the class it is defined in.
+After a `MethodFingerprint` resolves successfully, its result can be used.
+The result contains mutable and immutable references to the method and the class it is defined in.
 
 > **Warning**: By default the immutable references **should be used** to prevent a mutable copy of the immutable references. For a patch to properly use a fingerprint though, usually write access is required. For that the mutable references can be used.
 
@@ -219,23 +240,30 @@ data class MethodFingerprintScanResult(
 
 The following properties are utilized by bytecode patches:
 
-- The `MethodFingerprint.strings` allows patches to know the indices of the instructions which hold references to the strings.
+- The `MethodFingerprint.strings` allows patches to know the indices of the instructions
+  which hold references to the strings.
 
-- If a fingerprint defines `MethodFingerprint.opcodes`, the start and end index of the first instructions matching that pattern will be available. These are useful to patch the implementation of methods relative to the pattern. Ideally the pattern contains the instructions opcodes pattern which is to be patched, in order to guarantee a successfull patch.
+- If a fingerprint defines `MethodFingerprint.opcodes`, the start and end index of the first instructions
+  matching that pattern will be available. These are useful to patch the implementation of methods
+  relative to the pattern. Ideally the pattern contains the instructions opcodes pattern
+  which is to be patched, in order to guarantee a successfull patch.
 
-  > **Note**: Sometimes long patterns might be necessary, but the bigger the pattern list, the higher the chance it mutates if the app updates. For that reason the annotation `FuzzyPatternScanMethod` can be used on a fingerprint. The `FuzzyPatternScanMethod.threshold` will define, how many opcodes can remain unmatched. `PatternScanResult.warnings` can then be used, if is necessary to know where pattern missmatches occured.
+  > **Note**: Sometimes long patterns might be necessary, but the bigger the pattern list, the higher the chance
+  it mutates if the app updates. For that reason the annotation `FuzzyPatternScanMethod` can be used
+  on a fingerprint. The `FuzzyPatternScanMethod.threshold` will define, how many opcodes can remain unmatched.
+  `PatternScanResult.warnings` can then be used, if is necessary to know where pattern missmatches occured.
 
 ## ⭐ Closely related code examples
 
 ### 🧩 Patches
 
-- [CommentsPatch](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/layout/comments/bytecode/patch/CommentsPatch.kt)
-- [MusicVideoAdsPatch](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/music/ad/video/patch/MusicVideoAdsPatch.kt)
+- [`VideoAdsPatch`](/https://github.com/ReVanced/revanced-patches/blob/7c431c867d62f024855bb07f0723dbbf0af034ae/src/main/kotlin/app/revanced/patches/twitch/ad/video/VideoAdsPatch.kt)
+- [`RememberVideoQualityPatch`](https://github.com/ReVanced/revanced-patches/blob/7c431c867d62f024855bb07f0723dbbf0af034ae/src/main/kotlin/app/revanced/patches/youtube/video/quality/RememberVideoQualityPatch.kt)
 
 ### 🔍 Fingerprints
 
-- [LoadVideoAdsFingerprint](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
-- [SeekbarTappingParentFingerprint](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
+- [`LoadVideoAdsFingerprint`](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/ad/video/fingerprints/LoadVideoAdsFingerprint.kt)
+- [`SeekbarTappingParentFingerprint`](https://github.com/revanced/revanced-patches/blob/2d10caffad3619791a0c3a670002a47051d4731e/src/main/kotlin/app/revanced/patches/youtube/interaction/seekbar/fingerprints/SeekbarTappingParentFingerprint.kt)
 
 ## ⏭️ Whats next
 
