@@ -4,12 +4,11 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.youtube.misc.recyclerviewtree.hook.patch.RecyclerViewTreeHookPatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.misc.bottomsheet.hook.BottomSheetHookPatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
+import app.revanced.patches.youtube.misc.recyclerviewtree.hook.RecyclerViewTreeHookPatch
 import app.revanced.patches.youtube.video.videoqualitymenu.fingerprints.VideoQualityMenuViewInflateFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -20,7 +19,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         IntegrationsPatch::class,
         OldVideoQualityMenuResourcePatch::class,
         LithoFilterPatch::class,
-        BottomSheetHookPatch::class,
         RecyclerViewTreeHookPatch::class
     ],
     compatiblePackages = [
