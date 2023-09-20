@@ -15,7 +15,6 @@ import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-
 @Patch(
     name = "Hide Suggestions shelf",
     description = "Hides suggestions shelf on the homepage tab.",
@@ -31,11 +30,14 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "18.32.39"
             ]
         )
-    ]
+    ],
+    requiresIntegrations = true
 )
-class SuggestionsShelfPatch : BytecodePatch(
+object HideShortsComponentsPatch : BytecodePatch(
     setOf(BreakingNewsFingerprint)
 ) {
+    const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/SuggestionsShelfFilter;"
+
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
@@ -66,7 +68,4 @@ class SuggestionsShelfPatch : BytecodePatch(
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }
 
-    private companion object {
-        const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/SuggestionsShelfFilter;"
-    }
 }
