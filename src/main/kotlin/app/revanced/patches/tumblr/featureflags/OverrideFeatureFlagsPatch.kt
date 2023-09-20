@@ -1,15 +1,12 @@
-package app.revanced.patches.tumblr.featureflags.patch
+package app.revanced.patches.tumblr.featureflags
 
 import app.revanced.extensions.exception
-import app.revanced.patcher.annotation.Compatibility
-import app.revanced.patcher.annotation.Description
-import app.revanced.patcher.annotation.Name
-import app.revanced.patcher.annotation.Package
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.tumblr.featureflags.fingerprints.GetFeatureValueFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -17,12 +14,19 @@ import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
-@Name("Override feature flags")
-@Description("Forcibly set the value of A/B testing features of your choice.")
-@Compatibility([Package("com.tumblr")])
-class OverrideFeatureFlagsPatch : BytecodePatch(
-    listOf(GetFeatureValueFingerprint)
+@Patch(description = "Forcibly set the value of A/B testing features of your choice.")
+object OverrideFeatureFlagsPatch : BytecodePatch(
+    setOf(GetFeatureValueFingerprint)
 ) {
+    /**
+     * Override a feature flag with a value.
+     *
+     * @param name The name of the feature flag to override.
+     * @param value The value to override the feature flag with.
+     */
+    @Suppress("KDocUnresolvedReference")
+    internal lateinit var addOverride: (name: String, value: String) -> Unit private set
+
     override fun execute(context: BytecodeContext) = GetFeatureValueFingerprint.result?.let {
         // The method we want to inject into does not have enough registers, so we inject a helper method
         // and inject more instructions into it later, see addOverride.
@@ -109,15 +113,4 @@ class OverrideFeatureFlagsPatch : BytecodePatch(
             )
         }
     } ?: throw GetFeatureValueFingerprint.exception
-
-    companion object {
-        /**
-         * Override a feature flag with a value.
-         *
-         * @param name The name of the feature flag to override.
-         * @param value The value to override the feature flag with.
-         */
-        @Suppress("KDocUnresolvedReference")
-        internal lateinit var addOverride: (name: String, value: String) -> Unit private set
-    }
 }
