@@ -1,3 +1,27 @@
+# [2.191.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.5...v2.191.0-dev.6) (2023-09-20)
+
+
+### Features
+
+* **Tumblr:** Add `Disable Tumblr Live` patch ([#2987](https://github.com/ReVanced/revanced-patches/issues/2987)) ([bf1f9dc](https://github.com/ReVanced/revanced-patches/commit/bf1f9dc799705679d17973e689165ab1bff327cd))
+* **YouTube - Spoof app version:** add version 18.20.39 ([#3001](https://github.com/ReVanced/revanced-patches/issues/3001)) ([f14c5e7](https://github.com/ReVanced/revanced-patches/commit/f14c5e79792f62fb060dd0eebbd3dd7157a08a98))
+
+# [2.191.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.5...v2.191.0-dev.6) (2023-09-20)
+
+
+### Features
+
+* **Tumblr:** Add `Disable Tumblr Live` patch ([#2987](https://github.com/ReVanced/revanced-patches/issues/2987)) ([bf1f9dc](https://github.com/ReVanced/revanced-patches/commit/bf1f9dc799705679d17973e689165ab1bff327cd))
+
+# [2.191.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.5...v2.191.0-dev.6) (2023-09-20)
+
+# [2.191.0-dev.5](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.4...v2.191.0-dev.5) (2023-09-19)
+
+
+### Bug Fixes
+
+* **YouTube:** Restore functionality of `Old video quality menu` and `Custom speeds` on tablets ([#2999](https://github.com/ReVanced/revanced-patches/issues/2999)) ([238bed1](https://github.com/ReVanced/revanced-patches/commit/238bed12519ec61a53b1ee72da467830ef252154))
+
 # [2.191.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.3...v2.191.0-dev.4) (2023-09-14)
 
 
