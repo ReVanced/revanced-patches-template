@@ -4,6 +4,7 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patches.youtube.misc.recyclerviewtree.hook.patch.RecyclerViewTreeHookPatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.misc.bottomsheet.hook.BottomSheetHookPatch
@@ -19,7 +20,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         IntegrationsPatch::class,
         OldVideoQualityMenuResourcePatch::class,
         LithoFilterPatch::class,
-        BottomSheetHookPatch::class
+        BottomSheetHookPatch::class,
+        RecyclerViewTreeHookPatch::class
     ],
     compatiblePackages = [
         CompatiblePackage(
@@ -45,6 +47,7 @@ object OldVideoQualityMenuPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
         // region Patch for the old type of the video quality menu.
+        // Only used when spoofing to old app version.
 
         VideoQualityMenuViewInflateFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -64,7 +67,7 @@ object OldVideoQualityMenuPatch : BytecodePatch(
 
         // region Patch for the new type of the video quality menu.
 
-        BottomSheetHookPatch.addHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+        RecyclerViewTreeHookPatch.addHook(INTEGRATIONS_CLASS_DESCRIPTOR)
 
         // Required to check if the video quality menu is currently shown in order to click on the "Advanced" item.
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
