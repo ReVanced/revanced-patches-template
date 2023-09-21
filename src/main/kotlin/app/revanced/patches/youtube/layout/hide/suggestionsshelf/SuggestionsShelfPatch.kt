@@ -19,6 +19,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     name = "Hide Suggestions shelf",
     description = "Hides suggestions shelf on the homepage tab.",
     dependencies = [
+        SettingsPatch::class,
         LithoFilterPatch::class,
         NavBarIndexHookPatch::class,
         SuggestionsShelfResourcePatch::class
@@ -30,10 +31,10 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "18.32.39"
             ]
         )
-    ],
-    requiresIntegrations = true
+    ]
 )
-object HideShortsComponentsPatch : BytecodePatch(
+@Suppress("unused")
+object SuggestionsShelfPatch : BytecodePatch(
     setOf(BreakingNewsFingerprint)
 ) {
     const val FILTER_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/components/SuggestionsShelfFilter;"
@@ -48,6 +49,9 @@ object HideShortsComponentsPatch : BytecodePatch(
             )
         )
 
+        /**
+         * Old breaking news shelf UI patch.  Used only for tablets.
+         */
         BreakingNewsFingerprint.result?.let {
             val insertIndex = it.scanResult.patternScanResult!!.endIndex - 1
             val moveResultIndex = insertIndex - 1

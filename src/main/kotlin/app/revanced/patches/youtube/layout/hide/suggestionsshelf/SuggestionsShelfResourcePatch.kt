@@ -4,9 +4,8 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
-import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
-@Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
+@Patch(dependencies = [ResourceMappingPatch::class])
 object SuggestionsShelfResourcePatch: ResourcePatch() {
     internal var horizontalCardListId = -1L
 
