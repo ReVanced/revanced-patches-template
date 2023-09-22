@@ -12,9 +12,9 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
+import app.revanced.patches.youtube.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.youtube.shared.fingerprints.SeekbarFingerprint
-import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
+import app.revanced.patches.youtube.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.youtube.layout.sponsorblock.fingerprints.AppendTimeFingerprint
 import app.revanced.patches.youtube.layout.sponsorblock.fingerprints.ControlsOverlayFingerprint

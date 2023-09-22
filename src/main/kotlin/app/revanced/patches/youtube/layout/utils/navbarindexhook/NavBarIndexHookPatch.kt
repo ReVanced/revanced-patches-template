@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.utils.navbarindexhook.patch
+package app.revanced.patches.youtube.layout.utils.navbarindexhook
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
@@ -6,9 +6,10 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.MobileTopBarButtonOnClickFingerprint
 import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.NavButtonOnClickFingerprint
+import app.revanced.patches.youtube.layout.utils.navbarindexhook.fingerprints.SettingsActivityOnBackPressedFingerprint
+import app.revanced.patches.youtube.shared.fingerprints.WatchWhileActivityOnBackPressedFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -17,7 +18,8 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 object NavBarIndexHookPatch : BytecodePatch(
     setOf(
         NavButtonOnClickFingerprint,
-        OnBackPressedFingerprint,
+        SettingsActivityOnBackPressedFingerprint,
+        WatchWhileActivityOnBackPressedFingerprint,
         MobileTopBarButtonOnClickFingerprint
     )
 ) {
@@ -45,15 +47,21 @@ object NavBarIndexHookPatch : BytecodePatch(
 
         /**
          *  Set NavBar index to last index on back press
+         *
+         *  When we open Settings Activity from Library tab, NavBar index will be zero,
+         *  so we call *setLastNavBarIndex* method on back press to fix the index
          */
-        OnBackPressedFingerprint.result?.let {
+        arrayOf(
+            WatchWhileActivityOnBackPressedFingerprint,
+            SettingsActivityOnBackPressedFingerprint
+        ).map { it.result ?: throw it.exception }.forEach {
             it.mutableMethod.apply {
                 addInstruction(
                     0,
                     "invoke-static {}, $INTEGRATIONS_CLASS_DESCRIPTOR->setLastNavBarIndex()V"
                 )
             }
-        } ?: throw OnBackPressedFingerprint.exception
+        }
 
         /**
          * Set Navbar index to zero on clicking MobileTopBarButton (May be you want to switch to Incognito mode while in Library Tab)
@@ -66,38 +74,6 @@ object NavBarIndexHookPatch : BytecodePatch(
                      invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setCurrentNavBarIndex(I)V
                 """
             )
-        }
-
-        /**
-         * Initialize NavBar Index
-         */
-        context.initializeNavBarIndex(INTEGRATIONS_CLASS_DESCRIPTOR, "initializeIndex")
-    }
-
-
-    /**
-     * Initialize NavBar Index while creating WatchWhileActivity.
-     *
-     * @param classDescriptor target class for initializing the NavBar index.
-     * @param methodDescriptor target method for initializing the NavBar index.
-     */
-    private fun BytecodeContext.initializeNavBarIndex(
-        classDescriptor: String,
-        methodDescriptor: String
-    ) {
-        this.classes.forEach { classDef ->
-            if (classDef.type.endsWith("/WatchWhileActivity;")) {
-                val onCreateMethod = classDef.methods.single { it.name == "onCreate" }
-
-                onCreateMethod.apply {
-                    proxy(classDef).mutableClass.methods.first { it.name == "onCreate" }.also {
-                        it.addInstruction(
-                            2,
-                            "invoke-static/range {p0 .. p0}, $classDescriptor->$methodDescriptor(Landroid/content/Context;)V"
-                        )
-                    }
-                }
-            }
         }
     }
 }

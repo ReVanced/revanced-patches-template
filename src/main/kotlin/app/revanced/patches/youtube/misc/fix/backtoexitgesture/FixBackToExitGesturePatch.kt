@@ -7,7 +7,7 @@ import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.fingerprints.OnBackPressedFingerprint
+import app.revanced.patches.youtube.shared.fingerprints.WatchWhileActivityOnBackPressedFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewScrollingFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingFingerprint
 import app.revanced.patches.youtube.misc.fix.backtoexitgesture.fingerprints.RecyclerViewTopScrollingParentFingerprint
@@ -18,7 +18,7 @@ object FixBackToExitGesturePatch : BytecodePatch(
     setOf(
         RecyclerViewTopScrollingParentFingerprint,
         RecyclerViewScrollingFingerprint,
-        OnBackPressedFingerprint
+        WatchWhileActivityOnBackPressedFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
@@ -37,7 +37,7 @@ object FixBackToExitGesturePatch : BytecodePatch(
             RecyclerViewScrollingFingerprint to IntegrationsMethod(
                 methodName = "onScrollingViews"
             ),
-            OnBackPressedFingerprint to IntegrationsMethod(
+            WatchWhileActivityOnBackPressedFingerprint to IntegrationsMethod(
                 "p0", "onBackPressed", "Lcom/google/android/apps/youtube/app/watchwhile/WatchWhileActivity;"
             )
         ).forEach { (fingerprint, target) -> fingerprint.injectCall(target) }
