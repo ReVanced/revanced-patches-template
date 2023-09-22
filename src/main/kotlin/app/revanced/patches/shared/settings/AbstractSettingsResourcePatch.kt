@@ -51,7 +51,7 @@ abstract class AbstractSettingsResourcePatch(
         revancedPreferencesEditor = context.xmlEditor["res/xml/$preferenceFileName.xml"]
     }
 
-    internal companion object {
+    companion object {
         private var revancedPreferenceNode: Node? = null
         private var stringsNode: Node? = null
         private var arraysNode: Node? = null
