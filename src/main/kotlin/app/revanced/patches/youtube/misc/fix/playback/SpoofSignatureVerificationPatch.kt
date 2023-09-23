@@ -49,7 +49,7 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
                 addInstructions(
                     0,
                     """
-                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideProtobufParameter(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object p$protobufParameterRegister
                     """
                 )
@@ -98,7 +98,7 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                         iget-object v0, p0, $imageViewFieldName   # copy imageview field to a register
                         invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->seekbarImageViewCreated(Landroid/widget/ImageView;)V
-                """
+                    """
                 )
             }
         } ?: throw ScrubbedPreviewLayoutFingerprint.exception
