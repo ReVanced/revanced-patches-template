@@ -18,14 +18,14 @@ import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
-    description = "Spoofs the client to prevent playback issues.",
+    description = "Spoofs the signature to prevent playback issues.",
     dependencies = [
-        SpoofSignatureVerificationResourcePatch::class,
+        SpoofSignatureResourcePatch::class,
         IntegrationsPatch::class,
         PlayerTypeHookPatch::class
     ]
 )
-object SpoofSignatureVerificationPatch : BytecodePatch(
+object SpoofSignaturePatch : BytecodePatch(
     setOf(
         ProtobufParameterBuilderFingerprint,
         StoryboardThumbnailParentFingerprint,
@@ -33,10 +33,9 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
+        "Lapp/revanced/integrations/patches/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
-
         // hook parameter
         ProtobufParameterBuilderFingerprint.result?.let {
             val setParamMethod = context

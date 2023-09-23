@@ -10,7 +10,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
-object SpoofSignatureVerificationResourcePatch : ResourcePatch() {
+object SpoofSignatureResourcePatch : ResourcePatch() {
     internal var scrubbedPreviewThumbnailResourceId: Long = -1
 
     override fun execute(context: ResourceContext) {
