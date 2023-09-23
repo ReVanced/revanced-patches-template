@@ -11,7 +11,7 @@ import app.revanced.patches.tumblr.timelinefilter.fingerprints.PostsResponseCons
 import app.revanced.patches.tumblr.timelinefilter.fingerprints.TimelineConstructorFingerprint
 import app.revanced.patches.tumblr.timelinefilter.fingerprints.TimelineFilterIntegrationFingerprint
 
-@Patch(description = "Filter what will be shown in the timeline.", requiresIntegrations = true)
+@Patch(description = "Filter timeline objects.", requiresIntegrations = true)
 object TimelineFilterPatch : BytecodePatch(
     setOf(TimelineConstructorFingerprint, TimelineFilterIntegrationFingerprint, PostsResponseConstructorFingerprint)
 ) {
@@ -20,28 +20,28 @@ object TimelineFilterPatch : BytecodePatch(
      * The list of all Timeline object types is found in the TimelineObjectType class,
      * where they are mapped from their api name (returned by tumblr via the HTTP API) to the enum value name.
      *
-     * @param typename The enum name of the timeline object type to hide.
+     * @param typeName The enum name of the timeline object type to hide.
      */
     @Suppress("KDocUnresolvedReference")
-    internal lateinit var addObjectTypeFilter: (typename: String) -> Unit private set
+    internal lateinit var addObjectTypeFilter: (typeName: String) -> Unit private set
 
     override fun execute(context: BytecodeContext) {
 
         TimelineFilterIntegrationFingerprint.result?.let { integration ->
-            val startIndex = integration.scanResult.patternScanResult!!.startIndex
+            val filterInsertIndex = integration.scanResult.patternScanResult!!.startIndex
 
             integration.mutableMethod.apply {
                 // Remove "BLOCKED_OBJECT_DUMMY" object type filter
-                removeInstructions(startIndex, 5)
+                removeInstructions(filterInsertIndex, 5)
 
-                addObjectTypeFilter = { typename ->
+                addObjectTypeFilter = { typeName ->
                     // It's too much of a pain to find the register numbers manually, so this will just have to be
                     // updated if the Timeline Filter integration changes
                     // The java equivalent of this is
                     //   if ("BLOCKED_OBJECT_DUMMY".equals(elementType)) iterator.remove();
                     addInstructionsWithLabels(
-                        startIndex, """
-                            const-string v1, "$typename"
+                        filterInsertIndex, """
+                            const-string v1, "$typeName"
                             invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
                             move-result v1
                             if-eqz v1, :dont_remove
@@ -55,14 +55,12 @@ object TimelineFilterPatch : BytecodePatch(
         } ?: throw TimelineFilterIntegrationFingerprint.exception
 
         TimelineConstructorFingerprint.result?.mutableMethod?.addInstructions(
-            0, """
-                    invoke-static {p1}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V
-                """
+            0,
+            "invoke-static {p1}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V"
         ) ?: throw TimelineConstructorFingerprint.exception
         PostsResponseConstructorFingerprint.result?.mutableMethod?.addInstructions(
-            0, """
-                    invoke-static {p2}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V
-                """
+            0,
+            "invoke-static {p2}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V"
         ) ?: throw PostsResponseConstructorFingerprint.exception
     }
 }

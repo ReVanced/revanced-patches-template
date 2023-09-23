@@ -15,26 +15,23 @@ import app.revanced.patches.tumblr.timelinefilter.TimelineFilterPatch
 @Suppress("unused")
 object DisableDashboardAds : BytecodePatch() {
     override fun execute(context: BytecodeContext)  {
-        // Called "client_side_ad_waterfall" in api response
-        TimelineFilterPatch.addObjectTypeFilter("CLIENT_SIDE_MEDIATION")
-        // Called "backfill_ad" in api response
-        TimelineFilterPatch.addObjectTypeFilter("GEMINI_AD")
+        // The timeline object types are filtered by their name in the TimelineObjectType enum.
+        // This is often different from the "object_type" returned in the api (noted in comments here)
+        arrayOf(
+            "CLIENT_SIDE_MEDIATION", // "client_side_ad_waterfall"
+            "GEMINI_AD", // "backfill_ad"
 
-        // The below object types weren't actually spotted in the wild in testing, but they are valid Object types
-        // and their names clearly indicate that they are ads, so we just block them anyway,
-        // just in case they will be used in the future.
-
-        // Called "nimbus_ad" in api response
-        TimelineFilterPatch.addObjectTypeFilter("NIMBUS_AD")
-        // Called "client_side_ad" in api response
-        TimelineFilterPatch.addObjectTypeFilter("CLIENT_SIDE_AD")
-        // Called "display_io_interscroller" in api response
-        TimelineFilterPatch.addObjectTypeFilter("DISPLAY_IO_INTERSCROLLER_AD")
-        // Called "display_io_headline_video" in api response
-        TimelineFilterPatch.addObjectTypeFilter("DISPLAY_IO_HEADLINE_VIDEO_AD")
-        // Called "facebook_biddable_sdk_ad" in api response
-        TimelineFilterPatch.addObjectTypeFilter("FACEBOOK_BIDDAABLE")
-        // Called "google_native_ad" in api response
-        TimelineFilterPatch.addObjectTypeFilter("GOOGLE_NATIVE")
+            // The below object types weren't actually spotted in the wild in testing, but they are valid Object types
+            // and their names clearly indicate that they are ads, so we just block them anyway,
+            // just in case they will be used in the future.
+            "NIMBUS_AD", // "nimbus_ad"
+            "CLIENT_SIDE_AD", // "client_side_ad"
+            "DISPLAY_IO_INTERSCROLLER_AD", // "display_io_interscroller"
+            "DISPLAY_IO_HEADLINE_VIDEO_AD", // "display_io_headline_video"
+            "FACEBOOK_BIDDAABLE", // "facebook_biddable_sdk_ad"
+            "GOOGLE_NATIVE" // "google_native_ad"
+        ).forEach {
+            TimelineFilterPatch.addObjectTypeFilter(it)
+        }
     }
 }
