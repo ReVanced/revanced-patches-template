@@ -1,6 +1,8 @@
 plugins {
     kotlin("jvm") version "1.8.20"
     alias(libs.plugins.ksp)
+    `maven-publish`
+    signing
 }
 
 group = "app.revanced"
@@ -21,6 +23,64 @@ repositories {
         url = uri("https://repo.sleeping.town")
         content {
             includeGroup("com.unascribed")
+        }
+    }
+}
+
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications)
+}
+
+val isDev = project.version.toString().contains("-dev")
+
+publishing {
+    repositories {
+        mavenLocal()
+        maven {
+              url = if (isDev)
+                uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            else
+                uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+
+            credentials {
+                 username = (System.getenv("OSSRH_USERNAME") ?: "").toString()
+                password = (System.getenv("OSSRH_PASSWORD") ?: "").toString()
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("gpr") {
+            from(components["java"])
+
+            version = project.version.toString()
+            if (isDev) version += "-SNAPSHOT"
+
+            pom {
+                name = "ReVanced Patches"
+                description = "Patches used by ReVanced."
+                url = "https://revanced.app"
+
+                licenses {
+                    license {
+                        name = "GNU General Public License v3.0"
+                        url = "https://www.gnu.org/licenses/gpl-3.0.en.html"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "ExpanseCodes"
+                        name = "ExpanseCodes"
+                        email = "contact@revanced.app"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/ExpanseCodes/revanced-patches.git"
+                    developerConnection = "scm:git:git@github.com:ExpanseCodes/revanced-patches.git"
+                    url = "https://github.com/ExpanseCodes/revanced-patches"
+                }
+            }
         }
     }
 }
