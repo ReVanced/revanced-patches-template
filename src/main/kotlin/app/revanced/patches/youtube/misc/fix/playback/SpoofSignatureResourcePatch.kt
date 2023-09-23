@@ -31,7 +31,7 @@ object SpoofSignatureResourcePatch : ResourcePatch() {
                                     + "Side effects include:\\n"
                                     + "• No ambient mode\\n"
                                     + "• Videos can't be downloaded\\n"
-                                    + "• Seekbar thumbnails not showing up"
+                                    + "• Seekbar thumbnails are hidden"
                         ),
                         StringResource(
                             "revanced_spoof_signature_verification_enabled_summary_off",
@@ -48,15 +48,14 @@ object SpoofSignatureResourcePatch : ResourcePatch() {
                         StringResource(
                             "revanced_spoof_signature_in_feed_enabled_summary_on",
                             "App signature spoofed\\n\\n"
-                                    + "Automatically played videos in feed will forcibly be recorded in watch history"
+                                    + "Side effects include:\\n"
+                                    + "• Feed videos are missing subtitles\\n"
+                                    + "• Automatically played feed videos will show up in your watch history"
                         ),
                         StringResource(
                             "revanced_spoof_signature_in_feed_enabled_summary_off",
-                            "App signature not spoofed\\n\\nVideo playback in feed may not work"
-                        ),
-                        StringResource(
-                            "revanced_spoof_signature_in_feed_enabled_user_dialog_message",
-                            "Turning off this setting will cause video playback issues."
+                            "App signature not spoofed for feed videos\n\n"
+                                    + "Feed videos will play for less than 1 minute before encountering playback issues"
                         )
                     )
                 )
