@@ -5,24 +5,36 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patcher.patch.options.types.BooleanPatchOption.Companion.booleanPatchOption
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import kotlin.io.path.exists
 
 @Patch(
     name = "Premium heading",
-    description = "Shows premium branding on the home screen.",
+    description = "Controls premium heading shown on the home screen. Shows premium heading by default.",
     compatiblePackages = [
         CompatiblePackage("com.google.android.youtube")
     ]
 )
 @Suppress("unused")
 object PremiumHeadingPatch : ResourcePatch() {
+    private const val DEFAULT_HEADING_RES = "yt_wordmark_header"
+    private const val PREMIUM_HEADING_RES = "yt_premium_wordmark_header"
+
+    private val useDefaultHeading by booleanPatchOption(
+        key = "useDefaultHeading",
+        default = false,
+        title = "Use default heading",
+        description = "Whether to use the default heading instead of the premium one."
+    )
+
     override fun execute(context: ResourceContext) {
         val resDirectory = context["res"]
         if (!resDirectory.isDirectory) throw PatchException("The res folder can not be found.")
 
-        val (original, replacement) = "yt_premium_wordmark_header" to "yt_wordmark_header"
+        val (original, replacement) = if (useDefaultHeading != true) PREMIUM_HEADING_RES to DEFAULT_HEADING_RES
+        else DEFAULT_HEADING_RES to PREMIUM_HEADING_RES
         val modes = arrayOf("light", "dark")
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
