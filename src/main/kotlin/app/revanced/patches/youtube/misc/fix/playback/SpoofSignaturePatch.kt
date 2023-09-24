@@ -19,15 +19,15 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
-    description = "Spoofs the client to prevent playback issues.",
+    description = "Spoofs the signature to prevent playback issues.",
     dependencies = [
-        SpoofSignatureVerificationResourcePatch::class,
+        SpoofSignatureResourcePatch::class,
         IntegrationsPatch::class,
         SettingsPatch::class,
     PlayerTypeHookPatch::class,
     ]
 )
-object SpoofSignatureVerificationPatch : BytecodePatch(
+object SpoofSignaturePatch : BytecodePatch(
     setOf(
         ProtobufParameterBuilderFingerprint,
         StoryboardThumbnailParentFingerprint,
@@ -35,7 +35,7 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "Lapp/revanced/integrations/patches/SpoofSignatureVerificationPatch;"
+        "Lapp/revanced/integrations/patches/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
         // hook parameter
@@ -50,7 +50,7 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
                 addInstructions(
                     0,
                     """
-                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->overrideProtobufParameter(Ljava/lang/String;)Ljava/lang/String;
+                        invoke-static {p$protobufParameterRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object p$protobufParameterRegister
                     """
                 )
@@ -99,7 +99,7 @@ object SpoofSignatureVerificationPatch : BytecodePatch(
                     """
                         iget-object v0, p0, $imageViewFieldName   # copy imageview field to a register
                         invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->seekbarImageViewCreated(Landroid/widget/ImageView;)V
-                """
+                    """
                 )
             }
         } ?: throw ScrubbedPreviewLayoutFingerprint.exception
