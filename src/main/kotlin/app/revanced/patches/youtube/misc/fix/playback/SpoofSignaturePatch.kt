@@ -14,14 +14,9 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ProtobufParameterBuilderFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererSpecFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -43,6 +38,54 @@ object SpoofSignaturePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsPatch.PreferenceScreen.MISC.addPreferences(
+            PreferenceScreen(
+                key = "revanced_spoof_signature_verification",
+                title = StringResource(
+                    "revanced_spoof_signature_verification_title",
+                    "Spoof app signature"
+                ),
+                preferences = listOf(
+                    SwitchPreference(
+                        "revanced_spoof_signature_verification_enabled",
+                        StringResource("revanced_spoof_signature_verification_enabled_title", "Spoof app signature"),
+                        StringResource(
+                            "revanced_spoof_signature_verification_enabled_summary_on",
+                            "App signature spoofed\\n\\n"
+                                    + "Side effects include:\\n"
+                                    + "• No ambient mode\\n"
+                                    + "• Videos cannot be downloaded\\n"
+                                    + "• Low quality seekbar thumbnails"
+                        ),
+                        StringResource(
+                            "revanced_spoof_signature_verification_enabled_summary_off",
+                            "App signature not spoofed\\n\\nVideo playback may not work"
+                        ),
+                        StringResource(
+                            "revanced_spoof_signature_verification_enabled_user_dialog_message",
+                            "Turning off this setting will cause video playback issues."
+                        )
+                    ),
+                    SwitchPreference(
+                        "revanced_spoof_signature_in_feed_enabled",
+                        StringResource("revanced_spoof_signature_in_feed_enabled_title", "Spoof app signature in feed"),
+                        StringResource(
+                            "revanced_spoof_signature_in_feed_enabled_summary_on",
+                            "App signature spoofed\\n\\n"
+                                    + "Side effects include:\\n"
+                                    + "• Feed videos are missing subtitles\\n"
+                                    + "• Automatically played feed videos will show up in your watch history"
+                        ),
+                        StringResource(
+                            "revanced_spoof_signature_in_feed_enabled_summary_off",
+                            "App signature not spoofed for feed videos\n\n"
+                                    + "Feed videos will play for less than 1 minute before encountering playback issues"
+                        )
+                    )
+                )
+            )
+        )
+
         // Hook parameter.
         ProtobufParameterBuilderFingerprint.result?.let {
             val setParamMethod = context
@@ -128,53 +171,5 @@ object SpoofSignaturePatch : BytecodePatch(
                 )
             }
         } ?: throw StoryboardRendererSpecFingerprint.exception
-
-        SettingsPatch.PreferenceScreen.MISC.addPreferences(
-            PreferenceScreen(
-                key = "revanced_spoof_signature_verification",
-                title = StringResource(
-                    "revanced_spoof_signature_verification_title",
-                    "Spoof app signature"
-                ),
-                preferences = listOf(
-                    SwitchPreference(
-                        "revanced_spoof_signature_verification_enabled",
-                        StringResource("revanced_spoof_signature_verification_enabled_title", "Spoof app signature"),
-                        StringResource(
-                            "revanced_spoof_signature_verification_enabled_summary_on",
-                            "App signature spoofed\\n\\n"
-                                    + "Side effects include:\\n"
-                                    + "• No ambient mode\\n"
-                                    + "• Videos cannot be downloaded\\n"
-                                    + "• Low quality seekbar thumbnails"
-                        ),
-                        StringResource(
-                            "revanced_spoof_signature_verification_enabled_summary_off",
-                            "App signature not spoofed\\n\\nVideo playback may not work"
-                        ),
-                        StringResource(
-                            "revanced_spoof_signature_verification_enabled_user_dialog_message",
-                            "Turning off this setting will cause video playback issues."
-                        )
-                    ),
-                    SwitchPreference(
-                        "revanced_spoof_signature_in_feed_enabled",
-                        StringResource("revanced_spoof_signature_in_feed_enabled_title", "Spoof app signature in feed"),
-                        StringResource(
-                            "revanced_spoof_signature_in_feed_enabled_summary_on",
-                            "App signature spoofed\\n\\n"
-                                    + "Side effects include:\\n"
-                                    + "• Feed videos are missing subtitles\\n"
-                                    + "• Automatically played feed videos will show up in your watch history"
-                        ),
-                        StringResource(
-                            "revanced_spoof_signature_in_feed_enabled_summary_off",
-                            "App signature not spoofed for feed videos\n\n"
-                                    + "Feed videos will play for less than 1 minute before encountering playback issues"
-                        )
-                    )
-                )
-            )
-        )
     }
 }
