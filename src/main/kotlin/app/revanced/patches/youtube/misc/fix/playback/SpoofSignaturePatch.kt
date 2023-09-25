@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThu
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.video.videoid.VideoIdPatch
+import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -27,7 +27,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     dependencies = [
         SettingsPatch::class,
         PlayerTypeHookPatch::class,
-        VideoIdPatch::class
+        PlayerResponseMethodHookPatch::class
     ]
 )
 object SpoofSignaturePatch : BytecodePatch(
@@ -90,7 +90,7 @@ object SpoofSignaturePatch : BytecodePatch(
         )
 
         // Hook the player parameters.
-        VideoIdPatch.injectProtoBufferHook("$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;")
+        PlayerResponseMethodHookPatch.injectProtoBufferHook("$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;")
 
         // Force the seekbar thumbnails to show up.
         // This is only required to show the seekbar time and chapters

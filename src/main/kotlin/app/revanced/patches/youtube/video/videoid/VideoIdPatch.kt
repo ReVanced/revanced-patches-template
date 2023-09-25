@@ -3,44 +3,28 @@ package app.revanced.patches.youtube.video.videoid
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.misc.fix.playback.SpoofSignaturePatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
-import app.revanced.patches.youtube.video.videoid.fingerprint.PlayerParameterBuilderFingerprint
+import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprint
 import app.revanced.patches.youtube.video.videoid.fingerprint.VideoIdFingerprintBackgroundPlay
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     description = "Hooks to detect when the video id changes",
-    dependencies = [IntegrationsPatch::class],
+    dependencies = [IntegrationsPatch::class, PlayerResponseMethodHookPatch::class],
 )
 object VideoIdPatch : BytecodePatch(
     setOf(
-        PlayerParameterBuilderFingerprint,
         VideoIdFingerprint,
         VideoIdFingerprintBackgroundPlay
     )
 ) {
-    private const val playerResponseVideoIdParameter = 1
-    private const val playerResponseProtoBufferParameter = 3
-    /**
-     * Insert index when adding a video id hook.
-     */
-    private var playerResponseVideoIdInsertIndex = 0
-    /**
-     * Insert index when adding a proto buffer override.
-     * Must be after all video id hooks in the same method.
-     */
-    private var playerResponseProtoBufferInsertIndex = 0
-    private lateinit var playerResponseMethod: MutableMethod
-
     private var videoIdRegister = 0
     private var insertIndex = 0
     private lateinit var insertMethod: MutableMethod
@@ -50,11 +34,6 @@ object VideoIdPatch : BytecodePatch(
     private lateinit var backgroundPlaybackMethod: MutableMethod
 
     override fun execute(context: BytecodeContext) {
-
-        // Hook player parameter.
-        PlayerParameterBuilderFingerprint.result?.let {
-            playerResponseMethod = it.mutableMethod
-        } ?: throw PlayerParameterBuilderFingerprint.exception
 
         /**
          * Supplies the method and register index of the video id register.
@@ -72,10 +51,10 @@ object VideoIdPatch : BytecodePatch(
             }
         } ?: throw VideoIdFingerprint.exception
 
-        VideoIdFingerprint.setFields { method, insertIndex, videoIdRegister ->
+        VideoIdFingerprint.setFields { method, index, register ->
             insertMethod = method
-            VideoIdPatch.insertIndex = insertIndex
-            VideoIdPatch.videoIdRegister = videoIdRegister
+            insertIndex = index
+            videoIdRegister = register
         }
 
         VideoIdFingerprintBackgroundPlay.setFields { method, insertIndex, videoIdRegister ->
@@ -83,21 +62,6 @@ object VideoIdPatch : BytecodePatch(
             backgroundPlaybackInsertIndex = insertIndex
             backgroundPlaybackVideoIdRegister = videoIdRegister
         }
-    }
-
-    /**
-     * Modify the player parameter proto buffer value.
-     * Used exclusively by [SpoofSignaturePatch].
-     */
-    fun injectProtoBufferHook(methodDescriptor: String) {
-        playerResponseMethod.addInstructions(
-            playerResponseProtoBufferInsertIndex,
-            """
-               invoke-static {p$playerResponseProtoBufferParameter}, $methodDescriptor
-               move-result-object p$playerResponseProtoBufferParameter
-            """
-        )
-        playerResponseProtoBufferInsertIndex += 2
     }
 
     /**
@@ -113,13 +77,7 @@ object VideoIdPatch : BytecodePatch(
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
     fun injectCall(methodDescriptor: String) {
-        playerResponseMethod.addInstruction(
-            // Keep injection calls in the order they're added,
-            // and all video id hooks run before proto buffer hooks.
-            playerResponseVideoIdInsertIndex++,
-            "invoke-static {p$playerResponseVideoIdParameter}, $methodDescriptor"
-        )
-        playerResponseProtoBufferInsertIndex++
+        PlayerResponseMethodHookPatch.injectVideoIdHook(methodDescriptor)
     }
 
     /**
