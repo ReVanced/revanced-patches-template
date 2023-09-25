@@ -22,19 +22,20 @@ object PremiumHeadingPatch : ResourcePatch() {
     private const val DEFAULT_HEADING_RES = "yt_wordmark_header"
     private const val PREMIUM_HEADING_RES = "yt_premium_wordmark_header"
 
-    private val useDefaultHeading by booleanPatchOption(
-        key = "useDefaultHeading",
-        default = false,
-        title = "Use default heading",
-        description = "Whether to use the default heading instead of the premium one."
+    private val usePremiumHeading by booleanPatchOption(
+        key = "usePremiumHeading",
+        default = true,
+        title = "Use premium heading",
+        description = "Whether to use the premium heading."
     )
 
     override fun execute(context: ResourceContext) {
         val resDirectory = context["res"]
         if (!resDirectory.isDirectory) throw PatchException("The res folder can not be found.")
 
-        val (original, replacement) = if (useDefaultHeading != true) PREMIUM_HEADING_RES to DEFAULT_HEADING_RES
+        val (original, replacement) = if (usePremiumHeading != false) PREMIUM_HEADING_RES to DEFAULT_HEADING_RES
         else DEFAULT_HEADING_RES to PREMIUM_HEADING_RES
+
         val modes = arrayOf("light", "dark")
 
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
