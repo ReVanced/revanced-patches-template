@@ -12,7 +12,7 @@ import kotlin.io.path.exists
 
 @Patch(
     name = "Premium heading",
-    description = "Controls premium heading shown on the home screen. Shows premium heading by default.",
+    description = "Controls whether the premium heading should be shown.",
     compatiblePackages = [
         CompatiblePackage("com.google.android.youtube")
     ]
