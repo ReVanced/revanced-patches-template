@@ -54,7 +54,7 @@ object SpoofSignaturePatch : BytecodePatch(
                             "revanced_spoof_signature_verification_enabled_summary_on",
                             "App signature spoofed\\n\\n"
                                     + "Side effects include:\\n"
-                                    + "• No ambient mode\\n"
+                                    + "• Enhanced bitrate is not available\\n"
                                     + "• Videos cannot be downloaded"
                         ),
                         StringResource(
