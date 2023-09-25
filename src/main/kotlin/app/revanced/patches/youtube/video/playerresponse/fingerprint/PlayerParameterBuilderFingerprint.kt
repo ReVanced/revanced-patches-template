@@ -8,9 +8,9 @@ object PlayerParameterBuilderFingerprint : MethodFingerprint(
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     returnType = "L",
     parameters = listOf(
-        "Ljava/lang/String;", // Player parameters proto buffer.
-        "[B",
         "Ljava/lang/String;", // VideoId.
+        "[B",
+        "Ljava/lang/String;", // Player parameters proto buffer.
         "Ljava/lang/String;",
         "I",
         "I",
