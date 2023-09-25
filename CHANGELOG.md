@@ -1,3 +1,46 @@
+# [2.191.0-dev.12](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.11...v2.191.0-dev.12) (2023-09-25)
+
+
+### Bug Fixes
+
+* **YouTube - Client spoof:** Display seekbar thumbnails in high quality ([5e8a2d3](https://github.com/ReVanced/revanced-patches/commit/5e8a2d3fe77a4a08ea32e7dc22f2c8e4048b7a6b))
+
+# [2.191.0-dev.11](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.10...v2.191.0-dev.11) (2023-09-25)
+
+
+### Features
+
+* Add notice for thumbnails for age restricted or paid videos ([f7cf70b](https://github.com/ReVanced/revanced-patches/commit/f7cf70b5d3f415411fa767931a33e84df9df6c16))
+
+# [2.191.0-dev.10](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.9...v2.191.0-dev.10) (2023-09-25)
+
+
+### Bug Fixes
+
+* **YouTube - Client spoof:** Restore seekbar thumbnails ([bf4a115](https://github.com/ReVanced/revanced-patches/commit/bf4a1159ff745f8f91e11f30db4651d85769227b))
+
+# [2.191.0-dev.9](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.8...v2.191.0-dev.9) (2023-09-25)
+
+
+### Features
+
+* **Strava:** Add `Disable subscription suggestions` patch ([#2997](https://github.com/ReVanced/revanced-patches/issues/2997)) ([af02175](https://github.com/ReVanced/revanced-patches/commit/af0217594d9c7526f550fc7e6f09f8a9232e72cf))
+
+# [2.191.0-dev.8](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.7...v2.191.0-dev.8) (2023-09-24)
+
+
+### Bug Fixes
+
+* **Relay - Spoof client:** Restore OAuth login ([96e01f7](https://github.com/ReVanced/revanced-patches/commit/96e01f7a7b87f468776fbde48e114a3f51630a46))
+* **Slide - Spoof client:** Use correct patch name ([f355dbf](https://github.com/ReVanced/revanced-patches/commit/f355dbf1d2af3075c6a3f13d8bf5f8dca22e6005))
+
+# [2.191.0-dev.7](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.6...v2.191.0-dev.7) (2023-09-24)
+
+
+### Bug Fixes
+
+* **Duolingo - Unlock Super:** Get correct instruction offset ([#3023](https://github.com/ReVanced/revanced-patches/issues/3023)) ([5146de8](https://github.com/ReVanced/revanced-patches/commit/5146de872acb17d7c21019ac7ed531f27361038f))
+
 # [2.191.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.5...v2.191.0-dev.6) (2023-09-23)
 
 

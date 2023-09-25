@@ -13,8 +13,8 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 
 @Patch(
     dependencies = [
-        BottomControlsResourcePatch::class,
-        SettingsPatch::class
+        SettingsPatch::class,
+        BottomControlsResourcePatch::class
     ]
 )
 object CopyVideoUrlResourcePatch : ResourcePatch() {
