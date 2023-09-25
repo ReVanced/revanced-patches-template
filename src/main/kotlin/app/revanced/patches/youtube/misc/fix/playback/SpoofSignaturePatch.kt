@@ -9,26 +9,29 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererSpecFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     description = "Spoofs the signature to prevent playback issues.",
     dependencies = [
         SettingsPatch::class,
-        PlayerTypeHookPatch::class
+        PlayerTypeHookPatch::class,
+        VideoIdPatch::class
     ]
 )
 object SpoofSignaturePatch : BytecodePatch(
     setOf(
-        ProtobufParameterBuilderFingerprint,
         StoryboardThumbnailParentFingerprint,
         StoryboardRendererSpecFingerprint,
         PlayerResponseModelImplFingerprint
@@ -86,29 +89,12 @@ object SpoofSignaturePatch : BytecodePatch(
             )
         )
 
-        // Hook parameter.
-        ProtobufParameterBuilderFingerprint.result?.let {
-            val setParamMethod = context
-                .toMethodWalker(it.method)
-                .nextMethod(it.scanResult.patternScanResult!!.startIndex, true).getMethod() as MutableMethod
-
-            setParamMethod.apply {
-                val videoIdParameter = 1
-                val protobufParameter = 3
-
-                addInstructions(
-                    0,
-                    """
-                        invoke-static {p$videoIdParameter, p$protobufParameter}, $INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-                        move-result-object p$protobufParameter
-                    """
-                )
-            }
-        } ?: throw ProtobufParameterBuilderFingerprint.exception
+        // Hook the player parameters.
+        VideoIdPatch.injectProtoBufferHook("$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;")
 
         // Force the seekbar thumbnails to show up.
-        // This is only required to show the seekbar time
-        // if the storyboard spec fetch times out.
+        // This is only required to show the seekbar time and chapters
+        // if the storyboard spec fetch fails.
         StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(
