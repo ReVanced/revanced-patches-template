@@ -13,10 +13,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererSpecFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
@@ -58,8 +55,7 @@ object SpoofSignaturePatch : BytecodePatch(
                             "App signature spoofed\\n\\n"
                                     + "Side effects include:\\n"
                                     + "• No ambient mode\\n"
-                                    + "• Videos cannot be downloaded\\n"
-                                    + "• Low quality seekbar thumbnails (No thumbnails for age restricted or paid videos)"
+                                    + "• Videos cannot be downloaded"
                         ),
                         StringResource(
                             "revanced_spoof_signature_verification_enabled_summary_off",
@@ -154,28 +150,27 @@ object SpoofSignaturePatch : BytecodePatch(
                         invoke-static { p$storyBoardUrlParams }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object p$storyBoardUrlParams
                     """,
-                        ExternalLabel("ignore", getInstruction(0))
-                    )
-                }
-            } ?: throw StoryboardRendererSpecFingerprint.exception
+                    ExternalLabel("ignore", getInstruction(0))
+                )
+            }
+        } ?: throw StoryboardRendererSpecFingerprint.exception
 
-            // Hook recommended value
-            StoryboardRendererInitFingerprint.result?.let {
-                val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
+        // Hook recommended value
+        StoryboardRendererInitFingerprint.result?.let {
+            val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
 
-                val originalValueRegister  = it.mutableMethod
-                    .getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
+            val originalValueRegister = it.mutableMethod
+                .getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
 
-                it.mutableMethod.apply {
-                    addInstructions(
-                        moveOriginalRecommendedValueIndex + 1,
-                        """
+            it.mutableMethod.apply {
+                addInstructions(
+                    moveOriginalRecommendedValueIndex + 1,
+                    """
                             invoke-static { v$originalValueRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getRecommendedLevel(I)I
                             move-result v$originalValueRegister
                         """
-                    )
-                }
-            } ?: throw StoryboardRendererInitFingerprint.exception
-        }
+                )
+            }
+        } ?: throw StoryboardRendererInitFingerprint.exception
     }
 }
