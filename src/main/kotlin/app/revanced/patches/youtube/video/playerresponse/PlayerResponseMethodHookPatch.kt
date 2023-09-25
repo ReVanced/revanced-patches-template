@@ -32,6 +32,7 @@ object PlayerResponseMethodHookPatch : BytecodePatch(
      */
     private var playerResponseProtoBufferInsertIndex = 0
     private lateinit var playerResponseMethod: MutableMethod
+
     override fun execute(context: BytecodeContext) {
 
         // Hook player parameter.
