@@ -64,9 +64,8 @@ object SpoofSignaturePatch : BytecodePatch(
         // Hook the player parameters.
         PlayerResponseMethodHookPatch.injectProtoBufferHook("$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;")
 
-        // Force the seekbar thumbnails to show up.
-        // This is only required to show the seekbar time and chapters
-        // if the storyboard spec fetch fails.
+        // Force the seekbar time and chapters to always show up.
+        // This is used only if the storyboard spec fetch fails, or when viewing paid videos.
         StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(

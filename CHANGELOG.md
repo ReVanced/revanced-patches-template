@@ -1,3 +1,17 @@
+# [2.191.0-dev.15](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.14...v2.191.0-dev.15) (2023-09-26)
+
+
+### Bug Fixes
+
+* **YouTube - Client spoof:** adjust settings text ([#3035](https://github.com/ReVanced/revanced-patches/issues/3035)) ([59a2e96](https://github.com/ReVanced/revanced-patches/commit/59a2e9617fc4f898e87cefeb3d2c6996b925fa90))
+
+# [2.191.0-dev.14](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.13...v2.191.0-dev.14) (2023-09-26)
+
+
+### Bug Fixes
+
+* **YouTube - Client spoof:** Show seekbar thumbnail for age restricted and paid videos ([1a79300](https://github.com/ReVanced/revanced-patches/commit/1a793007c919753a8c31ab2382d86c0546eefe20))
+
 # [2.191.0-dev.13](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.12...v2.191.0-dev.13) (2023-09-25)
 
 
