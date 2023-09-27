@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.fingerprint.PlayerParameterBuilderFingerprint
 
 @Patch(
@@ -32,10 +33,16 @@ object PlayerResponseMethodHookPatch : BytecodePatch(
 
     fun hookVideoId(methodDescriptor: String) {
         playerResponseMethod.addInstruction(
-            ++videoIdHookInsertIndex, "invoke-static {p$VIDEO_ID_PARAMETER}, $methodDescriptor"
+            videoIdHookInsertIndex++, "invoke-static {p$VIDEO_ID_PARAMETER}, $methodDescriptor"
         )
 
-        // TODO: Explain why any video id hook has to precede any protoBufferParameterHook.
+        /**
+         * Adjust the buffer hook insert index since this video id hook was added before it.
+         *
+         * This ensures all video id hooks always run before the buffer hooks,
+         * so if the buffer hook calls into [VideoInformationPatch]
+         * it has the correct and updated player response video id.
+         */
         protoBufferParameterHookInsertIndex++
     }
 
