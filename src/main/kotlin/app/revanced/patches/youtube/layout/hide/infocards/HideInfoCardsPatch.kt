@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.layout.hide.infocards.fingerprints.Infocards
 import app.revanced.patches.youtube.layout.hide.infocards.fingerprints.InfocardsIncognitoParentFingerprint
 import app.revanced.patches.youtube.layout.hide.infocards.fingerprints.InfocardsMethodCallFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -45,6 +46,9 @@ object HideInfoCardsPatch : BytecodePatch(
         InfocardsMethodCallFingerprint,
     )
 ) {
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/HideInfoCardsFilterPatch;"
+
     override fun execute(context: BytecodeContext) {
         InfocardsIncognitoFingerprint.also {
             it.resolve(context, InfocardsIncognitoParentFingerprint.result!!.classDef)
@@ -79,5 +83,8 @@ object HideInfoCardsPatch : BytecodePatch(
                 )
             )
         }
+
+        // Info cards can also appear as litho components.
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }
 }
