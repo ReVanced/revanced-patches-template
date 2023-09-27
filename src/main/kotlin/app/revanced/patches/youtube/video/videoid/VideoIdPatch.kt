@@ -103,6 +103,8 @@ object VideoIdPatch : BytecodePatch(
      * Adds an invoke-static instruction, called with the video id of every video when loaded.
      * Supports all videos and functions in all situations.
      *
+     * Hook is always called off the main thread.
+     *
      * This hook is called as soon as the player response is parsed,
      * and called before many other hooks are updated such as [PlayerTypeHookPatch].
      *
