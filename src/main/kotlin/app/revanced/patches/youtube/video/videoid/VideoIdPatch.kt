@@ -67,20 +67,6 @@ object VideoIdPatch : BytecodePatch(
     /**
      * Adds an invoke-static instruction, called with the new id when the video changes.
      *
-     * Called as soon as the player response is parsed, and called before many other hooks are
-     * updated such as [PlayerTypeHookPatch].
-     *
-     * Supports all videos and functions in all situations.
-     *
-     * Be aware, this can be called multiple times for the same video id.
-     *
-     * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
-     */
-    fun injectCall(methodDescriptor: String) = PlayerResponseMethodHookPatch.injectVideoIdHook(methodDescriptor)
-
-    /**
-     * Adds an invoke-static instruction, called with the new id when the video changes.
-     *
      * Supports all videos (regular videos and Shorts).
      *
      * _Does not function if playing in the background with no video visible_.
@@ -89,7 +75,7 @@ object VideoIdPatch : BytecodePatch(
      *
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
-    fun legacyInjectCall(
+    fun injectCall(
         methodDescriptor: String
     ) = insertMethod.addInstruction(
         insertIndex++,
@@ -106,11 +92,31 @@ object VideoIdPatch : BytecodePatch(
      *
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
-    fun legacyInjectCallBackgroundPlay(
+    fun injectCallBackgroundPlay(
         methodDescriptor: String
     ) = backgroundPlaybackMethod.addInstruction(
         backgroundPlaybackInsertIndex++, // move-result-object offset
         "invoke-static {v$backgroundPlaybackVideoIdRegister}, $methodDescriptor"
     )
+
+    /**
+     * Adds an invoke-static instruction, called with the video id of every video when loaded.
+     * Supports all videos and functions in all situations.
+     *
+     * This hook is called as soon as the player response is parsed,
+     * and called before many other hooks are updated such as [PlayerTypeHookPatch].
+     *
+     * Note: The video id returned here may not be the current video that's being played.
+     * It's common for multiple Shorts to load at once in preparation
+     * for the user swiping to the next Short.
+     *
+     * For most use cases, you probably want to use
+     * [injectCall] or [injectCallBackgroundPlay] instead.
+     *
+     * Be aware, this can be called multiple times for the same video id.
+     *
+     * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
+     */
+    fun injectCallPlayerResponse(methodDescriptor: String) = PlayerResponseMethodHookPatch.injectVideoIdHook(methodDescriptor)
 }
 
