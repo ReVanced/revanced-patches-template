@@ -26,8 +26,8 @@ object VideoIdPatch : BytecodePatch(
     )
 ) {
     private var videoIdRegister = 0
-    private var insertIndex = 0
-    private lateinit var insertMethod: MutableMethod
+    private var videoIdInsertIndex = 0
+    private lateinit var videoIdMethod: MutableMethod
 
     private var backgroundPlaybackVideoIdRegister = 0
     private var backgroundPlaybackInsertIndex = 0
@@ -52,8 +52,8 @@ object VideoIdPatch : BytecodePatch(
         } ?: throw VideoIdFingerprint.exception
 
         VideoIdFingerprint.setFields { method, index, register ->
-            insertMethod = method
-            insertIndex = index
+            videoIdMethod = method
+            videoIdInsertIndex = index
             videoIdRegister = register
         }
 
@@ -65,7 +65,7 @@ object VideoIdPatch : BytecodePatch(
     }
 
     /**
-     * Adds an invoke-static instruction, called with the new id when the video changes.
+     * Hooks the new video id when the video changes.
      *
      * Supports all videos (regular videos and Shorts).
      *
@@ -75,10 +75,10 @@ object VideoIdPatch : BytecodePatch(
      *
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
-    fun injectCall(
+    fun hookVideoId(
         methodDescriptor: String
-    ) = insertMethod.addInstruction(
-        insertIndex++,
+    ) = videoIdMethod.addInstruction(
+        videoIdInsertIndex++,
         "invoke-static {v$videoIdRegister}, $methodDescriptor"
     )
 
@@ -92,7 +92,7 @@ object VideoIdPatch : BytecodePatch(
      *
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
-    fun injectCallBackgroundPlay(
+    fun hookBackgroundPlayVideoId(
         methodDescriptor: String
     ) = backgroundPlaybackMethod.addInstruction(
         backgroundPlaybackInsertIndex++, // move-result-object offset
@@ -100,7 +100,7 @@ object VideoIdPatch : BytecodePatch(
     )
 
     /**
-     * Adds an invoke-static instruction, called with the video id of every video when loaded.
+     * Hooks the video id of every video when loaded.
      * Supports all videos and functions in all situations.
      *
      * Hook is always called off the main thread.
@@ -113,12 +113,13 @@ object VideoIdPatch : BytecodePatch(
      * for the user swiping to the next Short.
      *
      * For most use cases, you probably want to use
-     * [injectCall] or [injectCallBackgroundPlay] instead.
+     * [hookVideoId] or [hookBackgroundPlayVideoId] instead.
      *
      * Be aware, this can be called multiple times for the same video id.
      *
      * @param methodDescriptor which method to call. Params have to be `Ljava/lang/String;`
      */
-    fun injectCallPlayerResponse(methodDescriptor: String) = PlayerResponseMethodHookPatch.injectVideoIdHook(methodDescriptor)
+    fun hookPlayerResponseVideoId(methodDescriptor: String) =
+        PlayerResponseMethodHookPatch.hookVideoId(methodDescriptor)
 }
 
