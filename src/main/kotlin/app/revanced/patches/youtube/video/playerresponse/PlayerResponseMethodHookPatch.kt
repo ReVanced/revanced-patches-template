@@ -8,54 +8,57 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.fingerprint.PlayerParameterBuilderFingerprint
+import java.io.Closeable
 
 @Patch(
     dependencies = [IntegrationsPatch::class],
 )
-object PlayerResponseMethodHookPatch : BytecodePatch(
-    setOf(PlayerParameterBuilderFingerprint)
-) {
+object PlayerResponseMethodHookPatch :
+    BytecodePatch(setOf(PlayerParameterBuilderFingerprint)),
+    Closeable,
+    MutableSet<PlayerResponseMethodHookPatch.Hook> by mutableSetOf() {
     private const val VIDEO_ID_PARAMETER = 1
     private const val PROTO_BUFFER_PARAMETER_PARAMETER = 3
 
     private lateinit var playerResponseMethod: MutableMethod
-
-    // Hook insert indices are incremented in the order they're added.
-    private var videoIdHookInsertIndex = 0
-    private var protoBufferParameterHookInsertIndex = 0
 
     override fun execute(context: BytecodeContext) {
         playerResponseMethod = PlayerParameterBuilderFingerprint.result?.mutableMethod
             ?: throw PlayerParameterBuilderFingerprint.exception
     }
 
-    fun hookVideoId(methodDescriptor: String) {
-        playerResponseMethod.addInstruction(
-            videoIdHookInsertIndex++, "invoke-static {p$VIDEO_ID_PARAMETER}, $methodDescriptor"
+    override fun close() {
+        fun hookVideoId(hook: Hook) = playerResponseMethod.addInstruction(
+            0, "invoke-static {p$VIDEO_ID_PARAMETER}, $hook"
         )
 
-        /**
-         * Adjust the buffer hook insert index since this video id hook was added before it.
-         *
-         * This ensures all video id hooks always run before the buffer hooks,
-         * so if the buffer hook calls into [VideoInformationPatch]
-         * it has the correct and updated player response video id.
-         */
-        protoBufferParameterHookInsertIndex++
+        fun hookProtoBufferParameter(hook: Hook) = playerResponseMethod.addInstructions(
+            0,
+            """
+                invoke-static {p$PROTO_BUFFER_PARAMETER_PARAMETER}, $hook
+                move-result-object p$PROTO_BUFFER_PARAMETER_PARAMETER
+            """
+        )
+
+        // Reverse the order in order to preserve insertion order of the hooks.
+        val beforeVideoIdHooks = filterIsInstance<Hook.ProtoBufferParameterBeforeVideoId>().asReversed()
+        val videoIdHooks = filterIsInstance<Hook.VideoId>().asReversed()
+        val protoBufferParameterHooks = filterIsInstance<Hook.ProtoBufferParameter>().asReversed()
+
+        // Add the hooks in this specific order as they insert instructions at the beginning of the method.
+        protoBufferParameterHooks.forEach(::hookProtoBufferParameter)
+        videoIdHooks.forEach(::hookVideoId)
+        beforeVideoIdHooks.forEach(::hookProtoBufferParameter)
     }
 
-    fun hookProtoBufferParameter(methodDescriptor: String) {
-        playerResponseMethod.addInstructions(
-            protoBufferParameterHookInsertIndex,
-            """
-               invoke-static {p$PROTO_BUFFER_PARAMETER_PARAMETER}, $methodDescriptor
-               move-result-object p$PROTO_BUFFER_PARAMETER_PARAMETER
-            """
-        )
+    internal abstract class Hook(private val methodDescriptor: String) {
+        internal class VideoId(methodDescriptor: String) : Hook(methodDescriptor)
 
-        protoBufferParameterHookInsertIndex += 2
+        internal class ProtoBufferParameter(methodDescriptor: String) : Hook(methodDescriptor)
+        internal class ProtoBufferParameterBeforeVideoId(methodDescriptor: String) : Hook(methodDescriptor)
+
+        override fun toString() = methodDescriptor
     }
 }
 
