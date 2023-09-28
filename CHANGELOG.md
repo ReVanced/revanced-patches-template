@@ -1,3 +1,31 @@
+# [2.191.0-dev.19](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.18...v2.191.0-dev.19) (2023-09-28)
+
+
+### Features
+
+* **YouTube:** Add `Bypass URL redirects` patch ([125cac5](https://github.com/ReVanced/revanced-patches/commit/125cac5928c9b71d35253f1fd7651f4a30e15529))
+
+# [2.191.0-dev.18](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.17...v2.191.0-dev.18) (2023-09-28)
+
+
+### Features
+
+* **YouTube - Premium heading:** Allow using default heading ([#3029](https://github.com/ReVanced/revanced-patches/issues/3029)) ([d5ab35a](https://github.com/ReVanced/revanced-patches/commit/d5ab35a444523baa0586fcb9513d6ae4f2518946))
+
+# [2.191.0-dev.17](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.16...v2.191.0-dev.17) (2023-09-27)
+
+
+### Features
+
+* **YouTube:** Bump compatibility to `18.37.36` ([#3028](https://github.com/ReVanced/revanced-patches/issues/3028)) ([eda28e5](https://github.com/ReVanced/revanced-patches/commit/eda28e507e7fb5171eeb15a5a0532929ee611211))
+
+# [2.191.0-dev.16](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.15...v2.191.0-dev.16) (2023-09-27)
+
+
+### Bug Fixes
+
+* **YouTube - Hide info cards:** Fix info cards not hiding for some users ([#3039](https://github.com/ReVanced/revanced-patches/issues/3039)) ([cb38637](https://github.com/ReVanced/revanced-patches/commit/cb38637e6be968d54561a1e0466b9259dbf0b4ee))
+
 # [2.191.0-dev.15](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.14...v2.191.0-dev.15) (2023-09-26)
 
 
