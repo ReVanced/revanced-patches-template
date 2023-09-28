@@ -44,10 +44,10 @@ object PlayerResponseMethodHookPatch :
         // Reverse the order in order to preserve insertion order of the hooks.
         val beforeVideoIdHooks = filterIsInstance<Hook.ProtoBufferParameterBeforeVideoId>().asReversed()
         val videoIdHooks = filterIsInstance<Hook.VideoId>().asReversed()
-        val protoBufferParameterHooks = filterIsInstance<Hook.ProtoBufferParameter>().asReversed()
+        val afterVideoIdHooks = filterIsInstance<Hook.ProtoBufferParameter>().asReversed()
 
         // Add the hooks in this specific order as they insert instructions at the beginning of the method.
-        protoBufferParameterHooks.forEach(::hookProtoBufferParameter)
+        afterVideoIdHooks.forEach(::hookProtoBufferParameter)
         videoIdHooks.forEach(::hookVideoId)
         beforeVideoIdHooks.forEach(::hookProtoBufferParameter)
     }

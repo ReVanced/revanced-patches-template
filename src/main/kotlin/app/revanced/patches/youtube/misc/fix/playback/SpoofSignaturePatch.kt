@@ -88,7 +88,7 @@ object SpoofSignaturePatch : BytecodePatch(
         )
 
         // Hook the player parameters.
-        PlayerResponseMethodHookPatch + PlayerResponseMethodHookPatch.Hook.ProtoBufferParameterBeforeVideoId(
+        PlayerResponseMethodHookPatch + PlayerResponseMethodHookPatch.Hook.ProtoBufferParameter(
             "$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;"
         )
 
