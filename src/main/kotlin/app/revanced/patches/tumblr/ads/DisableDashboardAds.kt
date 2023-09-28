@@ -21,7 +21,7 @@ object DisableDashboardAds : BytecodePatch() {
             "CLIENT_SIDE_MEDIATION", // "client_side_ad_waterfall"
             "GEMINI_AD", // "backfill_ad"
 
-            // The below object types weren't actually spotted in the wild in testing, but they are valid Object types
+            // The object types below weren't actually spotted in the wild in testing, but they are valid Object types
             // and their names clearly indicate that they are ads, so we just block them anyway,
             // just in case they will be used in the future.
             "NIMBUS_AD", // "nimbus_ad"

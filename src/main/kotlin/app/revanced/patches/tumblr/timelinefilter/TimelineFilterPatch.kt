@@ -35,8 +35,6 @@ object TimelineFilterPatch : BytecodePatch(
                 removeInstructions(filterInsertIndex, 5)
 
                 addObjectTypeFilter = { typeName ->
-                    // It's too much of a pain to find the register numbers manually, so this will just have to be
-                    // updated if the Timeline Filter integration changes
                     // The java equivalent of this is
                     //   if ("BLOCKED_OBJECT_DUMMY".equals(elementType)) iterator.remove();
                     addInstructionsWithLabels(
@@ -54,13 +52,12 @@ object TimelineFilterPatch : BytecodePatch(
             }
         } ?: throw TimelineFilterIntegrationFingerprint.exception
 
-        TimelineConstructorFingerprint.result?.mutableMethod?.addInstructions(
-            0,
-            "invoke-static {p1}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V"
-        ) ?: throw TimelineConstructorFingerprint.exception
-        PostsResponseConstructorFingerprint.result?.mutableMethod?.addInstructions(
-            0,
-            "invoke-static {p2}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->filterTimeline(Ljava/util/List;)V"
-        ) ?: throw PostsResponseConstructorFingerprint.exception
+        arrayOf(TimelineConstructorFingerprint, PostsResponseConstructorFingerprint).forEach {
+            it.result?.mutableMethod?.addInstructions(
+                0,
+                "invoke-static {p1}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->" +
+                        "filterTimeline(Ljava/util/List;)V"
+            ) ?: throw it.exception
+        }
     }
 }
