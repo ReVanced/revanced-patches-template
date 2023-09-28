@@ -26,7 +26,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         CompatiblePackage(
             "com.google.android.youtube", [
                 "18.29.38",
-                "18.32.39"
+                "18.32.39",
+                "18.37.36"
             ]
         )
     ]
