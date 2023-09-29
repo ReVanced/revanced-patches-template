@@ -4,12 +4,14 @@ import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.tumblr.timelinefilter.fingerprints.PostsResponseConstructorFingerprint
 import app.revanced.patches.tumblr.timelinefilter.fingerprints.TimelineConstructorFingerprint
 import app.revanced.patches.tumblr.timelinefilter.fingerprints.TimelineFilterIntegrationFingerprint
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch(description = "Filter timeline objects.", requiresIntegrations = true)
 object TimelineFilterPatch : BytecodePatch(
@@ -31,33 +33,40 @@ object TimelineFilterPatch : BytecodePatch(
             val filterInsertIndex = integration.scanResult.patternScanResult!!.startIndex
 
             integration.mutableMethod.apply {
+                // This is the List.add call from the dummy object type filter
+                val instr = getInstruction<BuilderInstruction35c>(filterInsertIndex + 1)
+
+                assert(instr.registerCount == 2)
+
+                // From the dummy filter call, we can get the 2 registers we need to add more filters
+                val listRegister = instr.registerC
+                val stringRegister = instr.registerD
+
                 // Remove "BLOCKED_OBJECT_DUMMY" object type filter
-                removeInstructions(filterInsertIndex, 5)
+                removeInstructions(filterInsertIndex, 2)
 
                 addObjectTypeFilter = { typeName ->
                     // The java equivalent of this is
-                    //   if ("BLOCKED_OBJECT_DUMMY".equals(elementType)) iterator.remove();
+                    //   blockedObjectTypes.add({typeName})
                     addInstructionsWithLabels(
                         filterInsertIndex, """
-                            const-string v1, "$typeName"
-                            invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-                            move-result v1
-                            if-eqz v1, :dont_remove
-                            invoke-interface { v2 }, Ljava/util/Iterator;->remove()V
-                            :dont_remove
-                            nop
+                            const-string v$stringRegister, "$typeName"
+                            invoke-interface { v$listRegister, v$stringRegister }, Ljava/util/List;->add(Ljava/lang/Object;)Z
                         """
                     )
                 }
             }
         } ?: throw TimelineFilterIntegrationFingerprint.exception
 
-        arrayOf(TimelineConstructorFingerprint, PostsResponseConstructorFingerprint).forEach {
-            it.result?.mutableMethod?.addInstructions(
+        mapOf(
+            TimelineConstructorFingerprint to 1,
+            PostsResponseConstructorFingerprint to 2
+        ).forEach { (fingerprint, paramRegister) ->
+            fingerprint.result?.mutableMethod?.addInstructions(
                 0,
-                "invoke-static {p1}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->" +
+                "invoke-static {p$paramRegister}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->" +
                         "filterTimeline(Ljava/util/List;)V"
-            ) ?: throw it.exception
+            ) ?: throw fingerprint.exception
         }
     }
 }

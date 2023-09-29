@@ -11,9 +11,6 @@ object TimelineFilterIntegrationFingerprint : MethodFingerprint(
     strings = listOf("BLOCKED_OBJECT_DUMMY"),
     opcodes = listOf(
         Opcode.CONST_STRING, // "BLOCKED_OBJECT_DUMMY"
-        Opcode.INVOKE_VIRTUAL, // ^.equals(elementType)
-        Opcode.MOVE_RESULT,
-        Opcode.IF_EQZ, // Jump to start of loop if not equals
-        Opcode.INVOKE_INTERFACE // iterator.remove()
+        Opcode.INVOKE_INTERFACE // List.add(^)
     )
 )
