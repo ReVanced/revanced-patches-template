@@ -36,7 +36,7 @@ object TimelineFilterPatch : BytecodePatch(
                 // This is the List.add call from the dummy object type filter
                 val instr = getInstruction<BuilderInstruction35c>(filterInsertIndex + 1)
 
-                assert(instr.registerCount == 2)
+                if (instr.registerCount != 2) throw TimelineFilterIntegrationFingerprint.exception
 
                 // From the dummy filter call, we can get the 2 registers we need to add more filters
                 val listRegister = instr.registerC
