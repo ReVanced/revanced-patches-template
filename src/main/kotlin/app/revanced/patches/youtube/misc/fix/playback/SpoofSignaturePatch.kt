@@ -30,10 +30,12 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 )
 object SpoofSignaturePatch : BytecodePatch(
     setOf(
-        PlayerResponseModelImplFingerprint,
+        PlayerResponseModelImplGeneralFingerprint,
+        PlayerResponseModelImplLiveStreamFingerprint,
         StoryboardThumbnailParentFingerprint,
         StoryboardRendererSpecFingerprint,
-        StoryboardRendererInitFingerprint
+        StoryboardRendererDecoderSpecFingerprint,
+        StoryboardRendererDecoderRecommendedLevelFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -94,7 +96,10 @@ object SpoofSignaturePatch : BytecodePatch(
         )
 
         // Force the seekbar time and chapters to always show up.
-        // This is used only if the storyboard spec fetch fails, or when viewing paid videos.
+        // This is used only if the storyboard spec fetch fails or when viewing paid videos.
+        // Although this will show an empty seekbar thumbnail, and this could be improved to
+        // hide the thumbnail UI if no storyboard renderer is available but keep the time and chapters visible.
+        // But for now since paid videos are so rare, keep this simple and show an empty thumbnail.
         StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(
@@ -127,20 +132,40 @@ object SpoofSignaturePatch : BytecodePatch(
         /**
          * Hook StoryBoard renderer url
          */
-        PlayerResponseModelImplFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val getStoryBoardIndex = it.scanResult.patternScanResult!!.endIndex
-                val getStoryBoardRegister = getInstruction<OneRegisterInstruction>(getStoryBoardIndex).registerA
+        arrayOf(
+            PlayerResponseModelImplGeneralFingerprint,
+            PlayerResponseModelImplLiveStreamFingerprint
+        ).forEach { fingerprint ->
+            fingerprint.result?.let {
+                it.mutableMethod.apply {
+                    val getStoryBoardIndex = it.scanResult.patternScanResult!!.endIndex
+                    val getStoryBoardRegister =
+                        getInstruction<OneRegisterInstruction>(getStoryBoardIndex).registerA
 
-                addInstructions(
-                    getStoryBoardIndex,
-                    """
+                    addInstructions(
+                        getStoryBoardIndex,
+                        """
                         invoke-static { v$getStoryBoardRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardRendererSpec(Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$getStoryBoardRegister
                     """
-                )
-            }
-        } ?: throw PlayerResponseModelImplFingerprint.exception
+                    )
+                }
+            } ?: throw fingerprint.exception
+        }
+
+        // Hook recommended storyboard quality level.
+        StoryboardRendererDecoderRecommendedLevelFingerprint.result?.let {
+            val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
+            val originalValueRegister = it.mutableMethod
+                .getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
+
+            it.mutableMethod.addInstructions(
+                moveOriginalRecommendedValueIndex + 1, """
+                        invoke-static { v$originalValueRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getRecommendedLevel(I)I
+                        move-result v$originalValueRegister
+                """
+            )
+        } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
 
         StoryboardRendererSpecFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -158,22 +183,18 @@ object SpoofSignaturePatch : BytecodePatch(
             }
         } ?: throw StoryboardRendererSpecFingerprint.exception
 
-        // Hook recommended value
-        StoryboardRendererInitFingerprint.result?.let {
-            val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
+        // Hook the seekbar thumbnail decoder and use a NULL spec for live streams.
+        StoryboardRendererDecoderSpecFingerprint.result?.let {
+            val storyBoardUrlIndex = it.scanResult.patternScanResult!!.startIndex + 1
+            val storyboardUrlRegister =
+                it.mutableMethod.getInstruction<OneRegisterInstruction>(storyBoardUrlIndex).registerA
 
-            val originalValueRegister = it.mutableMethod
-                .getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
-
-            it.mutableMethod.apply {
-                addInstructions(
-                    moveOriginalRecommendedValueIndex + 1,
-                    """
-                            invoke-static { v$originalValueRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getRecommendedLevel(I)I
-                            move-result v$originalValueRegister
-                        """
-                )
-            }
-        } ?: throw StoryboardRendererInitFingerprint.exception
+            it.mutableMethod.addInstructions(
+                storyBoardUrlIndex + 1, """
+                        invoke-static { v$storyboardUrlRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getStoryboardDecoderRendererSpec(Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object v$storyboardUrlRegister
+                """
+            )
+        } ?: throw StoryboardRendererDecoderSpecFingerprint.exception
     }
 }

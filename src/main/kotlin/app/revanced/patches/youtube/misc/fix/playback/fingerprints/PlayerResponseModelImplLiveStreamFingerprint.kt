@@ -6,7 +6,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object PlayerResponseModelImplFingerprint : MethodFingerprint(
+object PlayerResponseModelImplLiveStreamFingerprint : MethodFingerprint(
     returnType = "Ljava/lang/String;",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = emptyList(),
@@ -18,6 +18,6 @@ object PlayerResponseModelImplFingerprint : MethodFingerprint(
     customFingerprint = handler@{ methodDef, _ ->
         if (!methodDef.definingClass.endsWith("/PlayerResponseModelImpl;")) return@handler false
 
-        methodDef.containsWideLiteralInstructionValue(55735497)
+        methodDef.containsWideLiteralInstructionValue(70276274)
     }
 )
