@@ -28,30 +28,25 @@ object TimelineFilterPatch : BytecodePatch(
     internal lateinit var addObjectTypeFilter: (typeName: String) -> Unit private set
 
     override fun execute(context: BytecodeContext) {
-
         TimelineFilterIntegrationFingerprint.result?.let { integration ->
             val filterInsertIndex = integration.scanResult.patternScanResult!!.startIndex
 
             integration.mutableMethod.apply {
-                // This is the List.add call from the dummy object type filter
-                val instr = getInstruction<BuilderInstruction35c>(filterInsertIndex + 1)
+                val addInstruction = getInstruction<BuilderInstruction35c>(filterInsertIndex + 1)
+                if (addInstruction.registerCount != 2) throw TimelineFilterIntegrationFingerprint.exception
 
-                if (instr.registerCount != 2) throw TimelineFilterIntegrationFingerprint.exception
+                val filterListRegister = addInstruction.registerC
+                val stringRegister = addInstruction.registerD
 
-                // From the dummy filter call, we can get the 2 registers we need to add more filters
-                val listRegister = instr.registerC
-                val stringRegister = instr.registerD
-
-                // Remove "BLOCKED_OBJECT_DUMMY" object type filter
+                // Remove "BLOCKED_OBJECT_DUMMY"
                 removeInstructions(filterInsertIndex, 2)
 
                 addObjectTypeFilter = { typeName ->
-                    // The java equivalent of this is
-                    //   blockedObjectTypes.add({typeName})
+                    // blockedObjectTypes.add({typeName})
                     addInstructionsWithLabels(
                         filterInsertIndex, """
                             const-string v$stringRegister, "$typeName"
-                            invoke-interface { v$listRegister, v$stringRegister }, Ljava/util/List;->add(Ljava/lang/Object;)Z
+                            invoke-interface { v$filterListRegister, v$stringRegister }, Ljava/util/HashSet;->add(Ljava/lang/Object;)Z
                         """
                     )
                 }
@@ -61,10 +56,11 @@ object TimelineFilterPatch : BytecodePatch(
         mapOf(
             TimelineConstructorFingerprint to 1,
             PostsResponseConstructorFingerprint to 2
-        ).forEach { (fingerprint, paramRegister) ->
+        ).forEach { (fingerprint, timelineObjectsRegister) ->
             fingerprint.result?.mutableMethod?.addInstructions(
                 0,
-                "invoke-static {p$paramRegister}, Lapp/revanced/tumblr/patches/TimelineFilterPatch;->" +
+                "invoke-static {p$timelineObjectsRegister}, " +
+                        "Lapp/revanced/tumblr/patches/TimelineFilterPatch;->" +
                         "filterTimeline(Ljava/util/List;)V"
             ) ?: throw fingerprint.exception
         }
