@@ -28,7 +28,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "18.20.39",
                 "18.23.35",
                 "18.29.38",
-                "18.32.39"
+                "18.32.39",
+                "18.37.36"
             ]
         )
     ]
@@ -37,7 +38,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 object SpoofAppVersionPatch : BytecodePatch(
     setOf(SpoofAppVersionFingerprint)
 ) {
-    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SpoofAppVersionPatch"
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/spoof/SpoofAppVersionPatch;"
 
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
@@ -81,7 +82,7 @@ object SpoofAppVersionPatch : BytecodePatch(
             mutableMethod.addInstructions(
                 insertIndex,
                 """
-                    invoke-static {v$buildOverrideNameRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR;->getYouTubeVersionOverride(Ljava/lang/String;)Ljava/lang/String;
+                    invoke-static {v$buildOverrideNameRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->getYouTubeVersionOverride(Ljava/lang/String;)Ljava/lang/String;
                     move-result-object v$buildOverrideNameRegister
                 """
             )

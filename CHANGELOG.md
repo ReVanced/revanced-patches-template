@@ -1,3 +1,117 @@
+# [2.191.0-dev.30](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.29...v2.191.0-dev.30) (2023-10-02)
+
+
+### Bug Fixes
+
+* Add hooks to existing hook set ([5655067](https://github.com/ReVanced/revanced-patches/commit/5655067f28d010f3a7a6d91b09ac984eee162031))
+* **Google Recorder - Remove device restrictions:** Clarify limitation ([094f57b](https://github.com/ReVanced/revanced-patches/commit/094f57b601d746079c43fd5c8834e3e6be07f946))
+
+
+### Features
+
+* **YouTube - Hide layout components:** Hide search result shelf header ([f4eda8c](https://github.com/ReVanced/revanced-patches/commit/f4eda8c8d111cc856d5878a32ddca3f7c2e0df31))
+
+# [2.191.0-dev.29](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.28...v2.191.0-dev.29) (2023-10-01)
+
+
+### Features
+
+* **TikTok - Hide ads:** Constrain to last working version ([516e8a1](https://github.com/ReVanced/revanced-patches/commit/516e8a14c0e113f9f4c0dda9be223cf3e929eb3a))
+
+# [2.191.0-dev.28](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.27...v2.191.0-dev.28) (2023-10-01)
+
+
+### Bug Fixes
+
+* **YouTube - Hide "Load more" button:** Use correct names ([569c3cd](https://github.com/ReVanced/revanced-patches/commit/569c3cde9875b807c9116322ca324f69b5fa0218))
+* **YouTube - Hide shorts components:** Fix hiding navigation bar ([2de51e6](https://github.com/ReVanced/revanced-patches/commit/2de51e65f05be8a6364dfdfe9cd36e8fed5737f6))
+
+# [2.191.0-dev.27](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.26...v2.191.0-dev.27) (2023-10-01)
+
+
+### Features
+
+* **Tumblr:** Add `Disable in-app update` patch ([#3058](https://github.com/ReVanced/revanced-patches/issues/3058)) ([5e8076b](https://github.com/ReVanced/revanced-patches/commit/5e8076b330cabe57130233adacdf84b56f010217))
+
+# [2.191.0-dev.26](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.25...v2.191.0-dev.26) (2023-10-01)
+
+
+### Bug Fixes
+
+* Use correct instruction ([246cf2c](https://github.com/ReVanced/revanced-patches/commit/246cf2cc92624e43bc7405cb32be9b560bb648c5))
+
+# [2.191.0-dev.25](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.24...v2.191.0-dev.25) (2023-10-01)
+
+
+### Features
+
+* **YouTube - Hide layout components:** Hide "Join" button ([1b71f89](https://github.com/ReVanced/revanced-patches/commit/1b71f893bb9fd8511833b8895031c8d8122a6efb))
+* **YouTube - Hide layout components:** Hide "Notify me" button ([3027c15](https://github.com/ReVanced/revanced-patches/commit/3027c1575717588f43f4b95be6ba97dac2b94069))
+* **YouTube - Hide layout components:** Hide timed reactions ([d0a775d](https://github.com/ReVanced/revanced-patches/commit/d0a775d685b1e0564804d564d1cbcbb8d0a04b03))
+
+# [2.191.0-dev.24](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.23...v2.191.0-dev.24) (2023-09-30)
+
+
+### Features
+
+* **Duolingo:** Remove `Unlock Duolingo Super` patch ([b4b9746](https://github.com/ReVanced/revanced-patches/commit/b4b9746361b5435b9d9429ad065e53364c51904a))
+
+# [2.191.0-dev.23](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.22...v2.191.0-dev.23) (2023-09-30)
+
+
+### Features
+
+* **SPB Serviceportal Bund:** Add `Remove root detection` patch ([#3049](https://github.com/ReVanced/revanced-patches/issues/3049)) ([481bf58](https://github.com/ReVanced/revanced-patches/commit/481bf583afbf954bef1c4e5349a62ea1c623115a))
+
+# [2.191.0-dev.22](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.21...v2.191.0-dev.22) (2023-09-28)
+
+
+### Bug Fixes
+
+* **YouTube - Premium heading:** Correct inverted logic ([#3042](https://github.com/ReVanced/revanced-patches/issues/3042)) ([b33ed75](https://github.com/ReVanced/revanced-patches/commit/b33ed757370653b8eb0002b0977eedfbc73dbe5e))
+
+# [2.191.0-dev.21](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.20...v2.191.0-dev.21) (2023-09-28)
+
+
+### Bug Fixes
+
+* **YouTube - ReturnYouTubeDislike:** Revert support for 18.37.36 ([#3041](https://github.com/ReVanced/revanced-patches/issues/3041)) ([3761073](https://github.com/ReVanced/revanced-patches/commit/37610732da87549c22a430bb62d10793dfa2e696))
+
+# [2.191.0-dev.20](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.19...v2.191.0-dev.20) (2023-09-28)
+
+
+### Bug Fixes
+
+* **YouTube - Video Id:** Fix video id not showing the currently playing video ([#3038](https://github.com/ReVanced/revanced-patches/issues/3038)) ([f6f226b](https://github.com/ReVanced/revanced-patches/commit/f6f226ba281823cb5d2d468c32f6e48551971726))
+
+# [2.191.0-dev.19](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.18...v2.191.0-dev.19) (2023-09-28)
+
+
+### Features
+
+* **YouTube:** Add `Bypass URL redirects` patch ([125cac5](https://github.com/ReVanced/revanced-patches/commit/125cac5928c9b71d35253f1fd7651f4a30e15529))
+
+# [2.191.0-dev.18](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.17...v2.191.0-dev.18) (2023-09-28)
+
+
+### Features
+
+* **YouTube - Premium heading:** Allow using default heading ([#3029](https://github.com/ReVanced/revanced-patches/issues/3029)) ([d5ab35a](https://github.com/ReVanced/revanced-patches/commit/d5ab35a444523baa0586fcb9513d6ae4f2518946))
+
+# [2.191.0-dev.17](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.16...v2.191.0-dev.17) (2023-09-27)
+
+
+### Features
+
+* **YouTube:** Bump compatibility to `18.37.36` ([#3028](https://github.com/ReVanced/revanced-patches/issues/3028)) ([eda28e5](https://github.com/ReVanced/revanced-patches/commit/eda28e507e7fb5171eeb15a5a0532929ee611211))
+
+# [2.191.0-dev.16](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.15...v2.191.0-dev.16) (2023-09-27)
+
+
+### Bug Fixes
+
+* **YouTube - Hide info cards:** Fix info cards not hiding for some users ([#3039](https://github.com/ReVanced/revanced-patches/issues/3039)) ([cb38637](https://github.com/ReVanced/revanced-patches/commit/cb38637e6be968d54561a1e0466b9259dbf0b4ee))
+
 # [2.191.0-dev.15](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.14...v2.191.0-dev.15) (2023-09-26)
 
 
