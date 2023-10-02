@@ -7,12 +7,12 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlyPrimaryFingerprint
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlySecondaryFingerprint
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
@@ -41,11 +41,12 @@ object BypassURLRedirectsPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_bypass_url_redirects",
-                StringResource("revanced_bypass_url_redirects_title", "Bypass URL redirects"),
-                StringResource("revanced_bypass_url_redirects_summary_on", "URL redirects are bypassed"),
-                StringResource("revanced_bypass_url_redirects_summary_off", "URL redirects are not bypassed"),
+                "revanced_bypass_url_redirects_title",
+                "revanced_bypass_url_redirects_summary_on",
+                "revanced_bypass_url_redirects_summary_off",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("BypassURLRedirects")
 
         arrayOf(
             OpenLinksDirectlyPrimaryFingerprint,
