@@ -59,7 +59,7 @@ object SpoofSignaturePatch : BytecodePatch(
                 )
             )
         )
-        SettingsResourcePatch.mergePatchStrings("SpoofSignatureVerification")
+        SettingsResourcePatch.mergePatchStrings("SpoofSignature")
 
         // Hook the player parameters.
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.ProtoBufferParameter(
