@@ -7,6 +7,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotations.Patch
 import app.revanced.patches.twitter.misc.dynamiccolor.annotations.DynamicColorCompatibility
+import org.w3c.dom.Node
 import java.io.FileWriter
 import java.nio.file.Files
 
@@ -35,19 +36,23 @@ class DynamicColorPatch : ResourcePatch {
             }
         }
 
-        context.xmlEditor["res/values-v31/colors.xml"].use { editor ->
+        context.xmlEditor["res/values/colors.xml"].use { editor ->
             val document = editor.file
 
             mapOf(
+               "deep_transparent_twitter_blue" to "@android:color/system_accent1_200",
+                "link_color" to "@color/twitter_blue",
+                "ps_blue" to "@color/twitter_blue",
+                "ps_main_primary" to "@color/twitter_blue",
+                "ps_main_secondary" to "@android:color/system_accent1_400",
                 "ps__twitter_blue" to "@color/twitter_blue",
-                "ps__twitter_blue_pressed" to "@color/twitter_blue_fill_pressed",
+                "tab_indicator" to "@color/twitter_blue",
+                "text_blue" to "@color/twitter_blue",
                 "twitter_blue" to "@android:color/system_accent1_400",
                 "twitter_blue_fill_pressed" to "@android:color/system_accent1_300",
                 "twitter_blue_opacity_30" to "@android:color/system_accent1_100",
                 "twitter_blue_opacity_50" to "@android:color/system_accent1_200",
-                "twitter_blue_opacity_58" to "@android:color/system_accent1_300",
-                "deep_transparent_twitter_blue" to "@android:color/system_accent1_200",
-                "ic_launcher_background" to "#1DA1F2"
+                "twitter_blue_opacity_58" to "@android:color/system_accent1_300"
             ).forEach { (k, v) ->
                 val colorElement = document.createElement("color")
 
@@ -58,23 +63,39 @@ class DynamicColorPatch : ResourcePatch {
             }
         }
 
-        context.xmlEditor["res/values-night-v31/colors.xml"].use { editor ->
+        context.xmlEditor["res/values/styles.xml"].use { editor ->
             val document = editor.file
 
-            mapOf(
-                "twitter_blue" to "@android:color/system_accent1_200",
-                "twitter_blue_fill_pressed" to "@android:color/system_accent1_300",
-                "twitter_blue_opacity_30" to "@android:color/system_accent1_50",
-                "twitter_blue_opacity_50" to "@android:color/system_accent1_100",
-                "twitter_blue_opacity_58" to "@android:color/system_accent1_200",
-                "deep_transparent_twitter_blue" to "@android:color/system_accent1_200"
-            ).forEach { (k, v) ->
-                val colorElement = document.createElement("color")
+            val paletteDimMap = mapOf(
+               "abstractColorCellBackground" to "#ff121314",
+                "abstractColorCellBackgroundTranslucent" to "@color/black_opacity_50",
+                "abstractColorDeepGray" to "#ff7c838a",
+                "abstractColorDivider" to "#ff2f3336",
+                "abstractColorFadedGray" to "#ff202327",
+                "abstractColorFaintGray" to "#ff15181c",
+                "abstractColorHighlightBackground" to "#ff15181c",
+                "abstractColorLightGray" to "#ff2f3336",
+                "abstractColorLink" to "@color/twitter_blue",
+                "abstractColorMediumGray" to "#ff505457",
+                "abstractColorText" to "#ffd9d9d9",
+                "abstractColorUnread" to "#ff1b2023",
+                "abstractElevatedBackground" to "#ff1b2023",
+                "abstractElevatedBackgroundShadow" to "@color/black_opacity_10"
+            )
+            
+            val paletteDimSection = document.getElementsByTagName("style")
+                .firstOrNull { it.attributes.getNamedItem("name")?.nodeValue == "PaletteDim" }
 
-                colorElement.setAttribute("name", k)
-                colorElement.textContent = v
+            paletteDimSection?.let { paletteDim ->
+                paletteDimMap.forEach { (key, value) ->
+                    val itemElements = paletteDim.childNodes
+                        .filter { it.nodeType == Node.ELEMENT_NODE && it.nodeName == "item" }
+                        .filter { it.attributes.getNamedItem("name")?.nodeValue == key }
 
-                document.getElementsByTagName("resources").item(0).appendChild(colorElement)
+                    itemElements.forEach { itemElement ->
+                        itemElement.textContent = value
+                    }
+                }
             }
         }
     }
