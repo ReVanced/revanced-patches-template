@@ -178,7 +178,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // region Hook for litho Shorts
 
-        // Info cards can also appear as litho components.
+        // Filter that parses the video id from the UI
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         // endregion
