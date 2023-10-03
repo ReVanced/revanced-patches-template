@@ -12,6 +12,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
 import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.GetAuthorizationStringFingerprint
 import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.GetBearerTokenFingerprint
+import app.revanced.patches.reddit.customclients.syncforreddit.api.fingerprints.ImgurImageAPIFingerprint
 import app.revanced.patches.reddit.customclients.syncforreddit.detection.piracy.DisablePiracyDetectionPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -20,9 +21,7 @@ import java.util.*
 
 @Patch(
     name = "Spoof client",
-    description = "Spoofs the client in order to allow logging in. " +
-            "The OAuth application type has to be \"Installed app\" " +
-            "and the redirect URI has to be set to \"http://redditsync/auth\".",
+    description = "Restores functionality of the app by using custom client ID's.",
     dependencies = [DisablePiracyDetectionPatch::class],
     compatiblePackages =  [
         CompatiblePackage("com.laurencedawson.reddit_sync"),
@@ -32,7 +31,9 @@ import java.util.*
 )
 @Suppress("unused")
 object SpoofClientPatch : AbstractSpoofClientPatch(
-    "http://redditsync/auth", listOf(GetAuthorizationStringFingerprint)
+    "http://redditsync/auth",
+    clientIdFingerprints = listOf(GetAuthorizationStringFingerprint),
+    miscellaneousFingerprints = listOf(ImgurImageAPIFingerprint)
 ) {
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach { fingerprintResult ->
@@ -67,5 +68,15 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
                 }
             }
         }
+    }
+
+    // Use the non-commercial Imgur API endpoint.
+    override fun List<MethodFingerprintResult>.patchMiscellaneous(context: BytecodeContext) = first().let {
+        val apiUrlIndex = it.scanResult.stringsScanResult!!.matches.first().index
+
+        it.mutableMethod.replaceInstruction(
+            apiUrlIndex,
+            "const-string v1, \"https://api.imgur.com/3/image\""
+        )
     }
 }
