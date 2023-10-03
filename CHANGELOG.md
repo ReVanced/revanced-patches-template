@@ -1,3 +1,23 @@
+# [2.191.0-dev.32](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.31...v2.191.0-dev.32) (2023-10-03)
+
+
+### Bug Fixes
+
+* **Sync for Reddit:** Do not throw an error when not necessary ([ef644e4](https://github.com/ReVanced/revanced-patches/commit/ef644e48018a90429108779b7419299c4f43e4ff))
+
+
+### Features
+
+* **Sync for Reddit - Client spoof:** Restore upload functionality ([9344c8a](https://github.com/ReVanced/revanced-patches/commit/9344c8a067127b0fb4ee8599c5dcfcb206b4ee07))
+* Use properties file for `Client spoof` patches ([e5d548c](https://github.com/ReVanced/revanced-patches/commit/e5d548c6427fb54968f26d706ff16274e72f700a))
+
+# [2.191.0-dev.31](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.30...v2.191.0-dev.31) (2023-10-02)
+
+
+### Bug Fixes
+
+* **YouTube - SponsorBlock:** Adjust import/export UI text ([#3063](https://github.com/ReVanced/revanced-patches/issues/3063)) ([4e5513e](https://github.com/ReVanced/revanced-patches/commit/4e5513e973f5de7c9f6330dfe7a0744e91f305b4))
+
 # [2.191.0-dev.30](https://github.com/ReVanced/revanced-patches/compare/v2.191.0-dev.29...v2.191.0-dev.30) (2023-10-02)
 
 
