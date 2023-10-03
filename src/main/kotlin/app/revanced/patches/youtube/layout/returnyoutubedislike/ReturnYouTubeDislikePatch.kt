@@ -14,6 +14,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -26,6 +27,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
     dependencies = [
         IntegrationsPatch::class,
+        LithoFilterPatch::class,
         VideoIdPatch::class,
         ReturnYouTubeDislikeResourcePatch::class,
         PlayerTypeHookPatch::class,
@@ -47,6 +49,9 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
+
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/ReturnYouTubeDislikeFilterPatch;"
 
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
@@ -131,7 +136,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        // region Hook for Short videos.
+        // region Hook for non litho Short videos.
 
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -168,6 +173,13 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             }
         } ?: throw ShortsTextViewFingerprint.exception
+
+        // endregion
+
+        // region Hook for litho Shorts
+
+        // Info cards can also appear as litho components.
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
         // endregion
 
