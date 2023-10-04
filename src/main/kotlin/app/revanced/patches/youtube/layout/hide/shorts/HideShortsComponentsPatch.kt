@@ -122,7 +122,7 @@ object HideShortsComponentsPatch : BytecodePatch(
         // Required to prevent a black bar from appearing at the bottom of the screen.
         BottomNavigationBarFingerprint.result?.let {
             it.mutableMethod.apply {
-                val moveResultIndex = it.scanResult.patternScanResult!!.startIndex
+                val moveResultIndex = it.scanResult.patternScanResult!!.startIndex + 2
                 val viewRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
                 val insertIndex = moveResultIndex + 1
 
