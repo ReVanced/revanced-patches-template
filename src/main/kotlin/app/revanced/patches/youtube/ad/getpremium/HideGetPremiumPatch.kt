@@ -42,7 +42,7 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
                 "revanced_hide_get_premium",
                 StringResource(
                     "revanced_hide_get_premium_title",
-                    "Hide \"YouTube Premium\" advertisements"
+                    "Hide \"Get YouTube Premium\" advertisements"
                 ),
                 StringResource(
                     "revanced_hide_get_premium_summary_on",
