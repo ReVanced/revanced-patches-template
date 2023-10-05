@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
 @Patch(
-    name = "Hide \"Get Premium\" advertisements",
+    name = "Hide \"Get YouTube Premium\" advertisements",
     description = "Hides YouTube Premium advertisements under video player.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
