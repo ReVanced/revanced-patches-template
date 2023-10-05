@@ -58,6 +58,9 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         VideoIdPatch.hookVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
+        // Hook the player response video id, to start loading RYD sooner in the background.
+        VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->preloadPlayerResponseVideoId(Ljava/lang/String;)V")
+
         // endregion
 
         // region Hook like/dislike/remove like button clicks to send votes to the API.
