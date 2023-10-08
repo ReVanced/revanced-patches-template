@@ -1,3 +1,26 @@
+# [2.193.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.193.0-dev.3...v2.193.0-dev.4) (2023-10-08)
+
+
+### Bug Fixes
+
+* **Boost for Reddit - Spoof client:** Set user-agent for OAuth requests to fix login ([2223951](https://github.com/ReVanced/revanced-patches/commit/2223951fa16011d735ef4c4cda11eba13403f62d))
+* **Infinity for Reddit - Spoof client:** Set user-agent for OAuth requests to fix login ([a710f05](https://github.com/ReVanced/revanced-patches/commit/a710f05bb46156e66ca56aa4731e1028f459c414))
+* **Sync for Reddit - Spoof client:** Set user-agent for OAuth requests to fix login ([a48c4a7](https://github.com/ReVanced/revanced-patches/commit/a48c4a7cc1dbb3ecfce2e345240bca8142740b77))
+
+# [2.193.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.193.0-dev.2...v2.193.0-dev.3) (2023-10-07)
+
+
+### Features
+
+* **YouTube - Return YouTube Dislike:** Support version `18.37.36` ([#3061](https://github.com/ReVanced/revanced-patches/issues/3061)) ([fe11db7](https://github.com/ReVanced/revanced-patches/commit/fe11db70eafb481db87231d3db22eafbaa479871))
+
+# [2.193.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.193.0-dev.1...v2.193.0-dev.2) (2023-10-07)
+
+
+### Features
+
+* **YouTube:** Add `Disable fine scrubbing gesture` patch ([6c9baf2](https://github.com/ReVanced/revanced-patches/commit/6c9baf22614b1be4870be684915445f7a138cf31))
+
 # [2.193.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.192.0...v2.193.0-dev.1) (2023-10-05)
 
 
