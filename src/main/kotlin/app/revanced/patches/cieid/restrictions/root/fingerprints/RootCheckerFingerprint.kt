@@ -1,4 +1,4 @@
-package app.revanced.patches.cieid.restrictions.fingerprints
+package app.revanced.patches.cieid.restrictions.root.fingerprints
 
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 
