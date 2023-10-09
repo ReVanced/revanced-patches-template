@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.unifiprotect.dialog.devicenotfound.fingerprints.HideDeviceNotFoundDialogMethodFingerprint
+import app.revanced.patches.unifiprotect.dialog.devicenotfound.fingerprints.ShowLocalDeviceNotFoundDialogMethodFingerprint
 
 @Patch(
     name = "Hide device not found dialog",
@@ -14,9 +14,10 @@ import app.revanced.patches.unifiprotect.dialog.devicenotfound.fingerprints.Hide
 )
 
 object HideDeviceNotFoundPatch : BytecodePatch(
-    setOf(HideDeviceNotFoundDialogMethodFingerprint)
+    setOf(ShowLocalDeviceNotFoundDialogMethodFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
-        HideDeviceNotFoundDialogMethodFingerprint.result?.mutableMethod?.addInstruction(0, "return-void") ?: throw HideDeviceNotFoundDialogMethodFingerprint.exception
-    }
+    override fun execute(context: BytecodeContext) =
+        ShowLocalDeviceNotFoundDialogMethodFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")
+            ?: throw ShowLocalDeviceNotFoundDialogMethodFingerprint.exception
+
 }

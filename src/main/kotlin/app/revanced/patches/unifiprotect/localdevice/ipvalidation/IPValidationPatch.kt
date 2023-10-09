@@ -8,31 +8,32 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.unifiprotect.localdevice.ipvalidation.fingerprints.IPValidation2MethodFingerprint
-import app.revanced.patches.unifiprotect.localdevice.ipvalidation.fingerprints.IPValidationMethodFingerprint
+import app.revanced.patches.unifiprotect.localdevice.ipvalidation.fingerprints.ParseVersionPacket2MethodFingerprint
+import app.revanced.patches.unifiprotect.localdevice.ipvalidation.fingerprints.ParseVersionPacketMethodFingerprint
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction35c
 
 @Patch(
     name = "IP Validation",
+    description = "Removes the IP validation check that prevents the app from connecting to local devices.",
     compatiblePackages = [CompatiblePackage("com.ubnt.unifi.protect")],
 )
 
 object IPValidationPatch : BytecodePatch(
     setOf(
-        IPValidationMethodFingerprint,
-        IPValidation2MethodFingerprint
+        ParseVersionPacketMethodFingerprint,
+        ParseVersionPacket2MethodFingerprint
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        val result = IPValidationMethodFingerprint.result ?: throw PatchException("Could not find method to patch")
+        val result = ParseVersionPacketMethodFingerprint.result ?: throw PatchException("Could not find method to patch")
 
         val index =
             result.scanResult.patternScanResult?.startIndex ?: throw PatchException("Could not find pattern to patch")
 
         result.mutableMethod.removeInstructions(index, 3)
 
-        val result2 = IPValidation2MethodFingerprint.result ?: throw PatchException("Could not find method to patch")
+        val result2 = ParseVersionPacket2MethodFingerprint.result ?: throw PatchException("Could not find method to patch")
         val patternScanResult = result2.scanResult.patternScanResult
 
         val startIndex = patternScanResult?.startIndex ?: throw PatchException("Could not find pattern to patch")

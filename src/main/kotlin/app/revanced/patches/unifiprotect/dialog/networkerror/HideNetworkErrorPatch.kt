@@ -6,17 +6,18 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.unifiprotect.dialog.networkerror.fingerprints.HideNetworkErrorDialogMethodFingerprint
+import app.revanced.patches.unifiprotect.dialog.networkerror.fingerprints.ShowVpnErrorDialogMethodFingerprint
 
 @Patch(
     name = "Hide network error dialog",
+    description = "Hides the network error dialog that appears when the app is unable to connect to the internet. This is useful for people who use the app on a local network without internet access.",
     compatiblePackages = [CompatiblePackage("com.ubnt.unifi.protect")]
 )
 
 object HideNetworkErrorPatch : BytecodePatch(
-    setOf(HideNetworkErrorDialogMethodFingerprint)
+    setOf(ShowVpnErrorDialogMethodFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
-        HideNetworkErrorDialogMethodFingerprint.result?.mutableMethod?.addInstruction(0, "return-void") ?: throw HideNetworkErrorDialogMethodFingerprint.exception
-    }
+    override fun execute(context: BytecodeContext) =
+        ShowVpnErrorDialogMethodFingerprint.result?.mutableMethod?.addInstruction(0, "return-void")
+            ?: throw ShowVpnErrorDialogMethodFingerprint.exception
 }

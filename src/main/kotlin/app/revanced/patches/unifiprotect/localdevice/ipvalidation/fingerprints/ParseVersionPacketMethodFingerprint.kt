@@ -3,7 +3,7 @@ package app.revanced.patches.unifiprotect.localdevice.ipvalidation.fingerprints
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
-object IPValidationMethodFingerprint : MethodFingerprint(
+object ParseVersionPacketMethodFingerprint : MethodFingerprint(
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL_RANGE,
         Opcode.MOVE_RESULT_OBJECT,

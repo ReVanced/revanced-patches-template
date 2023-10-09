@@ -1,15 +1,15 @@
 package app.revanced.patches.unifiprotect.localdevice.directconnections
 
+import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.unifiprotect.localdevice.directconnections.fingerprints.DirectConnectionsMethodFingerprint
+import app.revanced.patches.unifiprotect.localdevice.directconnections.fingerprints.RegisterListenerMethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
@@ -17,35 +17,39 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethodParameter
 
 @Patch(
     name = "Enable direct connections",
+    description = "Enables direct connections to devices without a cloud connection.",
     compatiblePackages = [CompatiblePackage("com.ubnt.unifi.protect")],
 )
 @Suppress("unused")
 object DirectConnectionsPatch : BytecodePatch(
     setOf(
-        DirectConnectionsMethodFingerprint
+        RegisterListenerMethodFingerprint
     )
 ) {
-    private var model by stringPatchOption(
-        "Model",
+    private val model by stringPatchOption(
+        "model",
         "UCK-G2-PLUS",
+        "Device model",
         "The model to use for the direct connection device"
     )
 
-    private var IP by stringPatchOption(
-        "IP",
-        "",
+    private var ip by stringPatchOption(
+        "ip",
+        null,
+        "Device IP",
         "The IP to use for the direct connection device"
     )
 
-    private var MAC by stringPatchOption(
-        "MAC",
+    private var mac by stringPatchOption(
+        "mac",
         null,
+        "Device MAC",
         "The MAC to use for the direct connection device"
     )
 
     override fun execute(context: BytecodeContext) {
 
-        val result = DirectConnectionsMethodFingerprint.result ?: throw PatchException("Could not find method to patch")
+        val result = RegisterListenerMethodFingerprint.result ?: throw RegisterListenerMethodFingerprint.exception
         result.mutableClass.methods.removeIf{ it.name == "registerListener" }
 
         val helperMethod = ImmutableMethod(
@@ -122,19 +126,19 @@ object DirectConnectionsPatch : BytecodePatch(
                             
                                 new-instance v1, Lcom/ubnt/common/service/discovery/Version1Packet${'$'}IpInfo;
                             
-                                const-string v2, "$MAC"
+                                const-string v2, "$mac"
                             
-                                const-string v3, "$IP"
+                                const-string v3, "$ip"
                             
                                 invoke-direct {v1, v2, v3}, Lcom/ubnt/common/service/discovery/Version1Packet${'$'}IpInfo;-><init>(Ljava/lang/String;Ljava/lang/String;)V
                             
                                 iput-object v1, v4, Lcom/ubnt/common/service/discovery/Version1Packet;->ipInfo:Lcom/ubnt/common/service/discovery/Version1Packet${'$'}IpInfo;
                             
-                                const-string v1, "$IP"
+                                const-string v1, "$ip"
                             
                                 iput-object v1, v4, Lcom/ubnt/common/service/discovery/Version1Packet;->ipaddr:Ljava/lang/String;
                             
-                                const-string v1, "$MAC"
+                                const-string v1, "$mac"
                             
                                 iput-object v1, v4, Lcom/ubnt/common/service/discovery/Version1Packet;->hwaddr:Ljava/lang/String;
                             

@@ -10,20 +10,19 @@ import app.revanced.patches.unifiprotect.localdevice.bypasswifichecks.fingerprin
 
 @Patch(
     name = "Bypass wifi checks",
+    description = "Bypasses the wifi checks that prevent the app from connecting to local devices.",
     compatiblePackages = [CompatiblePackage("com.ubnt.unifi.protect")],
 )
 
 object BypassWifiChecksPatch : BytecodePatch(
-    setOf(
-        IsWifiMethodFingerprint
-    )
+    setOf(IsWifiMethodFingerprint)
 ) {
-    override fun execute(context: BytecodeContext) {
+    override fun execute(context: BytecodeContext) =
         IsWifiMethodFingerprint.result?.mutableMethod?.addInstructions(
             0, """
                 const/4 v0, 0x1
                 return v0
             """
         ) ?: throw PatchException("Could not find method to patch")
-    }
+
 }
