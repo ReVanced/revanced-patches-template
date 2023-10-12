@@ -6,7 +6,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.cieid.restrictions.root.fingerprints.RootCheckerFingerprint
+import app.revanced.patches.cieid.restrictions.root.fingerprints.CheckRootFingerprint
 
 @Patch(
     name = "Bypass root checks",
@@ -14,10 +14,10 @@ import app.revanced.patches.cieid.restrictions.root.fingerprints.RootCheckerFing
     compatiblePackages = [CompatiblePackage("it.ipzs.cieid")]
 )
 class BypassRootChecksPatch : BytecodePatch(
-    setOf(RootCheckerFingerprint)
+    setOf(CheckRootFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        RootCheckerFingerprint.result?.mutableMethod?.addInstruction(1, "return-void")
-            ?: throw RootCheckerFingerprint.exception
+        CheckRootFingerprint.result?.mutableMethod?.addInstruction(1, "return-void")
+            ?: throw CheckRootFingerprint.exception
     }
 }
