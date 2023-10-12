@@ -45,7 +45,15 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
         method: Method,
         instruction: Instruction,
         instructionIndex: Int
-    ) = filterMethodCall(instruction, instructionIndex)
+    ): Pair<Int, String>? {
+        if (instruction !is ReferenceInstruction) return null
+
+        val reference = instruction.reference as? MethodReference ?: return null
+        if (reference.definingClass != "Landroid/telephony/TelephonyManager;") return null
+
+        if (!options.contains(reference.name)) return null
+        return (options[reference.name].value as? String)?.let { instructionIndex to it.trim() }
+    }
 
     override fun transform(
         mutableMethod: MutableMethod,
@@ -58,16 +66,9 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
     ) {
         val (instructionIndex, methodCallValue) = entry
 
-        // Get register of the next MOVE_RESULT_OBJECT instruction that accompanies INVOKE_VIRTUAL
-        val instruction = mutableMethod.getInstruction(instructionIndex + 1)
-        val register = (instruction as? BuilderInstruction11x ?: throw PatchException(
-            """
-            This shouldn't happen.
-            Expected a `move-result-object` instruction at location ${instructionIndex + 1}
-            ClassName: ${mutableMethod.definingClass}
-            MethodName: ${mutableMethod.name}
-            """.trimIndent()
-        )).registerA
+        // Get register of the next MOVE_RESULT_OBJECT instruction that accompanies INVOKE_VIRTUAL.
+        val instruction = mutableMethod.getInstruction<BuilderInstruction11x>(instructionIndex + 1)
+        val register = instruction.registerA
 
         mutableMethod.removeInstruction(instructionIndex + 1)
         mutableMethod.replaceInstruction(instructionIndex, "const-string v$register, \"$methodCallValue\"")
