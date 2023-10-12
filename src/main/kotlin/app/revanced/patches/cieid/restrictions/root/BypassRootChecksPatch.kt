@@ -10,16 +10,14 @@ import app.revanced.patches.cieid.restrictions.root.fingerprints.RootCheckerFing
 
 @Patch(
     name = "Bypass root checks",
-    description = "Removes the restriction of using the app with root permissions or on a custom ROM.",
+    description = "Removes the restriction to use the app with root permissions or on a custom ROM.",
     compatiblePackages = [CompatiblePackage("it.ipzs.cieid")]
 )
 class BypassRootChecksPatch : BytecodePatch(
     setOf(RootCheckerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        val result = RootCheckerFingerprint.result ?: throw RootCheckerFingerprint.exception
-        result.apply {
-            mutableMethod.addInstruction(1, "return-void")
-        }
+        RootCheckerFingerprint.result?.mutableMethod?.addInstruction(1, "return-void")
+            ?: throw RootCheckerFingerprint.exception
     }
 }
