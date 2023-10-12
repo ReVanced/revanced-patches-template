@@ -46,12 +46,6 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
         validator = { it?.uppercase() in Locale.getISOCountries() || it == null }
     )
 
-    override fun execute(context: BytecodeContext) {
-        loadPatchOptionsForAndroid()
-
-        super.execute(context)
-    }
-
     override fun filterMap(
         classDef: ClassDef,
         method: Method,
@@ -97,56 +91,5 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
 
         mutableMethod.removeInstruction(instructionIndex + 1)
         mutableMethod.replaceInstruction(instructionIndex, "const-string v$register, \"$methodCallValue\"")
-    }
-
-    private fun loadPatchOptionsForAndroid() {
-        val isAndroid = try {
-            Class.forName("android.os.Environment")
-            true
-        } catch (_: ClassNotFoundException) {
-            false
-        }
-
-        if (isAndroid) {
-            val properties = Properties()
-
-            val propertiesFile = File(
-                Environment.getExternalStorageDirectory(), "revanced_simcountry_spoof.properties"
-            )
-            if (propertiesFile.exists()) {
-                properties.load(propertiesFile.inputStream())
-
-                // Set options from properties file.
-                properties.forEach { (name, value) ->
-                    try {
-                        options[name.toString()] =
-                            value.toString().trim().takeIf { it.isNotBlank() && it.length <= 32 }
-                    } catch (_: PatchOptionException.PatchOptionNotFoundException) {
-                        // Ignore unknown options.
-                    }
-                }
-            } else {
-                options.values.forEach {
-                    properties.setProperty(it.key, it.value as? String ?: "")
-                }
-
-                properties.store(
-                    propertiesFile.outputStream(),
-                    """
-                    Options for the ReVanced "Spoof SIM country" patch.
-                    Omitted options or options with blank values are ignored.
-                    """.trimIndent()
-                )
-
-                val error =
-                    """
-                    A properties file has been created at ${propertiesFile.absolutePath}.
-                    Provide the following options and run the patch again:
-                    ${options.values.joinToString("\n\n") { "${it.key}: ${it.description}" }}
-                    """.trimIndent()
-
-                throw PatchException(error)
-            }
-        }
     }
 }
