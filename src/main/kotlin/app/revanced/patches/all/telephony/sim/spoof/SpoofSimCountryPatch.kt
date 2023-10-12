@@ -3,12 +3,10 @@ package app.revanced.patches.all.telephony.sim.spoof
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction11x
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
@@ -26,7 +24,7 @@ import java.util.*
 @Suppress("unused")
 object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, String>>() {
     private val networkCountryIso by stringPatchOption(
-        "networkIsoCountryCode",
+        "getNetworkCountryIso",
         null,
         "Network ISO Country Code",
         "ISO-3166-1 alpha-2 country code equivalent of the MCC (Mobile Country Code) " +
@@ -35,7 +33,7 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
     )
 
     private val simCountryIso by stringPatchOption(
-        "simIsoCountryCode",
+        "getSimCountryIso",
         null,
         "Sim ISO Country Code",
         "ISO-3166-1 alpha-2 country code equivalent for the SIM provider's country code.",
@@ -53,20 +51,6 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
         mutableMethod: MutableMethod,
         entry: Pair<Int, String>
     ) = transformMethodCall(entry, mutableMethod)
-
-    private fun filterMethodCall(
-        instruction: Instruction,
-        instructionIndex: Int
-    ): Pair<Int, String>? {
-        if (instruction.opcode != Opcode.INVOKE_VIRTUAL) return null
-        if (instruction !is ReferenceInstruction) return null
-
-        val reference = instruction.reference as? MethodReference ?: return null
-        if (reference.definingClass != "Landroid/telephony/TelephonyManager;") return null
-
-        if (!options.contains(reference.name)) return null
-        return (options[reference.name].value as? String)?.let { instructionIndex to it.trim() }
-    }
 
     private fun transformMethodCall(
         entry: Pair<Int, String>,
