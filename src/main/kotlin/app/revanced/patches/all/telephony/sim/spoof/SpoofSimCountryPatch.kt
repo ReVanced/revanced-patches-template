@@ -29,30 +29,20 @@ import java.util.*
 )
 @Suppress("unused")
 object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, String>>() {
-    private val NetworkCountryIso by stringPatchOption(
-        "getNetworkCountryIso",
-        "is",
+    private val networkCountryIso by stringPatchOption(
+        "networkIsoCountryCode",
+        null,
         "Network ISO Country Code",
-        """
-        ISO-3166-1 alpha-2 country code equivalent of the MCC (Mobile Country Code) 
-        of the current registered operator or the cell nearby.
-        Default is set to "is" (Iceland).
-        https://developer.android.com/reference/android/telephony/TelephonyManager#getNetworkCountryIso()
-        """.trimIndent(),
-        false,
+        "ISO-3166-1 alpha-2 country code equivalent of the MCC (Mobile Country Code) " +
+                "of the current registered operator or the cell nearby.",
         validator = { it?.uppercase() in Locale.getISOCountries() || it == null }
     )
 
-    private val SimCountryIso by stringPatchOption(
-        "getSimCountryIso",
-        "is",
+    private val simCountryIso by stringPatchOption(
+        "simIsoCountryCode",
+        null,
         "Sim ISO Country Code",
-        """
-        ISO-3166-1 alpha-2 country code equivalent for the SIM provider's country code.
-        Default is set to "is" (Iceland).
-        https://developer.android.com/reference/android/telephony/TelephonyManager#getSimCountryIso()
-        """.trimIndent(),
-        false,
+        "ISO-3166-1 alpha-2 country code equivalent for the SIM provider's country code.",
         validator = { it?.uppercase() in Locale.getISOCountries() || it == null }
     )
 
