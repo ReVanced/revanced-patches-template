@@ -42,8 +42,4 @@
     <string name="revanced_hide_download_button_title">Hide download button</string>
     <string name="revanced_hide_download_button_summary_on">Download button is hidden</string>
     <string name="revanced_hide_download_button_summary_off">Download button is shown</string>
-
-    <string name="revanced_hide_clip_button_title">Hide clip button</string>
-    <string name="revanced_hide_clip_button_summary_on">Clip button is hidden</string>
-    <string name="revanced_hide_clip_button_summary_off">Clip button is shown</string>
 </resources>

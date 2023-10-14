@@ -120,7 +120,11 @@ abstract class AbstractSettingsResourcePatch(
          */
         internal fun BaseResource.include() {
             when (this) {
-                is StringResource -> strings[name] = this
+                is StringResource -> {
+                    if (strings.put(name, this) != null) {
+                        throw PatchException("Tried to add duplicate string: $name")
+                    }
+                }
                 is ArrayResource -> addArray(this)
                 else -> throw NotImplementedError("Unsupported resource type")
             }
