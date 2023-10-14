@@ -82,7 +82,7 @@ tasks {
         dependsOn("generateMeta")
     }
     register<JavaExec>("generateMergedStrings") {
-        description = "Generate a merged English strings.xml file, used for crowdin translations"
+        description = "Generate a merged English strings.xml file used for Crowdin translations"
         dependsOn(build)
 
         classpath = sourceSets["main"].runtimeClasspath
