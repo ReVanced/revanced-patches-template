@@ -18,7 +18,7 @@ object AlbumCardsResourcePatch : ResourcePatch() {
     internal var albumCardId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("AlbumCards")
+        SettingsResourcePatch.includePatchStrings("AlbumCards")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_album_cards",

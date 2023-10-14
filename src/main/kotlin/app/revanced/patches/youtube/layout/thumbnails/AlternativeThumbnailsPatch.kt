@@ -84,7 +84,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     }
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("AlternativeThumbnails")
+        SettingsResourcePatch.includePatchStrings("AlternativeThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",

@@ -42,7 +42,7 @@ object SpoofAppVersionPatch : BytecodePatch(
     private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/spoof/SpoofAppVersionPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("SpoofAppVersion")
+        SettingsResourcePatch.includePatchStrings("SpoofAppVersion")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",

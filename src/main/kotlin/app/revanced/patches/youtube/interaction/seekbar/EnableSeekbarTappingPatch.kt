@@ -47,7 +47,7 @@ object EnableSeekbarTappingPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("EnableSeekbarTapping")
+        SettingsResourcePatch.includePatchStrings("EnableSeekbarTapping")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",

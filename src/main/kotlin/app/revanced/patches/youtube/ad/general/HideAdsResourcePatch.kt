@@ -24,7 +24,7 @@ object HideAdsResourcePatch : ResourcePatch() {
     internal var adAttributionId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("HideAds")
+        SettingsResourcePatch.includePatchStrings("HideAds")
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_general_ads",

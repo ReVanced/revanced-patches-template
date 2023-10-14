@@ -9,7 +9,7 @@ import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.includeStrings
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -29,7 +29,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
     private var preferencesNode: Node? = null
 
     /**
-     * Used to merge the strings in [mergePatchStrings].
+     * Used to merge the strings in [includePatchStrings].
      */
     private lateinit var resourceContext : ResourceContext
 
@@ -88,7 +88,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
         }
 
         // Add the ReVanced settings to the YouTube settings
-        mergePatchStrings("Settings")
+        includePatchStrings("Settings")
 
         SettingsPatch.addPreference(
             Preference(
@@ -114,8 +114,8 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
      *
      * @param patchName Name of the patch strings xml file.
      */
-    fun mergePatchStrings(patchName: String)  {
-        resourceContext.mergeStrings("youtube/settings/host/values/$patchName.xml")
+    fun includePatchStrings(patchName: String)  {
+        resourceContext.includeStrings("youtube/settings/host/values/$patchName.xml")
     }
 
     override fun close() {

@@ -41,7 +41,7 @@ object CommentsPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
-        SettingsResourcePatch.mergePatchStrings("Comments")
+        SettingsResourcePatch.includePatchStrings("Comments")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_comments_preference_screen",

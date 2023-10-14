@@ -39,7 +39,7 @@ object SpoofSignaturePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("SpoofSignature")
+        SettingsResourcePatch.includePatchStrings("SpoofSignature")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_spoof_signature_verification_screen",

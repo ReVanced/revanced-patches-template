@@ -40,7 +40,7 @@ object AutoRepeatPatch : BytecodePatch(
     setOf(AutoRepeatParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("AutoRepeat")
+        SettingsResourcePatch.includePatchStrings("AutoRepeat")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_auto_repeat",

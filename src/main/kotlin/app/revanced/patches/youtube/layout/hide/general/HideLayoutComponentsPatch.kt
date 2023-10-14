@@ -50,7 +50,7 @@ object HideLayoutComponentsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/components/LayoutComponentsFilter;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("HideLayoutComponents")
+        SettingsResourcePatch.includePatchStrings("HideLayoutComponents")
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_gray_separator",

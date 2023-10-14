@@ -20,7 +20,7 @@ object HideEndscreenCardsResourcePatch : ResourcePatch() {
     internal var layoutVideo: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("HideEndscreenCards")
+        SettingsResourcePatch.includePatchStrings("HideEndscreenCards")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_endscreen_cards",

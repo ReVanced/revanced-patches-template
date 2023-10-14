@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 object CustomPlayerOverlayOpacityResourcePatch : ResourcePatch() {
 internal var scrimOverlayId = -1L
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("CustomPlayerOverlayOpacity")
+        SettingsResourcePatch.includePatchStrings("CustomPlayerOverlayOpacity")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             TextPreference(
                 "revanced_player_overlay_opacity",

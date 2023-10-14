@@ -49,7 +49,7 @@ object TabletMiniPlayerPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("TabletMiniPlayer")
+        SettingsResourcePatch.includePatchStrings("TabletMiniPlayer")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_miniplayer",

@@ -36,7 +36,7 @@ object PlayerPopupPanelsPatch : BytecodePatch(
     setOf(EngagementPanelControllerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("PlayerPopupPanels")
+        SettingsResourcePatch.includePatchStrings("PlayerPopupPanels")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_popup_panels",

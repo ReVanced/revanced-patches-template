@@ -15,7 +15,7 @@ object HideShortsComponentsResourcePatch : ResourcePatch() {
     internal var reelPlayerRightCellButtonHeight = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("HideShortsComponents")
+        SettingsResourcePatch.includePatchStrings("HideShortsComponents")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_shorts_preference_screen",

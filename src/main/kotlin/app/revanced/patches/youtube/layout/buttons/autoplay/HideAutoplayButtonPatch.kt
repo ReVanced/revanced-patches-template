@@ -49,7 +49,7 @@ object HideAutoplayButtonPatch : BytecodePatch(
     setOf(LayoutConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("HideAutoplayButton")
+        SettingsResourcePatch.includePatchStrings("HideAutoplayButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",

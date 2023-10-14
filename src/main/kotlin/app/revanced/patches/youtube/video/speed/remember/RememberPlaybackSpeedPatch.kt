@@ -28,7 +28,7 @@ object RememberPlaybackSpeedPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("RememberPlaybackSpeed")
+        SettingsResourcePatch.includePatchStrings("RememberPlaybackSpeed")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_playback_speed_last_selected",

@@ -23,7 +23,7 @@ object ZoomHapticsPatch : BytecodePatch(
     setOf(ZoomHapticsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("ZoomHaptics")
+        SettingsResourcePatch.includePatchStrings("ZoomHaptics")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_disable_zoom_haptics",

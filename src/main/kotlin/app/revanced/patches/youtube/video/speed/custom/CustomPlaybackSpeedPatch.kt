@@ -59,7 +59,7 @@ object CustomPlaybackSpeedPatch : BytecodePatch(
                 inputType = InputType.TEXT_MULTI_LINE
             )
         )
-        SettingsResourcePatch.mergePatchStrings("CustomPlaybackSpeed")
+        SettingsResourcePatch.includePatchStrings("CustomPlaybackSpeed")
 
         val arrayGenMethod = SpeedArrayGeneratorFingerprint.result?.mutableMethod!!
         val arrayGenMethodImpl = arrayGenMethod.implementation!!

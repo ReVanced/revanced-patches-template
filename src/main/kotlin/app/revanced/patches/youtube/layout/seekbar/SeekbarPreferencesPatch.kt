@@ -19,7 +19,7 @@ object SeekbarPreferencesPatch : ResourcePatch(), Closeable {
     }
 
     override fun close() {
-        SettingsResourcePatch.mergePatchStrings("SeekbarPreferences")
+        SettingsResourcePatch.includePatchStrings("SeekbarPreferences")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_seekbar_preference_screen",

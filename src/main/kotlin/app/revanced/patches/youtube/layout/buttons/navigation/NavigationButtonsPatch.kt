@@ -51,7 +51,7 @@ object NavigationButtonsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/NavigationButtonsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("NavigationButtons")
+        SettingsResourcePatch.includePatchStrings("NavigationButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",

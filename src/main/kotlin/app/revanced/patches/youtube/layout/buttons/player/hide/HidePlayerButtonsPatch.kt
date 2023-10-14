@@ -44,7 +44,7 @@ object HidePlayerButtonsPatch : BytecodePatch(
     setOf(PlayerControlsVisibilityModelFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("HidePlayerButtons")
+        SettingsResourcePatch.includePatchStrings("HidePlayerButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_buttons",

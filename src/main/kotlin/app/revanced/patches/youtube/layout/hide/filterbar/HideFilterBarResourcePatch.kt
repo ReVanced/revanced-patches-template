@@ -16,7 +16,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
     internal var barContainerHeightId = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("HideFilterBar")
+        SettingsResourcePatch.includePatchStrings("HideFilterBar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_filter_bar_screen",

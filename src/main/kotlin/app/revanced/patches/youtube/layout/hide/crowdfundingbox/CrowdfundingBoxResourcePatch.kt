@@ -18,7 +18,7 @@ object CrowdfundingBoxResourcePatch : ResourcePatch() {
     internal var crowdfundingBoxId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("CrowdfundingBox")
+        SettingsResourcePatch.includePatchStrings("CrowdfundingBox")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_crowdfunding_box",

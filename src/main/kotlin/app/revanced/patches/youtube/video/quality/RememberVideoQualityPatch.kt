@@ -80,7 +80,7 @@ object RememberVideoQualityPatch : BytecodePatch(
             "144",
         )
 
-        SettingsResourcePatch.mergePatchStrings("RememberVideoQuality")
+        SettingsResourcePatch.includePatchStrings("RememberVideoQuality")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",

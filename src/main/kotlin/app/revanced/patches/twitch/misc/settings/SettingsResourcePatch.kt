@@ -2,7 +2,7 @@ package app.revanced.patches.twitch.misc.settings
 
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
-import app.revanced.util.resources.ResourceUtils.mergeStrings
+import app.revanced.util.resources.ResourceUtils.includeStrings
 
 object SettingsResourcePatch : AbstractSettingsResourcePatch(
 "revanced_prefs",
@@ -26,6 +26,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
      * @param patchName Name of the patch strings xml file.
      */
     fun mergePatchStrings(patchName: String)  {
-        resourceContext.mergeStrings("twitch/settings/host/values/$patchName.xml")
+        resourceContext.includeStrings("twitch/settings/host/values/$patchName.xml")
     }
 }

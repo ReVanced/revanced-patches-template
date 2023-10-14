@@ -16,7 +16,7 @@ object OldVideoQualityMenuResourcePatch : ResourcePatch() {
     internal var videoQualityBottomSheetListFragmentTitle = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("OldVideoQualityMenu")
+        SettingsResourcePatch.includePatchStrings("OldVideoQualityMenu")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_show_old_video_quality_menu",

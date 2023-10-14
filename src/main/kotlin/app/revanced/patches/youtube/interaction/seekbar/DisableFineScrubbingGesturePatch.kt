@@ -38,7 +38,7 @@ object DisableFineScrubbingGesturePatch : BytecodePatch(
                 "disableGesture(Landroid/view/VelocityTracker;Landroid/view/MotionEvent;)V"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("DisableFineScrubbingGesture")
+        SettingsResourcePatch.includePatchStrings("DisableFineScrubbingGesture")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_disable_fine_scrubbing_gesture",

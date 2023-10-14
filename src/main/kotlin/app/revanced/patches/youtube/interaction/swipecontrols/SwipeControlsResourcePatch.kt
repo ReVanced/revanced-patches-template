@@ -14,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 )
 object SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("SwipeControls")
+        SettingsResourcePatch.includePatchStrings("SwipeControls")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_swipe_controls_preference_screen",

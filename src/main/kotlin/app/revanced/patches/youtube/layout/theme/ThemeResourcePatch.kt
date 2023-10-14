@@ -22,7 +22,7 @@ object ThemeResourcePatch : ResourcePatch() {
     private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("Theme")
+        SettingsResourcePatch.includePatchStrings("Theme")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_custom_color",

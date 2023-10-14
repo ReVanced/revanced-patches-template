@@ -38,7 +38,7 @@ object HDRBrightnessPatch : BytecodePatch(
     setOf(HDRBrightnessFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("HDRBrightness")
+        SettingsResourcePatch.includePatchStrings("HDRBrightness")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_hdr_auto_brightness",

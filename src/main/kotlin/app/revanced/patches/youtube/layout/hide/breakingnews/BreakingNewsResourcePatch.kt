@@ -18,7 +18,7 @@ object BreakingNewsResourcePatch : ResourcePatch() {
     internal var horizontalCardListId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("BreakingNews")
+        SettingsResourcePatch.includePatchStrings("BreakingNews")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_breaking_news",

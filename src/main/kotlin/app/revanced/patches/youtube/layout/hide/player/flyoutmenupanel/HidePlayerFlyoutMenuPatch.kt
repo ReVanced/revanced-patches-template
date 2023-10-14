@@ -38,7 +38,7 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("HidePlayerFlyoutMenu")
+        SettingsResourcePatch.includePatchStrings("HidePlayerFlyoutMenu")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_player_flyout_screen",

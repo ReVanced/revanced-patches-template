@@ -15,7 +15,7 @@ import app.revanced.util.resources.ResourceUtils.copyXmlNode
 object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("SponsorBlock")
+        SettingsResourcePatch.includePatchStrings("SponsorBlock")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_sponsorblock_settings_title",

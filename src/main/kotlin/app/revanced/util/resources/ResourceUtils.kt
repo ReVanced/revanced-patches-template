@@ -17,16 +17,16 @@ import javax.xml.transform.TransformerFactory
 import javax.xml.transform.dom.DOMSource
 import javax.xml.transform.stream.StreamResult
 
-
 @Suppress("MemberVisibilityCanBePrivate")
 object ResourceUtils {
 
     /**
-     * Merge strings from the default strings.xml resource file
-     * @param host The hosting strings.xml resource file. Needs to be a valid strings.xml resource file.
+     * Include strings from the default (English) strings.xml resource file.
+     *
+     * @param fileName The hosting strings.xml resource file.
      */
-    fun ResourceContext.mergeStrings(host: String) {
-        this.iterateXmlNodeChildren(host, "resources") {
+    fun ResourceContext.includeStrings(fileName: String) {
+        this.iterateXmlNodeChildren(fileName, "resources") {
             // TODO: figure out why this is needed
             if (!it.hasAttributes()) return@iterateXmlNodeChildren
 
@@ -37,7 +37,7 @@ object ResourceUtils {
             val formatted = !attributes.getNamedItem("formatted")?.nodeValue.equals("false", ignoreCase = true)
 
             // Detect unescaped quotes that will throw generic AAPT errors
-            // or will compile but not show up incorrectly in the app.
+            // or will compile with errors but will not show up in the app as intended.
             if (value.contains(Regex("(?<!\\\\)['\"]")))
                 throw PatchException("Unescaped quotes found in key: $key value: $value")
             AbstractSettingsResourcePatch.addString(key, value, formatted)

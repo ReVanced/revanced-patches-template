@@ -18,7 +18,7 @@ import app.revanced.util.microg.MicroGResourceHelper
 @Patch(dependencies = [SettingsPatch::class])
 object MicroGResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("MicroG")
+        SettingsResourcePatch.includePatchStrings("MicroG")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_microg_settings_title",

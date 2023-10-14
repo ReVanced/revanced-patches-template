@@ -39,7 +39,7 @@ object BypassURLRedirectsPatch : BytecodePatch(
     setOf(OpenLinksDirectlyPrimaryFingerprint, OpenLinksDirectlySecondaryFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.mergePatchStrings("BypassURLRedirects")
+        SettingsResourcePatch.includePatchStrings("BypassURLRedirects")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_bypass_url_redirects",

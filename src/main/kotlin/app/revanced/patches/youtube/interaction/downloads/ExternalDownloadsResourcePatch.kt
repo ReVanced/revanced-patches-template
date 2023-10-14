@@ -19,7 +19,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 object ExternalDownloadsResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.mergePatchStrings("ExternalDownloads")
+        SettingsResourcePatch.includePatchStrings("ExternalDownloads")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_external_downloader_preference_screen",
