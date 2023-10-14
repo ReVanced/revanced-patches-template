@@ -2,9 +2,12 @@ package app.revanced.patches.youtube.layout.hide.general
 
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
+import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
+import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
@@ -13,6 +16,8 @@ import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ParseElementFromBufferFingerprint
+import app.revanced.patches.youtube.layout.hide.general.fingerprints.PlayerOverlayFingerprint
+import app.revanced.patches.youtube.layout.hide.general.fingerprints.ShowWatermarkFingerprint
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
@@ -31,14 +36,15 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
         CompatiblePackage(
             "com.google.android.youtube", [
                 "18.32.39",
-                "18.37.36"
+                "18.37.36",
+                "18.38.44"
             ]
         )
     ]
 )
 @Suppress("unused")
 object HideLayoutComponentsPatch : BytecodePatch(
-    setOf(ParseElementFromBufferFingerprint)
+    setOf(ParseElementFromBufferFingerprint, PlayerOverlayFingerprint)
 ) {
     private const val FILTER_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/components/LayoutComponentsFilter;"
@@ -53,15 +59,24 @@ object HideLayoutComponentsPatch : BytecodePatch(
             ),
             SwitchPreference(
                 "revanced_hide_join_membership_button",
-                "revanced_hide_join_membership_button_title",
-                "revanced_hide_join_membership_button_summary_on",
-                "revanced_hide_join_membership_button_summary_off",
+                StringResource("revanced_hide_join_membership_button_title", "Hide \\\'Join\\\' button"),
+                StringResource("revanced_hide_join_membership_button_summary_on", "Button is hidden"),
+                StringResource("revanced_hide_join_membership_button_summary_off", "Button is shown")
+            ),
+            SwitchPreference(
+                "revanced_hide_channel_watermark_title",
+                StringResource(
+                    "revanced_hide_channel_watermark_title",
+                    "Hide channel watermark in video player"
+                ),
+                StringResource("revanced_hide_channel_watermark_title_summary_on", "Watermark is hidden"),
+                StringResource("revanced_hide_channel_watermark_title_summary_off", "Watermark is shown")
             ),
             SwitchPreference(
                 "revanced_hide_notify_me_button",
-                "revanced_hide_notify_me_button_title",
-                "revanced_hide_notify_me_button_summary_on",
-                "revanced_hide_notify_me_button_summary_off",
+                StringResource("revanced_hide_notify_me_button_title", "Hide \\\'Notify me\\\' button"),
+                StringResource("revanced_hide_notify_me_button_summary_on", "Button is hidden"),
+                StringResource("revanced_hide_notify_me_button_summary_off", "Button is shown")
             ),
             SwitchPreference(
                 "revanced_hide_timed_reactions",
@@ -247,6 +262,25 @@ object HideLayoutComponentsPatch : BytecodePatch(
             }
 
         } ?: throw ParseElementFromBufferFingerprint.exception
+
+        // endregion
+
+        // region Watermark (legacy code for old versions of YouTube)
+
+        ShowWatermarkFingerprint.also {
+            it.resolve(context, PlayerOverlayFingerprint.result?.classDef ?: throw PlayerOverlayFingerprint.exception)
+        }.result?.mutableMethod?.apply {
+            val index = implementation!!.instructions.size - 5
+
+            removeInstruction(index)
+            addInstructions(
+                index,
+                """
+                    invoke-static {}, $FILTER_CLASS_DESCRIPTOR->showWatermark()Z
+                    move-result p2
+                """
+            )
+        } ?: throw ShowWatermarkFingerprint.exception
 
         // endregion
     }

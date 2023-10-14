@@ -29,7 +29,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "18.23.35",
                 "18.29.38",
                 "18.32.39",
-                "18.37.36"
+                "18.37.36",
+                "18.38.44"
             ]
         )
     ]
@@ -44,9 +45,13 @@ object SpoofAppVersionPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",
-                "revanced_spoof_app_version_title",
-                "revanced_spoof_app_version_summary_on",
-                "revanced_spoof_app_version_summary_off"
+                StringResource("revanced_spoof_app_version_title", "Spoof app version"),
+                StringResource("revanced_spoof_app_version_summary_on", "Version spoofed"),
+                StringResource("revanced_spoof_app_version_summary_off", "Version not spoofed"),
+                StringResource("revanced_spoof_app_version_user_dialog_message",
+                "App version will be spoofed to an older version of YouTube."
+                        + "\\n\\nThis will change the appearance and features of the app, but unknown side effects may occur."
+                        + "\\n\\nIf later turned off, it is recommended to clear the app data to prevent UI bugs.")
             ),
             ListPreference(
                 "revanced_spoof_app_version_target",
@@ -54,21 +59,22 @@ object SpoofAppVersionPatch : BytecodePatch(
                 ArrayResource(
                     "revanced_spoof_app_version_target_entries",
                     listOf(
-                        "revanced_spoof_app_version_target_entry_1",
-                        "revanced_spoof_app_version_target_entry_2",
-                        "revanced_spoof_app_version_target_entry_3",
-                        "revanced_spoof_app_version_target_entry_4",
+                        StringResource("revanced_spoof_app_version_target_entry_1", "18.33.40 - Restore RYD Shorts incognito mode"),
+                        StringResource("revanced_spoof_app_version_target_entry_2", "18.20.39 - Restore wide video speed & quality menu"),
+                        StringResource("revanced_spoof_app_version_target_entry_3", "17.08.35 - Restore old UI layout"),
+                        StringResource("revanced_spoof_app_version_target_entry_4", "16.08.35 - Restore explore tab"),
+                        StringResource("revanced_spoof_app_version_target_entry_5", "16.01.35 - Restore old Shorts player"),
                     )
                 ),
                 ArrayResource(
                     "revanced_spoof_app_version_target_entry_values",
                     listOf(
-                        "18.20.39",
-                        "17.08.35",
-                        "16.08.35",
-                        "16.01.35",
-                    ),
-                    literalValues = true
+                        StringResource("revanced_spoof_app_version_target_entry_value_1", "18.33.40"),
+                        StringResource("revanced_spoof_app_version_target_entry_value_2", "18.20.39"),
+                        StringResource("revanced_spoof_app_version_target_entry_value_3", "17.08.35"),
+                        StringResource("revanced_spoof_app_version_target_entry_value_4", "16.08.35"),
+                        StringResource("revanced_spoof_app_version_target_entry_value_5", "16.01.35"),
+                    )
                 )
             )
         )

@@ -40,3 +40,8 @@ internal fun <T> Element.addDefault(default: T) {
         )
     }
 }
+
+internal fun CharSequence.removePunctuation(): String {
+    val punctuation = "\\p{P}+".toRegex()
+    return this.replace(punctuation, "")
+}

@@ -39,6 +39,12 @@ object HideShortsComponentsResourcePatch : ResourcePatch() {
                         "revanced_hide_shorts_subscribe_button_off"
                     ),
                     SwitchPreference(
+                        "revanced_hide_shorts_subscribe_button_paused",
+                        StringResource("revanced_hide_shorts_subscribe_button_paused_title", "Hide subscribe button when paused"),
+                        StringResource("revanced_hide_shorts_subscribe_button_paused_on", "Subscribe button is hidden"),
+                        StringResource("revanced_hide_shorts_subscribe_button_paused_off", "Subscribe button is shown")
+                    ),
+                    SwitchPreference(
                         "revanced_hide_shorts_thanks_button",
                         "revanced_hide_shorts_thanks_button_title",
                         "revanced_hide_shorts_thanks_button_on",
