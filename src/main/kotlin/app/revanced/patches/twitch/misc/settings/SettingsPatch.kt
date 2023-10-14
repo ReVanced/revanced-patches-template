@@ -172,7 +172,7 @@ object SettingsPatch : BytecodePatch(
                     return PreferenceCategory(
                         key,
                         titleKey,
-                        preferences.sortedBy { it.titleKey },
+                        preferences,
                         "app.revanced.twitch.settingsmenu.preference.TwitchPreferenceCategory"
                     )
                 }

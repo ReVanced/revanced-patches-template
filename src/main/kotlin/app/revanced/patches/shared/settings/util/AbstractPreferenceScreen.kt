@@ -13,7 +13,7 @@ abstract class AbstractPreferenceScreen(
         if (root.isEmpty())
             return
 
-        for (preference in root.sortedBy { it.titleKey }) {
+        for (preference in root) {
             commit(preference.transform())
         }
     }
@@ -34,8 +34,9 @@ abstract class AbstractPreferenceScreen(
             return PreferenceScreen(
                 key,
                 titleKey,
-                 preferences.sortedBy { it.titleKey } +
-                         categories.sortedBy { it.titleKey }.map { it.transform() },
+                // Screens and preferences are sorted at runtime by integrations code,
+                // so they appear in alphabetical order for the localized language in use.
+                 preferences + categories.map { it.transform() },
                 summaryKey
             )
         }
@@ -60,7 +61,7 @@ abstract class AbstractPreferenceScreen(
                 return PreferenceCategory(
                     key,
                     titleKey,
-                    preferences.sortedBy { it.titleKey }
+                    preferences
                 )
             }
 
