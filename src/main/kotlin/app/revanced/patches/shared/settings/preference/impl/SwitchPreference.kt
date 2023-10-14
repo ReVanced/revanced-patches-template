@@ -4,7 +4,6 @@ import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.DefaultBasePreference
 import app.revanced.patches.shared.settings.preference.SummaryType
 import app.revanced.patches.shared.settings.preference.addSummary
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.include
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 

@@ -22,8 +22,8 @@ import javax.xml.transform.stream.StreamResult
 object ResourceUtils {
 
     /**
-     * Merge strings in the default Strings.xml file
-     * @param host The hosting xml resource. Needs to be a valid strings.xml resource.
+     * Merge strings from the default strings.xml resource file
+     * @param host The hosting strings.xml resource file. Needs to be a valid strings.xml resource file.
      */
     fun ResourceContext.mergeStrings(host: String) {
         this.iterateXmlNodeChildren(host, "resources") {
@@ -179,6 +179,7 @@ object ResourceUtils {
     ) {
         val resourceAsStream = ResourceUtils.javaClass.classLoader.getResourceAsStream(resource)
             ?: throw PatchException("Could not find resource file: $resource")
+
         xmlEditor[resourceAsStream].use {
             val stringsNode = it.file.getElementsByTagName(targetTag).item(0).childNodes
             for (i in 1 until stringsNode.length - 1) callback(stringsNode.item(i))

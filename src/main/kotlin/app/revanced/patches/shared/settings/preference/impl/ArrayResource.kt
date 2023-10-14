@@ -1,6 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.validateStringIsMerged
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.assertStringExists
 import app.revanced.patches.shared.settings.preference.BaseResource
 import org.w3c.dom.Document
 
@@ -10,7 +10,7 @@ import org.w3c.dom.Document
  *  @param name The name of the array resource.
  *  @param items The items of the array resource.
  *  @param literalValues If the values are to be used exactly as is.
- *                       If false, the values are treated as Strings.xml entries.
+ *                       If false, the values are treated as string resource names.
  */
 class ArrayResource(
     name: String,
@@ -24,7 +24,7 @@ class ArrayResource(
 
             items.forEach { item ->
                 this.appendChild(ownerDocument.createElement("item").also { itemNode ->
-                    itemNode.textContent = if (literalValues) item else "@string/${validateStringIsMerged(item)}"
+                    itemNode.textContent = if (literalValues) item else "@string/${assertStringExists(item)}"
                 })
             }
         }

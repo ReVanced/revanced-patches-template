@@ -9,7 +9,7 @@ import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 
 @Patch(
-    //name = "Translations", // TODO: release this after translations are usable
+    //name = "Translations", // TODO: Once the patch is ready, uncomment this line.
     description = "Adds translations to ReVanced patches.",
     dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class],
     compatiblePackages = [
@@ -18,7 +18,6 @@ import app.revanced.util.resources.ResourceUtils
 )
 
 object TranslationResourcePatch : ResourcePatch() {
-
     private const val TRANSLATION_RESOURCE_DIRECTORY = "twitch/translation"
 
     override fun execute(context: ResourceContext) {

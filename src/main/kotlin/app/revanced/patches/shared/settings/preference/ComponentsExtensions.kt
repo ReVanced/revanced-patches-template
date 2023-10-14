@@ -1,7 +1,6 @@
 package app.revanced.patches.shared.settings.preference
 
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.validateStringIsMerged
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -27,7 +26,7 @@ internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((
 
 internal fun Element.addSummary(summaryResourceKey: String?, summaryType: SummaryType = SummaryType.DEFAULT)  {
     if (summaryResourceKey != null) {
-        setAttribute("android:${summaryType.type}", "@string/${validateStringIsMerged(summaryResourceKey)}")
+        setAttribute("android:${summaryType.type}", "@string/${assertStringExists(summaryResourceKey)}")
     }
 }
 

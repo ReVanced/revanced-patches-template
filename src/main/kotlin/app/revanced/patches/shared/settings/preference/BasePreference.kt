@@ -1,7 +1,6 @@
 package app.revanced.patches.shared.settings.preference
 
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.validateStringIsMerged
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -29,7 +28,7 @@ abstract class BasePreference(
     open fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element =
         ownerDocument.createElement(tag).apply {
             if (key != null) setAttribute("android:key", key)
-            setAttribute("android:title", "@string/${validateStringIsMerged(titleKey)}")
+            setAttribute("android:title", "@string/${assertStringExists(titleKey)}")
             addSummary(summaryKey)
         }
 }

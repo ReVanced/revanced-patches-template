@@ -86,14 +86,15 @@ abstract class AbstractSettingsResourcePatch(
             StringResource(identifier, value, formatted).include()
 
         /**
-         * Verifies a String resource with the given key has been merged.
+         * Checks if a string that is referenced exists.
          *
-         * Should be used everywhere a String resource is referenced,
+         * Should be used everywhere a string resource is referenced,
          * as missing resources will fail to compile and usually give no feedback to what's wrong.
          *
-         * @throws PatchException
+         * @return The string key.
+         * @throws PatchException If the string does not exist.
          */
-        internal fun validateStringIsMerged(key: String): String {
+        internal fun assertStringExists(key: String): String {
             if (!strings.contains(key))
                 throw PatchException("Unknown String resource: '$key'  Merge patch strings before referencing.")
             return key
