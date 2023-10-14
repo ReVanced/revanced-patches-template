@@ -37,7 +37,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
                 "18.23.35",
                 "18.29.38",
                 "18.32.39",
-                "18.37.36"
+                "18.37.36",
+                "18.38.44"
             ]
         )
     ]
@@ -98,10 +99,10 @@ object HideShortsComponentsPatch : BytecodePatch(
 
             SetPivotBarVisibilityFingerprint.result!!.let { result ->
                 result.mutableMethod.apply {
-                    val checkCastIndex = result.scanResult.patternScanResult!!.endIndex
-                    val viewRegister = getInstruction<OneRegisterInstruction>(checkCastIndex).registerA
+                    val insertIndex = result.scanResult.patternScanResult!!.endIndex
+                    val viewRegister = getInstruction<OneRegisterInstruction>(insertIndex - 1).registerA
                     addInstruction(
-                        checkCastIndex + 1,
+                        insertIndex,
                         "sput-object v$viewRegister, $FILTER_CLASS_DESCRIPTOR->pivotBar:" +
                                 "Lcom/google/android/libraries/youtube/rendering/ui/pivotbar/PivotBar;"
                     )
@@ -122,7 +123,7 @@ object HideShortsComponentsPatch : BytecodePatch(
         // Required to prevent a black bar from appearing at the bottom of the screen.
         BottomNavigationBarFingerprint.result?.let {
             it.mutableMethod.apply {
-                val moveResultIndex = it.scanResult.patternScanResult!!.startIndex
+                val moveResultIndex = it.scanResult.patternScanResult!!.startIndex + 2
                 val viewRegister = getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
                 val insertIndex = moveResultIndex + 1
 

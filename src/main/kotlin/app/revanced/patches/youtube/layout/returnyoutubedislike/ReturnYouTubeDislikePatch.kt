@@ -14,6 +14,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -26,12 +27,13 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
     description = "Shows the dislike count of videos using the Return YouTube Dislike API.",
     dependencies = [
         IntegrationsPatch::class,
+        LithoFilterPatch::class,
         VideoIdPatch::class,
         ReturnYouTubeDislikeResourcePatch::class,
         PlayerTypeHookPatch::class,
     ],
     compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube", ["18.37.36"])
+        CompatiblePackage("com.google.android.youtube", ["18.37.36", "18.38.44"])
     ]
 )
 @Suppress("unused")
@@ -48,12 +50,16 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/ReturnYouTubeDislikePatch;"
 
+    private const val FILTER_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/components/ReturnYouTubeDislikeFilterPatch;"
+
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
 
-        // This patch needs a few adjustments and lots of testing before it can change to the new video id hook.
-        // There's a few corner cases and some weirdness when loading new videos (specifically with detecting shorts).
-        VideoIdPatch.legacyInjectCall("$INTEGRATIONS_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
+        VideoIdPatch.hookVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
+
+        // Hook the player response video id, to start loading RYD sooner in the background.
+        VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;)V")
 
         // endregion
 
@@ -133,7 +139,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        // region Hook for Short videos.
+        // region Hook for non litho Short videos.
 
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -170,6 +176,16 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             }
         } ?: throw ShortsTextViewFingerprint.exception
+
+        // endregion
+
+        // region Hook for litho Shorts
+
+        // Filter that parses the video id from the UI
+        LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
+        // Player response video id is needed to search for the video ids in Shorts litho components.
+        VideoIdPatch.hookPlayerResponseVideoId("$FILTER_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;)V")
 
         // endregion
 

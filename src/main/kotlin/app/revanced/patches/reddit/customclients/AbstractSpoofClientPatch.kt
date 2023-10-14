@@ -1,17 +1,14 @@
 package app.revanced.patches.reddit.customclients
 
-import android.os.Environment
 import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
 import app.revanced.patcher.fingerprint.method.impl.MethodFingerprintResult
 import app.revanced.patcher.patch.BytecodePatch
-import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
-import java.io.File
 
 abstract class AbstractSpoofClientPatch(
-    private val redirectUri: String,
+    redirectUri: String,
     private val clientIdFingerprints: List<MethodFingerprint>,
     private val userAgentFingerprints: List<MethodFingerprint>? = null,
     private val miscellaneousFingerprints: List<MethodFingerprint>? = null
@@ -24,34 +21,14 @@ abstract class AbstractSpoofClientPatch(
         "client-id",
         null,
         "OAuth client ID",
-        "The Reddit OAuth client ID."
+        "The Reddit OAuth client ID. " +
+                "You can get your client ID from https://www.reddit.com/prefs/apps. " +
+                "The application type has to be \"Installed app\" " +
+                "and the redirect URI has to be set to \"$redirectUri\".",
+        true
     )
 
     override fun execute(context: BytecodeContext) {
-        if (clientId == null) {
-            // Ensure device runs Android.
-            try {
-                Class.forName("android.os.Environment")
-            } catch (e: ClassNotFoundException) {
-                throw PatchException("No client ID provided")
-            }
-
-            File(Environment.getExternalStorageDirectory(), "reddit_client_id_revanced.txt").also {
-                if (it.exists()) return@also
-
-                val error = """
-                    In order to use this patch, you need to provide a client ID.
-                    You can do that by creating a file at ${it.absolutePath} with the client ID as its content.
-                    Alternatively, you can provide the client ID using patch options.
-                    
-                    You can get your client ID from https://www.reddit.com/prefs/apps.
-                    The application type has to be "Installed app" and the redirect URI has to be set to "$redirectUri".
-                """.trimIndent()
-
-                throw PatchException(error)
-            }.let { clientId = it.readText().trim() }
-        }
-
         fun List<MethodFingerprint>?.executePatch(
             patch: List<MethodFingerprintResult>.(BytecodeContext) -> Unit
         ) = this?.map { it.result ?: throw it.exception }?.patch(context)
@@ -85,5 +62,6 @@ abstract class AbstractSpoofClientPatch(
      *
      * @param context The current [BytecodeContext].
      */
-    open fun List<MethodFingerprintResult>.patchMiscellaneous(context: BytecodeContext) { }
+    // Not every client needs to patch miscellaneous things.
+    open fun List<MethodFingerprintResult>.patchMiscellaneous(context: BytecodeContext) {}
 }

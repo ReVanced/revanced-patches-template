@@ -9,13 +9,14 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.reddit.customclients.AbstractSpoofClientPatch
 import app.revanced.patches.reddit.customclients.relayforreddit.api.fingerprints.*
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction10t
+import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21t
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     name = "Spoof client",
-    description = "Spoofs the client in order to allow logging in. " +
-            "The OAuth application type has to be \"Installed app\" " +
-            "and the redirect URI has to be set to \"dbrady://relay\".",
+    description = "Restores functionality of the app by using custom client ID's.",
     compatiblePackages = [
         CompatiblePackage("free.reddit.news"),
         CompatiblePackage("reddit.news")
@@ -30,7 +31,10 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
         GetLoggedOutBearerTokenFingerprint,
         GetRefreshTokenFingerprint
     ),
-    miscellaneousFingerprints = listOf(SetRemoteConfigFingerprint)
+    miscellaneousFingerprints = listOf(
+        SetRemoteConfigFingerprint,
+        RedditCheckDisableAPIFingerprint
+    )
 ) {
     override fun List<MethodFingerprintResult>.patchClientId(context: BytecodeContext) {
         forEach {
@@ -46,7 +50,24 @@ object SpoofClientPatch : AbstractSpoofClientPatch(
         }
     }
 
-    override fun List<MethodFingerprintResult>.patchMiscellaneous(context: BytecodeContext) =
-        // Do not load remote config which disables OAuth login remotely
+    override fun List<MethodFingerprintResult>.patchMiscellaneous(context: BytecodeContext) {
+        // Do not load remote config which disables OAuth login remotely.
         first().mutableMethod.addInstructions(0, "return-void")
+
+        // Prevent OAuth login being disabled remotely.
+        last().let {
+            val checkIsOAuthRequestIndex = it.scanResult.patternScanResult!!.startIndex
+
+            it.mutableMethod.apply {
+                val returnNextChain = getInstruction<BuilderInstruction21t>(checkIsOAuthRequestIndex).target
+                replaceInstruction(
+                    checkIsOAuthRequestIndex,
+                    BuilderInstruction10t(
+                        Opcode.GOTO,
+                        returnNextChain
+                    )
+                )
+            }
+        }
+    }
 }
