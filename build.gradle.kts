@@ -81,21 +81,6 @@ tasks {
         dependsOn("generateBundle")
         dependsOn("generateMeta")
     }
-    register<JavaExec>("generateMergedStrings") {
-        description = "Generate a merged English strings.xml file used for Crowdin translations"
-        dependsOn(build)
-
-        classpath = sourceSets["main"].runtimeClasspath
-        mainClass = "app.revanced.util.resources.ResourceUtils"
-        args = listOf(
-            // YouTube
-            "src/main/resources/youtube/settings/host/values/",
-            "src/main/resources/youtube/settings/raw/strings.xml",
-            // Twitch
-            "src/main/resources/twitch/settings/host/values/",
-            "src/main/resources/twitch/settings/raw/strings.xml"
-        )
-    }
 }
 
 publishing {
