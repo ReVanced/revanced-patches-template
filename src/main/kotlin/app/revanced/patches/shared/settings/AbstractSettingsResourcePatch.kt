@@ -76,7 +76,7 @@ abstract class AbstractSettingsResourcePatch(
             }
 
         /**
-         * Add a new string to the resources.  This does not support localization.
+         * Add a new English string to the resources.
          *
          * @param identifier The key of the string.
          * @param value The value of the string.
@@ -87,7 +87,9 @@ abstract class AbstractSettingsResourcePatch(
 
         /**
          * Verifies a String resource with the given key has been merged.
-         * Should be used everywhere a String resource is referenced.
+         *
+         * Should be used everywhere a String resource is referenced,
+         * as missing resources will fail to compile and usually give no feedback to what's wrong.
          *
          * @throws PatchException
          */
@@ -146,7 +148,7 @@ abstract class AbstractSettingsResourcePatch(
 }
 
 /**
- * Legacy code, used to import non translated default strings into the Strings.xml file.
+ * Legacy code used to merge non translated English strings into the Strings.xml file.
  *
  * @param name The name of the string.
  * @param value The value of the string.
