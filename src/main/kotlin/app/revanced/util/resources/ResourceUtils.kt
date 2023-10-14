@@ -2,7 +2,6 @@
 package app.revanced.util.resources
 
 import app.revanced.patcher.data.ResourceContext
-import app.revanced.patcher.patch.Patch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
@@ -35,7 +34,7 @@ object ResourceUtils {
             val key = attributes.getNamedItem("name")!!.nodeValue!!
             val value = it.textContent!!
 
-            val formatted = attributes.getNamedItem("formatted") == null
+            val formatted = !attributes.getNamedItem("formatted")?.nodeValue.equals("false", ignoreCase = true)
 
             // Detect unescaped quotes that will throw generic AAPT errors
             // or will compile but not show up incorrectly in the app.
