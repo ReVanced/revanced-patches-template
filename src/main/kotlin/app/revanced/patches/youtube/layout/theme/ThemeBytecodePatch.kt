@@ -9,12 +9,12 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.fingerprints.UseGradientLoadingScreenFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -64,17 +64,12 @@ object ThemeBytecodePatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_gradient_loading_screen",
-                StringResource("revanced_gradient_loading_screen_title", "Enable gradient loading screen"),
-                StringResource(
-                    "revanced_gradient_loading_screen_summary_on",
-                    "Loading screen will have a gradient background"
-                ),
-                StringResource(
-                    "revanced_gradient_loading_screen_summary_off",
-                    "Loading screen will have a solid background"
-                ),
+                "revanced_gradient_loading_screen_title",
+                "revanced_gradient_loading_screen_summary_on",
+                "revanced_gradient_loading_screen_summary_off"
             )
         )
+        SettingsResourcePatch.mergePatchStrings("ThemeBytecode")
 
         UseGradientLoadingScreenFingerprint.result?.mutableMethod?.apply {
             val isEnabledIndex = indexOfFirstWideLiteralInstructionValue(GRADIENT_LOADING_SCREEN_AB_CONSTANT) + 3

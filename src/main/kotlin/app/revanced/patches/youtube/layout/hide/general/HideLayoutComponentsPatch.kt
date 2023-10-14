@@ -59,24 +59,21 @@ object HideLayoutComponentsPatch : BytecodePatch(
             ),
             SwitchPreference(
                 "revanced_hide_join_membership_button",
-                StringResource("revanced_hide_join_membership_button_title", "Hide \\\'Join\\\' button"),
-                StringResource("revanced_hide_join_membership_button_summary_on", "Button is hidden"),
-                StringResource("revanced_hide_join_membership_button_summary_off", "Button is shown")
+                "revanced_hide_join_membership_button_title",
+                "revanced_hide_join_membership_button_summary_on",
+                "revanced_hide_join_membership_button_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_channel_watermark_title",
-                StringResource(
-                    "revanced_hide_channel_watermark_title",
-                    "Hide channel watermark in video player"
-                ),
-                StringResource("revanced_hide_channel_watermark_title_summary_on", "Watermark is hidden"),
-                StringResource("revanced_hide_channel_watermark_title_summary_off", "Watermark is shown")
+                "revanced_hide_channel_watermark_title",
+                "revanced_hide_channel_watermark_title_summary_on",
+                "revanced_hide_channel_watermark_title_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_notify_me_button",
-                StringResource("revanced_hide_notify_me_button_title", "Hide \\\'Notify me\\\' button"),
-                StringResource("revanced_hide_notify_me_button_summary_on", "Button is hidden"),
-                StringResource("revanced_hide_notify_me_button_summary_off", "Button is shown")
+                "revanced_hide_notify_me_button_title",
+                "revanced_hide_notify_me_button_summary_on",
+                "revanced_hide_notify_me_button_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_timed_reactions",

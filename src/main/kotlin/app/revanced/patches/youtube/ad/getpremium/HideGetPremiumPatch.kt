@@ -40,18 +40,9 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
-                StringResource(
-                    "revanced_hide_get_premium_title",
-                    "Hide YouTube Premium promotions"
-                ),
-                StringResource(
-                    "revanced_hide_get_premium_summary_on",
-                    "YouTube Premium promotions under video player is hidden"
-                ),
-                StringResource(
-                    "revanced_hide_get_premium_summary_off",
-                    "YouTube Premium promotions under video player is shown"
-                )
+                "revanced_hide_get_premium_title",
+                "revanced_hide_get_premium_summary_on",
+                "revanced_hide_get_premium_summary_off",
             )
         )
 

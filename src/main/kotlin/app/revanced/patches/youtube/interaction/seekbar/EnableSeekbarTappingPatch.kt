@@ -8,12 +8,12 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.OnTouchEventHandlerFingerprint
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -50,11 +50,12 @@ object EnableSeekbarTappingPatch : BytecodePatch(
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",
-                StringResource("revanced_seekbar_tapping_title", "Enable seekbar tapping"),
-                StringResource("revanced_seekbar_tapping_summary_on", "Seekbar tapping is enabled"),
-                StringResource("revanced_seekbar_tapping_summary_off", "Seekbar tapping is disabled")
+                "revanced_seekbar_tapping_title",
+                "revanced_seekbar_tapping_summary_on",
+                "revanced_seekbar_tapping_summary_off",
             )
         )
+        SettingsResourcePatch.mergePatchStrings("EnableSeekbarTapping")
 
         // Find the required methods to tap the seekbar.
         val seekbarTappingMethods = OnTouchEventHandlerFingerprint.result?.let {
