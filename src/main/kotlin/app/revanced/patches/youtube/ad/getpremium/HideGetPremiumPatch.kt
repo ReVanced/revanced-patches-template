@@ -37,6 +37,7 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
         "Lapp/revanced/integrations/patches/HideGetPremiumPatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("HideGetPremium")
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
@@ -72,6 +73,5 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
             }
         } ?: throw GetPremiumViewFingerprint.exception
 
-        SettingsResourcePatch.mergePatchStrings("HideGetPremium")
     }
 }

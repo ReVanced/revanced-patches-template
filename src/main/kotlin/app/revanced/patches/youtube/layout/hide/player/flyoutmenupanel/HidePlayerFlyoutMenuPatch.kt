@@ -38,6 +38,7 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HidePlayerFlyoutMenu")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_player_flyout_screen",
@@ -107,7 +108,6 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
                 "revanced_hide_player_flyout_screen_summary",
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HidePlayerFlyoutMenu")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }

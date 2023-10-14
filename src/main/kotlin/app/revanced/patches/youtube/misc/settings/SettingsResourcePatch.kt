@@ -87,8 +87,9 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
             }
         }
 
-
         // Add the ReVanced settings to the YouTube settings
+        mergePatchStrings("Settings")
+
         SettingsPatch.addPreference(
             Preference(
                 "revanced_settings_title",
@@ -106,8 +107,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
                 tag = "app.revanced.integrations.settingsmenu.ImportExportPreference"
             )
         )
-
-        mergePatchStrings("Settings")
     }
 
     /**

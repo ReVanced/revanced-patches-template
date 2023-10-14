@@ -18,6 +18,7 @@ object HideLoadMoreButtonResourcePatch : ResourcePatch() {
     internal var expandButtonDownId: Long = -1
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HideLoadMoreButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_load_more_button",
@@ -26,7 +27,6 @@ object HideLoadMoreButtonResourcePatch : ResourcePatch() {
                 "revanced_hide_load_more_button_summary_off",
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HideLoadMoreButton")
 
         expandButtonDownId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "expand_button_down"

@@ -19,6 +19,7 @@ object SeekbarPreferencesPatch : ResourcePatch(), Closeable {
     }
 
     override fun close() {
+        SettingsResourcePatch.mergePatchStrings("SeekbarPreferences")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_seekbar_preference_screen",
@@ -26,7 +27,6 @@ object SeekbarPreferencesPatch : ResourcePatch(), Closeable {
                 seekbarPreferences
             )
         )
-        SettingsResourcePatch.mergePatchStrings("SeekbarPreferences")
     }
 
     internal fun addPreferences(vararg preferencesToAdd: BasePreference) =

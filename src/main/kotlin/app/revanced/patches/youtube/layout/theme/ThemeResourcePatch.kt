@@ -22,6 +22,7 @@ object ThemeResourcePatch : ResourcePatch() {
     private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("Theme")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_custom_color",
@@ -36,7 +37,6 @@ object ThemeResourcePatch : ResourcePatch() {
                 InputType.TEXT_CAP_CHARACTERS
             )
         )
-        SettingsResourcePatch.mergePatchStrings("Theme")
 
         // Edit theme colors via resources.
         context.xmlEditor["res/values/colors.xml"].use { editor ->

@@ -109,7 +109,6 @@ object SettingsPatch : BytecodePatch(
             )
         }  ?: throw MenuGroupsOnClickFingerprint.exception
 
-
         SettingsResourcePatch.mergePatchStrings("Settings")
     }
 

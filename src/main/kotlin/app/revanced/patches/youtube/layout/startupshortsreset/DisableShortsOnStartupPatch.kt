@@ -35,6 +35,7 @@ object DisableShortsOnStartupPatch : BytecodePatch(
     setOf(UserWasInShortsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("DisableShortsOnStartup")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_disable_resuming_shorts_player",
@@ -43,7 +44,6 @@ object DisableShortsOnStartupPatch : BytecodePatch(
                 "revanced_disable_resuming_shorts_player_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("DisableShortsOnStartup")
 
         val userWasInShortsResult = UserWasInShortsFingerprint.result!!
         val userWasInShortsMethod = userWasInShortsResult.mutableMethod

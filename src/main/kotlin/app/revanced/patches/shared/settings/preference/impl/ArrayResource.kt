@@ -1,5 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.validateStringIsMerged
 import app.revanced.patches.shared.settings.preference.BaseResource
 import org.w3c.dom.Document
 
@@ -23,7 +24,7 @@ class ArrayResource(
 
             items.forEach { item ->
                 this.appendChild(ownerDocument.createElement("item").also { itemNode ->
-                    itemNode.textContent = if (literalValues) item else "@string/$item"
+                    itemNode.textContent = if (literalValues) item else "@string/${validateStringIsMerged(item)}"
                 })
             }
         }

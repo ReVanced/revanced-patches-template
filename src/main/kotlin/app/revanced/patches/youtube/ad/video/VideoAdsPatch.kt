@@ -41,6 +41,7 @@ object VideoAdsPatch : BytecodePatch(
     setOf(LoadVideoAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("VideoAds")
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_ads",
@@ -61,7 +62,5 @@ object VideoAdsPatch : BytecodePatch(
             """,
             ExternalLabel("show_video_ads", loadVideoAdsFingerprintMethod.getInstruction(0))
         )
-
-        SettingsResourcePatch.mergePatchStrings("VideoAds")
     }
 }

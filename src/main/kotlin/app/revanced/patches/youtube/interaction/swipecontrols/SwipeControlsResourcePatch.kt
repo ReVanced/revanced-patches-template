@@ -14,6 +14,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 )
 object SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("SwipeControls")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_swipe_controls_preference_screen",
@@ -88,7 +89,5 @@ object SwipeControlsResourcePatch : ResourcePatch() {
                 "revanced_ic_sc_volume_normal.xml"
             )
         )
-
-        SettingsResourcePatch.mergePatchStrings("SwipeControls")
     }
 }

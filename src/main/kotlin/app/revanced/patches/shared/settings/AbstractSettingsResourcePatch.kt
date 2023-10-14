@@ -1,6 +1,7 @@
 package app.revanced.patches.shared.settings
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.preference.BasePreference
@@ -56,7 +57,7 @@ abstract class AbstractSettingsResourcePatch(
         private var stringsNode: Node? = null
         private var arraysNode: Node? = null
 
-        private var strings = mutableListOf<StringResource>()
+        private var strings = mutableMapOf<String, StringResource>()
 
         private var revancedPreferencesEditor: DomFileEditor? = null
             set(value) {
@@ -85,6 +86,18 @@ abstract class AbstractSettingsResourcePatch(
             StringResource(identifier, value, formatted).include()
 
         /**
+         * Verifies a String resource with the given key has been merged.
+         * Should be used everywhere a String resource is referenced.
+         *
+         * @throws PatchException
+         */
+        internal fun validateStringIsMerged(key: String): String {
+            if (!strings.contains(key))
+                throw PatchException("Unknown String resource: '$key'  Merge patch strings before referencing.")
+            return key
+        }
+
+        /**
          * Add an array to the resources.
          *
          * @param arrayResource The array resource to add.
@@ -107,11 +120,7 @@ abstract class AbstractSettingsResourcePatch(
          */
         internal fun BaseResource.include() {
             when (this) {
-                is StringResource -> {
-                    if (strings.any { it.name == name }) return
-                    strings.add(this)
-                }
-
+                is StringResource -> strings[name] = this
                 is ArrayResource -> addArray(this)
                 else -> throw NotImplementedError("Unsupported resource type")
             }
@@ -122,7 +131,7 @@ abstract class AbstractSettingsResourcePatch(
 
     override fun close() {
         // merge all strings, skip duplicates
-        strings.forEach {
+        strings.values.forEach {
             stringsNode!!.addResource(it)
         }
 

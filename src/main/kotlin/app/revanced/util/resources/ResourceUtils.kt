@@ -2,6 +2,7 @@
 package app.revanced.util.resources
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.Patch
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
@@ -36,6 +37,10 @@ object ResourceUtils {
 
             val formatted = attributes.getNamedItem("formatted") == null
 
+            // Detect unescaped quotes that will throw generic AAPT errors
+            // or will compile but not show up incorrectly in the app.
+            if (value.contains(Regex("(?<!\\\\)['\"]")))
+                throw PatchException("Unescaped quotes found in key: $key value: $value")
             AbstractSettingsResourcePatch.addString(key, value, formatted)
         }
     }

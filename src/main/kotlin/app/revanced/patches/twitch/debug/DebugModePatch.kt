@@ -47,6 +47,7 @@ object DebugModePatch : BytecodePatch(
             } ?: throw it.exception
         }
 
+        SettingsResourcePatch.mergePatchStrings("DebugMode")
         SettingsPatch.PreferenceScreen.MISC.OTHER.addPreferences(
             SwitchPreference(
                 "revanced_debug_mode",
@@ -56,6 +57,5 @@ object DebugModePatch : BytecodePatch(
                 default = false,
             )
         )
-        SettingsResourcePatch.mergePatchStrings("DebugMode")
     }
 }

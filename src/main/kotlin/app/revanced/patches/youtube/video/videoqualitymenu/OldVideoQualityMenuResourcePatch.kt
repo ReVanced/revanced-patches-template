@@ -16,6 +16,7 @@ object OldVideoQualityMenuResourcePatch : ResourcePatch() {
     internal var videoQualityBottomSheetListFragmentTitle = -1L
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("OldVideoQualityMenu")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_show_old_video_quality_menu",
@@ -24,7 +25,6 @@ object OldVideoQualityMenuResourcePatch : ResourcePatch() {
                 "revanced_show_old_video_quality_menu_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("OldVideoQualityMenu")
 
         fun findResource(name: String) = ResourceMappingPatch.resourceMappings.find { it.name == name }?.id
             ?: throw PatchException("Could not find resource")

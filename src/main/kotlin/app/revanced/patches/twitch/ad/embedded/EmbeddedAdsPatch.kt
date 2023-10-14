@@ -37,6 +37,7 @@ object EmbeddedAdsPatch : BytecodePatch(
             """
         )
 
+        SettingsResourcePatch.mergePatchStrings("EmbeddedAds")
         SettingsPatch.PreferenceScreen.ADS.SURESTREAM.addPreferences(
             ListPreference(
                 "revanced_block_embedded_ads",
@@ -61,7 +62,5 @@ object EmbeddedAdsPatch : BytecodePatch(
                 default = "luminous"
             )
         )
-
-        SettingsResourcePatch.mergePatchStrings("EmbeddedAds")
     }
 }

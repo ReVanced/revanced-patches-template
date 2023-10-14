@@ -44,6 +44,7 @@ object HideSeekbarPatch : BytecodePatch(
     setOf(SeekbarFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("HideSeekbar")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",
@@ -58,7 +59,6 @@ object HideSeekbarPatch : BytecodePatch(
                 "revanced_hide_seekbar_thumbnail_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HideSeekbar")
 
         SeekbarFingerprint.result!!.let {
             SeekbarOnDrawFingerprint.apply { resolve(context, it.mutableClass) }

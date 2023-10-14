@@ -36,6 +36,7 @@ object PlayerPopupPanelsPatch : BytecodePatch(
     setOf(EngagementPanelControllerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("PlayerPopupPanels")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_player_popup_panels",
@@ -44,7 +45,6 @@ object PlayerPopupPanelsPatch : BytecodePatch(
                 "revanced_hide_player_popup_panels_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("PlayerPopupPanels")
 
         val engagementPanelControllerMethod = EngagementPanelControllerFingerprint
             .result?.mutableMethod ?: throw EngagementPanelControllerFingerprint.exception

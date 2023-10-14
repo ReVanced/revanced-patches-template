@@ -16,6 +16,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
     internal var barContainerHeightId = -1L
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HideFilterBar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_filter_bar_screen",
@@ -43,7 +44,6 @@ object HideFilterBarResourcePatch : ResourcePatch() {
                 "revanced_hide_filter_bar_screen_summary"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HideFilterBar")
 
         relatedChipCloudMarginId = "related_chip_cloud_reduced_margins".layoutResourceId("layout")
         filterBarHeightId = "filter_bar_height".layoutResourceId()

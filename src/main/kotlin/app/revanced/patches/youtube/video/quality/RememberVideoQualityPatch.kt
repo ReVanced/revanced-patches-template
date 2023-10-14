@@ -80,6 +80,7 @@ object RememberVideoQualityPatch : BytecodePatch(
             "144",
         )
 
+        SettingsResourcePatch.mergePatchStrings("RememberVideoQuality")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",
@@ -101,7 +102,6 @@ object RememberVideoQualityPatch : BytecodePatch(
                 ArrayResource("revanced_video_quality_default_mobile_values", entryValues, literalValues = true)
             )
         )
-        SettingsResourcePatch.mergePatchStrings("RememberVideoQuality")
 
         /*
          * The following code works by hooking the method which is called when the user selects a video quality

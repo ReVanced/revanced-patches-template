@@ -15,6 +15,7 @@ object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
     internal var oldUIDislikeId: Long = -1
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("ReturnYouTubeDislike")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_ryd_settings_title",
@@ -22,7 +23,6 @@ object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
                 SettingsPatch.createReVancedSettingsIntent("ryd_settings_intent")
             )
         )
-        SettingsResourcePatch.mergePatchStrings("ReturnYouTubeDislike")
 
         oldUIDislikeId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "dislike_button"

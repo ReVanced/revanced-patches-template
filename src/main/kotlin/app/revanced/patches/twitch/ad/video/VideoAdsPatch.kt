@@ -121,6 +121,7 @@ object VideoAdsPatch : AbstractAdPatch(
             )
         }  ?: throw ContentConfigShowAdsFingerprint.exception
 
+        SettingsResourcePatch.mergePatchStrings("VideoAds")
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_video_ads",
@@ -130,6 +131,5 @@ object VideoAdsPatch : AbstractAdPatch(
                 default = true
             )
         )
-        SettingsResourcePatch.mergePatchStrings("VideoAds")
     }
 }

@@ -49,6 +49,7 @@ object HideAutoplayButtonPatch : BytecodePatch(
     setOf(LayoutConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("HideAutoplayButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",
@@ -57,7 +58,6 @@ object HideAutoplayButtonPatch : BytecodePatch(
                 "revanced_hide_autoplay_button_summary_off"
             ),
         )
-        SettingsResourcePatch.mergePatchStrings("HideAutoplayButton")
 
         LayoutConstructorFingerprint.result?.mutableMethod?.apply {
             val layoutGenMethodInstructions = implementation!!.instructions

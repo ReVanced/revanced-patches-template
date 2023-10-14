@@ -41,6 +41,7 @@ object HideButtonsPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/ButtonsFilter;"
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HideButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons_preference_screen",
@@ -110,8 +111,6 @@ object HideButtonsPatch : ResourcePatch() {
                 "revanced_hide_buttons_preference_screen_summary"
             )
         )
-
-        SettingsResourcePatch.mergePatchStrings("HideButtons")
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
     }

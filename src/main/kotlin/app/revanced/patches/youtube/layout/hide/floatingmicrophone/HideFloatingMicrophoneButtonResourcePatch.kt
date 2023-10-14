@@ -19,6 +19,7 @@ object HideFloatingMicrophoneButtonResourcePatch : ResourcePatch() {
     internal var fabButtonId: Long = -1
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HideFloatingMicrophoneButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_floating_microphone_button",
@@ -27,7 +28,6 @@ object HideFloatingMicrophoneButtonResourcePatch : ResourcePatch() {
                 "revanced_hide_floating_microphone_button_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HideFloatingMicrophoneButton")
 
         fabButtonId = ResourceMappingPatch.resourceMappings.find { it.type == "id" && it.name == "fab" }?.id
             ?: throw PatchException("Can not find required fab button resource id")

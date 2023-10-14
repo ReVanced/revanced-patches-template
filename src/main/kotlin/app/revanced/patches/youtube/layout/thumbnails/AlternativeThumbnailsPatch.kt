@@ -84,6 +84,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     }
 
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("AlternativeThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",
@@ -130,7 +131,6 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                 "revanced_alt_thumbnails_preference_screen_summary",
             )
         )
-        SettingsResourcePatch.mergePatchStrings("AlternativeThumbnails")
 
         MessageDigestImageUrlParentFingerprint.result
             ?: throw MessageDigestImageUrlParentFingerprint.exception

@@ -49,6 +49,7 @@ object TabletMiniPlayerPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("TabletMiniPlayer")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_miniplayer",
@@ -57,7 +58,6 @@ object TabletMiniPlayerPatch : BytecodePatch(
                 "revanced_tablet_miniplayer_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("TabletMiniPlayer")
 
         // First resolve the fingerprints via the parent fingerprint.
         MiniPlayerDimensionsCalculatorParentFingerprint.result

@@ -18,6 +18,7 @@ object HideInfocardsResourcePatch : ResourcePatch() {
     internal var drawerResourceId: Long = -1
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("HideInfocards")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_info_cards",
@@ -26,7 +27,6 @@ object HideInfocardsResourcePatch : ResourcePatch() {
                 "revanced_hide_info_cards_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("HideInfocards")
 
         drawerResourceId = ResourceMappingPatch.resourceMappings.single {
             it.type == "id" && it.name == "info_cards_drawer_header"

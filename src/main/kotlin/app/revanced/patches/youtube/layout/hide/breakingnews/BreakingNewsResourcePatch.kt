@@ -18,6 +18,7 @@ object BreakingNewsResourcePatch : ResourcePatch() {
     internal var horizontalCardListId: Long = -1
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("BreakingNews")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_breaking_news",
@@ -26,7 +27,6 @@ object BreakingNewsResourcePatch : ResourcePatch() {
                 "revanced_hide_breaking_news_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("BreakingNews")
 
         horizontalCardListId = ResourceMappingPatch.resourceMappings.single {
             it.type == "layout" && it.name == "horizontal_card_list"

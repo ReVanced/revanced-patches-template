@@ -39,6 +39,7 @@ object SpoofSignaturePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("SpoofSignature")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_spoof_signature_verification_screen",
@@ -59,7 +60,6 @@ object SpoofSignaturePatch : BytecodePatch(
                 )
             )
         )
-        SettingsResourcePatch.mergePatchStrings("SpoofSignature")
 
         // Hook the player parameters.
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.ProtoBufferParameter(

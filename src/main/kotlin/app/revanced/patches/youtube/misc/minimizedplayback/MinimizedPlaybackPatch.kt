@@ -52,6 +52,7 @@ object MinimizedPlaybackPatch : BytecodePatch(
     const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("MinimizedPlayback")
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
@@ -60,7 +61,6 @@ object MinimizedPlaybackPatch : BytecodePatch(
 
             )
         )
-        SettingsResourcePatch.mergePatchStrings("MinimizedPlayback")
 
         MinimizedPlaybackManagerFingerprint.result?.apply {
             mutableMethod.addInstructions(

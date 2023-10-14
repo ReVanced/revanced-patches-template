@@ -42,6 +42,7 @@ object WideSearchbarPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("WideSearchbar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_wide_searchbar",
@@ -50,7 +51,6 @@ object WideSearchbarPatch : BytecodePatch(
                 "revanced_wide_searchbar_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("WideSearchbar")
 
         val result = CreateSearchSuggestionsFingerprint.result ?: throw CreateSearchSuggestionsFingerprint.exception
 

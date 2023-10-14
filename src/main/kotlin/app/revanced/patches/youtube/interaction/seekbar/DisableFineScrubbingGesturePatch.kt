@@ -38,6 +38,7 @@ object DisableFineScrubbingGesturePatch : BytecodePatch(
                 "disableGesture(Landroid/view/VelocityTracker;Landroid/view/MotionEvent;)V"
 
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("DisableFineScrubbingGesture")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_disable_fine_scrubbing_gesture",
@@ -46,7 +47,6 @@ object DisableFineScrubbingGesturePatch : BytecodePatch(
                 "revanced_disable_fine_scrubbing_gesture_summary_off",
             )
         )
-        SettingsResourcePatch.mergePatchStrings("DisableFineScrubbingGesture")
 
         IsSwipingUpFingerprint.result?.let {
             val addMovementIndex = it.scanResult.patternScanResult!!.startIndex - 1

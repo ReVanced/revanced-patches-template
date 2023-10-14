@@ -40,6 +40,7 @@ object AutoCaptionsPatch : BytecodePatch(
     setOf(StartVideoInformerFingerprint, SubtitleButtonControllerFingerprint, SubtitleTrackFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("AutoCaptions")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_auto_captions",
@@ -48,7 +49,6 @@ object AutoCaptionsPatch : BytecodePatch(
                 "revanced_auto_captions_summary_off"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("AutoCaptions")
 
         mapOf(
             StartVideoInformerFingerprint to 0,

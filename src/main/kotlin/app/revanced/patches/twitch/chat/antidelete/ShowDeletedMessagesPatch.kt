@@ -70,6 +70,7 @@ object ShowDeletedMessagesPatch : BytecodePatch(
             )
         }  ?: throw ChatUtilCreateDeletedSpanFingerprint.exception
 
+        SettingsResourcePatch.mergePatchStrings("ShowDeletedMessages")
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             ListPreference(
                 "revanced_show_deleted_messages",
@@ -94,6 +95,5 @@ object ShowDeletedMessagesPatch : BytecodePatch(
                 default = "cross-out"
             )
         )
-        SettingsResourcePatch.mergePatchStrings("ShowDeletedMessages")
     }
 }

@@ -15,6 +15,7 @@ import app.revanced.util.resources.ResourceUtils.copyXmlNode
 object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("SponsorBlock")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_sponsorblock_settings_title",
@@ -22,7 +23,6 @@ object SponsorBlockResourcePatch : ResourcePatch() {
                 SettingsPatch.createReVancedSettingsIntent("sponsorblock_settings_intent")
             )
         )
-        SettingsResourcePatch.mergePatchStrings("SponsorBlock")
 
         val classLoader = this.javaClass.classLoader
 

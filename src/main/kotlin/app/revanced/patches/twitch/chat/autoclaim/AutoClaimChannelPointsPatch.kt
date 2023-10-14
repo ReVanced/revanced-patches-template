@@ -24,6 +24,7 @@ object AutoClaimChannelPointPatch : BytecodePatch(
     setOf(CommunityPointsButtonViewDelegateFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
+        SettingsResourcePatch.mergePatchStrings("AutoClaimChannelPoint")
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             SwitchPreference(
                 "revanced_auto_claim_channel_points",
@@ -33,7 +34,6 @@ object AutoClaimChannelPointPatch : BytecodePatch(
                 default = true
             )
         )
-        SettingsResourcePatch.mergePatchStrings("AutoClaimChannelPoint")
 
         CommunityPointsButtonViewDelegateFingerprint.result?.mutableMethod?.apply {
             val lastIndex = implementation!!.instructions.lastIndex

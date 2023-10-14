@@ -19,6 +19,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 )
 object CopyVideoUrlResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("CopyVideoUrl")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_copy_video_url_preference_screen",
@@ -51,7 +52,5 @@ object CopyVideoUrlResourcePatch : ResourcePatch() {
         )
 
         BottomControlsResourcePatch.addControls("youtube/copyvideourl/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
-
-        SettingsResourcePatch.mergePatchStrings("CopyVideoUrl")
     }
 }

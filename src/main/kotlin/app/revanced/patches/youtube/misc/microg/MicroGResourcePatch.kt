@@ -18,6 +18,7 @@ import app.revanced.util.microg.MicroGResourceHelper
 @Patch(dependencies = [SettingsPatch::class])
 object MicroGResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("MicroG")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_microg_settings_title",
@@ -25,7 +26,6 @@ object MicroGResourcePatch : ResourcePatch() {
                 Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
             )
         )
-        SettingsResourcePatch.mergePatchStrings("MicroG")
 
         SettingsPatch.renameIntentsTargetPackage(REVANCED_PACKAGE_NAME)
 

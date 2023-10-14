@@ -19,6 +19,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 object ExternalDownloadsResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
+        SettingsResourcePatch.mergePatchStrings("ExternalDownloads")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_external_downloader_preference_screen",
@@ -49,7 +50,5 @@ object ExternalDownloadsResourcePatch : ResourcePatch() {
 
         // Add download button node
         BottomControlsResourcePatch.addControls("youtube/downloads/host/layout/${BottomControlsResourcePatch.TARGET_RESOURCE_NAME}")
-
-        SettingsResourcePatch.mergePatchStrings("ExternalDownloads")
     }
 }
