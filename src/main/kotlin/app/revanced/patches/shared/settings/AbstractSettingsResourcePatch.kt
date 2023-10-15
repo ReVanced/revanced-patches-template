@@ -96,7 +96,7 @@ abstract class AbstractSettingsResourcePatch(
          */
         internal fun assertStringExists(key: String): String {
             if (!strings.contains(key))
-                throw PatchException("Unknown String resource: '$key'  Merge patch strings before referencing.")
+                throw PatchException("Unknown String resource: '$key'  Include patch strings before referencing.")
             return key
         }
 
