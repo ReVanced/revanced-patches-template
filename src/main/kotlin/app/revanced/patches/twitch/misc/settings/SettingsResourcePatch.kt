@@ -10,7 +10,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
 ) {
 
     /**
-     * Used to merge the strings in [mergePatchStrings].
+     * Used to merge the strings in [includePatchStrings].
      */
     private lateinit var resourceContext : ResourceContext
 
@@ -25,7 +25,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
      *
      * @param patchName Name of the patch strings xml file.
      */
-    fun mergePatchStrings(patchName: String)  {
+    fun includePatchStrings(patchName: String)  {
         resourceContext.includeStrings("twitch/settings/host/values/$patchName.xml")
     }
 }

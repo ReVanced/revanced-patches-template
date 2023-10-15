@@ -38,7 +38,7 @@ object AudioAdsPatch : BytecodePatch(
             )
         }
 
-        SettingsResourcePatch.mergePatchStrings("AudioAds")
+        SettingsResourcePatch.includePatchStrings("AudioAds")
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_audio_ads",

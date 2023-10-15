@@ -109,7 +109,7 @@ object SettingsPatch : BytecodePatch(
             )
         }  ?: throw MenuGroupsOnClickFingerprint.exception
 
-        SettingsResourcePatch.mergePatchStrings("Settings")
+        SettingsResourcePatch.includePatchStrings("Settings")
     }
 
     private fun MethodFingerprintResult.injectMenuItem(

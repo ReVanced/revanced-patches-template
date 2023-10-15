@@ -38,7 +38,7 @@ object EmbeddedAdsPatch : BytecodePatch(
             """
         )
 
-        SettingsResourcePatch.mergePatchStrings("EmbeddedAds")
+        SettingsResourcePatch.includePatchStrings("EmbeddedAds")
         SettingsPatch.PreferenceScreen.ADS.SURESTREAM.addPreferences(
             ListPreference(
                 "revanced_block_embedded_ads",
