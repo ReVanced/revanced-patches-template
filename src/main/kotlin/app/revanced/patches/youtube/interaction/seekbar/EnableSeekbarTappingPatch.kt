@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.interaction.seekbar.fingerprints.OnTouchEven
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -47,7 +46,7 @@ object EnableSeekbarTappingPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("EnableSeekbarTapping")
+        SettingsPatch.includePatchStrings("EnableSeekbarTapping")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",

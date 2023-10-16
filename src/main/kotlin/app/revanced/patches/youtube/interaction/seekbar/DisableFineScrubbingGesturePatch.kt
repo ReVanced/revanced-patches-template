@@ -11,7 +11,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.IsSwipingUpFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
@@ -38,7 +37,7 @@ object DisableFineScrubbingGesturePatch : BytecodePatch(
                 "disableGesture(Landroid/view/VelocityTracker;Landroid/view/MotionEvent;)V"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("DisableFineScrubbingGesture")
+        SettingsPatch.includePatchStrings("DisableFineScrubbingGesture")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_disable_fine_scrubbing_gesture",

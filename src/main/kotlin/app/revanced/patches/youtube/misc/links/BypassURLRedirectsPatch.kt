@@ -12,7 +12,6 @@ import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlyPrimaryFingerprint
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlySecondaryFingerprint
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
@@ -39,7 +38,7 @@ object BypassURLRedirectsPatch : BytecodePatch(
     setOf(OpenLinksDirectlyPrimaryFingerprint, OpenLinksDirectlySecondaryFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("BypassURLRedirects")
+        SettingsPatch.includePatchStrings("BypassURLRedirects")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_bypass_url_redirects",

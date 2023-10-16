@@ -15,7 +15,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -39,7 +38,7 @@ object SpoofSignaturePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("SpoofSignature")
+        SettingsPatch.includePatchStrings("SpoofSignature")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_spoof_signature_verification_screen",

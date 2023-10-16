@@ -7,7 +7,6 @@ import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
 object HideFilterBarResourcePatch : ResourcePatch() {
@@ -16,7 +15,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
     internal var barContainerHeightId = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HideFilterBar")
+        SettingsPatch.includePatchStrings("HideFilterBar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_filter_bar_screen",

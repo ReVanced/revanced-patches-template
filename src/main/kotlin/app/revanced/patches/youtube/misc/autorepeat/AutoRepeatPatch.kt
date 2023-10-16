@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatFinge
 import app.revanced.patches.youtube.misc.autorepeat.fingerprints.AutoRepeatParentFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Always autorepeat",
@@ -40,7 +39,7 @@ object AutoRepeatPatch : BytecodePatch(
     setOf(AutoRepeatParentFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("AutoRepeat")
+        SettingsPatch.includePatchStrings("AutoRepeat")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_auto_repeat",

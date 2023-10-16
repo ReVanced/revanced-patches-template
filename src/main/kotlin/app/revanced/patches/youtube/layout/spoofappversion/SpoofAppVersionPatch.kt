@@ -12,7 +12,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.spoofappversion.fingerprints.SpoofAppVersionFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -42,7 +41,7 @@ object SpoofAppVersionPatch : BytecodePatch(
     private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/spoof/SpoofAppVersionPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("SpoofAppVersion")
+        SettingsPatch.includePatchStrings("SpoofAppVersion")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_spoof_app_version",

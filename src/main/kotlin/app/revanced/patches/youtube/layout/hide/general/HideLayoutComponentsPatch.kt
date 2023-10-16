@@ -21,7 +21,6 @@ import app.revanced.patches.youtube.layout.hide.general.fingerprints.ShowWaterma
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
@@ -50,7 +49,7 @@ object HideLayoutComponentsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/components/LayoutComponentsFilter;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("HideLayoutComponents")
+        SettingsPatch.includePatchStrings("HideLayoutComponents")
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_gray_separator",

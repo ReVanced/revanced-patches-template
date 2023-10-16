@@ -17,7 +17,6 @@ import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPla
 import app.revanced.patches.youtube.layout.tabletminiplayer.fingerprints.MiniPlayerResponseModelSizeCheckFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -49,7 +48,7 @@ object TabletMiniPlayerPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("TabletMiniPlayer")
+        SettingsPatch.includePatchStrings("TabletMiniPlayer")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_tablet_miniplayer",

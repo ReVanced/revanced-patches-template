@@ -6,7 +6,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     dependencies = [
@@ -18,7 +17,7 @@ object AlbumCardsResourcePatch : ResourcePatch() {
     internal var albumCardId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("AlbumCards")
+        SettingsPatch.includePatchStrings("AlbumCards")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_album_cards",

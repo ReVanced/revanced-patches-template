@@ -8,7 +8,6 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Player flyout menu",
@@ -38,7 +37,7 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/PlayerFlyoutMenuItemsFilter;"
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HidePlayerFlyoutMenu")
+        SettingsPatch.includePatchStrings("HidePlayerFlyoutMenu")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_player_flyout_screen",

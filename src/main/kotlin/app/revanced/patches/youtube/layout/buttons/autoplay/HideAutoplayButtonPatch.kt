@@ -14,7 +14,6 @@ import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -49,7 +48,7 @@ object HideAutoplayButtonPatch : BytecodePatch(
     setOf(LayoutConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("HideAutoplayButton")
+        SettingsPatch.includePatchStrings("HideAutoplayButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",

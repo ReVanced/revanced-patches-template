@@ -11,7 +11,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.video.fingerprints.LoadVideoAdsFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Video ads",
@@ -41,7 +40,7 @@ object VideoAdsPatch : BytecodePatch(
     setOf(LoadVideoAdsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("VideoAds")
+        SettingsPatch.includePatchStrings("VideoAds")
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_video_ads",

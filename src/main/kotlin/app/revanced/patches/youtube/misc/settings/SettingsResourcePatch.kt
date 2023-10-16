@@ -118,38 +118,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
         resourceContext.includeStrings("youtube/settings/host/values/$patchName.xml")
     }
 
-    override fun close() {
-        super.close()
-
-        // rename the intent package names if it was set
-        overrideIntentsTargetPackage?.let { packageName ->
-            val preferences = preferencesEditor!!.getNode("PreferenceScreen").childNodes
-            for (i in 1 until preferences.length) {
-                val preferenceNode = preferences.item(i)
-                // preferences have a child node with the intent tag, skip over every other node
-                if (preferenceNode.childNodes.length == 0) continue
-
-                val intentNode = preferenceNode.firstChild
-
-                // if the node doesn't have a target package attribute, skip it
-                val targetPackageAttribute = intentNode.attributes.getNamedItem("android:targetPackage") ?: continue
-
-                // do not replace intent target package if the package name is not from YouTube
-                val youtubePackage = "com.google.android.youtube"
-                if (targetPackageAttribute.nodeValue != youtubePackage) continue
-
-                // replace the target package name
-                intentNode.attributes.setNamedItem(preferenceNode.ownerDocument.createAttribute("android:targetPackage")
-                    .also { attribute ->
-                        attribute.value = packageName
-                    })
-            }
-        }
-
-        preferencesEditor?.close()
-
-    }
-
     /**
      * Add a preference fragment to the main preferences.
      *
@@ -181,4 +149,35 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
      * @param preferenceScreen The name of the preference screen.
      */
     internal fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
+
+    override fun close() {
+        super.close()
+
+        // rename the intent package names if it was set
+        overrideIntentsTargetPackage?.let { packageName ->
+            val preferences = preferencesEditor!!.getNode("PreferenceScreen").childNodes
+            for (i in 1 until preferences.length) {
+                val preferenceNode = preferences.item(i)
+                // preferences have a child node with the intent tag, skip over every other node
+                if (preferenceNode.childNodes.length == 0) continue
+
+                val intentNode = preferenceNode.firstChild
+
+                // if the node doesn't have a target package attribute, skip it
+                val targetPackageAttribute = intentNode.attributes.getNamedItem("android:targetPackage") ?: continue
+
+                // do not replace intent target package if the package name is not from YouTube
+                val youtubePackage = "com.google.android.youtube"
+                if (targetPackageAttribute.nodeValue != youtubePackage) continue
+
+                // replace the target package name
+                intentNode.attributes.setNamedItem(preferenceNode.ownerDocument.createAttribute("android:targetPackage")
+                    .also { attribute ->
+                        attribute.value = packageName
+                    })
+            }
+        }
+
+        preferencesEditor?.close()
+    }
 }

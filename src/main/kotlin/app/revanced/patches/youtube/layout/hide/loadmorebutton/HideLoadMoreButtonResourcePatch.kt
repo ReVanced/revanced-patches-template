@@ -6,7 +6,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     dependencies = [
@@ -18,7 +17,7 @@ object HideLoadMoreButtonResourcePatch : ResourcePatch() {
     internal var expandButtonDownId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HideLoadMoreButton")
+        SettingsPatch.includePatchStrings("HideLoadMoreButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_load_more_button",

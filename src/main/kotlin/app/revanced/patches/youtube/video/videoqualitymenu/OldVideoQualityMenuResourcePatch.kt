@@ -7,7 +7,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     dependencies = [SettingsPatch::class, ResourceMappingPatch::class]
@@ -16,7 +15,7 @@ object OldVideoQualityMenuResourcePatch : ResourcePatch() {
     internal var videoQualityBottomSheetListFragmentTitle = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("OldVideoQualityMenu")
+        SettingsPatch.includePatchStrings("OldVideoQualityMenu")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_show_old_video_quality_menu",

@@ -15,7 +15,6 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint
 import app.revanced.patches.youtube.video.quality.fingerprints.SetQualityByIndexMethodClassFieldReferenceFingerprint
@@ -80,7 +79,7 @@ object RememberVideoQualityPatch : BytecodePatch(
             "144",
         )
 
-        SettingsResourcePatch.includePatchStrings("RememberVideoQuality")
+        SettingsPatch.includePatchStrings("RememberVideoQuality")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",

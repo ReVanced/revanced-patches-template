@@ -6,7 +6,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     dependencies = [SettingsPatch::class]
@@ -15,7 +14,7 @@ object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
     internal var oldUIDislikeId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("ReturnYouTubeDislike")
+        SettingsPatch.includePatchStrings("ReturnYouTubeDislike")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_ryd_settings_title",

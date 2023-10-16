@@ -8,7 +8,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     dependencies = [
@@ -24,7 +23,7 @@ object HideAdsResourcePatch : ResourcePatch() {
     internal var adAttributionId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HideAds")
+        SettingsPatch.includePatchStrings("HideAds")
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_general_ads",

@@ -9,7 +9,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.patches.youtube.misc.zoomhaptics.fingerprints.ZoomHapticsFingerprint
 
 @Patch(
@@ -23,7 +22,7 @@ object ZoomHapticsPatch : BytecodePatch(
     setOf(ZoomHapticsFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("ZoomHaptics")
+        SettingsPatch.includePatchStrings("ZoomHaptics")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_disable_zoom_haptics",

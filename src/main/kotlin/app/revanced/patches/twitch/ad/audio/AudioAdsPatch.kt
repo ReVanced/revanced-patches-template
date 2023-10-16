@@ -11,7 +11,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Block audio ads",
@@ -38,7 +37,7 @@ object AudioAdsPatch : BytecodePatch(
             )
         }
 
-        SettingsResourcePatch.includePatchStrings("AudioAds")
+        SettingsPatch.includePatchStrings("AudioAds")
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_audio_ads",

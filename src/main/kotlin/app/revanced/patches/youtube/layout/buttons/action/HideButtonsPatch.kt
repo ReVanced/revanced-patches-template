@@ -9,7 +9,6 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Hide video action buttons",
@@ -41,7 +40,7 @@ object HideButtonsPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/ButtonsFilter;"
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HideButtons")
+        SettingsPatch.includePatchStrings("HideButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons_preference_screen",

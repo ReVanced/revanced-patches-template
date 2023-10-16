@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleBut
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleTrackFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Disable auto captions",
@@ -40,7 +39,7 @@ object AutoCaptionsPatch : BytecodePatch(
     setOf(StartVideoInformerFingerprint, SubtitleButtonControllerFingerprint, SubtitleTrackFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("AutoCaptions")
+        SettingsPatch.includePatchStrings("AutoCaptions")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_auto_captions",

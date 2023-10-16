@@ -24,7 +24,7 @@ object AutoClaimChannelPointPatch : BytecodePatch(
     setOf(CommunityPointsButtonViewDelegateFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("AutoClaimChannelPoint")
+        SettingsPatch.includePatchStrings("AutoClaimChannelPoint")
         SettingsPatch.PreferenceScreen.CHAT.GENERAL.addPreferences(
             SwitchPreference(
                 "revanced_auto_claim_channel_points",

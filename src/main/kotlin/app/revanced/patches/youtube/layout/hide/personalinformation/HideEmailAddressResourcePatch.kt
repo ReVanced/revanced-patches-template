@@ -6,7 +6,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
 @Suppress("unused")
@@ -14,7 +13,7 @@ object HideEmailAddressResourcePatch : ResourcePatch() {
     internal var accountSwitcherAccessibilityLabelId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("HideEmailAddress")
+        SettingsPatch.includePatchStrings("HideEmailAddress")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_email_address",

@@ -7,7 +7,6 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.playercontrols.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
@@ -19,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 )
 object CopyVideoUrlResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("CopyVideoUrl")
+        SettingsPatch.includePatchStrings("CopyVideoUrl")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_copy_video_url_preference_screen",

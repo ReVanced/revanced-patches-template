@@ -10,7 +10,6 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.time.fingerprints.TimeCounterFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Hide timestamp",
@@ -36,7 +35,7 @@ object HideTimestampPatch : BytecodePatch(
     setOf(TimeCounterFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("HideTimestamp")
+        SettingsPatch.includePatchStrings("HideTimestamp")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_timestamp",

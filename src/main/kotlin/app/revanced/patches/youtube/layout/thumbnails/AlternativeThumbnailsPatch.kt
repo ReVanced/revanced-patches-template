@@ -13,7 +13,6 @@ import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Alternative thumbnails",
@@ -84,7 +83,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     }
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("AlternativeThumbnails")
+        SettingsPatch.includePatchStrings("AlternativeThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",

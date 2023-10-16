@@ -13,7 +13,6 @@ import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.seekbar.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Hide seekbar",
@@ -44,7 +43,7 @@ object HideSeekbarPatch : BytecodePatch(
     setOf(SeekbarFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("HideSeekbar")
+        SettingsPatch.includePatchStrings("HideSeekbar")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_hide_seekbar",

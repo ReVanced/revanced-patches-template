@@ -124,5 +124,7 @@ object SettingsPatch : BytecodePatch(
         }
     }
 
+    fun includePatchStrings(patchName: String)  = SettingsResourcePatch.includePatchStrings(patchName)
+
     override fun close() = PreferenceScreen.close()
 }

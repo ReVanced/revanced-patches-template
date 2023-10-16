@@ -15,7 +15,6 @@ import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUti
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -51,7 +50,7 @@ object NavigationButtonsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/NavigationButtonsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("NavigationButtons")
+        SettingsPatch.includePatchStrings("NavigationButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",

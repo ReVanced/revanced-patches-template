@@ -12,8 +12,8 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
 import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.addPreference
+import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
 import app.revanced.patches.twitch.misc.settings.fingerprints.MenuGroupsOnClickFingerprint
@@ -109,7 +109,7 @@ object SettingsPatch : BytecodePatch(
             )
         }  ?: throw MenuGroupsOnClickFingerprint.exception
 
-        SettingsResourcePatch.includePatchStrings("Settings")
+        SettingsPatch.includePatchStrings("Settings")
     }
 
     private fun MethodFingerprintResult.injectMenuItem(
@@ -184,6 +184,7 @@ object SettingsPatch : BytecodePatch(
         }
     }
 
+    fun includePatchStrings(patchName: String) = SettingsResourcePatch.includePatchStrings(patchName)
 
     override fun close() = PreferenceScreen.close()
 }

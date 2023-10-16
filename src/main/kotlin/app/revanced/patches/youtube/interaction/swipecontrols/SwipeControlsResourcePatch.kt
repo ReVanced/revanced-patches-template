@@ -5,7 +5,6 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 
@@ -14,7 +13,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 )
 object SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("SwipeControls")
+        SettingsPatch.includePatchStrings("SwipeControls")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(
                 "revanced_swipe_controls_preference_screen",

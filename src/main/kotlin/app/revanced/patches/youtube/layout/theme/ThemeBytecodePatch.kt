@@ -14,7 +14,6 @@ import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.fingerprints.UseGradientLoadingScreenFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
@@ -61,7 +60,7 @@ object ThemeBytecodePatch : BytecodePatch(
     )
 
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("ThemeBytecode")
+        SettingsPatch.includePatchStrings("ThemeBytecode")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_gradient_loading_screen",

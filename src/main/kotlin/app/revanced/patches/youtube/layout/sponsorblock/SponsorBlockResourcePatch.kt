@@ -6,7 +6,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
 import app.revanced.util.resources.ResourceUtils.copyXmlNode
@@ -15,7 +14,7 @@ import app.revanced.util.resources.ResourceUtils.copyXmlNode
 object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("SponsorBlock")
+        SettingsPatch.includePatchStrings("SponsorBlock")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_sponsorblock_settings_title",

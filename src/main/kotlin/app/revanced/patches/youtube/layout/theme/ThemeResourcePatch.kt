@@ -12,7 +12,6 @@ import app.revanced.patches.youtube.layout.seekbar.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.lightThemeBackgroundColor
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 import org.w3c.dom.Element
 
 @Patch(
@@ -22,7 +21,7 @@ object ThemeResourcePatch : ResourcePatch() {
     private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
 
     override fun execute(context: ResourceContext) {
-        SettingsResourcePatch.includePatchStrings("Theme")
+        SettingsPatch.includePatchStrings("Theme")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_custom_color",

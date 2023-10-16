@@ -9,7 +9,6 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Hide cast button",
@@ -24,7 +23,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsResourcePatch
 )
 object HideCastButtonPatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) {
-        SettingsResourcePatch.includePatchStrings("HideCastButton")
+        SettingsPatch.includePatchStrings("HideCastButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_cast_button",
