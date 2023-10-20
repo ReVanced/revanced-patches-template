@@ -55,8 +55,12 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
                     && methodRef.parameterTypes.toTypedArray().contentEquals(search.methodParams)
         } ?: return null
 
-        val optionValue = options[methodMatch.optionKey].value as? String ?: return null
-        return instructionIndex to optionValue.lowercase()
+        val iso = when (methodMatch) {
+            MethodCall.NetworkCountryIso -> networkCountryIso
+            MethodCall.SimCountryIso -> simCountryIso
+        }?.lowercase()
+
+        return iso?.let { instructionIndex to it }
     }
 
     override fun transform(
@@ -79,22 +83,19 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
         val definedClassName: String,
         val methodName: String,
         val methodParams: Array<String>,
-        val returnType: String,
-        val optionKey: String
+        val returnType: String
     ) {
         NetworkCountryIso(
             "Landroid/telephony/TelephonyManager;",
             "getNetworkCountryIso",
             emptyArray(),
-            "Ljava/lang/String;",
-            "networkCountryIso"
+            "Ljava/lang/String;"
         ),
         SimCountryIso(
             "Landroid/telephony/TelephonyManager;",
             "getSimCountryIso",
             emptyArray(),
-            "Ljava/lang/String;",
-            "simCountryIso"
+            "Ljava/lang/String;"
         )
     }
 }
