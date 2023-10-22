@@ -8,6 +8,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
+import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -15,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     description = "Hides player flyout menu items.",
     dependencies = [
         LithoFilterPatch::class,
+        PlayerTypeHookPatch::class,
         SettingsPatch::class
     ],
     compatiblePackages = [
