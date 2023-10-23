@@ -228,6 +228,12 @@ object HideLayoutComponentsPatch : BytecodePatch(
                 StringResource("revanced_hide_channel_bar_summary_off", "Channel bar is shown")
             ),
             SwitchPreference(
+                "revanced_hide_quality_sheet_footer",
+                StringResource("revanced_hide_quality_sheet_footer_title", "Hide quality flyout menu footer"),
+                StringResource("revanced_hide_quality_sheet_footer_summary_on", "Quality menu footer is hidden"),
+                StringResource("revanced_hide_quality_sheet_footer_summary_off", "Quick menu footer is shown")
+            ),
+            SwitchPreference(
                 "revanced_hide_quick_actions",
                 StringResource("revanced_hide_quick_actions_title", "Hide quick actions in fullscreen"),
                 StringResource("revanced_hide_quick_actions_summary_on", "Quick actions are hidden"),
