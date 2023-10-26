@@ -187,7 +187,7 @@ package app.revanced.patches.examples.minimal.patch
 )
 object MinimalExamplePatch : BytecodePatch() {
     override fun execute(context: BytecodeContext) =
-        println("${MinimalExamplePatch::class.patchName} is being executed." )
+        println("${MinimalExamplePatch.name} is being executed." )
 }
 ```
 
