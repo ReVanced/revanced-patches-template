@@ -81,7 +81,7 @@ abstract class AbstractStringsResourcePatch(
         // or will compile with errors but will not show up in the app as intended.
         if (value.contains(Regex("(?<!\\\\)['\"]")))
             throw PatchException("Unescaped quotes found in key: $key value: $value")
-        if (!strings.add(key)) throw PatchException("Tried to add duplicate string: $name")
+        if (!strings.add(key)) throw PatchException("Tried to add duplicate string: $key")
 
         stringsNode.addResource(StringResource(key, value, formatted))
     }
