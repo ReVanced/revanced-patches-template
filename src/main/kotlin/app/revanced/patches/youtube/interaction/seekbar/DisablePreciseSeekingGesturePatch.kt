@@ -14,8 +14,8 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 @Patch(
-    name = "Disable fine scrubbing gesture",
-    description = "Disables gesture that shows the fine scrubbing overlay when swiping up on the seekbar.",
+    name = "Disable precise seeking gesture",
+    description = "Disables the gesture that is used to seek precisely when swiping up on the seekbar.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
@@ -29,21 +29,21 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
     ]
 )
 @Suppress("unused")
-object DisableFineScrubbingGesturePatch : BytecodePatch(
+object DisablePreciseSeekingGesturePatch : BytecodePatch(
     setOf(IsSwipingUpFingerprint)
 ) {
     private const val INTEGRATIONS_METHOD_DESCRIPTOR =
-        "Lapp/revanced/integrations/patches/DisableFineScrubbingGesturePatch;->" +
+        "Lapp/revanced/integrations/patches/DisablePreciseSeekingGesturePatch;->" +
                 "disableGesture(Landroid/view/VelocityTracker;Landroid/view/MotionEvent;)V"
 
     override fun execute(context: BytecodeContext) {
         SettingsPatch.includePatchStrings("DisableFineScrubbingGesture")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
-                "revanced_disable_fine_scrubbing_gesture",
-                "revanced_disable_fine_scrubbing_gesture_title",
-                "revanced_disable_fine_scrubbing_gesture_summary_on",
-                "revanced_disable_fine_scrubbing_gesture_summary_off",
+                "revanced_disable_precise_seeking_gesture",
+                StringResource("revanced_disable_precise_seeking_gesture_title", "Disable precise seeking gesture"),
+                StringResource("revanced_disable_precise_seeking_gesture_summary_on", "Gesture is disabled"),
+                StringResource("revanced_disable_precise_seeking_gesture_summary_off", "Gesture is enabled"),
             )
         )
 
