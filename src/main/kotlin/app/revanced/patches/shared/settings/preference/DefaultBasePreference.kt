@@ -23,9 +23,8 @@ abstract class DefaultBasePreference<T>(
      * Serialize preference element to XML.
      * Overriding methods should invoke super and operate on its return value.
      * @param ownerDocument Target document to create elements from.
-     * @param resourceCallback Called when a resource has been processed.
      * @return The serialized element.
      */
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply { addDefault(default) }
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply { addDefault(default) }
 }

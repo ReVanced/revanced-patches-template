@@ -8,20 +8,18 @@ import org.w3c.dom.Node
  * Add a resource node child
  *
  * @param resource The resource to add.
- * @param resourceCallback Called when a resource has been processed.
  */
-internal fun Node.addResource(resource: BaseResource, resourceCallback: (BaseResource) -> Unit = { }) {
-    appendChild(resource.serialize(ownerDocument, resourceCallback))
+internal fun Node.addResource(resource: BaseResource) {
+    appendChild(resource.serialize(ownerDocument))
 }
 
 /**
  * Add a preference node child to the settings.
  *
  * @param preference The preference to add.
- * @param resourceCallback Called when a resource has been processed.
  */
-internal fun Node.addPreference(preference: BasePreference, resourceCallback: ((BaseResource) -> Unit) = { }) {
-    appendChild(preference.serialize(ownerDocument, resourceCallback))
+internal fun Node.addPreference(preference: BasePreference) {
+    appendChild(preference.serialize(ownerDocument))
 }
 
 internal fun Element.addSummary(summaryResourceKey: String?, summaryType: SummaryType = SummaryType.DEFAULT)  {

@@ -1,6 +1,5 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.DefaultBasePreference
 import app.revanced.patches.shared.settings.preference.addSummary
 import org.w3c.dom.Document
@@ -24,13 +23,15 @@ class ListPreference(
     default: String? = null,
 ) : DefaultBasePreference<String>(key, titleKey, summaryKey, "ListPreference", default) {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             if (entries != null) {
-                setAttribute("android:entries", "@array/${entries.also { resourceCallback.invoke(it) }.name}")
+                entries.include()
+                setAttribute("android:entries", "@array/${entries.name}")
             }
             if (entryValues != null) {
-                setAttribute("android:entryValues", "@array/${entryValues.also { resourceCallback.invoke(it) }.name}")
+                entryValues.include()
+                setAttribute("android:entryValues", "@array/${entryValues.name}")
             }
             addSummary(summaryKey)
         }

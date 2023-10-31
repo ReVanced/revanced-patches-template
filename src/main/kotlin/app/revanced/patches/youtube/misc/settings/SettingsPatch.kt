@@ -8,6 +8,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.addPreference
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
@@ -91,9 +92,6 @@ object SettingsPatch : BytecodePatch(
 
     }
 
-    fun addPreferenceScreen(preferenceScreen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) =
-        SettingsResourcePatch.addPreferenceScreen(preferenceScreen)
-
     fun addPreference(preference: Preference) = SettingsResourcePatch.addPreference(preference)
 
     fun renameIntentsTargetPackage(newPackage: String) {
@@ -113,14 +111,34 @@ object SettingsPatch : BytecodePatch(
      * Preference screens patches should add their settings to.
      */
     object PreferenceScreen : AbstractPreferenceScreen() {
-        val ADS = Screen("revanced_ads_screen", "revanced_ads_screen_title", "revanced_ads_screen_summary")
-        val INTERACTIONS = Screen("revanced_interaction_screen", "revanced_interaction_screen_title", "revanced_interaction_screen_summary")
-        val LAYOUT = Screen("revanced_layout_screen", "revanced_layout_screen_title", "revanced_layout_screen_summary")
-        val MISC = Screen("revanced_misc_screen", "revanced_misc_screen_title", "revanced_misc_screen_summary")
-        val VIDEO = Screen("revanced_video_screen", "revanced_video_screen_title", "revanced_video_screen_summary")
+        val ADS = Screen(
+            "revanced_ads_screen",
+            "revanced_ads_screen_title",
+            "revanced_ads_screen_summary"
+        )
+        val INTERACTIONS = Screen(
+            "revanced_interaction_screen",
+            "revanced_interaction_screen_title",
+            "revanced_interaction_screen_summary"
+        )
+        val LAYOUT = Screen(
+            "revanced_layout_screen",
+            "revanced_layout_screen_title",
+            "revanced_layout_screen_summary"
+        )
+        val MISC = Screen(
+            "revanced_misc_screen",
+            "revanced_misc_screen_title",
+            "revanced_misc_screen_summary"
+        )
+        val VIDEO = Screen(
+            "revanced_video_screen",
+            "revanced_video_screen_title",
+            "revanced_video_screen_summary"
+        )
 
         override fun commit(screen: app.revanced.patches.shared.settings.preference.impl.PreferenceScreen) {
-            addPreferenceScreen(screen)
+            addPreference(screen)
         }
     }
 

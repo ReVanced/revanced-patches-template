@@ -22,10 +22,9 @@ abstract class BasePreference(
      * Serialize preference element to XML.
      * Overriding methods should invoke super and operate on its return value.
      * @param ownerDocument Target document to create elements from.
-     * @param resourceCallback Called when a resource has been processed.
      * @return The serialized element.
      */
-    open fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element =
+    open fun serialize(ownerDocument: Document): Element =
         ownerDocument.createElement(tag).apply {
             if (key != null) setAttribute("android:key", key)
             setAttribute("android:title", "@string/${assertStringExists(titleKey)}")

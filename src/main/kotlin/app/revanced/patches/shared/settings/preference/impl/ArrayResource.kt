@@ -1,5 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
+import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.strings.AbstractStringsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Document
@@ -18,8 +19,8 @@ class ArrayResource(
     val literalValues : Boolean = false
 ) : BaseResource(name, "string-array") {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             setAttribute("name", name)
 
             items.forEach { item ->
@@ -28,4 +29,10 @@ class ArrayResource(
                 })
             }
         }
+
+    /**
+     * Bundles this array with the target app.
+     */
+    fun include() = AbstractSettingsResourcePatch.addArray(this)
+
 }

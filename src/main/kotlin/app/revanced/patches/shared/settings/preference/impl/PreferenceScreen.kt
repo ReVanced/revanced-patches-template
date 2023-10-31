@@ -1,7 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
 import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.addSummary
 import org.w3c.dom.Document
 
@@ -20,11 +19,11 @@ open class PreferenceScreen(
     summaryKey: String? = null
 ) : BasePreference(key, titleKey, summaryKey, "PreferenceScreen") {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             addSummary(summaryKey)
 
             for (childPreference in preferences)
-                this.appendChild(childPreference.serialize(ownerDocument, resourceCallback))
+                this.appendChild(childPreference.serialize(ownerDocument))
         }
 }

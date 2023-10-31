@@ -1,15 +1,14 @@
 package app.revanced.patches.youtube.misc.settings
 
 import app.revanced.patcher.data.ResourceContext
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.addPreference
-import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.util.resources.ResourceUtils
@@ -60,6 +59,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
         // Modify the manifest and add an data intent filter to the LicenseActivity.
         // Some devices freak out if undeclared data is passed to an intent,
         // and this change appears to fix the issue.
+        var modifiedIntentFilter = false
         context.xmlEditor["AndroidManifest.xml"].use { editor ->
             // An xml regular expression would probably work better than this manual searching.
             val manifestNodes = editor.file.getElementsByTagName("manifest").item(0).childNodes
@@ -77,12 +77,14 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
                             mimeType.setAttribute("android:mimeType", "text/plain")
                             intentFilter.appendChild(mimeType)
                             applicationChild.appendChild(intentFilter)
+                            modifiedIntentFilter = true
                             break
                         }
                     }
                 }
             }
         }
+        if (!modifiedIntentFilter) throw PatchException("Could not modify intent filter")
 
         // Add the ReVanced settings to the YouTube settings
         StringsPatch.includePatchStrings("Settings")
@@ -111,22 +113,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
      *
      * @param preference The preference to add.
      */
-    internal fun addPreference(preference: Preference) =
-        preferencesNode!!.addPreference(preference) { it.include() }
-
-    /**
-     * Add an array to the resources.
-     *
-     * @param arrayResource The array resource to add.
-     */
-    internal fun addArray(arrayResource: ArrayResource) = AbstractSettingsResourcePatch.addArray(arrayResource)
-
-    /**
-     * Add a preference to the settings.
-     *
-     * @param preferenceScreen The name of the preference screen.
-     */
-    internal fun addPreferenceScreen(preferenceScreen: PreferenceScreen) = addPreference(preferenceScreen)
+    fun addPreference(preference: Preference) = preferencesNode!!.addPreference(preference)
 
     override fun close() {
         super.close()

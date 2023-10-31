@@ -121,11 +121,11 @@ abstract class AbstractStringsResourcePatch(
 }
 
 /**
- * Legacy code used to merge non translated English strings into the Strings.xml file.
+ * Used to merge non translated English strings into the default Strings.xml file.
  *
- * @param name The name of the string.
- * @param value The value of the string.
- * @param formatted If the string is formatted. If false, the attribute will be set.
+ * @param name String key.
+ * @param value String text value.
+ * @param formatted If the text is formatted.
  */
 private class StringResource(
     name: String,
@@ -133,8 +133,8 @@ private class StringResource(
     val formatted: Boolean = true
 ) : BaseResource(name, "string") {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             // if the string is un-formatted, explicitly add the formatted attribute
             if (!formatted) setAttribute("formatted", "false")
 

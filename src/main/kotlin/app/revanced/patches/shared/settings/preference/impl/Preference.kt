@@ -1,7 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
 import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.BaseResource
 import org.w3c.dom.Document
 
 /**
@@ -25,8 +24,8 @@ class Preference(
         intent: Intent
     ) : this("", titleKey, summaryKey, intent)
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             this.appendChild(ownerDocument.createElement("intent").also { intentNode ->
                 intentNode.setAttribute("android:targetPackage", intent.targetPackage)
                 intentNode.setAttribute("android:data", intent.data)

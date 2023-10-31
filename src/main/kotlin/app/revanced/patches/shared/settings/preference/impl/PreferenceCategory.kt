@@ -1,7 +1,6 @@
 package app.revanced.patches.shared.settings.preference.impl
 
 import app.revanced.patches.shared.settings.preference.BasePreference
-import app.revanced.patches.shared.settings.preference.BaseResource
 import org.w3c.dom.Document
 
 /**
@@ -18,10 +17,10 @@ open class PreferenceCategory(
     tag: String = "PreferenceCategory"
 ) : BasePreference(key, titleKey, null, tag) {
 
-    override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit) =
-        super.serialize(ownerDocument, resourceCallback).apply {
+    override fun serialize(ownerDocument: Document) =
+        super.serialize(ownerDocument).apply {
             for (childPreference in preferences) {
-                this.appendChild(childPreference.serialize(ownerDocument, resourceCallback))
+                this.appendChild(childPreference.serialize(ownerDocument))
             }
         }
 }
