@@ -74,11 +74,11 @@ abstract class AbstractStringsResourcePatch(
      *
      * @param key The key of the string.
      * @param value The value of the string.
-     * @throws IllegalArgumentException if the string already exists.
+     * @throws PatchException if the string already exists.
      */
     internal fun addString(key: String, value: String, formatted: Boolean) {
         // Detect unescaped quotes that will throw generic AAPT errors
-        // or will compile with errors but will not show up in the app as intended.
+        // or will compile but not show up in the app as intended.
         if (value.contains(Regex("(?<!\\\\)['\"]")))
             throw PatchException("Unescaped quotes found in key: $key value: $value")
         if (!strings.add(key)) throw PatchException("Tried to add duplicate string: $key")
