@@ -8,7 +8,6 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
@@ -38,23 +37,13 @@ object AnnouncementsPatch : BytecodePatch(
             "invoke-static { v1 }, $INTEGRATIONS_CLASS_DESCRIPTOR->showAnnouncement(Landroid/app/Activity;)V"
         )
 
+        SettingsPatch.includePatchStrings("Announcements")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_announcements",
-                StringResource(
-                    "revanced_announcements_title",
-                    "Show announcements from ReVanced"
-                ),
-                StringResource(
-                    "revanced_announcements_summary_on",
-                    "Announcements are shown on startup"
-                ), StringResource(
-                    "revanced_announcements_summary_off",
-                    "Announcements are not shown on startup"
-                ), StringResource(
-                    "revanced_announcements_enabled_summary",
-                    "Show announcements on startup"
-                ),
+                "revanced_announcements_title",
+                "revanced_announcements_summary_on",
+                "revanced_announcements_summary_off",
             )
         )
     }

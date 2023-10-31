@@ -6,7 +6,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.dimensions.spoof.fingerprints.DeviceDimensionsModelToStringFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
@@ -26,6 +25,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
         )
     ]
 )
+@Suppress("unused")
 object SpoofDeviceDimensionsPatch : BytecodePatch(
     setOf(DeviceDimensionsModelToStringFingerprint)
 ) {
@@ -33,12 +33,13 @@ object SpoofDeviceDimensionsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofDeviceDimensionsPatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsPatch.includePatchStrings("SpoofDeviceDimensions")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_device_dimensions",
-                StringResource("revanced_spoof_device_dimensions_title", "Spoof device dimensions"),
-                StringResource("revanced_spoof_device_dimensions_summary_on", "Device dimensions spoofed"),
-                StringResource("revanced_spoof_device_dimensions_summary_off", "Device dimensions not spoofed"),
+                "revanced_spoof_device_dimensions_title",
+                "revanced_spoof_device_dimensions_summary_on",
+                "revanced_spoof_device_dimensions_summary_off",
             )
         )
 

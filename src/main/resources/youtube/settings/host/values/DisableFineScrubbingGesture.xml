@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="revanced_disable_fine_scrubbing_gesture_title">Disable fine scrubbing gesture</string>
-    <string name="revanced_disable_fine_scrubbing_gesture_summary_on">Gesture is disabled</string>
-    <string name="revanced_disable_fine_scrubbing_gesture_summary_off">Gesture is enabled</string>
-</resources>

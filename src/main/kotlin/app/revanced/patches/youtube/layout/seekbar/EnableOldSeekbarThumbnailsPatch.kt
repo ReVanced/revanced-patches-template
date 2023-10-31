@@ -7,7 +7,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.settings.preference.impl.StringResource
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.fingerprints.EnableNewSeekbarThumbnailsFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
@@ -34,21 +33,13 @@ object EnableOldSeekbarThumbnailsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/EnableOldSeekbarThumbnailsPatch;"
 
     override fun execute(context: BytecodeContext) {
+        SettingsPatch.includePatchStrings("EnableOldSeekbarThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_enable_old_seekbar_thumbnails",
-                StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_title",
-                    "Enable old seekbar thumbnails"
-                ),
-                StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_summary_on",
-                    "Seekbar thumbnails will appear above the seekbar"
-                ),
-                StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_summary_off",
-                    "Seekbar thumbnails will appear in fullscreen"
-                ),
+                "revanced_enable_old_seekbar_thumbnails_title",
+                "revanced_enable_old_seekbar_thumbnails_summary_on",
+                "revanced_enable_old_seekbar_thumbnails_summary_off",
             )
         )
 
