@@ -10,6 +10,7 @@ import app.revanced.patches.shared.settings.preference.addPreference
 import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
+import app.revanced.patches.youtube.misc.settings.SettingsPatch.HOOKED_SETTINGS_ACTIVITY_NAME
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
@@ -70,7 +71,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
                     for (j in 0..applicationNodes.length) {
                         val applicationChild = applicationNodes.item(j)
                         if (applicationChild is Element && applicationChild.nodeName == "activity"
-                            && applicationChild.getAttribute("android:name") == "com.google.android.libraries.social.licenses.LicenseActivity"
+                            && applicationChild.getAttribute("android:name") == HOOKED_SETTINGS_ACTIVITY_NAME
                         ) {
                             val intentFilter = editor.file.createElement("intent-filter")
                             val mimeType = editor.file.createElement("data")

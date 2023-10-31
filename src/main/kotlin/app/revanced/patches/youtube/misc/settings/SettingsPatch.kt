@@ -31,6 +31,16 @@ object SettingsPatch : BytecodePatch(
     private const val THEME_HELPER_DESCRIPTOR = "L$INTEGRATIONS_PACKAGE/utils/ThemeHelper;"
     private const val SET_THEME_METHOD_NAME = "setTheme"
 
+    /**
+     * To add ReVanced settings to YouTube, it must be thru an Activity,
+     * and all Activities must be declared in the app manifest.
+     *
+     * But root installs cannot use a modified manifest,
+     * so an existing Activity is hooked and the selected
+     * ReVanced Preference screen is passed thru as an Activity intent.
+     */
+    internal const val HOOKED_SETTINGS_ACTIVITY_NAME = "com.google.android.libraries.social.licenses.LicenseActivity"
+
     override fun execute(context: BytecodeContext) {
         // TODO: Remove this when it is only required at one place.
         fun getSetThemeInstructionString(
@@ -104,7 +114,7 @@ object SettingsPatch : BytecodePatch(
     fun createReVancedSettingsIntent(settingsName: String) = Preference.Intent(
         "com.google.android.youtube",
         settingsName,
-        "com.google.android.libraries.social.licenses.LicenseActivity"
+        HOOKED_SETTINGS_ACTIVITY_NAME
     )
 
     /**
