@@ -13,6 +13,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.*
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.REGISTER_TEMPLATE_REPLACEMENT
 import app.revanced.patches.youtube.layout.buttons.navigation.utils.InjectionUtils.injectHook
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -49,7 +50,7 @@ object NavigationButtonsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/NavigationButtonsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("NavigationButtons")
+        StringsPatch.includePatchStrings("NavigationButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_navigation_buttons_preference_screen",
@@ -138,12 +139,13 @@ object NavigationButtonsPatch : BytecodePatch(
 
         AddCreateButtonViewFingerprint.result?.let {
             it.mutableMethod.apply {
-                val stringIndex = it.scanResult.stringsScanResult!!.matches.find {
-                        match -> match.string == ANDROID_AUTOMOTIVE_STRING
+                val stringIndex = it.scanResult.stringsScanResult!!.matches.find { match ->
+                    match.string == ANDROID_AUTOMOTIVE_STRING
                 }!!.index
 
                 val conditionalCheckIndex = stringIndex - 1
-                val conditionRegister = getInstruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
+                val conditionRegister =
+                    getInstruction<OneRegisterInstruction>(conditionalCheckIndex).registerA
 
                 addInstructions(
                     conditionalCheckIndex,
@@ -160,7 +162,12 @@ object NavigationButtonsPatch : BytecodePatch(
          */
 
         InitializeButtonsFingerprint.result!!.let {
-            if (!PivotBarCreateButtonViewFingerprint.resolve(context, it.mutableMethod, it.mutableClass))
+            if (!PivotBarCreateButtonViewFingerprint.resolve(
+                    context,
+                    it.mutableMethod,
+                    it.mutableClass
+                )
+            )
                 throw PivotBarCreateButtonViewFingerprint.exception
         }
 

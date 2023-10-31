@@ -11,8 +11,8 @@ import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.twitch.ad.embedded.fingerprints.CreateUsherClientFingerprint
 import app.revanced.patches.twitch.ad.video.VideoAdsPatch
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.strings.StringsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
 
 
 @Patch(
@@ -26,7 +26,8 @@ object EmbeddedAdsPatch : BytecodePatch(
     setOf(CreateUsherClientFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        val result = CreateUsherClientFingerprint.result ?: throw CreateUsherClientFingerprint.exception
+        val result =
+            CreateUsherClientFingerprint.result ?: throw CreateUsherClientFingerprint.exception
 
         // Inject OkHttp3 application interceptor
         result.mutableMethod.addInstructions(
@@ -38,7 +39,7 @@ object EmbeddedAdsPatch : BytecodePatch(
             """
         )
 
-        SettingsPatch.includePatchStrings("EmbeddedAds")
+        StringsPatch.includePatchStrings("EmbeddedAds")
         SettingsPatch.PreferenceScreen.ADS.SURESTREAM.addPreferences(
             ListPreference(
                 "revanced_block_embedded_ads",

@@ -6,15 +6,19 @@ import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.addPreference
-import app.revanced.patches.shared.settings.preference.impl.*
+import app.revanced.patches.shared.settings.preference.impl.ArrayResource
+import app.revanced.patches.shared.settings.preference.impl.InputType
+import app.revanced.patches.shared.settings.preference.impl.Preference
+import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
+import app.revanced.patches.shared.settings.preference.impl.TextPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.includeStrings
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 @Patch(
-    dependencies = [ResourceMappingPatch::class]
+    dependencies = [StringsPatch::class, ResourceMappingPatch::class]
 )
 object SettingsResourcePatch : AbstractSettingsResourcePatch(
     "revanced_prefs",
@@ -28,11 +32,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
 
     private var preferencesNode: Node? = null
 
-    /**
-     * Used to merge the strings in [includePatchStrings].
-     */
-    private lateinit var resourceContext : ResourceContext
-
     private var preferencesEditor: DomFileEditor? = null
         set(value) {
             field = value
@@ -41,8 +40,6 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
 
     override fun execute(context: ResourceContext) {
         super.execute(context)
-
-        resourceContext = context
 
         // Used for a fingerprint from SettingsPatch.
         appearanceStringId = ResourceMappingPatch.resourceMappings.find {
@@ -88,7 +85,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
         }
 
         // Add the ReVanced settings to the YouTube settings
-        includePatchStrings("Settings")
+        StringsPatch.includePatchStrings("Settings")
 
         SettingsPatch.addPreference(
             Preference(
@@ -110,31 +107,12 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
     }
 
     /**
-     * Merge the English strings for a given patch.
-     *
-     * @param patchName Name of the patch strings xml file.
-     */
-    fun includePatchStrings(patchName: String)  {
-        resourceContext.includeStrings("youtube/settings/host/values/$patchName.xml")
-    }
-
-    /**
      * Add a preference fragment to the main preferences.
      *
      * @param preference The preference to add.
      */
     internal fun addPreference(preference: Preference) =
         preferencesNode!!.addPreference(preference) { it.include() }
-
-    /**
-     * Add a new string to the resources.
-     *
-     * @param identifier The key of the string.
-     * @param value The value of the string.
-     * @throws IllegalArgumentException if the string already exists.
-     */
-    internal fun addString(identifier: String, value: String, formatted: Boolean) =
-        AbstractSettingsResourcePatch.addString(identifier, value, formatted)
 
     /**
      * Add an array to the resources.

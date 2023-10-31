@@ -12,6 +12,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.OnTouchEventHandlerFingerprint
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.SeekbarTappingFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
@@ -46,7 +47,7 @@ object EnableSeekbarTappingPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("EnableSeekbarTapping")
+        StringsPatch.includePatchStrings("EnableSeekbarTapping")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_tapping",
@@ -60,8 +61,9 @@ object EnableSeekbarTappingPatch : BytecodePatch(
         val seekbarTappingMethods = OnTouchEventHandlerFingerprint.result?.let {
             val patternScanResult = it.scanResult.patternScanResult!!
 
-            fun getReference(index: Int) = it.mutableMethod.getInstruction<ReferenceInstruction>(index)
-                .reference as MethodReference
+            fun getReference(index: Int) =
+                it.mutableMethod.getInstruction<ReferenceInstruction>(index)
+                    .reference as MethodReference
 
             buildMap {
                 put("O", getReference(patternScanResult.endIndex))

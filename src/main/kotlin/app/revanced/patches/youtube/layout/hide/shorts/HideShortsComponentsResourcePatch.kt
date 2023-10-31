@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
@@ -14,7 +15,7 @@ object HideShortsComponentsResourcePatch : ResourcePatch() {
     internal var reelPlayerRightCellButtonHeight = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("HideShortsComponents")
+        StringsPatch.includePatchStrings("HideShortsComponents")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_shorts_preference_screen",

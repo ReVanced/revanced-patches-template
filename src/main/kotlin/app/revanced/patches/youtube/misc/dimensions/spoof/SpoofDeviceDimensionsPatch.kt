@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.dimensions.spoof.fingerprints.DeviceDimensionsModelToStringFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -33,7 +34,7 @@ object SpoofDeviceDimensionsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofDeviceDimensionsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("SpoofDeviceDimensions")
+        StringsPatch.includePatchStrings("SpoofDeviceDimensions")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_spoof_device_dimensions",

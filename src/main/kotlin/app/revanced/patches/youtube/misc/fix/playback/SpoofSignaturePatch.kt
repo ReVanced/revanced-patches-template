@@ -12,6 +12,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
@@ -39,7 +40,7 @@ object SpoofSignaturePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/spoof/SpoofSignaturePatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("SpoofSignature")
+        StringsPatch.includePatchStrings("SpoofSignature")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             PreferenceScreen(
                 "revanced_spoof_signature_verification_screen",
@@ -103,7 +104,8 @@ object SpoofSignaturePatch : BytecodePatch(
         PlayerResponseModelImplFingerprint.result?.let {
             it.mutableMethod.apply {
                 val getStoryBoardIndex = it.scanResult.patternScanResult!!.endIndex
-                val getStoryBoardRegister = getInstruction<OneRegisterInstruction>(getStoryBoardIndex).registerA
+                val getStoryBoardRegister =
+                    getInstruction<OneRegisterInstruction>(getStoryBoardIndex).registerA
 
                 addInstructions(
                     getStoryBoardIndex,

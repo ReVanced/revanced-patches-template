@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlyPrimaryFingerprint
 import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlySecondaryFingerprint
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
@@ -34,11 +35,12 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
         )
     ]
 )
+@Suppress("unused")
 object BypassURLRedirectsPatch : BytecodePatch(
     setOf(OpenLinksDirectlyPrimaryFingerprint, OpenLinksDirectlySecondaryFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("BypassURLRedirects")
+        StringsPatch.includePatchStrings("BypassURLRedirects")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_bypass_url_redirects",
@@ -56,7 +58,8 @@ object BypassURLRedirectsPatch : BytecodePatch(
         }.forEach { result ->
             result.mutableMethod.apply {
                 val insertIndex = result.scanResult.patternScanResult!!.startIndex
-                val uriStringRegister = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
+                val uriStringRegister =
+                    getInstruction<FiveRegisterInstruction>(insertIndex).registerC
 
                 replaceInstruction(
                     insertIndex,

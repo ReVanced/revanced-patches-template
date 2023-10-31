@@ -10,6 +10,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.speed.custom.CustomPlaybackSpeedPatch
@@ -22,12 +23,12 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 )
 object RememberPlaybackSpeedPatch : BytecodePatch(
     setOf(InitializePlaybackSpeedValuesFingerprint)
-){
+) {
     const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("RememberPlaybackSpeed")
+        StringsPatch.includePatchStrings("RememberPlaybackSpeed")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_playback_speed_last_selected",
@@ -46,7 +47,8 @@ object RememberPlaybackSpeedPatch : BytecodePatch(
 
         VideoInformationPatch.onCreateHook(INTEGRATIONS_CLASS_DESCRIPTOR, "newVideoStarted")
         VideoInformationPatch.userSelectedPlaybackSpeedHook(
-            INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed")
+            INTEGRATIONS_CLASS_DESCRIPTOR, "userSelectedPlaybackSpeed"
+        )
 
         /*
          * Hook the code that is called when the playback speeds are initialized, and sets the playback speed

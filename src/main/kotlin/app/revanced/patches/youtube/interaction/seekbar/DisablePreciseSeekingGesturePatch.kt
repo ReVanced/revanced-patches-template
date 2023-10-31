@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.interaction.seekbar.fingerprints.IsSwipingUpFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
@@ -37,7 +38,7 @@ object DisablePreciseSeekingGesturePatch : BytecodePatch(
                 "disableGesture(Landroid/view/VelocityTracker;Landroid/view/MotionEvent;)V"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("DisablePreciseSeekingGesture")
+        StringsPatch.includePatchStrings("DisablePreciseSeekingGesture")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             SwitchPreference(
                 "revanced_disable_precise_seeking_gesture",
@@ -51,7 +52,8 @@ object DisablePreciseSeekingGesturePatch : BytecodePatch(
             val addMovementIndex = it.scanResult.patternScanResult!!.startIndex - 1
 
             it.mutableMethod.apply {
-                val addMovementInstruction = getInstruction<FiveRegisterInstruction>(addMovementIndex)
+                val addMovementInstruction =
+                    getInstruction<FiveRegisterInstruction>(addMovementIndex)
                 val trackerRegister = addMovementInstruction.registerC
                 val eventRegister = addMovementInstruction.registerD
 

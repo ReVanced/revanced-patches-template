@@ -10,6 +10,7 @@ import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.twitch.ad.audio.fingerprints.AudioAdsPresenterPlayFingerprint
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.strings.StringsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
 
 @Patch(
@@ -37,7 +38,7 @@ object AudioAdsPatch : BytecodePatch(
             )
         }
 
-        SettingsPatch.includePatchStrings("AudioAds")
+        StringsPatch.includePatchStrings("AudioAds")
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_audio_ads",

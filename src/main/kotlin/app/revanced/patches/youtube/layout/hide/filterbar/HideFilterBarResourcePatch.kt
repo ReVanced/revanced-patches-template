@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
@@ -15,7 +16,7 @@ object HideFilterBarResourcePatch : ResourcePatch() {
     internal var barContainerHeightId = -1L
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("HideFilterBar")
+        StringsPatch.includePatchStrings("HideFilterBar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_filter_bar_screen",
@@ -49,6 +50,6 @@ object HideFilterBarResourcePatch : ResourcePatch() {
         barContainerHeightId = "bar_container_height".layoutResourceId()
     }
 
-        private fun String.layoutResourceId(type: String = "dimen") =
-            ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
+    private fun String.layoutResourceId(type: String = "dimen") =
+        ResourceMappingPatch.resourceMappings.single { it.type == type && it.name == this }.id
 }

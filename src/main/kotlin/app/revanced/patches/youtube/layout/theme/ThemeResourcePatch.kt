@@ -11,6 +11,7 @@ import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.seekbar.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.darkThemeBackgroundColor
 import app.revanced.patches.youtube.layout.theme.ThemeBytecodePatch.lightThemeBackgroundColor
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import org.w3c.dom.Element
 
@@ -21,7 +22,7 @@ object ThemeResourcePatch : ResourcePatch() {
     private const val SPLASH_BACKGROUND_COLOR = "revanced_splash_background_color"
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("Theme")
+        StringsPatch.includePatchStrings("Theme")
         SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_seekbar_custom_color",
@@ -73,9 +74,10 @@ object ThemeResourcePatch : ResourcePatch() {
         if (darkThemeBackgroundColor != null && lightThemeBackgroundColor != null) {
             val splashScreenResourceFiles = listOf(
                 "res/drawable/quantum_launchscreen_youtube.xml",
-                "res/drawable-sw600dp/quantum_launchscreen_youtube.xml")
+                "res/drawable-sw600dp/quantum_launchscreen_youtube.xml"
+            )
 
-            splashScreenResourceFiles.forEach editSplashScreen@ { resourceFile ->
+            splashScreenResourceFiles.forEach editSplashScreen@{ resourceFile ->
                 context.xmlEditor[resourceFile].use {
                     val layerList = it.file.getElementsByTagName("layer-list").item(0) as Element
 

@@ -7,6 +7,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.hdrbrightness.fingerprints.HDRBrightnessFingerprint
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -37,7 +38,7 @@ object HDRBrightnessPatch : BytecodePatch(
     setOf(HDRBrightnessFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("HDRBrightness")
+        StringsPatch.includePatchStrings("HDRBrightness")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_hdr_auto_brightness",
@@ -50,7 +51,8 @@ object HDRBrightnessPatch : BytecodePatch(
         val method = HDRBrightnessFingerprint.result!!.mutableMethod
 
         method.implementation!!.instructions.filter { instruction ->
-            val fieldReference = (instruction as? ReferenceInstruction)?.reference as? FieldReference
+            val fieldReference =
+                (instruction as? ReferenceInstruction)?.reference as? FieldReference
             fieldReference?.let { it.name == "screenBrightness" } == true
         }.forEach { instruction ->
             val brightnessRegisterIndex = method.implementation!!.instructions.indexOf(instruction)

@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.util.resources.ResourceUtils
 import app.revanced.util.resources.ResourceUtils.copyResources
@@ -14,7 +15,7 @@ import app.revanced.util.resources.ResourceUtils.copyXmlNode
 object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("SponsorBlock")
+        StringsPatch.includePatchStrings("SponsorBlock")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_sponsorblock_settings_title",
@@ -64,14 +65,18 @@ object SponsorBlockResourcePatch : ResourcePatch() {
             context.xmlEditor[hostingResourceStream],
             targetXmlEditor
         ).also {
-            val children = targetXmlEditor.file.getElementsByTagName("RelativeLayout").item(0).childNodes
+            val children =
+                targetXmlEditor.file.getElementsByTagName("RelativeLayout").item(0).childNodes
 
             // Replace the startOf with the voting button view so that the button does not overlap
             for (i in 1 until children.length) {
                 val view = children.item(i)
 
                 // Replace the attribute for a specific node only
-                if (!(view.hasAttributes() && view.attributes.getNamedItem("android:id").nodeValue.endsWith("live_chat_overlay_button"))) continue
+                if (!(view.hasAttributes() && view.attributes.getNamedItem("android:id").nodeValue.endsWith(
+                        "live_chat_overlay_button"
+                    ))
+                ) continue
 
                 // voting button id from the voting button view from the youtube_controls_layout.xml host file
                 val votingButtonId = "@+id/revanced_sb_voting_button"

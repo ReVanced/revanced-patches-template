@@ -4,6 +4,7 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.Preference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.microg.shared.Constants.PACKAGE_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_APP_NAME
 import app.revanced.patches.youtube.misc.microg.shared.Constants.REVANCED_PACKAGE_NAME
@@ -17,12 +18,16 @@ import app.revanced.util.microg.MicroGResourceHelper
 @Patch(dependencies = [SettingsPatch::class])
 object MicroGResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("MicroG")
+        StringsPatch.includePatchStrings("MicroG")
         SettingsPatch.addPreference(
             Preference(
                 "revanced_microg_settings_title",
                 "revanced_microg_settings_summary",
-                Preference.Intent("$MICROG_VENDOR.android.gms", "", "org.microg.gms.ui.SettingsActivity")
+                Preference.Intent(
+                    "$MICROG_VENDOR.android.gms",
+                    "",
+                    "org.microg.gms.ui.SettingsActivity"
+                )
             )
         )
 

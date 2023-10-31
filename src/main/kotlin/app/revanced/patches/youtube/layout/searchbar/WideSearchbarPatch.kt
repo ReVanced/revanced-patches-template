@@ -12,6 +12,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.CreateSearchSuggestionsFingerprint
 import app.revanced.patches.youtube.layout.searchbar.fingerprints.SetWordmarkHeaderFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -41,7 +42,7 @@ object WideSearchbarPatch : BytecodePatch(
     )
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("WideSearchbar")
+        StringsPatch.includePatchStrings("WideSearchbar")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_wide_searchbar",
@@ -51,7 +52,8 @@ object WideSearchbarPatch : BytecodePatch(
             )
         )
 
-        val result = CreateSearchSuggestionsFingerprint.result ?: throw CreateSearchSuggestionsFingerprint.exception
+        val result = CreateSearchSuggestionsFingerprint.result
+            ?: throw CreateSearchSuggestionsFingerprint.exception
 
         // patch methods
         mapOf(

@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.hide.fullscreenambientmode.fingerprints.InitializeAmbientModeFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -32,7 +33,7 @@ object DisableFullscreenAmbientModePatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/DisableFullscreenAmbientModePatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("DisableFullscreenAmbientMode")
+        StringsPatch.includePatchStrings("DisableFullscreenAmbientMode")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_disable_fullscreen_ambient_mode",

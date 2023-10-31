@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.ad.getpremium.fingerprints.GetPremiumViewFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
@@ -36,7 +37,7 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
         "Lapp/revanced/integrations/patches/HideGetPremiumPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("HideGetPremium")
+        StringsPatch.includePatchStrings("HideGetPremium")
         SettingsPatch.PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_get_premium",
@@ -49,8 +50,10 @@ object HideGetPremiumPatch : BytecodePatch(setOf(GetPremiumViewFingerprint)) {
         GetPremiumViewFingerprint.result?.let {
             it.mutableMethod.apply {
                 val startIndex = it.scanResult.patternScanResult!!.startIndex
-                val measuredWidthRegister = getInstruction<TwoRegisterInstruction>(startIndex).registerA
-                val measuredHeightInstruction = getInstruction<TwoRegisterInstruction>(startIndex + 1)
+                val measuredWidthRegister =
+                    getInstruction<TwoRegisterInstruction>(startIndex).registerA
+                val measuredHeightInstruction =
+                    getInstruction<TwoRegisterInstruction>(startIndex + 1)
 
                 val measuredHeightRegister = measuredHeightInstruction.registerA
                 val tempRegister = measuredHeightInstruction.registerB

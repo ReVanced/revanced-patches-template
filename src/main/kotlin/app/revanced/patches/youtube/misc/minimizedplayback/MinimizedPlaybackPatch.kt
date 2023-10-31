@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.NonInteractivePreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.KidsMinimizedPlaybackPolicyControllerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackManagerFingerprint
 import app.revanced.patches.youtube.misc.minimizedplayback.fingerprints.MinimizedPlaybackSettingsFingerprint
@@ -47,10 +48,11 @@ object MinimizedPlaybackPatch : BytecodePatch(
         KidsMinimizedPlaybackPolicyControllerFingerprint
     )
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;"
+    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/MinimizedPlaybackPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("MinimizedPlayback")
+        StringsPatch.includePatchStrings("MinimizedPlayback")
         // TODO: remove this empty preference sometime after mid 2023
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             NonInteractivePreference(
@@ -72,7 +74,8 @@ object MinimizedPlaybackPatch : BytecodePatch(
         } ?: throw MinimizedPlaybackManagerFingerprint.exception
 
         // Enable minimized playback option in YouTube settings
-        MinimizedPlaybackSettingsParentFingerprint.result ?: throw MinimizedPlaybackSettingsParentFingerprint.exception
+        MinimizedPlaybackSettingsParentFingerprint.result
+            ?: throw MinimizedPlaybackSettingsParentFingerprint.exception
         MinimizedPlaybackSettingsFingerprint.resolve(
             context,
             MinimizedPlaybackSettingsParentFingerprint.result!!.classDef
@@ -83,7 +86,8 @@ object MinimizedPlaybackPatch : BytecodePatch(
 
             val settingsBooleanIndex = booleanCalls.elementAt(1).index
             val settingsBooleanMethod =
-                context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true).getMethod() as MutableMethod
+                context.toMethodWalker(method).nextMethod(settingsBooleanIndex, true)
+                    .getMethod() as MutableMethod
 
             settingsBooleanMethod.addInstructions(
                 0,

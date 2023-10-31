@@ -7,6 +7,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
@@ -40,7 +41,7 @@ object HideButtonsPatch : ResourcePatch() {
         "Lapp/revanced/integrations/patches/components/ButtonsFilter;"
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("HideButtons")
+        StringsPatch.includePatchStrings("HideButtons")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_hide_buttons_preference_screen",

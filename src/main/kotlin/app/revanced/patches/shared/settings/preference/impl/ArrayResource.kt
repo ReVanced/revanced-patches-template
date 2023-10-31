@@ -1,7 +1,7 @@
 package app.revanced.patches.shared.settings.preference.impl
 
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.assertStringExists
 import app.revanced.patches.shared.settings.preference.BaseResource
+import app.revanced.patches.shared.strings.AbstractStringsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Document
 
 /**

@@ -13,6 +13,7 @@ import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
 import app.revanced.patches.youtube.layout.theme.fingerprints.UseGradientLoadingScreenFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -85,7 +86,7 @@ object ThemeBytecodePatch : BytecodePatch(
     )
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("ThemeBytecode")
+        StringsPatch.includePatchStrings("ThemeBytecode")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_gradient_loading_screen",
@@ -96,8 +97,10 @@ object ThemeBytecodePatch : BytecodePatch(
         )
 
         UseGradientLoadingScreenFingerprint.result?.mutableMethod?.apply {
-            val isEnabledIndex = indexOfFirstWideLiteralInstructionValue(GRADIENT_LOADING_SCREEN_AB_CONSTANT) + 3
-            val isEnabledRegister = getInstruction<OneRegisterInstruction>(isEnabledIndex - 1).registerA
+            val isEnabledIndex =
+                indexOfFirstWideLiteralInstructionValue(GRADIENT_LOADING_SCREEN_AB_CONSTANT) + 3
+            val isEnabledRegister =
+                getInstruction<OneRegisterInstruction>(isEnabledIndex - 1).registerA
 
             addInstructions(
                 isEnabledIndex,

@@ -11,6 +11,7 @@ import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -82,7 +83,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     }
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("AlternativeThumbnails")
+        StringsPatch.includePatchStrings("AlternativeThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_alt_thumbnails_preference_screen",
@@ -132,7 +133,10 @@ object AlternativeThumbnailsPatch : BytecodePatch(
 
         MessageDigestImageUrlParentFingerprint.result
             ?: throw MessageDigestImageUrlParentFingerprint.exception
-        MessageDigestImageUrlFingerprint.resolve(context, MessageDigestImageUrlParentFingerprint.result!!.classDef)
+        MessageDigestImageUrlFingerprint.resolve(
+            context,
+            MessageDigestImageUrlParentFingerprint.result!!.classDef
+        )
         MessageDigestImageUrlFingerprint.result?.apply {
             loadImageUrlMethod = mutableMethod
         } ?: throw MessageDigestImageUrlFingerprint.exception

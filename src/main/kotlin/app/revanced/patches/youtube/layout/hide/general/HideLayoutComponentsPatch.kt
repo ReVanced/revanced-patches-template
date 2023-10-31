@@ -17,6 +17,7 @@ import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ParseElementFromBufferFingerprint
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.PlayerOverlayFingerprint
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ShowWatermarkFingerprint
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
@@ -48,7 +49,7 @@ object HideLayoutComponentsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/components/LayoutComponentsFilter;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("HideLayoutComponents")
+        StringsPatch.includePatchStrings("HideLayoutComponents")
         PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_gray_separator",
@@ -249,7 +250,8 @@ object HideLayoutComponentsPatch : BytecodePatch(
 
             result.mutableMethod.apply {
                 val consumeByteBufferIndex = result.scanResult.patternScanResult!!.startIndex
-                val byteBufferRegister = getInstruction<FiveRegisterInstruction>(consumeByteBufferIndex).registerD
+                val byteBufferRegister =
+                    getInstruction<FiveRegisterInstruction>(consumeByteBufferIndex).registerD
 
                 addInstructionsWithLabels(
                     result.scanResult.patternScanResult!!.startIndex,
@@ -269,7 +271,10 @@ object HideLayoutComponentsPatch : BytecodePatch(
         // region Watermark (legacy code for old versions of YouTube)
 
         ShowWatermarkFingerprint.also {
-            it.resolve(context, PlayerOverlayFingerprint.result?.classDef ?: throw PlayerOverlayFingerprint.exception)
+            it.resolve(context,
+                PlayerOverlayFingerprint.result?.classDef
+                    ?: throw PlayerOverlayFingerprint.exception
+            )
         }.result?.mutableMethod?.apply {
             val index = implementation!!.instructions.size - 5
 

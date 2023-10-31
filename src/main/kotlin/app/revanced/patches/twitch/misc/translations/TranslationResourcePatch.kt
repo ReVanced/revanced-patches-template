@@ -4,25 +4,23 @@ import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
-import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
-import app.revanced.util.resources.ResourceUtils
+import app.revanced.patches.twitch.misc.strings.StringsPatch
 
 @Patch(
     //name = "Translations", // TODO: Once the patch is ready, uncomment this line.
     description = "Adds translations to ReVanced patches.",
-    dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class],
+    dependencies = [StringsPatch::class],
     compatiblePackages = [
         CompatiblePackage("tv.twitch.android.app")
     ]
 )
-
+@Suppress("unused")
 object TranslationResourcePatch : ResourcePatch() {
     private const val TRANSLATION_RESOURCE_DIRECTORY = "twitch/translation"
 
     override fun execute(context: ResourceContext) {
         // Look in the jar file and find the paths of the translation string files.
-        ResourceUtils.copyLocalizedStringFiles(context, TRANSLATION_RESOURCE_DIRECTORY)
+        StringsPatch.copyLocalizedStringFiles(TRANSLATION_RESOURCE_DIRECTORY)
     }
 
 }

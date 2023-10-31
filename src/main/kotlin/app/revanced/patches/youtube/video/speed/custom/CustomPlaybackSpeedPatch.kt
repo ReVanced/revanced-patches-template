@@ -15,6 +15,7 @@ import app.revanced.patches.shared.settings.preference.impl.InputType
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.recyclerviewtree.hook.RecyclerViewTreeHookPatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.speed.custom.fingerprints.GetOldPlaybackSpeedsFingerprint
@@ -57,7 +58,7 @@ object CustomPlaybackSpeedPatch : BytecodePatch(
                 inputType = InputType.TEXT_MULTI_LINE
             )
         )
-        SettingsPatch.includePatchStrings("CustomPlaybackSpeed")
+        StringsPatch.includePatchStrings("CustomPlaybackSpeed")
 
         val arrayGenMethod = SpeedArrayGeneratorFingerprint.result?.mutableMethod!!
         val arrayGenMethodImpl = arrayGenMethod.implementation!!

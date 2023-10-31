@@ -10,6 +10,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.fingerprints.EnableNewSeekbarThumbnailsFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -33,7 +34,7 @@ object EnableOldSeekbarThumbnailsPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/EnableOldSeekbarThumbnailsPatch;"
 
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("EnableOldSeekbarThumbnails")
+        StringsPatch.includePatchStrings("EnableOldSeekbarThumbnails")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_enable_old_seekbar_thumbnails",

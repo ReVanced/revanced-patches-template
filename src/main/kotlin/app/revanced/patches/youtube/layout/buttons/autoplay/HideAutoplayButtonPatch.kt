@@ -13,6 +13,7 @@ import app.revanced.patches.shared.fingerprints.LayoutConstructorFingerprint
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -48,7 +49,7 @@ object HideAutoplayButtonPatch : BytecodePatch(
     setOf(LayoutConstructorFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("HideAutoplayButton")
+        StringsPatch.includePatchStrings("HideAutoplayButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_autoplay_button",
@@ -66,12 +67,16 @@ object HideAutoplayButtonPatch : BytecodePatch(
 
             // where to branch away
             val branchIndex =
-                layoutGenMethodInstructions.subList(insertIndex + 1, layoutGenMethodInstructions.size - 1)
+                layoutGenMethodInstructions.subList(
+                    insertIndex + 1,
+                    layoutGenMethodInstructions.size - 1
+                )
                     .indexOfFirst {
                         ((it as? ReferenceInstruction)?.reference as? MethodReference)?.name == "addOnLayoutChangeListener"
                     } + 2
 
-            val jumpInstruction = layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
+            val jumpInstruction =
+                layoutGenMethodInstructions[insertIndex + branchIndex] as Instruction
 
             // can be clobbered because this register is overwritten after the injected code
             val clobberRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA

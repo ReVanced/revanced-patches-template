@@ -4,39 +4,12 @@ package app.revanced.util.resources
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.DomFileEditor
-import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import org.w3c.dom.Node
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
-import java.util.jar.JarFile
-import java.util.regex.Pattern
 
 @Suppress("MemberVisibilityCanBePrivate")
 object ResourceUtils {
-
-    /**
-     * Include strings from the default (English) strings.xml resource file.
-     *
-     * @param fileName The hosting strings.xml resource file.
-     */
-    fun ResourceContext.includeStrings(fileName: String) {
-        this.iterateXmlNodeChildren(fileName, "resources") {
-            // TODO: figure out why this is needed
-            if (!it.hasAttributes()) return@iterateXmlNodeChildren
-
-            val attributes = it.attributes
-            val key = attributes.getNamedItem("name")!!.nodeValue!!
-            val value = it.textContent!!
-
-            val formatted = !attributes.getNamedItem("formatted")?.nodeValue.equals("false", ignoreCase = true)
-
-            // Detect unescaped quotes that will throw generic AAPT errors
-            // or will compile with errors but will not show up in the app as intended.
-            if (value.contains(Regex("(?<!\\\\)['\"]")))
-                throw PatchException("Unescaped quotes found in key: $key value: $value")
-            AbstractSettingsResourcePatch.addString(key, value, formatted)
-        }
-    }
 
     /**
      * Copy resources from the current class loader to the resource directory.
@@ -66,35 +39,6 @@ object ResourceUtils {
                     *(if (replaceDestinationFiles) arrayOf(StandardCopyOption.REPLACE_EXISTING) else emptyArray())
                 )
             }
-        }
-    }
-
-    /**
-     * Copy localized strings from a given directory.
-     */
-    internal fun copyLocalizedStringFiles(context: ResourceContext, directory: String) {
-        val pattern = Pattern.compile("$directory/([-_a-zA-Z0-9]+)/strings\\.xml$")
-
-        var jf: JarFile? = null
-        try {
-            jf = JarFile(this.javaClass.protectionDomain.codeSource.location.toURI().path)
-            val entries = jf.entries()
-            var foundElements = false
-            while (entries.hasMoreElements()) {
-                val match = pattern.matcher(entries.nextElement().name)
-                if (match.find()) {
-                    val languageDirectory = match.group(1)
-                    context.copyResources(
-                        directory,
-                        ResourceGroup(languageDirectory, "strings.xml"),
-                        replaceDestinationFiles = false // Destination files should not exist.
-                    )
-                    foundElements = true
-                }
-            }
-            if (!foundElements) throw PatchException("could not find translated string files")
-        } finally {
-            jf?.close()
         }
     }
 

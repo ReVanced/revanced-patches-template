@@ -13,6 +13,7 @@ import app.revanced.patches.shared.settings.preference.impl.ArrayResource
 import app.revanced.patches.shared.settings.preference.impl.ListPreference
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.quality.fingerprints.NewVideoQualityChangedFingerprint
@@ -50,7 +51,7 @@ object RememberVideoQualityPatch : BytecodePatch(
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-            "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
+        "Lapp/revanced/integrations/patches/playback/quality/RememberVideoQualityPatch;"
 
     override fun execute(context: BytecodeContext) {
         // Must specify the entire list as localized strings,
@@ -78,7 +79,7 @@ object RememberVideoQualityPatch : BytecodePatch(
             "144",
         )
 
-        SettingsPatch.includePatchStrings("RememberVideoQuality")
+        StringsPatch.includePatchStrings("RememberVideoQuality")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
                 "revanced_remember_video_quality_last_selected",
@@ -90,14 +91,22 @@ object RememberVideoQualityPatch : BytecodePatch(
                 "revanced_video_quality_default_wifi",
                 "revanced_video_quality_default_wifi_title",
                 ArrayResource("revanced_video_quality_default_wifi_entry", entries),
-                ArrayResource("revanced_video_quality_default_wifi_entry_values", entryValues, literalValues = true)
+                ArrayResource(
+                    "revanced_video_quality_default_wifi_entry_values",
+                    entryValues,
+                    literalValues = true
+                )
                 // default value and summary are set by integrations after loading
             ),
             ListPreference(
                 "revanced_video_quality_default_mobile",
                 "revanced_video_quality_default_mobile_title",
                 ArrayResource("revanced_video_quality_default_mobile_entries", entries),
-                ArrayResource("revanced_video_quality_default_mobile_values", entryValues, literalValues = true)
+                ArrayResource(
+                    "revanced_video_quality_default_mobile_values",
+                    entryValues,
+                    literalValues = true
+                )
             )
         )
 
@@ -113,7 +122,11 @@ object RememberVideoQualityPatch : BytecodePatch(
 
         // Inject a call to set the remembered quality once a video loads.
         VideoQualitySetterFingerprint.result?.also {
-            if (!SetQualityByIndexMethodClassFieldReferenceFingerprint.resolve(context, it.classDef))
+            if (!SetQualityByIndexMethodClassFieldReferenceFingerprint.resolve(
+                    context,
+                    it.classDef
+                )
+            )
                 throw PatchException("Could not resolve fingerprint to find setQualityByIndex method")
         }?.let {
             // This instruction refers to the field with the type that contains the setQualityByIndex method.
@@ -160,7 +173,8 @@ object RememberVideoQualityPatch : BytecodePatch(
 
         // Inject a call to remember the selected quality.
         VideoQualityItemOnClickParentFingerprint.result?.let {
-            val onItemClickMethod = it.mutableClass.methods.find { method -> method.name == "onItemClick" }
+            val onItemClickMethod =
+                it.mutableClass.methods.find { method -> method.name == "onItemClick" }
 
             onItemClickMethod?.apply {
                 val listItemIndexParameter = 3

@@ -14,8 +14,8 @@ import app.revanced.patches.twitch.ad.video.fingerprints.CheckAdEligibilityLambd
 import app.revanced.patches.twitch.ad.video.fingerprints.ContentConfigShowAdsFingerprint
 import app.revanced.patches.twitch.ad.video.fingerprints.GetReadyToShowAdFingerprint
 import app.revanced.patches.twitch.misc.integrations.IntegrationsPatch
+import app.revanced.patches.twitch.misc.strings.StringsPatch
 import app.revanced.patches.twitch.misc.settings.SettingsPatch
-import app.revanced.patches.twitch.misc.settings.SettingsResourcePatch
 
 @Patch(
     name = "Block video ads",
@@ -48,7 +48,11 @@ object VideoAdsPatch : AbstractAdPatch(
         /* Various ad presenters */
         context.blockMethods(
             "Ltv/twitch/android/shared/ads/AdsPlayerPresenter;",
-            "requestAd", "requestFirstAd", "requestFirstAdIfEligible", "requestMidroll", "requestAdFromMultiAdFormatEvent"
+            "requestAd",
+            "requestFirstAd",
+            "requestFirstAdIfEligible",
+            "requestMidroll",
+            "requestAdFromMultiAdFormatEvent"
         )
 
         context.blockMethods(
@@ -58,7 +62,10 @@ object VideoAdsPatch : AbstractAdPatch(
 
         context.blockMethods(
             "Ltv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter;",
-            "parseAdAndCheckEligibility", "requestAdsAfterEligibilityCheck", "showAd", "bindMultiAdFormatAllocation"
+            "parseAdAndCheckEligibility",
+            "requestAdsAfterEligibilityCheck",
+            "showAd",
+            "bindMultiAdFormatAllocation"
         )
 
         /* A/B ad testing experiments */
@@ -96,7 +103,8 @@ object VideoAdsPatch : AbstractAdPatch(
         } ?: throw CheckAdEligibilityLambdaFingerprint.exception
 
         GetReadyToShowAdFingerprint.result?.apply {
-            val adFormatDeclined = "Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter\$Action\$AdFormatDeclined;"
+            val adFormatDeclined =
+                "Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter\$Action\$AdFormatDeclined;"
             mutableMethod.addInstructionsWithLabels(
                 0,
                 """
@@ -112,16 +120,17 @@ object VideoAdsPatch : AbstractAdPatch(
 
         // Spoof showAds JSON field
         ContentConfigShowAdsFingerprint.result?.apply {
-            mutableMethod.addInstructions(0, """
+            mutableMethod.addInstructions(
+                0, """
                     ${createConditionInstructions()}
                     const/4 v0, 0
                     :$skipLabelName
                     return v0
                 """
             )
-        }  ?: throw ContentConfigShowAdsFingerprint.exception
+        } ?: throw ContentConfigShowAdsFingerprint.exception
 
-        SettingsPatch.includePatchStrings("VideoAds")
+        StringsPatch.includePatchStrings("VideoAds")
         SettingsPatch.PreferenceScreen.ADS.CLIENT_SIDE.addPreferences(
             SwitchPreference(
                 "revanced_block_video_ads",

@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import java.io.Closeable
 
@@ -18,7 +19,7 @@ object SeekbarPreferencesPatch : ResourcePatch(), Closeable {
     }
 
     override fun close() {
-        SettingsPatch.includePatchStrings("SeekbarPreferences")
+        StringsPatch.includePatchStrings("SeekbarPreferences")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             PreferenceScreen(
                 "revanced_seekbar_preference_screen",

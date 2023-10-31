@@ -9,6 +9,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 
@@ -30,14 +31,15 @@ object AnnouncementsPatch : BytecodePatch(
             it.mutableClass.methods.find { method -> method.name == "onCreate" }
         } ?: throw WatchWhileActivityFingerprint.exception
 
-        val superCallIndex = onCreateMethod.getInstructions().indexOfFirst { it.opcode == Opcode.INVOKE_SUPER_RANGE }
+        val superCallIndex =
+            onCreateMethod.getInstructions().indexOfFirst { it.opcode == Opcode.INVOKE_SUPER_RANGE }
 
         onCreateMethod.addInstructions(
             superCallIndex + 1,
             "invoke-static { v1 }, $INTEGRATIONS_CLASS_DESCRIPTOR->showAnnouncement(Landroid/app/Activity;)V"
         )
 
-        SettingsPatch.includePatchStrings("Announcements")
+        StringsPatch.includePatchStrings("Announcements")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             SwitchPreference(
                 "revanced_announcements",

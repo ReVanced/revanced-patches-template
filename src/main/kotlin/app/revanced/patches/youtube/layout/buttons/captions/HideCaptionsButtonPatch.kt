@@ -8,6 +8,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.autocaptions.fingerprints.SubtitleButtonControllerFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.Opcode
 
@@ -39,7 +40,7 @@ object HideCaptionsButtonPatch : BytecodePatch(
     setOf(SubtitleButtonControllerFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
-        SettingsPatch.includePatchStrings("HideCaptionsButton")
+        StringsPatch.includePatchStrings("HideCaptionsButton")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_captions_button",
@@ -49,12 +50,14 @@ object HideCaptionsButtonPatch : BytecodePatch(
             )
         )
 
-        val subtitleButtonControllerMethod = SubtitleButtonControllerFingerprint.result!!.mutableMethod
+        val subtitleButtonControllerMethod =
+            SubtitleButtonControllerFingerprint.result!!.mutableMethod
 
         // Due to previously applied patches, scanResult index cannot be used in this context
-        val insertIndex = subtitleButtonControllerMethod.implementation!!.instructions.indexOfFirst {
-            it.opcode == Opcode.IGET_BOOLEAN
-        } + 1
+        val insertIndex =
+            subtitleButtonControllerMethod.implementation!!.instructions.indexOfFirst {
+                it.opcode == Opcode.IGET_BOOLEAN
+            } + 1
 
         subtitleButtonControllerMethod.addInstruction(
             insertIndex,

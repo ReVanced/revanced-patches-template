@@ -6,6 +6,7 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -17,7 +18,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 @Suppress("unused")
 object DebuggingPatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("Debugging")
+        StringsPatch.includePatchStrings("Debugging")
         SettingsPatch.PreferenceScreen.MISC.addPreferences(
             app.revanced.patches.shared.settings.preference.impl.PreferenceScreen(
                 "revanced_debug_preference_screen",

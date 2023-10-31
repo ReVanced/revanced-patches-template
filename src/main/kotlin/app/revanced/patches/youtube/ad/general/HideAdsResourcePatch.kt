@@ -5,6 +5,7 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
@@ -23,7 +24,7 @@ object HideAdsResourcePatch : ResourcePatch() {
     internal var adAttributionId: Long = -1
 
     override fun execute(context: ResourceContext) {
-        SettingsPatch.includePatchStrings("HideAds")
+        StringsPatch.includePatchStrings("HideAds")
         PreferenceScreen.ADS.addPreferences(
             SwitchPreference(
                 "revanced_hide_general_ads",
@@ -71,7 +72,8 @@ object HideAdsResourcePatch : ResourcePatch() {
 
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
 
-        adAttributionId = ResourceMappingPatch.resourceMappings.single { it.name == "ad_attribution" }.id
+        adAttributionId =
+            ResourceMappingPatch.resourceMappings.single { it.name == "ad_attribution" }.id
 
     }
 }
