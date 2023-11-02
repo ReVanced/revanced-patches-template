@@ -10,7 +10,7 @@ import app.revanced.patches.lightroom.misc.premium.fingerprints.HasPurchasedFing
 
 @Patch(
     name = "Unlock premium",
-    compatiblePackages = [CompatiblePackage("com.adobe.lrmobile")]
+    compatiblePackages = [CompatiblePackage("com.adobe.lrmobile", ["9.0.0"])]
 )
 @Suppress("unused")
 object UnlockPremiumPatch : BytecodePatch(
