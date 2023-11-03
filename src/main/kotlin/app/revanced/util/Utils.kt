@@ -6,7 +6,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 
 object Utils {
     /**
-     * Return the resolved methods of a list of [MethodFingerprint] early.
+     * Return the resolved methods of [MethodFingerprint]s early.
      */
     fun List<MethodFingerprint>.returnEarly() {
         this.forEach { fingerprint ->
@@ -23,9 +23,8 @@ object Utils {
                         """
                     else -> throw Exception("This case should never happen.")
                 }
-                result.mutableMethod.addInstructions(
-                    0, stringInstructions
-                )
+
+                result.mutableMethod.addInstructions(0, stringInstructions)
             } ?: throw fingerprint.exception
         }
     }
