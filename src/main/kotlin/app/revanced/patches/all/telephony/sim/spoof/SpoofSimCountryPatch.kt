@@ -3,7 +3,8 @@ package app.revanced.patches.all.telephony.sim.spoof
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patcher.patch.options.types.StringPatchOption.Companion.stringPatchOption
+import app.revanced.patcher.patch.options.PatchOption
+import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.util.patch.AbstractTransformInstructionsPatch
 import com.android.tools.smali.dexlib2.iface.ClassDef
@@ -12,6 +13,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.immutable.reference.ImmutableMethodReference
+import com.android.tools.smali.dexlib2.util.MethodUtil
 import java.util.*
 
 
@@ -22,21 +25,26 @@ import java.util.*
 )
 @Suppress("unused")
 object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, String>>() {
+    private val isoValidator: PatchOption<String>.(String?) -> Boolean =
+        { it: String? -> it?.uppercase() in Locale.getISOCountries() || it == null }
+
     private val networkCountryIso by stringPatchOption(
         "networkCountryIso",
+        null,
         null,
         "Network ISO Country Code",
         "ISO-3166-1 alpha-2 country code equivalent of the MCC (Mobile Country Code) " +
                 "of the current registered operator or the cell nearby.",
-        validator = { it?.uppercase() in Locale.getISOCountries() || it == null }
+        validator = isoValidator
     )
 
     private val simCountryIso by stringPatchOption(
         "simCountryIso",
         null,
+        null,
         "Sim ISO Country Code",
         "ISO-3166-1 alpha-2 country code equivalent for the SIM provider's country code.",
-        validator = { it?.uppercase() in Locale.getISOCountries() || it == null }
+        validator = isoValidator
     )
 
     override fun filterMap(
@@ -47,15 +55,13 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
     ): Pair<Int, String>? {
         if (instruction !is ReferenceInstruction) return null
 
-        val methodRef = instruction.reference as? MethodReference ?: return null
+        val reference = instruction.reference as? MethodReference ?: return null
 
-        val methodMatch = MethodCall.entries.firstOrNull { search ->
-            search.definedClassName == methodRef.definingClass
-                    && search.methodName == methodRef.name
-                    && methodRef.parameterTypes.toTypedArray().contentEquals(search.methodParams)
+        val match = MethodCall.entries.firstOrNull { search ->
+            MethodUtil.methodSignaturesMatch(reference, search.reference)
         } ?: return null
 
-        val iso = when (methodMatch) {
+        val iso = when (match) {
             MethodCall.NetworkCountryIso -> networkCountryIso
             MethodCall.SimCountryIso -> simCountryIso
         }?.lowercase()
@@ -76,26 +82,30 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
 
         val register = mutableMethod.getInstruction<OneRegisterInstruction>(instructionIndex + 1).registerA
 
-        mutableMethod.replaceInstruction(instructionIndex + 1, "const-string v$register, \"$methodCallValue\"")
+        mutableMethod.replaceInstruction(
+            instructionIndex + 1,
+            "const-string v$register, \"$methodCallValue\""
+        )
     }
 
     private enum class MethodCall(
-        val definedClassName: String,
-        val methodName: String,
-        val methodParams: Array<String>,
-        val returnType: String
+        val reference: MethodReference
     ) {
         NetworkCountryIso(
+            ImmutableMethodReference(
             "Landroid/telephony/TelephonyManager;",
             "getNetworkCountryIso",
-            emptyArray(),
+                emptyList(),
             "Ljava/lang/String;"
+            )
         ),
         SimCountryIso(
+            ImmutableMethodReference(
             "Landroid/telephony/TelephonyManager;",
             "getSimCountryIso",
-            emptyArray(),
+                emptyList(),
             "Ljava/lang/String;"
+            )
         )
     }
 }
