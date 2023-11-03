@@ -16,13 +16,11 @@ object Utils {
                         const/4 v0, 0x0
                         return-object v0
                         """
-
                     'V' -> "return-void"
-                    'I' -> """
+                    'I', 'Z' -> """
                         const/4 v0, 0x0
                         return v0
                         """
-
                     else -> throw Exception("This case should never happen.")
                 }
                 result.mutableMethod.addInstructions(
