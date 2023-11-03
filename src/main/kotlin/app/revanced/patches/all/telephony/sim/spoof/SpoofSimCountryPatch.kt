@@ -95,7 +95,7 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
             ImmutableMethodReference(
             "Landroid/telephony/TelephonyManager;",
             "getNetworkCountryIso",
-                emptyList(),
+            emptyList(),
             "Ljava/lang/String;"
             )
         ),
@@ -103,7 +103,7 @@ object SpoofSimCountryPatch : AbstractTransformInstructionsPatch<Pair<Int, Strin
             ImmutableMethodReference(
             "Landroid/telephony/TelephonyManager;",
             "getSimCountryIso",
-                emptyList(),
+            emptyList(),
             "Ljava/lang/String;"
             )
         )
