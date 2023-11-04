@@ -22,5 +22,5 @@ object RootDetectionPatch : BytecodePatch(
         AttestationSupportedCheckFingerprint,
         BootloaderCheckFingerprint,
         RootCheckFingerprint
-    ).returnEarly()
+    ).returnEarly(true)
 }
