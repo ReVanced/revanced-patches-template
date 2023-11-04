@@ -3,14 +3,14 @@ package app.revanced.patches.twitch.ad.shared.util
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.util.smali.ExternalLabel
 
 abstract class AbstractAdPatch(
     val conditionCall: String,
     val skipLabelName: String,
-    internal val fingerprints: Iterable<MethodFingerprint>? = null,
+    internal val fingerprints: Set<MethodFingerprint> = emptySet(),
 ) : BytecodePatch(fingerprints) {
 
     protected fun createConditionInstructions(register: String = "v0") = """

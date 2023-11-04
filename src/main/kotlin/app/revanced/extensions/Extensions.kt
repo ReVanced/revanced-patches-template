@@ -2,13 +2,11 @@ package app.revanced.extensions
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.MethodFingerprintExtensions.name
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.mapping.misc.patch.ResourceMappingPatch
-import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.WideLiteralInstruction
 import com.android.tools.smali.dexlib2.util.MethodUtil
@@ -20,7 +18,7 @@ import org.w3c.dom.Node
  * @return The [PatchException].
  */
 val MethodFingerprint.exception
-    get() = PatchException("Failed to resolve $name")
+    get() = PatchException("Failed to resolve ${this.javaClass.simpleName}")
 
 /**
  * Find the [MutableMethod] from a given [Method] in a [MutableClass].
@@ -59,40 +57,39 @@ fun MutableMethod.injectHideViewCall(
 )
 
 /**
- * Find the index of the first constant instruction with the id of the given resource name.
+ * Find the index of the first instruction with the id of the given resource name.
  *
  * @param resourceName the name of the resource to find the id for.
- * @return the index of the first constant instruction with the id of the given resource name, or -1 if not found.
+ * @return the index of the first instruction with the id of the given resource name, or -1 if not found.
  */
 fun Method.findIndexForIdResource(resourceName: String): Int {
     fun getIdResourceId(resourceName: String) = ResourceMappingPatch.resourceMappings.single {
         it.type == "id" && it.name == resourceName
     }.id
 
-    return indexOfFirstConstantInstructionValue(getIdResourceId(resourceName))
+    return indexOfFirstWideLiteralInstructionValue(getIdResourceId(resourceName))
 }
 
 /**
- * Find the index of the first constant instruction with the given value.
+ * Find the index of the first wide literal instruction with the given value.
  *
- * @return the first constant instruction with the value, or -1 if not found.
+ * @return the first literal instruction with the value, or -1 if not found.
  */
-fun Method.indexOfFirstConstantInstructionValue(constantValue: Long): Int {
-    return implementation?.let {
-        it.instructions.indexOfFirst { instruction ->
-            instruction.opcode == Opcode.CONST && (instruction as WideLiteralInstruction).wideLiteral == constantValue
-        }
-    } ?: -1
-}
+fun Method.indexOfFirstWideLiteralInstructionValue(literal: Long) = implementation?.let {
+    it.instructions.indexOfFirst { instruction ->
+        (instruction as? WideLiteralInstruction)?.wideLiteral == literal
+    }
+} ?: -1
+
 
 /**
- * Check if the method contains a constant with the given value.
+ * Check if the method contains a literal with the given value.
  *
- * @return if the method contains a constant with the given value.
+ * @return if the method contains a literal with the given value.
  */
-fun Method.containsConstantInstructionValue(constantValue: Long): Boolean {
-    return indexOfFirstConstantInstructionValue(constantValue) >= 0
-}
+fun Method.containsWideLiteralInstructionValue(literal: Long) =
+    indexOfFirstWideLiteralInstructionValue(literal) >= 0
+
 
 /**
  * Traverse the class hierarchy starting from the given root class.

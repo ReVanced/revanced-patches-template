@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.video.quality.fingerprints
 
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 /**
@@ -11,7 +11,7 @@ object SetQualityByIndexMethodClassFieldReferenceFingerprint : MethodFingerprint
     parameters = listOf("L"),
     opcodes = listOf(
         Opcode.IGET_OBJECT,
-        Opcode.INVOKE_INTERFACE,
-        Opcode.RETURN_VOID
+        Opcode.IPUT_OBJECT,
+        Opcode.IGET_OBJECT,
     )
 )
