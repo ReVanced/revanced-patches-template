@@ -8,6 +8,7 @@ import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
+import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
@@ -15,6 +16,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     description = "Hides player flyout menu items.",
     dependencies = [
         LithoFilterPatch::class,
+        PlayerTypeHookPatch::class,
         SettingsPatch::class
     ],
     compatiblePackages = [
@@ -45,16 +47,16 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
                 "revanced_hide_player_flyout_screen_title",
                 listOf(
                     SwitchPreference(
-                        "revanced_hide_player_flyout_quality",
-                        "revanced_hide_player_flyout_quality_title",
-                        "revanced_hide_player_flyout_quality_on",
-                        "revanced_hide_player_flyout_quality_off",
-                    ),
-                    SwitchPreference(
                         "revanced_hide_player_flyout_captions",
                         "revanced_hide_player_flyout_captions_title",
                         "revanced_hide_player_flyout_captions_on",
                         "revanced_hide_player_flyout_captions_off",
+                    ),
+                    SwitchPreference(
+                        "${KEY}_additional_settings",
+                        StringResource("${KEY}_additional_settings_title", "Hide Additional settings menu"),
+                        StringResource("${KEY}_additional_settings_on", "Additional settings menu item is hidden"),
+                        StringResource("${KEY}_additional_settings_off", "Additional settings menu item is shown")
                     ),
                     SwitchPreference(
                         "revanced_hide_player_flyout_loop_video",
