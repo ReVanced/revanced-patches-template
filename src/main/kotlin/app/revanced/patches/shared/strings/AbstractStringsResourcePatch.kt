@@ -20,28 +20,11 @@ abstract class AbstractStringsResourcePatch(
     private var rootResourcePath : String
 ) : ResourcePatch(), Closeable {
 
-    companion object {
-        private var strings = mutableSetOf<String>()
-
-        /**
-         * Verifies a referenced string exists.
-         *
-         * Should be used everywhere string resources are referenced,
-         * as missing resources will fail to compile and usually give no feedback to what's wrong.
-         *
-         * @return The string key.
-         * @throws PatchException If the string does not exist.
-         */
-        internal fun assertStringExists(key: String): String {
-            if (!strings.contains(key))
-                throw PatchException("Unknown String resource: '$key'  Include patch strings before referencing.")
-            return key
-        }
-    }
-
     private lateinit var resourceContext: ResourceContext
     private lateinit var stringsEditor: DomFileEditor
     private lateinit var stringsNode: Node
+    /** Used to detect if the same string is added more than once */
+    private var strings = mutableSetOf<String>()
 
     override fun execute(context: ResourceContext) {
         resourceContext = context

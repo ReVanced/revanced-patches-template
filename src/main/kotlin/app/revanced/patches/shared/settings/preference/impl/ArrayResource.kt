@@ -2,7 +2,6 @@ package app.revanced.patches.shared.settings.preference.impl
 
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch
 import app.revanced.patches.shared.settings.preference.BaseResource
-import app.revanced.patches.shared.strings.AbstractStringsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Document
 
 /**
@@ -25,7 +24,7 @@ class ArrayResource(
 
             items.forEach { item ->
                 this.appendChild(ownerDocument.createElement("item").also { itemNode ->
-                    itemNode.textContent = if (literalValues) item else "@string/${assertStringExists(item)}"
+                    itemNode.textContent = if (literalValues) item else "@string/$item"
                 })
             }
         }

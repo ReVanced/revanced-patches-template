@@ -1,6 +1,5 @@
 package app.revanced.patches.shared.settings.preference
 
-import app.revanced.patches.shared.strings.AbstractStringsResourcePatch.Companion.assertStringExists
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 
@@ -27,7 +26,7 @@ abstract class BasePreference(
     open fun serialize(ownerDocument: Document): Element =
         ownerDocument.createElement(tag).apply {
             if (key != null) setAttribute("android:key", key)
-            setAttribute("android:title", "@string/${assertStringExists(titleKey)}")
+            setAttribute("android:title", "@string/$titleKey")
             addSummary(summaryKey)
         }
 }
