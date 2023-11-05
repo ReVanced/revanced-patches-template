@@ -3,13 +3,13 @@
     <string name="revanced_hide_player_flyout_screen_title">Player flyout menu items</string>
     <string name="revanced_hide_player_flyout_screen_summary">Manage the visibility of player flyout menu items</string>
 
-    <string name="revanced_hide_player_flyout_quality_title">Hide Quality menu</string>
-    <string name="revanced_hide_player_flyout_quality_on">Quality menu item is hidden</string>
-    <string name="revanced_hide_player_flyout_quality_off">Quality menu item is shown</string>
-
     <string name="revanced_hide_player_flyout_captions_title">Hide Captions menu</string>
     <string name="revanced_hide_player_flyout_captions_on">Captions menu item is hidden</string>
     <string name="revanced_hide_player_flyout_captions_off">Captions menu item is shown</string>
+
+    <string name="revanced_hide_player_flyout_additional_settings_title">Hide Additional settings menu</string>
+    <string name="revanced_hide_player_flyout_additional_settings_on">Additional settings menu item is hidden</string>
+    <string name="revanced_hide_player_flyout_additional_settings_off">Additional settings menu item is shown</string>
 
     <string name="revanced_hide_player_flyout_loop_video_title">Hide Loop video menu</string>
     <string name="revanced_hide_player_flyout_loop_video_on">Loop video menu item is hidden</string>

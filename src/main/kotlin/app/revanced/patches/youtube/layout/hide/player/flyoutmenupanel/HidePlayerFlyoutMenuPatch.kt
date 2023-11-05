@@ -6,10 +6,10 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 
 @Patch(
     name = "Player flyout menu",
@@ -53,10 +53,10 @@ object HidePlayerFlyoutMenuPatch : ResourcePatch() {
                         "revanced_hide_player_flyout_captions_off",
                     ),
                     SwitchPreference(
-                        "${KEY}_additional_settings",
-                        StringResource("${KEY}_additional_settings_title", "Hide Additional settings menu"),
-                        StringResource("${KEY}_additional_settings_on", "Additional settings menu item is hidden"),
-                        StringResource("${KEY}_additional_settings_off", "Additional settings menu item is shown")
+                        "revanced_hide_player_flyout_additional_settings",
+                        "revanced_hide_player_flyout_additional_settings_title",
+                        "revanced_hide_player_flyout_additional_settings_on",
+                        "revanced_hide_player_flyout_additional_settings_off",
                     ),
                     SwitchPreference(
                         "revanced_hide_player_flyout_loop_video",
