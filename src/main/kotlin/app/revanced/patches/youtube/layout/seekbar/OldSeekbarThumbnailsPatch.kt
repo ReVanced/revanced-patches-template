@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
-    name = "Enable old seekbar thumbnails",
+    name = "Old seekbar thumbnails",
     description = "Enables the old seekbar thumbnails that appear above the seekbar instead of in fullscreen.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
@@ -27,26 +27,26 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     ]
 )
 @Suppress("unused")
-object EnableOldSeekbarThumbnailsPatch : BytecodePatch(
+object OldSeekbarThumbnailsPatch : BytecodePatch(
     setOf(EnableNewSeekbarThumbnailsFingerprint)
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
-        "Lapp/revanced/integrations/patches/EnableOldSeekbarThumbnailsPatch;"
+        "Lapp/revanced/integrations/patches/OldSeekbarThumbnailsPatch;"
 
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
-                "revanced_enable_old_seekbar_thumbnails",
+                "revanced_old_seekbar_thumbnails",
                 StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_title",
+                    "revanced_old_seekbar_thumbnails_title",
                     "Enable old seekbar thumbnails"
                 ),
                 StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_summary_on",
+                    "revanced_old_seekbar_thumbnails_summary_on",
                     "Seekbar thumbnails will appear above the seekbar"
                 ),
                 StringResource(
-                    "revanced_enable_old_seekbar_thumbnails_summary_off",
+                    "revanced_old_seekbar_thumbnails_summary_off",
                     "Seekbar thumbnails will appear in fullscreen"
                 ),
             )
