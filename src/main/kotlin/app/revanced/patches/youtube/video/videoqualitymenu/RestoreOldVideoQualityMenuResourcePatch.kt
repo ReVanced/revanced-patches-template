@@ -12,17 +12,17 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 @Patch(
     dependencies = [SettingsPatch::class, ResourceMappingPatch::class]
 )
-object OldVideoQualityMenuResourcePatch : ResourcePatch() {
+object RestoreOldVideoQualityMenuResourcePatch : ResourcePatch() {
     internal var videoQualityBottomSheetListFragmentTitle = -1L
 
     override fun execute(context: ResourceContext) {
         StringsPatch.includePatchStrings("OldVideoQualityMenu")
         SettingsPatch.PreferenceScreen.VIDEO.addPreferences(
             SwitchPreference(
-                "revanced_show_old_video_quality_menu",
-                "revanced_show_old_video_quality_menu_title",
-                "revanced_show_old_video_quality_menu_summary_on",
-                "revanced_show_old_video_quality_menu_summary_off"
+                "revanced_restore_old_video_quality_menu",
+                StringResource("revanced_restore_old_video_quality_menu_title", "Restore old video quality menu"),
+                StringResource("revanced_restore_old_video_quality_menu_summary_on", "Old video quality menu is shown"),
+                StringResource("revanced_restore_old_video_quality_menu_summary_off", "Old video quality menu is not shown")
             )
         )
 

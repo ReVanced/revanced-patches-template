@@ -1,3 +1,31 @@
+## [2.196.1-dev.5](https://github.com/ReVanced/revanced-patches/compare/v2.196.1-dev.4...v2.196.1-dev.5) (2023-11-10)
+
+
+### Bug Fixes
+
+* **Remove screenshot restriction:** Improve reliability ([#2938](https://github.com/ReVanced/revanced-patches/issues/2938)) ([6b7cb7b](https://github.com/ReVanced/revanced-patches/commit/6b7cb7bd38348dbe4a56385356df6ed97e81c319))
+
+## [2.196.1-dev.4](https://github.com/ReVanced/revanced-patches/compare/v2.196.1-dev.3...v2.196.1-dev.4) (2023-11-09)
+
+
+### Bug Fixes
+
+* **YouTube - SponsorBlock:** Rename "Preview/Recap" category to "Preview/Recap/Hook" ([#3245](https://github.com/ReVanced/revanced-patches/issues/3245)) ([2cd2453](https://github.com/ReVanced/revanced-patches/commit/2cd2453658622f369b6449d5c8c33326384c2679))
+
+## [2.196.1-dev.3](https://github.com/ReVanced/revanced-patches/compare/v2.196.1-dev.2...v2.196.1-dev.3) (2023-11-06)
+
+
+### Bug Fixes
+
+* **Nyx Music Plaer - Unlock pro:** Constrain to last working version ([96d24a3](https://github.com/ReVanced/revanced-patches/commit/96d24a3e2ef6bd323aa44a05aaf122683898e90a))
+
+## [2.196.1-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.196.1-dev.1...v2.196.1-dev.2) (2023-11-06)
+
+
+### Bug Fixes
+
+* **YouTube:** Rename `Restore old seekbar thumbnails` and `Restore old quality menu` ([#3235](https://github.com/ReVanced/revanced-patches/issues/3235)) ([7e3ffc8](https://github.com/ReVanced/revanced-patches/commit/7e3ffc88631da47a032cb29a4a30fd8f5679542d))
+
 ## [2.196.1-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.196.0...v2.196.1-dev.1) (2023-11-06)
 
 
