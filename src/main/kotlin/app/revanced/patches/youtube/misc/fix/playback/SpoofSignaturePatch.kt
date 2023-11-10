@@ -34,6 +34,7 @@ object SpoofSignaturePatch : BytecodePatch(
     setOf(
         PlayerResponseModelImplGeneralFingerprint,
         PlayerResponseModelImplLiveStreamFingerprint,
+        PlayerResponseModelImplRecommendedLevel,
         StoryboardRendererSpecFingerprint,
         StoryboardRendererDecoderSpecFingerprint,
         StoryboardRendererDecoderRecommendedLevelFingerprint,
@@ -181,7 +182,7 @@ object SpoofSignaturePatch : BytecodePatch(
             } ?: throw fingerprint.exception
         }
 
-        // Hook recommended storyboard quality level.
+        // Hook recommended seekbar thumbnails quality level.
         StoryboardRendererDecoderRecommendedLevelFingerprint.result?.let {
             val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
             val originalValueRegister = it.mutableMethod
@@ -194,6 +195,22 @@ object SpoofSignaturePatch : BytecodePatch(
                 """
             )
         } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
+
+        // Hook the recommended precise seeking thumbnails quality level.
+        PlayerResponseModelImplRecommendedLevel.result?.let {
+            it.mutableMethod.apply {
+                val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
+                val originalValueRegister =
+                    getInstruction<OneRegisterInstruction>(moveOriginalRecommendedValueIndex).registerA
+
+                addInstructions(
+                    moveOriginalRecommendedValueIndex, """
+                        invoke-static { v$originalValueRegister }, $INTEGRATIONS_CLASS_DESCRIPTOR->getRecommendedLevel(I)I
+                        move-result v$originalValueRegister
+                        """
+                )
+            }
+        } ?: throw PlayerResponseModelImplRecommendedLevel.exception
 
         StoryboardRendererSpecFingerprint.result?.let {
             it.mutableMethod.apply {
