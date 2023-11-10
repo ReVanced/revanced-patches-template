@@ -18,6 +18,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
     description = "Spoofs the signature to prevent playback issues.",
@@ -26,16 +27,18 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
         PlayerTypeHookPatch::class,
         PlayerResponseMethodHookPatch::class,
         VideoInformationPatch::class,
+        SpoofSignatureResourcePatch::class
     ]
 )
 object SpoofSignaturePatch : BytecodePatch(
     setOf(
         PlayerResponseModelImplGeneralFingerprint,
         PlayerResponseModelImplLiveStreamFingerprint,
-        StoryboardThumbnailParentFingerprint,
         StoryboardRendererSpecFingerprint,
         StoryboardRendererDecoderSpecFingerprint,
-        StoryboardRendererDecoderRecommendedLevelFingerprint
+        StoryboardRendererDecoderRecommendedLevelFingerprint,
+        StoryboardThumbnailParentFingerprint,
+        ScrubbedPreviewLayoutFingerprint,
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -85,6 +88,18 @@ object SpoofSignaturePatch : BytecodePatch(
                             "App signature not spoofed for feed videos\\n\\n"
                                     + "Feed videos will play for less than 1 minute before encountering playback issues"
                         )
+                    ),
+                    SwitchPreference(
+                        "revanced_spoof_storyboard",
+                        StringResource("revanced_spoof_storyboard_title", "Spoof storyboard"),
+                        StringResource("revanced_spoof_storyboard_summary_on", "Storyboard spoofed"),
+                        StringResource(
+                            "revanced_spoof_storyboard_summary_off",
+                            "Storyboard not spoofed\\n\\n"
+                                    + "Side effects include:\\n"
+                                    + "• No ambient mode\\n"
+                                    + "• Seekbar thumbnails are hidden"
+                        )
                     )
                 )
             )
@@ -96,10 +111,8 @@ object SpoofSignaturePatch : BytecodePatch(
         )
 
         // Force the seekbar time and chapters to always show up.
-        // This is used only if the storyboard spec fetch fails or when viewing paid videos.
-        // Although this will show an empty seekbar thumbnail, and this could be improved to
-        // hide the thumbnail UI if no storyboard renderer is available but keep the time and chapters visible.
-        // But for now since paid videos are so rare, keep this simple and show an empty thumbnail.
+        // This is used if the storyboard spec fetch fails, for viewing paid videos,
+        // or if storyboard spoofing is turned off.
         StoryboardThumbnailParentFingerprint.result?.classDef?.let { classDef ->
             StoryboardThumbnailFingerprint.also {
                 it.resolve(
@@ -128,6 +141,21 @@ object SpoofSignaturePatch : BytecodePatch(
                 )
             } ?: throw StoryboardThumbnailFingerprint.exception
         }
+
+        // If storyboard spoofing is turned off, then hide the empty seekbar thumbnail view.
+        ScrubbedPreviewLayoutFingerprint.result?.apply {
+            val endIndex = scanResult.patternScanResult!!.endIndex
+            mutableMethod.apply {
+                val imageViewFieldName = getInstruction<ReferenceInstruction>(endIndex).reference
+                addInstructions(
+                    implementation!!.instructions.lastIndex,
+                    """
+                        iget-object v0, p0, $imageViewFieldName   # copy imageview field to a register
+                        invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->seekbarImageViewCreated(Landroid/widget/ImageView;)V
+                    """
+                )
+            }
+        } ?: throw ScrubbedPreviewLayoutFingerprint.exception
 
         /**
          * Hook StoryBoard renderer url
