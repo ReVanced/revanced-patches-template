@@ -62,19 +62,13 @@ object SpoofSignaturePatch : BytecodePatch(
                         "revanced_spoof_signature_in_feed_enabled",
                         "revanced_spoof_signature_in_feed_enabled_title",
                         "revanced_spoof_signature_in_feed_enabled_summary_on",
-                        "revanced_spoof_signature_in_feed_enabled_summary_off",
+                        "revanced_spoof_signature_in_feed_enabled_summary_off"
                     ),
                     SwitchPreference(
                         "revanced_spoof_storyboard",
-                        StringResource("revanced_spoof_storyboard_title", "Spoof storyboard"),
-                        StringResource("revanced_spoof_storyboard_summary_on", "Storyboard spoofed"),
-                        StringResource(
-                            "revanced_spoof_storyboard_summary_off",
-                            "Storyboard not spoofed\\n\\n"
-                                    + "Side effects include:\\n"
-                                    + "• No ambient mode\\n"
-                                    + "• Seekbar thumbnails are hidden"
-                        )
+                        "revanced_spoof_storyboard_title",
+                        "revanced_spoof_storyboard_summary_on",
+                        "revanced_spoof_storyboard_summary_off"
                     )
                 )
             )
