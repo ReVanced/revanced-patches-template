@@ -10,8 +10,8 @@ import app.revanced.patches.facebook.ads.story.fingerprints.FetchMoreAdsFingerpr
 import app.revanced.patches.facebook.ads.story.fingerprints.AdsInsertionFingerprint
 
 @Patch(
-    name = "Disable story ads",
-    description = "Disables the ads in the Facebook app stories.",
+    name = "Hide story ads",
+    description = "Hides the ads in the Facebook app stories.",
     compatiblePackages = [CompatiblePackage("com.facebook.katana")]
 )
 @Suppress("unused")
