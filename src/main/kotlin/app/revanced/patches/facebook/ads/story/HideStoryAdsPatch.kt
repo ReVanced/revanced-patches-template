@@ -15,7 +15,7 @@ import app.revanced.patches.facebook.ads.story.fingerprints.AdsInsertionFingerpr
     compatiblePackages = [CompatiblePackage("com.facebook.katana")]
 )
 @Suppress("unused")
-object DisableStoryAdsPatch : BytecodePatch(
+object HideStoryAdsPatch : BytecodePatch(
     setOf(FetchMoreAdsFingerprint, AdsInsertionFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
