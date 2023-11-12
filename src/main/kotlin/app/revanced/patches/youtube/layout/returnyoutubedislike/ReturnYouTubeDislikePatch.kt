@@ -20,6 +20,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 @Patch(
     name = "Return YouTube Dislike",
@@ -35,7 +36,9 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         CompatiblePackage(
             "com.google.android.youtube", [
                 "18.37.36",
-                "18.38.44"
+                "18.38.44",
+                "18.43.45",
+                "18.44.41",
             ]
         )
     ]
@@ -49,6 +52,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         LikeFingerprint,
         DislikeFingerprint,
         RemoveLikeFingerprint,
+        RollingNumberSetterFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -56,6 +60,12 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
     private const val FILTER_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/components/ReturnYouTubeDislikeFilterPatch;"
+
+    private const val ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR = INTEGRATIONS_CLASS_DESCRIPTOR +
+            "->" +
+            "onLithoTextLoaded" +
+            "(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)" +
+            "Ljava/lang/CharSequence;"
 
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
@@ -132,7 +142,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                         # Move context to free register
                         iget-object v$freeRegister, v$freeRegister, $conversionContextFieldReference
-                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR
                         move-result-object v$freeRegister
                         # Replace the original instruction
                         move-object v${charSequenceTargetRegister}, v${freeRegister}
@@ -143,7 +153,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        // region Hook for non litho Short videos.
+        // region Hook for non-litho Short videos.
 
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -180,6 +190,43 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 )
             }
         } ?: throw ShortsTextViewFingerprint.exception
+
+        // region Hook rolling numbers.
+
+        RollingNumberSetterFingerprint.result?.let {
+            val dislikesIndex = it.scanResult.patternScanResult!!.endIndex
+
+            it.mutableMethod.apply {
+                val insertIndex = 1
+
+                val charSequenceInstanceRegister =
+                    getInstruction<OneRegisterInstruction>(0).registerA
+                val charSequenceFieldReference =
+                    (getInstruction<ReferenceInstruction>(dislikesIndex).reference as FieldReference).toString()
+
+                val registerCount = implementation!!.registerCount
+
+                // These register are being overwritten, so they're free to use.
+                val freeRegister1 = registerCount - 1
+                val freeRegister2 = registerCount - 2
+                val conversionContextRegister = registerCount - parameters.size + 1
+
+                addInstructions(
+                    insertIndex,
+                    """
+                        const/4 v$freeRegister1, 0x0
+                        iget-object v$freeRegister2, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                        check-cast v$freeRegister2, Ljava/lang/CharSequence;
+                        invoke-static {v$conversionContextRegister, v$freeRegister1, v$freeRegister2}, $ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR
+                        move-result-object v$freeRegister2
+                        check-cast v$freeRegister2, Ljava/lang/String;
+                        iput-object v$freeRegister2, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                    """
+                )
+            }
+        } ?: throw RollingNumberSetterFingerprint.exception
+
+        // endregion
 
         // endregion
 
