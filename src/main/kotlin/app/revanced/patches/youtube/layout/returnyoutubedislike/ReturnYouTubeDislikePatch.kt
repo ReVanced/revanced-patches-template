@@ -137,7 +137,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                         # Move context to free register
                         iget-object v$freeRegister, v$freeRegister, $conversionContextFieldReference
-                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;                
+                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                         move-result-object v$freeRegister
                         # Replace the original instruction
                         move-object v${charSequenceTargetRegister}, v${freeRegister}
@@ -147,44 +147,6 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         } ?: throw TextComponentContextFingerprint.exception
 
         // endregion
-
-        // region Hook for non-litho Short videos.
-
-        ShortsTextViewFingerprint.result?.let {
-            it.mutableMethod.apply {
-                val patternResult = it.scanResult.patternScanResult!!
-
-                // If the field is true, the TextView is for a dislike button.
-                val isDisLikesBooleanReference = getInstruction<ReferenceInstruction>(patternResult.endIndex).reference
-
-                val textViewFieldReference = // Like/Dislike button TextView field
-                    getInstruction<ReferenceInstruction>(patternResult.endIndex - 1).reference
-
-                // Check if the hooked TextView object is that of the dislike button.
-                // If RYD is disabled, or the TextView object is not that of the dislike button, the execution flow is not interrupted.
-                // Otherwise, the TextView object is modified, and the execution flow is interrupted to prevent it from being changed afterward.
-                val insertIndex = patternResult.startIndex + 6
-                addInstructionsWithLabels(
-                    insertIndex,
-                    """
-                        # Check, if the TextView is for a dislike button
-                        iget-boolean v0, p0, $isDisLikesBooleanReference
-                        if-eqz v0, :is_like
-                        
-                        # Hook the TextView, if it is for the dislike button
-                        iget-object v0, p0, $textViewFieldReference
-                        invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setShortsDislikes(Landroid/view/View;)Z
-                        move-result v0
-                        if-eqz v0, :ryd_disabled
-                        return-void
-                       
-                        :is_like
-                        :ryd_disabled
-                        nop
-                    """
-                )
-            }
-        } ?: throw ShortsTextViewFingerprint.exception
 
         // region Hook rolling numbers.
 
@@ -253,6 +215,46 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 }
             }
         } ?: throw RollingNumberTextViewFingerprint.exception
+
+        // endregion
+
+        // region Hook for non-litho Short videos.
+
+        ShortsTextViewFingerprint.result?.let {
+            it.mutableMethod.apply {
+                val patternResult = it.scanResult.patternScanResult!!
+
+                // If the field is true, the TextView is for a dislike button.
+                val isDisLikesBooleanReference = getInstruction<ReferenceInstruction>(patternResult.endIndex).reference
+
+                val textViewFieldReference = // Like/Dislike button TextView field
+                    getInstruction<ReferenceInstruction>(patternResult.endIndex - 1).reference
+
+                // Check if the hooked TextView object is that of the dislike button.
+                // If RYD is disabled, or the TextView object is not that of the dislike button, the execution flow is not interrupted.
+                // Otherwise, the TextView object is modified, and the execution flow is interrupted to prevent it from being changed afterward.
+                val insertIndex = patternResult.startIndex + 6
+                addInstructionsWithLabels(
+                    insertIndex,
+                    """
+                        # Check, if the TextView is for a dislike button
+                        iget-boolean v0, p0, $isDisLikesBooleanReference
+                        if-eqz v0, :is_like
+                        
+                        # Hook the TextView, if it is for the dislike button
+                        iget-object v0, p0, $textViewFieldReference
+                        invoke-static {v0}, $INTEGRATIONS_CLASS_DESCRIPTOR->setShortsDislikes(Landroid/view/View;)Z
+                        move-result v0
+                        if-eqz v0, :ryd_disabled
+                        return-void
+                       
+                        :is_like
+                        :ryd_disabled
+                        nop
+                    """
+                )
+            }
+        } ?: throw ShortsTextViewFingerprint.exception
 
         // endregion
 
