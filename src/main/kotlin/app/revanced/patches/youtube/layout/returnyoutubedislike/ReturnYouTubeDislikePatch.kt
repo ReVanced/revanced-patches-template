@@ -21,7 +21,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
@@ -159,7 +158,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 val charSequenceInstanceRegister =
                     getInstruction<OneRegisterInstruction>(0).registerA
                 val charSequenceFieldReference =
-                    (getInstruction<ReferenceInstruction>(dislikesIndex).reference as FieldReference).toString()
+                    getInstruction<ReferenceInstruction>(dislikesIndex).reference.toString()
 
                 val registerCount = implementation!!.registerCount
 
@@ -171,10 +170,8 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                     insertIndex,
                     """
                         iget-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
-                        check-cast v$freeRegister, Ljava/lang/CharSequence;
-                        invoke-static {v$conversionContextRegister, v$freeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        invoke-static {v$conversionContextRegister, v$freeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberLoaded(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/String;
                         move-result-object v$freeRegister
-                        check-cast v$freeRegister, Ljava/lang/String;
                         iput-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
                     """
                 )
