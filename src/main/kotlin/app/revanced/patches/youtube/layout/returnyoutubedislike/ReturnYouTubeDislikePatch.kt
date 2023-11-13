@@ -208,7 +208,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                     addInstructions(
                         setTextIndex,
                         """
-                            invoke-static {v$textSpanRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateRollingText(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                            invoke-static {v$textSpanRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateRollingNumber(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
                             move-result-object v$textSpanRegister
                         """
                     )
