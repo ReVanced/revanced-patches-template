@@ -9,6 +9,7 @@ import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
+import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
@@ -21,6 +22,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Return YouTube Dislike",
@@ -50,7 +52,8 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         LikeFingerprint,
         DislikeFingerprint,
         RemoveLikeFingerprint,
-        RollingNumberSetterFingerprint
+        RollingNumberSetterFingerprint,
+        RollingNumberTextViewFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -58,12 +61,6 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
     private const val FILTER_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/components/ReturnYouTubeDislikeFilterPatch;"
-
-    private const val ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR = INTEGRATIONS_CLASS_DESCRIPTOR +
-            "->" +
-            "onLithoTextLoaded" +
-            "(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)" +
-            "Ljava/lang/CharSequence;"
 
     override fun execute(context: BytecodeContext) {
         // region Inject newVideoLoaded event handler to update dislikes when a new video is loaded.
@@ -140,7 +137,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                     """
                         # Move context to free register
                         iget-object v$freeRegister, v$freeRegister, $conversionContextFieldReference
-                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR
+                        invoke-static {v$freeRegister, v$atomicReferenceRegister, v$charSequenceSourceRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onLithoTextLoaded(Ljava/lang/Object;Ljava/util/concurrent/atomic/AtomicReference;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;                
                         move-result-object v$freeRegister
                         # Replace the original instruction
                         move-object v${charSequenceTargetRegister}, v${freeRegister}
@@ -205,26 +202,57 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 val registerCount = implementation!!.registerCount
 
                 // These registers are being overwritten, so they're free to use.
-                val freeRegister1 = registerCount - 1
-                val freeRegister2 = registerCount - 2
+                val freeRegister = registerCount - 1
                 val conversionContextRegister = registerCount - parameters.size + 1
 
                 addInstructions(
                     insertIndex,
                     """
-                        const/4 v$freeRegister1, 0x0
-                        iget-object v$freeRegister2, v$charSequenceInstanceRegister, $charSequenceFieldReference
-                        check-cast v$freeRegister2, Ljava/lang/CharSequence;
-                        invoke-static {v$conversionContextRegister, v$freeRegister1, v$freeRegister2}, $ON_LITHO_TEXT_LOADED_METHOD_DESCRIPTOR
-                        move-result-object v$freeRegister2
-                        check-cast v$freeRegister2, Ljava/lang/String;
-                        iput-object v$freeRegister2, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                        iget-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                        check-cast v$freeRegister, Ljava/lang/CharSequence;
+                        invoke-static {v$conversionContextRegister, v$freeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberLoaded(Ljava/lang/Object;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                        move-result-object v$freeRegister
+                        check-cast v$freeRegister, Ljava/lang/String;
+                        iput-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
                     """
                 )
             }
         } ?: throw RollingNumberSetterFingerprint.exception
 
-        // endregion
+        // The rolling number Span is missing styling since it's initially set as a String.
+        // Modify the UI text view and use the styled like/dislike Span.
+        RollingNumberTextViewFingerprint.result?.let {
+            // Initial TextView is set in this method.
+            val initiallyCreatedTextViewMethod = it.mutableMethod
+
+            // Video less than 24 hours after uploaded, like counts will be updated in real time.
+            // Whenever like counts are updated, TextView is set in this method.
+            val realTimeUpdateTextViewMethod = it.mutableClass.methods.find { method ->
+                method.parameterTypes.first() == "Landroid/graphics/Bitmap;"
+            } ?: throw PatchException("Failed to find realTimeUpdateTextViewMethod")
+
+            arrayOf(
+                initiallyCreatedTextViewMethod,
+                realTimeUpdateTextViewMethod
+            ).forEach { insertMethod ->
+                insertMethod.apply {
+                    val setTextIndex =
+                        implementation!!.instructions.indexOfFirst { instruction ->
+                            ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setText"
+                        }
+                    val textSpanRegister =
+                        getInstruction<FiveRegisterInstruction>(setTextIndex).registerD
+
+                    addInstructions(
+                        setTextIndex,
+                        """
+                            invoke-static {v$textSpanRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateRollingText(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                            move-result-object v$textSpanRegister
+                        """
+                    )
+                }
+            }
+        } ?: throw RollingNumberTextViewFingerprint.exception
 
         // endregion
 
