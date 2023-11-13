@@ -206,7 +206,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
                 val registerCount = implementation!!.registerCount
 
-                // These register are being overwritten, so they're free to use.
+                // These registers are being overwritten, so they're free to use.
                 val freeRegister1 = registerCount - 1
                 val freeRegister2 = registerCount - 2
                 val conversionContextRegister = registerCount - parameters.size + 1
