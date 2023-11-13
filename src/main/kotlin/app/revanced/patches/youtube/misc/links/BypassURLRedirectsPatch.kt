@@ -10,8 +10,8 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.strings.StringsPatch
-import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlyPrimaryFingerprint
-import app.revanced.patches.youtube.misc.links.fingerprints.OpenLinksDirectlySecondaryFingerprint
+import app.revanced.patches.youtube.misc.links.fingerprints.ABUriParserFingerprint
+import app.revanced.patches.youtube.misc.links.fingerprints.HTTPUriParserFingerprint
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
@@ -23,21 +23,15 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
         CompatiblePackage(
             "com.google.android.youtube",
             [
-                "18.16.37",
-                "18.19.35",
-                "18.20.39",
-                "18.23.35",
-                "18.29.38",
-                "18.32.39",
-                "18.37.36",
-                "18.38.44"
+                "18.43.45",
+                "18.44.41",
             ]
         )
     ]
 )
 @Suppress("unused")
 object BypassURLRedirectsPatch : BytecodePatch(
-    setOf(OpenLinksDirectlyPrimaryFingerprint, OpenLinksDirectlySecondaryFingerprint)
+    setOf(ABUriParserFingerprint, HTTPUriParserFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {
         StringsPatch.includePatchStrings("BypassURLRedirects")
@@ -50,14 +44,14 @@ object BypassURLRedirectsPatch : BytecodePatch(
             )
         )
 
-        arrayOf(
-            OpenLinksDirectlyPrimaryFingerprint,
-            OpenLinksDirectlySecondaryFingerprint
-        ).map {
-            it.result ?: throw it.exception
-        }.forEach { result ->
+        mapOf(
+            ABUriParserFingerprint to 7, // Offset to Uri.parse.
+            HTTPUriParserFingerprint to 0 // Offset to Uri.parse.
+        ).map { (fingerprint, offset) ->
+            (fingerprint.result ?: throw fingerprint.exception) to offset
+        }.forEach { (result, offset) ->
             result.mutableMethod.apply {
-                val insertIndex = result.scanResult.patternScanResult!!.startIndex
+                val insertIndex = result.scanResult.patternScanResult!!.startIndex + offset
                 val uriStringRegister =
                     getInstruction<FiveRegisterInstruction>(insertIndex).registerC
 

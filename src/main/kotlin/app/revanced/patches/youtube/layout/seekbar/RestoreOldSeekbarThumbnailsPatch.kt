@@ -21,7 +21,9 @@ import app.revanced.patches.youtube.misc.strings.StringsPatch
         CompatiblePackage(
             "com.google.android.youtube", [
                 "18.37.36",
-                "18.38.44"
+                "18.38.44",
+                "18.43.45",
+                "18.44.41",
             ]
         )
     ]
