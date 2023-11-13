@@ -2,14 +2,12 @@ package app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
-import app.revanced.patcher.fingerprint.annotation.FuzzyPatternScanMethod
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
 /**
  * Resolves against the same method that [TextComponentContextFingerprint] resolves to.
  */
-@FuzzyPatternScanMethod(2)
 object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
     returnType = "L",
     accessFlags = AccessFlags.PROTECTED or AccessFlags.FINAL,
@@ -20,7 +18,7 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
         Opcode.MOVE_OBJECT_FROM16,
         Opcode.MOVE_OBJECT_FROM16,
         Opcode.MOVE_OBJECT_FROM16,
-        Opcode.MOVE_OBJECT_FROM16,
+        null,
         Opcode.INVOKE_VIRTUAL, // Register C is atomic reference
         Opcode.MOVE_RESULT_OBJECT, // Register A is char sequence
         Opcode.CHECK_CAST,
