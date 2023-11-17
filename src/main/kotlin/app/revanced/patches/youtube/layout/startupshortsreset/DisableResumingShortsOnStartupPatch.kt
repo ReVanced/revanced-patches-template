@@ -42,7 +42,7 @@ object DisableResumingShortsOnStartupPatch : BytecodePatch(
         "Lapp/revanced/integrations/patches/DisableResumingStartupShortsPlayerPatch;"
 
     override fun execute(context: BytecodeContext) {
-        StringsPatch.includePatchStrings("DisableShortsOnStartup")
+        StringsPatch.includePatchStrings("DisableResumingShortsOnStartup")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_disable_resuming_shorts_player",
