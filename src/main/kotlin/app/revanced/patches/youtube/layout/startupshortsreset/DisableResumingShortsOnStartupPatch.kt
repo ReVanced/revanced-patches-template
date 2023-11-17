@@ -1,5 +1,6 @@
 package app.revanced.patches.youtube.layout.startupshortsreset
 
+import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.patch.BytecodePatch
@@ -12,8 +13,8 @@ import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
-    name = "Disable Shorts on startup",
-    description = "Disables playing YouTube Shorts when launching YouTube.",
+    name = "Disable resuming Shorts on startup",
+    description = "Disables resuming the Shorts player on app startup if a Short was last opened.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
@@ -33,9 +34,13 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
     ]
 )
 @Suppress("unused")
-object DisableShortsOnStartupPatch : BytecodePatch(
+object DisableResumingShortsOnStartupPatch : BytecodePatch(
     setOf(UserWasInShortsFingerprint)
 ) {
+
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
+        "Lapp/revanced/integrations/patches/DisableResumingStartupShortsPlayerPatch;"
+
     override fun execute(context: BytecodeContext) {
         StringsPatch.includePatchStrings("DisableShortsOnStartup")
         SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
@@ -47,20 +52,20 @@ object DisableShortsOnStartupPatch : BytecodePatch(
             )
         )
 
-        val userWasInShortsResult = UserWasInShortsFingerprint.result!!
-        val userWasInShortsMethod = userWasInShortsResult.mutableMethod
-        val moveResultIndex = userWasInShortsResult.scanResult.patternScanResult!!.endIndex
+        UserWasInShortsFingerprint.result?.apply {
+            val moveResultIndex = scanResult.patternScanResult!!.endIndex
 
-        userWasInShortsMethod.addInstructionsWithLabels(
-            moveResultIndex + 1,
-            """
-                invoke-static { }, Lapp/revanced/integrations/patches/DisableStartupShortsPlayerPatch;->disableStartupShortsPlayer()Z
+            mutableMethod.addInstructionsWithLabels(
+                moveResultIndex + 1,
+                """
+                invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->DisableResumingStartupShortsPlayerPatch()Z
                 move-result v5
                 if-eqz v5, :disable_shorts_player
                 return-void
                 :disable_shorts_player
                 nop
             """
-        )
+            )
+        } ?: throw UserWasInShortsFingerprint.exception
     }
 }
