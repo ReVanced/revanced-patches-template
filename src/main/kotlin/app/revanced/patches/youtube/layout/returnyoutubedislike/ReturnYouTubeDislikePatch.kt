@@ -1,6 +1,8 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
+import app.revanced.extensions.getReference
+import app.revanced.extensions.indexOfFirstInstruction
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
@@ -184,7 +186,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
             // Initial TextView is set in this method.
             val initiallyCreatedTextViewMethod = it.mutableMethod
 
-            // Video less than 24 hours after uploaded, like counts will be updated in real time.
+            // Videos less than 24 hours after uploaded, like counts will be updated in real time.
             // Whenever like counts are updated, TextView is set in this method.
             val realTimeUpdateTextViewMethod = it.mutableClass.methods.find { method ->
                 method.parameterTypes.first() == "Landroid/graphics/Bitmap;"
@@ -195,10 +197,10 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                 realTimeUpdateTextViewMethod
             ).forEach { insertMethod ->
                 insertMethod.apply {
-                    val setTextIndex =
-                        implementation!!.instructions.indexOfFirst { instruction ->
-                            ((instruction as? ReferenceInstruction)?.reference as? MethodReference)?.name == "setText"
-                        }
+                    val setTextIndex = indexOfFirstInstruction {
+                        getReference<MethodReference>()?.name == "setText"
+                    }
+
                     val textViewRegister =
                         getInstruction<FiveRegisterInstruction>(setTextIndex).registerC
                     val textSpanRegister =
@@ -246,7 +248,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                         move-result v0
                         if-eqz v0, :ryd_disabled
                         return-void
-                       
+                        
                         :is_like
                         :ryd_disabled
                         nop
