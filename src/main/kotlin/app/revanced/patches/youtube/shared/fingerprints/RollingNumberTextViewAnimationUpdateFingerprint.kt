@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.layout.hide.rollingnumber.fingerprints
+package app.revanced.patches.youtube.shared.fingerprints
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
