@@ -62,7 +62,6 @@ object CustomThemePatch : ResourcePatch() {
 
                     "gray_15" -> backgroundColorSecondary
 
-                    "gray_15" -> backgroundSecondaryColor!!
                     "dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light" -> accentColor
 
                     "dark_brightaccent_background_press" -> accentColorPressed
