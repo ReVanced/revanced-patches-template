@@ -5,7 +5,6 @@ import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWith
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.youtube.shared.fingerprints.SeekbarFingerprint
 import app.revanced.patches.shared.fingerprints.SeekbarOnDrawFingerprint
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.SeekbarColorBytecodePatch
@@ -13,6 +12,7 @@ import app.revanced.patches.youtube.layout.seekbar.SeekbarPreferencesPatch
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.shared.fingerprints.SeekbarFingerprint
 
 @Patch(
     name = "Hide seekbar",
@@ -36,6 +36,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
                 "18.38.44",
                 "18.43.45",
                 "18.44.41",
+                "18.45.41"
             ]
         )
     ]

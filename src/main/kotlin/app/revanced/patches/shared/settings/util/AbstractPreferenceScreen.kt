@@ -43,7 +43,7 @@ abstract class AbstractPreferenceScreen(
 
         private fun ensureScreenInserted() {
             // Add to screens if not yet done
-            if(!this@AbstractPreferenceScreen.root.contains(this))
+            if (!this@AbstractPreferenceScreen.root.contains(this))
                 this@AbstractPreferenceScreen.root.add(this)
         }
 
@@ -56,7 +56,7 @@ abstract class AbstractPreferenceScreen(
             key: String,
             titleKey: String,
             preferences: MutableList<BasePreference> = mutableListOf()
-        ): BasePreferenceCollection(key, titleKey, preferences) {
+        ) : BasePreferenceCollection(key, titleKey, preferences) {
             override fun transform(): PreferenceCategory {
                 return PreferenceCategory(
                     key,
@@ -69,7 +69,7 @@ abstract class AbstractPreferenceScreen(
                 ensureScreenInserted()
 
                 // Add to categories if not yet done
-                if(!this@Screen.categories.contains(this))
+                if (!this@Screen.categories.contains(this))
                     this@Screen.categories.add(this)
 
                 this.preferences.addAll(preferences)

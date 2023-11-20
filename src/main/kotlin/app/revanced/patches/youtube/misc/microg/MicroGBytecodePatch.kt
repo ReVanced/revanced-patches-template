@@ -5,7 +5,7 @@ import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.all.misc.packagename.ChangePackageNamePatch
-import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
+import app.revanced.patches.youtube.shared.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.patches.youtube.layout.buttons.cast.HideCastButtonPatch
 import app.revanced.patches.youtube.misc.fix.playback.ClientSpoofPatch
 import app.revanced.patches.youtube.misc.microg.fingerprints.*
@@ -35,6 +35,7 @@ import app.revanced.util.microg.MicroGBytecodeHelper
                 "18.38.44",
                 "18.43.45",
                 "18.44.41",
+                "18.45.41"
             ]
         )
     ]

@@ -70,6 +70,10 @@ object SpoofSignaturePatch : BytecodePatch(
                         "revanced_spoof_storyboard_summary_on",
                         "revanced_spoof_storyboard_summary_off"
                     )
+                ),
+                StringResource(
+                    "revanced_spoof_signature_verification_summary",
+                    "Spoof the app signature to prevent playback issues"
                 )
             )
         )

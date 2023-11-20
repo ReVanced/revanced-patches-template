@@ -39,6 +39,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
                 "18.38.44",
                 "18.43.45",
                 "18.44.41",
+                "18.45.41"
             ]
         )
     ]
@@ -88,6 +89,10 @@ object NavigationButtonsPatch : BytecodePatch(
                         "revanced_switch_create_with_notifications_button_summary_off",
                     ),
                 ),
+                StringResource(
+                    "revanced_navigation_buttons_preference_screen_summary",
+                    "Hide or change buttons in the navigation bar"
+                )
             )
         )
 

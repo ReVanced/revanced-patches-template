@@ -9,8 +9,8 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import com.android.tools.smali.dexlib2.Opcode
 
 @Patch(

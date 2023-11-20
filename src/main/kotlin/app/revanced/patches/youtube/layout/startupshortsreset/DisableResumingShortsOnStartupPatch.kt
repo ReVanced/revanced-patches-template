@@ -29,6 +29,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
                 "18.38.44",
                 "18.43.45",
                 "18.44.41",
+                "18.45.41"
             ]
         )
     ]
@@ -58,7 +59,7 @@ object DisableResumingShortsOnStartupPatch : BytecodePatch(
             mutableMethod.addInstructionsWithLabels(
                 moveResultIndex + 1,
                 """
-                invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->DisableResumingStartupShortsPlayerPatch()Z
+                invoke-static { }, $INTEGRATIONS_CLASS_DESCRIPTOR->disableResumingStartupShortsPlayer()Z
                 move-result v5
                 if-eqz v5, :disable_shorts_player
                 return-void
