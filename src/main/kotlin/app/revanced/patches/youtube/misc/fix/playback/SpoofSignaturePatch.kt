@@ -11,10 +11,18 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.*
-import app.revanced.patches.youtube.misc.strings.StringsPatch
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplGeneralFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplLiveStreamFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplRecommendedLevel
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPreviewLayoutFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererDecoderRecommendedLevelFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererDecoderSpecFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererSpecFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailFingerprint
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -71,10 +79,7 @@ object SpoofSignaturePatch : BytecodePatch(
                         "revanced_spoof_storyboard_summary_off"
                     )
                 ),
-                StringResource(
-                    "revanced_spoof_signature_verification_summary",
-                    "Spoof the app signature to prevent playback issues"
-                )
+                "revanced_spoof_signature_verification_screen_summary"
             )
         )
 

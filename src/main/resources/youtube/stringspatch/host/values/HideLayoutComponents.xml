@@ -104,6 +104,33 @@
     <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden</string>
     <string name="revanced_hide_chips_shelf_off">Chips shelf is shown</string>
 
+
+    <string name="revanced_hide_description_components_preference_screen_title">Hide components in the video description</string>
+    <string name="revanced_hide_chips_shelf_on">Chips shelf is hidden</string>
+    <string name="revanced_hide_chips_shelf_off">Chips shelf is shown</string>
+
+    <string name="revanced_hide_info_cards_section_title">Hide info cards section</string>
+    <string name="revanced_hide_info_cards_section_summary_on">Info cards section is hidden</string>
+    <string name="revanced_hide_info_cards_section_summary_off">Info cards section is shown</string>
+
+    <string name="revanced_hide_game_section_title">Hide game section</string>
+    <string name="revanced_hide_game_section_summary_on">Game section is hidden</string>
+    <string name="revanced_hide_game_section_summary_off">Game section is shown</string>
+
+    <string name="revanced_hide_music_section_title">Hide music section</string>
+    <string name="revanced_hide_music_section_summary_on">Music section is hidden</string>
+    <string name="revanced_hide_music_section_summary_off">Music section is shown</string>
+
+    <string name="revanced_hide_podcast_section_title">Hide podcast section</string>
+    <string name="revanced_hide_podcast_section_summary_on">Podcast section is hidden</string>
+    <string name="revanced_hide_podcast_section_summary_off">Podcast section is shown</string>
+
+    <string name="revanced_hide_transcript_section_title">Hide transcript section</string>
+    <string name="revanced_hide_transcript_section_summary_on">Transcript section is hidden</string>
+    <string name="revanced_hide_transcript_section_summary_off">Transcript section is shown</string>
+
+    <string name="revanced_hide_description_components_preference_screen_summary">Hide components under the video description</string>
+
     <string name="revanced_hide_artist_cards_title">Hide artist cards</string>
     <string name="revanced_hide_artist_cards_on">Artist cards is hidden</string>
     <string name="revanced_hide_artist_cards_off">Artist cards is shown</string>

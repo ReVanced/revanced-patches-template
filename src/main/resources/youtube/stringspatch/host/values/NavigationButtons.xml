@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="revanced_navigation_buttons_preference_screen_title">Navigation buttons</string>
+    <string name="revanced_navigation_buttons_preference_screen_summary">Hide or change buttons in the navigation bar</string>
 
     <string name="revanced_hide_home_button_title">Hide home button</string>
     <string name="revanced_hide_home_button_summary_on">Home button is hidden</string>

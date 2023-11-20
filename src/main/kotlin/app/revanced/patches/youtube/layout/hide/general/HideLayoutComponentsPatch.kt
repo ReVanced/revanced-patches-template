@@ -12,15 +12,15 @@ import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
 import app.revanced.patches.shared.settings.preference.impl.InputType
+import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ParseElementFromBufferFingerprint
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.PlayerOverlayFingerprint
 import app.revanced.patches.youtube.layout.hide.general.fingerprints.ShowWatermarkFingerprint
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -56,7 +56,7 @@ object HideLayoutComponentsPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
         StringsPatch.includePatchStrings("HideLayoutComponents")
-        PreferenceScreen.LAYOUT.addPreferences(
+        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
             SwitchPreference(
                 "revanced_hide_gray_separator",
                 "revanced_hide_gray_separator_title",
@@ -227,91 +227,40 @@ object HideLayoutComponentsPatch : BytecodePatch(
             ),
             PreferenceScreen(
                 "revanced_hide_description_components_preference_screen",
-                StringResource(
-                    "revanced_hide_description_components_preference_screen_title",
-                    "Hide components in the video description"
-                ),
+                "revanced_hide_description_components_preference_screen_title",
                 listOf(
                     SwitchPreference(
                         "revanced_hide_info_cards_section",
-                        StringResource(
-                            "revanced_hide_info_cards_section_title",
-                            "Hide info cards section"
-                        ),
-                        StringResource(
-                            "revanced_hide_info_cards_section_summary_on",
-                            "Info cards section is hidden"
-                        ),
-                        StringResource(
-                            "revanced_hide_info_cards_section_summary_off",
-                            "Info cards section is shown"
-                        )
+                        "revanced_hide_info_cards_section_title",
+                        "revanced_hide_info_cards_section_summary_on",
+                        "revanced_hide_info_cards_section_summary_off",
                     ),
                     SwitchPreference(
                         "revanced_hide_game_section",
-                        StringResource(
-                            "revanced_hide_game_section_title",
-                            "Hide game section"
-                        ),
-                        StringResource(
-                            "revanced_hide_game_section_summary_on",
-                            "Game section is hidden"
-                        ),
-                        StringResource(
-                            "revanced_hide_game_section_summary_off",
-                            "Game section is shown"
-                        )
+                        "revanced_hide_game_section_title",
+                        "revanced_hide_game_section_summary_on",
+                        "revanced_hide_game_section_summary_off",
                     ),
                     SwitchPreference(
                         "revanced_hide_music_section",
-                        StringResource(
-                            "revanced_hide_music_section_title",
-                            "Hide music section"
-                        ),
-                        StringResource(
-                            "revanced_hide_music_section_summary_on",
-                            "Music section is hidden"
-                        ),
-                        StringResource(
-                            "revanced_hide_music_section_summary_off",
-                            "Music section is shown"
-                        )
+                        "revanced_hide_music_section_title",
+                        "revanced_hide_music_section_summary_on",
+                        "revanced_hide_music_section_summary_off",
                     ),
                     SwitchPreference(
                         "revanced_hide_podcast_section",
-                        StringResource(
-                            "revanced_hide_podcast_section_title",
-                            "Hide podcast section"
-                        ),
-                        StringResource(
-                            "revanced_hide_podcast_section_summary_on",
-                            "Podcast section is hidden"
-                        ),
-                        StringResource(
-                            "revanced_hide_podcast_section_summary_off",
-                            "Podcast section is shown"
-                        )
+                        "revanced_hide_podcast_section_title",
+                        "revanced_hide_podcast_section_summary_on",
+                        "revanced_hide_podcast_section_summary_off",
                     ),
                     SwitchPreference(
                         "revanced_hide_transcript_section",
-                        StringResource(
-                            "revanced_hide_transcript_section_title",
-                            "Hide transcript section"
-                        ),
-                        StringResource(
-                            "revanced_hide_transcript_section_summary_on",
-                            "Transcript section is hidden"
-                        ),
-                        StringResource(
-                            "revanced_hide_transcript_section_summary_off",
-                            "Transcript section is shown"
-                        )
+                        "revanced_hide_transcript_section_title",
+                        "revanced_hide_transcript_section_summary_on",
+                        "revanced_hide_transcript_section_summary_off",
                     ),
                 ),
-                StringResource(
-                    "revanced_hide_description_components_preference_screen_summary",
-                    "Hide components under the video description"
-                )
+                "revanced_hide_description_components_preference_screen_summary"
             ),
             PreferenceScreen(
                 "revanced_custom_filter_preference_screen",
@@ -331,10 +280,7 @@ object HideLayoutComponentsPatch : BytecodePatch(
                         inputType = InputType.TEXT_MULTI_LINE
                     )
                 ),
-                StringResource(
-                    "revanced_custom_filter_preference_screen_summary",
-                    "Hide components using custom filters"
-                )
+                "revanced_custom_filter_preference_screen_summary"
             )
         )
 

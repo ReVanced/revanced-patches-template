@@ -89,10 +89,7 @@ object NavigationButtonsPatch : BytecodePatch(
                         "revanced_switch_create_with_notifications_button_summary_off",
                     ),
                 ),
-                StringResource(
-                    "revanced_navigation_buttons_preference_screen_summary",
-                    "Hide or change buttons in the navigation bar"
-                )
+                "revanced_navigation_buttons_preference_screen_summary"
             )
         )
 
