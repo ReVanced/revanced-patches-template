@@ -17,8 +17,9 @@ object CustomThemePatch : ResourcePatch() {
     private var backgroundColor by stringPatchOption(
         key = "backgroundColor",
         default = "@android:color/black",
-        title = "Primary Background color",
+        title = "Primary background color",
         description = "The background color. Can be a hex color or a resource reference.",
+        required = true
     )
 
     private var backgroundColorSecondary by stringPatchOption(
@@ -26,6 +27,7 @@ object CustomThemePatch : ResourcePatch() {
         default = "#ff282828",
         title = "Secondary background color",
         description = "The secondary background color. Can be a hex color or a resource reference.",
+        required = true
     )
 
     private var accentColor by stringPatchOption(
@@ -33,6 +35,7 @@ object CustomThemePatch : ResourcePatch() {
         default = "#ff1ed760",
         title = "Accent color",
         description = "The accent color ('Spotify green' by default). Can be a hex color or a resource reference.",
+        required = true
     )
 
     private var accentColorPressed by stringPatchOption(
@@ -40,7 +43,8 @@ object CustomThemePatch : ResourcePatch() {
         default = "#ff169c46",
         title = "Pressed dark theme accent color",
         description = "The color when accented buttons are pressed, by default slightly darker than accent. "
-                + "Can be a hex color or a resource reference."
+                + "Can be a hex color or a resource reference.",
+        required = true
     )
 
     override fun execute(context: ResourceContext) {
