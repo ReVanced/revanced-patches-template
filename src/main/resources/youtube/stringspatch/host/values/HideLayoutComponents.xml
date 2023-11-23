@@ -12,6 +12,10 @@
     <string name="revanced_hide_channel_watermark_title_summary_on">Watermark is hidden</string>
     <string name="revanced_hide_channel_watermark_title_summary_off">Watermark is shown</string>
 
+    <string name="revanced_hide_for_you_shelf_title">Hide \'For you\' shelf in channel page</string>
+    <string name="revanced_hide_for_you_shelf_summary_on">Shelf is hidden</string>
+    <string name="revanced_hide_for_you_shelf_summary_off">Shelf is shown</string>
+
     <string name="revanced_hide_notify_me_button_title">Hide \'Notify me\' button</string>
     <string name="revanced_hide_notify_me_button_summary_on">Button is hidden</string>
     <string name="revanced_hide_notify_me_button_summary_off">Button is shown</string>
@@ -136,6 +140,7 @@
     <string name="revanced_hide_mix_playlists_summary_off">Mix playlists are shown</string>
 
     <string name="revanced_custom_filter_preference_screen_title">Custom filter</string>
+    <string name="revanced_custom_filter_preference_screen_summary">Hide components using custom filters</string>
 
     <string name="revanced_custom_filter_title">Enable custom filter</string>
     <string name="revanced_custom_filter_summary_on">Custom filter is enabled</string>

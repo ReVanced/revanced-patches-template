@@ -77,9 +77,9 @@ object HideLayoutComponentsPatch : BytecodePatch(
             ),
             SwitchPreference(
                 "revanced_hide_for_you_shelf",
-                StringResource("revanced_hide_for_you_shelf_title", "Hide \\\'For you\\\' shelf in channel page"),
-                StringResource("revanced_hide_for_you_shelf_summary_on", "Shelf is hidden"),
-                StringResource("revanced_hide_for_you_shelf_summary_off", "Shelf is shown")
+                "revanced_hide_for_you_shelf_title",
+                "revanced_hide_for_you_shelf_summary_on",
+                "revanced_hide_for_you_shelf_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_notify_me_button",

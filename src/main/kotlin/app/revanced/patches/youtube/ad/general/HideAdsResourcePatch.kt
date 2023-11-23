@@ -5,10 +5,10 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.PreferenceScreen
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 
 @Patch(
     dependencies = [
@@ -58,9 +58,9 @@ object HideAdsResourcePatch : ResourcePatch() {
             ),
             SwitchPreference(
                 "revanced_hide_shopping_links",
-                StringResource("revanced_hide_shopping_links_title", "Hide shopping links in video description"),
-                StringResource("revanced_hide_shopping_links_summary_on", "Shopping links are hidden"),
-                StringResource("revanced_hide_shopping_links_summary_off", "Shopping links are shown")
+                "revanced_hide_shopping_links_title",
+                "revanced_hide_shopping_links_summary_on",
+                "revanced_hide_shopping_links_summary_off",
             ),
             SwitchPreference(
                 "revanced_hide_web_search_results",
