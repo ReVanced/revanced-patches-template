@@ -57,6 +57,12 @@ object HideAdsResourcePatch : ResourcePatch() {
                 "revanced_hide_products_banner_summary_off"
             ),
             SwitchPreference(
+                "revanced_hide_shopping_links",
+                StringResource("revanced_hide_shopping_links_title", "Hide shopping links in video description"),
+                StringResource("revanced_hide_shopping_links_summary_on", "Shopping links are hidden"),
+                StringResource("revanced_hide_shopping_links_summary_off", "Shopping links are shown")
+            ),
+            SwitchPreference(
                 "revanced_hide_web_search_results",
                 "revanced_hide_web_search_results_title",
                 "revanced_hide_web_search_results_summary_on",
