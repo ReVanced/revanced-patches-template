@@ -147,5 +147,5 @@
     <string name="revanced_custom_filter_summary_off">Custom filter is disabled</string>
 
     <string name="revanced_custom_filter_strings_title">Custom filter</string>
-    <string name="revanced_custom_filter_strings_summary">List of components to filter separated by new line</string>
+    <string name="revanced_custom_filter_strings_summary">List of component path builder strings to filter separated by new lin</string>
 </resources>
