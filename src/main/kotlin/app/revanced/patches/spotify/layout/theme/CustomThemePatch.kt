@@ -40,7 +40,7 @@ object CustomThemePatch : ResourcePatch() {
             title = "Accent color",
             description =
                 "The accent color ('Spotify green' by default). Can be a hex color or a resource reference.",
-            required = true
+            required = false
         )
 
     private var accentColorPressed by
@@ -51,7 +51,7 @@ object CustomThemePatch : ResourcePatch() {
             description =
                 "The color when accented buttons are pressed, by default slightly darker than accent. " +
                     "Can be a hex color or a resource reference.",
-            required = true
+            required = false
         )
 
     override fun execute(context: ResourceContext) {
