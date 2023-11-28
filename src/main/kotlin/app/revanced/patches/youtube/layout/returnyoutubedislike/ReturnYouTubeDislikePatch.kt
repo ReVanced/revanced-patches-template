@@ -1,14 +1,15 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike
 
 import app.revanced.extensions.exception
+import app.revanced.extensions.getReference
+import app.revanced.extensions.indexOfFirstInstruction
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint.Companion.resolve
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
@@ -16,11 +17,13 @@ import app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.litho.filter.LithoFilterPatch
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
+import app.revanced.patches.youtube.shared.fingerprints.RollingNumberTextViewAnimationUpdateFingerprint
 import app.revanced.patches.youtube.video.videoid.VideoIdPatch
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 @Patch(
     name = "Return YouTube Dislike",
@@ -33,7 +36,13 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
         PlayerTypeHookPatch::class,
     ],
     compatiblePackages = [
-        CompatiblePackage("com.google.android.youtube", ["18.37.36", "18.38.44"])
+        CompatiblePackage(
+            "com.google.android.youtube", [
+                "18.43.45",
+                "18.44.41",
+                "18.45.41"
+            ]
+        )
     ]
 )
 @Suppress("unused")
@@ -45,6 +54,10 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         LikeFingerprint,
         DislikeFingerprint,
         RemoveLikeFingerprint,
+        RollingNumberSetterFingerprint,
+        RollingNumberMeasureTextParentFingerprint,
+        RollingNumberTextViewFingerprint,
+        RollingNumberTextViewAnimationUpdateFingerprint
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -59,7 +72,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
         VideoIdPatch.hookVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->newVideoLoaded(Ljava/lang/String;)V")
 
         // Hook the player response video id, to start loading RYD sooner in the background.
-        VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;)V")
+        VideoIdPatch.hookPlayerResponseVideoId("$INTEGRATIONS_CLASS_DESCRIPTOR->preloadVideoId(Ljava/lang/String;Z)V")
 
         // endregion
 
@@ -139,7 +152,122 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // endregion
 
-        // region Hook for non litho Short videos.
+        // region Hook rolling numbers.
+
+        RollingNumberSetterFingerprint.result?.let {
+            val dislikesIndex = it.scanResult.patternScanResult!!.endIndex
+
+            it.mutableMethod.apply {
+                val insertIndex = 1
+
+                val charSequenceInstanceRegister =
+                    getInstruction<OneRegisterInstruction>(0).registerA
+                val charSequenceFieldReference =
+                    getInstruction<ReferenceInstruction>(dislikesIndex).reference.toString()
+
+                val registerCount = implementation!!.registerCount
+
+                // This register is being overwritten, so it is free to use.
+                val freeRegister = registerCount - 1
+                val conversionContextRegister = registerCount - parameters.size + 1
+
+                addInstructions(
+                    insertIndex,
+                    """
+                        iget-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                        invoke-static {v$conversionContextRegister, v$freeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberLoaded(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/String;
+                        move-result-object v$freeRegister
+                        iput-object v$freeRegister, v$charSequenceInstanceRegister, $charSequenceFieldReference
+                    """
+                )
+            }
+        } ?: throw RollingNumberSetterFingerprint.exception
+
+        // Rolling Number text views use the measured width of the raw string for layout.
+        // Modify the measure text calculation to include the left drawable separator if needed.
+        RollingNumberMeasureAnimatedTextFingerprint.also {
+            if (!it.resolve(context, RollingNumberMeasureTextParentFingerprint.result!!.classDef))
+                throw it.exception
+        }.result?.also {
+            it.mutableMethod.apply {
+                val returnInstructionIndex = it.scanResult.patternScanResult!!.endIndex
+                val measuredTextWidthRegister =
+                    getInstruction<OneRegisterInstruction>(returnInstructionIndex).registerA
+
+                replaceInstruction( // Replace instruction to preserve control flow label.
+                    returnInstructionIndex,
+                    "invoke-static {p1, v$measuredTextWidthRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberMeasured(Ljava/lang/String;F)F"
+                )
+                addInstructions(
+                    returnInstructionIndex + 1,
+                    """
+                        move-result v$measuredTextWidthRegister
+                        return v$measuredTextWidthRegister
+                    """
+                )
+            }
+        } ?: throw RollingNumberMeasureAnimatedTextFingerprint.exception
+
+        // Additional text measurement method. Used if YouTube decides not to animate the likes count
+        // and sometimes used for initial video load.
+        RollingNumberMeasureStaticLabelFingerprint.also {
+            if (!it.resolve(context, RollingNumberMeasureTextParentFingerprint.result!!.classDef))
+                throw it.exception
+        }.result?.also {
+            it.mutableMethod.apply {
+                val measureTextIndex = it.scanResult.patternScanResult!!.startIndex + 1
+                val freeRegister = getInstruction<TwoRegisterInstruction>(0).registerA
+
+                addInstructions(
+                    measureTextIndex + 1,
+                    """
+                        move-result v$freeRegister
+                        invoke-static {p1, v$freeRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->onRollingNumberMeasured(Ljava/lang/String;F)F
+                    """
+                )
+            }
+        } ?: throw RollingNumberMeasureStaticLabelFingerprint.exception
+
+        // The rolling number Span is missing styling since it's initially set as a String.
+        // Modify the UI text view and use the styled like/dislike Span.
+        RollingNumberTextViewFingerprint.result?.let {
+            // Initial TextView is set in this method.
+            val initiallyCreatedTextViewMethod = it.mutableMethod
+
+            // Videos less than 24 hours after uploaded, like counts will be updated in real time.
+            // Whenever like counts are updated, TextView is set in this method.
+            val realTimeUpdateTextViewMethod =
+                RollingNumberTextViewAnimationUpdateFingerprint.result?.mutableMethod
+                    ?: throw RollingNumberTextViewAnimationUpdateFingerprint.exception
+
+            arrayOf(
+                initiallyCreatedTextViewMethod,
+                realTimeUpdateTextViewMethod
+            ).forEach { insertMethod ->
+                insertMethod.apply {
+                    val setTextIndex = indexOfFirstInstruction {
+                        getReference<MethodReference>()?.name == "setText"
+                    }
+
+                    val textViewRegister =
+                        getInstruction<FiveRegisterInstruction>(setTextIndex).registerC
+                    val textSpanRegister =
+                        getInstruction<FiveRegisterInstruction>(setTextIndex).registerD
+
+                    addInstructions(
+                        setTextIndex,
+                        """
+                            invoke-static {v$textViewRegister, v$textSpanRegister}, $INTEGRATIONS_CLASS_DESCRIPTOR->updateRollingNumber(Landroid/widget/TextView;Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
+                            move-result-object v$textSpanRegister
+                        """
+                    )
+                }
+            }
+        } ?: throw RollingNumberTextViewFingerprint.exception
+
+        // endregion
+
+        // region Hook for non-litho Short videos.
 
         ShortsTextViewFingerprint.result?.let {
             it.mutableMethod.apply {
@@ -168,7 +296,7 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
                         move-result v0
                         if-eqz v0, :ryd_disabled
                         return-void
-                       
+                        
                         :is_like
                         :ryd_disabled
                         nop
@@ -183,6 +311,9 @@ object ReturnYouTubeDislikePatch : BytecodePatch(
 
         // Filter that parses the video id from the UI
         LithoFilterPatch.addFilter(FILTER_CLASS_DESCRIPTOR)
+
+        // Player response video id is needed to search for the video ids in Shorts litho components.
+        VideoIdPatch.hookPlayerResponseVideoId("$FILTER_CLASS_DESCRIPTOR->newPlayerResponseVideoId(Ljava/lang/String;Z)V")
 
         // endregion
 

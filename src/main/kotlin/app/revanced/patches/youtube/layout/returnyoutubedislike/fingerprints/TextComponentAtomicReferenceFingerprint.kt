@@ -1,7 +1,7 @@
 package app.revanced.patches.youtube.layout.returnyoutubedislike.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
@@ -18,7 +18,7 @@ object TextComponentAtomicReferenceFingerprint : MethodFingerprint(
         Opcode.MOVE_OBJECT_FROM16,
         Opcode.MOVE_OBJECT_FROM16,
         Opcode.MOVE_OBJECT_FROM16,
-        Opcode.MOVE_OBJECT_FROM16,
+        null,
         Opcode.INVOKE_VIRTUAL, // Register C is atomic reference
         Opcode.MOVE_RESULT_OBJECT, // Register A is char sequence
         Opcode.CHECK_CAST,
