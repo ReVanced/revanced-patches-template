@@ -14,38 +14,45 @@ import org.w3c.dom.Element
 )
 @Suppress("unused")
 object CustomThemePatch : ResourcePatch() {
-    private var backgroundColor by stringPatchOption(
-        key = "backgroundColor",
-        default = "@android:color/black",
-        title = "Primary background color",
-        description = "The background color. Can be a hex color or a resource reference.",
-        required = true
-    )
+    private var backgroundColor by
+        stringPatchOption(
+            key = "backgroundColor",
+            default = "@android:color/black",
+            title = "Primary background color",
+            description = "The background color. Can be a hex color or a resource reference.",
+            required = true
+        )
 
-    private var backgroundColorSecondary by stringPatchOption(
-        key = "backgroundColorSecondary",
-        default = "#ff282828",
-        title = "Secondary background color",
-        description = "The secondary background color. Can be a hex color or a resource reference.",
-        required = true
-    )
+    private var backgroundColorSecondary by
+        stringPatchOption(
+            key = "backgroundColorSecondary",
+            default = "#ff282828",
+            title = "Secondary background color",
+            description =
+                "The secondary background color. This changes Settings header, Search Box background, etc. Can be a hex color or a resource reference.",
+            required = true
+        )
 
-    private var accentColor by stringPatchOption(
-        key = "accentColor",
-        default = "#ff1ed760",
-        title = "Accent color",
-        description = "The accent color ('Spotify green' by default). Can be a hex color or a resource reference.",
-        required = true
-    )
+    private var accentColor by
+        stringPatchOption(
+            key = "accentColor",
+            default = "#ff1ed760",
+            title = "Accent color",
+            description =
+                "The accent color ('Spotify green' by default). Can be a hex color or a resource reference.",
+            required = true
+        )
 
-    private var accentColorPressed by stringPatchOption(
-        key = "accentColorPressed",
-        default = "#ff169c46",
-        title = "Pressed dark theme accent color",
-        description = "The color when accented buttons are pressed, by default slightly darker than accent. "
-                + "Can be a hex color or a resource reference.",
-        required = true
-    )
+    private var accentColorPressed by
+        stringPatchOption(
+            key = "accentColorPressed",
+            default = "#ff169c46",
+            title = "Pressed dark theme accent color",
+            description =
+                "The color when accented buttons are pressed, by default slightly darker than accent. " +
+                    "Can be a hex color or a resource reference.",
+            required = true
+        )
 
     override fun execute(context: ResourceContext) {
         val backgroundColor = backgroundColor!!
@@ -59,18 +66,26 @@ object CustomThemePatch : ResourcePatch() {
             for (i in 0 until resourcesNode.childNodes.length) {
                 val node = resourcesNode.childNodes.item(i) as? Element ?: continue
 
-                node.textContent = when (node.getAttribute("name")) {
-                    "dark_base_background_elevated_base", "design_dark_default_color_background",
-                    "design_dark_default_color_surface", "gray_7", "gray_background", "gray_layer",
-                    "sthlm_blk" -> backgroundColor
+                node.textContent =
+                    when (node.getAttribute("name")) {
+                        "dark_base_background_elevated_base",
+                        "design_dark_default_color_background",
+                        "design_dark_default_color_surface",
+                        "gray_7",
+                        "gray_background",
+                        "gray_layer",
+                        "sthlm_blk" -> backgroundColor
+                        
+                        "gray_15" -> backgroundColorSecondary
 
-                    "gray_15" -> backgroundColorSecondary
+                        "dark_brightaccent_background_base",
+                        "dark_base_text_brightaccent",
+                        "green_light" -> accentColor
 
-                    "dark_brightaccent_background_base", "dark_base_text_brightaccent", "green_light" -> accentColor
-
-                    "dark_brightaccent_background_press" -> accentColorPressed
-                    else -> continue
-                }
+                        "dark_brightaccent_background_press" -> accentColorPressed
+                        
+                        else -> continue
+                    }
             }
         }
     }
