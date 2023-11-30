@@ -19,7 +19,7 @@ import app.revanced.patches.youtube.video.speed.remember.fingerprint.InitializeP
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Patch(
-    description = "Adds the ability to remember the playback speed you chose in the playback speed flyout.",
+    description = "Adds the ability to remember the playback speed.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class, VideoInformationPatch::class, CustomPlaybackSpeedPatch::class]
 )
 object RememberPlaybackSpeedPatch : BytecodePatch(
