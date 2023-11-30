@@ -16,7 +16,6 @@
     <string name="revanced_twitch_misc_screen_title">Misc</string>
     <string name="revanced_twitch_misc_screen_summary">Miscellaneous patches</string>
 
-    <string name="revanced_reboot">Restart</string>
     <string name="revanced_reboot_message">Twitch needs to restart to apply your changes. Restart now?</string>
-    <string name="revanced_cancel">Cancel</string>
+    <string name="revanced_reboot">Restart</string>
 </resources>

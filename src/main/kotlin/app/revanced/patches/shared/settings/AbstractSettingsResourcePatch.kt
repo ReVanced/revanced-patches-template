@@ -27,18 +27,6 @@ abstract class AbstractSettingsResourcePatch(
     private lateinit var revancedPreferencesEditor: DomFileEditor
 
     override fun execute(context: ResourceContext) {
-        /*
-         * used for self-restart
-         * TODO: do this only, when necessary
-         */
-        context.xmlEditor["AndroidManifest.xml"].use { editor ->
-            editor.file.getElementsByTagName("manifest").item(0).also {
-                it.appendChild(it.ownerDocument.createElement("uses-permission").also { element ->
-                    element.setAttribute("android:name", "android.permission.SCHEDULE_EXACT_ALARM")
-                })
-            }
-        }
-
         /* copy preference template from source dir */
         context.copyResources(
             sourceDirectory,

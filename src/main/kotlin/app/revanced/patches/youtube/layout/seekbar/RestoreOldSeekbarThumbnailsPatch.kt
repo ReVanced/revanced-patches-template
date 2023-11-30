@@ -10,13 +10,12 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.layout.seekbar.fingerprints.FullscreenSeekbarThumbnailsFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
-import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 
 @Patch(
     name = "Restore old seekbar thumbnails",
     description = "Restores the old seekbar thumbnails that appear above the seekbar instead of fullscreen thumbnails.",
-    dependencies = [IntegrationsPatch::class, SettingsPatch::class],
+    dependencies = [IntegrationsPatch::class, SeekbarPreferencesPatch::class],
     compatiblePackages = [
         CompatiblePackage(
             "com.google.android.youtube", [
@@ -38,7 +37,7 @@ object RestoreOldSeekbarThumbnailsPatch : BytecodePatch(
 
     override fun execute(context: BytecodeContext) {
         StringsPatch.includePatchStrings("RestoreOldSeekbarThumbnails")
-        SettingsPatch.PreferenceScreen.LAYOUT.addPreferences(
+        SeekbarPreferencesPatch.addPreferences(
             SwitchPreference(
                 "revanced_restore_old_seekbar_thumbnails",
                 "revanced_restore_old_seekbar_thumbnails_title",
