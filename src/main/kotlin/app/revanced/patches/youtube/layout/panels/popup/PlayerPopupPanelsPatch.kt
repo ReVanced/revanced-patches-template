@@ -14,7 +14,7 @@ import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(
     name = "Disable player popup panels",
-    description = "Disables panels from appearing automatically when going into fullscreen (playlist or live chat).",
+    description = "Disables panels (such as live chat) from opening automatically and prevents open panels from appearing when entering fullscreen.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
