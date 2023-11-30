@@ -57,7 +57,7 @@ abstract class AbstractGmsCoreSupportPatch(
         abstractGmsCoreSupportResourcePatch.options.values.forEach(options::register)
     }
 
-    internal abstract val gmsCoreVendor: String
+    internal abstract val gmsCoreVendor: String?
 
     override fun execute(context: BytecodeContext) {
         val packageName = ChangePackageNamePatch.setOrGetFallbackPackageName(toPackageName)
@@ -128,7 +128,7 @@ abstract class AbstractGmsCoreSupportPatch(
             "com.google.android.gms",
             in PERMISSIONS,
             in ACTIONS,
-            in AUTHORITIES -> referencedString.replace("com.google", gmsCoreVendor)
+            in AUTHORITIES -> referencedString.replace("com.google", gmsCoreVendor!!)
 
             // No vendor prefix for whatever reason...
             "subscribedfeeds" -> "$gmsCoreVendor.subscribedfeeds"
@@ -144,7 +144,7 @@ abstract class AbstractGmsCoreSupportPatch(
                 if (str.startsWith(uriPrefix)) {
                     return str.replace(
                         uriPrefix,
-                        "content://${authority.replace("com.google", gmsCoreVendor)}"
+                        "content://${authority.replace("com.google", gmsCoreVendor!!)}"
                     )
                 }
             }

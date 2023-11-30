@@ -30,5 +30,5 @@ object GmsCoreSupportPatch : AbstractGmsCoreSupportPatch(
         PrimeMethodFingerprint,
     )
 ) {
-    override val gmsCoreVendor = gmsCoreVendorOption.value!!
+    override val gmsCoreVendor by gmsCoreVendorOption
 }

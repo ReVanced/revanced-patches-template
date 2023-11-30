@@ -36,7 +36,7 @@ abstract class AbstractGmsCoreSupportResourcePatch(
         required = true
     ) { it!!.matches(Regex("^[a-z]\\w*(\\.[a-z]\\w*)+\$")) }
 
-    protected val gmsCoreVendor = gmsCoreVendorOption.value!!
+    protected val gmsCoreVendor by gmsCoreVendorOption
 
     override fun execute(context: ResourceContext) {
         context.mergeStrings("gms/host/values/strings.xml")

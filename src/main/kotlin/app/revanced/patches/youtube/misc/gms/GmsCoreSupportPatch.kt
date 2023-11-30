@@ -57,7 +57,7 @@ object GmsCoreSupportPatch : AbstractGmsCoreSupportPatch(
         WatchWhileActivityFingerprint
     )
 ) {
-    override val gmsCoreVendor = gmsCoreVendorOption.value!!
+    override val gmsCoreVendor by gmsCoreVendorOption
 
     override fun execute(context: BytecodeContext) {
         // Check the availability of GmsCore.
