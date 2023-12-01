@@ -18,7 +18,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 @Patch(
     name = "Spoof app version",
     description = "Tricks YouTube into thinking you are running an older version of the app. " +
-            "This can be used to restore the old UI.",
+            "This can be used to restore some old UI elements and features.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage(
