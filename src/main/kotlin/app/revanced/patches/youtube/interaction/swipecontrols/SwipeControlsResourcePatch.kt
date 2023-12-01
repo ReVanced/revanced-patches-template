@@ -11,7 +11,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
 @Patch(
     dependencies = [SettingsPatch::class]
 )
-object SwipeControlsResourcePatch : ResourcePatch() {
+internal object SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(

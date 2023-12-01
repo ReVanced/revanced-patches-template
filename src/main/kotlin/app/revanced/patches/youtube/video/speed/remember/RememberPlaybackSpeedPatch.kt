@@ -25,7 +25,7 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 object RememberPlaybackSpeedPatch : BytecodePatch(
     setOf(InitializePlaybackSpeedValuesFingerprint)
 ){
-    const val INTEGRATIONS_CLASS_DESCRIPTOR =
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/playback/speed/RememberPlaybackSpeedPatch;"
 
     override fun execute(context: BytecodeContext) {

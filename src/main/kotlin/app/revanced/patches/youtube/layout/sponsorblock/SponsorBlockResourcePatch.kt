@@ -13,7 +13,7 @@ import app.revanced.util.resources.ResourceUtils.copyXmlNode
 import app.revanced.util.resources.ResourceUtils.mergeStrings
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
-object SponsorBlockResourcePatch : ResourcePatch() {
+internal object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.addPreference(

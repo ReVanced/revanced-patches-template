@@ -12,7 +12,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 @Patch(
     dependencies = [SettingsPatch::class]
 )
-object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
+internal object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
     internal var oldUIDislikeId: Long = -1
 
     override fun execute(context: ResourceContext) {

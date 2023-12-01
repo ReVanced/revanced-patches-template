@@ -20,7 +20,7 @@ abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
     abstract fun transform(mutableMethod: MutableMethod, entry: T)
 
     // Returns the patch indices as a Sequence, which will execute lazily.
-    private fun findPatchIndices(classDef: ClassDef, method: Method): Sequence<T>? {
+    fun findPatchIndices(classDef: ClassDef, method: Method): Sequence<T>? {
         return method.implementation?.instructions?.asSequence()?.withIndex()?.mapNotNull { (index, instruction) ->
             filterMap(classDef, method, instruction, index)
         }

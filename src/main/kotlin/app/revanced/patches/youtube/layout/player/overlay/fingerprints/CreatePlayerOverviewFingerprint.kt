@@ -7,7 +7,7 @@ import app.revanced.patches.youtube.layout.player.overlay.CustomPlayerOverlayOpa
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-object CreatePlayerOverviewFingerprint : MethodFingerprint(
+internal object CreatePlayerOverviewFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PRIVATE or AccessFlags.FINAL,
     opcodes = listOf(

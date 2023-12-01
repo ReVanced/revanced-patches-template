@@ -20,7 +20,7 @@ import com.android.tools.smali.dexlib2.immutable.reference.ImmutableStringRefere
 /**
  * Helper class for applying bytecode patches needed for the microg-support patches.
  */
-internal object MicroGBytecodeHelper {
+object MicroGBytecodeHelper {
     /**
      * Hook a method to check the availability of MicroG.
      *

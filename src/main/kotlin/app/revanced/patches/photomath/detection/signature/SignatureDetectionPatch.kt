@@ -10,7 +10,7 @@ import app.revanced.patches.photomath.detection.signature.fingerprints.CheckSign
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(description = "Disables detection of incorrect signature.")
-object SignatureDetectionPatch : BytecodePatch(
+internal object SignatureDetectionPatch : BytecodePatch(
     setOf(CheckSignatureFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {

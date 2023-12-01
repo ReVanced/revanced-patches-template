@@ -11,7 +11,7 @@ import app.revanced.patches.youtube.misc.recyclerviewtree.hook.fingerprints.Recy
 @Patch(
     dependencies = [IntegrationsPatch::class]
 )
-object RecyclerViewTreeHookPatch : BytecodePatch(
+internal object RecyclerViewTreeHookPatch : BytecodePatch(
     setOf(RecyclerViewTreeObserverFingerprint)
 ) {
     internal lateinit var addHook: (String) -> Unit

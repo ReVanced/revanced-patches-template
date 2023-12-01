@@ -11,7 +11,7 @@ import com.android.tools.smali.dexlib2.iface.Method
  * @param customFingerprint A custom fingerprint.
  * @param additionalStrings Additional strings to add to the fingerprint.
  */
-abstract class AbstractClientIdFingerprint(
+internal abstract class AbstractClientIdFingerprint(
     customFingerprint: ((methodDef: Method, classDef: ClassDef) -> Boolean)? = null,
     vararg additionalStrings: String
 ) : MethodFingerprint(strings = listOf("NOe2iKrPPzwscA", *additionalStrings), customFingerprint = customFingerprint)

@@ -37,7 +37,7 @@ object EnableSlideToSeekPatch : BytecodePatch(
         DoubleSpeedSeekNoticeFingerprint
     )
 ) {
-    const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SlideToSeekPatch;"
+    private const val INTEGRATIONS_CLASS_DESCRIPTOR = "Lapp/revanced/integrations/patches/SlideToSeekPatch;"
 
     override fun execute(context: BytecodeContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(

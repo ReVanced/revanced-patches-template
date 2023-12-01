@@ -13,7 +13,7 @@ import app.revanced.patches.youtube.layout.buttons.navigation.fingerprints.Pivot
     description = "Resolves necessary fingerprints.",
     dependencies = [ResourceMappingPatch::class]
 )
-object ResolvePivotBarFingerprintsPatch : BytecodePatch(
+internal object ResolvePivotBarFingerprintsPatch : BytecodePatch(
     setOf(PivotBarConstructorFingerprint)
 ) {
     internal var imageOnlyTabResourceId: Long = -1

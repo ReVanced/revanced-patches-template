@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.photomath.misc.bookpoint.fingerprints.IsBookpointEnabledFingerprint
 
 @Patch(description = "Enables textbook access")
-object EnableBookpointPatch : BytecodePatch(
+internal object EnableBookpointPatch : BytecodePatch(
     setOf(IsBookpointEnabledFingerprint)
 ) {
     override fun execute(context: BytecodeContext) =

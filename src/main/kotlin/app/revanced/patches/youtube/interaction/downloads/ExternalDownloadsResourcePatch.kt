@@ -16,7 +16,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
         SettingsPatch::class
     ]
 )
-object ExternalDownloadsResourcePatch : ResourcePatch() {
+internal object ExternalDownloadsResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(

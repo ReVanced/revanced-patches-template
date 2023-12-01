@@ -18,7 +18,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
         BottomControlsResourcePatch::class
     ]
 )
-object CopyVideoUrlResourcePatch : ResourcePatch() {
+internal object CopyVideoUrlResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
             PreferenceScreen(

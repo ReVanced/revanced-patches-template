@@ -15,7 +15,7 @@ import app.revanced.patches.youtube.layout.theme.fingerprints.LithoThemeFingerpr
         CompatiblePackage("com.google.android.youtube"),
     ]
 )
-object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
+internal object LithoColorHookPatch : BytecodePatch(setOf(LithoThemeFingerprint)) {
     private var insertionIndex : Int = -1
     private lateinit var colorRegister : String
     private lateinit var insertionMethod : MutableMethod

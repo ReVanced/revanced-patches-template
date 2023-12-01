@@ -11,7 +11,7 @@ import org.w3c.dom.Node
 /**
  * helper class for adding manifest metadata needed for microG builds with signature spoofing
  */
-internal object MicroGManifestHelper {
+object MicroGManifestHelper {
 
     /**
      * Add manifest entries needed for package and signature spoofing when using MicroG.

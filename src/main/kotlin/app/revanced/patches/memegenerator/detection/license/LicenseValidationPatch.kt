@@ -8,7 +8,7 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.memegenerator.detection.license.fingerprints.LicenseValidationFingerprint
 
 @Patch(description = "Disables Firebase license validation.")
-object LicenseValidationPatch : BytecodePatch(
+internal object LicenseValidationPatch : BytecodePatch(
     setOf(LicenseValidationFingerprint)
 ) {
     override fun execute(context: BytecodeContext) {

@@ -3,7 +3,7 @@ package app.revanced.util.microg
 /**
  * constants for microG builds with signature spoofing
  */
-internal object Constants {
+object Constants {
     /**
      * microG vendor name
      * aka. package prefix / package base
