@@ -12,43 +12,6 @@ public final class app/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPat
 	public fun transform (Lapp/revanced/patcher/util/proxy/mutableTypes/MutableMethod;Lkotlin/Triple;)V
 }
 
-public final class app/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall : java/lang/Enum, app/revanced/patches/all/misc/transformation/IMethodCall {
-	public static final field GetActiveNetwork Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetActiveNetworkInfo Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetDetailedState Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetNetworkInfo Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetState Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetSystemService1 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field GetSystemService2 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field HasCapability Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field HasTransport Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field IsActiveNetworkMetered Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field IsAvailable Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field IsConnected Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field IsConnectedOrConnecting Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterBestMatchingNetworkCallback Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterDefaultNetworkCallback1 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterDefaultNetworkCallback2 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterNetworkCallback1 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterNetworkCallback2 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RegisterNetworkCallback3 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RequestNetwork1 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RequestNetwork2 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RequestNetwork3 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RequestNetwork4 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field RequestNetwork5 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field UnregisterNetworkCallback1 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static final field UnregisterNetworkCallback2 Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public fun getDefinedClassName ()Ljava/lang/String;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public fun getMethodName ()Ljava/lang/String;
-	public fun getMethodParams ()[Ljava/lang/String;
-	public fun getReturnType ()Ljava/lang/String;
-	public fun replaceInvokeVirtualWithIntegrations (Ljava/lang/String;Lapp/revanced/patcher/util/proxy/mutableTypes/MutableMethod;Lcom/android/tools/smali/dexlib2/iface/instruction/formats/Instruction35c;I)V
-	public static fun valueOf (Ljava/lang/String;)Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-	public static fun values ()[Lapp/revanced/patches/all/connectivity/wifi/spoof/SpoofWifiPatch$MethodCall;
-}
-
 public final class app/revanced/patches/all/interaction/gestures/PredictiveBackGesturePatch : app/revanced/patcher/patch/ResourcePatch {
 	public static final field INSTANCE Lapp/revanced/patches/all/interaction/gestures/PredictiveBackGesturePatch;
 	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V

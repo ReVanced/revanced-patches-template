@@ -40,7 +40,7 @@ object SpoofWifiPatch : AbstractTransformInstructionsPatch<Instruction35cInfo>()
 
 
     // Information about method calls we want to replace
-    enum class MethodCall(
+    private enum class MethodCall(
         override val definedClassName: String,
         override val methodName: String,
         override val methodParams: Array<String>,
