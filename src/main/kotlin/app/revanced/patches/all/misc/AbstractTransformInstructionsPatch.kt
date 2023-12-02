@@ -1,4 +1,4 @@
-package app.revanced.util.patch
+package app.revanced.patches.all.misc
 
 import app.revanced.extensions.findMutableMethodOf
 import app.revanced.patcher.data.BytecodeContext
@@ -8,6 +8,7 @@ import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 
+@Suppress("MemberVisibilityCanBePrivate")
 abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
 
     abstract fun filterMap(
@@ -35,11 +36,7 @@ abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
                         // Since the Sequence executes lazily,
                         // using any() results in only calling
                         // filterMap until the first index has been found.
-                        val patchIndices = findPatchIndices(classDef, method)
-
-                        if (patchIndices?.any() == true) {
-                            add(method)
-                        }
+                        if (findPatchIndices(classDef, method)?.any() == true) add(method)
                     }
                 }
 
@@ -55,9 +52,7 @@ abstract class AbstractTransformInstructionsPatch<T> : BytecodePatch() {
                 val patchIndices = findPatchIndices(mutableClass, mutableMethod)?.toCollection(ArrayDeque())
                     ?: return@methods
 
-                while (!patchIndices.isEmpty()) {
-                    transform(mutableMethod, patchIndices.removeLast())
-                }
+                while (!patchIndices.isEmpty()) transform(mutableMethod, patchIndices.removeLast())
             }
         }
     }

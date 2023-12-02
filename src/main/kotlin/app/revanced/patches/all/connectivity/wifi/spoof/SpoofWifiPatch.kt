@@ -2,7 +2,7 @@ package app.revanced.patches.all.connectivity.wifi.spoof
 
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.util.patch.AbstractTransformInstructionsPatch
+import app.revanced.patches.all.misc.AbstractTransformInstructionsPatch
 import app.revanced.util.patch.IMethodCall
 import app.revanced.util.patch.Instruction35cInfo
 import app.revanced.util.patch.filterMapInstruction35c
