@@ -6,7 +6,7 @@ import app.revanced.util.resources.ResourceUtils.mergeStrings
 /**
  * Helper class for applying resource patches needed for the microg-support patches.
  */
-object MicroGResourceHelper {
+internal object MicroGResourceHelper {
 
     /**
      * Add necessary strings to the strings.xml file.
