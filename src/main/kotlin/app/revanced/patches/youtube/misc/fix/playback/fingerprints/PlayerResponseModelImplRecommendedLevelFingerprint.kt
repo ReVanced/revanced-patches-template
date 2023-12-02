@@ -6,7 +6,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-internal object PlayerResponseModelImplRecommendedLevel : MethodFingerprint(
+internal object PlayerResponseModelImplRecommendedLevelFingerprint : MethodFingerprint(
     returnType = "I",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = emptyList(),

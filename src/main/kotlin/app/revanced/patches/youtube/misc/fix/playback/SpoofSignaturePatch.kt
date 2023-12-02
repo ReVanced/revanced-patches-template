@@ -34,7 +34,7 @@ object SpoofSignaturePatch : BytecodePatch(
     setOf(
         PlayerResponseModelImplGeneralFingerprint,
         PlayerResponseModelImplLiveStreamFingerprint,
-        PlayerResponseModelImplRecommendedLevel,
+        PlayerResponseModelImplRecommendedLevelFingerprint,
         StoryboardRendererSpecFingerprint,
         StoryboardRendererDecoderSpecFingerprint,
         StoryboardRendererDecoderRecommendedLevelFingerprint,
@@ -201,7 +201,7 @@ object SpoofSignaturePatch : BytecodePatch(
         } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
 
         // Hook the recommended precise seeking thumbnails quality level.
-        PlayerResponseModelImplRecommendedLevel.result?.let {
+        PlayerResponseModelImplRecommendedLevelFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
@@ -214,7 +214,7 @@ object SpoofSignaturePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw PlayerResponseModelImplRecommendedLevel.exception
+        } ?: throw PlayerResponseModelImplRecommendedLevelFingerprint.exception
 
         StoryboardRendererSpecFingerprint.result?.let {
             it.mutableMethod.apply {
