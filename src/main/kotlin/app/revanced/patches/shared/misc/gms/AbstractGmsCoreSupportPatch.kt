@@ -1,6 +1,5 @@
 package app.revanced.patches.shared.misc.gms
 
-import app.revanced.extensions.exception
 import app.revanced.patcher.PatchClass
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
@@ -13,7 +12,8 @@ import app.revanced.patches.shared.misc.gms.AbstractGmsCoreSupportPatch.Constant
 import app.revanced.patches.shared.misc.gms.AbstractGmsCoreSupportPatch.Constants.PERMISSIONS
 import app.revanced.patches.shared.misc.gms.fingerprints.GmsCoreSupportFingerprint
 import app.revanced.patches.shared.misc.gms.fingerprints.GmsCoreSupportFingerprint.GET_GMS_CORE_VENDOR_METHOD_NAME
-import app.revanced.util.Utils.returnEarly
+import app.revanced.util.exception
+import app.revanced.util.returnEarly
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c

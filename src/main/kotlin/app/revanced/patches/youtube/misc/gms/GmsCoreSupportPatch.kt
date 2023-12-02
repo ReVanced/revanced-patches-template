@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.misc.gms
 
-import app.revanced.extensions.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patches.shared.misc.gms.AbstractGmsCoreSupportPatch
@@ -11,6 +10,7 @@ import app.revanced.patches.youtube.misc.gms.Constants.YOUTUBE_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.gms.GmsCoreSupportResourcePatch.gmsCoreVendorOption
 import app.revanced.patches.youtube.misc.gms.fingerprints.*
 import app.revanced.patches.youtube.shared.fingerprints.WatchWhileActivityFingerprint
+import app.revanced.util.exception
 
 
 @Suppress("unused")
