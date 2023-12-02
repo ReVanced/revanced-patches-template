@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.PatchException
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.patch.options.PatchOption.PatchExtensions.stringPatchOption
-import app.revanced.patches.twitter.misc.links.fingerprints.LinkBuilderMethodFingerprint
+import app.revanced.patches.twitter.misc.links.fingerprints.LinkBuilderFingerprint
 import app.revanced.patches.twitter.misc.links.fingerprints.LinkResourceGetterFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.BuilderInstruction
@@ -21,7 +21,6 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
-import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 
 @Patch(
@@ -31,96 +30,77 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 )
 @Suppress("unused")
 object ChangeLinkSharingDomainPatch : BytecodePatch(
-    setOf(LinkBuilderMethodFingerprint, LinkResourceGetterFingerprint)
+    setOf(LinkBuilderFingerprint, LinkResourceGetterFingerprint)
 ) {
-    private var domain by stringPatchOption(
-        key = "domain",
+    private var domainName by stringPatchOption(
+        key = "domainName",
         default = "fxtwitter.com",
         title = "Domain name",
         description = "The domain to use when sharing links.",
+        required = true
     )
 
     override fun execute(context: BytecodeContext) {
-        // Replace the domain in the method that generates the share link
-        // This is used in the copy link button to generate the link that is copied to the clipboard
-        val linkBuilderMethod = LinkBuilderMethodFingerprint.result?.let {
-            // Find the index of the string instruction that contains the link
-            val stringIndex = it.scanResult.stringsScanResult!!.matches.find { match ->
-                (match.string == "https://twitter.com/%1\$s/status/%2\$d" || match.string == "https://x.com/%1\$s/status/%2\$d")
-            }!!.index
+        val linkBuilderResult = LinkBuilderFingerprint.result ?: throw LinkBuilderFingerprint.exception
 
-            val instruction = it.mutableMethod.getInstruction<OneRegisterInstruction>(stringIndex)
-            val overrideRegister = instruction.registerA
-            val string = ((instruction as ReferenceInstruction).reference as StringReference).string
+        // region Copy link button.
+        linkBuilderResult.mutableMethod.apply {
+            val stringIndex = linkBuilderResult.scanResult.stringsScanResult!!.matches
+                .first().index
 
-            var overrideString = string
-            when {
-                string.contains("twitter.com") -> {
-                    overrideString = string.replace("twitter.com", domain.toString())
-                }
-
-                string.contains("x.com") -> {
-                    overrideString = string.replace("x.com", domain.toString())
-                }
-            }
-
-            it.mutableMethod.replaceInstruction(
+            val targetRegister = getInstruction<OneRegisterInstruction>(stringIndex).registerA
+            replaceInstruction(
                 stringIndex,
-                "const-string v$overrideRegister, \"$overrideString\""
+                "const-string v$targetRegister, \"https://$domainName/%1\$s/status/%2\$d\""
             )
+        }
 
-            it.method
-        } ?: throw LinkBuilderMethodFingerprint.exception
 
-        // Replace instruction that gets the link template from resources with a call to our patched method.
-        // It is used in the Share via... dialog to show the link that will be shared.
+        // endregion
+
+        // Used in the Share via... dialog.
         LinkResourceGetterFingerprint.result?.apply {
-            val instructions = this.mutableMethod.getInstructions()
+            val instructions = mutableMethod.getInstructions()
 
-            // Result register of the original method call
+            // Result register of the original method call.
             var resultRegister = 0
 
-            // Remove instructions at the end and get the register of the last instruction
+            // Remove instructions at the end and get the register of the last instruction.
             for ((index, instruction) in instructions.withIndex()) {
                 if (instruction.opcode == Opcode.INVOKE_VIRTUAL) {
                     val methodRef =
                         (instruction as ReferenceInstruction).reference as MethodReference
                     if (methodRef.definingClass != "Landroid/content/res/Resources;") continue
 
-                    // Get the result register of the original method call
+                    // Get the result register of the original method call.
                     resultRegister = (instructions[index + 1] as OneRegisterInstruction).registerA
 
-                    // Remove the original method call for getting the link from resources and the move-result-object instruction
-                    this.mutableMethod.removeInstructions(index, 2)
+                    mutableMethod.apply {
+                        // Remove the original method call for getting the link from resources and the move-result-object instruction.
+                        removeInstructions(index, 2)
 
-                    // Remove the instruction that uses the resultRegister as an array reference to prevent an error
-                    this.mutableMethod.removeInstructions(index - 2, 1)
+                        // Remove the instruction that uses the resultRegister as an array reference to prevent an error.
+                        removeInstructions(index - 2, 1)
+                    }
 
                     break
                 }
             }
 
-            // Instruction that sets free register to "this", needed to restore the original value of the register
+            // Instruction that sets free register to "this", needed to restore the original value of the register.
             var instructionToGetThis: TwoRegisterInstruction? = null
 
-            // Save user nickname to free register
+            // Save user nickname to free register.
             for ((index, instruction) in instructions.withIndex()) {
                 if (instruction.opcode == Opcode.INVOKE_VIRTUAL) {
+                    val methodReference = (instruction as ReferenceInstruction).reference.toString()
+                    if (!methodReference.endsWith("Ljava/lang/String;")) continue
 
-                    val methodRef =
-                        (instruction as ReferenceInstruction).reference as MethodReference
-
-                    if (methodRef.returnType != "Ljava/lang/String;") continue
-
-                    // Get instruction that sets free register to "this"
-                    instructionToGetThis = this.mutableMethod.getInstruction<TwoRegisterInstruction>(index - 1)
-
-                    // Get the register for the username
-                    val sourceRegister = this.mutableMethod.getInstruction<OneRegisterInstruction>(index + 1).registerA
-
-                    this.mutableMethod.addInstruction(
+                    // Get instruction that sets free register to "this".
+                    instructionToGetThis = mutableMethod.getInstruction<TwoRegisterInstruction>(index - 1)
+                    mutableMethod.addInstruction(
                         index + 2,
-                        "move-object v${instructionToGetThis.registerA}, v$sourceRegister"
+                        "move-object v${instructionToGetThis.registerA}, v${instructionToGetThis.registerA}"
                     )
                     break
                 }
@@ -128,7 +108,7 @@ object ChangeLinkSharingDomainPatch : BytecodePatch(
 
             if (instructionToGetThis == null) throw PatchException("Instruction to get \"this\" not found")
 
-            // Call the patched method and save the result to resultRegister
+            // Call the patched method and save the result to resultRegister.
             for ((index, instruction) in instructions.withIndex()) {
                 if (instruction.opcode == Opcode.INVOKE_VIRTUAL) {
 
@@ -136,20 +116,20 @@ object ChangeLinkSharingDomainPatch : BytecodePatch(
                         (instruction as ReferenceInstruction).reference as MethodReference
                     if (methodRef.definingClass != "Ljava/lang/Long;") continue
 
-                    // Get the registers for tweet ID number (64 bits)
+                    // Get the registers for tweet ID number (64 bits).
                     val sourceRegister = (instructions[index + 1] as OneRegisterInstruction).registerA
                     val sourcePlusOne = sourceRegister + 1
 
-                    // Call the patched method with the tweet ID and username and save the result to resultRegister
+                    // Call the patched method with the tweet ID and username and save the result to resultRegister.
                     this.mutableMethod.addInstructions(
                         index + 2,
                         """
-                            invoke-static { v$sourceRegister, v$sourcePlusOne, v${instructionToGetThis.registerA} }, $linkBuilderMethod
+                            invoke-static { v$sourceRegister, v$sourcePlusOne, v${instructionToGetThis.registerA} }, ${linkBuilderResult.method}
                             move-result-object v$resultRegister
                         """
                     )
 
-                    // Restore the register that was used to store our string by duplicating the instruction that got "this"
+                    // Restore the register that was used to store our string by duplicating the instruction that got "this".
                     this.mutableMethod.addInstruction(index+4, instructionToGetThis as BuilderInstruction)
                     break
                 }
