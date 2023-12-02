@@ -6,7 +6,6 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 
-@FuzzyPatternScanMethod(2) // FIXME: Test this threshold and find the best value.
 object ServiceCheckFingerprint : MethodFingerprint(
     "V",
     AccessFlags.PUBLIC or AccessFlags.STATIC,
