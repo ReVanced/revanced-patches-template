@@ -1,6 +1,6 @@
 package app.revanced.patches.reddit.customclients.syncforreddit.annoyances.startup
 
-import app.revanced.extensions.exception
+import app.revanced.util.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
 import app.revanced.patcher.patch.BytecodePatch

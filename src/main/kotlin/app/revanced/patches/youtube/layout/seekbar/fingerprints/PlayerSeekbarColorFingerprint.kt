@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.layout.seekbar.fingerprints
 
-import app.revanced.extensions.containsWideLiteralInstructionValue
+import app.revanced.util.containsWideLiteralInstructionValue
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patches.youtube.layout.seekbar.SeekbarColorResourcePatch

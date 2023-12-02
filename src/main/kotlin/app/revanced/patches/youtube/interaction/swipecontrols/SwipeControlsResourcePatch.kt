@@ -5,8 +5,8 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
 
 @Patch(
     dependencies = [SettingsPatch::class]
@@ -94,7 +94,7 @@ internal object SwipeControlsResourcePatch : ResourcePatch() {
 
         context.copyResources(
             "swipecontrols",
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
                 "drawable",
                 "ic_sc_brightness_auto.xml",
                 "ic_sc_brightness_manual.xml",
