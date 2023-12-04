@@ -23,11 +23,11 @@ Add a title, a description, a license and a short summary of the patches that ar
 
 ## 🔘 Optional steps
 
-You can also set up the following things:
+You can also add the following things to the repository:
 
-- [Add issue templates to the repository](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)[^2]
-- Add contribution guidelines to the repository[^3]
-- If you want to publish your patches as a library, add documentation to the repository[^4]
+- [Issue templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)[^2]
+- Contribution guidelines[^3]
+- Documentation, if you want to publish your patches as a library[^4]
 
 [^1]: [Example README.md file](https://github.com/ReVanced/revanced-patches/blob/main/README.md)
 [^2]: [Example issue templates](https://github.com/ReVanced/revanced-patches/tree/main/.github/ISSUE_TEMPLATE)
