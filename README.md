@@ -1,23 +1,23 @@
 # 👋🧩 ReVanced Patches template
 
 This is a template for creating a new ReVanced Patches repository.  
-The repository can have multiple patches and patches from other repositories can be used together.
+The repository can have multiple patches, and patches from other repositories can be used together.
 
 For an example repository, see [ReVanced Patches](https://github.com/revanced/revanced-patches).
 
 ##  🚀 Get started 
 
-In order to start using this template, follow these steps:
+To start using this template, follow these steps:
 
 ### 1. [Create a new repository using this template](https://github.com/new?template_name=revanced-patches-template&template_owner=ReVanced)
 
 ### 2. Set up the `build.gradle.kts` file
 
-Match the group of the project, the manifest attributes as well as the POM that will be published to yours.
+Match the group of the project, the manifest attributes, and the POM that will be published to yours.
 
 ### 3.  Set up the `README.md` file[^1]
 
-Add a title, a description, a license and a short summary of the patches that are included in the repository.
+Add a title, a description, a license and a short summary of the patches that are included in the repository. 
 
 🎉 You are now ready to start creating patches!
 
