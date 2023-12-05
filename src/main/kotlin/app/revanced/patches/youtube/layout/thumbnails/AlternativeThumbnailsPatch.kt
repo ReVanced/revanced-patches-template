@@ -209,5 +209,6 @@ object AlternativeThumbnailsPatch : BytecodePatch(
         CronetURLRequestCallbackOnFailureFingerprint.result?.apply {
             loadImageErrorCallbackMethod = mutableMethod
         } ?: throw CronetURLRequestCallbackOnFailureFingerprint.exception
+        addImageUrlErrorCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
     }
 }
