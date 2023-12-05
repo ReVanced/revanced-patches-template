@@ -88,11 +88,27 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                 "revanced_alt_thumbnails_preference_screen",
                 StringResource("revanced_alt_thumbnails_preference_screen_title", "Alternative thumbnails"),
                 listOf(
-                    SwitchPreference(
-                        "revanced_alt_thumbnail",
-                        StringResource("revanced_alt_thumbnail_title", "Enable alternative thumbnails"),
-                        StringResource("revanced_alt_thumbnail_summary_on", "YouTube video stills shown"),
-                        StringResource("revanced_alt_thumbnail_summary_off", "Original YouTube thumbnails shown")
+                    ListPreference(
+                        "revanced_alt_thumbnail_mode",
+                        StringResource("revanced_alt_thumbnail_mode_title", "Thumbnail Mode"),
+                        ArrayResource(
+                            "revanced_alt_thumbnail_mode_entries",
+                            listOf(
+                                StringResource("revanced_alt_thumbnail_mode_entry_1", "Creator-Provided Thumbnails"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_2", "YouTube Video Stills"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_3", "DeArrow, fallback to Creator-Provided Thumbnails"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_4", "DeArrow, fallback to YouTube Video Stills")
+                            )
+                        ),
+                        ArrayResource(
+                            "revanced_alt_thumbnail_mode_entry_values",
+                            listOf(
+                                StringResource("revanced_alt_thumbnail_mode_entry_value_1", "1"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_value_2", "2"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_value_3", "3"),
+                                StringResource("revanced_alt_thumbnail_mode_entry_value_4", "4"),
+                            )
+                        )
                     ),
                     ListPreference(
                         "revanced_alt_thumbnail_type",
@@ -123,11 +139,23 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         ),
                         StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using high quality stills")
                     ),
+                    TextPreference(
+                        "revanced_alt_thumbnail_dearrow_api_url",
+                        StringResource("revanced_alt_thumbnail_dearrow_api_url_title", "DeArrow Thumbnail Cache Endpoint"),
+                        StringResource("revanced_alt_thumbnail_dearrow_api_url_summary", "The URL of the DeArrow thumbnail cache endpoint. This should not be changed unless you know what you are doing."),
+                    ),
                     NonInteractivePreference(
-                        StringResource("revanced_alt_thumbnail_about_title", "About"),
+                        StringResource("revanced_alt_thumbnail_about_title", "About Video Stills"),
                         StringResource(
                             "revanced_alt_thumbnail_about_summary",
                             "Alternative thumbnails are still images from the beginning/middle/end of each video. No external API is used, as these images are built into YouTube"
+                        )
+                    ),
+                    NonInteractivePreference(
+                        StringResource("revanced_alt_thumbnail_about_dearrow_title", "About DeArrow"),
+                        StringResource(
+                            "revanced_alt_thumbnail_about_dearrow_summary",
+                            "DeArrow provides crowdsourced thumbnails for YouTube videos. These thumbnails are often more relevant than the ones provided by YouTube. Using DeArrow will send video URLs to DeArrows servers. No other data is sent."
                         )
                     )
                 ),
