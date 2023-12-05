@@ -2,6 +2,7 @@ import org.gradle.kotlin.dsl.support.listFilesOrdered
 
 plugins {
     kotlin("jvm") version "1.9.21"
+    alias(libs.plugins.binary.compatibility.validator)
     `maven-publish`
 }
 
