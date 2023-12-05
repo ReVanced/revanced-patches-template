@@ -1,3 +1,70 @@
+# [3.0.0-dev.6](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.5...v3.0.0-dev.6) (2023-12-05)
+
+
+### Features
+
+* **Twitch - Settings:** Support version `16.1.0` and `15.4.1` ([#3377](https://github.com/ReVanced/revanced-patches/issues/3377)) ([062310d](https://github.com/ReVanced/revanced-patches/commit/062310dcc3923568c96171420c7fb9c0c2144233))
+
+# [3.0.0-dev.5](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.4...v3.0.0-dev.5) (2023-12-04)
+
+
+### Bug Fixes
+
+* Use correct class loader to load resources ([1d5f1f8](https://github.com/ReVanced/revanced-patches/commit/1d5f1f83be1f4eb78381887cd59f1649f1ed6d71))
+
+
+### Features
+
+* **Photomath:** Constrain patches to last working version ([f9a5dc6](https://github.com/ReVanced/revanced-patches/commit/f9a5dc6c91f37e9d7018e631739ca61511940d29))
+
+# [3.0.0-dev.4](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.3...v3.0.0-dev.4) (2023-12-04)
+
+
+### Bug Fixes
+
+* **YouTube - Minimized playback:** Fix PIP incorrectly shown for some Shorts playback ([#3364](https://github.com/ReVanced/revanced-patches/issues/3364)) ([84607ff](https://github.com/ReVanced/revanced-patches/commit/84607ff5f4bd30d328cdc4e1d46070a86d6c56bf))
+
+# [3.0.0-dev.3](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.2...v3.0.0-dev.3) (2023-12-04)
+
+
+### Bug Fixes
+
+* **YouTube - Return YouTube Dislike:** Prevent the first Short opened from freezing the UI ([#3359](https://github.com/ReVanced/revanced-patches/issues/3359)) ([e024409](https://github.com/ReVanced/revanced-patches/commit/e024409219bfbccc32c337d95da24b7146b6c7b7))
+
+# [3.0.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.1...v3.0.0-dev.2) (2023-12-02)
+
+
+### Features
+
+* **YouTube:** Clarify patch descriptions ([#3350](https://github.com/ReVanced/revanced-patches/issues/3350)) ([f2b9df4](https://github.com/ReVanced/revanced-patches/commit/f2b9df4e22a1c537cbd383087a3d724c3cdc1784))
+
+# [3.0.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.203.0-dev.2...v3.0.0-dev.1) (2023-12-02)
+
+
+### Features
+
+* Allow choosing the vendor of GmsCore via patch options ([#3347](https://github.com/ReVanced/revanced-patches/issues/3347)) ([161261c](https://github.com/ReVanced/revanced-patches/commit/161261cfeab4616764d20efe46fcfd483299741c))
+
+
+### BREAKING CHANGES
+
+* Various APIs have been moved to `GmsCoreSupportAbstractPatch`
+
+# [2.203.0-dev.2](https://github.com/ReVanced/revanced-patches/compare/v2.203.0-dev.1...v2.203.0-dev.2) (2023-12-02)
+
+
+### Features
+
+* Publish as a library ([#3356](https://github.com/ReVanced/revanced-patches/issues/3356)) ([4b878ee](https://github.com/ReVanced/revanced-patches/commit/4b878eeeda7d8b97ddd0911077b701c36dec5e43))
+
+# [2.203.0-dev.1](https://github.com/ReVanced/revanced-patches/compare/v2.202.0...v2.203.0-dev.1) (2023-12-02)
+
+
+### Features
+
+* **Infinity for Reddit - Spoof client:** Support latest version ([ca42fd9](https://github.com/ReVanced/revanced-patches/commit/ca42fd93656eae6a5f5f0086e3cf574fb6f4f11e))
+* **Infinity for Reddit:** Add `Unlock subscription` patch ([840b29e](https://github.com/ReVanced/revanced-patches/commit/840b29e9891243a4ccabb6ade5ad6ac92984efc2))
+
 # [2.202.0](https://github.com/ReVanced/revanced-patches/compare/v2.201.1...v2.202.0) (2023-12-02)
 
 
