@@ -3,15 +3,23 @@ package app.revanced.patches.youtube.layout.thumbnails
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
+import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
+import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.util.exception
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 
 @Patch(
     name = "Alternative thumbnails",
@@ -34,7 +42,11 @@ import app.revanced.util.exception
 )
 @Suppress("unused")
 object AlternativeThumbnailsPatch : BytecodePatch(
-    setOf(MessageDigestImageUrlParentFingerprint, CronetURLRequestCallbackOnResponseStartedFingerprint)
+    setOf(
+        MessageDigestImageUrlParentFingerprint,
+        CronetUrlRequestCallbackOnResponseStartedFingerprint,
+        CronetUrlRequestFingerprint,
+    )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
         "Lapp/revanced/integrations/patches/AlternativeThumbnailsPatch;"
@@ -68,7 +80,8 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     private fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
         loadImageSuccessCallbackMethod.addInstruction(
             loadImageSuccessCallbackIndex++,
-            "invoke-static { p2 }, $targetMethodClass->handleCronetSuccess(Lorg/chromium/net/UrlResponseInfo;)V"
+            "invoke-static { p1, p2 }, $targetMethodClass->handleCronetSuccess(" +
+                    "Lorg/chromium/net/UrlRequest;Lorg/chromium/net/UrlResponseInfo;)V"
         )
     }
 
@@ -78,7 +91,8 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     fun addImageUrlErrorCallbackHook(targetMethodClass: String) {
         loadImageErrorCallbackMethod.addInstruction(
             loadImageErrorCallbackIndex++,
-            "invoke-static { p2, p3 }, $targetMethodClass->handleCronetFailure(Lorg/chromium/net/UrlResponseInfo;Ljava/io/IOException;)V"
+            "invoke-static { p1, p2, p3 }, $targetMethodClass->handleCronetFailure(" +
+                    "Lorg/chromium/net/UrlRequest;Lorg/chromium/net/UrlResponseInfo;Ljava/io/IOException;)V"
         )
     }
 
@@ -131,6 +145,12 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         StringResource("revanced_alt_thumbnail_dearrow_summary_on", "Using DeArrow"),
                         StringResource("revanced_alt_thumbnail_dearrow_summary_off", "Not using DeArrow")
                     ),
+                    SwitchPreference(
+                        "revanced_alt_thumbnail_dearrow_connection_toast",
+                        StringResource("revanced_alt_thumbnail_dearrow_connection_toast_title", "Show toast if API is not available"),
+                        StringResource("revanced_alt_thumbnail_dearrow_connection_toast_summary_on", "Toast shown if DeArrow is not available"),
+                        StringResource("revanced_alt_thumbnail_dearrow_connection_toast_summary_off", "Toast not shown if DeArrow is not available")
+                    ),
                     TextPreference(
                         "revanced_alt_thumbnail_dearrow_api_url",
                         StringResource(
@@ -162,25 +182,59 @@ object AlternativeThumbnailsPatch : BytecodePatch(
         addImageUrlHook(INTEGRATIONS_CLASS_DESCRIPTOR, true)
 
 
-        CronetURLRequestCallbackOnResponseStartedFingerprint.result
-            ?: throw CronetURLRequestCallbackOnResponseStartedFingerprint.exception
-        CronetURLRequestCallbackOnSucceededFingerprint.resolve(
+        CronetUrlRequestCallbackOnResponseStartedFingerprint.result
+            ?: throw CronetUrlRequestCallbackOnResponseStartedFingerprint.exception
+        CronetUrlRequestCallbackOnSucceededFingerprint.resolve(
             context,
-            CronetURLRequestCallbackOnResponseStartedFingerprint.result!!.classDef
+            CronetUrlRequestCallbackOnResponseStartedFingerprint.result!!.classDef
         )
-        CronetURLRequestCallbackOnSucceededFingerprint.result?.apply {
+        CronetUrlRequestCallbackOnSucceededFingerprint.result?.apply {
             loadImageSuccessCallbackMethod = mutableMethod
-        } ?: throw CronetURLRequestCallbackOnSucceededFingerprint.exception
+        } ?: throw CronetUrlRequestCallbackOnSucceededFingerprint.exception
         addImageUrlSuccessCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
 
 
-        CronetURLRequestCallbackOnFailureFingerprint.resolve(
+        CronetUrlRequestCallbackOnFailureFingerprint.resolve(
             context,
-            CronetURLRequestCallbackOnResponseStartedFingerprint.result!!.classDef
+            CronetUrlRequestCallbackOnResponseStartedFingerprint.result!!.classDef
         )
-        CronetURLRequestCallbackOnFailureFingerprint.result?.apply {
+        CronetUrlRequestCallbackOnFailureFingerprint.result?.apply {
             loadImageErrorCallbackMethod = mutableMethod
-        } ?: throw CronetURLRequestCallbackOnFailureFingerprint.exception
+        } ?: throw CronetUrlRequestCallbackOnFailureFingerprint.exception
         addImageUrlErrorCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+
+        // The URL is required for the failure callback hook, but the URL field is obfuscated.
+        // Add a helper get method that returns the URL field.
+        CronetUrlRequestFingerprint.result?.apply {
+            // The url is the only string field that is set inside the constructor.
+            val urlFieldInstruction = mutableMethod.getInstructions().first {
+                if (it.opcode != Opcode.IPUT_OBJECT) return@first false
+
+                val reference = (it as ReferenceInstruction).reference as FieldReference
+                reference.type == "Ljava/lang/String;"
+            } as ReferenceInstruction
+
+            val urlFieldName = (urlFieldInstruction.reference as FieldReference).name
+            val definingClass = CronetUrlRequestFingerprint.IMPLEMENTATION_CLASS_NAME
+            val addedMethodName = "getHookedUrl"
+            mutableClass.methods.add(
+                ImmutableMethod(
+                    definingClass,
+                    addedMethodName,
+                    emptyList(),
+                    "Ljava/lang/String;",
+                    AccessFlags.PUBLIC.value,
+                    null,
+                    null,
+                    MutableMethodImplementation(2)
+                ).toMutable().apply {
+                    addInstructions(
+                        """
+                        iget-object v0, p0, $definingClass->${urlFieldName}:Ljava/lang/String;
+                        return-object v0
+                    """
+                    )
+                })
+        } ?: throw CronetUrlRequestCallbackOnFailureFingerprint.exception
     }
 }

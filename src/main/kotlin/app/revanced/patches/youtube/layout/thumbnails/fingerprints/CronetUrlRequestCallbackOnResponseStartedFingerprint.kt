@@ -5,7 +5,7 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 // Acts as a parent fingerprint.
-internal object CronetURLRequestCallbackOnResponseStartedFingerprint : MethodFingerprint(
+internal object CronetUrlRequestCallbackOnResponseStartedFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters =  listOf("Lorg/chromium/net/UrlRequest;", "Lorg/chromium/net/UrlResponseInfo;"),
