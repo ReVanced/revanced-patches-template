@@ -117,35 +117,35 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         )
                     ),
                     ListPreference(
-                        "revanced_alt_thumbnail_type",
-                        StringResource("revanced_alt_thumbnail_type_title", "Video time to take the still from"),
+                        "revanced_alt_thumbnail_still_time",
+                        StringResource("revanced_alt_thumbnail_still_time_title", "Video time to take the still from"),
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entries",
                             listOf(
-                                StringResource("revanced_alt_thumbnail_type_entry_1", "Beginning of video"),
-                                StringResource("revanced_alt_thumbnail_type_entry_2", "Middle of video"),
-                                StringResource("revanced_alt_thumbnail_type_entry_3", "End of video"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_1", "Beginning of video"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_2", "Middle of video"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_3", "End of video"),
                             )
                         ),
                         ArrayResource(
                             "revanced_alt_thumbnail_type_entry_values",
                             listOf(
-                                StringResource("revanced_alt_thumbnail_type_entry_value_1", "1"),
-                                StringResource("revanced_alt_thumbnail_type_entry_value_2", "2"),
-                                StringResource("revanced_alt_thumbnail_type_entry_value_3", "3"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_value_1", "1"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_value_2", "2"),
+                                StringResource("revanced_alt_thumbnail_still_time_entry_value_3", "3"),
                             )
                         )
                     ),
                     SwitchPreference(
-                        "revanced_alt_thumbnail_fast_quality",
-                        StringResource("revanced_alt_thumbnail_fast_quality_title", "Use fast alternative thumbnails"),
+                        "revanced_alt_thumbnail_still_fast_quality",
+                        StringResource("revanced_alt_thumbnail_still_fast_quality_title", "Use fast alternative thumbnails"),
                         StringResource(
-                            "revanced_alt_thumbnail_fast_quality_summary_on",
+                            "revanced_alt_thumbnail_still_fast_quality_summary_on",
                             "Using medium quality stills. " +
                                     "Thumbnails will load faster, but live streams, unreleased, " +
                                     "or very old videos may show blank thumbnails"
                         ),
-                        StringResource("revanced_alt_thumbnail_fast_quality_summary_off", "Using high quality stills")
+                        StringResource("revanced_alt_thumbnail_still_fast_quality_summary_off", "Using high quality stills")
                     ),
                     TextPreference(
                         "revanced_alt_thumbnail_dearrow_api_url",
@@ -160,17 +160,17 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         ),
                     ),
                     NonInteractivePreference(
-                        StringResource("revanced_alt_thumbnail_about_stills_title", "About video stills"),
+                        StringResource("revanced_alt_thumbnail_stills_about_title", "About video stills"),
                         StringResource(
-                            "revanced_alt_thumbnail_about_stills_summary",
+                            "revanced_alt_thumbnail_stills_about_summary",
                             "Video stills are still images from the beginning/middle/end of each video. " +
                                     "No external API is used, as these images are built into YouTube"
                         )
                     ),
                     NonInteractivePreference(
-                        StringResource("revanced_alt_thumbnail_about_dearrow_title", "About DeArrow"),
+                        StringResource("revanced_alt_thumbnail_dearrow_about_title", "About DeArrow"),
                         StringResource(
-                            "revanced_alt_thumbnail_about_dearrow_summary",
+                            "revanced_alt_thumbnail_dearrow_about_summary",
                             "DeArrow provides crowd-sourced thumbnails for YouTube videos. " +
                                     "These thumbnails are often more relevant than the ones provided by YouTube. " +
                                     "Using DeArrow will send requests to DeArrows servers. No other data is sent."
