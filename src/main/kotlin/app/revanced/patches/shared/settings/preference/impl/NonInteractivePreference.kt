@@ -17,8 +17,9 @@ import org.w3c.dom.Element
  */
 class NonInteractivePreference(
     title: StringResource,
-    summary: StringResource,
-) : BasePreference(null, title, summary, "Preference") {
+    summary: StringResource?,
+    tag: String = "Preference",
+) : BasePreference(null, title, summary, tag) {
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
             addSummary(summary?.also { resourceCallback.invoke(it)

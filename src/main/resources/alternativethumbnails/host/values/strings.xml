@@ -1,0 +1,9 @@
+<resources>
+    <string name="revanced_alt_thumbnail_about_summary_disabled">Showing original YouTube thumbnails</string>
+    <string name="revanced_alt_thumbnail_about_summary_stills">Showing still video captures from the beginning/middle/end of each video. These images are built into YouTube, and no external API is used</string>
+
+    <string name="revanced_alt_thumbnail_about_summary_dearrow" formatted="false">Showing DeArrow provided crowd-sourced thumbnails. These thumbnails are often more relevant than the ones provided by YouTube. Thumbnail requests will be sent to the DeArrow API server, and no other data is sent.\n\nIf DeArrow has no thumbnails, %s\n\n%s</string>
+    <string name="revanced_alt_thumbnail_about_summary_dearrow_fallback_none">then the original YouTube thumbnails will be shown</string>
+    <string name="revanced_alt_thumbnail_about_summary_dearrow_fallback_stills">then YouTube provided still image captures will be shown.</string>
+    <string name="revanced_alt_thumbnail_about_summary_link_text">Tap here to learn more about DeArrow</string>
+</resources>
