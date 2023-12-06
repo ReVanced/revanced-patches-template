@@ -657,7 +657,8 @@ public final class app/revanced/patches/shared/settings/preference/impl/ListPref
 }
 
 public final class app/revanced/patches/shared/settings/preference/impl/NonInteractivePreference : app/revanced/patches/shared/settings/preference/BasePreference {
-	public fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;)V
+	public fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Ljava/lang/String;)V
+	public synthetic fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun serialize (Lorg/w3c/dom/Document;Lkotlin/jvm/functions/Function1;)Lorg/w3c/dom/Element;
 }
 
