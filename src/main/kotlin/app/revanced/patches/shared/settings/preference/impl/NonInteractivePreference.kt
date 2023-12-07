@@ -14,16 +14,19 @@ import org.w3c.dom.Element
  *
  * @param title The title of the preference.
  * @param summary The summary of the text preference.
+ * @param selectable If this preference is selectable or not.
+ *                   Changes the appearance of the horizontal dividers on top/bottom.
  */
 class NonInteractivePreference(
     title: StringResource,
     summary: StringResource?,
     tag: String = "Preference",
+    val selectable: Boolean = false
 ) : BasePreference(null, title, summary, tag) {
     override fun serialize(ownerDocument: Document, resourceCallback: (BaseResource) -> Unit): Element {
         return super.serialize(ownerDocument, resourceCallback).apply {
             addSummary(summary?.also { resourceCallback.invoke(it)
-                setAttribute("android:selectable", false.toString())
+                setAttribute("android:selectable", selectable.toString())
             })
         }
     }
