@@ -257,7 +257,7 @@ The following properties are utilized by bytecode patches:
 
 ### 🧩 Patches
 
-- [`VideoAdsPatch`](/https://github.com/ReVanced/revanced-patches/blob/7c431c867d62f024855bb07f0723dbbf0af034ae/src/main/kotlin/app/revanced/patches/twitch/ad/video/VideoAdsPatch.kt)
+- [`VideoAdsPatch`](https://github.com/ReVanced/revanced-patches/blob/7c431c867d62f024855bb07f0723dbbf0af034ae/src/main/kotlin/app/revanced/patches/twitch/ad/video/VideoAdsPatch.kt)
 - [`RememberVideoQualityPatch`](https://github.com/ReVanced/revanced-patches/blob/7c431c867d62f024855bb07f0723dbbf0af034ae/src/main/kotlin/app/revanced/patches/youtube/video/quality/RememberVideoQualityPatch.kt)
 
 ### 🔍 Fingerprints
