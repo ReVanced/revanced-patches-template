@@ -108,6 +108,46 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         tag = "app.revanced.integrations.settingsmenu.AlternativeThumbnailsStatusPreference"
                     ),
                     SwitchPreference(
+                        "revanced_alt_thumbnails_dearrow",
+                        StringResource("revanced_alt_thumbnails_dearrow_title", "Enable DeArrow"),
+                        StringResource("revanced_alt_thumbnails_dearrow_summary_on", "Using DeArrow"),
+                        StringResource("revanced_alt_thumbnails_dearrow_summary_off", "Not using DeArrow")
+                    ),
+                    SwitchPreference(
+                        "revanced_alt_thumbnails_dearrow_connection_toast",
+                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_title", "Show toast if API is not available"),
+                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_summary_on", "Toast shown if DeArrow is not available"),
+                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_summary_off", "Toast not shown if DeArrow is not available")
+                    ),
+                    TextPreference(
+                        "revanced_alt_thumbnails_dearrow_api_url",
+                        StringResource(
+                            "revanced_alt_thumbnails_dearrow_api_url_title",
+                            "DeArrow Thumbnail Cache Endpoint"
+                        ),
+                        StringResource(
+                            "revanced_alt_thumbnails_dearrow_api_url_summary",
+                            "The URL of the DeArrow thumbnail cache endpoint. " +
+                                    "Do not change this unless you know what you\\\'re doing"
+                        ),
+                    ),
+                    NonInteractivePreference(
+                        StringResource(
+                            "revanced_alt_thumbnails_dearrow_about_title",
+                            "About DeArrow"
+                        ),
+                        StringResource(
+                            "revanced_alt_thumbnails_dearrow_about_summary",
+                            "DeArrow provides crowd sourced thumbnails for YouTube videos. " +
+                                    "These thumbnails are often more relevant than those provided by YouTube. " +
+                                    "If enabled, video URLs will be sent to the API server and no other data is sent."
+                                    + "\\n\\nTap here to learn more about DeArrow"
+                        ),
+                        // Custom about preference with link to the DeArrow website.
+                        tag = "app.revanced.integrations.settingsmenu.AlternativeThumbnailsAboutDeArrowPreference",
+                        selectable = true
+                    ),
+                    SwitchPreference(
                         "revanced_alt_thumbnails_stills",
                         StringResource("revanced_alt_thumbnails_stills_title", "Enable still video captures"),
                         StringResource("revanced_alt_thumbnails_stills_summary_on", "Using YouTube video still captures"),
@@ -160,52 +200,8 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                             "Still captures are taken from the beginning/middle/end of each video. " +
                                     "These images are built into YouTube, and no external API is used"
                         ),
-                        // When a Preference is set to non selectable it loses its horizontal dividers on the top and bottom.
-                        // This looks ok when the preference is at the bottom, but looks weird when it's in the middle of a list.
-                        //
-                        // Restoring the divider is simple when using androidx.Preference,
-                        // but there is no simple way to do this for the old legacy Preference used here.
-                        // Instead make this selectable so the UI looks more normal.
+                        // Restore the preference dividers to keep it from looking weird.
                         selectable = true
-                    ),
-                    SwitchPreference(
-                        "revanced_alt_thumbnails_dearrow",
-                        StringResource("revanced_alt_thumbnails_dearrow_title", "Enable DeArrow"),
-                        StringResource("revanced_alt_thumbnails_dearrow_summary_on", "Using DeArrow"),
-                        StringResource("revanced_alt_thumbnails_dearrow_summary_off", "Not using DeArrow")
-                    ),
-                    SwitchPreference(
-                        "revanced_alt_thumbnails_dearrow_connection_toast",
-                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_title", "Show toast if API is not available"),
-                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_summary_on", "Toast shown if DeArrow is not available"),
-                        StringResource("revanced_alt_thumbnails_dearrow_connection_toast_summary_off", "Toast not shown if DeArrow is not available")
-                    ),
-                    TextPreference(
-                        "revanced_alt_thumbnails_dearrow_api_url",
-                        StringResource(
-                            "revanced_alt_thumbnails_dearrow_api_url_title",
-                            "DeArrow Thumbnail Cache Endpoint"
-                        ),
-                        StringResource(
-                            "revanced_alt_thumbnails_dearrow_api_url_summary",
-                            "The URL of the DeArrow thumbnail cache endpoint. " +
-                                    "Do not change this unless you know what you\\\'re doing"
-                        ),
-                    ),
-                    NonInteractivePreference(
-                        StringResource(
-                            "revanced_alt_thumbnails_dearrow_about_title",
-                            "About DeArrow"
-                        ),
-                        StringResource(
-                            "revanced_alt_thumbnails_dearrow_about_summary",
-                            "DeArrow provides crowd sourced thumbnails for YouTube videos. " +
-                                    "These thumbnails are often more relevant than those provided by YouTube. " +
-                                    "If enabled, video URLs will be sent to the API server and no other data is sent"
-                                    + "\\n\\nTap here to learn more about DeArrow"
-                        ),
-                        // Custom preference to open the DeArrow website.
-                        tag = "app.revanced.integrations.settingsmenu.AlternativeThumbnailsAboutDeArrowPreference"
                     )
                 ),
                 StringResource("revanced_alt_thumbnails_preference_screen_summary", "Video thumbnail settings")
