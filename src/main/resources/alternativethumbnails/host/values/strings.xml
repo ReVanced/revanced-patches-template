@@ -1,8 +1,8 @@
 <resources>
-    <string name="revanced_alt_thumbnails_about_status_disabled">Showing original YouTube thumbnails</string>
-    <string name="revanced_alt_thumbnails_about_status_stills">Showing still video captures</string>
-    <string name="revanced_alt_thumbnails_about_status_dearrow">Showing DeArrow thumbnails</string>
-    <string name="revanced_alt_thumbnails_about_status_dearrow_stills">Showing DeArrow thumbnails. If DeArrow has no thumbnails then still video captures are shown instead</string>
+    <string name="revanced_alt_thumbnail_about_status_disabled">Showing original YouTube thumbnails</string>
+    <string name="revanced_alt_thumbnail_about_status_stills">Showing still video captures</string>
+    <string name="revanced_alt_thumbnail_about_status_dearrow">Showing DeArrow thumbnails</string>
+    <string name="revanced_alt_thumbnail_about_status_dearrow_stills">Showing DeArrow thumbnails. If DeArrow has no thumbnails then still video captures are shown instead</string>
 
-    <string name="revanced_alt_thumbnails_dearrow_error_toast">DeArrow temporarily not available</string>
+    <string name="revanced_alt_thumbnail_dearrow_error_toast">DeArrow temporarily not available</string>
 </resources>
