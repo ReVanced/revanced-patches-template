@@ -1,6 +1,6 @@
 # 🧩 Skeleton of a Patch
 
-Patches are what make ReVanced, ReVanced. On the following page the basic structure of a patch will be explained.
+Patches are what make ReVanced, ReVanced. On the following page, the basic structure of a patch will be explained.
 
 ## ⛳️ Example patch
 
@@ -37,13 +37,12 @@ object DisableAdsPatch : BytecodePatch(
 
 ## 🔎 Dissecting the example patch
 
-Let's start with understanding, how a patch is structured. A patch is mainly built out of three components:
+Let's start with understanding how a patch is structured. A patch is mainly built out of three components:
 
 1. 📝 Patch annotations
 
    > Note:
-   > Patch annotations can be imported from and processed by the Maven package `app.revanced.revanced-patch-annotation-processor`
-   > By default, the parameters of the super constructor of patches can be used. 
+   > A patch can either be instantiated using the `@Patch` annotation or the parameters of the super constructor.
 
    ```kt
    @Patch(
@@ -54,26 +53,26 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
    )
    ```
 
-   To give context about the patch, annotations are used. They serve different but important purposes:
+   Annotations are used to give context to the patch. They serve different but important purposes:
 
    - Every visible that sets `@Patch.name` will be loadable by `PatchBundleLoader` from the [introduction](1_introduction.md). 
      Patches that do not set `@Patch.name` can be referenced by other patches.
-     We refer to those as _patch dependencies_. Patch dependencies are useful to structure multiple patches.
+     We refer to those as _patch dependencies_. Patch dependencies are useful for structuring multiple patches.
 
      Example: _To add settings switches to an app, first, a patch is required that can provide a basic framework
      for other patches to add their toggles to that app. Those patches refer to the dependency patch
      and use its framework to add their toggles to an app. [ReVanced Patcher](https://github.com/revanced/revanced-patcher) will execute the dependency
-     and then the patch itself. The dependency can prepare a preference screen when executed and then initialize itself
+     and the patch itself. When executed, the dependency can prepare a preference screen and then initialize itself
      for further use by other patches._
 
    - Patches may set `@Path.description`.
-     This annotation is used to briefly describe the patch.
+     This annotation is used to describe the patch briefly.
 
    - Patches may set `@Patch.dependencies`.
      If the current patch depends on other patches, it can declare them as dependencies.
 
      Example: _The patch to remove ads needs to patch the bytecode.
-     Additionally, it makes use of a second patch, to get rid of resource files in the app which show ads in the app._
+     Additionally, it makes use of a second patch to get rid of resource files in the app that show ads in the app._
 
    - Patches may set `@Patch.compatiblePackages`.
      This annotation serves the purpose of constraining a patch to a package.
@@ -81,14 +80,14 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
      Additionally, the constraint may specify versions of the package it is guaranteed to be compatible with.
 
      Example: _The patch disables ads for an app.
-     The app regularly updates and the code of the app mutates heavily. In that case the patch might not be compatible
-     for future, untested versions of the app. To discourage the use of the app with other versions than the versions,
-     this patch was confirmed to work on, it is constrained to those versions only._
+     The app regularly updates, and the code of the app mutates heavily. In that case, the patch might not be compatible
+with future untested app versions. To discourage the use of the app with versions other than the ones
+this patch was confirmed to work on, it is constrained to those versions only._
 
    -  A patch may set `@Patch.requiresIntegrations` to true,
       if it depends on additional integrations to be merged by [ReVanced Patcher](https://github.com/revanced/revanced-patcher).
    
-     > Integrations are precompiled classes which are useful to off-load and useful for developing complex patches.
+     > Integrations are precompiled classes that are useful for offloading and developing complex patches.
      Details of integrations and what exactly integrations are will be introduced properly on another page.
 
 2. 🏗️ Patch class
@@ -99,14 +98,14 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
    }
    ```
 
-   Usually, patches consist out of a single object class.
-   The class can be used to create methods and fields for the patch, or provide a framework for other patches,
+   Usually, patches consist of a single object class.
+   The class can be used to create methods and fields for the patch or provide a framework for other patches,
    in case it is meant to be used as a dependency patch.
 
    [ReVanced Patches](https://github.com/revanced/revanced-patches) follow a convention to name the class of patches:
 
-   Example: _The class for a patch which disables ads should be called `DisableAdsPatch`,
-   for a patch which adds a new download feature it should be called `DownloadsPatch`._
+   Example: _The class for a patch that disables ads should be called `DisableAdsPatch`,
+   for a patch that adds a new download feature, it should be called `DownloadsPatch`._
 
    Each patch implicitly extends the [Patch](https://github.com/ReVanced/revanced-patcher/blob/67b7dff67a212b4fc30eb4f0cbe58f0ba09fb09a/revanced-patcher/src/main/kotlin/app/revanced/patcher/patch/BytecodePatch.kt#L27) class
 3. when extending off [ResourcePatch](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L35) or [BytecodePatch](https://github.com/revanced/revanced-patcher/blob/d2f91a8545567429d64a1bcad6ca1dab62ec95bf/src/main/kotlin/app/revanced/patcher/patch/Patch.kt#L42). The current example extends off `BytecodePatch`:
@@ -117,9 +116,9 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
    }
    ```
 
-   If the patch extends off `ResourcePatch`, it is able to **patch resources** such as `XML`, `PNG` or similar files.
-   On the other hand, if the patch extends off `BytecodePatch`, it is able to **patch the bytecode** of an app.
-   If a patch needs access to the resources and the bytecode at the same time.
+   If the patch extends off `ResourcePatch`, it can **patch resources** such as `XML`, `PNG` or similar files.
+   On the other hand, if the patch extends off `BytecodePatch`, it can **patch the bytecode** of an app.
+   If a patch needs access to the resources and the bytecode simultaneously.
    Either can use the other as a dependency.
    **Patches involving circular dependencies can not be added to a `Patcher` instance.**
 
@@ -131,7 +130,7 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
    }
    ```
 
-   The `execute` method is declared in the `Patch` class and therefore part of any patch:
+   The `execute` method is declared in the `Patch` class and, therefore, part of any patch:
 
    ```kt
    fun execute(context: /* Omitted */ T)
@@ -152,10 +151,10 @@ Let's start with understanding, how a patch is structured. A patch is mainly bui
    Likewise, a `ResourcePatch` will require a [ResourceContext](https://github.com/ReVanced/revanced-patcher/blob/67b7dff67a212b4fc30eb4f0cbe58f0ba09fb09a/revanced-patcher/src/main/kotlin/app/revanced/patcher/data/ResourceContext.kt)
    parameter and provide the patch with everything necessary to patch resources.
 
-   Patches may throw `PatchException` if something went wrong.
+   Patches may throw `PatchException` if something goes wrong.
    If this patch is used as a dependency for other patches, those patches will not execute subsequently.
 
-   In the current example the `execute` method runs the following code to replace instructions at the index `0`
+   In the current example, the `execute` method runs the following code to replace instructions at the index `0`
    of the methods instruction list:
 
    ```kt
