@@ -123,7 +123,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         "revanced_alt_thumbnail_dearrow_api_url",
                         StringResource(
                             "revanced_alt_thumbnail_dearrow_api_url_title",
-                            "DeArrow Thumbnail Cache Endpoint"
+                            "DeArrow API endpoint"
                         ),
                         StringResource(
                             "revanced_alt_thumbnail_dearrow_api_url_summary",
@@ -198,7 +198,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                         StringResource(
                             "revanced_alt_thumbnail_stills_about_summary",
                             "Still captures are taken from the beginning/middle/end of each video. " +
-                                    "These images are built into YouTube, and no external API is used"
+                                    "These images are built into YouTube and no external API is used"
                         ),
                         // Restore the preference dividers to keep it from looking weird.
                         selectable = true

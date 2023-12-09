@@ -4,5 +4,6 @@
     <string name="revanced_alt_thumbnail_about_status_dearrow">Showing DeArrow thumbnails</string>
     <string name="revanced_alt_thumbnail_about_status_dearrow_stills">Showing DeArrow thumbnails. If DeArrow has no thumbnails then still video captures are shown instead</string>
 
-    <string name="revanced_alt_thumbnail_dearrow_error_toast">DeArrow temporarily not available</string>
+    <string name="revanced_alt_thumbnail_dearrow_error">DeArrow temporarily not available (status code: %s)</string>
+    <string name="revanced_alt_thumbnail_dearrow_error_generic">DeArrow temporarily not available</string>
 </resources>
