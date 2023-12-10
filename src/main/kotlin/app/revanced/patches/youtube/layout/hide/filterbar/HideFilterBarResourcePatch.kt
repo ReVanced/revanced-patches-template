@@ -10,7 +10,7 @@ import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
-object HideFilterBarResourcePatch : ResourcePatch() {
+internal object HideFilterBarResourcePatch : ResourcePatch() {
     internal var filterBarHeightId = -1L
     internal var relatedChipCloudMarginId = -1L
     internal var barContainerHeightId = -1L

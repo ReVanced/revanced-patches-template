@@ -12,8 +12,8 @@ import app.revanced.patches.shared.settings.preference.impl.Preference
 import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.settings.SettingsPatch.HOOKED_SETTINGS_ACTIVITY_NAME
 import app.revanced.patches.youtube.misc.strings.StringsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
@@ -50,7 +50,7 @@ object SettingsResourcePatch : AbstractSettingsResourcePatch(
          * copy layout resources
          */
         arrayOf(
-            ResourceUtils.ResourceGroup("layout", "revanced_settings_with_toolbar.xml")
+            ResourceGroup("layout", "revanced_settings_with_toolbar.xml")
         ).forEach { resourceGroup ->
             context.copyResources("youtube/settings", resourceGroup)
         }

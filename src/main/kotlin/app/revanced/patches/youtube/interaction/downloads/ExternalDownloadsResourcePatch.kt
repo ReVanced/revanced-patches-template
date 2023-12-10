@@ -3,12 +3,15 @@ package app.revanced.patches.youtube.interaction.downloads
 import app.revanced.patcher.data.ResourceContext
 import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
-import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.misc.strings.StringsPatch
+import app.revanced.patches.shared.settings.preference.impl.InputType
+import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
+import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
+import app.revanced.patches.shared.settings.preference.impl.TextPreference
 import app.revanced.patches.youtube.misc.playercontrols.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.patches.youtube.misc.strings.StringsPatch
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
 
 @Patch(
     dependencies = [
@@ -16,7 +19,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
         SettingsPatch::class
     ]
 )
-object ExternalDownloadsResourcePatch : ResourcePatch() {
+internal object ExternalDownloadsResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         StringsPatch.includePatchStrings("ExternalDownloads")
@@ -45,7 +48,7 @@ object ExternalDownloadsResourcePatch : ResourcePatch() {
         // Copy resources
         context.copyResources(
             "youtube/downloads",
-            ResourceUtils.ResourceGroup("drawable", "revanced_ic_download_button.xml")
+            ResourceGroup("drawable", "revanced_ic_download_button.xml")
         )
 
         // Add download button node

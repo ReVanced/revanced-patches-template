@@ -5,11 +5,11 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.playercontrols.BottomControlsResourcePatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.patches.youtube.misc.strings.StringsPatch
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
 
 @Patch(
     dependencies = [
@@ -17,7 +17,7 @@ import app.revanced.util.resources.ResourceUtils.copyResources
         BottomControlsResourcePatch::class
     ]
 )
-object CopyVideoUrlResourcePatch : ResourcePatch() {
+internal object CopyVideoUrlResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         StringsPatch.includePatchStrings("CopyVideoUrl")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
@@ -44,7 +44,7 @@ object CopyVideoUrlResourcePatch : ResourcePatch() {
 
         context.copyResources(
             "youtube/copyvideourl",
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
                 resourceDirectoryName = "drawable",
                 "revanced_ic_copy_video_url.xml",
                 "revanced_ic_copy_video_timestamp.xml"

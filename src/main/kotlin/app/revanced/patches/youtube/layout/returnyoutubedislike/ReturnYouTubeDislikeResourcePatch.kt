@@ -5,13 +5,13 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 
 @Patch(
     dependencies = [SettingsPatch::class]
 )
-object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
+internal object ReturnYouTubeDislikeResourcePatch : ResourcePatch() {
     internal var oldUIDislikeId: Long = -1
 
     override fun execute(context: ResourceContext) {

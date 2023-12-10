@@ -5,14 +5,14 @@ import app.revanced.patcher.patch.ResourcePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.mapping.misc.ResourceMappingPatch
 import app.revanced.patches.shared.settings.preference.impl.Preference
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.copyXmlNode
+import app.revanced.patches.youtube.misc.strings.StringsPatch
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
+import app.revanced.util.copyXmlNode
 
 @Patch(dependencies = [SettingsPatch::class, ResourceMappingPatch::class])
-object SponsorBlockResourcePatch : ResourcePatch() {
+internal object SponsorBlockResourcePatch : ResourcePatch() {
 
     override fun execute(context: ResourceContext) {
         StringsPatch.includePatchStrings("SponsorBlock")
@@ -32,7 +32,7 @@ object SponsorBlockResourcePatch : ResourcePatch() {
 
         context.copyResources(
             "youtube/sponsorblock",
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
                 "drawable",
                 "revanced_ic_sb_adjust.xml",
                 "revanced_ic_sb_compare.xml",
@@ -41,13 +41,24 @@ object SponsorBlockResourcePatch : ResourcePatch() {
                 "revanced_ic_sb_publish.xml",
                 "revanced_ic_sb_voting.xml"
             ),
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
                 "layout",
                 "inline_sponsor_overlay.xml",
                 "new_segment.xml",
                 "skip_sponsor_button.xml"
             ),
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
+                // required resource for back button, because when the base APK is used, this resource will not exist
+                "drawable",
+                "ic_sb_adjust.xml",
+                "ic_sb_compare.xml",
+                "ic_sb_edit.xml",
+                "ic_sb_logo.xml",
+                "ic_sb_publish.xml",
+                "ic_sb_voting.xml"
+            ),
+            ResourceGroup(
+                // required resource for back button, because when the base APK is used, this resource will not exist
                 "drawable-xxxhdpi", "quantum_ic_skip_next_white_24.png"
             )
         )

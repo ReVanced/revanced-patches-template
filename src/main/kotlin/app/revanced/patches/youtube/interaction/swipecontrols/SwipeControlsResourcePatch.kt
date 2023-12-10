@@ -6,13 +6,13 @@ import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patches.shared.settings.preference.impl.*
 import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
 
 @Patch(
     dependencies = [SettingsPatch::class]
 )
-object SwipeControlsResourcePatch : ResourcePatch() {
+internal object SwipeControlsResourcePatch : ResourcePatch() {
     override fun execute(context: ResourceContext) {
         StringsPatch.includePatchStrings("SwipeControls")
         SettingsPatch.PreferenceScreen.INTERACTIONS.addPreferences(
@@ -81,7 +81,7 @@ object SwipeControlsResourcePatch : ResourcePatch() {
 
         context.copyResources(
             "youtube/swipecontrols",
-            ResourceUtils.ResourceGroup(
+            ResourceGroup(
                 "drawable",
                 "revanced_ic_sc_brightness_auto.xml",
                 "revanced_ic_sc_brightness_manual.xml",

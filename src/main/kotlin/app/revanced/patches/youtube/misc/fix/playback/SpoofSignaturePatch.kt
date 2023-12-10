@@ -1,6 +1,6 @@
 package app.revanced.patches.youtube.misc.fix.playback
 
-import app.revanced.extensions.exception
+import app.revanced.util.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
@@ -42,7 +42,7 @@ object SpoofSignaturePatch : BytecodePatch(
     setOf(
         PlayerResponseModelImplGeneralFingerprint,
         PlayerResponseModelImplLiveStreamFingerprint,
-        PlayerResponseModelImplRecommendedLevel,
+        PlayerResponseModelImplRecommendedLevelFingerprint,
         StoryboardRendererSpecFingerprint,
         StoryboardRendererDecoderSpecFingerprint,
         StoryboardRendererDecoderRecommendedLevelFingerprint,
@@ -85,7 +85,7 @@ object SpoofSignaturePatch : BytecodePatch(
 
         // Hook the player parameters.
         PlayerResponseMethodHookPatch += PlayerResponseMethodHookPatch.Hook.ProtoBufferParameter(
-            "$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;)Ljava/lang/String;"
+            "$INTEGRATIONS_CLASS_DESCRIPTOR->spoofParameter(Ljava/lang/String;Z)Ljava/lang/String;"
         )
 
         // Force the seekbar time and chapters to always show up.
@@ -174,7 +174,7 @@ object SpoofSignaturePatch : BytecodePatch(
         } ?: throw StoryboardRendererDecoderRecommendedLevelFingerprint.exception
 
         // Hook the recommended precise seeking thumbnails quality level.
-        PlayerResponseModelImplRecommendedLevel.result?.let {
+        PlayerResponseModelImplRecommendedLevelFingerprint.result?.let {
             it.mutableMethod.apply {
                 val moveOriginalRecommendedValueIndex = it.scanResult.patternScanResult!!.endIndex
                 val originalValueRegister =
@@ -187,7 +187,7 @@ object SpoofSignaturePatch : BytecodePatch(
                         """
                 )
             }
-        } ?: throw PlayerResponseModelImplRecommendedLevel.exception
+        } ?: throw PlayerResponseModelImplRecommendedLevelFingerprint.exception
 
         StoryboardRendererSpecFingerprint.result?.let {
             it.mutableMethod.apply {

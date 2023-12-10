@@ -7,9 +7,9 @@ import app.revanced.patcher.util.DomFileEditor
 import app.revanced.patches.shared.settings.AbstractSettingsResourcePatch.Companion.getNode
 import app.revanced.patches.shared.settings.preference.BaseResource
 import app.revanced.patches.shared.settings.preference.addResource
-import app.revanced.util.resources.ResourceUtils
-import app.revanced.util.resources.ResourceUtils.copyResources
-import app.revanced.util.resources.ResourceUtils.iterateXmlNodeChildren
+import app.revanced.util.ResourceGroup
+import app.revanced.util.copyResources
+import app.revanced.util.iterateXmlNodeChildren
 import org.w3c.dom.Document
 import org.w3c.dom.Node
 import java.io.Closeable
@@ -86,7 +86,7 @@ abstract class AbstractStringsResourcePatch(
                     val languageDirectory = match.group(1)
                     resourceContext.copyResources(
                         directory,
-                        ResourceUtils.ResourceGroup(languageDirectory, "strings.xml"),
+                        ResourceGroup(languageDirectory, "strings.xml"),
                         replaceDestinationFiles = false // Destination files should not exist.
                     )
                     foundElements = true
