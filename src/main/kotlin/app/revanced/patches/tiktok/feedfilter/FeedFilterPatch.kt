@@ -1,6 +1,5 @@
 package app.revanced.patches.tiktok.feedfilter
 
-import app.revanced.util.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.patch.BytecodePatch
@@ -10,6 +9,7 @@ import app.revanced.patches.tiktok.feedfilter.fingerprints.FeedApiServiceLIZFing
 import app.revanced.patches.tiktok.misc.integrations.IntegrationsPatch
 import app.revanced.patches.tiktok.misc.settings.SettingsPatch
 import app.revanced.patches.tiktok.misc.settings.fingerprints.SettingsStatusLoadFingerprint
+import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
@@ -18,8 +18,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     description = "Filters tiktok videos: removing ads, removing livestreams.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
-        CompatiblePackage("com.ss.android.ugc.trill"),
-        CompatiblePackage("com.zhiliaoapp.musically")
+        CompatiblePackage("com.ss.android.ugc.trill", ["32.5.3"]),
+        CompatiblePackage("com.zhiliaoapp.musically", ["32.5.3"])
     ]
 )
 @Suppress("unused")

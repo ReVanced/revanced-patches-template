@@ -13,8 +13,8 @@ import com.android.tools.smali.dexlib2.Opcode
     name = "Playback speed",
     description = "Enables the playback speed option for all videos.",
     compatiblePackages = [
-        CompatiblePackage("com.ss.android.ugc.trill"),
-        CompatiblePackage("com.zhiliaoapp.musically")
+        CompatiblePackage("com.ss.android.ugc.trill", ["30.8.4"]),
+        CompatiblePackage("com.zhiliaoapp.musically", ["30.8.4"])
     ]
 )
 @Suppress("unused")
