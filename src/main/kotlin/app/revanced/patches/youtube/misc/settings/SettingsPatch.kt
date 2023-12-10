@@ -14,6 +14,7 @@ import app.revanced.patches.shared.settings.util.AbstractPreferenceScreen
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.fingerprints.LicenseActivityFingerprint
 import app.revanced.patches.youtube.misc.settings.fingerprints.SetThemeFingerprint
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.util.MethodUtil
@@ -21,7 +22,7 @@ import java.io.Closeable
 
 @Patch(
     description = "Adds settings for ReVanced to YouTube.",
-    dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class]
+    dependencies = [IntegrationsPatch::class, SettingsResourcePatch::class, StringsPatch::class]
 )
 object SettingsPatch : BytecodePatch(
     setOf(LicenseActivityFingerprint, SetThemeFingerprint)

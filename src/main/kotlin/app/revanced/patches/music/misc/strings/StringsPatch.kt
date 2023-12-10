@@ -1,7 +1,7 @@
-package app.revanced.patches.twitch.misc.strings
+package app.revanced.patches.music.misc.strings
 
 import app.revanced.patches.shared.strings.AbstractStringsResourcePatch
 
 object StringsPatch : AbstractStringsResourcePatch(
-    "twitch/stringspatch/values"
+    "music/stringspatch/values"
 )

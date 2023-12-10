@@ -50,12 +50,12 @@ internal object SponsorBlockResourcePatch : ResourcePatch() {
             ResourceGroup(
                 // required resource for back button, because when the base APK is used, this resource will not exist
                 "drawable",
-                "ic_sb_adjust.xml",
-                "ic_sb_compare.xml",
-                "ic_sb_edit.xml",
-                "ic_sb_logo.xml",
-                "ic_sb_publish.xml",
-                "ic_sb_voting.xml"
+                "revanced_ic_sb_adjust.xml",
+                "revanced_ic_sb_compare.xml",
+                "revanced_ic_sb_edit.xml",
+                "revanced_ic_sb_logo.xml",
+                "revanced_ic_sb_publish.xml",
+                "revanced_ic_sb_voting.xml"
             ),
             ResourceGroup(
                 // required resource for back button, because when the base APK is used, this resource will not exist

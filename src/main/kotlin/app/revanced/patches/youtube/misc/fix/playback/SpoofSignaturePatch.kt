@@ -1,6 +1,5 @@
 package app.revanced.patches.youtube.misc.fix.playback
 
-import app.revanced.util.exception
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
@@ -9,11 +8,12 @@ import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.smali.ExternalLabel
+import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.SwitchPreference
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplGeneralFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplLiveStreamFingerprint
-import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplRecommendedLevel
+import app.revanced.patches.youtube.misc.fix.playback.fingerprints.PlayerResponseModelImplRecommendedLevelFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.ScrubbedPreviewLayoutFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererDecoderRecommendedLevelFingerprint
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardRendererDecoderSpecFingerprint
@@ -22,9 +22,9 @@ import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThu
 import app.revanced.patches.youtube.misc.fix.playback.fingerprints.StoryboardThumbnailParentFingerprint
 import app.revanced.patches.youtube.misc.playertype.PlayerTypeHookPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
-import app.revanced.patches.youtube.misc.strings.StringsPatch
 import app.revanced.patches.youtube.video.information.VideoInformationPatch
 import app.revanced.patches.youtube.video.playerresponse.PlayerResponseMethodHookPatch
+import app.revanced.util.exception
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 

@@ -20,6 +20,10 @@ abstract class AbstractStringsResourcePatch(
     private var rootResourcePath : String
 ) : ResourcePatch(), Closeable {
 
+    companion object {
+        private const val SHARED_PATCH_STRINGS_RESOURCE_PATH = "shared/stringspatch/values"
+    }
+
     private lateinit var resourceContext: ResourceContext
     private lateinit var stringsEditor: DomFileEditor
     private lateinit var stringsNode: Node
@@ -38,7 +42,21 @@ abstract class AbstractStringsResourcePatch(
      * @param patchName Name of the patch strings xml file.
      */
     fun includePatchStrings(patchName: String) {
-        resourceContext.iterateXmlNodeChildren("$rootResourcePath/$patchName.xml", "resources") {
+        includeStrings(rootResourcePath, patchName)
+    }
+
+    /**
+     * Includes an English Strings file using the full file path specified.
+     */
+    fun includeSharedPatchStrings(patchName: String) {
+        includeStrings(SHARED_PATCH_STRINGS_RESOURCE_PATH, patchName)
+    }
+
+    /**
+     * Includes an English Strings file using the full file path specified.
+     */
+    private fun includeStrings(resourcePath: String, patchName: String) {
+        resourceContext.iterateXmlNodeChildren("$resourcePath/$patchName.xml", "resources") {
             // TODO: figure out why this is needed
             if (!it.hasAttributes()) return@iterateXmlNodeChildren
 
