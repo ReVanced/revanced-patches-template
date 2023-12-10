@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.layout.thumbnails.fingerprints
+package app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet
 
 import app.revanced.patcher.extensions.or
 import app.revanced.patcher.fingerprint.MethodFingerprint
-import app.revanced.patches.youtube.layout.thumbnails.fingerprints.CronetUrlRequestFingerprint.IMPLEMENTATION_CLASS_NAME
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet.RequestFingerprint.IMPLEMENTATION_CLASS_NAME
 import com.android.tools.smali.dexlib2.AccessFlags
 
-internal object CronetUrlRequestFingerprint : MethodFingerprint(
+internal object RequestFingerprint : MethodFingerprint(
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.CONSTRUCTOR,
     customFingerprint = { _, classDef ->

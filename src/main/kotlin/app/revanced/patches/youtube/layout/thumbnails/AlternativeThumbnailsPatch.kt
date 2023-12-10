@@ -4,13 +4,19 @@ import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
 import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
 import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
+import app.revanced.patcher.fingerprint.MethodFingerprint
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
 import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.revanced.patches.shared.settings.preference.impl.*
-import app.revanced.patches.youtube.layout.thumbnails.fingerprints.*
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.MessageDigestImageUrlFingerprint
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.MessageDigestImageUrlParentFingerprint
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet.RequestFingerprint
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet.request.callback.OnFailureFingerprint
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet.request.callback.OnResponseStartedFingerprint
+import app.revanced.patches.youtube.layout.thumbnails.fingerprints.cronet.request.callback.OnSucceededFingerprint
 import app.revanced.patches.youtube.misc.integrations.IntegrationsPatch
 import app.revanced.patches.youtube.misc.settings.SettingsPatch
 import app.revanced.util.exception
@@ -44,8 +50,8 @@ import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 object AlternativeThumbnailsPatch : BytecodePatch(
     setOf(
         MessageDigestImageUrlParentFingerprint,
-        CronetUrlRequestCallbackOnResponseStartedFingerprint,
-        CronetUrlRequestFingerprint,
+        OnResponseStartedFingerprint,
+        RequestFingerprint,
     )
 ) {
     private const val INTEGRATIONS_CLASS_DESCRIPTOR =
@@ -63,11 +69,13 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     /**
      * @param highPriority If the hook should be called before all other hooks.
      */
+    @Suppress("SameParameterValue")
     private fun addImageUrlHook(targetMethodClass: String, highPriority: Boolean) {
         loadImageUrlMethod.addInstructions(
-            if (highPriority) 0 else loadImageUrlIndex, """
-                    invoke-static { p1 }, $targetMethodClass->overrideImageURL(Ljava/lang/String;)Ljava/lang/String;
-                    move-result-object p1
+            if (highPriority) 0 else loadImageUrlIndex,
+            """
+                invoke-static { p1 }, $targetMethodClass->overrideImageURL(Ljava/lang/String;)Ljava/lang/String;
+                move-result-object p1
                 """
         )
         loadImageUrlIndex += 2
@@ -77,6 +85,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
      * If a connection completed, which includes normal 200 responses but also includes
      * status 404 and other error like http responses.
      */
+    @Suppress("SameParameterValue")
     private fun addImageUrlSuccessCallbackHook(targetMethodClass: String) {
         loadImageSuccessCallbackMethod.addInstruction(
             loadImageSuccessCallbackIndex++,
@@ -88,7 +97,8 @@ object AlternativeThumbnailsPatch : BytecodePatch(
     /**
      * If a connection outright failed to complete any connection.
      */
-    fun addImageUrlErrorCallbackHook(targetMethodClass: String) {
+    @Suppress("SameParameterValue")
+    private fun addImageUrlErrorCallbackHook(targetMethodClass: String) {
         loadImageErrorCallbackMethod.addInstruction(
             loadImageErrorCallbackIndex++,
             "invoke-static { p1, p2, p3 }, $targetMethodClass->handleCronetFailure(" +
@@ -208,39 +218,35 @@ object AlternativeThumbnailsPatch : BytecodePatch(
             )
         )
 
-        MessageDigestImageUrlParentFingerprint.result
-            ?: throw MessageDigestImageUrlParentFingerprint.exception
-        MessageDigestImageUrlFingerprint.resolve(context, MessageDigestImageUrlParentFingerprint.result!!.classDef)
-        MessageDigestImageUrlFingerprint.result?.apply {
-            loadImageUrlMethod = mutableMethod
-        } ?: throw MessageDigestImageUrlFingerprint.exception
-        addImageUrlHook(INTEGRATIONS_CLASS_DESCRIPTOR, true)
+        fun MethodFingerprint.getResultOrThrow() =
+            result ?: throw exception
 
+        fun MethodFingerprint.alsoResolve(fingerprint: MethodFingerprint) =
+            also { resolve(context, fingerprint.getResultOrThrow().classDef) }.getResultOrThrow()
 
-        CronetUrlRequestCallbackOnResponseStartedFingerprint.result
-            ?: throw CronetUrlRequestCallbackOnResponseStartedFingerprint.exception
-        CronetUrlRequestCallbackOnSucceededFingerprint.resolve(
-            context,
-            CronetUrlRequestCallbackOnResponseStartedFingerprint.result!!.classDef
-        )
-        CronetUrlRequestCallbackOnSucceededFingerprint.result?.apply {
-            loadImageSuccessCallbackMethod = mutableMethod
-        } ?: throw CronetUrlRequestCallbackOnSucceededFingerprint.exception
-        addImageUrlSuccessCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+        fun MethodFingerprint.resolveAndLetMutableMethod(
+            fingerprint: MethodFingerprint,
+            block: (MutableMethod) -> Unit
+        ) = alsoResolve(fingerprint).also { block(it.mutableMethod) }
 
+        MessageDigestImageUrlFingerprint.resolveAndLetMutableMethod(MessageDigestImageUrlParentFingerprint) {
+            loadImageUrlMethod = it
+            addImageUrlHook(INTEGRATIONS_CLASS_DESCRIPTOR, true)
+        }
 
-        CronetUrlRequestCallbackOnFailureFingerprint.resolve(
-            context,
-            CronetUrlRequestCallbackOnResponseStartedFingerprint.result!!.classDef
-        )
-        CronetUrlRequestCallbackOnFailureFingerprint.result?.apply {
-            loadImageErrorCallbackMethod = mutableMethod
-        } ?: throw CronetUrlRequestCallbackOnFailureFingerprint.exception
-        addImageUrlErrorCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+        OnSucceededFingerprint.resolveAndLetMutableMethod(OnResponseStartedFingerprint) {
+            loadImageSuccessCallbackMethod = it
+            addImageUrlSuccessCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+        }
+
+        OnFailureFingerprint.resolveAndLetMutableMethod(OnResponseStartedFingerprint) {
+            loadImageErrorCallbackMethod = it
+            addImageUrlErrorCallbackHook(INTEGRATIONS_CLASS_DESCRIPTOR)
+        }
 
         // The URL is required for the failure callback hook, but the URL field is obfuscated.
         // Add a helper get method that returns the URL field.
-        CronetUrlRequestFingerprint.result?.apply {
+        RequestFingerprint.getResultOrThrow().apply {
             // The url is the only string field that is set inside the constructor.
             val urlFieldInstruction = mutableMethod.getInstructions().first {
                 if (it.opcode != Opcode.IPUT_OBJECT) return@first false
@@ -250,7 +256,7 @@ object AlternativeThumbnailsPatch : BytecodePatch(
             } as ReferenceInstruction
 
             val urlFieldName = (urlFieldInstruction.reference as FieldReference).name
-            val definingClass = CronetUrlRequestFingerprint.IMPLEMENTATION_CLASS_NAME
+            val definingClass = RequestFingerprint.IMPLEMENTATION_CLASS_NAME
             val addedMethodName = "getHookedUrl"
             mutableClass.methods.add(
                 ImmutableMethod(
@@ -270,6 +276,6 @@ object AlternativeThumbnailsPatch : BytecodePatch(
                     """
                     )
                 })
-        } ?: throw CronetUrlRequestCallbackOnFailureFingerprint.exception
+        }
     }
 }
