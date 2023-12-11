@@ -2,6 +2,7 @@ package app.revanced.patches.youtube.misc.gms
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patches.shared.fingerprints.HomeActivityFingerprint
 import app.revanced.patches.shared.misc.gms.AbstractGmsCoreSupportPatch
 import app.revanced.patches.youtube.layout.buttons.cast.HideCastButtonPatch
 import app.revanced.patches.youtube.misc.fix.playback.ClientSpoofPatch
@@ -9,7 +10,6 @@ import app.revanced.patches.youtube.misc.gms.Constants.REVANCED_YOUTUBE_PACKAGE_
 import app.revanced.patches.youtube.misc.gms.Constants.YOUTUBE_PACKAGE_NAME
 import app.revanced.patches.youtube.misc.gms.GmsCoreSupportResourcePatch.gmsCoreVendorOption
 import app.revanced.patches.youtube.misc.gms.fingerprints.*
-import app.revanced.patches.youtube.shared.fingerprints.WatchWhileActivityFingerprint
 import app.revanced.util.exception
 
 
@@ -50,17 +50,17 @@ object GmsCoreSupportPatch : AbstractGmsCoreSupportPatch(
         CastDynamiteModuleV2Fingerprint,
         CastContextFetchFingerprint,
         PrimeMethodFingerprint,
-        WatchWhileActivityFingerprint
+        HomeActivityFingerprint,
     )
 ) {
     override val gmsCoreVendor by gmsCoreVendorOption
 
     override fun execute(context: BytecodeContext) {
         // Check the availability of GmsCore.
-        WatchWhileActivityFingerprint.result?.mutableMethod?.addInstruction(
+        HomeActivityFingerprint.result?.mutableMethod?.addInstruction(
             0,
             "invoke-static {}, Lapp/revanced/integrations/patches/GmsCoreSupport;->checkAvailability()V"
-        ) ?: throw WatchWhileActivityFingerprint.exception
+        ) ?: throw HomeActivityFingerprint.exception
 
         super.execute(context)
     }

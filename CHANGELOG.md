@@ -1,3 +1,24 @@
+# [3.0.0-dev.10](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.9...v3.0.0-dev.10) (2023-12-11)
+
+
+### Features
+
+* **YouTube:** Add `Change start page` patch ([ad9ba37](https://github.com/ReVanced/revanced-patches/commit/ad9ba37c0568bd303d807b3ddf1a22daa8f8ec59))
+
+# [3.0.0-dev.9](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.8...v3.0.0-dev.9) (2023-12-11)
+
+
+### Bug Fixes
+
+* **YouTube - GmsCore support:** Check for availability earlier to prevent crashing without any notice ([dab8900](https://github.com/ReVanced/revanced-patches/commit/dab8900e22498a86c7a1c2fd8f1bcc29dec1272c))
+
+# [3.0.0-dev.8](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.7...v3.0.0-dev.8) (2023-12-11)
+
+
+### Features
+
+* **YouTube - Alternative Thumbnails:** Add option to use DeArrow ([#3378](https://github.com/ReVanced/revanced-patches/issues/3378)) ([41217f6](https://github.com/ReVanced/revanced-patches/commit/41217f61e600e47dd6812864bff22ee054521d3c))
+
 # [3.0.0-dev.7](https://github.com/ReVanced/revanced-patches/compare/v3.0.0-dev.6...v3.0.0-dev.7) (2023-12-07)
 
 

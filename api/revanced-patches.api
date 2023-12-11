@@ -521,6 +521,10 @@ public final class app/revanced/patches/serviceportalbund/detection/root/RootDet
 	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
 }
 
+public final class app/revanced/patches/shared/fingerprints/HomeActivityFingerprint : app/revanced/patches/shared/integrations/AbstractIntegrationsPatch$IntegrationsFingerprint {
+	public static final field INSTANCE Lapp/revanced/patches/shared/fingerprints/HomeActivityFingerprint;
+}
+
 public abstract class app/revanced/patches/shared/integrations/AbstractIntegrationsPatch : app/revanced/patcher/patch/BytecodePatch {
 	public fun <init> (Ljava/lang/String;Ljava/util/Set;)V
 	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
@@ -657,7 +661,9 @@ public final class app/revanced/patches/shared/settings/preference/impl/ListPref
 }
 
 public final class app/revanced/patches/shared/settings/preference/impl/NonInteractivePreference : app/revanced/patches/shared/settings/preference/BasePreference {
-	public fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;)V
+	public fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Lapp/revanced/patches/shared/settings/preference/impl/StringResource;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getSelectable ()Z
 	public fun serialize (Lorg/w3c/dom/Document;Lkotlin/jvm/functions/Function1;)Lorg/w3c/dom/Element;
 }
 
@@ -1330,6 +1336,16 @@ public final class app/revanced/patches/youtube/layout/spoofappversion/SpoofAppV
 	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
 }
 
+public final class app/revanced/patches/youtube/layout/startpage/ChangeStartPagePatch : app/revanced/patcher/patch/BytecodePatch {
+	public static final field INSTANCE Lapp/revanced/patches/youtube/layout/startpage/ChangeStartPagePatch;
+	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
+	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
+}
+
+public final class app/revanced/patches/youtube/layout/startpage/fingerprints/StartActivityFingerprint : app/revanced/patcher/fingerprint/MethodFingerprint {
+	public static final field INSTANCE Lapp/revanced/patches/youtube/layout/startpage/fingerprints/StartActivityFingerprint;
+}
+
 public final class app/revanced/patches/youtube/layout/startupshortsreset/DisableResumingShortsOnStartupPatch : app/revanced/patcher/patch/BytecodePatch {
 	public static final field INSTANCE Lapp/revanced/patches/youtube/layout/startupshortsreset/DisableResumingShortsOnStartupPatch;
 	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
@@ -1357,7 +1373,6 @@ public final class app/revanced/patches/youtube/layout/theme/ThemeBytecodePatch 
 
 public final class app/revanced/patches/youtube/layout/thumbnails/AlternativeThumbnailsPatch : app/revanced/patcher/patch/BytecodePatch {
 	public static final field INSTANCE Lapp/revanced/patches/youtube/layout/thumbnails/AlternativeThumbnailsPatch;
-	public final fun addImageUrlErrorCallbackHook (Ljava/lang/String;)V
 	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
 	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
 }
