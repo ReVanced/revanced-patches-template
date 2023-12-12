@@ -2,6 +2,7 @@ package app.revanced.patches.tiktok.feedfilter
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
+import app.revanced.patcher.extensions.InstructionExtensions.getInstructions
 import app.revanced.patcher.patch.BytecodePatch
 import app.revanced.patcher.patch.annotation.CompatiblePackage
 import app.revanced.patcher.patch.annotation.Patch
@@ -15,7 +16,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Patch(
     name = "Feed filter",
-    description = "Filters tiktok videos: removing ads, removing livestreams.",
+    description = "Removes ads, livestreams, stories, image videos " +
+            "and videos with a specific amount of views or likes from the feed.",
     dependencies = [IntegrationsPatch::class, SettingsPatch::class],
     compatiblePackages = [
         CompatiblePackage("com.ss.android.ugc.trill", ["32.5.3"]),
@@ -23,18 +25,20 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
     ]
 )
 @Suppress("unused")
-object FeedFilterPatch : BytecodePatch(setOf(FeedApiServiceLIZFingerprint, SettingsStatusLoadFingerprint)) {
+object FeedFilterPatch : BytecodePatch(
+    setOf(FeedApiServiceLIZFingerprint, SettingsStatusLoadFingerprint)
+) {
     override fun execute(context: BytecodeContext) {
-        val method = FeedApiServiceLIZFingerprint.result!!.mutableMethod
-        for ((index, instruction) in method.implementation!!.instructions.withIndex()) {
-            if (instruction.opcode != Opcode.RETURN_OBJECT) continue
-            val feedItemsRegister = (instruction as OneRegisterInstruction).registerA
-            method.addInstruction(
-                index,
-                "invoke-static {v$feedItemsRegister}, Lapp/revanced/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
+        FeedApiServiceLIZFingerprint.result?.mutableMethod?.apply {
+            val returnFeedItemInstruction = getInstructions().first { it.opcode == Opcode.RETURN_OBJECT }
+            val feedItemsRegister = (returnFeedItemInstruction as OneRegisterInstruction).registerA
+
+            addInstruction(
+                returnFeedItemInstruction.location.index,
+                "invoke-static { v$feedItemsRegister }, " +
+                        "Lapp/revanced/tiktok/feedfilter/FeedItemsFilter;->filter(Lcom/ss/android/ugc/aweme/feed/model/FeedItemList;)V"
             )
-            break
-        }
+        } ?: throw FeedApiServiceLIZFingerprint.exception
 
         SettingsStatusLoadFingerprint.result?.mutableMethod?.addInstruction(
             0,

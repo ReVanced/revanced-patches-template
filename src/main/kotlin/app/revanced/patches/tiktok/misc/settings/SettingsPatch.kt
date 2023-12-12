@@ -62,8 +62,10 @@ object SettingsPatch : BytecodePatch(
             val markIndex = implementation!!.instructions.indexOfFirst {
                 it.opcode == Opcode.IGET_OBJECT && ((it as Instruction22c).reference as FieldReference).name == "headerUnit"
             }
+
             val getUnitManager = getInstruction(markIndex + 2)
             val addEntry = getInstruction(markIndex + 1)
+
             addInstructions(
                 markIndex + 2,
                 listOf(
@@ -71,6 +73,7 @@ object SettingsPatch : BytecodePatch(
                     addEntry
                 )
             )
+
             addInstructions(
                 markIndex + 2,
                 """
@@ -96,10 +99,10 @@ object SettingsPatch : BytecodePatch(
                 """
                     invoke-static {v$thisRegister}, $INITIALIZE_SETTINGS_METHOD_DESCRIPTOR
                     move-result v$usableRegister
-                    if-eqz v$usableRegister, :notrevanced
+                    if-eqz v$usableRegister, :do_not_open
                     return-void
                 """,
-                ExternalLabel("notrevanced", getInstruction(initializeSettingsIndex))
+                ExternalLabel("do_not_open", getInstruction(initializeSettingsIndex))
             )
         } ?: throw AdPersonalizationActivityOnCreateFingerprint.exception
     }

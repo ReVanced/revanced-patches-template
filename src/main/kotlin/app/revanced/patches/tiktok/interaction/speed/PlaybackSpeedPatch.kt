@@ -31,10 +31,12 @@ object PlaybackSpeedPatch : BytecodePatch(setOf(SpeedControlParentFingerprint)) 
                     paramsTypes.size == 1 && paramsTypes[0].contains("/Aweme;")
                 } else false
             }
+
             val isSpeedEnableMethod = context
                 .toMethodWalker(this)
                 .nextMethod(targetMethodCallIndex, true)
                 .getMethod() as MutableMethod
+
             isSpeedEnableMethod.addInstructions(
                 0,
                 """
