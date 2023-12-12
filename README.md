@@ -9,19 +9,10 @@ For an example repository, see [ReVanced Patches](https://github.com/revanced/re
 
 To start using this template, follow these steps:
 
-### 1. [Create a new repository using this template](https://github.com/new?template_name=revanced-patches-template&template_owner=ReVanced)
-
-### 2. Set up the `build.gradle.kts` file
-
-Match the group of the project, the manifest attributes, and the POM that will be published to yours.
-
-### 3. Update the dependencies in the `libs.versions.toml` file
-
-Sometimes, the latest version of dependencies can be necessary, which is why keeping them up to date is important.
-
-### 4.  Set up the `README.md` file[^1]
-
-Add a title, a description, a license and a short summary of the patches that are included in the repository. 
+1. [Create a new repository using this template](https://github.com/new?template_name=revanced-patches-template&template_owner=ReVanced)
+2. Set up the [build.gradle.kts](build.gradle.kts) file (Match the [group of the project](build.gradle.kts#L8), [manifest attributes](build.gradle.kts#L35-L43), and the [POM](build.gradle.kts#L84-L106) that will be published to yours)
+4. Update the dependencies in the [libs.versions.toml](gradle/libs.versions.toml) file
+5. Set up the [README.md](README.md) file[^1] (e.g title, description, license, short summary of the patches that are included in the repository)
 
 🎉 You are now ready to start creating patches!
 
