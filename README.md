@@ -15,7 +15,11 @@ To start using this template, follow these steps:
 
 Match the group of the project, the manifest attributes, and the POM that will be published to yours.
 
-### 3.  Set up the `README.md` file[^1]
+### 3. Update the dependencies in the `libs.versions.toml` file
+
+Sometimes, the latest version of dependencies can be necessary, which is why keeping them up to date is important.
+
+### 4.  Set up the `README.md` file[^1]
 
 Add a title, a description, a license and a short summary of the patches that are included in the repository. 
 
