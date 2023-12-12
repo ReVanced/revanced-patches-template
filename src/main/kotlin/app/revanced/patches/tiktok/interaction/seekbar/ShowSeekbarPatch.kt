@@ -13,8 +13,8 @@ import app.revanced.patches.tiktok.interaction.seekbar.fingerprints.ShouldShowSe
     name = "Show seekbar",
     description = "Shows progress bar for all video.",
     compatiblePackages = [
-        CompatiblePackage("com.ss.android.ugc.trill"),
-        CompatiblePackage("com.zhiliaoapp.musically")
+        CompatiblePackage("com.ss.android.ugc.trill", ["32.5.3"]),
+        CompatiblePackage("com.zhiliaoapp.musically", ["32.5.3"])
     ]
 )
 @Suppress("unused")
