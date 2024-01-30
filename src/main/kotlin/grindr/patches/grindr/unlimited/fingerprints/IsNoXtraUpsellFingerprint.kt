@@ -6,9 +6,10 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
+@FuzzyPatternScanMethod(2)
 object IsNoXtraUpsellFingerprint : MethodFingerprint(
     "Z",
-    accessFlags = AccessFlags.PUBLIC.value,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT,
@@ -20,5 +21,8 @@ object IsNoXtraUpsellFingerprint : MethodFingerprint(
         Opcode.GOTO,
         Opcode.CONST_4,
         Opcode.RETURN
-    )
+    ),
+    customFingerprint = { methodDef, _ ->
+        !methodDef.definingClass.contains("TagPayloadReader")
+    }
 )

@@ -24,5 +24,5 @@ object InnaccessibleProfileManagerbFingerprint : MethodFingerprint(
         Opcode.GOTO,
         Opcode.CONST_4,
         Opcode.RETURN
-    ),
+    )
 )

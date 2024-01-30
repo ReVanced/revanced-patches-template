@@ -8,7 +8,7 @@ import com.android.tools.smali.dexlib2.Opcode
 
 object IsFreeFingerprint : MethodFingerprint(
     "Z",
-    accessFlags = AccessFlags.PUBLIC.value,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
         Opcode.IGET_OBJECT,
         Opcode.INVOKE_INTERFACE,
@@ -16,6 +16,6 @@ object IsFreeFingerprint : MethodFingerprint(
         Opcode.RETURN
     ),
     customFingerprint = { methodDef, _ ->
-        methodDef.definingClass.contains("storage")
+        methodDef.definingClass.contains("grindrapp")
     }
 )

@@ -6,11 +6,12 @@ import app.revanced.patcher.fingerprint.MethodFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
+@FuzzyPatternScanMethod(2)
 object IsNoPlusUpsellFingerprint : MethodFingerprint(
     "Z",
-    accessFlags = AccessFlags.PUBLIC.value,
+    accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     opcodes = listOf(
-        Opcode.INVOKE_VIRTUAL,
+        Opcode.INVOKE_VIRTUAL, 
         Opcode.MOVE_RESULT,
         Opcode.IF_NEZ,
         Opcode.INVOKE_VIRTUAL,
@@ -25,4 +26,8 @@ object IsNoPlusUpsellFingerprint : MethodFingerprint(
         Opcode.CONST_4,
         Opcode.RETURN
     ),
+    customFingerprint = { methodDef, _ ->
+        !methodDef.definingClass.contains("PickVisualMedia")
+    }
+
 )
