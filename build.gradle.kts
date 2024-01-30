@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
 }
 
-group = "your.org"
+group = "patches.grindr"
 
 repositories {
     mavenCentral()
@@ -32,14 +32,14 @@ kotlin {
 
 tasks.withType(Jar::class) {
     manifest {
-        attributes["Name"] = "Your Patches"
-        attributes["Description"] = "Patches for ReVanced."
+        attributes["Name"] = "Grindr patches"
+        attributes["Description"] = "Patches for Grindr."
         attributes["Version"] = version
         attributes["Timestamp"] = System.currentTimeMillis().toString()
-        attributes["Source"] = "git@github.com:you/revanced-patches.git"
+        attributes["Source"] = "git@github.com:Slenderman00/revanced-patches-grindr.git"
         attributes["Author"] = "You"
-        attributes["Contact"] = "contact@your.homepage"
-        attributes["Origin"] = "https://your.homepage"
+        attributes["Contact"] = "joarheimonen@live.no"
+        attributes["Origin"] = "https://joar.me"
         attributes["License"] = "GNU General Public License v3.0"
     }
 }
@@ -82,9 +82,9 @@ publishing {
             from(components["java"])
 
             pom {
-                name = "Your Patches"
-                description = "Patches for ReVanced."
-                url = "https://your.homepage"
+                name = "Grindr patches"
+                description = "Patches for Grindr."
+                url = "https://joar.me"
 
                 licenses {
                     license {
@@ -95,14 +95,14 @@ publishing {
                 developers {
                     developer {
                         id = "Your ID"
-                        name = "Your Name"
-                        email = "contact@your.homepage"
+                        name = "Joar Heimonen"
+                        email = "joarheimonen@live.no"
                     }
                 }
                 scm {
                     connection = "scm:git:git://github.com/you/revanced-patches.git"
-                    developerConnection = "scm:git:git@github.com:you/revanced-patches.git"
-                    url = "https://github.com/you/revanced-patches"
+                    developerConnection = "scm:git:git@github.com:Slenderman00/revanced-patches-grindr.git"
+                    url = "https://github.com/Slenderman00/revanced-patches-grindr/"
                 }
             }
         }

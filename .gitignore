@@ -127,3 +127,6 @@ node_modules/
 
 # Ignore IDEA files
 .idea/
+
+#ignoring all builds
+build/
