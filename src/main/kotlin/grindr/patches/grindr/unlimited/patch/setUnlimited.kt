@@ -47,8 +47,6 @@ class UnlockUnlimitedPatch : BytecodePatch(
             target.result?.let { result ->
                 result.mutableMethod.apply {
                     replaceInstructions(offset, bytecode)
-                    //addInstructions(offset, bytecode)
-                    print("Adding bytecode " + bytecode)
                 }
             }
         }
@@ -58,8 +56,6 @@ class UnlockUnlimitedPatch : BytecodePatch(
         override fun execute(context: BytecodeContext) {
             target.apply {
                 replaceInstructions(offset, bytecode)
-                //addInstructions(offset, bytecode)
-                print("Adding bytecode " + bytecode)
             }
         }
     }
@@ -96,10 +92,7 @@ class UnlockUnlimitedPatch : BytecodePatch(
             Patch(InnaccessibleProfileManagerdFingerprint, falseBytecode)
         )
 
-        var i = 0
-
         for (patch in patches) {
-            print(i++)
             patch.execute(context)
         }
     }
