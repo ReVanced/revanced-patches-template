@@ -1,6 +1,6 @@
 [versions]
-revanced-patcher = "19.0.0"
-smali = "3.0.3"
+revanced-patcher = "19.2.0"
+smali = "3.0.4"
 guava = "32.1.2-jre"
 gson = "2.10.1"
 
