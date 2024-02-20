@@ -13,7 +13,14 @@ repositories {
     mavenCentral()
     mavenLocal()
     google()
-    maven { url = uri("https://jitpack.io") }
+    maven {
+        // A repository must be speficied for some reason. "registry" is a dummy.
+        url = uri("https://maven.pkg.github.com/revanced/registry")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -72,6 +79,17 @@ tasks {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/you/revanced-patches")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
     publications {
         create<MavenPublication>("revanced-patches-publication") {
             from(components["java"])
@@ -106,6 +124,6 @@ publishing {
 
 signing {
     useGpgCmd()
+
     sign(publishing.publications["revanced-patches-publication"])
-    sign(configurations.archives.get()).first().dependsOn("buildDexJar")
 }
