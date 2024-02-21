@@ -34,9 +34,6 @@
         "assets": [
           {
             "path": "build/libs/revanced-patches*"
-          },
-          {
-            "path": "patches.json"
           }
         ],
         successComment: false
