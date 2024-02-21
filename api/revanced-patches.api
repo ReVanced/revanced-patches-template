@@ -1,6 +1,0 @@
-public final class your/org/patches/example/ExamplePatch : app/revanced/patcher/patch/BytecodePatch {
-	public static final field INSTANCE Lyour/org/patches/example/ExamplePatch;
-	public fun execute (Lapp/revanced/patcher/data/BytecodeContext;)V
-	public synthetic fun execute (Lapp/revanced/patcher/data/Context;)V
-}
-
