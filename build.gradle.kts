@@ -51,6 +51,8 @@ tasks {
         description = "Build and add a DEX to the JAR file"
         group = "build"
 
+        dependsOn(build)
+
         doLast {
             val d8 = File(System.getenv("ANDROID_HOME")).resolve("build-tools")
                 .listFilesOrdered().last().resolve("d8").absolutePath
@@ -73,7 +75,6 @@ tasks {
     // Needed by gradle-semantic-release-plugin.
     // Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
     publish {
-        dependsOn(build)
         dependsOn("buildDexJar")
     }
 }
