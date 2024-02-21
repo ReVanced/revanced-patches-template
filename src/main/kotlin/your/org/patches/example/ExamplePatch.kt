@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.annotation.Patch
     ],
 )
 @Suppress("unused")
-object ExamplePatch : BytecodePatch() {
+object ExamplePatch : BytecodePatch(emptySet()) {
     override fun execute(context: BytecodeContext) {
         // TODO("Not yet implemented")
     }

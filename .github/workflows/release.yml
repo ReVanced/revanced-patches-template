@@ -27,7 +27,7 @@ jobs:
       - name: Cache Gradle
         uses: burrunan/gradle-cache-action@v1
 
-      - name: Build with Gradle
+      - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build clean
@@ -37,6 +37,13 @@ jobs:
         with:
           node-version: "lts/*"
           cache: 'npm'
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          fingerprint: ${{ env.GPG_FINGERPRINT }}
 
       - name: Install dependencies
         run: npm install
