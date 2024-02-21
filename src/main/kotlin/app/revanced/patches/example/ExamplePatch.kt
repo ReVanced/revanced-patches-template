@@ -1,4 +1,4 @@
-package your.org.patches.example
+package app.revanced.patches.example
 
 import app.revanced.patcher.data.BytecodeContext
 import app.revanced.patcher.patch.BytecodePatch
@@ -13,7 +13,7 @@ import app.revanced.patcher.patch.annotation.Patch
     ],
 )
 @Suppress("unused")
-object ExamplePatch : BytecodePatch() {
+object ExamplePatch : BytecodePatch(emptySet()) {
     override fun execute(context: BytecodeContext) {
         // TODO("Not yet implemented")
     }

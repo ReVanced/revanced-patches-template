@@ -1,9 +1,7 @@
-include("dummy")
-
-rootProject.name = "revanced-patches"
+rootProject.name = "revanced-patches-template"
 
 buildCache {
     local {
-        isEnabled = !System.getenv().containsKey("CI")
+        isEnabled = "CI" !in System.getenv()
     }
 }
