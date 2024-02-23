@@ -37,23 +37,23 @@ You can also add the following things to the repository:
 
 ## 🧑‍💻 Usage
 
-In order to develop and release ReVanced Patches using this template, some things need to be considered:
+To develop and release ReVanced Patches using this template, some things need to be considered:
 
 - Development occurs in feature branches. Once a feature branch is ready, it is squshed and merged into the `dev` branch
 - The `dev` branch is merged into the `main` branch once it is ready for release
-- Semantic versioning is used for versioning ReVanced Patches. ReVanced Patches have a public API for other patches to use
+- Semantic versioning is used to version ReVanced Patches. ReVanced Patches have a public API for other patches to use
 - Semantic commit messages are used for commits
 - Commits on the `dev` branch and `main` branch are automatically released via the [release.yml](.github/workflows/release.yml) workflow, which is also responsible for generating the changelog and updating the version of ReVanced Patches. It is triggered by pushing to the `dev` or `main` branch. The workflow uses the `publish` task to publish the release of ReVanced Patches
-- In order to build ReVanced Patches, that can be used on Android, the [`buildDexJar`](build.gradle.kts#L50-L73) task needs to be run. The [`publish` task depends on the `buildDexJar`](build.gradle.kts#L78) task, so it will be run automatically when publishing a release.
+- To build ReVanced Patches that can be used on Android, the [`buildDexJar`](build.gradle.kts#L50-L73) task must be run. The [`publish` task depends on the `buildDexJar`](build.gradle.kts#L78) task, so it will be run automatically when publishing a release.
 
 ## 📚 Everything else
 
 ### 🛠️ Building
 
-In order to build ReVanced Patches template, you can follow the [ReVanced documentation](https://github.com/ReVanced/revanced-documentation).
+To build ReVanced Patches template, you can follow the [ReVanced documentation](https://github.com/ReVanced/revanced-documentation).
 
 ## 📜 Licence
 
-ReVanced Patches template is licensed under the GPLv3 licence. Please see the [licence file](LICENSE) for more information.
+ReVanced Patches template is licensed under the GPLv3 licence. Please see the [license file](LICENSE) for more information.
 [tl;dr](https://www.tldrlegal.com/license/gnu-general-public-license-v3-gpl-3) you may copy, distribute and modify ReVanced Patches template as long as you track changes/dates in source files.
-Any modifications to ReVanced Patches template must also be made available under the GPL along with build & install instructions.
+Any modifications to ReVanced Patches template must also be made available under the GPL, along with build & install instructions.
