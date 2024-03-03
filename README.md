@@ -13,11 +13,11 @@ To start using this template, follow these steps:
 2. Set up the [build.gradle.kts](build.gradle.kts) file (Specifically, the [group of the project](build.gradle.kts#L10), [manifest attributes](build.gradle.kts#L37-L47), and the [POM](build.gradle.kts#L98-L121))
 3. Update dependencies in the [libs.versions.toml](gradle/libs.versions.toml) file
 4. [Create a pass-phrased GPG master key and subkey](https://mikeross.xyz/create-gpg-key-pair-with-subkeys/)
-   1. Add the private key as a secret named [GPG_PRIVATE_KEY](.github/workflows/release.yml#L47) to your repository
-   2. Add the passphrase as a secret named [GPG_PASSPHRASE](.github/workflows/release.yml#L48) to your repository
-   3. Add the fingerprint of the GPG subkey as a secret named [GPG_FINGERPRINT](.github/workflows/release.yml#L49) to your repository
+   1. Add the private key as a secret named [GPG_PRIVATE_KEY](.github/workflows/release.yml#L43) to your repository
+   2. Add the passphrase as a secret named [GPG_PASSPHRASE](.github/workflows/release.yml#L44) to your repository
+   3. Add the fingerprint of the GPG subkey as a secret named [GPG_FINGERPRINT](.github/workflows/release.yml#L45) to your repository
 6. [Create a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) with [push access](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/ci-configuration.md#authentication)
-   1. Add it as a secret named [REPOSITORY_PUSH_ACCESS](.github/workflows/release.yml#L53) to your repository
+   1. Add it as a secret named [REPOSITORY_PUSH_ACCESS](.github/workflows/release.yml#L49) to your repository
 7. Set up the [README.md](README.md) file[^1] (e.g, title, description, license, summary of the patches that are included in the repository)
 
 🎉 You are now ready to start creating patches!
