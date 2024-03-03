@@ -28,12 +28,11 @@ You can also add the following things to the repository:
 
 - [Issue templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)[^2]
 - Contribution guidelines[^3]
-- Documentation, if you want to publish your patches as a library[^4]
+- API documentation, if you want to publish your patches as a library
 
 [^1]: [Example README.md file](https://github.com/ReVanced/revanced-patches/blob/main/README.md)
 [^2]: [Example issue templates](https://github.com/ReVanced/revanced-patches/tree/main/.github/ISSUE_TEMPLATE)
 [^3]: [Example contribution guidelines](https://github.com/ReVanced/revanced-patches/blob/main/CONTRIBUTING.md)
-[^4]: [Example documentation](https://github.com/ReVanced/revanced-patches/tree/docs/docs)
 
 ## 🧑‍💻 Usage
 
