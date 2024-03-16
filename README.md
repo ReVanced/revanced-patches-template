@@ -38,7 +38,7 @@ You can also add the following things to the repository:
 
 To develop and release ReVanced Patches using this template, some things need to be considered:
 
-- Development occurs in feature branches. Once a feature branch is ready, it is squshed and merged into the `dev` branch
+- Development occurs in feature branches. Once a feature branch is ready, it is squashed and merged into the `dev` branch
 - The `dev` branch is merged into the `main` branch once it is ready for release
 - Semantic versioning is used to version ReVanced Patches. ReVanced Patches have a public API for other patches to use
 - Semantic commit messages are used for commits
