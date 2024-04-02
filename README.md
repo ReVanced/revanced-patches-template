@@ -10,8 +10,8 @@ For an example repository, see [ReVanced Patches](https://github.com/revanced/re
 To start using this template, follow these steps:
 
 1. [Create a new repository using this template](https://github.com/new?template_name=revanced-patches-template&template_owner=ReVanced)
-2. Set up the [build.gradle.kts](build.gradle.kts) file (Specifically, the [group of the project](build.gradle.kts#L10), [manifest attributes](build.gradle.kts#L37-L47),
-and the [POM](build.gradle.kts#L98-L121))
+2. Set up the [build.gradle.kts](build.gradle.kts) file (Specifically, the [group of the project](build.gradle.kts#L11),
+[manifest attributes](build.gradle.kts#L44-L54), and the [POM](build.gradle.kts#L105-L128))
 3. Update dependencies in the [libs.versions.toml](gradle/libs.versions.toml) file
 4. [Create a pass-phrased GPG master key and subkey](https://mikeross.xyz/create-gpg-key-pair-with-subkeys/)
    1. Add the private key as a secret named [GPG_PRIVATE_KEY](.github/workflows/release.yml#L43) to your repository
