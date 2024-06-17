@@ -1,13 +1,3 @@
 [versions]
-revanced-patcher = "19.3.1"
+revanced-patcher = "20.0.0"
 smali = "3.0.7"
-binary-compatibility-validator = "0.14.0"
-kotlin = "2.0.0"
-
-[libraries]
-revanced-patcher = { module = "app.revanced:revanced-patcher", version.ref = "revanced-patcher" }
-smali = { module = "com.android.tools.smali:smali", version.ref = "smali" }
-
-[plugins]
-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
-kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
