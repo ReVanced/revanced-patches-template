@@ -9,6 +9,8 @@ val examplePatch = bytecodePatch(
 ) {
     compatibleWith("com.example.app"("1.0.0"))
 
+    extendWith("extensions/extension.rve")
+
     execute {
         // TODO("Not yet implemented")
     }
