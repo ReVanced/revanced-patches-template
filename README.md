@@ -10,15 +10,15 @@ For an example repository, see [ReVanced Patches](https://github.com/revanced/re
 To start using this template, follow these steps:
 
 1. [Create a new repository using this template](https://github.com/new?template_name=revanced-patches-template&template_owner=ReVanced)
-2. Set up the [build.gradle.kts](build.gradle.kts) file (Specifically, the [group of the project](build.gradle.kts#L11),
-[manifest attributes](build.gradle.kts#L44-L54), and the [POM](build.gradle.kts#L105-L128))
+2. Set up the [build.gradle.kts](patches/build.gradle.kts) file (Specifically, the [group of the project](patches/build.gradle.kts#L1), 
+and the [About](patches/build.gradle.kts#L5-L11))
 3. Update dependencies in the [libs.versions.toml](gradle/libs.versions.toml) file
 4. [Create a pass-phrased GPG master key and subkey](https://mikeross.xyz/create-gpg-key-pair-with-subkeys/)
-   1. Add the private key as a secret named [GPG_PRIVATE_KEY](.github/workflows/release.yml#L43) to your repository
-   2. Add the passphrase as a secret named [GPG_PASSPHRASE](.github/workflows/release.yml#L44) to your repository
-   3. Add the fingerprint of the GPG subkey as a secret named [GPG_FINGERPRINT](.github/workflows/release.yml#L45) to your repository
+   1. Add the private key as a secret named [GPG_PRIVATE_KEY](.github/workflows/release.yml#L48) to your repository
+   2. Add the passphrase as a secret named [GPG_PASSPHRASE](.github/workflows/release.yml#L49) to your repository
+   3. Add the fingerprint of the GPG subkey as a secret named [GPG_FINGERPRINT](.github/workflows/release.yml#L50) to your repository
 6. [Create a PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) with [push access](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/ci-configuration.md#authentication)
-   1. Add it as a secret named [REPOSITORY_PUSH_ACCESS](.github/workflows/release.yml#L49) to your repository
+   1. Add it as a secret named [REPOSITORY_PUSH_ACCESS](.github/workflows/release.yml#L54) to your repository
 7. Set up the [README.md](README.md) file[^1] (e.g, title, description, license, summary of the patches
 that are included in the repository)
 
@@ -48,9 +48,8 @@ To develop and release ReVanced Patches using this template, some things need to
 via the [release.yml](.github/workflows/release.yml) workflow, which is also responsible for generating the changelog
 and updating the version of ReVanced Patches. It is triggered by pushing to the `dev` or `main` branch.
 The workflow uses the `publish` task to publish the release of ReVanced Patches
-- To build ReVanced Patches that can be used on Android, the [`buildDexJar`](build.gradle.kts#L50-L73) task must be run.
-The [`publish` task depends on the `buildDexJar`](build.gradle.kts#L78) task,
-so it will be run automatically when publishing a release.
+- The `buildAndroid` task is used to build ReVanced Patches so that it can be used on Android.
+The `publish` task depends on the `buildAndroid` task, so it will be run automatically when publishing a release.
 
 ## 📚 Everything else
 

@@ -1,3 +1,5 @@
 [versions]
 revanced-patcher = "20.0.0"
-smali = "3.0.7"
+# Tracking https://github.com/google/smali/issues/64.
+#noinspection GradleDependency
+smali = "3.0.5"
