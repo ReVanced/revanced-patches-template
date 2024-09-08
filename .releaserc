@@ -32,7 +32,7 @@
       {
         "assets": [
           {
-            "path": "patches/build/libs/*.rvp"
+            "path": "patches/build/libs/patches-!(*sources*|*javadoc*).rvp?(.asc)"
           }
         ],
         successComment: false
