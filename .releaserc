@@ -24,7 +24,6 @@
           "README.md",
           "CHANGELOG.md",
           "gradle.properties",
-          "patches.json"
         ]
       }
     ],
@@ -33,7 +32,7 @@
       {
         "assets": [
           {
-            "path": "build/libs/revanced-patches*"
+            "path": "patches/build/libs/*.rvp"
           }
         ],
         successComment: false
