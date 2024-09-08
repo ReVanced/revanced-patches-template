@@ -1,3 +1,10 @@
+## [1.0.3-dev.1](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.2...v1.0.3-dev.1) (2024-09-08)
+
+
+### Bug Fixes
+
+* Upload asset signature by fixing asset path glob pattern ([1378304](https://github.com/ReVanced/revanced-patches-template/commit/1378304809092e1f5a5c8fb4beb0964496222059))
+
 ## [1.0.2](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.1...v1.0.2) (2024-09-08)
 
 ## [1.0.2-dev.1](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.1...v1.0.2-dev.1) (2024-08-08)
