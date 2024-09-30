@@ -1,3 +1,5 @@
+## [1.0.4-dev.1](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.3...v1.0.4-dev.1) (2024-09-30)
+
 ## [1.0.3](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.2...v1.0.3) (2024-09-08)
 
 
