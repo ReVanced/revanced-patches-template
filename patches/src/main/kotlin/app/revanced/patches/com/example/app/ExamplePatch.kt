@@ -1,4 +1,4 @@
-package app.revanced.patches.example
+package app.revanced.patches.com.example.app
 
 import app.revanced.patcher.patch.bytecodePatch
 
@@ -11,7 +11,7 @@ val examplePatch = bytecodePatch(
 
     extendWith("extensions/extension.rve")
 
-    execute {
+    apply {
         // TODO("Not yet implemented")
     }
 }
