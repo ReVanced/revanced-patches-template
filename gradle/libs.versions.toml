@@ -2,4 +2,32 @@
 revanced-patcher = "22.0.0"
 # Tracking https://github.com/google/smali/issues/64.
 #noinspection GradleDependency
-smali = "3.0.5"
+smali = "3.0.8"
+agp = "8.2.2"
+annotation = "1.9.1"
+appcompat = "1.7.1"
+okhttp = "5.3.2"
+retrofit = "3.0.0"
+guava = "33.5.0-jre"
+apksig = "9.0.1"
+# TODO: Adjust once https://github.com/google/protobuf-gradle-plugin/pull/797 is merged.
+protobuf = "master-SNAPSHOT"
+protoc = "4.34.1"
+shadow = "9.4.0"
+hiddenapibypass = "6.1"
+
+[libraries]
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+apksig = { group = "com.android.tools.build", name = "apksig", version.ref = "apksig" }
+protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protoc" }
+protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protoc" }
+hiddenapibypass = { module = "org.lsposed.hiddenapibypass:hiddenapibypass", version.ref = "hiddenapibypass" }
+
+[plugins]
+android-library = { id = "com.android.library" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }

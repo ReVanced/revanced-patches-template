@@ -21,7 +21,6 @@
       "@semantic-release/git",
       {
         "assets": [
-          "README.md",
           "CHANGELOG.md",
           "gradle.properties"
         ],
@@ -40,9 +39,10 @@
       }
     ],
     [
-      "@kilianpaquier/semantic-release-backmerge",
+      "@saithodev/semantic-release-backmerge",
       {
-        "targets": [{ "from": "main", "to": "dev" }]
+        "backmergeBranches": [{"from": "main", "to": "dev"}],
+        "clearWorkspace": true
       }
     ]
   ]
